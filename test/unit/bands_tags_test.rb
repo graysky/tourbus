@@ -16,9 +16,31 @@ class BandsTagsTest < Test::Unit::TestCase
   def test_add_new_tag
     tag = Tag.new(:name => "TEST1")
     @endgame.tags << tag
-    @endgame.save
+    @endgame.save()
     
     assert_equal 2, @endgame.tags.size
     assert_equal 1, tag.bands.size
+  end
+  
+  def test_find_all_with_count
+    tags = Tag.find_all_with_count
+    assert_equal 1, tags.size
+    assert_equal 1, tags[0].count
+    
+    # Add another tag to endgame
+    tag = Tag.new(:name => "TEST1")
+    @endgame.tags << tag
+    @endgame.save
+    tags = Tag.find_all_with_count
+    assert_equal 2, tags.size
+    assert_equal 1, tags[0].count
+    
+    # Add the new tag to cb
+    @cb.tags << tag
+    @cb.save
+    tags = Tag.find_all_with_count
+    assert_equal 2, tags.size
+    assert_equal 2, tags[0].count
+    assert_equal "TEST1", tags[0].name
   end
 end

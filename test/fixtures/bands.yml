@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first_band:
   id: 1
+  name: Endgame
+  contact_email: endgame@band.com
 another_band:
   id: 2
+  name: Crisis Bureau
+  contact_email: cb@band.com

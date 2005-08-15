@@ -7,8 +7,11 @@ class BandTest < Test::Unit::TestCase
     @band = Band.find(1)
   end
 
-  # Replace this with your real tests.
-  def test_truth
-    assert_kind_of Band,  @band
+  def test_add_tag
+    tag = Tag.new(:name => "xxx")
+    @band.tags << tag
+    @band.save
+    assert_equal 1, @band.tags.size
+    
   end
 end

@@ -24,3 +24,6 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+# We just ignore foreigh key checks so that we can delete fixtures without worrying
+ActiveRecord::Base.connection.update('SET FOREIGN_KEY_CHECKS = 0')

@@ -21,7 +21,7 @@ class BandsTagsTest < Test::Unit::TestCase
     assert_equal 2, @endgame.tags.size
     assert_equal 1, tag.bands.size
   end
-  
+   
   def test_find_all_with_count
     tags = Tag.find_all_with_count
     assert_equal 1, tags.size

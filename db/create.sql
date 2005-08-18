@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0;
+
 DROP TABLE IF EXISTS `bands_tags`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `tags`;
@@ -6,7 +8,9 @@ DROP TABLE IF EXISTS `shows`;
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
+  `url` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
+  `zipcode` VARCHAR(10) NOT NULL,
   `bio` text NOT NULL,
   `logo` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`id`)

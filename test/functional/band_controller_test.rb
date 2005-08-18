@@ -50,7 +50,7 @@ class BandControllerTest < Test::Unit::TestCase
   def test_create
     num_bands = Band.count
 
-    post :create, :band => {"name" => "xxx", "contact_email" => "sf@df.com"}
+    post :create, :band => {"name" => "xxx", "contact_email" => "sf@df.com", "url" => "xxx"}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

@@ -1,0 +1,41 @@
+
+body
+{
+	text-align:center;
+	background-color: #dddddd;
+	margin:0 auto;
+}
+
+a
+{
+	color:#CC8033;	
+}
+
+#container
+{
+	margin:8 auto;
+	width:800px;
+	height:97%;
+	background-color:white;
+	border:1px solid gray;
+	text-align:left;
+}
+
+#main_logo
+{
+	margin-top:16px;
+	margin-bottom:32px;
+	text-align:center;
+	font-size:60px;
+	color: #3380CC;
+}
+
+#signup_ad
+{
+	text-align:center;
+	font-size:16px;
+	color:black;
+	#border: 1px solid gray;
+	margin-bottom:16px;
+}
+

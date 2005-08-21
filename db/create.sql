@@ -42,7 +42,7 @@ CREATE TABLE `shows` (
   `city` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
   `date` DATETIME NOT NULL,
-  `band_id` int(10) unsigned NOT NULL default '0',
+  `band_id` int(10) unsigned NOT NULL,
   PRIMARY KEY(`id`),
   KEY `fk_band` (`band_id`),
   CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)

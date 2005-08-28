@@ -1,1 +1,23 @@
-Step 1
+<%= start_form_tag :action => 'signup' %>
+<%= error_messages_for 'band' %>
+<table>
+	<tr>
+		<td><label>Name:</label></td>
+		<td><%= text_field 'band', 'name'  %></td>
+	</tr>
+	<tr>
+		<td><label>Email Address:</label></td>
+		<td><%= text_field 'band', 'contact_email'  %></td>
+	</tr>
+	<tr>
+		<td><label>URL</label></td>
+		<td><%= text_field 'band', 'url'  %></td>
+	</tr>	
+	<tr>
+		<td><label>Zipcode</label></td>
+		<td><%= text_field 'band', 'zipcode'  %></td>
+	</tr>				
+	
+</table>
+<%= submit_tag "Create" %>
+<%= end_form_tag %>

@@ -23,4 +23,14 @@ class BandTest < Test::Unit::TestCase
     @band.save
     assert_equal 3, @band.shows.size
   end
+  
+  def test_name_to_id
+    assert_equal "crisisbureau", Band.name_to_id("crisis bureau")
+    assert_equal "crisis_bureau", Band.name_to_id("crisis_bureau")
+    assert_equal "crisisbureau2000", Band.name_to_id("crisis bureau 2000")
+    assert_equal "crisisbureau", Band.name_to_id("!crisis bureau*")
+    assert_equal "crisis-bureau", Band.name_to_id("crisis-bureau")
+    assert_equal "crisis.bureau", Band.name_to_id("crisis.bureau")
+    assert_equal "crisisbureau", Band.name_to_id("(crisis@&*bureau)")
+  end
 end

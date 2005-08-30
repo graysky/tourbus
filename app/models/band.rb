@@ -33,8 +33,10 @@ class Band < ActiveRecord::Base
   
   # Get a band id given a band name
   # The band id is the band name with whitespace and punctuation stripped out.
-  def self.band_name_to_id(name)
-    # TODO
+  def self.name_to_id(name)
+    # Remove anything that's not a letter, number or selected punctuation
+    id = name.gsub(/[^\w|\d|_|.|-]/, '')
+    return id
   end
   
   protected

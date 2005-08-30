@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<p>
+Thanks for signing up, <%=@band.name%>. To confirm your registration, 
+please click the following link:
+</p>
+
+<p>
+<a href="<%=@url%>"><%=@url%></a>
+</p>
+
+<p>
+Once you have confirmed your registration, you will be able to log in using the 
+following account information:
+</p>
+
+<p>
+Username: <%=@band.band_id%><br/>
+Password: <%=@band.password%>
+</p>
+
+<p>
+Thanks,<br/>
+The TourBus Team
+</p>
+
+</body>
+</html>
+	

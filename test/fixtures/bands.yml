@@ -2,10 +2,10 @@
 first_band:
   id: 1
   name: Endgame
-  url: endgame
+  band_id: endgame
   contact_email: endgame@band.com
 another_band:
   id: 2
   name: Crisis Bureau
-  url: crisisbureau
+  band_id: crisisbureau
   contact_email: cb@band.com

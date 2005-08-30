@@ -72,8 +72,9 @@ Controllers = Dependencies::LoadingModule.root(
 # Include your app's configuration here:
 ActionMailer::Base.server_settings = {
   :address=>'mail.mytourb.us',
+  :domain=>'mytourb.us',
   :port=>'25',                    
-  :user_name=>'tourbus',
-  :password=>'mytourbus',
-  :authentication=>:plain 
+  :user_name=>'m1147528',
+  :password=>'noreply',
+  :authentication=>:login
 } 

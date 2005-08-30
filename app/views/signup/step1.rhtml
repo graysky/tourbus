@@ -1,8 +1,8 @@
-<%= start_form_tag :action => 'signup' %>
+<%= start_form_tag %>
 <%= error_messages_for 'band' %>
 <table>
 	<tr>
-		<td><label>Name:</label></td>
+		<td><label>Band Name:</label></td>
 		<td><%= text_field 'band', 'name'  %></td>
 	</tr>
 	<tr>
@@ -10,9 +10,13 @@
 		<td><%= text_field 'band', 'contact_email'  %></td>
 	</tr>
 	<tr>
-		<td><label>URL</label></td>
-		<td><%= text_field 'band', 'url'  %></td>
-	</tr>	
+		<td><label>Password:</label></td>
+		<td><%= password_field 'band', 'password'  %></td>
+	</tr>
+	<tr>
+		<td><label>Confirm Password:</label></td>
+		<td><%= password_field 'band', 'password_confirmation'  %></td>
+	</tr>
 	<tr>
 		<td><label>Zipcode</label></td>
 		<td><%= text_field 'band', 'zipcode'  %></td>

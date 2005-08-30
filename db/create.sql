@@ -8,11 +8,15 @@ DROP TABLE IF EXISTS `shows`;
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
-  `url` varchar(100) NOT NULL default '',
+  `band_id` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
   `zipcode` VARCHAR(10) NOT NULL,
   `bio` text NOT NULL,
+  `salt` CHAR(40) NOT NULL,
+  `salted_password` VARCHAR(40) NOT NULL,
   `logo` varchar(100) NOT NULL default '',
+  `confirmed` boolean NOT NULL default 0,
+  `confirmation_code` varchar(50) default '',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB;
 

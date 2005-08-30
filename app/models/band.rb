@@ -40,7 +40,7 @@ class Band < ActiveRecord::Base
   protected
  
   def validate_password?
-    @new_password
+    return @new_password
   end
   
   # Crypt the current password if the password has changed

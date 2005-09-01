@@ -1,11 +1,15 @@
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
-  `url` varchar(100) NOT NULL default '',
+  `band_id` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
   `zipcode` varchar(10) NOT NULL default '',
   `bio` text NOT NULL,
+  `salt` varchar(40) NOT NULL default '',
+  `salted_password` varchar(40) NOT NULL default '',
   `logo` varchar(100) NOT NULL default '',
+  `confirmed` tinyint(1) NOT NULL default '0',
+  `confirmation_code` varchar(50) default '',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

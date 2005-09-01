@@ -2,22 +2,30 @@
 <body>
 
 <p>
-Thanks for signing up, <%=@band.name%>. To confirm your registration, 
+Thanks for signing up, <%=@band.name%>! To confirm your registration, 
 please click the following link:
 </p>
 
 <p>
-<a href="<%=@url%>"><%=@url%></a>
+<a href="<%=@confirm_url%>"><%=@confirm_url%></a>
 </p>
 
 <p>
-Once you have confirmed your registration, you will be able to log in using the 
+Once you have confirmed your account information, you will be able to log in using the 
 following account information:
 </p>
 
 <p>
 Username: <%=@band.band_id%><br/>
 Password: <%=@band.password%>
+</p>
+
+<p>
+Once your account is confirmed, your public page will become active at:
+</p>
+
+<p>
+	<a href="<%=@public_url%>"><%=@public_url%></a>
 </p>
 
 <p>

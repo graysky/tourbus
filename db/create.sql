@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `bands_tags`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `tags`;
 DROP TABLE IF EXISTS `shows`;
+DROP TABLE IF EXISTS `zip_codes`;
 
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -50,5 +51,23 @@ CREATE TABLE `shows` (
   PRIMARY KEY(`id`),
   KEY `fk_band` (`band_id`),
   CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
-)
-ENGINE = InnoDB;
+) ENGINE=InnoDB;
+
+CREATE TABLE `zip_codes` (
+  zip varchar(16) NOT NULL default '0',
+  city varchar(30) NOT NULL default '',
+  state varchar(30) NOT NULL default '',
+  latitude decimal(10,6) NOT NULL default '0.000000',
+  longitude decimal(10,6) NOT NULL default '0.000000',
+  timezone tinyint(2) NOT NULL default '0',
+  dst tinyint(1) NOT NULL default '0',
+  country char(2) NOT NULL default '',
+  PRIMARY KEY  (country,zip),
+  KEY pc (country,zip),
+  KEY zip (zip),
+  KEY latitude (latitude),
+  KEY longitude (longitude),
+  KEY country (country)
+) TYPE=MyISAM;
+INSERT INTO zip_codes VALUES ('02140','Cambridge','MA','42.393327','-71.128370',-5,1,'us');
+INSERT INTO zip_codes VALUES ('01721','Ashland','MA','42.257956','-71.458860',-5,1,'us');

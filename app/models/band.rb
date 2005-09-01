@@ -8,7 +8,8 @@ class Band < ActiveRecord::Base
   attr_accessor :new_password, :password, :password_confirmation
   
   validates_presence_of :name, :contact_email, :band_id, :zipcode
-  validates_uniqueness_of :band_id
+  validates_uniqueness_of :band_id, 
+                          :message => "Sorry, that band name has already been taken."
   validates_presence_of :password, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
   
@@ -32,10 +33,10 @@ class Band < ActiveRecord::Base
   end
   
   # Get a band id given a band name
-  # The band id is the band name with whitespace and punctuation stripped out.
+  # The band id is the band name with whitespace and punctuation stripped out, all lowercase
   def self.name_to_id(name)
     # Remove anything that's not a letter, number or selected punctuation
-    id = name.gsub(/[^\w|\d|_|.|-]/, '')
+    id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
     return id
   end
   

@@ -32,5 +32,6 @@ class BandTest < Test::Unit::TestCase
     assert_equal "crisis-bureau", Band.name_to_id("crisis-bureau")
     assert_equal "crisis.bureau", Band.name_to_id("crisis.bureau")
     assert_equal "crisisbureau", Band.name_to_id("(crisis@&*bureau)")
+    assert_equal "crisisbureau", Band.name_to_id("Crisis Bureau")
   end
 end

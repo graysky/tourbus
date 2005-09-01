@@ -13,13 +13,14 @@ class SignupController < ApplicationController
         code = @band.create_confirmation_code
         
         # Create a url for the confirm action
-        url = url_for(:action => 'confirm')
-        url += "/" + code
+        confirm_url = url_for(:action => 'confirm')
+        confirm_url += "/" + code
         
         @band.new_password = true
         @band.band_id = Band.name_to_id(@band.name)
+        public_url = url_for(:controller => '') + @band.band_id
         if @band.save
-          BandMailer.deliver_notify_signup(@band, url)
+          BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
           session[:band] = @band
           redirect_to :action => 'step2'
         end

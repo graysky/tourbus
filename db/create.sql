@@ -3,7 +3,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `bands_tags`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `band_services`;
 DROP TABLE IF EXISTS `shows`;
+DROP TABLE IF EXISTS `venues`;
 DROP TABLE IF EXISTS `zip_codes`;
 
 CREATE TABLE `bands` (
@@ -35,23 +37,47 @@ CREATE TABLE `bands_tags` (
   CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `band_services` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `band_id` int(10) unsigned NOT NULL default '0',
+  `myspace_username` varchar(100) NOT NULL default '',
+  `myspace_salt` varchar(40) NOT NULL default '',
+  `purevolume_username` varchar(100) NOT NULL default '',
+  `purevolume_password` varchar(40) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_band_id` FOREIGN KEY (`id`) REFERENCES `bands` (`id`)
+) ENGINE=InnoDB;
+
 CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `venue` VARCHAR(100) NOT NULL,
-  `venue_link` VARCHAR(100) NOT NULL,
   `cost` VARCHAR(50),
-  `country` VARCHAR(45) NOT NULL,
-  `state` VARCHAR(2) NOT NULL,
-  `zipcode` VARCHAR(10) NOT NULL,
-  `address` VARCHAR(255) NOT NULL,
-  `city` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
+  `url` VARCHAR(100) NOT NULL,
   `date` DATETIME NOT NULL,
   `band_id` int(10) unsigned NOT NULL,
+  `venue_id` int(10) unsigned NOT NULL,
   PRIMARY KEY(`id`),
   KEY `fk_band` (`band_id`),
-  CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
+  CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_venue` (`venue_id`),
+  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
 ) ENGINE=InnoDB;
+
+CREATE TABLE `venues` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `url` VARCHAR(100) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `state` VARCHAR(2) NOT NULL,
+  `zipcode` VARCHAR(10) NOT NULL,
+  `country` VARCHAR(45) NOT NULL,
+  `phone_number` VARCHAR(15) NOT NULL,
+  `description` TEXT NOT NULL,
+  `contact_email` varchar(100) NOT NULL,
+  `latitude` VARCHAR(30) NOT NULL,
+  `longitude` VARCHAR(30) NOT NULL
+) ENGINE=InnoDB;
+
 
 CREATE TABLE `zip_codes` (
   zip varchar(16) NOT NULL default '0',

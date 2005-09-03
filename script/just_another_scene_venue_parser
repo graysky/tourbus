@@ -1,0 +1,103 @@
+require "xmlrpc/client"
+require "yaml/store"
+require 'net/http'
+
+# Parses the venue information out of justanotherscene.com and produces
+# a yaml file with the info. This file can be used by other tools to populate
+# the database with the initial set of venues.
+# Will probably never need to be run again now that we have the initial set of venues,
+# as justanotherscene appears dead.
+
+$venue_hashes = []
+
+def self.geocode(addr)
+  server = XMLRPC::Client.new2("http://rpc.geocoder.us/service/xmlrpc")
+  result = server.call2("geocode", addr)
+  
+  # First element of array is boolean for fault/no fault
+  # Second element is the actual respose or fault object
+  p addr
+  if (!result or !result[0] or !result[1][0] or !result[1][0]["long"])
+    return nil  
+  end
+  
+  return result[1][0]
+end
+
+def self.parse_page_contents(contents)
+  contents = contents[contents.index("<br><br><br><b>")..-1]
+  
+  # Grab the chuck of the page from the paging control to the end
+  contents.split("<br>\n<br>\n<br>").each do |listing|
+    next if listing =~ /\/html/
+    
+    name = nil
+    url = ""
+    address = ""
+    phone = ""
+    street_address = ""
+    
+    listing.split("<br>").each do |line|
+      next if line == ""
+      
+      # Remove unwanted markup
+      line.gsub!(/<b>|<\/b>|\n/, "")
+      line.strip!
+      
+      if (name == nil)
+        # The first line is the name of the club, possibly with a link
+        if (line.index("<a") == 0)
+          # Pull out the link
+          line =~ /href="(.*)">(.*)</
+          url = $1
+          name = $2
+        else
+          name = line
+        end
+      else
+        if (line =~ /\d\d\d-\d\d\d-\d\d\d\d/)
+          phone = line
+          break
+        elsif (line.index("<script") == 0)
+          # We're at the email address
+          break
+        else
+          if (address != "")
+            address += ", "
+          else
+            street_address = line
+          end
+          
+          address += line
+        end
+      end
+    end
+    
+    # Look it up
+    data = geocode(address)
+    if (data)
+      zip = "0" + data["zip"].to_s
+    
+      $venue_hashes << {"name" => name, "url" => url, "phone" => phone, "address" => street_address,
+                       "state" => data["state"], "zip" => zip, "city" => data["city"],
+                       "latitude" => data["lat"], "longitude" => data["long"]}  
+    end
+  end
+end
+
+#
+# Main 
+#
+for i in (0..8)
+  puts "Get page #{i}"
+  Net::HTTP.start("www.justanotherscene.com", 80) do |http|
+    response = http.get("/venues.php?offset=" + (i * 30).to_s)
+    parse_page_contents(response.body)
+  end
+  
+  y = YAML::Store.new("all_venues.yaml", :Indent => 2)
+  y.transaction do
+    y['venues'] = $venue_hashes
+  end   
+end
+

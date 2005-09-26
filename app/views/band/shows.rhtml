@@ -1,0 +1,14 @@
+<%= render(:partial => "tabs", :locals => {:active => "home"}) %>
+
+<%= link_to "Add Show", :action => "add_show" %>
+
+<div width="80%">
+	<h2>Shows</h2>
+	<% for show in @band.shows %>
+			
+	<% end %>
+</div>
+
+<div width="80%">
+	Map goes here
+</div>

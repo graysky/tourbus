@@ -1,0 +1,1632 @@
+--- 
+venues: 
+  - 
+    city: North Haven
+    name: North Haven Congregational Church
+    latitude: 41.387534
+    zip: "06473"
+    url: http://www.manicproductions.org/
+    phone: 
+    longitude: -72.860982
+    address: 28 Church St
+    state: CT
+  - 
+    city: New York
+    name: Irving Plaza
+    latitude: 40.735117
+    zip: "010003"
+    url: http://www.irvingplaza.com/
+    phone: 212-777-6800
+    longitude: -73.988345
+    address: 17 Irving Pl
+    state: NY
+  - 
+    city: Poughkeepsie
+    name: The Chance
+    latitude: 41.702443
+    zip: "012601"
+    url: http://www.thechancetheater.com/
+    phone: 845-471-1966
+    longitude: -73.924198
+    address: 6 Crannell St
+    state: NY
+  - 
+    city: Hartford
+    name: The Webster Theatre
+    latitude: 41.7442
+    zip: "06114"
+    url: http://www.webstertheater.com
+    phone: 860-246-8001
+    longitude: -72.682737
+    address: 31 Webster St
+    state: CT
+  - 
+    city: New Haven
+    name: "Toad's Place"
+    latitude: 41.311597
+    zip: "06511"
+    url: http://www.toadsplace.com/
+    phone: 203-562-5589
+    longitude: -72.929371
+    address: 300 York St
+    state: CT
+  - 
+    city: Worcester
+    name: The Palladium
+    latitude: 42.267029
+    zip: 01608
+    url: http://www.thepalladium.net
+    phone: 508-797-9696
+    longitude: -71.801042
+    address: 261 Main St
+    state: MA
+  - 
+    city: Farmingdale
+    name: The Downtown
+    latitude: 40.736099
+    zip: "011735"
+    url: http://www.thedowntown.com/
+    phone: 516-293-7700
+    longitude: -73.446167
+    address: 190 Main St
+    state: NY
+  - 
+    city: New York
+    name: The Continental
+    latitude: 40.730632
+    zip: "010003"
+    url: http://www.continentalnyc.com
+    phone: 212-529-6924
+    longitude: -73.989588
+    address: 25 3rd Ave
+    state: NY
+  - 
+    city: Philadelphia
+    name: North Star
+    latitude: 39.972792
+    zip: 019130
+    url: http://www.northstarbar.com/
+    phone: 215-684-0808
+    longitude: -75.180358
+    address: 2639 Poplar St
+    state: PA
+  - 
+    city: New York
+    name: "B.B. King's Blues Club"
+    latitude: 40.75659
+    zip: "010036"
+    url: http://bbkingblues.com/
+    phone: 212-997-4144
+    longitude: -73.988102
+    address: 237 W 42nd St
+    state: NY
+  - 
+    city: Danbury
+    name: Empress Ballroom
+    latitude: 41.393606
+    zip: 06810
+    url: http://www.empressballroom.com/
+    phone: 203-796-0000
+    longitude: -73.451186
+    address: 155 Main St
+    state: CT
+  - 
+    city: Madison
+    name: Madison Arts Barn
+    latitude: 41.294584
+    zip: "06443"
+    url: http://www.madisonartsbarn.org
+    phone: 203-245-2689
+    longitude: -72.575567
+    address: 6 Campus Dr
+    state: CT
+  - 
+    city: Buffalo
+    name: The Showplace
+    latitude: 42.940509
+    zip: "014207"
+    url: http://www.afterdarkevents.com
+    phone: 716-447-1271
+    longitude: -78.891167
+    address: 1063 Grant St
+    state: NY
+  - 
+    city: Pittsburgh
+    name: Club Laga
+    latitude: 40.440718
+    zip: "015213"
+    url: http://www.clublaga.com/
+    phone: 412-682-2050
+    longitude: -79.958117
+    address: 3609 Forbes Ave
+    state: PA
+  - 
+    city: Providence
+    name: The Living Room
+    latitude: 41.829124
+    zip: 02908
+    url: http://www.lupos.com/
+    phone: 401-521-5200
+    longitude: -71.428146
+    address: 23 Rathbone St
+    state: RI
+  - 
+    city: Philadelphia
+    name: The Trocadero
+    latitude: 39.95355
+    zip: 019107
+    url: http://www.thetroc.com/
+    phone: 
+    longitude: -75.156323
+    address: 1003 Arch St
+    state: PA
+  - 
+    city: Rochester
+    name: Water Street Music Hall
+    latitude: 43.160255
+    zip: "014604"
+    url: http://www.waterstreetmusic.com
+    phone: 585-546-3887
+    longitude: -77.61177
+    address: 204 N Water St
+    state: NY
+  - 
+    city: Boston
+    name: Avalon
+    latitude: 42.347097
+    zip: "02215"
+    url: http://www.avalonboston.com
+    phone: 617-262-2424
+    longitude: -71.095296
+    address: 15 Lansdowne St
+    state: MA
+  - 
+    city: Lackawanna
+    name: Cruise Inn
+    latitude: 42.819627
+    zip: 014218
+    url: ''
+    phone: 
+    longitude: -78.80176
+    address: 1648 Abbott Rd
+    state: NY
+  - 
+    city: South Amboy
+    name: Sacred Heart Annex
+    latitude: 40.480305
+    zip: 08879
+    url: ''
+    phone: 732-721-9536
+    longitude: -74.28989
+    address: 531 Washington Ave
+    state: NJ
+  - 
+    city: West Seneca
+    name: Exposure
+    latitude: 42.862598
+    zip: "014224"
+    url: http://exposureentertainmentusa.com/
+    phone: 716-400-5546
+    longitude: -78.754433
+    address: 2304 Union Road
+    state: NY
+  - 
+    city: New York
+    name: "Don Hill's"
+    latitude: 40.726504
+    zip: "010013"
+    url: http://www.donhills.com
+    phone: 212-219-2850
+    longitude: -74.009005
+    address: 511 Greenwich St
+    state: NY
+  - 
+    city: Fairview
+    name: Images Nightclub
+    latitude: 40.810597
+    zip: "07022"
+    url: http://www.rockin-images.com/
+    phone: 201-840-0330
+    longitude: -74.001397
+    address: 359 Fairview Ave
+    state: NJ
+  - 
+    city: Buffalo
+    name: The Continental
+    latitude: 42.88919
+    zip: "014202"
+    url: http://www.continentalofbuffalo.com
+    phone: 716-855-3938
+    longitude: -78.875324
+    address: 212 Franklin St
+    state: NY
+  - 
+    city: Montclair
+    name: Bloomfield Ave Café
+    latitude: 40.812075
+    zip: "07042"
+    url: http://www.bloomfieldavecafe.com
+    phone: 973-783-2100
+    longitude: -74.215265
+    address: 347 Bloomfield Ave
+    state: NJ
+  - 
+    city: Sayreville
+    name: Starland Ballroom
+    latitude: 40.437108
+    zip: 08872
+    url: http://www.starlandballroom.com/
+    phone: 732-238-5500
+    longitude: -74.350159
+    address: 570 Jernee Mill Rd
+    state: NJ
+  - 
+    city: New York
+    name: Knitting Factory
+    latitude: 40.717927
+    zip: "010013"
+    url: http://www.knittingfactory.com/
+    phone: 212-219-3132
+    longitude: -74.005211
+    address: 74 Leonard St
+    state: NY
+  - 
+    city: Manheim
+    name: Chameleon Club
+    latitude: 40.041348
+    zip: "017603"
+    url: http://www.chameleonclub.net/
+    phone: 717-393-7133
+    longitude: -76.309024
+    address: 223 N Water St
+    state: PA
+  - 
+    city: Cambridge
+    name: The Middle East
+    latitude: 42.363997
+    zip: 02139
+    url: http://www.mideastclub.com/
+    phone: 
+    longitude: -71.101396
+    address: 472 Massachusetts Ave
+    state: MA
+  - 
+    city: Washington
+    name: 9:30 Club
+    latitude: 38.917762
+    zip: "020001"
+    url: http://www.930.com
+    phone: 202-265-0930
+    longitude: -77.02309
+    address: 815 V St NW
+    state: DC
+  - 
+    city: York
+    name: The Princess Center
+    latitude: 39.958998
+    zip: "017403"
+    url: ''
+    phone: 717-843-6875
+    longitude: -76.727989
+    address: 368 W. Princess St
+    state: PA
+  - 
+    city: Baltimore
+    name: The Ottobar
+    latitude: 39.319038
+    zip: 021218
+    url: http://www.theottobar.com/
+    phone: 410-662-0069
+    longitude: -76.619819
+    address: 2549 North Howard St
+    state: MD
+  - 
+    city: Bound Brook
+    name: Hamilton St Café
+    latitude: 40.561891
+    zip: 08805
+    url: http://www.hamiltonst.com
+    phone: 732-469-7400
+    longitude: -74.530178
+    address: 22 Hamilton St
+    state: NJ
+  - 
+    city: New York
+    name: CBGB
+    latitude: 40.725968
+    zip: "010003"
+    url: http://www.cbgb.com/
+    phone: 212-982-4052
+    longitude: -73.992183
+    address: 315 Bowery
+    state: NY
+  - 
+    city: Yorktown Heights
+    name: Yorktown Elks Lodge
+    latitude: 41.294195
+    zip: 010598
+    url: http://www.theangrypenguin.com/
+    phone: 
+    longitude: -73.798272
+    address: 2324 Waverly Rd
+    state: NY
+  - 
+    city: Baltimore
+    name: "Fletcher's"
+    latitude: 39.284503
+    zip: "021231"
+    url: http://www.fletchersbar.com
+    phone: 410-558-1889
+    longitude: -76.595292
+    address: 701 South Bond St
+    state: MD
+  - 
+    city: Copiague
+    name: Copiague VFW
+    latitude: 40.677859
+    zip: "011726"
+    url: ''
+    phone: 
+    longitude: -73.405442
+    address: 270 Trouville Rd
+    state: NY
+  - 
+    city: Haddam
+    name: Valley Bible Church
+    latitude: 41.453695
+    zip: 06438
+    url: ''
+    phone: 
+    longitude: -72.513125
+    address: 220 Turkey Hill Rd
+    state: CT
+  - 
+    city: Middletown
+    name: The Internet Café
+    latitude: 40.352309
+    zip: "07701"
+    url: http://www.icafenj.com/
+    phone: 732-842-4503
+    longitude: -74.065584
+    address: 1 West Front St
+    state: NJ
+  - 
+    city: Rochester
+    name: The Penny Arcade
+    latitude: 43.257925
+    zip: "014612"
+    url: http://www.rochesterwebdesign.com/arcade/arcade.htm
+    phone: 585-621-7625
+    longitude: -77.608875
+    address: 4785 Lake Ave
+    state: NY
+  - 
+    city: Winooski
+    name: Higher Ground
+    latitude: 44.489117
+    zip: "05404"
+    url: http://www.highergroundmusic.com/
+    phone: 802-654-8888
+    longitude: -73.186449
+    address: 1 Main St
+    state: VT
+  - 
+    city: New York
+    name: Bowery Ballroom
+    latitude: 40.72076
+    zip: "010002"
+    url: http://www.boweryballroom.com/
+    phone: 212-533-2111
+    longitude: -73.993868
+    address: 6 Delancey St
+    state: NY
+  - 
+    city: New York
+    name: Tribeca Rock Club
+    latitude: 40.689306
+    zip: "011201"
+    url: http://www.tribecarockclub.com/
+    phone: 212-766-1070
+    longitude: -74.001491
+    address: 16 Warren St
+    state: NY
+  - 
+    city: College
+    name: Crowbar
+    latitude: 40.798265
+    zip: 016801
+    url: http://www.crowbarlivemusic.com/
+    phone: 814-237-0426
+    longitude: -77.856547
+    address: 420 E College Ave
+    state: PA
+  - 
+    city: Boston
+    name: Axis
+    latitude: 42.347097
+    zip: "02215"
+    url: http://www.nextticketing.com/axis.html
+    phone: 617-262-2437
+    longitude: -71.09521
+    address: 13 Lansdowne St
+    state: MA
+  - 
+    city: Irvington
+    name: Cricket Club
+    latitude: 40.738664
+    zip: "07111"
+    url: http://www.cricketnightclub.com/
+    phone: 973-374-1062
+    longitude: -74.215615
+    address: 415 16th Ave
+    state: NJ
+  - 
+    city: New York
+    name: Roseland Ballroom
+    latitude: 40.762979
+    zip: 010019
+    url: http://www.roselandballroom.com
+    phone: 212-247-0200
+    longitude: -73.983871
+    address: 239 West 52nd St
+    state: NY
+  - 
+    city: Hamden
+    name: The Space
+    latitude: 41.352858
+    zip: "06517"
+    url: http://www.thespace.tk
+    phone: 203-288-6400
+    longitude: -72.924201
+    address: 295 Treadwell St
+    state: CT
+  - 
+    city: Philadelphia
+    name: The Electric Factory
+    latitude: 39.958882
+    zip: 019123
+    url: http://www.electricfactory.com
+    phone: 215-568-3222
+    longitude: -75.150301
+    address: 421 North 7th St
+    state: PA
+  - 
+    city: Boston
+    name: Paradise Rock Club
+    latitude: 42.351546
+    zip: "02215"
+    url: http://www.thedise.com
+    phone: 617-562-8800
+    longitude: -71.119556
+    address: 967 Commonwealth Ave
+    state: MA
+  - 
+    city: Erie
+    name: Forward Hall
+    latitude: 42.112239
+    zip: "016502"
+    url: http://www.forwardhall.com/
+    phone: 814-455-8231
+    longitude: -80.075468
+    address: 2502 Peach St
+    state: PA
+  - 
+    city: Cambridge
+    name: "T.T. the Bear's"
+    latitude: 42.363797
+    zip: 02139
+    url: http://www.ttthebears.com/
+    phone: 
+    longitude: -71.101896
+    address: 10 Brookline St
+    state: MA
+  - 
+    city: Hamden
+    name: Hamden Knights of Columbus
+    latitude: 41.392161
+    zip: 06518
+    url: ''
+    phone: 
+    longitude: -72.897373
+    address: 2630 Whitney Ave
+    state: CT
+  - 
+    city: Poughkeepsie
+    name: The Loft
+    latitude: 41.702443
+    zip: "012601"
+    url: http://www.thechancetheater.com/
+    phone: 845-471-1966
+    longitude: -73.924198
+    address: 6 Crannell St
+    state: NY
+  - 
+    city: Washington
+    name: Nation
+    latitude: 38.878281
+    zip: "020003"
+    url: http://www.primacycompanies.com/nation/
+    phone: 202-554-1500
+    longitude: -77.007459
+    address: 1015 Half St SE
+    state: DC
+  - 
+    city: Allentown
+    name: Crocodile Rock Café
+    latitude: 40.60293
+    zip: 018101
+    url: http://www.crocodilerockcafe.com/
+    phone: 610-434-4600
+    longitude: -75.468494
+    address: 520 W Hamilton St
+    state: PA
+  - 
+    city: Ulysses
+    name: Castaways
+    latitude: 42.442629
+    zip: 014850
+    url: http://www.castawaysithaca.com/
+    phone: 607-272-1370
+    longitude: -76.51274
+    address: 413 Taughannock Blvd
+    state: NY
+  - 
+    city: Philadelphia
+    name: Theater of Living Arts
+    latitude: 39.941515
+    zip: 019147
+    url: http://www.theateroflivingarts.net
+    phone: 215-922-1011
+    longitude: -75.148335
+    address: 334 South St
+    state: PA
+  - 
+    city: Towson
+    name: Recher Theatre
+    latitude: 39.400711
+    zip: 021286
+    url: http://www.rechertheatre.com/
+    phone: 410-337-7178
+    longitude: -76.602382
+    address: 512 York Rd
+    state: MD
+  - 
+    city: Providence
+    name: "Lupo's at the Strand"
+    latitude: 41.82308
+    zip: 02903
+    url: http://www.lupos.com/
+    phone: 
+    longitude: -71.414001
+    address: 79 Washington St
+    state: RI
+  - 
+    city: Poughkeepsie
+    name: Club Crannell St
+    latitude: 41.702443
+    zip: "012601"
+    url: http://www.thechancetheater.com/
+    phone: 845-471-1966
+    longitude: -73.924198
+    address: 6 Crannell St
+    state: NY
+  - 
+    city: Fox Chapel
+    name: Indiana University of Pennsylvania
+    latitude: 40.509768
+    zip: 015238
+    url: http://www.iup.edu/
+    phone: 724-357-2100
+    longitude: -79.878772
+    address: 1011 South Dr
+    state: PA
+  - 
+    city: Wyckoff
+    name: Grace Coffeehouse
+    latitude: 40.993077
+    zip: 07481
+    url: http://www.gumc.org/gch/
+    phone: 201-891-4595
+    longitude: -74.181963
+    address: 555 Russell Ave
+    state: NJ
+  - 
+    city: Rochester
+    name: The Bug Jar
+    latitude: 43.150227
+    zip: "014607"
+    url: http://www.bugjar.com/
+    phone: 716-454-2966
+    longitude: -77.600352
+    address: 219 Monroe Ave
+    state: NY
+  - 
+    city: New York
+    name: North Six
+    latitude: 40.719128
+    zip: "011211"
+    url: http://www.northsix.com/
+    phone: 718-599-5103
+    longitude: -73.961285
+    address: 66 North 6th St
+    state: NY
+  - 
+    city: Baltimore
+    name: The Talking Head
+    latitude: 39.291246
+    zip: "021202"
+    url: http://www.talkingheadclub.com/
+    phone: 410-962-5588
+    longitude: -76.61196
+    address: 203 Davis St
+    state: MD
+  - 
+    city: Hoboken
+    name: "Maxwell's"
+    latitude: 40.749005
+    zip: "07030"
+    url: http://www.maxwellsnj.com
+    phone: 201-798-0406
+    longitude: -74.027329
+    address: 1039 Washington St
+    state: NJ
+  - 
+    city: Garfield
+    name: Garfield American Legion
+    latitude: 40.879969
+    zip: "07026"
+    url: http://www.reckless13.net/
+    phone: 973-478-0700
+    longitude: -74.108745
+    address: 163 Cedar St
+    state: NJ
+  - 
+    city: Ithaca
+    name: Lost Dog Cafe
+    latitude: 42.431922
+    zip: 014850
+    url: http://www.lostdogcafe.net/
+    phone: 607-277-9143
+    longitude: -76.49888
+    address: 106-112 S Cayuga St.
+    state: NY
+  - 
+    city: Ramblewood
+    name: Grand Slam Batting Cages
+    latitude: 39.923267
+    zip: 08054
+    url: ''
+    phone: 856-866-2077
+    longitude: -74.965982
+    address: 23 Roland Ave
+    state: NJ
+  - 
+    city: West Hartford
+    name: "The Hawk's Nest @ UHART"
+    latitude: 41.794053
+    zip: "06117"
+    url: http://uhaweb.hartford.edu/hawksnest/
+    phone: 
+    longitude: -72.716688
+    address: 200 Bloomfield Ave
+    state: CT
+  - 
+    city: Massapequa Park
+    name: Courthouse East
+    latitude: 40.678775
+    zip: "011762"
+    url: ''
+    phone: 516-798-9786
+    longitude: -73.455676
+    address: 1015 Park Blvd
+    state: NY
+  - 
+    city: Rutherford
+    name: Murray Hodge American Legion
+    latitude: 40.823905
+    zip: "07070"
+    url: ''
+    phone: 201-531-0656
+    longitude: -74.100235
+    address: 58 Meadow Rd
+    state: NJ
+  - 
+    city: New York
+    name: Rumor
+    latitude: 40.731254
+    zip: "010012"
+    url: http://www.rumornyc.com/
+    phone: 212-343-0333
+    longitude: -74.000719
+    address: 130 W. 3rd St
+    state: NY
+  - 
+    city: Buffalo
+    name: Xtreme Wheels
+    latitude: 42.945035
+    zip: "014207"
+    url: http://www.xtreme-wheelz.com/
+    phone: 716-871-9361
+    longitude: -78.89422
+    address: 356 Hertel Ave
+    state: NY
+  - 
+    city: Albany
+    name: New Age Cabaret
+    latitude: 42.662879
+    zip: "012207"
+    url: http://www.wakeuppunk.com
+    phone: 518-436-3465
+    longitude: -73.744564
+    address: 453 N Pearl St
+    state: NY
+  - 
+    city: Asbury Park
+    name: Convention Hall
+    latitude: 40.224593
+    zip: "07712"
+    url: http://www.asburyboardwalk.com/convention.htm
+    phone: 732-502-5728
+    longitude: -73.998579
+    address: 1300 Ocean Ave
+    state: NJ
+  - 
+    city: Buffalo
+    name: Sphere Entertainment Complex
+    latitude: 42.892754
+    zip: "014202"
+    url: http://www.spherebuffalo.com
+    phone: 716-852-3900
+    longitude: -78.871725
+    address: 681 Main St
+    state: NY
+  - 
+    city: Muhlenberg
+    name: Sound Waves
+    latitude: 40.378656
+    zip: 019605
+    url: http://www.woodenwaves.net/soundwaves/swshows.shtml
+    phone: 610-939-0964
+    longitude: -75.901692
+    address: 115 Little Rock Road
+    state: PA
+  - 
+    city: Rochester
+    name: Steel Music Hall
+    latitude: 43.123513
+    zip: "014611"
+    url: http://www.steelmusichall.com
+    phone: 585-436-7573
+    longitude: -77.64496
+    address: 1509 Scottsville Rd
+    state: NY
+  - 
+    city: West Babylon
+    name: Looney Tunes
+    latitude: 40.686329
+    zip: "011704"
+    url: http://www.looneytunescds.com/
+    phone: 631-587-7722
+    longitude: -73.346983
+    address: 31 Brookvale Ave
+    state: NY
+  - 
+    city: Butler
+    name: Days Inn
+    latitude: 40.844355
+    zip: "016045"
+    url: http://www.daysinn.com/DaysInn/control/Booking/search_results?brand_code=DI&p_country=US&p_state=PA&p_city=Butler
+    phone: 724-287-6761
+    longitude: -79.917947
+    address: 139 Pittsburgh Rd
+    state: PA
+  - 
+    city: Albany
+    name: "Valentine's"
+    latitude: 42.654222
+    zip: 012208
+    url: http://www.valentinesalbany.com
+    phone: 518-432-6572
+    longitude: -73.773022
+    address: 17 New Scotland Ave
+    state: NY
+  - 
+    city: Asbury Park
+    name: The Stone Pony
+    latitude: 40.224593
+    zip: "07712"
+    url: http://www.stoneponyonline.com/
+    phone: 732-502-0600
+    longitude: -73.998579
+    address: 913 Ocean Ave
+    state: NJ
+  - 
+    city: Westport
+    name: Toquet Hall
+    latitude: 41.141584
+    zip: 06880
+    url: http://www.toquethall.org
+    phone: 203-341-1155
+    longitude: -73.36118
+    address: 58 Post Road E
+    state: CT
+  - 
+    city: Greenwich
+    name: Arch Street Teen Center
+    latitude: 41.020668
+    zip: 06830
+    url: http://www.archstreet.org/
+    phone: 203-629-5744
+    longitude: -73.627025
+    address: 100 Arch St
+    state: CT
+  - 
+    city: Washington
+    name: Black Cat
+    latitude: 38.914429
+    zip: 020009
+    url: http://www.blackcatdc.com/
+    phone: 202-667-7960
+    longitude: -77.031951
+    address: 1811 14th St NW
+    state: DC
+  - 
+    city: New Milford
+    name: The Maxx Club
+    latitude: 41.579494
+    zip: "06776"
+    url: http://www.themaxxclub.com
+    phone: 860-210-2165
+    longitude: -73.413265
+    address: 94 Railroad St
+    state: CT
+  - 
+    city: Plainville
+    name: "Woody's Bar and Grill"
+    latitude: 41.671225
+    zip: "06062"
+    url: ''
+    phone: 860-877-3639
+    longitude: -72.867823
+    address: 21 West Main St
+    state: CT
+  - 
+    city: Middletown
+    name: Electric House
+    latitude: 41.555439
+    zip: 06459
+    url: ''
+    phone: 
+    longitude: -72.654177
+    address: 200 High St
+    state: CT
+  - 
+    city: Bronxville
+    name: Christ Church Bronxville
+    latitude: 40.942898
+    zip: 010708
+    url: ''
+    phone: 
+    longitude: -73.833478
+    address: 17 Sagamore Rd
+    state: NY
+  - 
+    city: Philadelphia
+    name: First Unitarian Church
+    latitude: 39.952387
+    zip: 019103
+    url: http://www.r5productions.com
+    phone: 215-563-3980
+    longitude: -75.176191
+    address: 2125 Chestnut St
+    state: PA
+  - 
+    city: Gettysburg
+    name: The Attic (Gettysburg College)
+    latitude: 39.835143
+    zip: "017331"
+    url: http://www.gettysburg.edu/college_life/osa/attic/
+    phone: 717-337-6304
+    longitude: -77.233352
+    address: 300 N Washington St
+    state: PA
+  - 
+    city: Millvale
+    name: Mr. Smalls Theatre
+    latitude: 40.480668
+    zip: 015209
+    url: http://www.mrsmalls.com
+    phone: 412-821-5871
+    longitude: -79.972274
+    address: 400 Lincoln Ave
+    state: PA
+  - 
+    city: Vernon
+    name: Mountain Creek Ski Area
+    latitude: 41.198219
+    zip: "07462"
+    url: http://www.mountaincreek.com/
+    phone: 973-827-2000
+    longitude: -74.483298
+    address: 200 Route 94
+    state: NJ
+  - 
+    city: Darien
+    name: The Shac
+    latitude: 41.060166
+    zip: 06820
+    url: ''
+    phone: 
+    longitude: -73.487161
+    address: 2011 Post Rd
+    state: CT
+  - 
+    city: Syracuse
+    name: Planet 505
+    latitude: 43.041502
+    zip: "013210"
+    url: http://www.planet505.com/
+    phone: 315-471-8646
+    longitude: -76.119609
+    address: 505 Westcott St
+    state: NY
+  - 
+    city: New York
+    name: "Arlene's Grocery"
+    latitude: 40.721791
+    zip: "010002"
+    url: http://www.arlene-grocery.com/
+    phone: 212-358-1633
+    longitude: -73.988482
+    address: 95 Stanton St
+    state: NY
+  - 
+    city: New York
+    name: Downtime
+    latitude: 40.749312
+    zip: "010001"
+    url: http://www.downtimenyc.com/
+    phone: 212-695-2747
+    longitude: -73.993998
+    address: 251 W 30th St
+    state: NY
+  - 
+    city: New York
+    name: Lions Lair
+    latitude: 40.62591
+    zip: "010304"
+    url: ''
+    phone: 718-556-0179
+    longitude: -74.075414
+    address: 661 Bay St
+    state: NY
+  - 
+    city: Maplewood
+    name: Villiage Coffee Company
+    latitude: 40.731151
+    zip: "07040"
+    url: ''
+    phone: 973-762-6660
+    longitude: -74.277592
+    address: 164 Maplewood Ave
+    state: NJ
+  - 
+    city: Oceanside
+    name: Funky Monkey
+    latitude: 40.635908
+    zip: "011572"
+    url: ''
+    phone: 
+    longitude: -73.639974
+    address: 3297 Long Beach Rd
+    state: NY
+  - 
+    city: Pequannock
+    name: Pequannock Knights of Columbus
+    latitude: 40.94502
+    zip: "07440"
+    url: ''
+    phone: 
+    longitude: -74.294271
+    address: 84 Lincoln Park Rd
+    state: NJ
+  - 
+    city: Swatara
+    name: Lebanon Fire Hall
+    latitude: 40.403543
+    zip: "017046"
+    url: ''
+    phone: 
+    longitude: -76.476415
+    address: 335 N Lancaster St
+    state: PA
+  - 
+    city: Ronkonkoma
+    name: The Hungarian Hall
+    latitude: 40.814969
+    zip: 011779
+    url: ''
+    phone: 631-467-1539
+    longitude: -73.125397
+    address: 2784 Ocean Ave
+    state: NY
+  - 
+    city: Springfield
+    name: The Fat Cat Bar & Grill
+    latitude: 42.104545
+    zip: "01103"
+    url: ''
+    phone: 413-734-0554
+    longitude: -72.591882
+    address: 232 Worthington St
+    state: MA
+  - 
+    city: Boston
+    name: Bills Bar & Lounge
+    latitude: 42.347097
+    zip: "02215"
+    url: http://www.billsbar.com/
+    phone: 617-421-9678
+    longitude: -71.094867
+    address: 5 Lansdowne St
+    state: MA
+  - 
+    city: Dedham
+    name: Dedham UU Church
+    latitude: 42.249218
+    zip: "02026"
+    url: ''
+    phone: 
+    longitude: -71.177167
+    address: 670 High St
+    state: MA
+  - 
+    city: Hanover
+    name: Hanover High School
+    latitude: 43.696702
+    zip: "03755"
+    url: http://www.hanoverhigh.org/
+    phone: 603-643-3431
+    longitude: -72.280534
+    address: 41 Lebanon St
+    state: NH
+  - 
+    city: New York
+    name: Pyramid Club
+    latitude: 40.726158
+    zip: 010009
+    url: http://www.ghettofest.com/
+    phone: 212-473-7184
+    longitude: -73.983894
+    address: 101 Avenue A
+    state: NY
+  - 
+    city: Suffern
+    name: Ramapo Valley Brewery
+    latitude: 41.117795
+    zip: 010901
+    url: http://www.ramapovalleybrewery.com/
+    phone: 845-369-7827
+    longitude: -74.155989
+    address: 122 Orange Avenue
+    state: NY
+  - 
+    city: Johnstown
+    name: Oakland Fire Hall
+    latitude: 40.302043
+    zip: 015902
+    url: ''
+    phone: 
+    longitude: -78.88783
+    address: 1741 Bedford St
+    state: PA
+  - 
+    city: Gloucester
+    name: The Gloucester Teen Center
+    latitude: 42.612497
+    zip: 01930
+    url: ''
+    phone: 
+    longitude: -70.664078
+    address: 5 Center St
+    state: MA
+  - 
+    city: Haverhill
+    name: Club Exit 23
+    latitude: 42.77769
+    zip: 01830
+    url: ''
+    phone: 
+    longitude: -71.086501
+    address: 246 Winter St
+    state: MA
+  - 
+    city: Norton
+    name: "Wheaton College - The Clark Gym"
+    latitude: 41.968339
+    zip: "02766"
+    url: http://www.wheatoncollege.edu/
+    phone: 508-286-8200
+    longitude: -71.18614
+    address: 26 E Main St
+    state: MA
+  - 
+    city: New York
+    name: "Lion's Den"
+    latitude: 40.729683
+    zip: "010012"
+    url: http://www.cegmusic.com/lionsden/
+    phone: 212-477-2782
+    longitude: -74.000017
+    address: 214 Sullivan St
+    state: NY
+  - 
+    city: Guilford
+    name: Guilford High School
+    latitude: 41.314303
+    zip: "06437"
+    url: http://www.guilford.k12.ct.us/
+    phone: 203-453-2741
+    longitude: -72.712486
+    address: 605 New England Rd
+    state: CT
+  - 
+    city: Orange
+    name: Corner Pocket Café
+    latitude: 41.254683
+    zip: "06477"
+    url: http://www.thecornerpocketcafe.com/
+    phone: 203-891-0777
+    longitude: -73.015992
+    address: 501 Boston Post Rd
+    state: CT
+  - 
+    city: Lyndhurst
+    name: "Aldo's Dance Club"
+    latitude: 40.804321
+    zip: "07071"
+    url: http://www.aldosdanceclub.com/
+    phone: 201-460-9824
+    longitude: -74.116266
+    address: 741 Marin Ave
+    state: NJ
+  - 
+    city: Lockport
+    name: Chasers
+    latitude: 43.169126
+    zip: 014094
+    url: ''
+    phone: 716-433-0003
+    longitude: -78.695476
+    address: 11 W Main St
+    state: NY
+  - 
+    city: Buffalo
+    name: Classic Roxx
+    latitude: 42.907258
+    zip: "014211"
+    url: ''
+    phone: 716-891-1146
+    longitude: -78.79216
+    address: 1182 Walden Ave
+    state: NY
+  - 
+    city: Southington
+    name: Club Static
+    latitude: 41.648126
+    zip: 06489
+    url: http://www.lateniteent.com/
+    phone: 860-982-4238
+    longitude: -72.871941
+    address: 1187 Queen St
+    state: CT
+  - 
+    city: Lynn
+    name: "St. Mary's High School"
+    latitude: 42.462786
+    zip: 01902
+    url: ''
+    phone: 781-595-7885
+    longitude: -70.950586
+    address: 35 Tremont St
+    state: MA
+  - 
+    city: North Charleroi
+    name: Charleroi VFW
+    latitude: 40.140426
+    zip: "015022"
+    url: http://www.bridgeportent.com/
+    phone: 
+    longitude: -79.899668
+    address: 609 McKean Ave
+    state: PA
+  - 
+    city: Tamaqua
+    name: The Mohn Building
+    latitude: 40.794393
+    zip: 018252
+    url: http://www.mohnbuilding.tk
+    phone: 
+    longitude: -75.96822
+    address: 229 Center St
+    state: PA
+  - 
+    city: Vineland
+    name: "Eugene's"
+    latitude: 39.463234
+    zip: 08360
+    url: ''
+    phone: 856-405-0222
+    longitude: -75.044211
+    address: 1628 S Delsea Dr
+    state: NJ
+  - 
+    city: Philadelphia
+    name: The Khyber
+    latitude: 39.94885
+    zip: 019106
+    url: http://www.thekhyber.com/
+    phone: 215-238-5888
+    longitude: -75.143979
+    address: 56 S Second St
+    state: PA
+  - 
+    city: Bethpage
+    name: Bethpage Teen Center
+    latitude: 40.750026
+    zip: "011714"
+    url: http://brbooking.com/
+    phone: 
+    longitude: -73.498219
+    address: 103 Grumman Road West
+    state: NY
+  - 
+    city: Glen Cove
+    name: Cove Lanes
+    latitude: 40.854799
+    zip: "011542"
+    url: ''
+    phone: 516-671-0028
+    longitude: -73.622571
+    address: 200 Carney street
+    state: NY
+  - 
+    city: Harrison
+    name: SUNY Purchase
+    latitude: 41.038255
+    zip: "010577"
+    url: http://www.purchase.edu/
+    phone: 914-251-6200
+    longitude: -73.697726
+    address: 735 Anderson Hill Rd
+    state: NY
+  - 
+    city: Syracuse
+    name: Salt City Center for the Performing Arts
+    latitude: 43.044366
+    zip: "013210"
+    url: http://www.saltcitycenter.com/
+    phone: 315-474-1122
+    longitude: -76.136746
+    address: 601 South Crouse Ave
+    state: NY
+  - 
+    city: Kenilworth
+    name: Kenilworth High School
+    latitude: 40.679702
+    zip: "07033"
+    url: ''
+    phone: 
+    longitude: -74.293892
+    address: 401 Monroe Ave
+    state: NJ
+  - 
+    city: Smith
+    name: Langeloth Community Center
+    latitude: 40.364482
+    zip: "015021"
+    url: ''
+    phone: 724-263-6313
+    longitude: -80.409945
+    address: 1421 Langeloth Road
+    state: PA
+  - 
+    city: Philadelphia
+    name: Club HP
+    latitude: 40.042727
+    zip: 019136
+    url: http://clubhps.com/
+    phone: 215-708-1214
+    longitude: -75.011393
+    address: 8601 Torresdale Ave
+    state: PA
+  - 
+    city: Philadelphia
+    name: "Big Nick's Saloon"
+    latitude: 40.033567
+    zip: 019149
+    url: http://afobproductions.com/
+    phone: 215-828-3297
+    longitude: -75.071788
+    address: 6238 Bustleton Ave
+    state: PA
+  - 
+    city: New York
+    name: The Backstage
+    latitude: 40.546949
+    zip: 010309
+    url: ''
+    phone: 718-608-9267
+    longitude: -74.227969
+    address: 2920 Arthur Kill Rd
+    state: NY
+  - 
+    city: Utica
+    name: The Adirondack Coffee House
+    latitude: 43.111869
+    zip: "013502"
+    url: ''
+    phone: 
+    longitude: -75.215908
+    address: 250 Genesee Street
+    state: NY
+  - 
+    city: Waldorf
+    name: "My Brother's Place"
+    latitude: 38.625166
+    zip: "020601"
+    url: http://www.myspace.com/elaineandi
+    phone: 301-645-5460
+    longitude: -76.907806
+    address: 3081 Old Washington Rd
+    state: MD
+  - 
+    city: Orleans
+    name: The Juice Bar
+    latitude: 41.782478
+    zip: "02653"
+    url: ''
+    phone: 508-255-9467
+    longitude: -69.987422
+    address: 16 S Orleans Rd
+    state: MA
+  - 
+    city: Kingston
+    name: Kingston Knights of Columbus
+    latitude: 41.986619
+    zip: "02364"
+    url: ''
+    phone: 781-585-8190
+    longitude: -70.753374
+    address: 91 South St
+    state: MA
+  - 
+    city: Worcester
+    name: Clark University
+    latitude: 42.260193
+    zip: 01608
+    url: http://www.clarku.edu
+    phone: 
+    longitude: -71.804015
+    address: 950 Main Street
+    state: MA
+  - 
+    city: Kennett
+    name: The Garage
+    latitude: 39.846554
+    zip: 019348
+    url: ''
+    phone: 610-444-6464
+    longitude: -75.71166
+    address: 115 South Union St
+    state: PA
+  - 
+    city: Newark
+    name: East End Cafe
+    latitude: 39.683905
+    zip: 019711
+    url: http://www.eastendcafe.com/
+    phone: 302-738-0880
+    longitude: -75.742155
+    address: 270 East Main St
+    state: DE
+  - 
+    city: Northampton
+    name: Pearl Street
+    latitude: 42.318247
+    zip: "01060"
+    url: http://www.iheg.com/pearl_street_main.asp
+    phone: 413-584-7771
+    longitude: -72.627976
+    address: 10 Pearl Street
+    state: MA
+  - 
+    city: Middle
+    name: Cape May Court House American Legion Hall
+    latitude: 39.083778
+    zip: 08210
+    url: ''
+    phone: 609-465-9895
+    longitude: -74.830995
+    address: Hand Ave and Dias Creek Rd
+    state: NJ
+  - 
+    city: Levittown
+    name: Metasin (Ultrasound Lounge)
+    latitude: 40.724247
+    zip: "011756"
+    url: http://www.ultrasoundlounge.com
+    phone: 516-852-4163
+    longitude: -73.53523
+    address: 2715 Hempstead Tpke
+    state: NY
+  - 
+    city: Greece
+    name: California Brew Haus
+    latitude: 43.200084
+    zip: "014615"
+    url: ''
+    phone: 585-621-1480
+    longitude: -77.637382
+    address: 402 Ridge Rd W
+    state: NY
+  - 
+    city: Middletown
+    name: Cromwell Knights Of Columbus
+    latitude: 41.54076
+    zip: "06457"
+    url: http://www.ctska.com
+    phone: 
+    longitude: -72.652643
+    address: 573 Main St
+    state: CT
+  - 
+    city: Salisbury
+    name: The Community Reform Temple
+    latitude: 40.742041
+    zip: 011590
+    url: ''
+    phone: 516-333-1839
+    longitude: -73.569012
+    address: 712 The Plain Road
+    state: NY
+  - 
+    city: Bethpage
+    name: Hicksville VFW Hall
+    latitude: 40.760856
+    zip: 011801
+    url: ''
+    phone: 
+    longitude: -73.515326
+    address: 320 South Broadway
+    state: NY
+  - 
+    city: East Garden City
+    name: The Image Bar
+    latitude: 40.717209
+    zip: "011553"
+    url: ''
+    phone: 
+    longitude: -73.593849
+    address: 1192 Hempstead Turnpike
+    state: NY
+  - 
+    city: East Farmingdale
+    name: Farmingdale State College
+    latitude: 40.754199
+    zip: "011735"
+    url: http://www.farmingdale.edu/
+    phone: 631-420-2000
+    longitude: -73.421666
+    address: 2350 Broadhollow Rd
+    state: NY
+  - 
+    city: Worcester
+    name: The Lucky Dog
+    latitude: 42.257943
+    zip: "01604"
+    url: http://www.luckydogmusic.com/
+    phone: 508-363-1888
+    longitude: -71.798094
+    address: 89 Green St
+    state: MA
+  - 
+    city: Pawtucket
+    name: "Cat's Music Club"
+    latitude: 41.887799
+    zip: 02860
+    url: http://www.kcstap.com/
+    phone: 
+    longitude: -71.374399
+    address: 530 Broadway
+    state: RI
+  - 
+    city: New Bedford
+    name: New Wave Café
+    latitude: 41.654103
+    zip: "02740"
+    url: http://www.newwavecafe.net/
+    phone: 508-984-0080
+    longitude: -70.924782
+    address: 143 North Front St
+    state: MA
+  - 
+    city: Rocky Hill
+    name: "Michael Angelo's"
+    latitude: 41.648155
+    zip: "06067"
+    url: ''
+    phone: 
+    longitude: -72.678525
+    address: 825 Cromwell Ave
+    state: CT
+  - 
+    city: Taunton
+    name: All About Records
+    latitude: 41.901814
+    zip: 02780
+    url: http://www.myspace.com/allaboutrecords
+    phone: 
+    longitude: -71.091994
+    address: 31 Main St
+    state: MA
+  - 
+    city: Hicksville
+    name: Hicksville Masonic Temple
+    latitude: 40.765811
+    zip: 011801
+    url: ''
+    phone: 516-931-9859
+    longitude: -73.522727
+    address: 18 W Nicholai St
+    state: NY
+  - 
+    city: New York
+    name: The Red Zone
+    latitude: 40.71327
+    zip: 011379
+    url: http://www.redzonerocks.com/
+    phone: 718-326-7496
+    longitude: -73.872544
+    address: 7956 Metropolitan Ave
+    state: NY
+  - 
+    city: Chillum
+    name: Six50
+    latitude: 38.973234
+    zip: 020912
+    url: http://www.six50.org/
+    phone: 301-989-4673
+    longitude: -76.996394
+    address: 16819 New Hampshire Ave
+    state: MD
+  - 
+    city: Easton
+    name: Sober Club
+    latitude: 40.681196
+    zip: 018042
+    url: http://www.soberclub.tk/
+    phone: 610-253-5661
+    longitude: -75.204591
+    address: 248 E Wilkes Barre St
+    state: PA
+  - 
+    city: Wallingford
+    name: Wallingford Knights of Columbus Hall
+    latitude: 41.456097
+    zip: 06492
+    url: http://www.manicproductions.org/
+    phone: 203-269-5510
+    longitude: -72.831379
+    address: 279 Quinnipiac St
+    state: CT
+  - 
+    city: North Amityville
+    name: The Village Pub South
+    latitude: 40.6788
+    zip: "011701"
+    url: http://www.vpsouth.com/
+    phone: 631-598-7261
+    longitude: -73.417367
+    address: 198 Broadway
+    state: NY

@@ -1,0 +1,30 @@
+<%= start_form_tag :action=> "login" %>
+
+<h1>Please login</h1>
+<br />
+<% if @error_message -%>
+  <%= @error_message %>
+<% end -%>
+
+<table>
+  <tr>
+    <td>
+      <label for="login">Login:</label>
+    </td>
+    <td>
+      <input type="text" tabindex="1" name="login" id="login" size="30" value="<%= @login %>" class="short" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="password">Password:</label>
+    </td>
+    <td>
+      <input type="password" tabindex="2" name="password" id="password" size="30" class="short" />
+    </td>
+  </tr>  
+</table>
+
+<input type="submit" name="login" value="Login"/>
+
+<%= end_form_tag %>

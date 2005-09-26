@@ -6,7 +6,7 @@ class Tag < ActiveRecord::Base
   
   # Find all tags with count of # bands applied to, ordered by count
   def self.find_all_with_count
-    self.find_by_sql("SELECT t.*, COUNT(bt.band_id) AS count FROM tags t, bands_tags bt WHERE bt.tag_id = t.id GROUP BY t.id ORDER BY count DESC;")
+    self.find_by_sql("SELECT t.*, COUNT(bt.band_id) AS count FROM tags t, tags_bands bt WHERE bt.tag_id = t.id GROUP BY t.id ORDER BY count DESC;")
   end
   
   # Returns an integer count, ONLY when the tag was loaded with find_all_with_count

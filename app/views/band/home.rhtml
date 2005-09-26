@@ -1,0 +1,20 @@
+<%= render(:partial => "tabs", :locals => {:active => "home"}) %>
+
+<div>
+	<%= start_form_tag :id => @band %>
+	<%= error_messages_for 'band' %>
+	
+	<p><label for="band_contact_email">Contact Email</label><br/>
+	<%= text_field 'band', 'contact_email'  %></p>
+	
+	<p><label for="band_contact_email">Zipcode</label><br/>
+	<%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></p>
+	
+	<p><label for="band_bio">Bio</label><br/>
+	<%= text_area 'band', 'bio', "rows" => 5  %></p>
+	
+	<p><label for="band_bio">Tags (comma-separated)</label><br/>
+	<%= text_area 'band', 'comma_separated_tag_names', "rows" => 2  %></p>
+	
+	<%= submit_tag 'Edit Profile' %>
+</div>

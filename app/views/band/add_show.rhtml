@@ -1,0 +1,32 @@
+<%= render(:partial => "tabs", :locals => {:active => "home"}) %>
+
+<div>
+	<%= start_form_tag :id => @show %>
+	<%= error_messages_for 'show' %>
+	
+	<p><label>Venue Name</label><br/>
+	<%= text_field 'venue', 'name'  %></p>
+	
+	<p><label>City</label><br/>
+	<%= text_field 'venue', 'city'  %></p>
+	
+	<p><label>State</label><br/>
+	<%= text_field 'venue', 'state', "size" => 2  %></p>
+	
+	<p><label>Zipcode</label><br/>
+	<%= text_field 'venue', 'zipcode', "size" => 5  %></p>
+	
+	<p><label>Address</label><br/>
+	<%= text_field 'venue', 'address'  %></p>
+	
+	<p><label>Date/Time</label><br/>
+	<%= datetime_select 'show', 'date'  %></p>
+	
+	<p><label>Cost</label><br/>
+	<%= text_field 'show', 'cost'  %></p>
+	
+	<p><label>Description</label><br/>
+	<%= text_area 'show', 'description', "rows" => 5  %></p>
+	
+	<%= submit_tag 'Add Show' %>
+</div>

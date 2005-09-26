@@ -1,8 +1,9 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `bands_tags`;
+DROP TABLE IF EXISTS `tags_bands`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `tours`;
 DROP TABLE IF EXISTS `band_services`;
 DROP TABLE IF EXISTS `shows`;
 DROP TABLE IF EXISTS `venues`;
@@ -13,7 +14,7 @@ CREATE TABLE `bands` (
   `name` varchar(100) NOT NULL default '',
   `band_id` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
-  `zipcode` VARCHAR(10) NOT NULL,
+  `zipcode` VARCHAR(5) NOT NULL,
   `bio` text NOT NULL,
   `salt` CHAR(40) NOT NULL,
   `salted_password` VARCHAR(40) NOT NULL,
@@ -29,7 +30,7 @@ CREATE TABLE `tags` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `bands_tags` (
+CREATE TABLE `tags_bands` (
   `band_id` int(10) unsigned NOT NULL,
   `tag_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`band_id`,`tag_id`),
@@ -41,12 +42,21 @@ CREATE TABLE `band_services` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `band_id` int(10) unsigned NOT NULL default '0',
   `myspace_username` varchar(100) NOT NULL default '',
-  `myspace_salt` varchar(40) NOT NULL default '',
+  `myspace_password` varchar(40) NOT NULL default '',
   `purevolume_username` varchar(100) NOT NULL default '',
   `purevolume_password` varchar(40) NOT NULL default '',
   PRIMARY KEY  (`id`),
-  CONSTRAINT `FK_band_id` FOREIGN KEY (`id`) REFERENCES `bands` (`id`)
+  CONSTRAINT `FK_bs_band_id` FOREIGN KEY (`id`) REFERENCES `bands` (`id`)
 ) ENGINE=InnoDB;
+
+CREATE TABLE `tours` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `band_id` INTEGER UNSIGNED NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY(`id`),
+  KEY `FK_tours_band_id` (`band_id`),
+  CONSTRAINT `FK_tours_band_id` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
+) ENGINE = InnoDB;
 
 CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -56,15 +66,19 @@ CREATE TABLE `shows` (
   `date` DATETIME NOT NULL,
   `band_id` int(10) unsigned NOT NULL,
   `venue_id` int(10) unsigned NOT NULL,
+  `tour_id` int(10) unsigned,
   PRIMARY KEY(`id`),
   KEY `fk_band` (`band_id`),
   CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
   KEY `fk_venue` (`venue_id`),
-  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
+  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
+  KEY `fk_tpir` (`tour_id`),
+  CONSTRAINT `fk_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `venues` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
   `url` VARCHAR(100) NOT NULL,
   `address` VARCHAR(255) NOT NULL,
   `city` VARCHAR(100) NOT NULL,
@@ -75,7 +89,8 @@ CREATE TABLE `venues` (
   `description` TEXT NOT NULL,
   `contact_email` varchar(100) NOT NULL,
   `latitude` VARCHAR(30) NOT NULL,
-  `longitude` VARCHAR(30) NOT NULL
+  `longitude` VARCHAR(30) NOT NULL,
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 
 

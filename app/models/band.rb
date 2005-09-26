@@ -1,8 +1,12 @@
 require_dependency "hash"
+require "taggable"
+require_dependency "taggable_helper"
 
 class Band < ActiveRecord::Base
-  has_and_belongs_to_many :tags
+  acts_as_taggable
+  include TaggableHelper
   has_many :shows
+  has_many :tours
   
   # In memory attributes to ease password manipulation
   attr_accessor :new_password, :password, :password_confirmation
@@ -16,6 +20,15 @@ class Band < ActiveRecord::Base
   def initialize(attributes = nil)
     super
     @new_password = false
+  end
+  
+  # Returns the band if it was authenticated.
+  # May return an unconfirmed band, the caller must check.
+  def self.authenticate(login, password)
+    band = find_by_band_id(login)
+    return nil if band.nil?
+    return find(:first, 
+                :conditions => ["confirmed = 1 and band_id = ? and salted_password = ?", login, Band.salted_password(band.salt, Hash.hashed(password))])
   end
   
   # Change the password. DOES NOT save the record.
@@ -37,7 +50,6 @@ class Band < ActiveRecord::Base
   def self.name_to_id(name)
     # Remove anything that's not a letter, number or selected punctuation
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
-    return id
   end
   
   protected
@@ -50,12 +62,12 @@ class Band < ActiveRecord::Base
   def crypt_password
     if @new_password
       self.salt = Hash.hashed("salt-#{Time.now}")
-      self.salted_password = salted_password(salt, Hash.hashed(@password))
+      self.salted_password = Band.salted_password(self.salt, Hash.hashed(@password))
     end
   end
   
-  def salted_password(salt, hashed_password)
-    return Hash.hashed(self.salt + hashed_password)
+  def self.salted_password(salt, hashed_password)
+    return Hash.hashed(salt + hashed_password)
   end
   
   # ActiveRecord hooks

@@ -45,7 +45,10 @@ class SignupController < ApplicationController
       else
         # It's now confirmed
         @band.confirmed = true
-        @band.save
+        if (!@band.save)
+          flash.now[:error] = "Error saving confirmation status"
+          @band.confirmed = false
+        end
       end
     else
       # Couldn't find it

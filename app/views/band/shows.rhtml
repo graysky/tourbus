@@ -5,10 +5,44 @@
 <div width="80%">
 	<h2>Shows</h2>
 	<% for show in @band.shows %>
-			
+		Show at <%=show.venue.name%> on <%=show.date%><br/>		
 	<% end %>
 </div>
 
-<div width="80%">
-	Map goes here
+<script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAREnSlDmPnmFHv2KsLa6lqhTJQa0g3IQ9GZqIMmInSLzwtGDKaBSeIlvlsz_AMFN6TbqRWzBC6ZXsWA" type="text/javascript"></script>
+
+<div style="width: 600px; height: 400px" id="map">
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    var map = new GMap(document.getElementById("map"));
+    map.centerAndZoom(new GPoint(-75, 40), 12);
+    map.addControl(new GLargeMapControl());
+	map.addControl(new GMapTypeControl());
+	
+	var p;
+	var marker;
+	var html;
+	<% for show in @band.shows %>
+		p = new GPoint(<%= show.venue.longitude %>, <%= show.venue.latitude %>);
+		
+		html = "<b><%= show.description %></b><br/>";
+		marker = createMarker(p, html);
+		map.addOverlay(marker);
+	<% end %>
+	
+	function createMarker(p, html)
+	{
+		var marker = new GMarker(p);
+		
+		GEvent.addListener(marker, "click", function() {
+		    marker.openInfoWindowHtml(html);
+		});
+		
+		return marker;
+	}
+	
+ //]]>
+</script>

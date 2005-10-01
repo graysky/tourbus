@@ -14,12 +14,12 @@ class BandController < ApplicationController
     return if @request.get?
     
     if band = Band.authenticate(@params['login'], @params['password'])
-        @session['band'] = band
-        redirect_back_or_default(:action => "home")
-      else
-        @error_message  = "Login unsuccessful. Please check your username and password, and that " +
-                          "your account has been confirmed."
-      end
+      @session[:band] = band
+      redirect_back_or_default(:action => "home")
+    else
+      @error_message  = "Login unsuccessful. Please check your username and password, and that " +
+                        "your account has been confirmed."
+    end
     
   end
 
@@ -60,12 +60,17 @@ class BandController < ApplicationController
       @venue = Venue.new(@params[:venue])
       
       # This is all temporary logic. We need to smart about detecting duplicate venues, etc
-      addr = @venue.address + "," + @venue.zipcode
+      addr = "#{@venue.address}, #{@venue.zipcode}"
       if addr.nil?
         flash[:notice] = 'Error with address'
         render :action => "shows"
         return
       else
+        p addr
+        result = Geocoder.geocode(addr)
+        p result
+        @venue.latitude = result["lat"]
+        @venue.longitude = result["long"]
         if !@venue.save
           render :action => "add_show"
           return

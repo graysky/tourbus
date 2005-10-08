@@ -26,13 +26,13 @@ class BandController < ApplicationController
   # The the band homepage
   def home
     return if @request.get?
-    
-    # Save band profile info
-    @band.attributes = @params[:band]
-    if @band.save
-      flash[:notice] = 'Profile information was successfully updated.'
-      redirect_to(:action => "home")
-    end
+    save_band_profile("Profile information was successfully updated", "home")
+  end
+  
+  # Contact info
+  def contact
+    return if @request.get?
+    save_band_profile("Contact information was successfully updated", "contact")
   end
   
   def tours
@@ -139,6 +139,15 @@ class BandController < ApplicationController
   def find_band
     session[:band] ||= Band.new
     @band = session[:band]
+    @public_url = public_band_url
+  end
+  
+  def save_band_profile(msg, redirect)
+    @band.attributes = @params[:band]
+    if @band.save
+      flash[:notice] = msg
+      redirect_to(:action => redirect)
+    end
   end
   
 end

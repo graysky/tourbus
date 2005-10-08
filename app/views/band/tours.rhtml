@@ -1,6 +1,6 @@
 <%= render(:partial => "tabs", :locals => {:active => "tours"}) %>
 
-<div style="float:left;width:300px;border:1px solid gray">
+<div style="width:300px;border:1px solid gray">
 
 Add a tour:
 
@@ -13,7 +13,7 @@ Add a tour:
 
 </div>
 
-<div style="float:left;margin-left:12px;border:1px solid gray;width:400px">
+<div style="margin-left:12px;border:1px solid gray;width:400px">
 
 <% for tour in @band.tours %>
 	<div><%=tour.name%></div>

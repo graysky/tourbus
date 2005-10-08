@@ -1,15 +1,25 @@
 <html>
 <head>
   <title>Tourbus</title>
-  <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'main' %>
   <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "rico" %>
 </head>
 
 <body>
 
 <div id="container">
-<div id="main_logo"><img src="/images/logo.jpg"/></div>
+<div id="main_logo">
+
+<!-- Need a logo image -->
+TourBus
+
+<div id="header">
+	Bands: <%= link_to("Login", :controller => "band", :action => "login") %> |
+		   <%= link_to("Sign Up", :controller => "signup", :action => "step1") %>
+</div>
+
+</div>
 <div id="content">
 <p style="color: green"><%= flash[:notice] %></p>
 <%= @content_for_layout %>

@@ -1,34 +1,103 @@
 
+# From scaffolding
+body p ol ul td div span form {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size:   12px;
+}
+
+
+a { color: #6E8452; }
+a:link { color: #6E8452; }
+a:visited { color: #6E8452; }
+
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#ErrorExplanation {
+  width: 400px;
+  border: 2px solid 'red';
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#ErrorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#ErrorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#ErrorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+
+
 body
 {
 	text-align:center;
-	background-color: #dddddd;
+	background-color: #f0f0f0;
 	margin:0 auto;
 }
 
 a
 {
-	color:#CC8033;	
+	color:#B1CD8D;	
 }
 
 #container
 {
 	margin:8 auto;
-	width:800px;
-	height:97%;
+	width:850px;
+	#height:97%;
 	background-color:white;
-	border:1px solid gray;
+	border:1px solid #484A4C;
 	text-align:left;
 }
 
 #main_logo
 {
-	margin-top:16px;
+	#margin-top:16px;
 	margin-bottom:32px;
-	text-align:center;
+	padding-left:16px;
+	text-align:left;
 	font-size:60px;
-	color: #3380CC;
+	font-family: verdana, arial, helvetica, sans-serif;
+	background-color: #484A4C;
+	color: #B1CD8D;
 }
+
+#header
+{
+	font-size: 11px;
+	position: relative;
+	right: 30px;
+	text-align: right;
+	bottom: 20px;
+	float:right;
+}
+
+#header a { color: #B1CD8D; }
+#header a:link { color: #B1CD8D; }
+#header a:visited { color: #B1CD8D; }
+
+
 
 #signup_ad
 {
@@ -37,10 +106,103 @@ a
 	color:black;
 	#border: 1px solid gray;
 	margin-bottom:16px;
+	margin:24px;
 }
 
 #content
 {
 	margin:16px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
+
+.box1
+{
+	#background-color: #B1CBDD;
+	#border:1px solid #7CA7C5;
+	color:#4C5C5C;
+}
+
+/* Stolen from rollyo and modified... update! */
+table.form-table {
+	border-collapse: collapse;
+	}
+table.form-table th {
+	width: 120px;
+	padding: 15px 15px 0 0;
+	text-align: right;
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+	font-size:13px;
+	}
+table.form-table th em {
+	display: block;
+	margin: 2px 0 0 0;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 85%;
+	color: #555;
+	}
+table.form-table td {
+	margin: 0 0 10px 0;
+	padding: 15px 20px 15px 0;
+	vertical-align: top;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	}
+table.form-table td a{
+	font-size: 12px;
+	}
+	
+table.form-table td.last, table.form-table th.last {
+	border-bottom: none;
+	}
+table.form-table td p, body.info .box td p{
+	margin: 10px 0 0 0;
+	padding: 0;
+	font-size: 11px;
+	color: #555;
+	}
+table.form-table td input.form-text, table.form-table td select {
+	color: #555;
+	background: #eee;
+	border: 1px solid #ccc;
+	}
+
+table.form-table td textarea {
+	color: #555;
+	background: #eee;
+	border: 1px solid #ccc;
+	}
+table#edit-form input, table#edit-form textarea, table#edit-form select {
+	background: #eee;
+	}
+table.form-table td input {
+	color: #555;
+	background: #eee;
+	border: 1px solid #ccc;
+	}
+table.form-table td.info {
+	font-size: 11px;
+	color: #555;
+	}
+table.form-table td.info ul {
+	margin: 10px;
+	padding: 0;
+	list-style: none;
+	}
+table.form-table td.info ul li {
+	margin: 0 0 5px 0;
+	padding: 0 0 0 13px;
+	}
+table.form-table tr.submit td {
+		border:0px;
+	}
+table.form-table tr.submit input {
+		background:#484A4C;
+		color:#B1CD8D;
+		cursor:pointer;
+	}	
+
+
+
 

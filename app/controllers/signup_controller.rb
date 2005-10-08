@@ -18,7 +18,7 @@ class SignupController < ApplicationController
         
         @band.new_password = true
         @band.band_id = Band.name_to_id(@band.name)
-        public_url = url_for(:controller => '') + @band.band_id
+        public_url = public_band_url
         if @band.save
           BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
           session[:band] = @band

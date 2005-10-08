@@ -3,18 +3,31 @@
 <div>
 	<%= start_form_tag :id => @band %>
 	<%= error_messages_for 'band' %>
+
+	<table class="form-table">
+		<tr>
+			<th>TourBus Page:</th>
+			<td><a href="<%= @public_url %>"><%= @public_url %></a></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Bio:</th>
+			<td><%= text_area 'band', 'bio', "rows" => 5  %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Tags:</th>
+			<td><%= text_area 'band', 'comma_separated_tag_names', "rows" => 2  %></td>
+			<td class="info">
+				This is a comma-separated list of terms that will help a user search for your band.
+				A tag could be a genre, influence, record label, or anything else you can think of.
+			</td>
+		</tr>
+		<tr class="submit">
+			<td></td>
+			<td><%= submit_tag 'Edit Profile' %></td>
+		</tr>
+	</table>
 	
-	<p><label for="band_contact_email">Contact Email</label><br/>
-	<%= text_field 'band', 'contact_email'  %></p>
 	
-	<p><label for="band_contact_email">Zipcode</label><br/>
-	<%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></p>
-	
-	<p><label for="band_bio">Bio</label><br/>
-	<%= text_area 'band', 'bio', "rows" => 5  %></p>
-	
-	<p><label for="band_bio">Tags (comma-separated)</label><br/>
-	<%= text_area 'band', 'comma_separated_tag_names', "rows" => 2  %></p>
-	
-	<%= submit_tag 'Edit Profile' %>
 </div>

@@ -56,7 +56,7 @@ class BandController < ApplicationController
       @show = Show.new
       @venue = Venue.new
     else
-      @show = @band.shows.build(@params[:show])
+      @show = Show.new(@params[:show])
       @venue = Venue.new(@params[:venue])
       
       # This is all temporary logic. We need to smart about detecting duplicate venues, etc
@@ -77,7 +77,8 @@ class BandController < ApplicationController
         end
         
         @show.venue = @venue
-        if !@show.save
+        @band.play_show(@show, true)
+        if !@band.save
           render :action => "add_show"
           return
         end

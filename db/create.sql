@@ -1,6 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS `tags_bands`;
+DROP TABLE IF EXISTS `bands_shows`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `tags`;
 DROP TABLE IF EXISTS `tours`;
@@ -41,6 +42,15 @@ CREATE TABLE `tags_bands` (
   CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `bands_shows` (
+  `band_id` int(10) unsigned NOT NULL,
+  `show_id` int(10) unsigned NOT NULL,
+  `can_edit` boolean NOT NULL default 0,
+  PRIMARY KEY  (`band_id`,`show_id`),
+  CONSTRAINT `fk_bs_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  CONSTRAINT `fk_bs_show` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`)
+) ENGINE=InnoDB;
+
 CREATE TABLE `band_services` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `band_id` int(10) unsigned NOT NULL default '0',
@@ -67,12 +77,8 @@ CREATE TABLE `shows` (
   `description` TEXT NOT NULL,
   `url` VARCHAR(100) NOT NULL,
   `date` DATETIME NOT NULL,
-  `band_id` int(10) unsigned NOT NULL,
   `venue_id` int(10) unsigned NOT NULL,
-  `tour_id` int(10) unsigned,
   PRIMARY KEY(`id`),
-  KEY `fk_band` (`band_id`),
-  CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
   KEY `fk_venue` (`venue_id`),
   CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
   KEY `fk_tpir` (`tour_id`),

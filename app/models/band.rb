@@ -5,7 +5,7 @@ require_dependency "taggable_helper"
 class Band < ActiveRecord::Base
   acts_as_taggable
   include TaggableHelper
-  has_many :shows
+  has_and_belongs_to_many :shows
   has_many :tours
   
   # In memory attributes to ease password manipulation
@@ -20,6 +20,10 @@ class Band < ActiveRecord::Base
   def initialize(attributes = nil)
     super
     @new_password = false
+  end
+  
+  def play_show(show, can_edit = true)
+    shows.push_with_attributes(show, :can_edit => can_edit)
   end
   
   # Returns the band if it was authenticated.

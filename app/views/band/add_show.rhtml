@@ -1,32 +1,150 @@
 <%= render(:partial => "tabs", :locals => {:active => "home"}) %>
 
 <div>
+	
+	<script type="text/javascript">
+		function switch_venue_divs(val)
+		{
+			// This needs to figure out the value from the 3 radios
+			if (val == "search") {
+				Element.show('venue_search');
+				Element.hide('venue_browse', 'venue_new');
+			}
+			else if (val == "browse") {
+				Element.show('venue_browse');
+				Element.hide('venue_search', 'venue_new', 'venue_search_results');
+			}
+			else if (val == "new") {
+				Element.show('venue_new');
+				Element.hide('venue_search', 'venue_browse', 'venue_search_results');
+			}
+		}
+	</script>
+
 	<%= start_form_tag :id => @show %>
 	<%= error_messages_for 'show' %>
+	<%= error_messages_for 'venue' %>
+	<table class="form-table">
+		<tr>
+			<th>Title:</th>
+			<td><%= text_field 'show', 'title' %></td>
+			<td class="info">
+				If you don't give the show a title, we'll generate one for you.
+			</td>
+		</tr>
+		<tr>
+			<th>Date:</th>
+			<td>
+				<%= date_select_with_calendar 'show', 'formatted_date' %>
+			</td>
+			<td class="info">
+				Click the calendar image to select a date
+			</td>
+		</tr>
+		<tr>
+			<th>City/State/Zip:</th>
+			<td>
+				<%= text_field 'venue', 'city', "size" => 20 %>
+				<%= select 'venue', 'state', states_for_select %>
+				<%= text_field 'venue', 'zipcode', "size" => 5, "maxlength" => 5 %>
+			</td>
+			<td class="info">
+				Enter the city, state and zicode of the show. This will allow us to
+				find all the venues in your area.
+			</td>
+		</tr>
+		<tr>
+			<th>Venue:</th>
+			<td style="padding-top:16px">
+				<em>None</em>
+				<div style="margin-top:8px;margin-left:-4px">
+					<%= radio_button_tag "venue_type", "search", true, "onchange" => "switch_venue_divs('search')"%> Search
+					<%= radio_button_tag "venue_type", "browse", false, "onchange" => "switch_venue_divs('browse')" %> Browse
+					<%= radio_button_tag "venue_type", "new", false, "onchange" => "switch_venue_divs('new')" %> Add New
+				</div>
+				
+				<div id="venue_search" style="margin-top:8px">
+					<%= text_field_tag 'venue_search_term' %> &nbsp;
+					<%= link_to_remote  "Search",
+										:update => 'venue_search_results',
+										:url => { :action => :venue_search },
+										:with => "Form.serialize(document.forms[0])",
+										:before => "new Effect.Appear('venue_search_results')"
+										%>		
+				</div>
+				<div id="venue_search_results" style="display:none;border:1px solid green">
+					Loading!
+				</div>
+				
+				<div id="venue_browse" style="margin-top:8px;display:none">
+					Browse for stuff
+				</div>
+				
+				<div id="venue_new" style="margin-top:8px;display:none">
+					<span class="info">
+						Create a new venue in the city entered above.
+					</span>
+					<table class="form-table">
+						<tr>
+							<th>Name:</th>
+							<td><%= text_field 'venue', 'name' %></td>
+							<td class="info">
+							</td>
+						</tr>
+						<tr>
+							<th>Address:</th>
+							<td><%= text_field 'venue', 'address' %></td>
+							<td class="info">
+							</td>
+						</tr>
+						<tr>
+							<th>Website:</th>
+							<td><%= text_field 'venue', 'url' %></td>
+							<td class="info">
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</td>
+			<td class="info">
+				TODO
+			</td>
+		</tr>
+		<tr>
+			<th>Time:</th>
+			<td>
+				<%= time_select 'show' %>
+			</td>
+			<td class="info">
+				Start time for the show
+			</td>
+		</tr>
+		<tr>
+			<th>Cost:</th>
+			<td><%= text_field 'show', 'cost' %></td>
+			<td class="info">
+			</td>
+		</tr>
+		<tr>
+			<th>Website:</th>
+			<td><%= text_field 'show', 'url' %></td>
+			<td class="info">
+				An outside web page with more details about the show
+			</td>
+		</tr>
+		<tr>
+			<th>Description:</th>
+			<td><%= text_area 'show', 'description', "rows" => 5  %></td>
+			<td class="info">
+			</td>
+		</tr>
+		
+		<tr class="submit">
+			<td></td>
+			<td><%= submit_tag 'Add Show' %></td>
+		</tr>
+		
+	</table>
 	
-	<p><label>Venue Name</label><br/>
-	<%= text_field 'venue', 'name'  %></p>
-	
-	<p><label>City</label><br/>
-	<%= text_field 'venue', 'city'  %></p>
-	
-	<p><label>State</label><br/>
-	<%= text_field 'venue', 'state', "size" => 2  %></p>
-	
-	<p><label>Zipcode</label><br/>
-	<%= text_field 'venue', 'zipcode', "size" => 5  %></p>
-	
-	<p><label>Address</label><br/>
-	<%= text_field 'venue', 'address'  %></p>
-	
-	<p><label>Date/Time</label><br/>
-	<%= datetime_select 'show', 'date'  %></p>
-	
-	<p><label>Cost</label><br/>
-	<%= text_field 'show', 'cost'  %></p>
-	
-	<p><label>Description</label><br/>
-	<%= text_area 'show', 'description', "rows" => 5  %></p>
-	
-	<%= submit_tag 'Add Show' %>
 </div>

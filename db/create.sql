@@ -25,7 +25,9 @@ CREATE TABLE `bands` (
   `logo` varchar(100) NOT NULL default '',
   `confirmed` boolean NOT NULL default 0,
   `confirmation_code` varchar(50) default '',
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY name_key (name),
+  KEY band_id_key (band_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `tags` (
@@ -74,15 +76,14 @@ CREATE TABLE `tours` (
 CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cost` VARCHAR(50),
+  `title` VARCHAR(100),
   `description` TEXT NOT NULL,
   `url` VARCHAR(100) NOT NULL,
   `date` DATETIME NOT NULL,
   `venue_id` int(10) unsigned NOT NULL,
   PRIMARY KEY(`id`),
   KEY `fk_venue` (`venue_id`),
-  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
-  KEY `fk_tpir` (`tour_id`),
-  CONSTRAINT `fk_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
+  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `venues` (

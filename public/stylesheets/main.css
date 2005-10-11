@@ -122,6 +122,13 @@ a
 	color:#4C5C5C;
 }
 
+fieldset
+{
+	border: 1px solid #bbbbbb;
+	font-size:12px;
+	margin-top:16px;
+}
+
 /* Stolen from rollyo and modified... update! */
 table.form-table {
 	border-collapse: collapse;
@@ -148,10 +155,16 @@ table.form-table td {
 	vertical-align: top;
 	text-align: left;
 	border-bottom: 1px solid #ddd;
+	font-size: 11px;	
 	}
 table.form-table td a{
 	font-size: 12px;
 	}
+	
+table.form-table #cal_trigger
+{
+	cursor:pointer;
+}
 	
 table.form-table td.last, table.form-table th.last {
 	border-bottom: none;
@@ -162,6 +175,9 @@ table.form-table td p, body.info .box td p{
 	font-size: 11px;
 	color: #555;
 	}
+	
+	
+	
 table.form-table td input.form-text, table.form-table td select {
 	color: #555;
 	background: #eee;
@@ -172,6 +188,7 @@ table.form-table td textarea {
 	color: #555;
 	background: #eee;
 	border: 1px solid #ccc;
+	width:300px;
 	}
 table#edit-form input, table#edit-form textarea, table#edit-form select {
 	background: #eee;
@@ -182,6 +199,10 @@ table.form-table td input {
 	border: 1px solid #ccc;
 	}
 table.form-table td.info {
+	font-size: 11px;
+	color: #555;
+	}
+table.form-table .info {
 	font-size: 11px;
 	color: #555;
 	}
@@ -201,7 +222,10 @@ table.form-table tr.submit input {
 		background:#484A4C;
 		color:#B1CD8D;
 		cursor:pointer;
-	}	
+	}
+
+	
+		
 
 
 

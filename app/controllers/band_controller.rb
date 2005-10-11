@@ -57,8 +57,16 @@ class BandController < ApplicationController
       @venue = Venue.new
     else
       @show = Show.new(@params[:show])
-      @venue = Venue.new(@params[:venue])
       
+      new_venue = false
+      if @params[:venue_type] == "new"
+        new_venue = true
+        @venue = Venue.new(@params[:venue])
+        p @venue
+      else
+        @venue = Venue.find(1)
+      end
+    
       # This is all temporary logic. We need to smart about detecting duplicate venues, etc
       addr = "#{@venue.address}, #{@venue.zipcode}"
       if addr.nil?
@@ -66,14 +74,17 @@ class BandController < ApplicationController
         render :action => "shows"
         return
       else
-        p addr
-        result = Geocoder.geocode(addr)
-        p result
-        @venue.latitude = result["lat"]
-        @venue.longitude = result["long"]
-        if !@venue.save
-          render :action => "add_show"
-          return
+      
+        if new_venue
+          p addr
+          result = Geocoder.geocode(addr)
+          p result
+          @venue.latitude = result["lat"]
+          @venue.longitude = result["long"]
+          if !@venue.save
+            render :action => "add_show"
+            return
+          end
         end
         
         @show.venue = @venue
@@ -87,6 +98,11 @@ class BandController < ApplicationController
         redirect_to(:action => "shows")
       end
     end
+  end
+  
+  def venue_search
+    puts "puts render"
+    render(:layout => false)
   end
   
 

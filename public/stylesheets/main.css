@@ -157,7 +157,7 @@ table.form-table td {
 	border-bottom: 1px solid #ddd;
 	font-size: 11px;	
 	}
-table.form-table td a{
+table.form-table td a {
 	font-size: 12px;
 	}
 	
@@ -223,6 +223,67 @@ table.form-table tr.submit input {
 		color:#B1CD8D;
 		cursor:pointer;
 	}
+
+table.form-table table.venue_result_table {
+	border:2px solid red;
+}
+
+table.form-table #selected_venue {
+	font-size:12px;	
+}
+
+#venue_search_results {
+	border:1px solid #ccc;
+	margin-top:8px;
+	background-color:#eee;
+}
+
+#venue_search_results h3 {
+	font-weight:bold;
+	font-size:11px;
+	margin: 8px;
+}
+
+#venue_search_results .error_message {
+	color:red;
+	font-style:italic;
+	margin-left:8px;
+}
+
+#venue_results_table {
+	border-collapse: collapse;
+	width:100%;
+}
+
+
+#venue_results_table td {
+	margin-left: 20px;
+	padding: 4px 8px 8px 8px;
+	vertical-align: top;
+	text-align: left;
+	border-bottom: 0;
+	font-size: 11px;	
+	color: #555;
+	background-color:#eee;
+}
+
+#venue_results_table a {
+	font-size: 11px;
+}	
+
+#paging_status {
+	margin-left:8px;
+	#padding-bottom:8px;
+}
+
+#paging_controls {
+	margin-bottom:8px;
+}
+
+#paging_controls a {
+	font-size:11px;
+}
+	
 
 	
 		

@@ -101,58 +101,34 @@ class BandController < ApplicationController
   end
   
   def venue_search
-    puts "puts render"
-    render(:layout => false)
+    begin
+      name = @params[:venue_search_term]
+      @venue = Venue.new(@params[:venue])
+      conditions = venue_location_conditions
+         
+      if !name.nil? && name != ""
+        # Add the name
+        conditions = ["#{conditions} and name like ?", "%#{name}%"]
+      end
+      
+      @venue_pages, @venues = paginate :venues, 
+                                       :conditions => conditions, 
+                                       :order_by => "name DESC", 
+                                       :per_page => 20
+      
+      if (@venue_pages.item_count == 0)
+        @params[:error_message] = "No results found"
+      end
+    rescue Exception => ex
+      @params[:error_message] = ex.to_s
+    end
+    
+    render(:partial => "venue_results")
   end
   
 
-#  def index
-#    list
-#    render :action => 'list'
-#  end
-#
-#  def list
-#    @band_pages, @bands = paginate :band, :per_page => 10
-#  end
-#
-#  def show
-#    @band = Band.find(params[:id])
-#  end
-#
-#  def new
-#    @band = Band.new
-#  end
-#
-#  def create
-#    @band = Band.new(params[:band])
-#    if @band.save
-#      flash[:notice] = 'Band was successfully created.'
-#      redirect_to :action => 'list'
-#    else
-#      render :action => 'new'
-#    end
-#  end
-#
-#  def edit
-#    @band = Band.find(params[:id])
-#  end
-#
-#  def update
-#    @band = Band.find(params[:id])
-#    if @band.update_attributes(params[:band])
-#      flash[:notice] = 'Band was successfully updated.'
-#      redirect_to :action => 'show', :id => @band
-#    else
-#      render :action => 'edit'
-#    end
-#  end
-#
-#  def destroy
-#    Band.find(params[:id]).destroy
-#    redirect_to :action => 'list'
-#  end
-
   private
+  
   def find_band
     session[:band] ||= Band.new
     @band = session[:band]
@@ -165,6 +141,15 @@ class BandController < ApplicationController
       flash[:notice] = msg
       redirect_to(:action => redirect)
     end
+  end
+  
+  def venue_location_conditions()
+    # TODO: Zipcode? Detect mismatch?
+    if (@venue.city == "" || @venue.state == "")
+      raise "Please enter a city/state or zipcode"
+    end
+    
+    "city = '#{@venue.city}' and state = '#{@venue.state}'"
   end
   
 end

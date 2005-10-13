@@ -19,6 +19,23 @@
 				Element.hide('venue_search', 'venue_browse', 'venue_search_results');
 			}
 		}
+		
+		function use_existing_venue(id, name, type)
+		{
+			if (type == "search") {
+				new Effect.Fade("venue_search_results");
+				//Element.hide("venue_search_results");
+			}
+			$("selected_venue").innerHTML = name;
+			//new Effect.Highlight("selected_venue");
+		}
+		
+		function do_venue_loading()
+		{
+			$("venue_search_contents").innerHTML = "";
+			$("venue_search_message").innerHTML = "Loading...";
+		}
+		
 	</script>
 
 	<%= start_form_tag :id => @show %>
@@ -56,7 +73,7 @@
 		<tr>
 			<th>Venue:</th>
 			<td style="padding-top:16px">
-				<em>None</em>
+				<span id="selected_venue"><em>None</em></span>
 				<div style="margin-top:8px;margin-left:-4px">
 					<%= radio_button_tag "venue_type", "search", true, "onchange" => "switch_venue_divs('search')"%> Search
 					<%= radio_button_tag "venue_type", "browse", false, "onchange" => "switch_venue_divs('browse')" %> Browse
@@ -69,11 +86,13 @@
 										:update => 'venue_search_results',
 										:url => { :action => :venue_search },
 										:with => "Form.serialize(document.forms[0])",
+										:loading => "do_venue_loading()",
 										:before => "new Effect.Appear('venue_search_results')"
 										%>		
 				</div>
-				<div id="venue_search_results" style="display:none;border:1px solid green">
-					Loading!
+				
+				<div id="venue_search_results" style="display:none">
+					<%= render(:partial => "venue_results") %>
 				</div>
 				
 				<div id="venue_browse" style="margin-top:8px;display:none">

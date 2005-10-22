@@ -14,35 +14,39 @@
 <div style="width: 600px;height: 400px" id="map">
 </div>
 
-<script type="text/javascript">
-//<![CDATA[
+<% content_for("onload") do %>
+	init_map()
+<% end %>
 
-    var map = new GMap(document.getElementById("map"));
-    map.centerAndZoom(new GPoint(-75, 40), 12);
-    map.addControl(new GLargeMapControl());
-	map.addControl(new GMapTypeControl());
-	
-	var p;
-	var marker;
-	var html;
-	<% for show in @band.shows %>
-		//p = new GPoint(<%= show.venue.longitude %>, <%= show.venue.latitude %>);
-		
-		//html = "<b><%= show.description %></b><br/>";
-		//marker = createMarker(p, html);
-		//map.addOverlay(marker);
-	<% end %>
-	
-	function createMarker(p, html)
+<script type="text/javascript">
+	// Temporary
+	function init_map()
 	{
-		var marker = new GMarker(p);
+		var map = new GMap(document.getElementById("map"));
+	    map.centerAndZoom(new GPoint(-75, 40), 12);
+	    map.addControl(new GLargeMapControl());
+		map.addControl(new GMapTypeControl());
 		
-		GEvent.addListener(marker, "click", function() {
-		    marker.openInfoWindowHtml(html);
-		});
+		var p;
+		var marker;
+		var html;
+		<% for show in @band.shows %>
+			//p = new GPoint(<%= show.venue.longitude %>, <%= show.venue.latitude %>);
+			
+			//html = "<b><%= show.description %></b><br/>";
+			//marker = createMarker(p, html);
+			//map.addOverlay(marker);
+		<% end %>
 		
-		return marker;
+		function createMarker(p, html)
+		{
+			var marker = new GMarker(p);
+			
+			GEvent.addListener(marker, "click", function() {
+			    marker.openInfoWindowHtml(html);
+			});
+			
+			return marker;
+		}
 	}
-	
- //]]>
 </script>

@@ -1,0 +1,2 @@
+module BandPublicHelper
+end

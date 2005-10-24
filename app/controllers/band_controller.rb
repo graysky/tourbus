@@ -13,14 +13,13 @@ class BandController < ApplicationController
   def login
     return if @request.get?
     
-    if band = Band.authenticate(@params['login'], @params['password'])
+    if band = Band.authenticate(params['login'], params['password'])
       @session[:band] = band
       redirect_back_or_default(:action => "home")
     else
       @error_message  = "Login unsuccessful. Please check your username and password, and that " +
                         "your account has been confirmed."
     end
-    
   end
 
   # The the band homepage
@@ -39,7 +38,7 @@ class BandController < ApplicationController
     if @request.get?
       @tour = Tour.new
     else
-      @tour = @band.tours.build(@params[:tour])
+      @tour = @band.tours.build(params[:tour])
       
       if @band.save
         flash[:notice] = 'Tour added'
@@ -54,60 +53,73 @@ class BandController < ApplicationController
   def add_show
     if @request.get?
       @show = Show.new
+      @show.date = Time.now
       @venue = Venue.new
     else
-      @show = Show.new(@params[:show])
+      @show = Show.new(params[:show])
       
+      # Get the new or existing venue
       new_venue = false
-      if @params[:venue_type] == "new"
+      if params[:venue_type] == "new"
         new_venue = true
-        @venue = Venue.new(@params[:venue])
+        @venue = Venue.new(params[:venue])
         p @venue
       else
-        @venue = Venue.find(1)
-      end
-    
-      # This is all temporary logic. We need to smart about detecting duplicate venues, etc
-      addr = "#{@venue.address}, #{@venue.zipcode}"
-      if addr.nil?
-        flash[:notice] = 'Error with address'
-        render :action => "shows"
-        return
-      else
-      
-        if new_venue
-          p addr
-          result = Geocoder.geocode(addr)
-          p result
-          @venue.latitude = result["lat"]
-          @venue.longitude = result["long"]
-          if !@venue.save
-            render :action => "add_show"
-            return
-          end
+        begin 
+          @venue = Venue.find(params[:selected_venue_id])
+        rescue
+          @venue = nil
         end
         
-        @show.venue = @venue
-        @band.play_show(@show, true)
-        if !@band.save
-          render :action => "add_show"
+        if @venue.nil?
+          @show.errors.add(nil, "Please select a venue or add a new one")
+          @venue = Venue.new
+          return
+        end
+      end
+    
+      # See if we can locate the venue's address
+      if new_venue
+        if @venue.zipcode == "" and @venue.city == ""
+          @venue.errors.add(nil, "Please enter a city, state and zipcode")
           return
         end
         
-        flash[:notice] = 'Show added'
-        redirect_to(:action => "shows")
+        if @venue.zipcode != ""
+          addr = "#{@venue.address}, #{@venue.zipcode}"
+        else
+          addr = "#{@venue.address}, #{@venue.city}, #{@venue.state}"
+        end
+        
+        result = Geocoder.geocode(addr)
+        if result && !result["lat"].nil?
+          @venue.latitude = result["lat"]
+          @venue.longitude = result["long"]
+        else
+          flash[:address_error] = true
+          return
+        end
       end
+      
+      @show.venue = @venue
+      @band.play_show(@show, true)
+      if !@band.save
+        render :action => "add_show"
+        return
+      end
+      
+      flash[:notice] = 'Show added'
+      redirect_to(:action => "shows")
     end
   end
   
   def venue_search
     begin
-      name = @params[:venue_search_term]
-      @venue = Venue.new(@params[:venue])
+      name = params[:venue_search_term]
+      @venue = Venue.new(params[:venue])
       conditions = venue_location_conditions
          
       if !name.nil? && name != ""
-        # Add the name
         conditions = ["#{conditions} and name like ?", "%#{name}%"]
       end
       
@@ -117,10 +129,10 @@ class BandController < ApplicationController
                                        :per_page => 20
       
       if (@venue_pages.item_count == 0)
-        @params[:error_message] = "No results found"
+        params[:error_message] = "No results found"
       end
     rescue Exception => ex
-      @params[:error_message] = ex.to_s
+      params[:error_message] = ex.to_s
     end
     
     render(:partial => "venue_results")
@@ -136,7 +148,7 @@ class BandController < ApplicationController
   end
   
   def save_band_profile(msg, redirect)
-    @band.attributes = @params[:band]
+    @band.attributes = params[:band]
     if @band.save
       flash[:notice] = msg
       redirect_to(:action => redirect)
@@ -144,12 +156,15 @@ class BandController < ApplicationController
   end
   
   def venue_location_conditions()
-    # TODO: Zipcode? Detect mismatch?
-    if (@venue.city == "" || @venue.state == "")
+    if ((@venue.city == "" || @venue.state == "") && @venue.zipcode == "")
       raise "Please enter a city/state or zipcode"
     end
     
-    "city = '#{@venue.city}' and state = '#{@venue.state}'"
+    if (@venue.zipcode != "")
+      return "zipcode = '#{@venue.zipcode}'"
+    else
+      return "city = '#{@venue.city}' and state = '#{@venue.state}'"
+    end
   end
   
 end

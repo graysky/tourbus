@@ -14,9 +14,12 @@ CREATE TABLE `bands` (
   `name` varchar(100) NOT NULL default '',
   `band_id` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
-  `zipcode` varchar(5) NOT NULL default '',
+  `zipcode` varchar(5) default NULL,
+  `city` varchar(100) default '',
+  `state` char(2) default '',
   `bio` text NOT NULL,
   `salt` varchar(40) NOT NULL default '',
+  `official_website` varchar(100) default '',
   `salted_password` varchar(40) NOT NULL default '',
   `logo` varchar(100) NOT NULL default '',
   `confirmed` tinyint(1) NOT NULL default '0',
@@ -24,22 +27,30 @@ CREATE TABLE `bands` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `bands_shows` (
+  `band_id` int(10) unsigned NOT NULL default '0',
+  `show_id` int(10) unsigned NOT NULL default '0',
+  `can_edit` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`band_id`,`show_id`),
+  KEY `fk_bs_show` (`show_id`),
+  CONSTRAINT `fk_bs_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  CONSTRAINT `fk_bs_show` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE `shows` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `cost` varchar(50) default NULL,
   `description` text NOT NULL,
   `url` varchar(100) NOT NULL default '',
-  `date` datetime NOT NULL default '0000-00-00 00:00:00',
-  `band_id` int(10) unsigned NOT NULL default '0',
+  `date` datetime default NULL,
   `venue_id` int(10) unsigned NOT NULL default '0',
   `tour_id` int(10) unsigned default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `fk_band` (`band_id`),
+  `title` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`id`,`title`),
   KEY `fk_venue` (`venue_id`),
   KEY `fk_tpir` (`tour_id`),
-  CONSTRAINT `fk_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
-  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
-  CONSTRAINT `fk_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
+  CONSTRAINT `fk_tour` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`),
+  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `tags` (

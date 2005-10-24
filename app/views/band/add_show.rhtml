@@ -8,20 +8,18 @@
 			// This needs to figure out the value from the 3 radios
 			if (val == "search") {
 				Element.show('venue_search');
-				Element.hide('venue_browse', 'venue_new');
-			}
-			else if (val == "browse") {
-				Element.show('venue_browse');
-				Element.hide('venue_search', 'venue_new', 'venue_search_results');
+				Element.hide('venue_new');
 			}
 			else if (val == "new") {
 				Element.show('venue_new');
-				Element.hide('venue_search', 'venue_browse', 'venue_search_results');
+				Element.hide('venue_search', 'venue_search_results');
 			}
 		}
 		
 		function use_existing_venue(id, name, type)
 		{
+			$("selected_venue_id").value = id;
+			$("selected_venue_name").value = name;
 			if (type == "search") {
 				new Effect.Fade("venue_search_results");
 				//Element.hide("venue_search_results");
@@ -30,10 +28,16 @@
 			//new Effect.Highlight("selected_venue");
 		}
 		
+		function do_venue_appear()
+		{
+			if ($('venue_search_results').style.display == "none") {
+				new Effect.Appear('venue_search_results');
+			}
+		}
+		
 		function do_venue_loading()
 		{
-			$("venue_search_contents").innerHTML = "";
-			$("venue_search_message").innerHTML = "Loading...";
+			$("venue_search_message").innerHTML = "<em>Loading...</em>";
 		}
 		
 	</script>
@@ -41,6 +45,13 @@
 	<%= start_form_tag :id => @show %>
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
+
+	<% if flash[:address_error] %>
+		
+	<% end %>
+
+	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
+	<input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
 	<table class="form-table">
 		<tr>
 			<th>Title:</th>
@@ -73,11 +84,17 @@
 		<tr>
 			<th>Venue:</th>
 			<td style="padding-top:16px">
-				<span id="selected_venue"><em>None</em></span>
+				<span id="selected_venue">
+					<% if !@params[:selected_venue_name].nil? && @params[:selected_venue_name] != "" %>
+						<%= @params[:selected_venue_name] %>
+					<% else %>
+						<em>None</em>
+					<% end %>
+					
+				</span>
 				<div style="margin-top:8px;margin-left:-4px">
-					<%= radio_button_tag "venue_type", "search", true, "onchange" => "switch_venue_divs('search')"%> Search
-					<%= radio_button_tag "venue_type", "browse", false, "onchange" => "switch_venue_divs('browse')" %> Browse
-					<%= radio_button_tag "venue_type", "new", false, "onchange" => "switch_venue_divs('new')" %> Add New
+					<%= radio_button_tag "venue_type", "search", params["venue_type"].nil? || params["venue_type"] == "search" , "onchange" => "switch_venue_divs('search')"%> Search
+					<%= radio_button_tag "venue_type", "new", params["venue_type"] == "new", "onchange" => "switch_venue_divs('new')" %> Add New
 				</div>
 				
 				<div id="venue_search" style="margin-top:8px">
@@ -87,16 +104,12 @@
 										:url => { :action => :venue_search },
 										:with => "Form.serialize(document.forms[0])",
 										:loading => "do_venue_loading()",
-										:before => "new Effect.Appear('venue_search_results')"
+										:before => "do_venue_appear()"
 										%>		
 				</div>
 				
 				<div id="venue_search_results" style="display:none">
 					<%= render(:partial => "venue_results") %>
-				</div>
-				
-				<div id="venue_browse" style="margin-top:8px;display:none">
-					Browse for stuff
 				</div>
 				
 				<div id="venue_new" style="margin-top:8px;display:none">
@@ -163,7 +176,13 @@
 			<td></td>
 			<td><%= submit_tag 'Add Show' %></td>
 		</tr>
-		
 	</table>
+<%= end_form_tag %>	
+
+	<% if params[:venue_type] == "new" %>	
+		<script type="text/javascript">
+			switch_venue_divs("new");
+		</script>
+	<% end %>
 	
 </div>

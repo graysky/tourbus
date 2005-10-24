@@ -1,7 +1,7 @@
 <%= render(:partial => "tabs", :locals => {:active => "home"}) %>
 
 <div>
-	<%= start_form_tag :id => @band %>
+	<%= start_form_tag({:id => @band}, {:multipart => true}) %>
 	<%= error_messages_for 'band' %>
 
 	<table class="form-table">
@@ -22,6 +22,18 @@
 				This is a comma-separated list of terms that will help a user search for your band.
 				A tag could be a genre, influence, record label, or anything else you can think of.
 			</td>
+		</tr>
+		<tr>
+			<th>New Logo:</th>
+			<td><%= file_column_field "band", "logo" %></td>
+			<td class="info">
+				Upload a logo for your band. It will replace the current logo, if any.
+			</td>
+		</tr>
+		<tr>
+			<th>Current Logo:</th>
+			<td><%= image_tag url_for_file_column("band", "logo") %></td>
+			<td class="info">The current logo.</td>
 		</tr>
 		<tr class="submit">
 			<td></td>

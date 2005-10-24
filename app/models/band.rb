@@ -7,6 +7,7 @@ class Band < ActiveRecord::Base
   include TaggableHelper
   has_and_belongs_to_many :shows
   has_many :tours
+  file_column :logo
   
   # In memory attributes to ease password manipulation
   attr_accessor :new_password, :password, :password_confirmation

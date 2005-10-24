@@ -193,11 +193,13 @@ table.form-table td textarea {
 table#edit-form input, table#edit-form textarea, table#edit-form select {
 	background: #eee;
 	}
+	
 table.form-table td input {
 	color: #555;
 	background: #eee;
 	border: 1px solid #ccc;
 	}
+		
 table.form-table td.info {
 	font-size: 11px;
 	color: #555;

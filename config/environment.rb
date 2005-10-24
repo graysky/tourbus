@@ -78,3 +78,5 @@ ActionMailer::Base.server_settings = {
   :password=>'noreply',
   :authentication=>:login
 } 
+
+require 'rails_file_column'

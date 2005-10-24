@@ -3,7 +3,7 @@ class Show < ActiveRecord::Base
   belongs_to :venue
   belongs_to :tour
  
-  #validates_presence_of :date
+  validates_presence_of :date
   
   # Attributes for nicer date handling
   attr_accessor :formatted_date, :time_hour, :time_minute, :time_ampm

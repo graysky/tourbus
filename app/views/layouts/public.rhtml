@@ -19,11 +19,24 @@
 TourBus
 
 <div id="header">
-	Bands: <%= link_to("Login", :controller => "band", :action => "login") %> |
-		   <%= link_to("Sign Up", :controller => "signup", :action => "step1") %>
+	<%
+		if session[:band].nil? or !session[:band].confirmed?
+	%>
+		<%= link_to("Login", :controller => "band", :action => "login") %> |
+	    <%= link_to("Sign Up", :controller => "signup", :action => "step1") %>
+	<%
+		else
+	%>
+		<%= session[:band].name %>:
+		<%= link_to("Settings", :controller => "band", :action => "home") %> |
+	    <%= link_to("Log Out", :controller => "band", :action => "logout") %>
+	<%
+		end
+	%>
 </div>
 
 </div>
+
 <div id="content">
 <p style="color: green"><%= flash[:notice] %></p>
 <%= @content_for_layout %>

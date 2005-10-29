@@ -22,6 +22,11 @@ class BandController < ApplicationController
     end
   end
 
+  def logout
+    session[:band] = nil
+    redirect_to(:controller => "public", :action => "front_page")
+  end
+
   # The the band homepage
   def home
     return if @request.get?

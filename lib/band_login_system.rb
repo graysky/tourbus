@@ -23,7 +23,7 @@ module BandLoginSystem
   #   def authorize?(user)
   # 
   def login_required
-    if @session[:band] and authorize?(@session[:band])
+    if @session[:band] and @session[:band].confirmed? and authorize?(@session[:band])
       return true
     end
     

@@ -28,13 +28,21 @@ TourBus
 		else
 	%>
 		<%= session[:band].name %>:
-		<%= link_to("Settings", :controller => "band", :action => "home") %> |
+		<%= public_band_link "Home" %> |
+		<%= link_to("Settings", :controller => "band", :action => "settings") %> |
 	    <%= link_to("Log Out", :controller => "band", :action => "logout") %>
 	<%
 		end
 	%>
 </div>
 
+</div>
+
+<div style="padding-top:4px;padding-bottom:4px;color:#99CC00;font-family: Arial, Helvetica;border:1px solid #ccc;padding-left:20px;font-size:28px;background-color:#F4F9E5";width=100%;">
+<span class="testme">Shows</span>
+<span class="testme" style="font-weight:bold">Bands</span>
+<span class="testme">Venues</span>
+<span class="testme">Users</span>
 </div>
 
 <div id="content">

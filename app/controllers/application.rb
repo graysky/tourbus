@@ -3,8 +3,9 @@
 class ApplicationController < ActionController::Base
   model :band
   helper :debug
+  helper_method :public_band_url
   
   def public_band_url
-    url_for(:controller => '') + @band.band_id
+    url_for(:controller => '') + session[:band].band_id
   end
 end

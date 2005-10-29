@@ -4,6 +4,10 @@ module ApplicationHelper
     STATES
   end
   
+  def public_band_link(text)
+    link_to(text, public_band_url)
+  end
+  
   def time_select(var)
     out = "<select id=\"#{var}_hour\" name=\"#{var}[time_hour]\">"
     (1..12).each { |hour| out += "<option value=\"#{hour}\">#{hour}</option>" }

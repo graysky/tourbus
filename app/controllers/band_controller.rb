@@ -27,18 +27,24 @@ class BandController < ApplicationController
     redirect_to(:controller => "public", :action => "front_page")
   end
 
-  # The the band homepage
+  def settings
+    return if @request.get?
+    save_band_profile("Account information was successfully updated", "settings")
+  end
+  
+  # DEPRECATED The the band homepage
   def home
     return if @request.get?
     save_band_profile("Profile information was successfully updated", "home")
   end
   
-  # Contact info
+  # DEPRECATED Contact info
   def contact
     return if @request.get?
     save_band_profile("Contact information was successfully updated", "contact")
   end
   
+  # DEPRECATED
   def tours
     if @request.get?
       @tour = Tour.new
@@ -52,6 +58,7 @@ class BandController < ApplicationController
     end
   end
   
+  # DEPRECATED
   def shows
   end
   

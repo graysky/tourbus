@@ -7,10 +7,6 @@ class BandPublicController < ApplicationController
     
   end
   
-  def shows
-    
-  end
-  
   private
   def find_band
     @band = Band.find_by_band_id(params[:band])

@@ -39,6 +39,7 @@ CREATE TABLE `tags` (
 CREATE TABLE `tags_bands` (
   `band_id` int(10) unsigned NOT NULL,
   `tag_id` int(10) unsigned NOT NULL,
+  `tag_type` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`band_id`,`tag_id`),
   CONSTRAINT `fk_bt_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
   CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
@@ -71,7 +72,7 @@ CREATE TABLE `tours` (
   PRIMARY KEY(`id`),
   KEY `FK_tours_band_id` (`band_id`),
   CONSTRAINT `FK_tours_band_id` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
-) ENGINE = InnoDB;
+) ENGINE=InnoDB;
 
 CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,

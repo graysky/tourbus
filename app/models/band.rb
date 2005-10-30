@@ -1,10 +1,8 @@
 require_dependency "hash"
 require "taggable"
-require_dependency "taggable_helper"
 
 class Band < ActiveRecord::Base
-  acts_as_taggable
-  include TaggableHelper
+  acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows
   has_many :tours
   file_column :logo
@@ -17,6 +15,11 @@ class Band < ActiveRecord::Base
                           :message => "Sorry, that band name has already been taken."
   validates_presence_of :password, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
+  
+  # Types of tags
+  GENRE_TYPE = 0
+  INFLUENCE_TYPE = 1
+  MISC_TYPE = 2
   
   def initialize(attributes = nil)
     super
@@ -57,8 +60,51 @@ class Band < ActiveRecord::Base
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
+  # Add Genre tags
+  def genre_tag_names=(tags)
+    add_tags(tags, GENRE_TYPE)
+  end
+
+  # Get just the Genre tags
+  def genre_tag_names
+    get_tags(GENRE_TYPE)
+  end
+  
+  # Add Influence tags
+  def influence_tag_names=(tags)
+    add_tags(tags, INFLUENCE_TYPE)
+  end
+
+  # Get just the Influence tags
+  def influence_tag_names
+    get_tags(INFLUENCE_TYPE)
+  end
+  
   protected
- 
+  
+  # Get the list of tags of the given type
+  def get_tags(tag_type)
+
+    # Pull out array just of tags of specified type
+    typed_tags = []
+
+    tags.each do |itag|
+      # each tag is a TagBand, compare the type
+      if itag.tag_type == tag_type
+        typed_tags << itag.name
+      end
+    end
+
+    # TODO Change to not return as comma seperated    
+    return typed_tags.join(",")
+  end
+  
+  # Add the following tags of the specified type.
+  def add_tags(tags, tag_type)
+    tags_array = tags.split(",").each { |tag| tag.strip! }
+    tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
+  end
+  
   def validate_password?
     return @new_password
   end
@@ -78,5 +124,7 @@ class Band < ActiveRecord::Base
   # ActiveRecord hooks
   after_save '@new_password = false'
   after_validation :crypt_password
+  
+  
   
 end

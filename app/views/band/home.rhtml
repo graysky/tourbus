@@ -16,11 +16,18 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th>Tags:</th>
-			<td><%= text_area 'band', 'comma_separated_tag_names', "rows" => 2  %></td>
+			<th>Genre Tags:</th>
+			<td><%= text_area 'band', 'genre_tag_names', "rows" => 2  %></td>
 			<td class="info">
-				This is a comma-separated list of terms that will help a user search for your band.
-				A tag could be a genre, influence, record label, or anything else you can think of.
+				This is a list of genre this band is in.
+			</td>
+		</tr>
+		<tr>
+		<tr>
+			<th>Influence Tags:</th>
+			<td><%= text_area 'band', 'influence_tag_names', "rows" => 2  %></td>
+			<td class="info">
+				This is a list of influences this band has.
 			</td>
 		</tr>
 		<tr>

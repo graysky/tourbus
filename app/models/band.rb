@@ -86,17 +86,12 @@ class Band < ActiveRecord::Base
   def get_tags(tag_type)
 
     # Pull out array just of tags of specified type
-    typed_tags = []
-
-    tags.each do |itag|
-      # each tag is a TagBand, compare the type
-      if itag.tag_type == tag_type
-        typed_tags << itag.name
-      end
-    end
+    tag_names = []
+    typed_tags = tags.select { |itag| itag.tag_type == tag_type }
+    typed_tags.each { |tag| tag_names << tag.name }
 
     # TODO Change to not return as comma seperated    
-    return typed_tags.join(",")
+    return tag_names.join(",")
   end
   
   # Add the following tags of the specified type.

@@ -684,6 +684,7 @@ Form.Element.Serializers = {
       case 'hidden':
       case 'password':
       case 'text':
+      case 'file':
         return Form.Element.Serializers.textarea(element);
       case 'checkbox':  
       case 'radio':

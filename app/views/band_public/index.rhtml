@@ -1,3 +1,5 @@
+<div id="main">
+
 <h1><%= @band.name %></h1>
 
 <script type="text/javascript">
@@ -9,8 +11,7 @@
 	}
 </script>
 
-
-<table width="70%">
+<table width="95%">
 	<tr>
 		<td>
 			<%= if !@band.logo.nil?
@@ -46,5 +47,9 @@
 	</td></tr>
 </table>
 
-<%= end_form_tag %>
+</div>
+
+<div id="side">
+
+</div>
 

@@ -75,6 +75,7 @@ td, p
 	background-color:white;
 	border:1px solid #484A4C;
 	text-align:left;
+	padding-bottom:24px;
 }
 
 .testme
@@ -395,8 +396,28 @@ table.form-table #selected_venue {
 	margin-top:8px;
 }	
 
+#main
+{
+	float:left;
+	width: 620px;
+}
 
-	
+#side
+{
+	float: right;
+	width: 180px;
+}
+
+#footer
+{
+	clear: both;
+}	
+
+#main h1
+{
+	margin-top:0px;
+	margin-bottom:4px;	
+}
 		
 
 

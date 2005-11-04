@@ -37,12 +37,13 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE `tags_bands` (
+  `id` int(10) unsigned NOT NULL auto_increment,
   `band_id` int(10) unsigned NOT NULL,
   `tag_id` int(10) unsigned NOT NULL,
   `tag_type` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`band_id`,`tag_id`),
   CONSTRAINT `fk_bt_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
-  CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
+  CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`),
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `bands_shows` (

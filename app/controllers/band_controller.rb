@@ -160,6 +160,7 @@ class BandController < ApplicationController
   end
   
   def save_band_profile(msg, redirect)
+    p params
     @band.attributes = params[:band]
     if @band.save
       flash[:notice] = msg

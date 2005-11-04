@@ -1,9 +1,9 @@
 /* font-family: Trebuchet, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", sans-serif; */
 /* nice blue: #D1ECF5. Too pastel? */
 
-a { color: #6E8452; }
-a:link { color: #6E8452; }
-a:visited { color: #6E8452; }
+a { color: #99CC00; }
+a:link { color: #99CC00 }
+a:visited { color: #99CC00 }
 
 
 .fieldWithErrors {
@@ -43,7 +43,6 @@ a:visited { color: #6E8452; }
 }
 
 
-
 body
 {
 	text-align:center;
@@ -53,8 +52,20 @@ body
 
 a
 {
-	color:#B1CD8D;	
+	color:#99CC00;	
 }
+
+h1
+{
+	color:#484A4C;
+	font-size:28px;
+}
+
+td, p
+{
+	color:#555;
+	font-size:14px;
+}	
 
 #container
 {
@@ -378,7 +389,12 @@ table.form-table #selected_venue {
 #paging_controls a {
 	font-size:11px;
 }
-	
+
+#band_logo_select
+{
+	margin-top:8px;
+}	
+
 
 	
 		

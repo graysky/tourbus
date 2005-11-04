@@ -20,16 +20,11 @@
 		 	end %>
 		</td>
 		<td valign="top" style="padding-left:16px">
-			<div id="band_bio">
-			<%= 
-				if @band.bio != ""
-					@band.bio
-				else
-					"<em>No bio has been written for this band</em>".to_s
-				end		
-			%>
-			</div>
-			<a href="#">Edit</a>
+			<%= band_bio_for_editing %>
+			<a id="edit_band_bio" href="#">Edit</a>
+			<script type="text/javascript">
+				new Ajax.InPlaceEditor('band_bio', '<%= url_for (:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
+			</script>
 		</td>
 	</tr>
 	<tr><td colspan="2">
@@ -42,7 +37,7 @@
 	 		<%= file_column_field "band", "logo" %>
 	 		<br/>
 	 		<table><tr>
-	 			<td><%= submit_tag "OK", :onclick => "start_upload()" %></td>
+	 			<td><%= submit_tag "OK" %></td>
 	 			<td><img id="logo_indicator" src="images/indicator.gif" style="display:none"/></td>
 	 			<td><%= upload_status_tag %></td>
 	 		</tr></table>

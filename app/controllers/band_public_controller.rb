@@ -9,11 +9,18 @@ class BandPublicController < ApplicationController
   end
   
   def change_logo
+    puts "here I am!"
     @band.update_attributes(params[:band])
     @band.save
-   
+    
     path = @band.logo_options[:base_url] + "/logo/" + @band.logo_relative_path
     finish_upload_status "'#{path}'"
+  end
+  
+  def set_bio
+    @band.bio = params[:value]
+    @band.save
+    render :text => @band.bio
   end
   
   private

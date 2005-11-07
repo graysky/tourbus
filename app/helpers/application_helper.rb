@@ -7,10 +7,18 @@ module ApplicationHelper
   def public_band_link(text)
     link_to(text, public_band_url)
   end
-  
+
   # Return if there is already a valid session
   def valid_session?
     return !(session[:band].nil? or !session[:band].confirmed?)
+  end
+
+  def friendly_date(date)
+    date.strftime("%A, %m/%d")
+  end
+  
+  def friendly_time(date)
+    date.strftime("%I:%M %p")
   end
   
   def time_select(var)

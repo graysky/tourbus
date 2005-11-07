@@ -20,6 +20,9 @@ ActionController::Routing::Routes.draw do |map|
   
   # Signup action
   map.connect 'signup/:action/:id', :controller => 'signup'
+  
+  # Show controller
+  map.connect 'show/:action/:id', :controller => 'show'
 
   # Public band pages
   map.connect ':band_id/:action', :controller => 'band_public'

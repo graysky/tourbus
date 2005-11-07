@@ -47,6 +47,15 @@
 	</td></tr>
 </table>
 
+<h2>Shows 
+	<span><%= link_to "Add Show", band_public_action("add_show") %></span>
+</h2>
+<div class="results_box">
+	<%= show_results @band.shows %>
+</div>
+
+
+
 </div>
 
 <div id="side">

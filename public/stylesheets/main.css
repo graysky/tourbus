@@ -61,6 +61,18 @@ h1
 	font-size:28px;
 }
 
+h2
+{
+	color:#484A4C;
+	font-size:20px;
+}
+
+h2 span
+{
+	font-size:12px;
+	font-weight:normal;
+}
+
 td, p
 {
 	color:#555;
@@ -224,6 +236,29 @@ td, p
 {
 	padding-left:8px;
 }
+
+/* Search Results */
+.results_box
+{
+	background-color: #F4F9E5;
+	border:1px solid #ADD039;
+	color:#4C5C5C;
+	width:200px;
+	font-size:12px;
+	margin-top:-4px;
+	padding: 8px;
+	line-height: 140%;
+}
+
+
+.results_box div
+{
+	padding-bottom:8px;
+	margin-bottom:8px;
+	border-bottom:1px solid #ADD039;
+}
+
+
 
 /* Box for side-bar tags */
 .tags-box
@@ -428,7 +463,6 @@ table.form-table #selected_venue {
 	width:100%;
 }
 
-
 #venue_results_table td {
 	margin-left: 20px;
 	padding: 4px 8px 8px 8px;
@@ -484,8 +518,12 @@ table.form-table #selected_venue {
 	margin-top:0px;
 	margin-bottom:4px;	
 }
-		
 
+		
+#main .results_box
+{
+	width:90%;
+}
 
 
 

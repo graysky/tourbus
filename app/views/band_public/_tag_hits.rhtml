@@ -1,0 +1,10 @@
+<% 
+# Assumes:
+# :tags => collection of tag hits
+%>
+
+<ul class="tag_hit_list">
+  <% for tag in tags %>
+    <li class="tag_hit_item"><%= tag.name %></li>
+  <% end %>
+</ul>

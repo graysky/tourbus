@@ -8,6 +8,11 @@ module ApplicationHelper
     link_to(text, public_band_url)
   end
   
+  # Return if there is already a valid session
+  def valid_session?
+    return !(session[:band].nil? or !session[:band].confirmed?)
+  end
+  
   def time_select(var)
     out = "<select id=\"#{var}_hour\" name=\"#{var}[time_hour]\">"
     (1..12).each { |hour| out += "<option value=\"#{hour}\">#{hour}</option>" }

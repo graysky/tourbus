@@ -1,0 +1,62 @@
+<% 
+# TODO Should be moved to commmon area.
+# Assumes:
+# :tags => collection of existing tags
+# :type => type of tag to create
+# :title => title of the box
+%>
+ 
+<div class="tags-box" id="<%= type %>" >
+
+<!-- Adds newly created tags to list -->
+<script type="text/javascript">
+	function tag_added_<%= type %>(request)
+	{
+		// alert('tag add functioned called for: ' + request.status)
+		new Insertion.Bottom(
+			"tag-list-<%= type %>",
+			'<div id="new_tag"><li>' + request.responseText + '</li></div>');
+			
+		new Effect.Highlight( $('new_tag') );
+		
+	}
+</script>
+
+<h1> <%= title %> </h1>
+  
+<ul class="tags-list" id="tag-list-<%= type %>" >
+
+<% for tag in tags %>
+<% # TODO Add real links and the like %>
+<li><%= tag.name %></li>
+<% end %>
+
+</ul>
+
+<%
+	# TODO Need real checking for permission to tag
+	if valid_session?
+%>
+
+<%= form_remote_tag(:url => { :action => "create_tag" },
+					:complete => "tag_added_#{type}(request)") %>
+
+<!-- 
+:failure => "alert('HTTP Error ' + request.status + '!')" 
+:update => "tag-list-#{type}",
+-->
+
+<%= hidden_field_tag( 'type', "", :value => type ) %>
+<%= text_field_with_auto_complete :tag, :name, { :size => 15 }, :skip_style => true %>
+
+<%= submit_tag "Add" %>
+
+<%= end_form_tag %>
+
+<% else %>
+
+<p>If you logged in, you could add tags!</p>
+
+<% end %>
+    	
+</div>

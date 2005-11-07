@@ -21,6 +21,21 @@ class Band < ActiveRecord::Base
   INFLUENCE_TYPE = 1
   MISC_TYPE = 2
   
+  # Getter for type
+  # TODO Is there a better way to do this? Should I define the types as class statics
+  # instead? What is the Ruby way of doing this?
+  def self.GENRE_TYPE
+    GENRE_TYPE
+  end
+  
+  def self.INFLUENCE_TYPE
+    INFLUENCE_TYPE
+  end
+  
+  def self.MISC_TYPE
+    MISC_TYPE
+  end
+  
   def initialize(attributes = nil)
     super
     @new_password = false
@@ -60,6 +75,12 @@ class Band < ActiveRecord::Base
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
+  # Add a new tag of the given type
+  def add_tag(tag_type, tag_name)
+    tags_array = [tag_name]
+    tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
+  end
+    
   # Add Genre tags
   def genre_tag_names=(tags)
     add_tags(tags, GENRE_TYPE)
@@ -86,12 +107,9 @@ class Band < ActiveRecord::Base
   def get_tags(tag_type)
 
     # Pull out array just of tags of specified type
-    tag_names = []
     typed_tags = tags.select { |itag| itag.tag_type == tag_type }
-    typed_tags.each { |tag| tag_names << tag.name }
 
-    # TODO Change to not return as comma seperated    
-    return tag_names.join(",")
+	typed_tags
   end
   
   # Add the following tags of the specified type.

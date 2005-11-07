@@ -225,7 +225,73 @@ td, p
 	padding-left:8px;
 }
 
+/* Box for side-bar tags */
+.tags-box
+{
+	background-color: #F4F9E5;
+	border:1px solid #ccc;
+	padding-left:2px;
+}
+
+.tags-box li
+{
+	list-style-type: circle;
+}
+
+.tags-box h1
+{
+	text-align: center;
+	font-size: 15px;
+}
+
 /* END BOXES */
+
+/* Dropdown box to autocomplete tags */
+div.auto_complete 
+{
+	width: 350px;
+	background: #fff;
+}
+
+div.auto_complete ul 
+{
+	border:1px solid #888;
+    margin:0;
+    padding:0;
+    width:100%;
+    list-style-type:none;
+}
+
+div.auto_complete ul li 
+{
+	margin:0;
+    padding:3px;
+    font-size: 12px;
+    list-style-type:none;         
+}
+
+div.auto_complete ul li.selected 
+{ 
+	background-color: #ffb; 
+}
+
+div.auto_complete ul strong.highlight 
+{ 
+	color: #800; 
+    margin:0;
+    padding:0;
+}
+
+
+.tag_hit_list
+{
+
+}
+
+.tag_hit_item
+{
+
+}
 
 fieldset
 {

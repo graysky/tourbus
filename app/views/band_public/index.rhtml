@@ -51,5 +51,27 @@
 
 <div id="side">
 
+	<%= render(
+	:partial => "tags", 
+	:locals => 
+		{
+		:tags => @band.genre_tag_names, 
+		:type => Band.GENRE_TYPE,
+		:title => "Genres"
+		}) 
+	%>
+	
+	<br/>
+	
+	<%= render(
+	:partial => "tags", 
+	:locals => 
+		{
+		:tags => @band.influence_tag_names, 
+		:type => Band.INFLUENCE_TYPE,
+		:title => "Influences"
+		}) 
+	%>	
+
 </div>
 

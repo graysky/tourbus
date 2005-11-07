@@ -264,20 +264,48 @@ td, p
 .tags-box
 {
 	background-color: #F4F9E5;
-	border:1px solid #ccc;
-	padding-left:2px;
+	border:1px solid #99CC00;
+	font-size: 13px;
+}
+
+.tags-box ul
+{
+	margin-left: -8px;	
 }
 
 .tags-box li
 {
-	list-style-type: circle;
+	list-style-type: square;
+	color:#4C5C5C;
 }
 
-.tags-box h1
+.tags-box p
 {
-	text-align: center;
-	font-size: 15px;
+	margin-left: 8px;
 }
+
+.tags-box form
+{
+	margin-left: 8px;
+}
+
+.tags-box input
+{
+	color:#484A4C;
+	font-size:12px;
+}
+
+.tags-box h2
+{
+	margin-top:0px;
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:8px;
+	font-size: 13px;
+	background-color: #99CC00;
+	color: #484A4C;
+}
+
 
 /* END BOXES */
 
@@ -504,6 +532,7 @@ table.form-table #selected_venue {
 
 #side
 {
+	padding-top:16px;
 	float: right;
 	width: 180px;
 }

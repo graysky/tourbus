@@ -18,11 +18,10 @@
 			'<div id="new_tag"><li>' + request.responseText + '</li></div>');
 			
 		new Effect.Highlight( $('new_tag') );
-		
 	}
 </script>
 
-<h1> <%= title %> </h1>
+<h2> <%= title %> </h2>
   
 <ul class="tags-list" id="tag-list-<%= type %>" >
 
@@ -47,7 +46,7 @@
 -->
 
 <%= hidden_field_tag( 'type', "", :value => type ) %>
-<%= text_field_with_auto_complete :tag, :name, { :size => 15 }, :skip_style => true %>
+<%= text_field_with_auto_complete :tag, :name, { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, :skip_style => true %>
 
 <%= submit_tag "Add" %>
 

@@ -554,5 +554,9 @@ table.form-table #selected_venue {
 	width:90%;
 }
 
+.single_line_controls span
+{
+	margin-left:8px;
+}
 
 

@@ -7,7 +7,18 @@ class BandPublicController < ApplicationController
   
   # The the band homepage
   def index
-    
+    # Determine the shows to display
+    case params[:show_display]
+    when nil, "upcoming"
+      @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
+    when "recent"
+      @shows = @band.shows.find(:all, :conditions => ["date > ? and date < ?", Time.now - 1.week, Time.now])
+    when "all"
+      @shows = @band.shows
+    else
+      puts "illegal value: " + params[:show_display]
+      flash[:error] = "Illegal value for show_display"
+    end
   end
   
   def change_logo

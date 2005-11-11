@@ -24,7 +24,7 @@
 			<%= band_bio_for_editing %>
 			<a id="edit_band_bio" href="#">Edit</a>
 			<script type="text/javascript">
-				new Ajax.InPlaceEditor('band_bio', '<%= url_for (:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
+				new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
 			</script>
 		</td>
 	</tr>
@@ -47,11 +47,17 @@
 	</td></tr>
 </table>
 
-<h2>Shows 
+<h2 class="single_line_controls">Shows 
 	<span><%= link_to "Add Show", band_public_action("add_show") %></span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span><%= show_controls "index" %></span>
 </h2>
 <div class="results_box">
-	<%= show_results @band.shows %>
+	<%= show_results @shows %>
 </div>
 
 

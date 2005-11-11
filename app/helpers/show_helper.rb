@@ -21,7 +21,16 @@ module ShowHelper
     out
   end
   
-  def show_controls
-    
+  def show_controls(action)
+    out = ""
+    out << link_to_unless(params[:show_display] == nil || params[:show_display] == "upcoming",
+                          "Upcoming", :action => action, :show_display => :"upcoming")
+    out << " | "
+    out << link_to_unless(params[:show_display] == "recent",
+                          "Recent", :action => action, :show_display => "recent")
+    out << " | "
+    out << link_to_unless(params[:show_display] == "all",
+                          "All", :action => action, :show_display => "all")
+    out
   end
 end

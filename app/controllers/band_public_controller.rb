@@ -73,7 +73,6 @@ class BandPublicController < ApplicationController
   # Called to auto-complete tag name
   def auto_complete_for_tag_name
     search = params[:tag][:name]
-    puts "trying to auto complete tag for #{search}"
     
     tags = Tag.find(:all,
              :conditions => "name LIKE '#{search}%'",

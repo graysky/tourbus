@@ -13,7 +13,7 @@ module ShowHelper
         out << link_to(show.title)
         out << " at "
       end
-      out << link_to(show.venue.name) + "<br/>"
+      out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"
       out << show.description + "<br/>"
       out << "</div>"
     end

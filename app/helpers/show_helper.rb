@@ -18,7 +18,12 @@ module ShowHelper
       out << "</div>"
     end
     
-    out
+    # No show results, so put friendly text
+    if shows == nil || shows.empty?
+      out << "<div><strong>No shows listed</strong></div>"
+    end
+    
+    return out
   end
   
   def show_controls(action)

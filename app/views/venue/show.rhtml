@@ -14,10 +14,10 @@ init_map()
 	{
 		var map = new GMap(document.getElementById("map"));
 	
-		var lat = <%=@venue.latitude%> ;
-		var long = <%=@venue.longitude%> ;
+		var latitude = <%=@venue.latitude%> ;
+		var longitude = <%=@venue.longitude%> ;
 		
-		var point = new GPoint(long, lat);
+		var point = new GPoint(longitude, latitude);
 		
 	  map.centerAndZoom(point, 3);
 	  map.addControl(new GSmallMapControl());
@@ -110,10 +110,21 @@ init_map()
 			<%= google_map_link(@venue) %>
 		</td>
 	</tr>
-	
-
 </table>
 
+
+<h2 class="single_line_controls">Shows 
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span>&nbsp;</span>
+	<span><%= show_controls "show" %></span>
+</h2>
+<div class="results_box">
+	<%= show_results @shows %>
+</div>
 
 </div>
 

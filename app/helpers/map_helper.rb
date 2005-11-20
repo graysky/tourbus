@@ -34,4 +34,25 @@ module MapHelper
     
     return out
   end
+  
+  def center_and_zoom_to_shows(shows)
+    # Calculate the min and max longitude/latitude
+    min_long = shows.min {|a,b| a.venue.longitude.to_f <=> b.venue.longitude.to_f }.venue.longitude.to_f
+    max_long = shows.max {|a,b| a.venue.longitude.to_f <=> b.venue.longitude.to_f }.venue.longitude.to_f
+    min_lat = shows.min {|a,b| a.venue.latitude.to_f <=> b.venue.latitude.to_f }.venue.latitude.to_f
+    max_lat = shows.max {|a,b| a.venue.latitude.to_f <=> b.venue.latitude.to_f }.venue.latitude.to_f
+    
+    # Calculate the center point and deltas
+    center_long = (min_long + max_long) / 2
+    center_lat = (min_lat + max_lat) / 2
+    delta_long = max_long - min_long
+    delta_lat = max_lat - min_lat
+    
+    # Write the javascript to center and zoom at the correct level, assuming
+    # a GMap variable "map" in scope
+    js =  "var center = new GPoint(#{center_long}, #{center_lat});"
+    js << "var delta = new GSize(#{delta_long}, #{delta_lat});"
+    js << "var min_zoom = map.spec.getLowestZoomLevel(center, delta, map.viewSize);"
+    js << "map.centerAndZoom(center, min_zoom);"
+  end
 end

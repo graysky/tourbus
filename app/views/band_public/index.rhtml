@@ -30,6 +30,7 @@
 		var map = new GMap(document.getElementById("map"));
 		
 	  	map.addControl(new GSmallMapControl());
+		<%= center_and_zoom_to_shows(@shows) %>
 		
 		<% for show in @shows %>
 		{	
@@ -37,7 +38,6 @@
 			var longitude = <%=show.venue.longitude%> ;
 			
 			var point = new GPoint(longitude, latitude);
-			map.centerAndZoom(point, 3);
 			
 			// Need to specially handle text so that it wraps properly. Seems to default
 			// to wrapping at any blank space;

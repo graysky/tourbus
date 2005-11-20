@@ -12,12 +12,14 @@
 <script type="text/javascript">
 	function tag_added_<%= type %>(request)
 	{
-		// alert('tag add functioned called for: ' + request.status)
+		// The name of the new tag
+		var added_tag = request.responseText;
+		// Add the new tag at the bottom and highlight it
 		new Insertion.Bottom(
 			"tag-list-<%= type %>",
-			'<div id="new_tag"><li>' + request.responseText + '</li></div>');
+			'<div id=\"' + added_tag + '\"><li>' + added_tag + '</li></div>');
 			
-		new Effect.Highlight( $('new_tag') );
+		new Effect.Highlight( $(added_tag) );
 	}
 </script>
 
@@ -37,24 +39,19 @@
 	if valid_session?
 %>
 
-<%= form_remote_tag(:url => { :action => "create_tag" },
-					:complete => "tag_added_#{type}(request)") %>
+	<%= form_remote_tag(:url => { :action => "create_tag" },
+											:complete => "tag_added_#{type}(request)") %>
 
-<!-- 
-:failure => "alert('HTTP Error ' + request.status + '!')" 
-:update => "tag-list-#{type}",
--->
+	<%= hidden_field_tag( 'type', "", :value => type ) %>
+	<%= text_field_with_auto_complete type, :name, { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, :skip_style => true %>
 
-<%= hidden_field_tag( 'type', "", :value => type ) %>
-<%= text_field_with_auto_complete :tag, :name, { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, :skip_style => true %>
+	<%= submit_tag "Add" %>
 
-<%= submit_tag "Add" %>
-
-<%= end_form_tag %>
+	<%= end_form_tag %>
 
 <% else %>
 
-<p>If you logged in, you could add tags!</p>
+	<p>If you logged in, you could add tags!</p>
 
 <% end %>
     	

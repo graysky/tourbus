@@ -58,11 +58,11 @@ class BandPublicController < ApplicationController
   
   # Create a new tag of the specified type
   def create_tag
-    # TODO Seems clumsy to have to make it "object", "method" in the params
-    # array for the text_field_autocomplete. I don't see a "_tag" variant available.
-    # Maybe I'm not understanding something here.
     tag_type = params[:type]
-    tag_name = params[:tag][:name]
+    # Litte funny way of handling the params to help with having
+    # multiple tag boxes on a page. IE doesn't like having text fields with
+    # the same name. So we use the type instead.
+    tag_name = params[tag_type][:name]
     
     # TODO Need to handle tag that already exists
     @band.add_tag(tag_type, tag_name)

@@ -1,6 +1,7 @@
 class BandPublicController < ApplicationController
   before_filter :find_band
   helper :show
+  helper :map
   
   layout "public"
   upload_status_for :create_logo

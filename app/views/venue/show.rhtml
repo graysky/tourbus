@@ -2,7 +2,7 @@
 
 <h1><%= @venue.name %></h1>
 
-<script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAREnSlDmPnmFHv2KsLa6lqhTJQa0g3IQ9GZqIMmInSLzwtGDKaBSeIlvlsz_AMFN6TbqRWzBC6ZXsWA" type="text/javascript"></script>
+<%= gmaps_header %>
 
 <% content_for("onload") do %>
 init_map()

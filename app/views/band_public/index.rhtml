@@ -11,6 +11,61 @@
 	}
 </script>
 
+<%= gmaps_header %>
+
+<% 
+	if @params[:show_map] == "true" 
+	  content_for("onload") do 
+%>
+	  init_map()
+<%  
+	  end  
+	end 
+%>
+
+<script type="text/javascript">
+	
+	function init_map()
+	{
+		var map = new GMap(document.getElementById("map"));
+		
+	  	map.addControl(new GSmallMapControl());
+		
+		<% for show in @shows %>
+		{	
+			var latitude = <%=show.venue.latitude%> ;
+			var longitude = <%=show.venue.longitude%> ;
+			
+			var point = new GPoint(longitude, latitude);
+			map.centerAndZoom(point, 3);
+			
+			// Need to specially handle text so that it wraps properly. Seems to default
+			// to wrapping at any blank space;
+			var html = "<small>";
+			html += "<b><%= gmarker_fmt(show.venue.name) %></b> <BR/>";
+			html += "<%= gmarker_fmt(show.venue.address) %> <BR/>";
+			html += "<%= gmarker_fmt(show.venue.city)%>, <%=gmarker_fmt(show.venue.state)%> <%= gmarker_fmt(show.venue.zipcode) %> <BR/>";
+			html += "</small>";
+	
+			var marker = createMarker(point, html);
+			
+		  	map.addOverlay(marker);
+		 }
+		<% end %>
+		
+		function createMarker(p, html)
+		{
+			var marker = new GMarker(p);
+			
+			GEvent.addListener(marker, "click", function() {
+			    marker.openInfoWindowHtml(html);
+			});
+			
+			return marker;
+		}
+	}
+</script>
+
 <table width="95%">
 	<tr>
 		<td valign="top">
@@ -51,16 +106,18 @@
 	<span><%= link_to "Add Show", band_public_action("add_show") %></span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
-	<span>&nbsp;</span>
-	<span>&nbsp;</span>
+	<span><%= map_list_toggle "index" %></span>
 	<span>&nbsp;</span>
 	<span><%= show_controls "index" %></span>
 </h2>
-<div class="results_box">
-	<%= show_results @shows %>
-</div>
 
-
+<% if @params[:show_map] == "true" %>
+	<div style="width: 560px; height:400px" id="map"></div>
+<% else %>
+	<div class="results_box">
+		<%= show_results @shows %>
+	</div>
+<% end %>
 
 </div>
 

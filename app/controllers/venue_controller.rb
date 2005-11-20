@@ -1,7 +1,9 @@
 class VenueController < ApplicationController
   before_filter :find_venue
   helper :show
-  
+  helper :map
+  helper :show
+
   layout "public"
   
   # For displaying a single venue

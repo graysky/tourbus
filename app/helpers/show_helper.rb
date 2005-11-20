@@ -26,16 +26,25 @@ module ShowHelper
     return out
   end
   
+  def map_list_toggle(action)
+    out = ""
+    out << link_to_unless(params[:show_map] == nil || params[:show_map] == "false",
+                          "View as List", :action => action, :show_map => "false", :show_display => params[:show_display])
+    out << " | "
+    out << link_to_unless(params[:show_map] == "true",
+                          "View as Map", :action => action, :show_map => "true", :show_display => params[:show_display])
+  end
+  
   def show_controls(action)
     out = ""
     out << link_to_unless(params[:show_display] == nil || params[:show_display] == "upcoming",
-                          "Upcoming", :action => action, :show_display => :"upcoming")
+                          "Upcoming", :action => action, :show_display => "upcoming", :show_map => params[:show_map])
     out << " | "
     out << link_to_unless(params[:show_display] == "recent",
-                          "Recent", :action => action, :show_display => "recent")
+                          "Recent", :action => action, :show_display => "recent", :show_map => params[:show_map])
     out << " | "
     out << link_to_unless(params[:show_display] == "all",
-                          "All", :action => action, :show_display => "all")
+                          "All", :action => action, :show_display => "all", :show_map => params[:show_map])
     out
   end
 end

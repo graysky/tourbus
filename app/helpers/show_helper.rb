@@ -34,6 +34,46 @@ module ShowHelper
     return out
   end
   
+  def write_show_map_points(shows_by_date)
+    # Form hash of arrays by venue
+    shows_by_venue = {}
+    for show in shows_by_date
+        shows = shows_by_venue[show.venue]
+        if !shows
+          shows = []
+          shows_by_venue[show.venue] = shows
+        end
+        
+        shows << show
+    end
+    
+    out = ""
+    shows_by_venue.each do |venue, shows|
+      out << "{"
+      out << "var latitude = #{venue.latitude};"
+	  out << "var longitude = #{venue.longitude};"
+	  out << "var point = new GPoint(longitude, latitude);"
+	  
+      div_class = shows.size > 1 ? "map_info" : "map_info"
+      out << "var html = \"<div class='#{div_class}'>\";"
+      
+      out << map_info_venue_details(venue)
+      out << "html += '<br/>';"
+        
+      for show in shows
+        out << map_info_show_date(show)
+        out << "html += '<br/><br/>';"
+      end 
+      
+      out << "var marker = createMarker(point, html, #{venue.id});"
+      out << "map.addOverlay(marker);"
+      
+      out << "}"
+    end
+    
+    out
+  end
+  
   def map_list_toggle(action)
     out = ""
     out << link_to_unless(params[:show_map] == nil || params[:show_map] == "false",
@@ -55,4 +95,21 @@ module ShowHelper
                           "All", :action => action, :show_display => "all", :show_map => params[:show_map])
     out
   end
+  
+  #########
+  # Private
+  #########
+  private
+  
+  def map_info_show_date(show)
+    out =  "html += '<strong>#{friendly_date(show.date)}</strong>&nbsp;&nbsp';"
+    out << "html += '<br/>#{friendly_time(show.date)}';"
+  end
+  
+  def map_info_venue_details(venue)
+	out =  "html += '<b>#{gmarker_fmt(venue.name)}</b><br/>';"
+	out << "html += '#{gmarker_fmt(venue.address)}<br/>';"
+	out << "html += '#{gmarker_fmt(venue.city)}, #{gmarker_fmt(venue.state)} #{gmarker_fmt(venue.zipcode)} <br/>';"
+  end
+  
 end

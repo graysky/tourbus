@@ -31,29 +31,7 @@
 		
 	  	map.addControl(new GSmallMapControl());
 		<%= center_and_zoom_to_shows(@shows) %>
-		
-		<% for show in @shows %>
-		{	
-			var latitude = <%=show.venue.latitude%> ;
-			var longitude = <%=show.venue.longitude%> ;
-			
-			var point = new GPoint(longitude, latitude);
-			
-			// Need to specially handle text so that it wraps properly. Seems to default
-			// to wrapping at any blank space;
-			var html = "<div class='map_info'>";
-			html += "<strong>" + "<%= friendly_date(show.date) %>" + "</strong>&nbsp;&nbsp;"
-      		html += "<br/><%= friendly_time(show.date) %>"
-      		html += "<br/><br/>" 
-			html += "<b><%= gmarker_fmt(show.venue.name) %></b> <BR/>";
-			html += "<%= gmarker_fmt(show.venue.address) %> <BR/>";
-			html += "<%= gmarker_fmt(show.venue.city)%>, <%=gmarker_fmt(show.venue.state)%> <%= gmarker_fmt(show.venue.zipcode) %> <BR/>";
-			html += "</div>";
-	
-			var marker = createMarker(point, html, <%= show.venue.id %>);
-		  	map.addOverlay(marker);
-		 }
-		<% end %>
+		<%= write_show_map_points @shows %>
 	}
 </script>
 

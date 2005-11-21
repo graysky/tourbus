@@ -47,22 +47,10 @@
 			html += "<%= gmarker_fmt(show.venue.city)%>, <%=gmarker_fmt(show.venue.state)%> <%= gmarker_fmt(show.venue.zipcode) %> <BR/>";
 			html += "</small>";
 	
-			var marker = createMarker(point, html);
-			
+			var marker = createMarker(point, html, <%= show.venue.id %>);
 		  	map.addOverlay(marker);
 		 }
 		<% end %>
-		
-		function createMarker(p, html)
-		{
-			var marker = new GMarker(p);
-			
-			GEvent.addListener(marker, "click", function() {
-			    marker.openInfoWindowHtml(html);
-			});
-			
-			return marker;
-		}
 	}
 </script>
 
@@ -112,12 +100,13 @@
 </h2>
 
 <% if @params[:show_map] == "true" %>
-	<div style="width: 560px; height:400px" id="map"></div>
-<% else %>
-	<div class="results_box">
-		<%= show_results @shows %>
-	</div>
+	<a name="map_top"/>
+	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
+
+<div class="results_box">
+	<%= show_results @shows, params[:show_map] == "true" %>
+</div>
 
 </div>
 

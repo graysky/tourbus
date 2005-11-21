@@ -1,6 +1,7 @@
 module MapHelper
   def gmaps_header
-    "<script src='http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAREnSlDmPnmFHv2KsLa6lqhTJQa0g3IQ9GZqIMmInSLzwtGDKaBSeIlvlsz_AMFN6TbqRWzBC6ZXsWA' type='text/javascript'></script>"
+    out = "<script src='http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAREnSlDmPnmFHv2KsLa6lqhTJQa0g3IQ9GZqIMmInSLzwtGDKaBSeIlvlsz_AMFN6TbqRWzBC6ZXsWA' type='text/javascript'></script>"
+    out << "<script src='/javascripts/map.js' type='text/javascript'></script>"
   end
   
   # Convert a string to a string formatted to be displayed in a GMarker.

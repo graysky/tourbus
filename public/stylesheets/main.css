@@ -55,16 +55,23 @@ a
 	color:#99CC00;	
 }
 
+img
+{
+	border: 0;
+}
+
 h1
 {
 	color:#484A4C;
 	font-size:28px;
+
 }
 
 h2
 {
 	color:#484A4C;
 	font-size:20px;
+	margin-bottom:4px;
 }
 
 h2 span
@@ -552,6 +559,11 @@ table.form-table #selected_venue {
 #main .results_box
 {
 	width:560px;
+}
+
+#main .results_box td
+{
+	font-size:12px;
 }
 
 .single_line_controls span

@@ -23,17 +23,6 @@ init_map()
 	  map.addControl(new GSmallMapControl());
 		//map.addControl(new GMapTypeControl());
 		
-		function createMarker(p, html)
-		{
-			var marker = new GMarker(p);
-			
-			GEvent.addListener(marker, "click", function() {
-			    marker.openInfoWindowHtml(html);
-			});
-			
-			return marker;
-		}
-		
 		// Need to specially handle text so that it wraps properly. Seems to default
 		// to wrapping at any blank spaces
 		// var html = "<small>Wellesley&nbsp;High&nbsp; School</small>";
@@ -123,7 +112,7 @@ init_map()
 	<span><%= show_controls "show" %></span>
 </h2>
 <div class="results_box">
-	<%= show_results @shows %>
+	<%= show_results @shows, false %>
 </div>
 
 </div>

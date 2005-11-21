@@ -1,8 +1,15 @@
 module ShowHelper
-  def show_results(shows)
+  def show_results(shows, show_map)
     out = ""
     for show in shows
       out << "<div>"
+      out << "<table><tr><td valign='top'>"
+      
+      if show_map
+        # Draw a marker that links back to the map and shows a info bubble
+        out << "<a href='#map_top'><img onclick='showInfoWindow(#{show.venue.id})' src='/images/default_marker.png'/></a></td><td>"
+      end 
+      
       out << "<strong>" + friendly_date(show.date) + "</strong>&nbsp;&nbsp;"
       out << friendly_time(show.date)
       if show.cost != ""
@@ -15,6 +22,7 @@ module ShowHelper
       end
       out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"
       out << show.description + "<br/>"
+      out << "</td></tr></table>"
       out << "</div>"
     end
     
@@ -29,10 +37,10 @@ module ShowHelper
   def map_list_toggle(action)
     out = ""
     out << link_to_unless(params[:show_map] == nil || params[:show_map] == "false",
-                          "View as List", :action => action, :show_map => "false", :show_display => params[:show_display])
+                          "Hide Map", :action => action, :show_map => "false", :show_display => params[:show_display])
     out << " | "
     out << link_to_unless(params[:show_map] == "true",
-                          "View as Map", :action => action, :show_map => "true", :show_display => params[:show_display])
+                          "Show Map", :action => action, :show_map => "true", :show_display => params[:show_display])
   end
   
   def show_controls(action)

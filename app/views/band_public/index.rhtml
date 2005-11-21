@@ -41,11 +41,14 @@
 			
 			// Need to specially handle text so that it wraps properly. Seems to default
 			// to wrapping at any blank space;
-			var html = "<small>";
+			var html = "<div class='map_info'>";
+			html += "<strong>" + "<%= friendly_date(show.date) %>" + "</strong>&nbsp;&nbsp;"
+      		html += "<br/><%= friendly_time(show.date) %>"
+      		html += "<br/><br/>" 
 			html += "<b><%= gmarker_fmt(show.venue.name) %></b> <BR/>";
 			html += "<%= gmarker_fmt(show.venue.address) %> <BR/>";
 			html += "<%= gmarker_fmt(show.venue.city)%>, <%=gmarker_fmt(show.venue.state)%> <%= gmarker_fmt(show.venue.zipcode) %> <BR/>";
-			html += "</small>";
+			html += "</div>";
 	
 			var marker = createMarker(point, html, <%= show.venue.id %>);
 		  	map.addOverlay(marker);

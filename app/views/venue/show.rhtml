@@ -26,11 +26,11 @@ init_map()
 		// Need to specially handle text so that it wraps properly. Seems to default
 		// to wrapping at any blank spaces
 		// var html = "<small>Wellesley&nbsp;High&nbsp; School</small>";
-		var html = "<small>";
+		var html = "<div class='map_info'>";
 		html += "<b><%= gmarker_fmt(@venue.name) %></b> <BR/>";
 		html += "<%= gmarker_fmt(@venue.address) %> <BR/>";
 		html += "<%= gmarker_fmt(@venue.city)%>, <%=gmarker_fmt(@venue.state)%> <%= gmarker_fmt(@venue.zipcode) %> <BR/>";
-		html += "</small>";
+		html += "</div>";
 
 		var marker = createMarker(point, html);
 		

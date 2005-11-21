@@ -43,7 +43,9 @@
 											:complete => "tag_added_#{type}(request)") %>
 
 	<%= hidden_field_tag( 'type', "", :value => type ) %>
-	<%= text_field_with_auto_complete type, :name, { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, :skip_style => true %>
+	<%= tag_field_with_auto_complete type,
+		{ :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, 
+		:skip_style => true %>
 
 	<%= submit_tag "Add" %>
 

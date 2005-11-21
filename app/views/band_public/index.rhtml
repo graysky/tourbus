@@ -116,7 +116,7 @@
 <div id="side">
 
 	<%= render(
-	:partial => "tags", 
+	:partial => "shared/tags", 
 	:locals => 
 		{
 		:tags => @band.genre_tag_names, 
@@ -128,7 +128,7 @@
 	<br/>
 	
 	<%= render(
-	:partial => "tags", 
+	:partial => "shared/tags", 
 	:locals => 
 		{
 		:tags => @band.influence_tag_names, 

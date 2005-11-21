@@ -2,6 +2,7 @@ class BandPublicController < ApplicationController
   before_filter :find_band
   helper :show
   helper :map
+  helper :tag
   
   layout "public"
   upload_status_for :create_logo
@@ -57,12 +58,12 @@ class BandPublicController < ApplicationController
   end
   
   # Create a new tag of the specified type
+  # Requires :type => the type of tag
+  # and :tag => the tag name
   def create_tag
+    
     tag_type = params[:type]
-    # Litte funny way of handling the params to help with having
-    # multiple tag boxes on a page. IE doesn't like having text fields with
-    # the same name. So we use the type instead.
-    tag_name = params[tag_type][:name]
+    tag_name = params[:tag]
     
     # TODO Need to handle tag that already exists
     @band.add_tag(tag_type, tag_name)
@@ -72,19 +73,18 @@ class BandPublicController < ApplicationController
   end
   
   # Called to auto-complete tag name
-  def auto_complete_for_tag_name
-    search = params[:tag][:name]
+  # Assumes param named :tag
+  def auto_complete_for_tag
+    
+    search = params[:tag]
     
     tags = Tag.find(:all,
              :conditions => "name LIKE '#{search}%'",
              :limit => 10)
 
-    for tag in tags
-      puts "Hit: #{tag.name}"
-    end
-    
+    # Show the tag hits in a drop down box
     render(
-	:partial => "tag_hits", 
+	:partial => "shared/tag_hits", 
 	:locals => 
 		{
 		:tags => tags, 

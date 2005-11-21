@@ -15,7 +15,7 @@ class BandController < ApplicationController
     
     if band = Band.authenticate(params['login'], params['password'])
       @session[:band] = band
-      redirect_back_or_default(:action => "home")
+      redirect_back_or_default( public_band_url )
     else
       @error_message  = "Login unsuccessful. Please check your username and password, and that " +
                         "your account has been confirmed."

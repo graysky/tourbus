@@ -5,13 +5,18 @@ module MapHelper
   end
   
   # Convert a string to a string formatted to be displayed in a GMarker.
-  # They wrap on white space, so it needs to be 
+  # They wrap on white space, so it needs to use nbsp's.
   def gmarker_fmt(str)
     # split on the space 
     out = str.split(' ')
     
     # join with a non-breaking space
-    return out.join("&nbsp;")
+    s = out.join("&nbsp;")
+    
+    # Convert single and double quotes, borrowed from escape_javascript
+    s.gsub!(/["']/) { |m| "\\#{m}" }
+
+    return s
   end
   
   # Return HTML to provide a link to Google Maps

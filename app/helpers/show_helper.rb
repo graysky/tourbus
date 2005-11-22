@@ -102,7 +102,7 @@ module ShowHelper
   private
   
   def map_info_show_date(show)
-    out =  "html += '<strong>#{friendly_date(show.date)}</strong>&nbsp;&nbsp';"
+    out =  "html += '<strong>#{friendly_date(show.date)}</strong>&nbsp;&nbsp;';"
     out << "html += '<br/>#{friendly_time(show.date)}';"
   end
   

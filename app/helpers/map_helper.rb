@@ -42,6 +42,10 @@ module MapHelper
   end
   
   def center_and_zoom_to_shows(shows)
+    if shows.nil? or shows.empty?
+      return
+    end
+    
     # Calculate the min and max longitude/latitude
     min_long = shows.min {|a,b| a.venue.longitude.to_f <=> b.venue.longitude.to_f }.venue.longitude.to_f
     max_long = shows.max {|a,b| a.venue.longitude.to_f <=> b.venue.longitude.to_f }.venue.longitude.to_f

@@ -128,6 +128,10 @@ td, p
 #header a:link { color: #99CC00; }
 #header a:visited { color: #99CC00; }
 
+#header strong {
+	margin-left:8px;
+}
+
 
 
 #signup_ad

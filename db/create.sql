@@ -3,6 +3,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `tags_bands`;
 DROP TABLE IF EXISTS `bands_shows`;
 DROP TABLE IF EXISTS `bands`;
+DROP TABLE IF EXISTS `fans`;
 DROP TABLE IF EXISTS `tags`;
 DROP TABLE IF EXISTS `tours`;
 DROP TABLE IF EXISTS `band_services`;
@@ -28,6 +29,26 @@ CREATE TABLE `bands` (
   PRIMARY KEY  (`id`),
   KEY name_key (name),
   KEY band_id_key (band_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE `fans` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(100) NOT NULL default '',
+  `real_name` varchar(100) NOT NULL default '',
+  `contact_email` varchar(100) NOT NULL default '',
+  `zipcode` VARCHAR(5),
+  `city` varchar(100) default '',
+  `state` varchar(2) default '',
+  `bio` text,
+  `salt` CHAR(40),
+  `website` varchar(100) default '',
+  `salted_password` VARCHAR(40) NOT NULL,
+  `logo` varchar(100) NOT NULL default '',
+  `confirmed` boolean NOT NULL default 0,
+  `confirmation_code` varchar(50) default '',
+  `created_on` DATETIME,
+  PRIMARY KEY  (`id`),
+  KEY name_key (name)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `tags` (

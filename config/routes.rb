@@ -15,8 +15,11 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
-  # Band stuff
+  # Private band stuff
   map.connect 'band/:action/:id', :controller => 'band'
+  
+  # Private fan stuff
+  map.connect 'fans/:action/:id', :controller => 'fan'
   
   # Signup action
   map.connect 'signup/:action/:id', :controller => 'signup'
@@ -26,6 +29,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # Public band pages
   map.connect ':band_id/:action', :controller => 'band_public'
+  
+  # Public fan pages
+  map.connect 'fan/:fan_id/:action', :controller => 'fan_public'
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'

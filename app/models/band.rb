@@ -2,19 +2,16 @@ require_dependency "hash"
 require "taggable"
 
 class Band < ActiveRecord::Base
+  include ActiveRecord::Acts::PasswordProtected
+  acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows, :order => "date ASC"
   has_many :tours
   file_column :logo
   
-  # In memory attributes to ease password manipulation
-  attr_accessor :new_password, :password, :password_confirmation
-  
   validates_presence_of :name, :contact_email, :band_id, :zipcode
   validates_uniqueness_of :band_id, 
                           :message => "Sorry, that band name has already been taken."
-  validates_presence_of :password, :if => :validate_password?
-  validates_confirmation_of :password, :if => :validate_password?
   
   # Types of tags
   GENRE_TYPE = 0
@@ -36,11 +33,6 @@ class Band < ActiveRecord::Base
     MISC_TYPE
   end
   
-  def initialize(attributes = nil)
-    super
-    @new_password = false
-  end
-  
   def play_show(show, can_edit = true)
     shows.push_with_attributes(show, :can_edit => can_edit)
   end
@@ -53,14 +45,7 @@ class Band < ActiveRecord::Base
     return find(:first, 
                 :conditions => ["confirmed = 1 and band_id = ? and salted_password = ?", login, Band.salted_password(band.salt, Hash.hashed(password))])
   end
-  
-  # Change the password. DOES NOT save the record.
-  def change_password(pass, confirm = nil)
-    self.password = pass
-    self.password_confirmation = confirm.nil? ? pass : confirm
-    @new_password = true
-  end
-  
+   
   # Creates and sets the confirmation code. DOES NOT save the record.
   # Requires that that object already be populated with required fields
   def create_confirmation_code
@@ -117,27 +102,4 @@ class Band < ActiveRecord::Base
     tags_array = tags.split(",").each { |tag| tag.strip! }
     tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
   end
-  
-  def validate_password?
-    return @new_password
-  end
-  
-  # Crypt the current password if the password has changed
-  def crypt_password
-    if @new_password
-      self.salt = Hash.hashed("salt-#{Time.now}")
-      self.salted_password = Band.salted_password(self.salt, Hash.hashed(@password))
-    end
-  end
-  
-  def self.salted_password(salt, hashed_password)
-    return Hash.hashed(salt + hashed_password)
-  end
-  
-  # ActiveRecord hooks
-  after_save '@new_password = false'
-  after_validation :crypt_password
-  
-  
-  
 end

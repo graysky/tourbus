@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<p>
+Thanks for signing up, <%=@fan.name%>! To confirm your registration, 
+please click the following link:
+</p>
+
+<p>
+<a href="<%=@confirm_url%>"><%=@confirm_url%></a>
+</p>
+
+<p>
+Once you have confirmed your account information, you will be able to log in using the 
+following account information:
+</p>
+
+<p>
+Username: <%=@fan.name%><br/>
+Password: <%=@fan.password%>
+</p>
+
+<p>
+Thanks,<br/>
+The TourBus Team
+</p>
+
+</body>
+</html>
+	

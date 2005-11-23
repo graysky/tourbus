@@ -62,6 +62,9 @@ class BandController < ApplicationController
   def shows
   end
   
+  #########
+  # Private
+  #########
   private
   
   def find_band

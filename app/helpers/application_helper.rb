@@ -7,6 +7,10 @@ module ApplicationHelper
   def public_band_link(text)
     link_to(text, public_band_url)
   end
+  
+   def public_fan_link(text)
+    link_to(text, public_fan_url)
+  end
 
   # Return if there is already a valid session
   def valid_session?

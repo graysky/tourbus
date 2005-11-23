@@ -1,6 +1,6 @@
-require_dependency "band"
+require_dependency "fan"
 
-module BandLoginSystem
+module FanLoginSystem
   include LoginSystem
   
   # login_required filter. add 
@@ -13,7 +13,7 @@ module BandLoginSystem
   #   def authorize?(user)
   # 
   def login_required
-    if @session[:band] and @session[:band].confirmed? and authorize?(@session[:band])
+    if @session[:fan] and @session[:fan].confirmed? and authorize?(@session[:fan])
       return true
     end
     
@@ -32,7 +32,7 @@ module BandLoginSystem
   # example use :
   # a popup window might just close itself for instance
   def access_denied
-    redirect_to :controller => "band", :action =>"login"
+    redirect_to :controller => "fan", :action =>"login"
   end
   
 end

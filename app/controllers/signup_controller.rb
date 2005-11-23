@@ -1,9 +1,11 @@
 class SignupController < ApplicationController
-  before_filter :find_band
   layout "public"
   
-  def step1
-    return if request.get?
+  def signup_band
+    if request.get?
+      @band = Band.new
+      return
+    end
     
     @band = Band.new(params[:band])
     
@@ -13,7 +15,7 @@ class SignupController < ApplicationController
         code = @band.create_confirmation_code
         
         # Create a url for the confirm action
-        confirm_url = url_for(:action => 'confirm')
+        confirm_url = url_for(:action => 'confirm_band')
         confirm_url += "/" + code
         
         @band.new_password = true
@@ -21,8 +23,8 @@ class SignupController < ApplicationController
         public_url = public_band_url
         if @band.save
           BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
-          session[:band] = @band
-          redirect_to :action => 'step2'
+          @name = @band.name
+          render :action => 'signup_success'
         end
       end
     rescue Exception => ex
@@ -31,11 +33,11 @@ class SignupController < ApplicationController
     end
   end
   
-  def step2
+  def signup_success
     # Nothing to do
   end
   
-  def confirm
+  def confirm_band
     @band = Band.find_by_confirmation_code(params[:id])
     if (@band)
       if (@band.confirmed?)
@@ -56,9 +58,54 @@ class SignupController < ApplicationController
     end
   end
   
-  private
-  def find_band
-    session[:band] ||= Band.new
-    @band = session[:band]
+  def signup_fan
+    if request.get?
+      @fan = Fan.new
+      return
+    end
+    
+    @fan = Fan.new(params[:fan])
+    
+    # Create the fan object and send the confirmation email in a transaction
+    begin
+      Fan.transaction(@band) do
+        code = @fan.create_confirmation_code
+        
+        # Create a url for the confirm action
+        confirm_url = url_for(:action => 'confirm_fan')
+        confirm_url += "/" + code
+        
+        @fan.new_password = true
+        if @fan.save
+          FanMailer.deliver_notify_signup(@fan, confirm_url)
+          @name = @fan.name
+          render :action => 'signup_success'
+        end
+      end
+    rescue Exception => ex
+      flash[:notice] = "Error registering your account: #{ex.message}"
+      puts ex.backtrace.to_s
+    end
+  end
+  
+  def confirm_fan
+    @fan = Fan.find_by_confirmation_code(params[:id])
+    if (@fan)
+      if (@fan.confirmed?)
+        # Someone has already confirmed this band
+        @fan = nil
+        flash.now[:error] = "This account has already been confirmed."
+      else
+        # It's now confirmed
+        @fan.confirmed = true
+        if (!@fan.save)
+          flash.now[:error] = "Error saving confirmation status"
+          @fan.confirmed = false
+        end
+      end
+    else
+      # Couldn't find it
+      flash.now[:error] = "I don't know what you're talking about. Are you sure you clicked the right link?"
+    end
   end
 end

@@ -21,12 +21,32 @@ TourBus
 
 <div id="header">
 	<%
-		if session[:band].nil? or !session[:band].confirmed?
+		is_fan = !session[:fan].nil? && session[:fan].confirmed?
+		is_band = !session[:band].nil? && session[:band].confirmed?
+		if !is_fan and !is_band
 	%>
-		<%= link_to("Login", :controller => "band", :action => "login") %> |
-	    <%= link_to("Sign Up", :controller => "signup", :action => "step1") %>
+		<strong>Fans:</strong>
+		<%= link_to("Login", :controller => "fan", :action => "login") %> |
+	    <%= link_to("Sign Up", :controller => "signup", :action => "signup_fan") %>
 	<%
-		else
+		elsif is_fan
+	%>
+		<%= session[:fan].name %>:
+		<%= public_fan_link "Profile" %> |
+		<%= link_to("Settings", :controller => "fan", :action => "settings") %> |
+	    <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
+	<%
+		end
+	%>
+	
+	<%
+		if !is_fan and !is_band
+	%>
+		<strong>Bands:</strong>
+		<%= link_to("Login", :controller => "band", :action => "login") %> |
+	    <%= link_to("Sign Up", :controller => "signup", :action => "signup_band") %>
+	<%
+		elsif is_band
 	%>
 		<%= session[:band].name %>:
 		<%= public_band_link "Home" %> |

@@ -42,6 +42,7 @@ module MapHelper
   end
   
   def center_and_zoom_to_shows(shows)
+    
     if shows.nil? or shows.empty?
       return
     end

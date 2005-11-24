@@ -98,7 +98,7 @@
 	:locals => 
 		{
 		:tags => @band.genre_tag_names, 
-		:type => Band.GENRE_TYPE,
+		:type => Tag.Genre,
 		:title => "Genres"
 		}) 
 	%>
@@ -110,7 +110,7 @@
 	:locals => 
 		{
 		:tags => @band.influence_tag_names, 
-		:type => Band.INFLUENCE_TYPE,
+		:type => Tag.Influence,
 		:title => "Influences"
 		}) 
 	%>	

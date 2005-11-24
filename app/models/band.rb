@@ -3,6 +3,7 @@ require "taggable"
 
 class Band < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
+  include Tagging
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows, :order => "date ASC"
@@ -12,26 +13,8 @@ class Band < ActiveRecord::Base
   validates_presence_of :name, :contact_email, :band_id, :zipcode
   validates_uniqueness_of :band_id, 
                           :message => "Sorry, that band name has already been taken."
-  
-  # Types of tags
-  GENRE_TYPE = 0
-  INFLUENCE_TYPE = 1
-  MISC_TYPE = 2
-  
-  # Getter for type
-  # TODO Is there a better way to do this? Should I define the types as class statics
-  # instead? What is the Ruby way of doing this?
-  def self.GENRE_TYPE
-    GENRE_TYPE
-  end
-  
-  def self.INFLUENCE_TYPE
-    INFLUENCE_TYPE
-  end
-  
-  def self.MISC_TYPE
-    MISC_TYPE
-  end
+  validates_presence_of :password, :if => :validate_password?
+  validates_confirmation_of :password, :if => :validate_password?
   
   def play_show(show, can_edit = true)
     shows.push_with_attributes(show, :can_edit => can_edit)
@@ -60,46 +43,24 @@ class Band < ActiveRecord::Base
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
-  # Add a new tag of the given type
-  def add_tag(tag_type, tag_name)
-    tags_array = [tag_name]
-    tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
-  end
-    
   # Add Genre tags
   def genre_tag_names=(tags)
-    add_tags(tags, GENRE_TYPE)
+    add_tags(tags, Tag.Genre)
   end
 
   # Get just the Genre tags
   def genre_tag_names
-    get_tags(GENRE_TYPE)
+    get_tags(Tag.Genre)
   end
   
   # Add Influence tags
   def influence_tag_names=(tags)
-    add_tags(tags, INFLUENCE_TYPE)
+    add_tags(tags, Tag.Influence)
   end
 
   # Get just the Influence tags
   def influence_tag_names
-    get_tags(INFLUENCE_TYPE)
+    get_tags(Tag.Influence)
   end
   
-  protected
-  
-  # Get the list of tags of the given type
-  def get_tags(tag_type)
-
-    # Pull out array just of tags of specified type
-    typed_tags = tags.select { |itag| itag.tag_type == tag_type }
-
-	typed_tags
-  end
-  
-  # Add the following tags of the specified type.
-  def add_tags(tags, tag_type)
-    tags_array = tags.split(",").each { |tag| tag.strip! }
-    tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
-  end
 end

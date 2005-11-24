@@ -1,5 +1,10 @@
+require "taggable"
+
+# Describes a venue where shows are played
 class Venue < ActiveRecord::Base
+  include Tagging
   has_many :shows
+  acts_as_taggable :join_class_name => 'TagVenue'
   
   validates_presence_of :name
   
@@ -12,6 +17,15 @@ class Venue < ActiveRecord::Base
     write_attribute("url", valid_url)
   end
 
+  # Add Venue tags
+  def venue_tag_names=(tags)
+    add_tags(tags, Tag.Venue)
+  end
+
+  # Get just the Venue tags
+  def venue_tag_names
+    get_tags(Tag.Venue)
+  end
   
   protected
   

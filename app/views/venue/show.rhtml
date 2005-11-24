@@ -119,5 +119,15 @@ init_map()
 
 <div id="side">
 
+	<%= render(
+	:partial => "shared/tags", 
+	:locals => 
+		{
+		:tags => @venue.venue_tag_names,
+		:type => Tag.Venue,
+		:title => "Venue Tags"
+		}) 
+	%>
+	
 
 </div>

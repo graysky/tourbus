@@ -6,8 +6,15 @@ class ApplicationController < ActionController::Base
   helper_method :public_band_url
   helper_method :public_fan_url
   
-  def public_band_url
-    url_for(:controller => '') + session[:band].band_id
+  # Return the URL of the band, which can be passed
+  # as an optional param.
+  def public_band_url(band = nil)
+    
+    if band == nil
+      band = session[:band]
+    end
+    
+    url_for(:controller => '') + band.band_id
   end
   
   def public_fan_url

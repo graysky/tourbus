@@ -65,8 +65,7 @@ class BandPublicController < ApplicationController
     tag_type = params[:type]
     tag_name = params[:tag]
     
-    # TODO Need to handle tag that already exists
-    @band.add_tag(tag_type, tag_name)
+    @band.add_tag(tag_name, tag_type)
     
     # Return the tag name 
     render :text => tag_name

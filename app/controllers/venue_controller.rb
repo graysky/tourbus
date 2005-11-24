@@ -3,6 +3,7 @@ class VenueController < ApplicationController
   helper :show
   helper :map
   helper :show
+  helper :tag
 
   layout "public"
   
@@ -20,6 +21,26 @@ class VenueController < ApplicationController
       puts "illegal value: " + params[:show_display]
       flash[:error] = "Illegal value for show_display"
     end
+  end
+  
+  # Called to auto-complete tag name
+  # Assumes param named :tag
+  def auto_complete_for_tag
+    
+    search = params[:tag]
+    
+    tags = Tag.find(:all,
+             :conditions => "name LIKE '#{search}%'",
+             :limit => 10)
+
+    # Show the tag hits in a drop down box
+    render(
+	:partial => "shared/tag_hits", 
+	:locals => 
+		{
+		:tags => tags, 
+		}) 
+    
   end
   
   private

@@ -1,6 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS `tags_bands`;
+DROP TABLE IF EXISTS `tags_venues`;
 DROP TABLE IF EXISTS `bands_shows`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `fans`;
@@ -29,6 +30,23 @@ CREATE TABLE `bands` (
   PRIMARY KEY  (`id`),
   KEY name_key (name),
   KEY band_id_key (band_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE `venues` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `url` VARCHAR(100) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `state` VARCHAR(2) NOT NULL,
+  `zipcode` VARCHAR(10) NOT NULL,
+  `country` VARCHAR(45) NOT NULL,
+  `phone_number` VARCHAR(15) NOT NULL,
+  `description` TEXT NOT NULL,
+  `contact_email` varchar(100) NOT NULL,
+  `latitude` VARCHAR(30) NOT NULL,
+  `longitude` VARCHAR(30) NOT NULL,
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `fans` (
@@ -64,6 +82,16 @@ CREATE TABLE `tags_bands` (
   `tag_type` int(10) unsigned NOT NULL,
   CONSTRAINT `fk_bt_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
   CONSTRAINT `fk_bt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`),
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `tags_venues` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `venue_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  `tag_type` int(10) unsigned NOT NULL,
+  CONSTRAINT `fk_vt_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
+  CONSTRAINT `fk_vt_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`),
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB;
 
@@ -108,24 +136,6 @@ CREATE TABLE `shows` (
   KEY `fk_venue` (`venue_id`),
   CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
 ) ENGINE=InnoDB;
-
-CREATE TABLE `venues` (
-  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  `url` VARCHAR(100) NOT NULL,
-  `address` VARCHAR(255) NOT NULL,
-  `city` VARCHAR(100) NOT NULL,
-  `state` VARCHAR(2) NOT NULL,
-  `zipcode` VARCHAR(10) NOT NULL,
-  `country` VARCHAR(45) NOT NULL,
-  `phone_number` VARCHAR(15) NOT NULL,
-  `description` TEXT NOT NULL,
-  `contact_email` varchar(100) NOT NULL,
-  `latitude` VARCHAR(30) NOT NULL,
-  `longitude` VARCHAR(30) NOT NULL,
-  PRIMARY KEY(`id`)
-) ENGINE=InnoDB;
-
 
 CREATE TABLE `zip_codes` (
   zip varchar(16) NOT NULL default '0',

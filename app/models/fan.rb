@@ -1,3 +1,5 @@
+require_dependency "password_protected"
+
 class Fan < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
   acts_as_password_protected

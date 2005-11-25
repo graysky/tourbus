@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
   # Private
   ##########
   private
+  def logged_in_band
+    session[:band]
+  end
+  
+  def logged_in_fan
+    session[:fan]
+  end
+  
   def prepare_new_show
     @show = Show.new
     @show.date = Time.now

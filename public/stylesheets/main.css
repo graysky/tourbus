@@ -570,6 +570,11 @@ table.form-table #selected_venue {
 	font-size:12px;
 }
 
+.map_info
+{
+	font-size:11px;
+}
+
 .single_line_controls span
 {
 	margin-left:8px;

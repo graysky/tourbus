@@ -93,13 +93,16 @@ class BandPublicController < ApplicationController
 
   private
   def find_band
-    # See if we are logged in as the band. If not, just use the URL.
-    b = Band.find_by_band_id(params[:band_id])
-    if b == nil or (!session[:band].nil? and session[:band].id == b.id)
-      b = session[:band]
+    @band = Band.find_by_band_id(params[:band_id])
+    if @band.nil?
+      raise "No such band. Put up an error screen"
     end
     
-    @band = b
+   if logged_in_band
+    @logged_in_as_band = (logged_in_band.id == @band.id)
+   end
+   
+   @band
   end
   
   def redirect_to_band_home(action = nil)

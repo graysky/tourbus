@@ -20,20 +20,21 @@
 	  init_map()
 <%  
 	  end  
+%>
+	<script type="text/javascript">
+	
+		function init_map()
+		{
+			var map = new GMap(document.getElementById("map"));
+			
+		  	map.addControl(new GSmallMapControl());
+			<%= center_and_zoom_to_shows(@shows) %>
+			<%= write_show_map_points @shows %>
+		}
+	  </script>
+<%	  	  
 	end 
 %>
-
-<script type="text/javascript">
-	
-	function init_map()
-	{
-		var map = new GMap(document.getElementById("map"));
-		
-	  	map.addControl(new GSmallMapControl());
-		<%= center_and_zoom_to_shows(@shows) %>
-		<%= write_show_map_points @shows %>
-	}
-</script>
 
 <table width="95%">
 	<tr>
@@ -46,10 +47,12 @@
 		</td>
 		<td valign="top" style="padding-left:16px">
 			<%= band_bio_for_editing %>
-			<a id="edit_band_bio" href="#">Edit</a>
-			<script type="text/javascript">
-				new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
-			</script>
+			<% if @logged_in_as_band %>
+				<a id="edit_band_bio" href="#">Edit</a>
+				<script type="text/javascript">
+					new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
+				</script>
+			<% end %>
 		</td>
 	</tr>
 	<tr><td colspan="2">
@@ -60,19 +63,23 @@
 	 										  	:finish => "finish_image_upload(arguments[0])" })
 	 										  %>
 	 		<%= file_column_field "band", "logo" %>
-	 		<br/>
-	 		<table><tr>
-	 			<td><%= submit_tag "OK" %></td>
-	 			<td><img id="logo_indicator" src="images/indicator.gif" style="display:none"/></td>
-	 			<td><%= upload_status_tag %></td>
-	 		</tr></table>
-	 		<%= end_form_tag %>
+	 		<% if @logged_in_as_band %>
+		 		<br/>
+		 		<table><tr>
+		 			<td><%= submit_tag "OK" %></td>
+		 			<td><img id="logo_indicator" src="images/indicator.gif" style="display:none"/></td>
+		 			<td><%= upload_status_tag %></td>
+		 		</tr></table>
+		 		<%= end_form_tag %>
+		 	<% end %>
 	 	</div>
 	</td></tr>
 </table>
 
-<h2 class="single_line_controls">Shows 
-	<span><%= link_to "Add Show", band_public_action("add_show") %></span>
+<h2 class="single_line_controls">Shows
+	<% if @logged_in_as_band %> 
+		<span><%= link_to "Add Show", band_public_action("add_show") %></span>
+	<% end %>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
 	<span><%= map_list_toggle "index" %></span>

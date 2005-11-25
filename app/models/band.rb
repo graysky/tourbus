@@ -1,4 +1,5 @@
 require_dependency "hash"
+require_dependency "password_protected"
 require "taggable"
 
 class Band < ActiveRecord::Base

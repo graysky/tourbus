@@ -17,7 +17,6 @@ module ActiveRecord
           class_eval do
             include ActiveRecord::Acts::PasswordProtected::InstanceMethods
             
-            after_save '@new_password = false'
             after_validation :crypt_password
           end
         end
@@ -51,6 +50,11 @@ module ActiveRecord
             self.salted_password = Band.salted_password(self.salt, Hash.hashed(@password))
           end
         end  
+        
+        def after_save
+          super
+          @new_password = false
+        end
       end
     end
   end  

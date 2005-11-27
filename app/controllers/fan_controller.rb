@@ -26,6 +26,15 @@ class FanController < ApplicationController
   end
   
   def settings
+     return if @request.get?
+     
+    @fan.update_attributes(params[:fan])
+    if @fan.save
+      flash[:notice] = "Settings updated"
+    else
+      # TODO GOTO ERROR
+      flash[:notice] = "error"
+    end
     
   end
   

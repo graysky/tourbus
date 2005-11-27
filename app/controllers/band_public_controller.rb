@@ -5,7 +5,7 @@ class BandPublicController < ApplicationController
   helper :tag
   
   layout "public"
-  upload_status_for :create_logo
+  upload_status_for :change_logo
   
   # The the band homepage
   def index

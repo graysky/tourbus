@@ -1,1 +1,48 @@
-hi
+<div>
+	<%= start_form_tag :id => @fan %>
+	<%= error_messages_for 'fan' %>
+
+	<table class="form-table">
+		<tr>
+			<th>Profile Page:</th>
+			<td><%= public_fan_link public_fan_url %></td>
+			<td class="info"></td>
+		</tr>
+		<tr>
+			<th>Email:</th>
+			<td><%= text_field 'fan', 'contact_email' %></td>
+			<td class="info"></td>
+		</tr>
+		<tr>
+			<th>Real Name:</th>
+			<td><%= text_field 'fan', 'real_name' %></td>
+			<td class="info"></td>
+		</tr>
+		<tr>
+			<th>Website:</th>
+			<td><%= text_field 'fan', 'website' %></td>
+			<td class="info"></td>
+		</tr>
+		<tr>
+			<th>City:</th>
+			<td><%= text_field 'fan', 'city' %></td>
+			<td class="info"></td>
+		</tr>
+		<tr>
+			<th>State:</th>
+			<td><%= select 'fan', 'state', states_for_select %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Zipcode:</th>
+			<td><%= text_field 'fan', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
+			<td></td>
+		</tr>
+		<tr class="submit">
+			<td></td>
+			<td><%= submit_tag 'Edit Settings' %></td>
+		</tr>
+	</table>
+	
+	
+</div>

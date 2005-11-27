@@ -55,25 +55,26 @@
 			<% end %>
 		</td>
 	</tr>
-	<tr><td colspan="2">
-		<a href="#" onclick="new Effect.Appear('band_logo_select')">Change Logo</a>
-	 	<div id="band_logo_select" style="display:none">
-	 		<%= form_tag_with_upload_progress({ :action => 'change_logo' },
-	 										  {	:begin => "Element.show('logo_indicator')",
-	 										  	:finish => "finish_image_upload(arguments[0])" })
-	 										  %>
-	 		<%= file_column_field "band", "logo" %>
-	 		<% if @logged_in_as_band %>
-		 		<br/>
-		 		<table><tr>
-		 			<td><%= submit_tag "OK" %></td>
-		 			<td><img id="logo_indicator" src="images/indicator.gif" style="display:none"/></td>
-		 			<td><%= upload_status_tag %></td>
-		 		</tr></table>
-		 		<%= end_form_tag %>
-		 	<% end %>
-	 	</div>
-	</td></tr>
+	<% if @logged_in_as_band %>
+		<tr><td colspan="2">
+			<a href="#" onclick="new Effect.Appear('band_logo_select')">Change Logo</a>
+		 	<div id="band_logo_select" style="display:none">
+		 		<%= form_tag_with_upload_progress({ :action => 'change_logo' },
+		 										  {	:begin => "Element.show('logo_indicator')",
+		 										  	:finish => "finish_image_upload(arguments[0])" })
+		 										  %>
+		 		<%= file_column_field "band", "logo" %>
+		 		
+			 		<br/>
+			 		<table><tr>
+			 			<td><%= submit_tag "OK" %></td>
+			 			<td><img id="logo_indicator" src="/images/indicator.gif" style="display:none"/></td>
+			 			<td><%= upload_status_tag %></td>
+			 		</tr></table>
+			 		<%= end_form_tag %>
+		 	</div>
+		</td></tr>
+	<% end %>
 </table>
 
 <h2 class="single_line_controls">Shows

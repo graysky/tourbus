@@ -27,11 +27,11 @@ ActionController::Routing::Routes.draw do |map|
   # Show controller
   map.connect 'show/:action/:id', :controller => 'show'
 
-  # Public band pages
-  map.connect ':band_id/:action', :controller => 'band_public'
-  
   # Public fan pages
-  map.connect 'fan/:fan_id/:action', :controller => 'fan_public'
+  map.connect 'fan/:fan_name/:action', :controller => 'fan_public'
+  
+  # Public band pages (must be last)
+  map.connect ':band_id/:action', :controller => 'band_public'
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'

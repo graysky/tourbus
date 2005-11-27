@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def public_fan_url
-    url_for(:controller => 'fab') + session[:fan].name
+    url_for(:controller => '') + 'fan/' + session[:fan].name
   end
   
   ##########

@@ -40,7 +40,20 @@ class VenueController < ApplicationController
 		{
 		:tags => tags, 
 		}) 
+  end
+  
+  # Create a new tag of the specified type
+  # Requires :type => the type of tag
+  # and :tag => the tag name
+  def create_tag
     
+    tag_type = params[:type]
+    tag_name = params[:tag]
+    
+    @venue.add_tag(tag_name, tag_type)
+    
+    # Return the tag name 
+    render :text => tag_name
   end
   
   private
@@ -48,13 +61,8 @@ class VenueController < ApplicationController
   # Find the venue from the ID param
   def find_venue
     # Look up the venue
-    v = Venue.find_by_id(params[:id])
+    @venue = Venue.find_by_id(params[:id])
     
-    #if b == nil or (!session[:band].nil? and session[:band].id == b.id)
-    #  b = session[:band]
-    #end
-    
-    @venue = v
   end
   
 end

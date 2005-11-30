@@ -107,7 +107,8 @@
 		{
 		:tags => @band.genre_tag_names, 
 		:type => Tag.Genre,
-		:title => "Genres"
+		:title => "Genres",
+		:id => @band.id
 		}) 
 	%>
 	
@@ -119,7 +120,8 @@
 		{
 		:tags => @band.influence_tag_names, 
 		:type => Tag.Influence,
-		:title => "Influences"
+		:title => "Influences",
+		:id => @band.id
 		}) 
 	%>	
 

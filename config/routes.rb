@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Private band stuff
   map.connect 'band/:action/:id', :controller => 'band'
-  
+
   # Private fan stuff
   map.connect 'fans/:action/:id', :controller => 'fan'
   
@@ -26,9 +26,12 @@ ActionController::Routing::Routes.draw do |map|
   
   # Show controller
   map.connect 'show/:action/:id', :controller => 'show'
-
+  
   # Public fan pages
   map.connect 'fan/:fan_name/:action', :controller => 'fan_public'
+  
+  # Venue controller
+  map.connect 'venue/:action/:id', :controller => 'venue'
   
   # Public band pages (must be last)
   map.connect ':band_id/:action', :controller => 'band_public'

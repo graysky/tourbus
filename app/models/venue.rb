@@ -1,4 +1,5 @@
 require "taggable"
+require "tagging"
 
 # Describes a venue where shows are played
 class Venue < ActiveRecord::Base

@@ -1,5 +1,3 @@
-
-
 # Mixin for helping with objects that are tagable.
 # Assumes a var in scope named "tags" that is the collection of tags
 # from the taggable mixin.
@@ -8,7 +6,8 @@ module Tagging
   # TODO Need to handle tag that already exists
 
   # Add a new tag of the given type
-  def add_tag(tag_type, tag_name)
+  def add_tag(tag_name, tag_type)
+    
     tags_array = [tag_name]
     tag(tags_array, :attributes => { :tag_type => tag_type } ) #:clear => true)
   end

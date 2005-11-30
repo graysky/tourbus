@@ -25,6 +25,10 @@ module ApplicationHelper
     date.strftime("%I:%M %p")
   end
   
+  def simple_date(date)
+    date.strftime("%m/%d/%y")
+  end
+  
   def time_select(var)
     out = "<select id=\"#{var}_hour\" name=\"#{var}[time_hour]\">"
     (1..12).each { |hour| out += "<option value=\"#{hour}\">#{hour}</option>" }

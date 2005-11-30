@@ -11,7 +11,7 @@
 	}
 </script>
 
-<table width="95%">
+<table>
 	<tr>
 		<td valign="top">
 			<%= if !@fan.logo.nil?
@@ -19,6 +19,14 @@
 			else
 			  "<img id='fan_logo' src='/images/unknown.jpg'/>".to_s
 		 	end %>
+		</td>
+		<td valign="top" style="padding-left:16px" align="left">
+			<table class="info-table">
+				<tr>
+					<th>Member Since:</th>
+					<td><%= simple_date(@fan.created_on) %></td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 	<% if @logged_in_as_fan %>
@@ -42,3 +50,9 @@
 		</td></tr>
 	<% end %>
 </table>
+
+</div>
+
+<div id="side">
+
+</div>

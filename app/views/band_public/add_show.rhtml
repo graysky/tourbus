@@ -1,1 +1,6 @@
-<%= render :partial => "shared/add_show" %>
+<%= render(:partial => "shared/add_show",
+		   :locals => 
+			{
+			:controller => "/" + @band.band_id, 
+			})  
+%>

@@ -40,12 +40,17 @@
 		
 	</script>
 
-	<%= start_form_tag :id => @show %>
+	<%
+		if controller.nil?
+			controller = params[:controller]
+		end
+	%>
+	<%= start_form_tag(:controller => controller, :action => "add_show", :id => @show) %>
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
 
 	<% if flash[:address_error] %>
-		
+		ERROR
 	<% end %>
 
 	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>

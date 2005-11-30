@@ -79,7 +79,6 @@ class ApplicationController < ActionController::Base
         @venue.latitude = result["lat"]
         @venue.longitude = result["long"]
       else
-        puts "Address Error"
         flash[:address_error] = true
         raise
       end

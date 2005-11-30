@@ -23,6 +23,13 @@ class VenueController < ApplicationController
     end
   end
   
+  # Set the venue description
+  def set_description
+    @venue.description = params[:value]
+    @venue.save
+    render :text => @venue.description
+  end
+  
   # Called to auto-complete tag name
   # Assumes param named :tag
   def auto_complete_for_tag

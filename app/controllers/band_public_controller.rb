@@ -65,9 +65,6 @@ class BandPublicController < ApplicationController
     tag_type = params[:type]
     tag_name = params[:tag]
     
-    p "Tag type: " + tag_type
-    p "Tag name: " + tag_name
-    
     @band.add_tag(tag_name, tag_type)
     
     # Return the tag name 
@@ -98,14 +95,8 @@ class BandPublicController < ApplicationController
   def find_band
     
     # See if we are logged in as the band. If not, just use the URL.
-    b = Band.find_by_band_id(params[:band_id])
-    if b == nil or (!session[:band].nil? and session[:band].id == b.id)
-      b = session[:band]
-    end
+    @band = Band.find_by_band_id(params[:band_id])
     
-    @band = b
-    
-    # @band = Band.find_by_band_id(params[:band_id])
     if @band.nil?
       raise "No such band. Put up an error screen"
     end

@@ -86,7 +86,13 @@ init_map()
 				</td>
 				
 				<td valign="top" style="padding-left:8px">
-				<%= @venue.description %>
+				<%= venue_desc_for_editing %>
+				<% if logged_in? %>
+					<a id="edit_venue_desc" href="#">Edit</a>
+				<script type="text/javascript">
+					new Ajax.InPlaceEditor('venue_desc', '<%= url_for(:action => "set_description", :id => @venue.id) %>', {rows:5, externalControl:"edit_venue_desc"})
+				</script>
+				<% end %>
 				</td>
 			</tr>
 			
@@ -126,7 +132,8 @@ init_map()
 		:tags => @venue.venue_tag_names,
 		:type => Tag.Venue,
 		:title => "Venue Tags",
-		:id => @venue.id
+		:controller => "venue",
+		:id => @venue.id,
 		}) 
 	%>
 	

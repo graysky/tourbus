@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :debug
   helper_method :public_band_url
   helper_method :public_fan_url
+  helper_method :logged_in?
   
   # Return the URL of the band, which can be passed
   # as an optional param.
@@ -21,14 +22,28 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '') + 'fan/' + session[:fan].name
   end
   
+  # Whether there is a band or fan logged in
+  def logged_in?
+  
+    if logged_in_fan
+      return true
+    elsif logged_in_band
+      return true
+    else
+      return false
+    end
+  end
+  
   ##########
   # Private
   ##########
   private
+  # There is a band logged in
   def logged_in_band
     session[:band]
   end
   
+  # There is a fan logged in
   def logged_in_fan
     session[:fan]
   end

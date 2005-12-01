@@ -49,8 +49,20 @@
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
 
-	<% if flash[:address_error] %>
-		ERROR
+	<% if params[:address_error] %>
+		<center>
+		<div class="error-prompt-box">
+			<h3>Address Error</h3>
+			<p>
+			We could not find the address you entered for the new venue.
+			It is very important that we have an address for the venue
+			so we can show it on the map. Please correct the address if you can,
+			but if you are willing to add a venue without an address check the
+			box below and click "Add Show" again.
+			</p>
+			<table><tr><td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td><td>Add venue with invalid address</td></tr></table>
+		</div>
+		</center>
 	<% end %>
 
 	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>

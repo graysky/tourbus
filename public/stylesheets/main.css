@@ -317,6 +317,35 @@ td, p
 	color: #484A4C;
 }
 
+.error-prompt-box
+{
+	background-color: #FFE1E1;
+	border:1px solid #ccc;
+	color:#4C5C5C;
+	width:50%;
+	font-size:12px;
+}
+
+.error-prompt-box h3
+{
+	margin-top:0px;
+	padding-top:0px;
+	padding-left:8px;
+	font-size:13px;
+	background-color: #e00400;
+	color:white;
+}
+
+.error-prompt-box p
+{
+	padding:0 8px 8px 8px;
+	font-size:12px;
+}
+
+.error-prompt-box table td
+{
+	font-size:12px;
+}
 
 /* END BOXES */
 

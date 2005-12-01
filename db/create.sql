@@ -44,8 +44,8 @@ CREATE TABLE `venues` (
   `phone_number` VARCHAR(15) NOT NULL,
   `description` TEXT NOT NULL,
   `contact_email` varchar(100) NOT NULL,
-  `latitude` VARCHAR(30) NOT NULL,
-  `longitude` VARCHAR(30) NOT NULL,
+  `latitude` VARCHAR(30),
+  `longitude` VARCHAR(30),
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 

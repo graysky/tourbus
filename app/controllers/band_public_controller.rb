@@ -47,8 +47,12 @@ class BandPublicController < ApplicationController
         return
       end
       
-      @band.play_show(@show, true)
-      if !@band.save
+      begin
+        Band.transaction(@band) do
+          @band.save
+          @band.play_show(@show, true)
+        end
+      rescue Exception => ex
         return
       end
       

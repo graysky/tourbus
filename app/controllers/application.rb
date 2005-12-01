@@ -93,8 +93,8 @@ class ApplicationController < ActionController::Base
       if result && !result["lat"].nil?
         @venue.latitude = result["lat"]
         @venue.longitude = result["long"]
-      else
-        flash[:address_error] = true
+      elsif not params[:ignore_address_error]
+        params[:address_error] = true
         raise
       end
     end

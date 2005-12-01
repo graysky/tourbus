@@ -12,13 +12,23 @@ class Band < ActiveRecord::Base
   has_many :tours
   file_column :logo
   
-  validates_presence_of :name, :band_id
+  validates_presence_of :name
   validates_uniqueness_of :band_id, 
-                          :message => "Sorry, that band name has already been taken."
+                          :message => "Sorry, that band public page has already been taken."
                           
   # TODO Not working?                        
   validates_presence_of :password, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
+  
+  def validate
+    if band_id.blank? or band_id != Band.name_to_id(band_id)
+      errors.add_to_base("Invalid public page address. A valid address contains no spaces or punctuation other than \".\", \"-\", or \"_\"")
+    end
+    
+    if claimed? && contact_email.blank?
+      errors.add(:contact_email, "must be a valid email address.")
+    end
+  end
   
   def play_show(show, can_edit = true)
     shows.push_with_attributes(show, :can_edit => can_edit)

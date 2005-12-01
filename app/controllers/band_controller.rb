@@ -14,6 +14,7 @@ class BandController < ApplicationController
     return if @request.get?
     
     if band = Band.authenticate(params['login'], params['password'])
+	  # TODO check for unclaimed band
       @session[:band] = band
       redirect_back_or_default( public_band_url )
     else

@@ -44,6 +44,7 @@ class Band < ActiveRecord::Base
   # The band id is the band name with whitespace and punctuation stripped out, all lowercase
   def self.name_to_id(name)
     # Remove anything that's not a letter, number or selected punctuation
+    # NOTE: Keep this in sync with the implementation in signup_band.rhtml!
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   

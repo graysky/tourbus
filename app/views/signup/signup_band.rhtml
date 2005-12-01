@@ -1,27 +1,42 @@
+<script type="text/javascript">
+	function update_public_page(name_field)
+	{
+		<% # NOTE: Keep this in sync with the implementation in band.rb! %>
+		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
+		$("band_band_id").value = id.toLowerCase();
+	}
+</script>
+
 <%= start_form_tag %>
 <%= error_messages_for 'band' %>
-<table>
+<table class="form-table">
 	<tr>
-		<td><label>Band Name:</label></td>
-		<td><%= text_field 'band', 'name'  %></td>
+		<th>Band Name:</th>
+		<td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
 	</tr>
 	<tr>
-		<td><label>Email Address:</label></td>
+		<th>Public Page:</th>
+		<td>http://mytourb.us/&nbsp;<%= text_field 'band', 'band_id'  %></td>
+	</tr>
+	<tr>
+		<th>Email Address:</th>
 		<td><%= text_field 'band', 'contact_email'  %></td>
 	</tr>
 	<tr>
-		<td><label>Password:</label></td>
+		<th>Password:</th>
 		<td><%= password_field 'band', 'password'  %></td>
 	</tr>
 	<tr>
-		<td><label>Confirm Password:</label></td>
+		<th>Confirm Password:</th>
 		<td><%= password_field 'band', 'password_confirmation'  %></td>
 	</tr>
 	<tr>
-		<td><label>Zipcode</label></td>
+		<th>Zipcode</th>
 		<td><%= text_field 'band', 'zipcode'  %></td>
 	</tr>				
-	
+	<tr class="submit">
+		<td></td>
+		<td><%= submit_tag 'Signup' %></td>
+	</tr>
 </table>
-<%= submit_tag "Create" %>
 <%= end_form_tag %>

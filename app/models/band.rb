@@ -12,9 +12,11 @@ class Band < ActiveRecord::Base
   has_many :tours
   file_column :logo
   
-  validates_presence_of :name, :contact_email, :band_id, :zipcode
+  validates_presence_of :name, :band_id
   validates_uniqueness_of :band_id, 
                           :message => "Sorry, that band name has already been taken."
+                          
+  # TODO Not working?                        
   validates_presence_of :password, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
   

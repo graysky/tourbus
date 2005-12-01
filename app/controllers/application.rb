@@ -48,6 +48,9 @@ class ApplicationController < ActionController::Base
     session[:fan]
   end
   
+  #
+  # TODO This crap should be a module
+  #
   def prepare_new_show
     @show = Show.new
     @show.date = Time.now
@@ -56,7 +59,7 @@ class ApplicationController < ActionController::Base
   
   def create_new_show_and_venue
     @show = Show.new(params[:show])
-      
+    
     # Get the new or existing venue
     new_venue = false
     if params[:venue_type] == "new"
@@ -99,6 +102,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    @bands_playing = calculate_bands
     @show.venue = @venue
   end
   
@@ -112,6 +116,34 @@ class ApplicationController < ActionController::Base
     else
       return "city = '#{@venue.city}' and state = '#{@venue.state}'"
     end
+  end
+  
+  def calculate_bands
+    bands = []
+    band_names = params[:bands].split("\n")
+    
+    band_names.each do |name|
+      # Clean up the names. The user might have added commas.
+      name.strip!
+      name.chomp!(",")
+      
+      # First see if there is an exact match by band id
+      id = Band.name_to_id(name)
+      band = Band.find_by_band_id(id)
+      if band.nil?
+        # TODO Try some other stuff. Maybe with "the", plurals, etc.
+        band = Band.new
+        band.name = name
+        band.band_id = id
+        band.claimed = false
+      else
+        puts "FOUND " + band.name
+      end
+     
+      bands << band
+    end
+    
+    return bands
   end
   
 end

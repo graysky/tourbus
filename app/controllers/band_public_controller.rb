@@ -47,12 +47,27 @@ class BandPublicController < ApplicationController
         return
       end
       
+      # Make sure the current band is in the list of band playing the show
+      if @bands_playing.find { |band| band.id == @band.id }.nil?
+        @bands_playing << @band
+      end
+      
       begin
-        Band.transaction(@band) do
-          @band.save
-          @band.play_show(@show, true)
+        @bands_playing.each { |band| puts band.name, band.id }
+        Band.transaction(*@bands_playing) do
+          Show.transaction(@show) do
+            @band.save!
+            @bands_playing.each do |band| 
+              if band.id.nil?
+                band.save!
+              end
+              
+              band.play_show(@show, true)
+            end
+          end
         end
       rescue Exception => ex
+        p ex
         return
       end
       

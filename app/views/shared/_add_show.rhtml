@@ -45,7 +45,7 @@
 			controller = params[:controller]
 		end
 	%>
-	<%= start_form_tag(:controller => controller, :action => "add_show", :id => @show) %>
+	<%= start_form_tag(:controller => controller, :action => "add_show") %>
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
 
@@ -60,7 +60,10 @@
 			but if you are willing to add a venue without an address check the
 			box below and click "Add Show" again.
 			</p>
-			<table><tr><td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td><td>Add venue with invalid address</td></tr></table>
+			<table><tr>
+				<td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td>
+				<td>Add venue with invalid address</td>
+			</tr></table>
 		</div>
 		</center>
 	<% end %>
@@ -68,13 +71,6 @@
 	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
 	<input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
 	<table class="form-table">
-		<tr>
-			<th>Title:</th>
-			<td><%= text_field 'show', 'title' %></td>
-			<td class="info">
-				If you don't give the show a title, we'll generate one for you.
-			</td>
-		</tr>
 		<tr>
 			<th>Date:</th>
 			<td>
@@ -159,6 +155,21 @@
 			</td>
 		</tr>
 		<tr>
+			<th>Bands:</th>
+			<td><%= text_area_tag 'bands', params[:bands], :rows => 5  %></td>
+			<td class="info">
+				NEED A GOOD DESCRIPTION
+			</td>
+		</tr>
+		<tr>
+			<th>Title:</th>
+			<td><%= text_field 'show', 'title' %></td>
+			<td class="info">
+				This is optional (@@@ How do we show optional vs. required fields?)
+				If you do not specify a title, we will use the names of the bands that are playing.
+			</td>
+		</tr>
+		<tr>
 			<th>Time:</th>
 			<td>
 				<%= time_select 'show' %>
@@ -182,7 +193,7 @@
 		</tr>
 		<tr>
 			<th>Description:</th>
-			<td><%= text_area 'show', 'description', "rows" => 5  %></td>
+			<td><%= text_area 'show', 'description', "rows" => 4  %></td>
 			<td class="info">
 			</td>
 		</tr>

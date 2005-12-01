@@ -19,6 +19,7 @@ class SignupController < ApplicationController
         confirm_url += "/" + code
         
         @band.new_password = true
+        @band.claimed = true
         @band.band_id = Band.name_to_id(@band.name)
         public_url = public_band_url(@band)
         if @band.save

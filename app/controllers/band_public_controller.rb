@@ -27,7 +27,7 @@ class BandPublicController < ApplicationController
     @band.update_attributes(params[:band])
     @band.save
     
-    path = @band.logo_options[:base_url] + "/logo/" + @band.logo_relative_path
+    path = "/" + @band.logo_options[:base_url] + "/" + @band.logo_relative_path
     finish_upload_status "'#{path}'"
   end
   

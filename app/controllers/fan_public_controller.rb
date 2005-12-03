@@ -15,7 +15,7 @@ class FanPublicController < ApplicationController
     @fan.update_attributes(params[:fan])
     @fan.save
     
-    path = @fan.logo_options[:base_url] + "/logo/" + @fan.logo_relative_path
+    path = "/" + @fan.logo_options[:base_url] + "/" + @fan.logo_relative_path
     finish_upload_status "'#{path}'"
   end
   

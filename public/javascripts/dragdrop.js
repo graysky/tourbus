@@ -516,4 +516,4 @@ var Sortable = {
               encodeURIComponent(item.id.match(options.format) ? item.id.match(options.format)[1] : ''));
     }).join("&");
   }
-} 
+}

@@ -1,5 +1,6 @@
 class Show < ActiveRecord::Base
   has_and_belongs_to_many :bands
+  has_many :photos
   belongs_to :venue
   belongs_to :tour
  

@@ -3,6 +3,7 @@ class BandPublicController < ApplicationController
   helper :show
   helper :map
   helper :tag
+  helper :photo
   
   layout "public"
   upload_status_for :change_logo

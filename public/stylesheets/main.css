@@ -272,41 +272,42 @@ td, p
 
 
 /* Box for side-bar tags */
-.tags-box
+.sidebar-box
 {
 	background-color: #F4F9E5;
 	border:1px solid #99CC00;
 	font-size: 13px;
 }
 
-.tags-box ul
+.sidebar-box ul
 {
 	margin-left: -8px;	
 }
 
-.tags-box li
+.sidebar-box li
 {
 	list-style-type: square;
 	color:#4C5C5C;
 }
 
-.tags-box p
+.sidebar-box p
+{
+	margin-left: 8px;
+	font-size:12px;
+}
+
+.sidebar-box form
 {
 	margin-left: 8px;
 }
 
-.tags-box form
-{
-	margin-left: 8px;
-}
-
-.tags-box input
+.sidebar-box input
 {
 	color:#484A4C;
 	font-size:12px;
 }
 
-.tags-box h2
+.sidebar-box h2
 {
 	margin-top:0px;
 	padding-top:2px;
@@ -637,6 +638,15 @@ table.info-table td {
 table.info-table td a {
 	font-size: 12px;
 	}
+	
+/* Photos */
+table.photo_thumbnail_table td {
+	padding: 8px 8px 4px 4px;
+}
+
+table.photo_thumbnail_table img {
+	border: 1px solid #ccc;
+}
 
 
 

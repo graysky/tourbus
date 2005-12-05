@@ -1,5 +1,5 @@
 <div>
-	<%= start_form_tag :id => @band %>
+	<%= start_form_tag ({:id => @band}, :multipart => true) %>
 	<%= error_messages_for 'band' %>
 
 	<table class="form-table">
@@ -26,8 +26,9 @@
 		<tr>
 			<th>Zipcode:</th>
 			<td><%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
-			<td></td>
+			<td><%= file_field 'photo', 'file'  %></td>
 		</tr>
+		
 		<tr class="submit">
 			<td></td>
 			<td><%= submit_tag 'Edit Settings' %></td>

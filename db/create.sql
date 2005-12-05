@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS `tours`;
 DROP TABLE IF EXISTS `band_services`;
 DROP TABLE IF EXISTS `shows`;
 DROP TABLE IF EXISTS `venues`;
+DROP TABLE IF EXISTS `photos`;
 DROP TABLE IF EXISTS `zip_codes`;
 
 CREATE TABLE `bands` (
@@ -136,6 +137,26 @@ CREATE TABLE `shows` (
   PRIMARY KEY(`id`),
   KEY `fk_venue` (`venue_id`),
   CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `photos` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `filename` VARCHAR(100),
+  `description` TEXT NOT NULL default '',
+  `created_on` DATETIME NOT NULL,
+  `show_id` int(10) unsigned,
+  `band_id` int(10) unsigned,
+  `created_by_fan_id` int(10) unsigned,
+  `created_by_band_id` int(10) unsigned,
+  KEY `fk_sp_show` (`show_id`),
+  CONSTRAINT `fk_sp_show` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`),
+  KEY `fk_sp_band` (`band_id`),
+  CONSTRAINT `fk_sp_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_sp_createdband` (`created_by_band_id`),
+  CONSTRAINT `fk_sp_createdband` FOREIGN KEY (`created_by_band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_sp_createdfan` (`created_by_fan_id`),
+  CONSTRAINT `fk_sp_createdfan` FOREIGN KEY (`created_by_fan_id`) REFERENCES `fans` (`id`),
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `zip_codes` (

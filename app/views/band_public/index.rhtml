@@ -11,10 +11,9 @@
 	}
 </script>
 
-<%= gmaps_header %>
-
 <% 
-	if @params[:show_map] == "true" 
+	if @params[:show_map] == "true"
+	  gmaps_header	 
 	  content_for("onload") do 
 %>
 	  init_map()
@@ -123,7 +122,16 @@
 		:title => "Influences",
 		:controller => @band.band_id,
 		}) 
-	%>	
-
+	%>
+	
+	<br/>
+	
+	<%= render(
+	:partial => "shared/photo_thumbnails", 
+	:locals => 
+		{
+		:photos => @band.photos, 
+		}) 
+	%>
 </div>
 

@@ -96,6 +96,17 @@
 	<%= show_results @shows, params[:show_map] == "true" %>
 </div>
 
+	<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @band.photos,
+		:type => Photo.Band,
+		:id => @band.id,
+		:full => false
+		}) 
+	%>
+
 </div>
 
 <div id="side">
@@ -121,16 +132,6 @@
 		:type => Tag.Influence,
 		:title => "Influences",
 		:controller => @band.band_id,
-		}) 
-	%>
-	
-	<br/>
-	
-	<%= render(
-	:partial => "shared/photo_thumbnails", 
-	:locals => 
-		{
-		:photos => @band.photos, 
 		}) 
 	%>
 </div>

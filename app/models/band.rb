@@ -10,7 +10,7 @@ class Band < ActiveRecord::Base
   acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows, :order => "date ASC"
   has_many :tours
-  has_many :photos, :order => "created_on ASC"
+  has_many :photos, :order => "created_on DESC"
   file_column :logo, :magick => { :geometry => "200x300>" }
   
   validates_presence_of :name

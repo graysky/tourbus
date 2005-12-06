@@ -4,8 +4,19 @@ class Photo < ActiveRecord::Base
   belongs_to :show
   belongs_to :band
   
+  BAND_TYPE = "band"
+  SHOW_TYPE = "show"
+  
+  def self.Band
+    BAND_TYPE
+  end
+  
+  def self.Show
+    SHOW_TYPE
+  end
+  
   VERSIONS = [{ :name => "thumbnail", :size => "64x64>" },
-              { :name => "preview", :size => "128x128>" },
+              { :name => "preview", :size => "120x120>" },
               { :name => "normal", :size => "575x575>" }].freeze
               
   

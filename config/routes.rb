@@ -30,6 +30,9 @@ ActionController::Routing::Routes.draw do |map|
   # Public fan pages
   map.connect 'fan/:fan_name/:action', :controller => 'fan_public'
   
+  # Photo controller
+  map.connect 'photo/:action/:id', :controller => 'photo'
+  
   # Venue controller
   map.connect 'venue/:action/:id', :controller => 'venue'
   

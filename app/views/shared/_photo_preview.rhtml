@@ -1,0 +1,115 @@
+<%
+	 if (full)
+	   rows = nil
+	   cols = 5
+	 else
+	   rows = 1
+	   cols = 4
+	 end
+%>
+
+<h2 class="single_line_controls">Photos
+	<span><%= link_to "View All Photos", :action => "photos" %></span>
+	<span></span>
+	<% if logged_in? %> 
+		<span><a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
+		<span><a href="#" onclick="finish_photo_upload()">Test</a></span>
+	<% end %>
+</h2>
+
+<% # TODO Pull out into js file %>
+<script type="text/javascript">
+	function update_photos(path)
+	{
+		var table = $('photo_preview_table');
+		var src = path;
+		var next_src = null;
+		
+		for (var row_index = 0; row_index < table.rows.length; row_index++) {
+			var row = table.rows[row_index];
+			if (row.cells.length < <%= cols %>) {
+				// Add a new cell and blank image
+				var td = document.createElement("td");
+				row.appendChild(td);
+				var newImage = document.createElement("img");
+				td.appendChild(newImage);
+			}
+			
+			for (var i = 0; i < row.cells.length; i++) {
+				var img = row.cells[i].getElementsByTagName("img")[0];
+				var next_src = img.src;
+				
+				if (i == 0) {
+					Element.hide(img);
+				}
+				img.src = src;
+				src = next_src;
+				if (i == 0) {
+					new Effect.Appear(img);
+				}
+				
+				if (next_src == null) {
+					break;
+				}
+			}
+			
+			<% if rows.nil? %>
+				break;
+			<% end %>
+		}
+	}
+	
+	function finish_photo_upload(path)
+	{
+		$("photo_file").value = '';
+		$("photo_description").value = '';
+		$("no_photos_msg").innerHTML = '';
+		
+		new Effect.Fade('add_photo');
+		
+		// Wait a second for the fade to finish before updating the photos
+		setTimeout((function() { update_photos(path); }), 1000);
+	}
+</script>
+
+<% # TODO AAGH... how do we make these styles common? The other right now is results_box... %>
+<div class="photo_box">
+	<div id="add_photo" style="display:none">
+ 		<%= form_tag_with_upload_progress({ :action => "upload_photo",
+ 											:controller => "photo",
+ 											:id => id,
+ 											:type => type },
+ 										  {	#:begin => "Element.show('logo_indicator')",
+ 										  	:finish => "finish_photo_upload(arguments[0])" })
+ 										  %>
+ 				
+ 		<table class="form-table">
+ 			<tr>
+ 				<th>File:</th>
+ 				<td colspan="5"><%= file_field "photo", "file" %></td>
+ 			</tr>
+ 			<tr>
+ 				<th>Caption:</th>
+ 				<td colspan="5"><%= text_area 'photo', 'description', "rows" => 2  %></td>
+ 			</tr>
+ 			<tr class="submit">
+				<td align="right"></td>
+				<td>
+					<%= submit_tag 'Upload' %><br/><br/>
+					<%= upload_status_tag %>
+				</td>
+			</tr>
+ 		</table>									   		
+ 		<%= end_form_tag %>
+ 	</div>
+ 	
+ 	<%= photo_preview_table photos, rows, cols %>
+	<%
+		if photos.nil? or photos.empty?
+	%>
+		<span id="no_photos_msg"><strong>There are no photos yet.</strong></span>
+	<%
+		end
+	%>
+	
+</div>

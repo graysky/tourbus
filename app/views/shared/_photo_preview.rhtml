@@ -13,7 +13,6 @@
 	<span></span>
 	<% if logged_in? %> 
 		<span><a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
-		<span><a href="#" onclick="finish_photo_upload()">Test</a></span>
 	<% end %>
 </h2>
 
@@ -104,10 +103,12 @@
  	</div>
  	
  	<%= photo_preview_table photos, rows, cols %>
+ 	<span id="no_photos_msg">
 	<%
 		if photos.nil? or photos.empty?
 	%>
-		<span id="no_photos_msg"><strong>There are no photos yet.</strong></span>
+		<strong>There are no photos yet.</strong>
+	</span>
 	<%
 		end
 	%>

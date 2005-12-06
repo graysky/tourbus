@@ -32,7 +32,7 @@
 		elsif is_fan
 	%>
 		<%= session[:fan].name %>:
-		<%= public_fan_link "Profile" %> |
+		<%= public_fan_link "Profile", session[:fan] %> |
 		<%= link_to("Settings", :controller => "fan", :action => "settings") %> |
 	    <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
 	<%
@@ -49,7 +49,7 @@
 		elsif is_band
 	%>
 		<%= session[:band].name %>:
-		<%= public_band_link "Home" %> |
+		<%= public_band_link "Home", session[:band] %> |
 		<%= link_to("Settings", :controller => "band", :action => "settings") %> |
 	    <%= link_to("Log Out", :controller => "band", :action => "logout") %>
 	<%

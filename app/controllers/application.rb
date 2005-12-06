@@ -10,15 +10,12 @@ class ApplicationController < ActionController::Base
   # Return the URL of the band, which can be passed
   # as an optional param.
   def public_band_url(band = nil)
-    
-    if band == nil
-      band = session[:band]
-    end
-    
+    band = session[:band] if band.nil?
     url_for(:controller => '') + band.band_id
   end
   
-  def public_fan_url
+  def public_fan_url(fan = nil)
+    fan = session[fan] if fan.nil?
     url_for(:controller => '') + 'fan/' + session[:fan].name
   end
   

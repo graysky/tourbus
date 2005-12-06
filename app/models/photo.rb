@@ -3,6 +3,8 @@ require 'RMagick'
 class Photo < ActiveRecord::Base
   belongs_to :show
   belongs_to :band
+  belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
+  belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
   
   BAND_TYPE = "band"
   SHOW_TYPE = "show"
@@ -26,7 +28,7 @@ class Photo < ActiveRecord::Base
   end
  
   def relative_path(version_name = nil)
-    return path_to_version_file(version_name, false)
+    return "/" + path_to_version_file(version_name, false)
   end
  
   def before_save
@@ -48,6 +50,14 @@ class Photo < ActiveRecord::Base
     end
     
     make_versions
+  end
+ 
+  def created_by_name
+    if self.created_by_fan
+      self.created_by_fan.name
+    elsif self.created_by_band
+      self.created_by_band.name
+    end
   end
  
   def before_destroy

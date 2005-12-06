@@ -4,12 +4,12 @@ module ApplicationHelper
     STATES
   end
   
-  def public_band_link(text)
-    link_to(text, public_band_url)
+  def public_band_link(text, band = nil)
+    link_to(text, public_band_url(band))
   end
   
-   def public_fan_link(text)
-    link_to(text, public_fan_url)
+   def public_fan_link(text, fan = nil)
+    link_to(text, public_fan_url(fan))
   end
 
   # Return if there is already a valid session

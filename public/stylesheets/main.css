@@ -64,7 +64,11 @@ h1
 {
 	color:#484A4C;
 	font-size:28px;
+}
 
+h1 span {
+	font-size:12px;
+	font-weight:normal;
 }
 
 h2
@@ -578,6 +582,10 @@ table.form-table #selected_venue {
 	width: 180px;
 }
 
+#main_no_side {
+	width: 800px;
+}
+
 #footer
 {
 	clear: both;
@@ -642,11 +650,24 @@ table.info-table td a {
 /* Photos */
 table.photo_table td {
 	padding: 8px 8px 4px 4px;
+	text-align:center;
 }
 
 table.photo_table img {
 	border: 1px solid #ccc;
 }
+
+table.photo_table td span {
+	font-size:10px;
+	color:black;
+}
+
+table.photo_table td span a {
+	font-size:10px;
+	color: #2B95B6;
+}
+
+
 
 .photo_box
 {
@@ -654,7 +675,6 @@ table.photo_table img {
 	border:1px solid #ADD039;
 	color:#4C5C5C;
 	font-size:12px;
-	width:560px;
 	margin-top:-4px;
 	padding: 8px;
 	line-height: 140%;
@@ -669,6 +689,14 @@ table.photo_table img {
 	font-size:13px;
 }
 
+#main .photo_box {
+	width:560px;
+}
+
+#main_no_side .photo_box
+{
+	width:740px;
+}
 
 
 

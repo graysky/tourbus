@@ -107,8 +107,11 @@ class BandPublicController < ApplicationController
 	:locals => 
 		{
 		:tags => tags, 
-		}) 
-    
+		})     
+  end
+
+  def photos
+    # Nothing to do
   end
 
   private

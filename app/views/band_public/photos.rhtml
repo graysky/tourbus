@@ -1,0 +1,16 @@
+<div id="main_no_side">
+
+<h1><%= @band.name %> <span><%= public_band_link "Back To Main Band Page" %></span></h1>
+
+	<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @band.photos,
+		:type => Photo.Band,
+		:id => @band.id,
+		:full => true
+		}) 
+	%>
+	
+</div>

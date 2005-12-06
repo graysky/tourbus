@@ -29,7 +29,13 @@ module PhotoHelper
     i = 0
     for photo in photos
       html << "<tr>" if i % max_cols == 0
-      html << "<td><img src='" + photo.relative_path('preview') + "'/></td>"
+      # TODO Broken. Need the right link for band and fan homepages...
+      full_photo_link = url_for :action => "photo", :id => photo.id
+      html << "<td><a href='#{full_photo_link}'><img src='" + photo.relative_path('preview') + "'/></a>"
+      from = truncate(photo.created_by_name, 16)
+      from_url = public_url_for_creator(photo)
+      html << "<br/><center><span>From <a href='#{from_url}'>#{from}</a></span></center>"
+      html << "</td>"
       html << "</tr>" if i % max_cols == max_cols - 1 or i == max_photos - 1
       
       i += 1
@@ -37,5 +43,13 @@ module PhotoHelper
     end
     
     html << "</table>"
+  end
+  
+  def public_url_for_creator(photo)
+    if photo.created_by_band
+      public_band_url(photo.created_by_band)
+    elsif photo.created_by_fan
+      public_fan_url(photo.created_by_fan)
+    end
   end
 end

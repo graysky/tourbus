@@ -1,6 +1,7 @@
-# A tag that is applied to a band.
+# A tag that is applied to different objects in the system.
+# There is only 1 tag for any name, even if it is applied to different
+# objects. 
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :bands
 
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -10,6 +11,8 @@ class Tag < ActiveRecord::Base
   INFLUENCE_TYPE = 1
   MISC_TYPE = 2
   VENUE_TYPE = 3
+  FAN_TYPE = 4
+  PHOTO_TYPE = 5
   
   # Getter for type
   def self.Genre
@@ -28,6 +31,14 @@ class Tag < ActiveRecord::Base
     VENUE_TYPE
   end
   
+  def self.Fan
+    FAN_TYPE
+  end
+  
+  def self.Photo
+    PHOTO_TYPE
+  end
+  
   # Get a string name for the tag type
   def self.type_name(tag_type)
     case tag_type
@@ -39,6 +50,10 @@ class Tag < ActiveRecord::Base
         "Other"
       when VENUE_TYPE
         "Venue"
+      when FAN_TYPE
+        "Fan"
+      when PHOTO_TYPE
+        "Photo"
       else
         "Error"
     end

@@ -5,6 +5,7 @@ require "tagging"
 class Venue < ActiveRecord::Base
   include Tagging
   has_many :shows
+  has_many :comments, :order => "created_at ASC"
   acts_as_taggable :join_class_name => 'TagVenue'
   
   validates_presence_of :name

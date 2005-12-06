@@ -1,0 +1,67 @@
+<% 
+# Provides div to list comments and add comments to the object
+# Parameters (set as locals):
+# :obj => the object to provide comments for
+# :controller => controller to create the tag in
+# :comments => the list of comments
+%>
+
+<h2 class="single_line_controls">Comments
+	<% if logged_in? %> 
+		<span><a href="#" onclick="new Effect.Appear('add_comment')">Add a Comment</a></span>
+	<% end %>
+</h2>
+
+<div class="comments_box">
+
+<%= comments_table(comments, 50) %>
+
+<% if comments.nil? || comments.empty? %>
+	<span id="no_comments_msg">	
+	<strong>There are no comments yet.</strong>
+	</span>
+<% end %>
+	
+<div id="add_comment" style="display:none">
+	<% if logged_in? %>
+
+	<%= form_remote_tag(
+		:update => "comment-list",
+		:position => :bottom,
+		:url => { 
+			:controller => "comment",
+			:action => "create", 
+			:id => id,
+			:type => type,
+		}) 
+		%>
+
+	<table class="form-table">
+ 		<tr>
+ 			<th>Comment:</th>
+ 			<td colspan="5">
+ 				<%= text_area( "comment", "body", { "rows" => 4, "cols" => 65 } ) %>
+ 			</td>
+ 		</tr>
+ 		<tr class="submit">
+			<td align="right"></td>
+			<td>
+				<%= submit_tag "Post Comment" %>
+			</td>
+			<td> 
+				<a href="#" onclick="new Effect.Fade('add_comment')">Cancel</a> 
+			</td>
+		</tr>
+ 	</table>	
+
+	<%= end_form_tag %>
+
+	<% else %>
+
+	<p>If you logged in, you could add comments!</p>
+
+	<% end %>
+	
+</div>	
+
+</div>

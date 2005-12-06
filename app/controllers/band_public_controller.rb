@@ -3,6 +3,7 @@ class BandPublicController < ApplicationController
   helper :show
   helper :map
   helper :tag
+  helper :comment
   helper :photo
   
   layout "public"
@@ -77,43 +78,6 @@ class BandPublicController < ApplicationController
     end 
   end
   
-  # Create a new tag of the specified type
-  # Requires :type => the type of tag
-  # and :tag => the tag name
-  def create_tag
-    
-    tag_type = params[:type]
-    tag_name = params[:tag]
-    
-    @band.add_tag(tag_name, tag_type)
-    
-    # Return the tag name 
-    render :text => tag_name
-  end
-  
-  # Called to auto-complete tag name
-  # Assumes param named :tag
-  def auto_complete_for_tag
-    
-    search = params[:tag]
-    
-    tags = Tag.find(:all,
-             :conditions => "name LIKE '#{search}%'",
-             :limit => 10)
-
-    # Show the tag hits in a drop down box
-    render(
-	:partial => "shared/tag_hits", 
-	:locals => 
-		{
-		:tags => tags, 
-		})     
-  end
-
-  def photos
-    # Nothing to do
-  end
-
   private
   def find_band
     

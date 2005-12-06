@@ -36,6 +36,12 @@ ActionController::Routing::Routes.draw do |map|
   # Venue controller
   map.connect 'venue/:action/:id', :controller => 'venue'
   
+  # Comment controller
+  map.connect 'comment/:action/:id', :controller => 'comment'
+  
+  # Tag controller
+  map.connect 'tag/:action/:id', :controller => 'tag'
+  
   # Public band pages (must be last)
   map.connect ':band_id/:action', :controller => 'band_public'
 

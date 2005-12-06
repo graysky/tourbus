@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS `tours`;
 DROP TABLE IF EXISTS `band_services`;
 DROP TABLE IF EXISTS `shows`;
 DROP TABLE IF EXISTS `venues`;
+DROP TABLE IF EXISTS `comments`;
 DROP TABLE IF EXISTS `photos`;
 DROP TABLE IF EXISTS `zip_codes`;
 
@@ -69,6 +70,31 @@ CREATE TABLE `fans` (
   `created_on` DATETIME,
   PRIMARY KEY  (`id`),
   KEY name_key (name)
+) ENGINE=InnoDB;
+
+CREATE TABLE `comments` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `body` TEXT,
+  `created_at` TIMESTAMP,
+  `show_id` int(10) unsigned,
+  `band_id` int(10) unsigned,
+  `venue_id` int(10) unsigned,
+  `photo_id` int(10) unsigned,
+  `created_by_fan_id` int(10) unsigned,
+  `created_by_band_id` int(10) unsigned,
+  KEY `fk_sc_show` (`show_id`),
+  CONSTRAINT `fk_sc_show` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`),
+  KEY `fk_cp_band` (`band_id`),
+  CONSTRAINT `fk_cp_band` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_cp_venue` (`venue_id`),
+  CONSTRAINT `fk_cp_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
+  KEY `fk_cp_photo` (`photo_id`),
+  CONSTRAINT `fk_cp_photo` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`),
+  KEY `fk_cp_createdband` (`created_by_band_id`),
+  CONSTRAINT `fk_cp_createdband` FOREIGN KEY (`created_by_band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_cp_createdfan` (`created_by_fan_id`),
+  CONSTRAINT `fk_cp_createdfan` FOREIGN KEY (`created_by_fan_id`) REFERENCES `fans` (`id`),
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `tags` (

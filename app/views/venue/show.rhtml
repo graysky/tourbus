@@ -1,5 +1,7 @@
 <div id="main">
 
+<% @page_title = @venue.name %>
+
 <h1><%= @venue.name %></h1>
 
 <%= gmaps_header %>
@@ -38,6 +40,7 @@ init_map()
 	}
 </script>
 
+
 <table width="95%">
 	<tr>
 		<td valign="top">
@@ -49,6 +52,7 @@ init_map()
 
 		<table width="100%">
 		  <tr>
+		  		
 				<td valign="top" style="padding-bottom:8px">
 				<b>Address:</b>
 				</td>
@@ -57,6 +61,7 @@ init_map()
 				<%= @venue.address %>
 				<BR/>
 				<%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %>
+				
 				</td>
 			</tr>
 			
@@ -76,7 +81,14 @@ init_map()
 				</td>
 				
 				<td valign="top" style="padding-left:8px">
-				<a href="<%= @venue.url %>" target="_blank"><%= @venue.url %></a>
+				<%= venue_url_for_editing %>
+				<% if logged_in? %>
+					<!-- Link with no body -->
+				<script type="text/javascript">
+					new Ajax.InPlaceEditor('venue_url', '<%= url_for(:action => "set_url", :id => @venue.id) %>', {rows:1, cols:25, externalControl:"edit_venue_all"})
+				</script>
+				
+				<% end %>
 				</td>
 			</tr>
 			
@@ -88,11 +100,23 @@ init_map()
 				<td valign="top" style="padding-left:8px">
 				<%= venue_desc_for_editing %>
 				<% if logged_in? %>
-					<a id="edit_venue_desc" href="#">Edit</a>
+					<!-- <a href="#" id="edit_venue_all">Edit Venue</a> -->
+				<% end %>
+				
+				<% if logged_in? %>
+					<a id="edit_venue_all" href="#">Edit</a>
 				<script type="text/javascript">
-					new Ajax.InPlaceEditor('venue_desc', '<%= url_for(:action => "set_description", :id => @venue.id) %>', {rows:5, externalControl:"edit_venue_desc"})
+					new Ajax.InPlaceEditor('venue_desc', '<%= url_for(:action => "set_description", :id => @venue.id) %>', {rows:5, cols:20, externalControl:"edit_venue_all"})
 				</script>
 				<% end %>
+				
+				
+				</td>
+			</tr>
+			
+			<tr>
+				<td valign="top" style="padding-bottom:8px">
+				
 				</td>
 			</tr>
 			
@@ -121,6 +145,16 @@ init_map()
 	<%= show_results @shows, false %>
 </div>
 
+	<%= render(
+		:partial => "shared/comments",
+		:locals =>
+			{
+			:comments => @venue.comments,
+			:type => Comment.Venue,
+			:id => @venue.id,
+			})
+	%>
+
 </div>
 
 <div id="side">
@@ -131,7 +165,7 @@ init_map()
 		{
 		:tags => @venue.venue_tag_names,
 		:type => Tag.Venue,
-		:title => "Venue Tags",
+		:title => "Tags",
 		:controller => "venue",
 		:id => @venue.id,
 		}) 

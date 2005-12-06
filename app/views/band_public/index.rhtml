@@ -1,5 +1,7 @@
 <div id="main">
 
+<% @page_title = @band.name %>
+
 <h1><%= @band.name %></h1>
 
 <script type="text/javascript">
@@ -107,6 +109,18 @@
 		}) 
 	%>
 
+	<br/>
+
+	<%= render(
+		:partial => "shared/comments",
+		:locals =>
+			{
+			:comments => @band.comments,
+			:type => Comment.Band,
+			:id => @band.id,
+			})
+	%>
+
 </div>
 
 <div id="side">
@@ -118,7 +132,7 @@
 		:tags => @band.genre_tag_names, 
 		:type => Tag.Genre,
 		:title => "Genres",
-		:controller => @band.band_id,
+		:id => @band.id
 		}) 
 	%>
 	
@@ -131,7 +145,7 @@
 		:tags => @band.influence_tag_names, 
 		:type => Tag.Influence,
 		:title => "Influences",
-		:controller => @band.band_id,
+		:id => @band.id
 		}) 
 	%>
 </div>

@@ -10,6 +10,7 @@ class PhotoController < ApplicationController
     case params[:type]
     when Photo.Band then photo.band = Band.find_by_id(params[:id])
     when Photo.Show then photo.show = Show.find_by_id(params[:id])
+    when Photo.Venue then photo.venue = Venue.find_by_id(params[:id])
     end
     
     photo.created_by_band_id = logged_in_band if logged_in_band

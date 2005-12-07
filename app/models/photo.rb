@@ -3,12 +3,14 @@ require 'RMagick'
 class Photo < ActiveRecord::Base
   belongs_to :show
   belongs_to :band
+  belongs_to :venue
   has_many :comments, :order => "created_at ASC"
   belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
   belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
   
   BAND_TYPE = "band"
   SHOW_TYPE = "show"
+  VENUE_TYPE = "venue"
   
   def self.Band
     BAND_TYPE
@@ -16,6 +18,10 @@ class Photo < ActiveRecord::Base
   
   def self.Show
     SHOW_TYPE
+  end
+  
+  def self.Venue
+    VENUE_TYPE
   end
   
   VERSIONS = [{ :name => "thumbnail", :size => "70x70>" },
@@ -85,6 +91,8 @@ class Photo < ActiveRecord::Base
       type = "band"
     elsif not self.show.nil?
       type = "show"
+    elsif not self.venue.nil?
+      type = "venue"
     else
       raise ArgumentError.new("No suitable type for the photo")
     end

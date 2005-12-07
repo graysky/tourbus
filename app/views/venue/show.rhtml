@@ -144,6 +144,18 @@ init_map()
 <div class="results_box">
 	<%= show_results @shows, false %>
 </div>
+	<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @venue.photos,
+		:type => Photo.Venue,
+		:id => @venue.id,
+		:full => false
+		}) 
+	%>
+	
+	<br/>
 
 	<%= render(
 		:partial => "shared/comments",

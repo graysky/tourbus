@@ -92,7 +92,11 @@
  											:id => id,
  											:type => type },
  										  {	#:begin => "Element.show('logo_indicator')",
- 										  	:finish => "finish_photo_upload(arguments[0])" })
+ 										  	:finish => "finish_photo_upload(arguments[0])" },
+ 										  { :action => "upload_status",
+ 											:controller => "photo",
+ 											:id => id,
+ 											:type => type })
  										  %>		
  		<table class="form-table">
  			<tr>

@@ -11,6 +11,16 @@
 </td></tr>
 </table>
 
+	<%= render(
+		:partial => "shared/comments",
+		:locals =>
+			{
+			:comments => @photo.comments,
+			:type => Comment.Photo,
+			:id => @photo.id,
+			})
+	%>
+
 </div>
 
 <div id="side">

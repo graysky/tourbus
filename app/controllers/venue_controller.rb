@@ -4,6 +4,7 @@ class VenueController < ApplicationController
   helper :map
   helper :tag
   helper :comment
+  helper :photo
 
   layout "public"
   
@@ -21,6 +22,12 @@ class VenueController < ApplicationController
       puts "illegal value: " + params[:show_display]
       flash[:error] = "Illegal value for show_display"
     end
+  end
+  
+  # TODO FIXME - Can't use "@venue.name" because the venue's ID wans't passed in
+  def photo
+    render_component :controller => "photo", :action => "show_one", 
+                     :params => {"photo_id" => params[:id], "name" => "FIXME"}
   end
   
   # Set the venue description

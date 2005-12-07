@@ -6,9 +6,18 @@
 # :comments => the list of comments
 %>
 
+<script type="text/javascript">
+	
+	function finish_comment_submit()
+	{
+		$("comment_body").value = '';
+		// new Effect.Fade('add_comment');
+	}
+</script>
+
 <h2 class="single_line_controls">Comments
 	<% if logged_in? %> 
-		<span><a href="#" onclick="new Effect.Appear('add_comment')">Add a Comment</a></span>
+		<span><a href="#comment">Add a Comment</a></span>
 	<% end %>
 </h2>
 
@@ -21,13 +30,16 @@
 	<strong>There are no comments yet.</strong>
 	</span>
 <% end %>
-	
-<div id="add_comment" style="display:none">
+
+
+<div id="add_comment">
+
 	<% if logged_in? %>
 
 	<%= form_remote_tag(
 		:update => "comment-list",
 		:position => :bottom,
+		:complete => "finish_comment_submit()",
 		:url => { 
 			:controller => "comment",
 			:action => "create", 
@@ -48,9 +60,6 @@
 			<td>
 				<%= submit_tag "Post Comment" %>
 			</td>
-			<td> 
-				<a href="#" onclick="new Effect.Fade('add_comment')">Cancel</a> 
-			</td>
 		</tr>
  	</table>	
 
@@ -65,3 +74,4 @@
 </div>	
 
 </div>
+<a name="comment"/>

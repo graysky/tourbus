@@ -1,18 +1,38 @@
 module PhotoHelper
-  def photo_thumbnail_table(photos)
-    return if photos.nil? or photos.empty?
-    
-    html = "<table class='photo_table'>"
-    i = 0
-    for photo in photos
-      html << "<tr>" if i % 2 == 0
-      html << "<td><img src='" + photo.relative_path('thumbnail') + "'/></td>"
-      html << "</tr>" if i % 2 == 1 or i == photos.length - 1
-      
-      i += 1
+  def photo_navigation_table(base)
+    photos = base.subject.photos
+    if photos.nil? or photos.empty?
+      return "There are no other photos"
     end
     
+    html = "<table class='photo_table'>"
+    html << "<tr>"
+    index = photos.index(base)
+    html << "<td>"
+    if index > 0
+      html << photo_img_tag(photos[index - 1], 'thumbnail')
+      action = url_for :id => photos[index - 1].id
+      html << "<br/><span><a href='#{action}'>Prev</a></span>"
+    else
+      html << "x"
+    end
+    html << "</td>"
+    html << "<td>"
+    if index < photos.length - 1
+      html << photo_img_tag(photos[index + 1], 'thumbnail')
+      action = url_for :id => photos[index + 1].id
+      html << "<br/><span><a href='#{action}'>Next</a></span>"
+    else
+      html << "x"
+    end
+    html << "</td>"
+    html << "</tr>"
+    
     html << "</table>"
+  end
+  
+  def photo_img_tag(photo, version)
+   "<img src='" + photo.relative_path(version) + "'/>"
   end
   
   # max_rows == nil for no maximum
@@ -53,6 +73,10 @@ module PhotoHelper
       from = truncate(photo.created_by_name, 16)
       from_url = public_url_for_creator(photo)
       html << "<br/><span>From <a href='#{from_url}'>#{from}</a></span>"
+  end
+  
+  def photo_preview_page_link(photo)
+    url_for :controller => full_photo_controller(photo), :action => "photos"
   end
   
   def full_photo_controller(photo)

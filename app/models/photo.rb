@@ -18,7 +18,7 @@ class Photo < ActiveRecord::Base
     SHOW_TYPE
   end
   
-  VERSIONS = [{ :name => "thumbnail", :size => "64x64>" },
+  VERSIONS = [{ :name => "thumbnail", :size => "70x70>" },
               { :name => "preview", :size => "120x120>" },
               { :name => "normal", :size => "575x575>" }].freeze
               
@@ -59,6 +59,11 @@ class Photo < ActiveRecord::Base
     elsif self.created_by_band
       self.created_by_band.name
     end
+  end
+ 
+  # Returns the subject of the photo (the band, show, venue, etc)
+  def subject
+    self.band or self.fan
   end
  
   def before_destroy

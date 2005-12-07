@@ -280,7 +280,7 @@ td, p
 {
 	background-color: #F4F9E5;
 	border:1px solid #99CC00;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .sidebar-box ul
@@ -577,9 +577,9 @@ table.form-table #selected_venue {
 
 #side
 {
-	padding-top:16px;
+	padding-top:36px;
 	float: right;
-	width: 180px;
+	width: 190px;
 }
 
 #main_no_side {

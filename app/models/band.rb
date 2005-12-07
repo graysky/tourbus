@@ -12,7 +12,7 @@ class Band < ActiveRecord::Base
   has_many :tours
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_at ASC"
-  file_column :logo, :magick => { :geometry => "200x300>" }
+  file_column :logo, :magick => { :geometry => "240x320>" }
   
   validates_presence_of :name
   validates_uniqueness_of :band_id, 

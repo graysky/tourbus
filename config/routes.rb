@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'tag/:action/:id', :controller => 'tag'
   
   # Public band pages (must be last)
-  map.connect ':band_id/:action', :controller => 'band_public'
+  map.connect ':band_id/:action/:id', :controller => 'band_public'
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'

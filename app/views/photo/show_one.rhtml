@@ -1,0 +1,19 @@
+<div id="main">
+
+<% @page_title = @name %>
+
+<h1><%= @name %></h1>
+
+<table class="photo_table">
+<tr><td><%= photo_preview_cell_contents(@photo, 'normal') %>
+<br/><br/>
+<div><%= @photo.description %></span>
+</td></tr>
+</table>
+
+</div>
+
+<div id="side">
+
+</div>
+

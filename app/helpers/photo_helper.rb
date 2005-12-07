@@ -29,12 +29,8 @@ module PhotoHelper
     i = 0
     for photo in photos
       html << "<tr>" if i % max_cols == 0
-      # TODO Broken. Need the right link for band and fan homepages...
-      full_photo_link = url_for :action => "photo", :id => photo.id
-      html << "<td><a href='#{full_photo_link}'><img src='" + photo.relative_path('preview') + "'/></a>"
-      from = truncate(photo.created_by_name, 16)
-      from_url = public_url_for_creator(photo)
-      html << "<br/><center><span>From <a href='#{from_url}'>#{from}</a></span></center>"
+      html << "<td>"
+      html << photo_preview_cell_contents(photo)
       html << "</td>"
       html << "</tr>" if i % max_cols == max_cols - 1 or i == max_photos - 1
       
@@ -43,6 +39,31 @@ module PhotoHelper
     end
     
     html << "</table>"
+  end
+  
+  def photo_preview_cell_contents(photo, version = 'preview')
+      # TODO Broken. Need the right link for band and fan homepages...
+      if version == 'normal'
+        full_photo_link = photo.relative_path
+      else
+        full_photo_link = url_for :controller => full_photo_controller(photo), :action => "photo", :id => photo.id
+      end
+      
+      html = "<a href='#{full_photo_link}'><img src='" + photo.relative_path(version) + "'/></a>"
+      from = truncate(photo.created_by_name, 16)
+      from_url = public_url_for_creator(photo)
+      html << "<br/><span>From <a href='#{from_url}'>#{from}</a></span>"
+  end
+  
+  def full_photo_controller(photo)
+    # Bands and fans are special
+    if photo.band
+      photo.band.band_id
+    #elsif photo.fan
+    # TODO Pictures of fan?
+    else
+      params[:controller]
+    end
   end
   
   def public_url_for_creator(photo)

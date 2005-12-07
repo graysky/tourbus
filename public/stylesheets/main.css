@@ -648,9 +648,14 @@ table.info-table td a {
 	}
 	
 /* Photos */
+.photo_img {
+	border: 1px solid #ccc;
+}
+
 table.photo_table td {
 	padding: 8px 8px 4px 4px;
 	text-align:center;
+	vertical-align:top;
 }
 
 table.photo_table img {

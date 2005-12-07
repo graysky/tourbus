@@ -78,6 +78,11 @@ class BandPublicController < ApplicationController
     end 
   end
   
+  def photo
+    render_component :controller => "photo", :action => "show_one", 
+                     :params => {"photo_id" => params[:id], "name" => @band.name}
+  end
+  
   private
   def find_band
     

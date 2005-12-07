@@ -1,4 +1,6 @@
 class PhotoController < ApplicationController
+  helper :comment
+  helper :tag
   upload_status_for :upload_photo
   layout "public"
   

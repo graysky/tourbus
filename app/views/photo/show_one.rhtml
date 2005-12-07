@@ -2,7 +2,7 @@
 
 <% @page_title = @name %>
 
-<h1><%= @name %></h1>
+<h1><%= @name %> <span><a href="<%= photo_preview_page_link @photo %>">Back To All Photos</a><span></h1>
 
 <table class="photo_table">
 <tr><td><%= photo_preview_cell_contents(@photo, 'normal') %>
@@ -24,6 +24,11 @@
 </div>
 
 <div id="side">
-
+	<div class="sidebar-box">
+		<h2>Navigation</h2>
+		<center>
+		<%= photo_navigation_table @photo %>
+		</center>
+	</div>
 </div>
 

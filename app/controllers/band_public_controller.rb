@@ -80,7 +80,7 @@ class BandPublicController < ApplicationController
   
   def photo
     render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:id], "name" => @band.name}
+                     :params => {"photo_id" => params[:photo_id], "name" => @band.name}
   end
   
   private

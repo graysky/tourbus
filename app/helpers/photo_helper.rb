@@ -11,7 +11,7 @@ module PhotoHelper
     html << "<td>"
     if index > 0
       html << photo_img_tag(photos[index - 1], 'thumbnail')
-      action = url_for :id => photos[index - 1].id
+      action = url_for :photo_id => photos[index - 1].id
       html << "<br/><span><a href='#{action}'>Prev</a></span>"
     else
       html << "x"
@@ -20,7 +20,7 @@ module PhotoHelper
     html << "<td>"
     if index < photos.length - 1
       html << photo_img_tag(photos[index + 1], 'thumbnail')
-      action = url_for :id => photos[index + 1].id
+      action = url_for :photo_id => photos[index + 1].id
       html << "<br/><span><a href='#{action}'>Next</a></span>"
     else
       html << "x"
@@ -66,7 +66,7 @@ module PhotoHelper
       if version == 'normal'
         full_photo_link = photo.relative_path
       else
-        full_photo_link = url_for :controller => full_photo_controller(photo), :action => "photo", :id => photo.id
+        full_photo_link = url_for :controller => full_photo_controller(photo), :action => "photo", :photo_id => photo.id
       end
       
       html = "<a href='#{full_photo_link}'><img src='" + photo.relative_path(version) + "'/></a>"

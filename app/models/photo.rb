@@ -69,7 +69,7 @@ class Photo < ActiveRecord::Base
  
   # Returns the subject of the photo (the band, show, venue, etc)
   def subject
-    self.band or self.fan
+    self.band or self.venue or self.show
   end
  
   def before_destroy

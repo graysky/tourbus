@@ -27,7 +27,7 @@ class VenueController < ApplicationController
   # TODO FIXME - Can't use "@venue.name" because the venue's ID wans't passed in
   def photo
     render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:id], "name" => "FIXME"}
+                     :params => {"photo_id" => params[:photo_id], "name" => @venue.name}
   end
   
   # Set the venue description

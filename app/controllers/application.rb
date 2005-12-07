@@ -7,6 +7,17 @@ class ApplicationController < ActionController::Base
   helper_method :public_fan_url
   helper_method :logged_in?
   
+  before_filter :configure_charsets
+
+  # Use UTF charsets. From:
+  # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
+  def configure_charsets
+    @headers["Content-Type"] = "text/html; charset=utf-8" 
+      suppress(ActiveRecord::StatementInvalid) do
+        ActiveRecord::Base.connection.execute 'SET NAMES UTF8'
+      end
+  end
+  
   # Return the URL of the band, which can be passed
   # as an optional param.
   def public_band_url(band = nil)

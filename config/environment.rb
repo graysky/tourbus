@@ -62,3 +62,7 @@ ActionMailer::Base.server_settings = {
 ActionController::Base.enable_upload_progress
 
 require 'rails_file_column'
+
+# For UTF-8 handling
+$KCODE = 'u'
+require 'jcode'

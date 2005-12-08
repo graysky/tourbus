@@ -11,13 +11,13 @@
 	function finish_comment_submit()
 	{
 		$("comment_body").value = '';
-		// new Effect.Fade('add_comment');
+		// new Effect.Fade('comment_form');
 	}
 </script>
 
 <h2 class="single_line_controls">Comments
 	<% if logged_in? %> 
-		<span><a href="#comment">Add a Comment</a></span>
+		<span><a href="#add_comment">Add a Comment</a></span>
 	<% end %>
 </h2>
 
@@ -32,7 +32,7 @@
 <% end %>
 
 
-<div id="add_comment">
+<div id="comment_form">
 
 	<% if logged_in? %>
 
@@ -74,4 +74,4 @@
 </div>	
 
 </div>
-<a name="comment"/>
+<a name="add_comment"/>

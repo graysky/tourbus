@@ -31,8 +31,11 @@ module CommentHelper
     # Format date as words
     posted_at = time_ago_in_words(comment.created_at)
     
+    # Format anchor for permalink like "comment#3"
+    anchor = "<a name='comment#{comment.id}'/>" 
     html << "<div class='comment_from'>"
     
+    html << anchor
     html << "<a href='#{from_url}'>#{from}</a> wrote:<br/>"
     html << "</div>"
     
@@ -41,7 +44,8 @@ module CommentHelper
     html << sanitize( comment.body )
     html << "</div> <br/>"
     
-    html << "<div class='comment_post'>posted #{posted_at} ago</div>"
+    permalink = "( <a href='#comment#{comment.id}'>permalink</a> )" 
+    html << "<div class='comment_post'>posted #{posted_at} ago #{permalink}</div>"
     html << "</td></tr>"
   end
     

@@ -1,0 +1,16 @@
+<div id="main_no_side">
+
+<h1><%= @venue.name %> <span>FIXME (like to venue page)</span></h1>
+
+	<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @venue.photos,
+		:type => Photo.Venue,
+		:id => @venue.id,
+		:full => true
+		}) 
+	%>
+	
+</div>

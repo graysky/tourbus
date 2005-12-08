@@ -66,7 +66,7 @@ module PhotoHelper
       if version == 'normal'
         full_photo_link = photo.relative_path
       else
-        full_photo_link = url_for :controller => full_photo_controller(photo), :action => "photo", :photo_id => photo.id
+        full_photo_link = url_for :controller => full_photo_controller(photo), :action => "photo", :photo_id => photo.id, :id => photo.subject.id
       end
       
       html = "<a href='#{full_photo_link}'><img src='" + photo.relative_path(version) + "'/></a>"
@@ -76,15 +76,15 @@ module PhotoHelper
   end
   
   def photo_preview_page_link(photo)
-    url_for :controller => full_photo_controller(photo), :action => "photos"
+    url_for :controller => full_photo_controller(photo), :action => "photos", :id => photo.subject.id
   end
   
   def full_photo_controller(photo)
     # Bands and fans are special
     if photo.band
       photo.band.band_id
-    #elsif photo.fan
-    # TODO Pictures of fan?
+    elsif photo.venue
+      "venue"
     else
       params[:controller]
     end

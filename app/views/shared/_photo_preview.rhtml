@@ -9,8 +9,10 @@
 %>
 
 <h2 class="single_line_controls">Photos
-	<% if not full %>
-		<span><%= link_to "View All Photos", :action => "photos" %></span>
+	<% 
+		if not full
+	%>
+		<span><%= link_to "View All Photos", :action => "photos", :id => id %></span>
 		<span></span>
 	<% end %>
 	<% if logged_in? %> 

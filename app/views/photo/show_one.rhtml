@@ -1,11 +1,14 @@
 <div id="main">
 
-<% @page_title = @name %>
+<% 
+	@page_title = @name
+	header = @name
+%>
 
-<h1><%= @name %> <span><a href="<%= photo_preview_page_link @photo %>">Back To All Photos</a><span></h1>
+<h1><%= @name %> <span><a href="<%= photo_preview_page_link @photo, @showing_creator %>">Back To All Photos</a><span></h1>
 
 <table class="photo_table">
-<tr><td><%= photo_preview_cell_contents(@photo, 'normal') %>
+<tr><td><%= photo_preview_cell_contents(@photo, 'normal', @showing_creator) %>
 <br/><br/>
 <div><%= @photo.description %></span>
 </td></tr>
@@ -27,7 +30,7 @@
 	<div class="sidebar-box">
 		<h2>Navigation</h2>
 		<center>
-		<%= photo_navigation_table @photo %>
+		<%= photo_navigation_table @photo, @showing_creator %>
 		</center>
 	</div>
 </div>

@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'show/:action/:id', :controller => 'show'
   
   # Public fan pages
-  map.connect 'fan/:fan_name/:action', :controller => 'fan_public'
+  map.connect 'fan/:fan_name/:action/:id', :controller => 'fan_public'
   
   # Photo controller
   map.connect 'photo/:action/:id', :controller => 'photo'

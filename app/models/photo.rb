@@ -11,6 +11,8 @@ class Photo < ActiveRecord::Base
   BAND_TYPE = "band"
   SHOW_TYPE = "show"
   VENUE_TYPE = "venue"
+  FROM_FAN = "from_fan"
+  FROM_BAND = "from_band"
   
   def self.Band
     BAND_TYPE
@@ -22,6 +24,14 @@ class Photo < ActiveRecord::Base
   
   def self.Venue
     VENUE_TYPE
+  end
+  
+  def self.FromFan
+    FROM_FAN
+  end
+  
+  def self.FromBand
+    FROM_BAND
   end
   
   VERSIONS = [{ :name => "thumbnail", :size => "70x70>" },
@@ -60,16 +70,16 @@ class Photo < ActiveRecord::Base
   end
  
   def created_by_name
-    if self.created_by_fan
-      self.created_by_fan.name
-    elsif self.created_by_band
-      self.created_by_band.name
-    end
+    creator.name
   end
  
   # Returns the subject of the photo (the band, show, venue, etc)
   def subject
     self.band or self.venue or self.show
+  end
+ 
+  def creator
+    self.created_by_fan or self.created_by_band
   end
  
   def before_destroy

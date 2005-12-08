@@ -3,6 +3,7 @@ class FanPublicController < ApplicationController
   helper :show
   helper :map
   helper :tag
+  helper :photo
   upload_status_for :change_logo
   
   layout "public"
@@ -24,6 +25,13 @@ class FanPublicController < ApplicationController
     @fan.real_name = params[:value]
     @fan.save
     render :text => @fan.bio
+  end
+  
+  def photo
+    render_component :controller => "photo", :action => "show_one", 
+                     :params => {"photo_id" => params[:photo_id], 
+                                 "name" => @fan.name, 
+                                 "showing_creator" => true}
   end
   
   private

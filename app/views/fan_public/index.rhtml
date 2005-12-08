@@ -51,6 +51,18 @@
 	<% end %>
 </table>
 
+<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @fan.photos,
+		:type => Photo.FromFan,
+		:id => @fan.id,
+		:full => false
+		}) 
+	%>
+
+
 </div>
 
 <div id="side">

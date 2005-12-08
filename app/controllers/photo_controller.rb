@@ -33,5 +33,6 @@ class PhotoController < ApplicationController
   def show_one
     @photo = Photo.find(params[:photo_id])
     @name = params[:name]
+    @showing_creator = params[:showing_creator]
   end
 end

@@ -6,16 +6,22 @@
 	   rows = 1
 	   cols = 4
 	 end
+	 
+	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
 %>
 
 <h2 class="single_line_controls">Photos
 	<% 
 		if not full
+		  options = { :action => "photos", :id => id }
+		  if type == Photo.FromFan
+		    options[:controller] = "fan/" + @fan.name
+		  end 
 	%>
-		<span><%= link_to "View All Photos", :action => "photos", :id => id %></span>
+		<span><%= link_to "View All Photos", options %></span>
 		<span></span>
 	<% end %>
-	<% if logged_in? %> 
+	<% if logged_in? and not showing_creator %> 
 		<span><a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
 	<% end %>
 </h2>
@@ -88,6 +94,7 @@
 
 <% # TODO AAGH... how do we make these styles common? The other right now is results_box... %>
 <div class="photo_box">
+	<% if not showing_creator %>
 	<div id="add_photo" style="display:none">
  		<%= form_tag_with_upload_progress({ :action => "upload_photo",
  											:controller => "photo",
@@ -119,8 +126,9 @@
  		</table>								   		
  		<%= end_form_tag %>
  	</div>
+ 	<% end %>
  	
- 	<%= photo_preview_table photos, rows, cols %>
+ 	<%= photo_preview_table photos, rows, cols, showing_creator %>
  	<span id="no_photos_msg">
 	<%
 		if photos.nil? or photos.empty?

@@ -35,4 +35,11 @@ class PhotoController < ApplicationController
     @name = params[:name]
     @showing_creator = params[:showing_creator]
   end
+  
+  def set_caption
+    @photo = Photo.find(params[:id])
+    @photo.description = params[:value]
+    @photo.save
+    render :text => @photo.description
+  end
 end

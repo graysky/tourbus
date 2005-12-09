@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :logged_in?
+  helper_method :logged_in_fan
+  helper_method :logged_in_band
   
   before_filter :configure_charsets
 
@@ -44,10 +46,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  ##########
-  # Private
-  ##########
-  private
   # There is a band logged in
   def logged_in_band
     session[:band]
@@ -57,6 +55,11 @@ class ApplicationController < ActionController::Base
   def logged_in_fan
     session[:fan]
   end
+  
+  ##########
+  # Private
+  ##########
+  private
   
   #
   # TODO This crap should be a module

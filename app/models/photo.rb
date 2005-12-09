@@ -49,6 +49,8 @@ class Photo < ActiveRecord::Base
   end
  
   def before_save
+    return if not @file
+    
     # Make the filename unique
     i = 1
     name = self.filename.to_s

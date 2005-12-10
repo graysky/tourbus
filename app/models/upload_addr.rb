@@ -7,12 +7,28 @@ class UploadAddr < ActiveRecord::Base
 'kick','bass','amp','club','dark','punk','star','can','pick','head','lock','key','end','game',
 'ruby','java','code','free','fire','cash','iron','blue','eyes','rip','cell','kit']
 
+  # The email domain, for now. 
+  # TODO Change when we have our real domain
+  EMAIL_DOMAIN = "figureten.com"
+
   # Make sure that this address is unique
   validates_uniqueness_of :address
   
   # Who the address is attached to
   belongs_to :band
   belongs_to :fan
+  
+  # The email domain we're using
+  def self.Domain
+    return EMAIL_DOMAIN
+  end 
+  
+  # Quick check to see if a given email prefix (everything up to the @mytourb.us)
+  # is of the pattern we use. This is to prevent extra hits to the db when there
+  # is a lot of spam to filter out.
+  def self.valid_address?(prefix)
+  
+  end
   
   # Generate a new attempt at a unique address pre-fix like "down42tree".
   # Caller should use check the validity of it

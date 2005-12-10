@@ -27,4 +27,9 @@ class Fan < ActiveRecord::Base
     return find(:first, 
                 :conditions => ["confirmed = 1 and name = ? and salted_password = ?", login, Fan.salted_password(fan.salt, Hash.hashed(password))])
   end
+  
+  # The upload email address, fully qualified like "down42tree@mytourb.us"
+  def upload_email_addr()
+    return upload_addr.address + "@" + UploadAddr.Domain
+  end
 end

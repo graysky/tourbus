@@ -11,6 +11,7 @@ class Comment < ActiveRecord::Base
   belongs_to :photo
   belongs_to :fan
   
+  # Who create the comment
   belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
   belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
 

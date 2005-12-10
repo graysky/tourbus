@@ -22,6 +22,12 @@ class SignupController < ApplicationController
         @band.claimed = true
         public_url = public_band_url(@band)
         if @band.save
+        
+          # Generate an upload email address
+          @band.upload_addr = @band.create_upload_addr
+          @band.upload_addr.address = UploadAddr.generate_address
+          @band.upload_addr.save!
+          
           BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
           @name = @band.name
           render :action => 'signup_success'
@@ -29,7 +35,7 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       flash[:notice] = "Error signing up your band: #{ex.message}"
-      puts ex.backtrace.to_s
+      puts "ERROR #{ex.message}"
     end
   end
   
@@ -76,7 +82,14 @@ class SignupController < ApplicationController
         confirm_url += "/" + code
         
         @fan.new_password = true
+        
         if @fan.save
+        
+          # Generate an upload email address
+          @fan.upload_addr = @fan.create_upload_addr
+          @fan.upload_addr.address = UploadAddr.generate_address
+          @fan.upload_addr.save!
+          
           FanMailer.deliver_notify_signup(@fan, confirm_url)
           @name = @fan.name
           render :action => 'signup_success'
@@ -84,7 +97,7 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       flash[:notice] = "Error registering your account: #{ex.message}"
-      puts ex.backtrace.to_s
+      puts "ERROR #{ex.message}"
     end
   end
   

@@ -5,6 +5,7 @@ class Fan < ActiveRecord::Base
   acts_as_password_protected
   file_column :logo, :magick => { :geometry => "200x300>" }
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
+  has_one :upload_addr
   
   # TODO No spaces in name
   validates_presence_of :name, :contact_email

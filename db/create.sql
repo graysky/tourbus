@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP TABLE IF EXISTS `upload_addrs`;
 DROP TABLE IF EXISTS `tags_bands`;
 DROP TABLE IF EXISTS `tags_venues`;
 DROP TABLE IF EXISTS `bands_shows`;
@@ -13,6 +14,19 @@ DROP TABLE IF EXISTS `venues`;
 DROP TABLE IF EXISTS `comments`;
 DROP TABLE IF EXISTS `photos`;
 DROP TABLE IF EXISTS `zip_codes`;
+
+CREATE TABLE `upload_addrs` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `address` varchar(100) NOT NULL,
+  `fan_id` int(10) unsigned,
+  `band_id` int(10) unsigned,
+  KEY `fk_cu_createdband` (`band_id`),
+  CONSTRAINT `fk_cu_createdband` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_cu_createdfan` (`fan_id`),
+  CONSTRAINT `fk_cu_createdfan` FOREIGN KEY (`fan_id`) REFERENCES `fans` (`id`),
+  PRIMARY KEY  (`id`),
+  KEY name_key (address)
+) ENGINE=InnoDB;
 
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -30,6 +44,7 @@ CREATE TABLE `bands` (
   `confirmed` boolean default 0,
   `confirmation_code` varchar(50) default '',
   `claimed` boolean default 1,
+  `created_on` DATETIME,
   PRIMARY KEY  (`id`),
   KEY name_key (name),
   KEY band_id_key (band_id)

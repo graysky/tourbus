@@ -13,6 +13,7 @@ class Band < ActiveRecord::Base
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_at ASC"
   file_column :logo, :magick => { :geometry => "240x320>" }
+  has_one :upload_addr
   
   validates_presence_of :name
   validates_uniqueness_of :band_id, 

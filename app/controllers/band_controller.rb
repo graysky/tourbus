@@ -3,8 +3,10 @@ require_dependency "geocoder"
 class BandController < ApplicationController
   include BandLoginSystem
   
-  before_filter :login_required, :except => [:login]
-  before_filter :find_band
+  before_filter :login_required, :except => [:login, :lookup_band_for_show, :add_selected_band]
+  before_filter :find_band, :except => [:lookup_band_for_show, :add_selected_band]
+  session :off, :only => %w(lookup_band_for_show add_selected_band)
+  
   layout "public"
   
   def index
@@ -21,6 +23,26 @@ class BandController < ApplicationController
       @error_message  = "Login unsuccessful. Please check your username and password, and that " +
                         "your account has been confirmed."
     end
+  end
+
+  def lookup_band_for_show
+    puts "Lookup band name: " + params[:name]
+    
+    if params[:name] && params[:name] != ""
+      bands = Band.find(:all,
+               :conditions => "name LIKE '#{params[:name]}%'",
+               :limit => 5)
+    else
+      bands = []
+    end
+    
+    render :partial => "band_search_preview", :locals => { :bands => bands}
+  end
+
+  def add_selected_band
+    p params
+    band = Band.find(params[:id])
+    render :partial => "band_playing", :locals => { :band => band}
   end
 
   def logout

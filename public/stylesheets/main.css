@@ -456,6 +456,10 @@ table.form-table #cal_trigger
 table.form-table td.last, table.form-table th.last {
 	border-bottom: none;
 	}
+table.form-table tr.nobottom td, table.form-table tr.nobottom th {
+	border-bottom: none;
+	}
+	
 table.form-table td p, body.info .box td p{
 	margin: 10px 0 0 0;
 	padding: 0;
@@ -524,6 +528,7 @@ table.form-table #selected_venue {
 #venue_search_results {
 	border:1px solid #ccc;
 	margin-top:8px;
+	margin-bottom:8px;
 	background-color:#eee;
 }
 
@@ -576,6 +581,45 @@ table.form-table #selected_venue {
 {
 	margin-top:8px;
 }	
+
+#band_search_preview {
+	width:300px;
+	border:1px solid #ddd;
+	background:#eee;
+	/*display:none;*/
+}
+
+#band_search_preview #content {
+	margin:8px;
+}
+
+#band_search_preview h3 {
+	font-weight:bold;
+	font-size:11px;
+	margin: 8px 0 8px 0;
+}
+
+#band_search_preview a {
+	font-size:11px;
+}
+
+#band_search_preview .error_message {
+	color:red;
+	font-style:italic;
+}
+
+.bands_playing {
+	height:100px;
+	width:300px;
+	border:1px solid #ddd;
+	background:#eee;
+}
+
+.bands_playing h3 {
+	font-weight:bold;
+	font-size:11px;
+	margin: 8px;	
+}
 
 #main
 {

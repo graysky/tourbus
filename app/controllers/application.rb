@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def public_fan_url(fan = nil)
     fan = @fan if fan.nil?
     fan = session[fan] if fan.nil?
-    url_for(:controller => '') + 'fan/' + session[:fan].name
+    url_for(:controller => '') + 'fan/' + fan.name
   end
   
   # Whether there is a band or fan logged in
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
   
   def create_new_show_and_venue
     @show = Show.new(params[:show])
-    
+    p params
     # Get the new or existing venue
     new_venue = false
     if params[:venue_type] == "new"
@@ -132,17 +132,12 @@ class ApplicationController < ActionController::Base
   end
   
   def calculate_bands
+    puts "calc bands"
     bands = []
-    band_names = params[:bands].split("\n")
-    
-    band_names.each do |name|
-      # Clean up the names. The user might have added commas.
-      name.strip!
-      name.chomp!(",")
-      
-      # First see if there is an exact match by band id
-      id = Band.name_to_id(name)
-      band = Band.find_by_band_id(id)
+    band_ids = params[:bands_playing].split(":::")
+    p band_ids
+    band_ids.each do |id|
+      band = Band.find_by_id(id)
       if band.nil?
         # TODO Try some other stuff. Maybe with "the", plurals, etc.
         band = Band.new

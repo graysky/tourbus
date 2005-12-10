@@ -1,0 +1,26 @@
+<div id="content">
+
+<h3>Results:</h3>
+
+<% if bands.empty? %>
+<em>none</em>
+<% else %>
+<table id="venue_results_table">
+<% for band in bands %>
+<tr>
+<td><a href="#" onclick="selectBand('<%=band.id%>')"><%= band.name %></a></td>
+<td>(location here)</td>
+</tr>
+<% end %>
+</table>
+	
+<% end %>
+
+
+
+<br/>
+<br/>
+<em>Didn't find the band you're looking for?</em><br/>
+<a href="#">Add them to TourBus</a>
+
+</div>

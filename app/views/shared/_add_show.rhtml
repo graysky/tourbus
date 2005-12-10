@@ -45,7 +45,7 @@
 			controller = params[:controller]
 		end
 	%>
-	<%= start_form_tag(:controller => controller, :action => "add_show") %>
+	<%= start_form_tag({:controller => controller, :action => "add_show"}, :onsubmit => "setBands()") %>
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
 
@@ -154,11 +154,57 @@
 				TODO
 			</td>
 		</tr>
-		<tr>
-			<th>Bands:</th>
-			<td><%= text_area_tag 'bands', params[:bands], :rows => 5  %></td>
+		<!-- TODO Again, this needs to pulled out -->
+		<script type="text/javascript">
+			var bandsPlaying = new Array();
+			
+			function selectBand(id, name)
+			{
+				new Effect.Fade('band_search_preview');
+				$('band_to_add').value = '';
+				<%= remote_function(:update => "bands",
+									:position => :bottom, 
+									:with => "'id=' + escape(id)",
+									:url => { :action => "add_selected_band",
+										      :controller => "band" }) %>
+				bandsPlaying[bandsPlaying.length] = new Array(id, escape(name));
+			}
+			
+			function setBands()
+			{
+				//alert(bandsPlaying);
+				var elem = $('bands_playing')
+				for (var i = 0; i < bandsPlaying.length; i++) {
+					elem.value += escape(bandsPlaying[i][0]);
+					if (i < bandsPlaying.length - 1) {
+						elem.value += ":::";
+					}
+				}
+			}
+		</script>
+		<input type="hidden" id="bands_playing" name="bands_playing" value="<%= params['bands_playing']%>"/>
+		<tr class="nobottom">
+			<th>Add a Band:</th>
+			<td>
+				<%= text_field_tag 'band_to_add', '', :autocomplete => "off" %>
+				<br/>
+				<br/>
+				<div id="band_search_preview"></div>
+			</td>
 			<td class="info">
-				NEED A GOOD DESCRIPTION
+			</td>
+		</tr>
+		<tr>
+		<%= observe_field 'band_to_add', :frequency => 0.5,
+										 :with => "'name=' + escape(value)",
+										 :update => "band_search_preview",
+										 :loading => "Element.show($(\"band_search_preview\"))", 
+										 :url => { :action => 'lookup_band_for_show', 
+										   		   :controller => 'band' } %>
+			<th>Bands:</th>
+			<td><div id="bands" class="bands_playing"></div></td>
+			<td class="info">
+				TODO This is broken cause it doesn't grow (studpid ie doesn't support min-height)
 			</td>
 		</tr>
 		<tr>

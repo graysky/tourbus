@@ -23,11 +23,23 @@ class UploadAddr < ActiveRecord::Base
     return EMAIL_DOMAIN
   end 
   
-  # Quick check to see if a given email prefix (everything up to the @mytourb.us)
-  # is of the pattern we use. This is to prevent extra hits to the db when there
-  # is a lot of spam to filter out.
-  def self.valid_address?(prefix)
+  # Quick check to see if a given email address is of the pattern we use. 
+  # This is to prevent extra hits to the db when there is a lot of spam to filter out.
+  def self.valid_address?(addr)
   
+    if addr == nil
+      return false
+    end
+
+    p "Address: #{addr}"
+    
+    # Check that the form is a "wordDDword@" (where DD < 100)
+    # TODO Need to factor out hardcoded domain
+    if addr =~ /\w*\d{1,2}\w*@figureten/
+      return true
+    else
+      return false
+    end
   end
   
   # Generate a new attempt at a unique address pre-fix like "down42tree".

@@ -41,7 +41,7 @@ module CommentHelper
     
     # Format the body of the comment
     html << "<div class='comment_body'>"
-    html << sanitize( comment.body )
+    html << simple_format( sanitize(comment.body) )
     html << "</div> <br/>"
     
     permalink = "( <a href='#comment#{comment.id}'>permalink</a> )" 

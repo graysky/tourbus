@@ -13,7 +13,7 @@ class FanController < ApplicationController
     
     if fan = Fan.authenticate(params['login'], params['password'])
       @session[:fan] = fan
-      redirect_back_or_default(url_for :action => "settings")
+      redirect_back_or_default(url_for(:action => "settings"))
     else
       @error_message  = "Login unsuccessful. Please check your username and password, and that " +
                         "your account has been confirmed."

@@ -92,10 +92,7 @@ class Photo < ActiveRecord::Base
     end
   end
   
-  # Private
-  private
- 
-    # Get file location
+   # Get file location
   def path_to_file(file = self.filename, include_base = true)
     # Use a different directory depending on what type of object the photo belongs to
     base = include_base ? "#{RAILS_ROOT}/public/" : ""
@@ -111,6 +108,9 @@ class Photo < ActiveRecord::Base
  
     base + type + "/" + file
   end
+  
+  # Private
+  private
   
   def make_versions
     orig = ::Magick::Image.read(path_to_file).first

@@ -1,3 +1,4 @@
+require 'cgi'
 require_dependency "geocoder"
 
 class BandController < ApplicationController
@@ -41,8 +42,27 @@ class BandController < ApplicationController
 
   def add_selected_band
     p params
-    band = Band.find(params[:id])
-    render :partial => "band_playing", :locals => { :band => band}
+    id = params[:id]
+    if id.nil? or id == "" or id == "null"
+      # Are adding a new band with the given name. Make sure it's not a duplicate...
+      name = CGI.unescape(params[:name])
+      band_id = Band.name_to_id(name)
+      if Band.find_by_band_id(band_id)
+        msg = "We found a band with that name in the system."
+        msg << "Please search again for this band name and click the result to add the band to the show."
+        msg << "If you need to add a new band with the same name, please add the location of the band "
+        msg << " in parenthese after the name (like \"Berzerker (Boston, MA)\"."
+        render :text => msg, :status => 500
+        return
+      end
+      
+      band = Band.new
+      band.name = name + " <small>(new!)</small>"
+    else
+      band = Band.find(params[:id])
+    end
+    
+    render :partial => "shared/band_playing", :object => band
   end
 
   def logout

@@ -46,6 +46,7 @@ class BandPublicController < ApplicationController
       begin
         create_new_show_and_venue
       rescue Exception => e
+        create_bands_playing_content
         return
       end
       
@@ -70,6 +71,7 @@ class BandPublicController < ApplicationController
         end
       rescue Exception => ex
         p ex
+        create_bands_playing_content
         return
       end
       

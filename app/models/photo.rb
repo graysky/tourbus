@@ -92,7 +92,7 @@ class Photo < ActiveRecord::Base
     end
   end
   
-   # Get file location
+  # Get file location
   def path_to_file(file = self.filename, include_base = true)
     # Use a different directory depending on what type of object the photo belongs to
     base = include_base ? "#{RAILS_ROOT}/public/" : ""

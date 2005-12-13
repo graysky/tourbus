@@ -1,3 +1,5 @@
+require 'cgi'
+
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
@@ -68,6 +70,7 @@ class ApplicationController < ActionController::Base
     @show = Show.new
     @show.date = Time.now
     @venue = Venue.new
+    @bands_playing_content = ""
   end
   
   def create_new_show_and_venue
@@ -80,14 +83,15 @@ class ApplicationController < ActionController::Base
       @venue = Venue.new(params[:venue])
     else
       begin 
+        venue_error = false
         @venue = Venue.find(params[:selected_venue_id])
       rescue
-        @venue = nil
+        venue_error = true
       end
       
-      if @venue.nil?
+      if venue_error
         @show.errors.add(nil, "Please select a venue or add a new one")
-        @venue = Venue.new
+        @venue = Venue.new(params[:venue])
         raise
       end
     end
@@ -132,17 +136,21 @@ class ApplicationController < ActionController::Base
   end
   
   def calculate_bands
-    puts "calc bands"
+    puts "##### calc bands"
     bands = []
     band_ids = params[:bands_playing].split(":::")
     p band_ids
     band_ids.each do |id|
-      band = Band.find_by_id(id)
+      band = nil
+      if id[0] != "*"
+        # It's an id of an existing band
+        band = Band.find_by_id(id)
+      end
+      
       if band.nil?
-        # TODO Try some other stuff. Maybe with "the", plurals, etc.
         band = Band.new
-        band.name = name
-        band.band_id = id
+        band.name = CGI.unescape(id[1, id.length])
+        band.band_id = Band.name_to_id(band.name)
         band.claimed = false
       else
         puts "FOUND " + band.name
@@ -152,6 +160,15 @@ class ApplicationController < ActionController::Base
     end
     
     return bands
+  end
+  
+  def create_bands_playing_content
+    bands = calculate_bands
+    @bands_playing_content = render_to_string :partial => "shared/band_playing", 
+                                              :collection => bands
+                                              
+    @bands_playing_content.gsub!(/["']/) { |m| "\\#{m}" }
+    @bands_playing_content.strip!
   end
   
 end

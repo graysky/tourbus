@@ -15,7 +15,9 @@
 
 <% 
 	if @params[:show_map] == "true"
-	  gmaps_header	 
+%>
+	  <%= gmaps_header	%>
+<% 
 	  content_for("onload") do 
 %>
 	  init_map()

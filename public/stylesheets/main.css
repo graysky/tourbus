@@ -586,7 +586,7 @@ table.form-table #selected_venue {
 	width:300px;
 	border:1px solid #ddd;
 	background:#eee;
-	/*display:none;*/
+	display:none;
 }
 
 #band_search_preview #content {
@@ -609,7 +609,8 @@ table.form-table #selected_venue {
 }
 
 .bands_playing {
-	height:100px;
+	min-height:100px;
+	/* TODO: Will need a workaround for ie */
 	width:300px;
 	border:1px solid #ddd;
 	background:#eee;
@@ -617,8 +618,8 @@ table.form-table #selected_venue {
 
 .bands_playing h3 {
 	font-weight:bold;
-	font-size:11px;
-	margin: 8px;	
+	font-size:15px;
+	margin: 4px 8px 4px 8px;	
 }
 
 #main

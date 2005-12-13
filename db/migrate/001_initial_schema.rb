@@ -2,6 +2,11 @@
 # This will contain all the tables up to the point of running it in production.
 # The tables will be seeded from the schema.rb generated from:
 # rake db_schema_dump
+# To move to the latest migration:
+# rake migrate
+# Or to a specific version
+# rake migrate VERSION=###
+#
 class InitialSchema < ActiveRecord::Migration
   
   def self.down

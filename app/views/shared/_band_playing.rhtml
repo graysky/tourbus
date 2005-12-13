@@ -1,1 +1,6 @@
-<h3><%= band_playing.name %></h3>
+<div class="band_playing_div">
+<span style='float:left;width:90%'><h3><%= band_playing.name %></h3></span>
+<span style='float:right;padding-right:8px;padding-top:4px'>
+<a href="#" onclick="removeBand(this.parentNode.parentNode)"><img title="Remove this band" src="/images/delete_small.gif"/></a>
+</span>
+</div>

@@ -166,9 +166,11 @@ class ApplicationController < ActionController::Base
     bands = calculate_bands
     @bands_playing_content = render_to_string :partial => "shared/band_playing", 
                                               :collection => bands
-                                              
+    
+    # TODO Factor out into method for preparing output                                          
     @bands_playing_content.gsub!(/["']/) { |m| "\\#{m}" }
     @bands_playing_content.strip!
+    @bands_playing_content.gsub!(/\n/, "")
   end
   
 end

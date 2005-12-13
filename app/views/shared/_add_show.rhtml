@@ -225,6 +225,18 @@
 				}
 			}
 			
+			function removeBand(div)
+			{
+				// Find out which one it is in order
+				var divs = document.getElementsByClassName("band_playing_div");
+				for (var i = 0; i < divs.length; i++) {
+					if (divs[i] == div) {
+						bandsPlaying.splice(i, 1);
+						new Effect.Fade(div);
+					}
+				}
+			}
+			
 			function bandSearchLoading()
 			{
 				$('band_search_preview').style.display = 'block';
@@ -307,8 +319,8 @@
 	<% end %>
 	
 	<script type="text/javascript">
-		$('bands').innerHTML = '<%= @bands_playing_content %>';
 		initBands();
+		$('bands').innerHTML = '<%= @bands_playing_content %>';
 	</script>
 	
 </div>

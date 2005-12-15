@@ -138,6 +138,16 @@ CREATE TABLE `tags_venues` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `tags_shows` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `show_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  `tag_type` int(10) unsigned NOT NULL,
+  CONSTRAINT `fk_st_show` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`),
+  CONSTRAINT `fk_st_tag` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`),
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
 CREATE TABLE `bands_shows` (
   `band_id` int(10) unsigned NOT NULL,
   `show_id` int(10) unsigned NOT NULL,

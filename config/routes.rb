@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'signup/:action/:id', :controller => 'signup'
   
   # Show controller
+  map.connect 'show/:id', :controller => 'show', :action => 'show'
   map.connect 'show/:action/:id', :controller => 'show'
   
   # Public fan pages
@@ -34,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'photo/:action/:id', :controller => 'photo'
   
   # Venue controller
+  map.connect 'venue/:id', :controller => 'venue', :action => 'show'
   map.connect 'venue/:action/:id', :controller => 'venue'
   
   # Comment controller

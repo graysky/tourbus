@@ -46,7 +46,7 @@ class Comment < ActiveRecord::Base
     PHOTO_COMMENT
   end
 
-
+  # Get the name of the person who created the comment
   def created_by_name
     if self.created_by_fan
       self.created_by_fan.name

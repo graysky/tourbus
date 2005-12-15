@@ -1,0 +1,46 @@
+<div id="main">
+
+<% @page_title = @show.title %>
+
+<h1><%= @show.title %></h1>
+
+<%= render(
+	:partial => "shared/photo_preview", 
+	:locals => 
+		{
+		:photos => @show.photos,
+		:type => Photo.Show,
+		:id => @show.id,
+		:full => false
+		}) 
+	%>
+	
+	<br/>
+
+	<%= render(
+		:partial => "shared/comments",
+		:locals =>
+			{
+			:comments => @show.comments,
+			:type => Comment.Show,
+			:id => @show.id,
+			})
+	%>
+
+</div>
+
+<div id="side">
+
+	<%= render(
+	:partial => "shared/tags", 
+	:locals => 
+		{
+		:tags => @show.show_tag_names,
+		:type => Tag.Show,
+		:title => "Tags",
+		:id => @show.id,
+		}) 
+	%>
+	
+
+</div>

@@ -17,7 +17,7 @@ module ShowHelper
       end
       out << "<br/>"
       if show.title != ""
-        out << link_to(show.title)
+        out << link_to(show.title, :controller => "show", :action => "show", :id => show.id)
         out << " at "
       end
       out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"

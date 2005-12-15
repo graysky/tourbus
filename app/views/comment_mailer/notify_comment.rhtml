@@ -1,0 +1,28 @@
+<html>
+<body>
+
+<p>
+A new comment was posted <%= time_ago_in_words( @comment.created_at ) %> ago, <%= @comment.created_by_name %> wrote:
+
+</p>
+
+<p>
+<blockquote>
+
+<%= simple_format(@comment.body) %>
+
+</blockquote>
+</p>
+
+<p>
+
+We thought you'd like to know!
+
+<p>
+Thanks,<br/>
+The TourBus Team
+</p>
+
+</body>
+</html>
+	

@@ -3,7 +3,7 @@ module CommentHelper
   # Create the table to hold the comments
   def comments_table(comments, max_comments)
   
-    html = "<table class='comments_table' id='comment-list'>"
+    html = "<table class='comments_table' id='comment-list'>\n"
     
     if comments.nil? or comments.empty?
       # Write out the first row for use by the javascript updating functions
@@ -17,13 +17,13 @@ module CommentHelper
       html << comment_row(comment)
     end
     
-    html << "</table>"
+    html << "\n</table>"
   end
   
   # Assumes it is being added to an existing table
   def comment_row(comment)
     
-    html = "<tr><td>"
+    html = "\n<tr><td>"
     
     # Format the posted by line
     from = truncate(comment.created_by_name, 16)
@@ -32,21 +32,20 @@ module CommentHelper
     posted_at = time_ago_in_words(comment.created_at)
     
     # Format anchor for permalink like "comment#3"
-    anchor = "<a name='comment#{comment.id}'/>" 
-    html << "<div class='comment_from'>"
+    anchor = "<a name='comment#{comment.id}'/>\n" 
+    html << "<div class='comment_from'>\n"
     
     html << anchor
-    html << "<a href='#{from_url}'>#{from}</a> wrote:<br/>"
-    html << "</div>"
+    html << "<a href='#{from_url}'>#{from}</a> wrote:<br/></div>\n"
     
     # Format the body of the comment
     html << "<div class='comment_body'>"
     html << simple_format( sanitize(comment.body) )
-    html << "</div> <br/>"
+    html << "</div> <br/>\n"
     
     permalink = "( <a href='#comment#{comment.id}'>permalink</a> )" 
     html << "<div class='comment_post'>posted #{posted_at} ago #{permalink}</div>"
-    html << "</td></tr>"
+    html << "\n</td></tr>"
   end
     
   private

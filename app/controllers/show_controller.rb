@@ -1,6 +1,24 @@
 class ShowController < ApplicationController
+  helper :map
+  helper :tag
+  helper :comment
+  helper :photo
+  
+  before_filter :find_show, :except => [ :venue_search ]
   layout "public"
   
+  # Show a specific show. (Perhaps this is a bad name for this action?)
+  def show
+  
+  end
+  
+  # TODO FIXME - Can't use "@show.name" because the show's ID wans't passed in
+  def photo
+    render_component :controller => "photo", :action => "show_one", 
+                     :params => {"photo_id" => params[:photo_id], "name" => @show.name}
+  end
+  
+  # Search for a venue as part of adding a show
   def venue_search
     begin
       name = params[:venue_search_term]
@@ -24,6 +42,15 @@ class ShowController < ApplicationController
     end
     
     render(:partial => "shared/venue_results")
+  end
+  
+  private
+  
+  # Find the show from the ID param
+  def find_show
+    # Look up the show
+    @show = Show.find_by_id(params[:id])
+    
   end
   
 end

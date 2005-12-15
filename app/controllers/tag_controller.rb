@@ -57,8 +57,12 @@ class TagController < ApplicationController
       return Venue.find_by_id(id)
     elsif ctype == Tag.Photo
       return Photo.find_by_id(id)
+    elsif ctype == Tag.Show
+      return Show.find_by_id(id)
     elsif ctype == Tag.Fan
       return Fan.find_by_id(id)
+    else
+      flash[:notice] = "Tag on this type is not supported"
     end
   
   end

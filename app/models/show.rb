@@ -1,9 +1,15 @@
+require "taggable"
+require "tagging"
+
+# A specific show that is being played a venue by a list of bands.
 class Show < ActiveRecord::Base
+  include Tagging
   has_and_belongs_to_many :bands
-  has_many :photos
   belongs_to :venue
   belongs_to :tour
- 
+  has_many :photos, :order => "created_on DESC"
+  has_many :comments, :order => "created_at ASC"
+  acts_as_taggable :join_class_name => 'TagShow'
   validates_presence_of :date
   
   # Attributes for nicer date handling
@@ -49,6 +55,16 @@ class Show < ActiveRecord::Base
     else
       return "AM"
     end
+  end
+  
+  # Add Show tags
+  def show_tag_names=(tags)
+    add_tags(tags, Tag.Show)
+  end
+
+  # Get just the Show tags
+  def show_tag_names
+    get_tags(Tag.Show)
   end
   
 end

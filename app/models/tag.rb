@@ -13,6 +13,7 @@ class Tag < ActiveRecord::Base
   VENUE_TYPE = 3
   FAN_TYPE = 4
   PHOTO_TYPE = 5
+  SHOW_TYPE = 6
   
   # Getter for type
   def self.Genre
@@ -39,6 +40,10 @@ class Tag < ActiveRecord::Base
     PHOTO_TYPE
   end
   
+  def self.Show
+    SHOW_TYPE
+  end
+  
   # Get a string name for the tag type
   def self.type_name(tag_type)
     case tag_type
@@ -52,6 +57,8 @@ class Tag < ActiveRecord::Base
         "Venue"
       when FAN_TYPE
         "Fan"
+      when SHOW_TYPE
+        "Show"
       when PHOTO_TYPE
         "Photo"
       else

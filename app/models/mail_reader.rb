@@ -62,7 +62,7 @@ class MailReader < ActionMailer::Base
     sent_to_addr.sub!(domain, "")
     
     success = false
-    
+
     if attachments.empty?
       # Create new comment
       success = add_comment(sent_to_addr, subject, body)
@@ -126,15 +126,22 @@ class MailReader < ActionMailer::Base
       return false
     end
     
-    # Save the photo
-    return photo.save
+    recipients = upload_addr.owner.contact_email
+    
+    # Save the photo and notify people
+    if photo.save
+      PhotoMailer.deliver_notify_photo(photo, recipients)
+      return true
+    else
+      return false
+    end
   end
   
   # Add a new comment from the owner of this special address
   # sent_to_addr => prefix of email address (ex. "down42tree")
   # Return true if the comment was successfully added, false otherwise
   def add_comment(sent_to_addr, subject, body)
-    
+
     # See if the TO address is valid
     upload_addr = UploadAddr.find_by_address(sent_to_addr)
     
@@ -165,7 +172,7 @@ class MailReader < ActionMailer::Base
     # TODO Clean up the body of the message. Pull out "Cingular" sig and crap.
     comment.body = body
     
-    # Determine who the comment is from    
+    # Determine who the comment is from   
     if !upload_addr.fan.nil?
       comment.created_by_fan_id = upload_addr.fan.id
     elsif !upload_addr.band.nil?
@@ -174,8 +181,17 @@ class MailReader < ActionMailer::Base
       return false
     end
     
-    # Save the comment
-    return comment.save
+    # TODO Change this to actually notify the folks who care about this comment/photo 
+    recipients = upload_addr.owner.contact_email
+    
+    # Save the comment and notify people
+    if comment.save
+      # Notify the poster 
+      CommentMailer.deliver_notify_comment(comment, recipients)
+      return true
+    else
+      return false
+    end
   end
   
   # Check for POP3 email and pass off to for further handling.

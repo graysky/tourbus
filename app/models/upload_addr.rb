@@ -63,4 +63,9 @@ class UploadAddr < ActiveRecord::Base
     
     return addr
   end
+  
+  # Returns the owner of this address
+  def owner
+    self.fan or self.band
+  end
 end

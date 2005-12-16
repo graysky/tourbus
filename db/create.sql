@@ -3,6 +3,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `upload_addrs`;
 DROP TABLE IF EXISTS `tags_bands`;
 DROP TABLE IF EXISTS `tags_venues`;
+DROP TABLE IF EXISTS `tags_shows`;
 DROP TABLE IF EXISTS `bands_shows`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `fans`;

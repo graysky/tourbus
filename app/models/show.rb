@@ -1,12 +1,18 @@
+require_dependency "searchable"
+
 require "taggable"
 require "tagging"
 
 # A specific show that is being played a venue by a list of bands.
 class Show < ActiveRecord::Base
+  include FerretMixin::Acts::Searchable
+  
   include Tagging
   has_and_belongs_to_many :bands
   belongs_to :venue
   belongs_to :tour
+  acts_as_searchable
+ 
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_at ASC"
   acts_as_taggable :join_class_name => 'TagShow'

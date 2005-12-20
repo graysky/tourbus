@@ -29,10 +29,9 @@ class BandController < ApplicationController
   def lookup_band_for_show
     puts "Lookup band name: " + params[:name]
     
-    if params[:name] && params[:name] != ""
-      bands = Band.find(:all,
-               :conditions => "name LIKE '#{params[:name]}%'",
-               :limit => 5)
+    name = params[:name].strip
+    if params[:name] && name != ""
+      bands = Band.ferret_search(name + "*", :num_docs => 5)
     else
       bands = []
     end

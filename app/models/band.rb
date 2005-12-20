@@ -1,11 +1,13 @@
 require_dependency "hash"
 require_dependency "password_protected"
+require_dependency "searchable"
 require 'ferret'
 require "taggable"
 require "tagging"
 
 class Band < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
+  include FerretMixin::Acts::Searchable
   include Tagging
   include Ferret
   
@@ -17,6 +19,7 @@ class Band < ActiveRecord::Base
   has_many :comments, :order => "created_at ASC"
   file_column :logo, :magick => { :geometry => "240x320>" }
   has_one :upload_addr
+  acts_as_searchable
   
   validates_presence_of :name
   validates_uniqueness_of :band_id, 
@@ -25,30 +28,6 @@ class Band < ActiveRecord::Base
   # TODO Not working?                        
   validates_presence_of :password, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
-  
-  # NOTE: All this ferret stuff is temporary for experimentation.
-  # It will be replaced by a mixin when ready.
-  @@index = Index::Index.new(:key => ["id", "table"],
-                                      :path => "#{RAILS_ROOT}/db/tb.index",
-                                      :analyzer => Ferret::Analysis::Analyzer.new,
-                                      :auto_flush => true)
-  
-  def after_save
-    super
-    
-    doc = Ferret::Document::Document.new
-    doc << Ferret::Document::Field.new("id", self.id, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    doc << Ferret::Document::Field.new("table", self.class.table_name, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    doc << Ferret::Document::Field.new("name", self.name, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
-    @@index << doc
-  end
-  
-  def self.search(query)
-    @@index.search_each("table:#{self.table_name} AND name:'#{query}'") do |doc, score|
-      puts "hit document number #{doc} with a score of #{score}"
-      p @@index[doc]["name"]
-    end
-  end
   
   def validate
     if band_id.blank? or band_id != Band.name_to_id(band_id)

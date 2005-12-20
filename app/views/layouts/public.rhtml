@@ -62,9 +62,9 @@
 
 </div>
 
-<div style="padding-top:4px;padding-bottom:4px;color:#99CC00;font-family: Arial, Helvetica;border:1px solid #ccc;padding-left:20px;font-size:24px;background-color:#F4F9E5";width=100%;">
-<span class="testme">Shows</span>
-<span class="testme" style="font-weight:bold">Bands</span>
+<div id="navbar" style="padding-top:4px;padding-bottom:4px;color:#99CC00;font-family: Arial, Helvetica;border:1px solid #ccc;padding-left:20px;font-size:24px;background-color:#F4F9E5";width=100%;">
+<span class="testme"><%= link_to("Shows", :controller => "find", :action => "show") %></span>
+<span class="testme" style="font-weight:bold"><%= link_to("Bands", :controller => "find", :action => "band") %></span>
 <span class="testme">Venues</span>
 <span class="testme">Users</span>
 </div>

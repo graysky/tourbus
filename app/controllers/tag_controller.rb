@@ -18,6 +18,9 @@ class TagController < ApplicationController
     # Assumes the object includes the tagging mixin
     obj.add_tag(tag_name, tag_type)
     
+    # Save the object so the new tag will get indexed for search
+    obj.save
+    
     # Return the tag name 
     render :text => tag_name
   

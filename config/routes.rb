@@ -44,6 +44,9 @@ ActionController::Routing::Routes.draw do |map|
   # Tag controller
   map.connect 'tag/:action/:id', :controller => 'tag'
   
+  # Find controller
+  map.connect 'find/:action/:id', :controller => 'find'
+  
   # Public band pages (must be last)
   map.connect ':band_id/:action/:id', :controller => 'band_public'
 

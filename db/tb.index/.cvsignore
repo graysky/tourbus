@@ -1,2 +1,4 @@
 segments
 readme.txt
+*.cfs
+deletable

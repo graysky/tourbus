@@ -1,13 +1,17 @@
 require "taggable"
 require "tagging"
+require_dependency "searchable"
 
 # Describes a venue where shows are played
 class Venue < ActiveRecord::Base
+  include FerretMixin::Acts::Searchable
   include Tagging
+  
   has_many :shows
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_at ASC"
   acts_as_taggable :join_class_name => 'TagVenue'
+  acts_as_searchable
   
   validates_presence_of :name
   

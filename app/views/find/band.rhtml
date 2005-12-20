@@ -1,0 +1,44 @@
+<div id="main">
+
+<% @page_title = "Search results for \"#{params[:query]}\"" %>
+
+<div id="search_results">
+
+<%= start_form_tag %>
+Search for bands: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
+<%= end_form_tag %>
+
+<% # TEMP TEMP TEMP TEMP TEMP TEMP %>
+
+<%
+	if @results
+		for result in @results
+%>
+	<div class="result">
+		<%= public_band_link result.name, result %>
+		<div class="result_tags">
+			<%
+				# TODO If we keep this it should be factored out
+				str = ""
+				for tag in result.get_tags(Tag.Genre)[0..5]
+					str = str + " / " if str != ""
+					str += tag.name
+				end
+			%>
+			
+			<%= str %>
+		</div>
+		<div class="result_description"><%= truncate(result.bio, 150) %></div>
+	</div>
+<%
+		end
+	end
+%>
+
+</div>
+
+</div>
+
+<div id="side">
+	COOL STUFF OVER HERE
+</div>

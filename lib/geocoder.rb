@@ -1,5 +1,6 @@
 require "xmlrpc/client"
 
+# TODO The yahoo api is much better, we should rewrite using that.
 class Geocoder
 	def self.geocode(addr)
 	  server = XMLRPC::Client.new2("http://rpc.geocoder.us/service/xmlrpc")

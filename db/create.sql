@@ -14,7 +14,6 @@ DROP TABLE IF EXISTS `shows`;
 DROP TABLE IF EXISTS `venues`;
 DROP TABLE IF EXISTS `comments`;
 DROP TABLE IF EXISTS `photos`;
-DROP TABLE IF EXISTS `zip_codes`;
 
 CREATE TABLE `upload_addrs` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -230,5 +229,3 @@ CREATE TABLE `zip_codes` (
   KEY longitude (longitude),
   KEY country (country)
 ) TYPE=MyISAM;
-INSERT INTO zip_codes VALUES ('02140','Cambridge','MA','42.393327','-71.128370',-5,1,'us');
-INSERT INTO zip_codes VALUES ('01721','Ashland','MA','42.257956','-71.458860',-5,1,'us');

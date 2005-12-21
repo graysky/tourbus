@@ -6,6 +6,8 @@
 # rake migrate
 # Or to a specific version
 # rake migrate VERSION=###
+# To run in production environment, use:
+# rake environment RAILS_ENV=production migrate
 #
 class InitialSchema < ActiveRecord::Migration
   

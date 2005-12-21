@@ -1,4 +1,6 @@
 class BandPublicController < ApplicationController
+  include ShowCreator
+  
   before_filter :find_band
   helper :show
   helper :map
@@ -20,7 +22,7 @@ class BandPublicController < ApplicationController
     when "all"
       @shows = @band.shows
     else
-      puts "illegal value: " + params[:show_display]
+      logger.error "illegal value: " + params[:show_display]
       flash[:error] = "Illegal value for show_display"
     end
   end
@@ -56,7 +58,6 @@ class BandPublicController < ApplicationController
       end
       
       begin
-        @bands_playing.each { |band| puts band.name, band.id }
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
             @band.save!
@@ -71,6 +72,7 @@ class BandPublicController < ApplicationController
         end
       rescue Exception => ex
         p ex
+        p ex.backtrace
         create_bands_playing_content
         return
       end

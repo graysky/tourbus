@@ -64,11 +64,15 @@ module FerretMixin
                                              Ferret::Document::Field::TermVector::NO,
                                              :binary => false,
                                              :boost => 1.5)
-          doc << Ferret::Document::Field.new("name", self.name, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
+          if respond_to?(:name)                                   
+            doc << Ferret::Document::Field.new("name", self.name, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
+          end
           
           # Index all commonly searched info as an aggregated content string
           contents = ""
-          contents << self.name + " "
+          if respond_to?(:name)
+            contents << self.name + " "
+          end
           
           if respond_to?(:tag_names)
             contents << self.tag_names.join(" ")

@@ -1,4 +1,6 @@
 class ShowController < ApplicationController
+  include ShowCreator
+    
   helper :map
   helper :tag
   helper :comment

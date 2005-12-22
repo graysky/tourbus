@@ -4,7 +4,7 @@ require_dependency "geocoder"
 class BandController < ApplicationController
   include BandLoginSystem
   
-  before_filter :login_required, :except => [:login, :lookup_band_for_show, :add_selected_band]
+  before_filter :band_login_required, :except => [:login, :lookup_band_for_show, :add_selected_band]
   before_filter :find_band, :except => [:lookup_band_for_show, :add_selected_band]
   session :off, :only => %w(lookup_band_for_show add_selected_band)
   

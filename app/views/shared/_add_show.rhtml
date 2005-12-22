@@ -41,11 +41,11 @@
 	</script>
 
 	<%
-		if controller.nil?
-			controller = params[:controller]
-		end
+		controller = params[:controller] if controller.nil?
+		action = "add_show" if action.nil?
+		
 	%>
-	<%= start_form_tag({:controller => controller, :action => "add_show"}, :onsubmit => "setBands()") %>
+	<%= start_form_tag({:controller => controller, :action => action}, :onsubmit => "setBands()") %>
 	<%= error_messages_for 'show' %>
 	<%= error_messages_for 'venue' %>
 
@@ -112,7 +112,7 @@
 					<%= text_field_tag 'venue_search_term' %> &nbsp;
 					<%= link_to_remote  "Search",
 										:update => 'venue_search_results',
-										:url => { :controller => "show", :action => :venue_search, :id => 1 },
+										:url => { :controller => "shows", :action => :venue_search, :id => 1 },
 										:with => "Form.serialize(document.forms[0])",
 										:loading => "do_venue_loading()",
 										:before => "do_venue_appear()"

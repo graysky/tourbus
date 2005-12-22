@@ -5,14 +5,14 @@ module FanLoginSystem
   
   # login_required filter. add 
   #
-  #   before_filter :login_required
+  #   before_filter :fan_login_required
   #
   # if the controller should be under any rights management. 
   # for finer access control you can overwrite
   #   
   #   def authorize?(user)
   # 
-  def login_required
+  def fan_login_required
     if @session[:fan] and @session[:fan].confirmed? and authorize?(@session[:fan])
       return true
     end

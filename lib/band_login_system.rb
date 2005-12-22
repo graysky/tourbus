@@ -5,14 +5,14 @@ module BandLoginSystem
   
   # login_required filter. add 
   #
-  #   before_filter :login_required
+  #   before_filter :band_login_required
   #
   # if the controller should be under any rights management. 
   # for finer access control you can overwrite
   #   
   #   def authorize?(user)
   # 
-  def login_required
+  def band_login_required
     if @session[:band] and @session[:band].confirmed? and authorize?(@session[:band])
       return true
     end

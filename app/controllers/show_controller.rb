@@ -7,11 +7,47 @@ class ShowController < ApplicationController
   helper :photo
   
   before_filter :find_show, :except => [ :venue_search ]
+  before_filter :some_login_required, :only => [:add]
   layout "public"
   
   # Show a specific show. (Perhaps this is a bad name for this action?)
   def show
+   
+  end
   
+  def add
+    # TODO Among other things error handling
+    if @request.get?
+      prepare_new_show
+    else
+      begin
+        create_new_show_and_venue
+      rescue Exception => e
+        puts e
+        create_bands_playing_content
+        return
+      end
+      
+      begin
+        Band.transaction(*@bands_playing) do
+          Show.transaction(@show) do
+            @bands_playing.each do |band| 
+              if band.id.nil?
+                band.save!
+              end
+              
+              band.play_show(@show, true)
+            end
+          end
+        end
+      rescue Exception => ex
+        create_bands_playing_content
+        return
+      end
+      
+      flash[:notice] = 'Show added'
+      redirect_to_url "/show/#{@show.id}"
+    end
   end
   
   # TODO FIXME - Can't use "@show.name" because the show's ID wans't passed in
@@ -52,7 +88,18 @@ class ShowController < ApplicationController
   def find_show
     # Look up the show
     @show = Show.find_by_id(params[:id])
+  end
+  
+  def some_login_required
+    return true if logged_in_fan
+    if logged_in_band
+      redirect_to :controller => logged_in_band.band_id, :action => "add_show"
+      return false
+    end
     
+    # Not logged in... TODO handle this better
+    redirect_to :controller => ""
+    return false
   end
   
 end

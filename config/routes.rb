@@ -24,9 +24,9 @@ ActionController::Routing::Routes.draw do |map|
   # Signup action
   map.connect 'signup/:action/:id', :controller => 'signup'
   
-  # Show controller
+  # Show controller (TODO Sort this out)
   map.connect 'show/:id', :controller => 'show', :action => 'show'
-  map.connect 'show/:action/:id', :controller => 'show'
+  map.connect 'shows/:action/:id', :controller => 'show'
   
   # Public fan pages
   map.connect 'fan/:fan_name/:action/:id', :controller => 'fan_public'

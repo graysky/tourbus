@@ -1,7 +1,7 @@
 class FanController < ApplicationController
  include FanLoginSystem
   
-  before_filter :login_required, :except => [:login]
+  before_filter :fan_login_required, :except => [:login]
   before_filter :find_fan
   layout "public"
   

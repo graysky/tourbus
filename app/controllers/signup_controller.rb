@@ -1,7 +1,14 @@
+# Controls registering both fans and bands
 class SignupController < ApplicationController
   layout "public"
   
-  def signup_band
+  # Initial action when they have chosen one or the other yet
+  def index
+    # Nothing to do
+  end
+  
+  # Register a band
+  def band
     if request.get?
       @band = Band.new
       return
@@ -35,7 +42,6 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       flash[:notice] = "Error signing up your band: #{ex.message}"
-      puts "ERROR #{ex.message}"
     end
   end
   
@@ -64,7 +70,8 @@ class SignupController < ApplicationController
     end
   end
   
-  def signup_fan
+  # Register a fan
+  def fan
     if request.get?
       @fan = Fan.new
       return
@@ -74,7 +81,7 @@ class SignupController < ApplicationController
     
     # Create the fan object and send the confirmation email in a transaction
     begin
-      Fan.transaction(@band) do
+      Fan.transaction(@fan) do
         code = @fan.create_confirmation_code
         
         # Create a url for the confirm action
@@ -97,7 +104,6 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       flash[:notice] = "Error registering your account: #{ex.message}"
-      puts "ERROR #{ex.message}"
     end
   end
   

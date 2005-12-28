@@ -1,0 +1,31 @@
+<% @page_title = "Send Feedback" %>
+
+<%= start_form_tag %>
+<table class="form-table">
+	
+	<tr>
+		<th>Name:</th>
+		<td><%= text_field_tag 'user', nil, :size => "30" %></td>
+		<td class="info">
+		</td>
+	</tr>
+	
+	<tr>
+		<th>Email:</th>
+		<td><%= text_field_tag 'email', nil, :size => "30" %></td>
+		<td class="info">
+			Only used to reply to your feedback
+		</td>
+	</tr>
+
+	<tr>
+		<th>Feedback:</th>
+		<td colspan="2"><%= text_area_tag 'feedback', nil, {"rows" => 12, "cols" => "12"} %></td>
+	</tr>
+	
+	<tr class="submit">
+		<td></td>
+		<td><%= submit_tag 'Send Feedback' %></td>
+	</tr>
+</table>
+<%= end_form_tag %>

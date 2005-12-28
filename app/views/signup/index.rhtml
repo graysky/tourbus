@@ -1,0 +1,53 @@
+<% @page_title = "Sign Up" %>
+
+<table border="0" width="98%" cellspacing="0">
+<tr>
+<td>
+
+<div class="signup_box">
+<h3>Music Fan?</h3>
+
+Sign up to:
+
+<ul>
+	<li>Find out when your favorites bands are coming to town</li>
+	
+	<li>Discover new music</li>
+	
+</ul>
+
+<br/>
+<center>
+<%= link_to("Sign Up Now", :controller => "signup", :action => "fan") %>
+</center>
+</div>
+
+</td>
+
+<td width="20%">
+&nbsp;
+</td>
+
+<td>
+
+<div class="signup_box">
+
+<h3>In a Band?</h3>
+
+Sign up your promising local band to:
+
+<ul>
+	<li>Spread the word about your shows</li>
+	
+	<li>Find other bands in your scene</li>
+	
+</ul>
+
+<center>
+<%= link_to("Sign Up Now", :controller => "signup", :action => "band") %>
+</center>
+</div>
+
+</td>
+</tr>
+</table>

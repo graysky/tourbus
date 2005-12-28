@@ -1,0 +1,16 @@
+<html>
+<body>
+
+<p>
+New Feedback sent at: <%= @sent %> <br/> <br/>
+
+From: <%= @user %> <br/>
+Email address: <%= @email %> <br/>
+
+<%= simple_format( sanitize(@feedback) ) %>
+
+</p>
+
+
+</body>
+</html>

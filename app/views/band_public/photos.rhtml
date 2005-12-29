@@ -1,6 +1,9 @@
 <div id="main_no_side">
 
-<h1><%= @band.name %> <span><%= public_band_link "Back To Main Band Page", @band %></span></h1>
+<% @header_title = @band.name + "/Photos" %>
+
+
+<span><%= public_band_link "Back To Main Band Page", @band %></span>
 
 	<%= render(
 	:partial => "shared/photo_preview", 

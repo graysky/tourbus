@@ -1,6 +1,6 @@
 <div id="main_no_side">
 
-<h1><%= @venue.name %> <span>FIXME (like to venue page)</span></h1>
+<% @header_title = @venue.name + "/Photos" %>
 
 	<%= render(
 	:partial => "shared/photo_preview", 

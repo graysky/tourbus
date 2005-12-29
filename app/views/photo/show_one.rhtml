@@ -5,7 +5,8 @@
 	header = @name
 %>
 
-<h1><%= @name %> <span><a href="<%= photo_preview_page_link @photo, @showing_creator %>">Back To All Photos</a><span></h1>
+<% @header_title = @name + "/Photos/IMG-00455" %>
+<span><a href="<%= photo_preview_page_link @photo, @showing_creator %>">Back To All Photos</a><span>
 
 <table class="photo_table">
 <tr><td><%= photo_preview_cell_contents(@photo, 'normal', @showing_creator) %>

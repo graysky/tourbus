@@ -1,6 +1,10 @@
 <div id="main_no_side">
 
+<% @header_title = @fan.name + "/Photos" %>
+<!--
+<% TODO Need this link %>
 <h1><%= @fan.name %> <span><%= public_fan_link "Back To Main Fan Profile", @fan %></span></h1>
+-->
 
 	<%= render(
 	:partial => "shared/photo_preview", 

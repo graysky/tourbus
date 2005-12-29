@@ -75,6 +75,18 @@
 <span class="testme">Users</span>
 </div>
 
+
+<%
+	if @header_title
+%>
+	<div id="content_header">
+		<h1><%= @header_title %></h1>
+	</div>
+<%
+	end
+%>
+
+
 <div id="content">
 <p style="color: green"><%= flash[:notice] %></p>
 <%= @content_for_layout %>

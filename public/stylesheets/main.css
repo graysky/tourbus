@@ -154,6 +154,27 @@ td, p
 	text-decoration:none;
 }
 
+#content_header {
+	padding-top:4px;
+	padding-bottom:4px;
+	border:1px solid #ccc;
+	border-top:0;
+	padding-left:20px;
+	background-color:#eee;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}	
+
+#content_header a {
+	text-decoration:none;
+}
+
+#content_header h1 {
+	padding:0;
+	margin:0;
+	font-size:28px;
+	color:#484A4C;
+}
+
 /* Boxes */
 .signup_box
 {

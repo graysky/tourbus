@@ -20,9 +20,15 @@ ActionController::Routing::Routes.draw do |map|
 
   # Private fan stuff
   map.connect 'fans/:action/:id', :controller => 'fan'
+
+  # Login action
+  map.connect 'login/:action/:id', :controller => 'login'
   
   # Signup action
   map.connect 'signup/:action/:id', :controller => 'signup'
+  
+  # Feedback
+  map.connect 'feedback/:action/:id', :controller => 'feedback'
   
   # Show controller (TODO Sort this out)
   map.connect 'show/:id', :controller => 'show', :action => 'show'

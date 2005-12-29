@@ -3,16 +3,28 @@
 <%= start_form_tag %>
 <table class="form-table">
 	
+	<% 
+		# Set up initial field values
+		name = ""
+		email_addr = ""
+
+		if logged_in?
+			email_addr = logged_in.contact_email
+			name = logged_in.name
+		end
+		%>
+	
 	<tr>
 		<th>Name:</th>
-		<td><%= text_field_tag 'user', nil, :size => "30" %></td>
+		<td><%= text_field_tag 'user', name, :size => "30" %></td>
 		<td class="info">
 		</td>
 	</tr>
 	
 	<tr>
 		<th>Email:</th>
-		<td><%= text_field_tag 'email', nil, :size => "30" %></td>
+		
+		<td><%= text_field_tag 'email', email_addr, :size => "30" %></td>
 		<td class="info">
 			Only used to reply to your feedback
 		</td>

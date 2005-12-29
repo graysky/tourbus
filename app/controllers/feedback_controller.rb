@@ -6,8 +6,6 @@ class FeedbackController < ApplicationController
 
     # The user is requesting the form  
     if request.get?
-      
-      # Set up email address if we have it
       return
     end
     

@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
   helper_method :logged_in_fan
   helper_method :logged_in_band
+  helper_method :logged_in
   
   before_filter :configure_charsets
 
@@ -45,6 +46,19 @@ class ApplicationController < ActionController::Base
       return true
     else
       return false
+    end
+  end
+  
+  # Return the logged in band or fan
+  # or nil if neither are logged in
+  def logged_in
+  
+    if logged_in_fan
+      return logged_in_fan
+    elsif logged_in_band
+      return logged_in_band
+    else
+      return nil
     end
   end
   

@@ -1,31 +1,26 @@
 <% @header_title = "Add a Show" %>
 
+
+<% 
+	  content_for("head") do 
+%>
+	  <%= stylesheet_link_tag "subModal.css" %>
+  	  <%= javascript_include_tag "subModal" %>
+<%  
+	  end  
+%>
+
 <div>
 	
 	<script type="text/javascript">
-		function switch_venue_divs(val)
-		{
-			// This needs to figure out the value from the 3 radios
-			if (val == "search") {
-				Element.show('venue_search');
-				Element.hide('venue_new');
-			}
-			else if (val == "new") {
-				Element.show('venue_new');
-				Element.hide('venue_search', 'venue_search_results');
-			}
-		}
-		
 		function use_existing_venue(id, name, type)
 		{
 			$("selected_venue_id").value = id;
 			$("selected_venue_name").value = name;
-			if (type == "search") {
-				new Effect.Fade("venue_search_results");
-				//Element.hide("venue_search_results");
-			}
+			
+			new Effect.Fade("venue_search_results");
+			
 			$("selected_venue").innerHTML = name;
-			//new Effect.Highlight("selected_venue");
 		}
 		
 		function do_venue_appear()
@@ -49,26 +44,6 @@
 	%>
 	<%= start_form_tag({:controller => controller, :action => action}, :onsubmit => "setBands()") %>
 	<%= error_messages_for 'show' %>
-	<%= error_messages_for 'venue' %>
-
-	<% if params[:address_error] %>
-		<center>
-		<div class="error-prompt-box">
-			<h3>Address Error</h3>
-			<p>
-			We could not find the address you entered for the new venue.
-			It is very important that we have an address for the venue
-			so we can show it on the map. Please correct the address if you can,
-			but if you are willing to add a venue without an address check the
-			box below and click "Add Show" again.
-			</p>
-			<table><tr>
-				<td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td>
-				<td>Add venue with invalid address</td>
-			</tr></table>
-		</div>
-		</center>
-	<% end %>
 
 	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
 	<input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
@@ -83,74 +58,31 @@
 			</td>
 		</tr>
 		<tr>
-			<th>City/State/Zip:</th>
-			<td>
-				<%= text_field 'venue', 'city', "size" => 20 %>
-				<%= select 'venue', 'state', states_for_select %>
-				<%= text_field 'venue', 'zipcode', "size" => 5, "maxlength" => 5 %>
-			</td>
-			<td class="info">
-				Enter the city, state and zicode of the show. This will allow us to
-				find all the venues in your area.
-			</td>
-		</tr>
-		<tr>
 			<th>Venue:</th>
 			<td style="padding-top:16px">
 				<span id="selected_venue">
 					<% if !@params[:selected_venue_name].nil? && @params[:selected_venue_name] != "" %>
 						<%= @params[:selected_venue_name] %>
 					<% else %>
-						<em>None</em>
+						<em>Search for an existing venue below</em>
 					<% end %>
 					
 				</span>
-				<div style="margin-top:8px;margin-left:-4px">
-					<%= radio_button_tag "venue_type", "search", params["venue_type"].nil? || params["venue_type"] == "search" , "onchange" => "switch_venue_divs('search')"%> Search
-					<%= radio_button_tag "venue_type", "new", params["venue_type"] == "new", "onchange" => "switch_venue_divs('new')" %> Add New
-				</div>
 				
 				<div id="venue_search" style="margin-top:8px">
 					<%= text_field_tag 'venue_search_term' %> &nbsp;
-					<%= link_to_remote  "Search",
-										:update => 'venue_search_results',
-										:url => { :controller => "shows", :action => :venue_search, :id => 1 },
-										:with => "Form.serialize(document.forms[0])",
-										:loading => "do_venue_loading()",
-										:before => "do_venue_appear()"
-										%>		
+					<%= observe_field 'venue_search_term', :frequency => 0.7,
+										 :with => "'name=' + escape(value)",
+										 :update => "venue_search_results",
+										 :loading => "do_venue_loading()",
+										 :before => "do_venue_appear()", 
+										 :url => { :controller => "shows", :action => :venue_search, :id => 1 }
+					%>
 				</div>
 				
 				<div id="venue_search_results" style="display:none">
 					<%= render(:partial => "shared/venue_results") %>
 				</div>
-				
-				<div id="venue_new" style="margin-top:8px;display:none">
-					<span class="info">
-						Create a new venue in the city entered above.
-					</span>
-					<table class="form-table">
-						<tr>
-							<th>Name:</th>
-							<td><%= text_field 'venue', 'name' %></td>
-							<td class="info">
-							</td>
-						</tr>
-						<tr>
-							<th>Address:</th>
-							<td><%= text_field 'venue', 'address' %></td>
-							<td class="info">
-							</td>
-						</tr>
-						<tr>
-							<th>Website:</th>
-							<td><%= text_field 'venue', 'url' %></td>
-							<td class="info">
-							</td>
-						</tr>
-					</table>
-				</div>
-				
 			</td>
 			<td class="info">
 				TODO
@@ -324,5 +256,37 @@
 		initBands();
 		$('bands').innerHTML = '<%= @bands_playing_content %>';
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div id="popupMask">&nbsp;</div>
+	
+	<div id="popupContainer">
+ <div id="popupInner">
+  <div id="popupTitleBar">
+   <div id="popupTitle"></div>
+   <div id="popupControls">
+    <img src="/images/close_dialog.gif" onclick="hidePopWin(false);" />
+   </div>
+  </div>
+  <iframe src="" style="width:100%;height:100%;background-color:transparent;" scrolling="auto" frameborder="0" allowtransparency="true" id="popupFrame" name="popupFrame" width="100%" height="100%"></iframe>
+ </div>
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </div>

@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Venue controller
   map.connect 'venue/:id', :controller => 'venue', :action => 'show'
-  map.connect 'venue/:action/:id', :controller => 'venue'
+  map.connect 'venues/:action/:id', :controller => 'venue'
   
   # Comment controller
   map.connect 'comment/:action/:id', :controller => 'comment'

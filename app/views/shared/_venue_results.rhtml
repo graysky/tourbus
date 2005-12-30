@@ -4,6 +4,8 @@
 
 <% if @params[:error_message] %>
 	<span class="error_message"><%= @params[:error_message] %></span>
+	<br/>
+	<br/>
 <% end %>
 
 <% if !@venues.nil? %>	
@@ -19,6 +21,17 @@
 		</tr>
 	<%  end %>
 </table>
+
+
+<span class="msg">
+<em>Didn't find the venue you're looking for?</em><br/>
+
+<a href="#" onclick="showPopWin('<%= url_for :controller => "venues", :action => "add_dialog", :id => 1 %>' + '?name=' + $('venue_search_term').value, 500, 400, null, 'Add a Venue');">Add it to TourBus</a>
+</span>
+<br/>
+<br/>
+
+
 
 <!-- FACTOR THIS OUT -->
 

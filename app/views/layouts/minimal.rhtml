@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Tourbus: 
+  <%= 
+  	if @page_title 
+	  @page_title
+   	else
+   	  # Default title
+      "Find Local, Live Music" 
+   	end
+   %>
+  
+  </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <%= stylesheet_link_tag "main" %>
+  <%= stylesheet_link_tag "calendar-system.css" %>
+  <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "effects" %>
+  <%= javascript_include_tag "controls" %>
+  <%= javascript_include_tag "calendar.js" %>
+  <%= javascript_include_tag "calendar-en.js" %>
+  <%= javascript_include_tag "calendar-setup.js" %>
+  
+  <%= @content_for_head %>
+</head>
+
+<body onload="<%= @content_for_onload %>" class="minimal_body">
+
+
+<div id="content">
+<%= @content_for_layout %>
+</div>
+
+
+</body>
+</html>

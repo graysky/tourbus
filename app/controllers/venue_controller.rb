@@ -8,6 +8,48 @@ class VenueController < ApplicationController
 
   layout "public"
   
+  def add_dialog
+    if @request.get?
+      @venue = Venue.new
+      
+      # The initial name might be passed as a parameter
+      @venue.name = params[:name]
+      render :layout => "minimal"
+      return
+    end
+    
+    @venue = Venue.new(params[:venue])
+    
+    # Construct and verify the full address
+    citystatezip = params[:citystatezip]
+    addr = @venue.address
+    addr += "," if addr != ""
+    addr += citystatezip
+    
+    result = Geocoder.yahoo(addr)
+    
+    if result && result[:precision] == "address"
+      @venue.latitude = result[:latitude]
+      @venue.longitude = result[:longitude]
+      @venue.city = result[:city]
+      @venue.address = result[:address]
+      @venue.state = result[:state]
+      @venue.zipcode = result[:zipcode]
+    elsif not params[:ignore_address_error]
+      params[:address_error] = true
+      render :layout => "minimal"
+      return
+    end
+    
+    if @venue.save
+      render :action => :close_dialog, :layout => false
+    end
+  end
+  
+  def close_dialog
+    
+  end
+  
   # For displaying a single venue
   def show
     # Determine the shows to display

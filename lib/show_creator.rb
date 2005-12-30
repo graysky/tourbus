@@ -61,7 +61,9 @@ module ShowCreator
   
   def venue_location_conditions()
     if ((@venue.city == "" || @venue.state == "") && @venue.zipcode == "")
-      raise "Please enter a city/state or zipcode"
+      # FIXME
+      return ""
+      #raise "Please enter a city/state or zipcode"
     end
     
     if (@venue.zipcode != "")

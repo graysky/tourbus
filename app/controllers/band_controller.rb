@@ -116,14 +116,12 @@ class BandController < ApplicationController
   end
   
   def save_band_profile(msg, redirect)
-	photo = Photo.new(params[:photo])
-	photo.band = @band
-	photo.save
-	#@band.update_attributes(params[:band])
-    #if @band.save
-    #  flash[:notice] = msg
-    redirect_to(:action => redirect)
-    #end
+	
+	@band.update_attributes(params[:band])
+    if @band.save
+      flash[:notice] = msg
+      redirect_to(:action => redirect)
+    end
   end
   
 end

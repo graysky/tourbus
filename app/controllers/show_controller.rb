@@ -60,18 +60,22 @@ class ShowController < ApplicationController
   # Search for a venue as part of adding a show
   def venue_search
     begin
-      name = params[:venue_search_term]
+      name = params[:name]
       @venue = Venue.new(params[:venue])
       conditions = venue_location_conditions
          
       if !name.nil? && name != ""
-        conditions = ["#{conditions} and name like ?", "%#{name}%"]
+        conditions << " and " if conditions != ""
+        conditions = ["#{conditions} name like ?", "%#{name}%"]
+      else
+        conditions = nil
       end
       
       @venue_pages, @venues = paginate :venues, 
                                        :conditions => conditions, 
-                                       :order_by => "name DESC", 
-                                       :per_page => 20
+                                       :order_by => "name DESC",
+                                       # FIXME 10 
+                                       :per_page => 1
       
       if (@venue_pages.item_count == 0)
         params[:error_message] = "No results found"

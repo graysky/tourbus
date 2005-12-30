@@ -50,6 +50,13 @@ body
 	margin:0 auto;
 }
 
+.minimal_body
+{
+	#text-align:center;
+	background-color: white;
+	margin:0 auto;
+}
+
 a
 {
 	color:#99CC00;	
@@ -527,6 +534,15 @@ table.form-table #selected_venue {
 	color:red;
 	font-style:italic;
 	margin-left:8px;
+}
+
+#venue_search_results .msg {
+	margin-left:8px;
+}
+
+#venue_search_results .msg a {
+	margin-left:8px;
+	font-size: 11px;
 }
 
 #venue_results_table {

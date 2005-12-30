@@ -131,15 +131,17 @@ init_map()
 </table>
 
 
-<h2 class="single_line_controls">Shows 
+<div class="simple_box_header">
+	<span class="title">Shows</span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
 	<span>&nbsp;</span>
-	<span><%= show_controls "show" %></span>
-</h2>
+	<span><%= show_controls "show" %></span>	
+</div>
+
 <div class="results_box">
 	<%= show_results @shows, false %>
 </div>

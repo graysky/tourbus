@@ -10,7 +10,8 @@
 	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
 %>
 
-<h2 class="single_line_controls">Photos
+<div class="simple_box_header">
+	<span class="title">Photos</span>
 	<% 
 		if not full
 		  options = { :action => "photos", :id => id }
@@ -24,7 +25,8 @@
 	<% if logged_in? and not showing_creator %> 
 		<span><a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
 	<% end %>
-</h2>
+</div>
+
 
 <% # TODO Pull out into js file %>
 <script type="text/javascript">

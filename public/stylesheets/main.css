@@ -212,12 +212,45 @@ td, p
 	padding-bottom: 10px;
 }
 
+.simple_box_header {
+	margin-top:16px;
+	border-bottom: 2px solid #99cc00;
+	width:580px;
+}
+
+.simple_box_header span {
+	color: black;
+	font-size:12px;
+}
+
+
+.simple_box_header a {
+	color: #99cc00;
+	text-decoration:none;
+	font-weight:bold;
+	font-size:12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.simple_box_header .title {
+	color: #99cc00;
+	font-weight:bold;
+	font-size:18px;
+	padding-right:16px;
+}
+
+.results_box a {
+	color: #99cc00;
+}
+
+
+
 /* Search Results */
 .results_box
 {
-	background-color: #F4F9E5;
-	border:1px solid #ADD039;
-	color:#4C5C5C;
+	#background-color: #F4F9E5;
+	#border:1px solid #ADD039;
+	#color:#4C5C5C;
 	width:200px;
 	font-size:12px;
 	margin-top:-4px;
@@ -230,7 +263,7 @@ td, p
 {
 	padding-bottom:8px;
 	margin-bottom:8px;
-	border-bottom:1px solid #ADD039;
+	border-bottom:1px solid #ddd;
 }
 
 
@@ -706,8 +739,8 @@ table.photo_table td span a {
 
 .photo_box
 {
-	background-color: #F4F9E5;
-	border:1px solid #ADD039;
+	#background-color: #F4F9E5;
+	#border:1px solid #ADD039;
 	color:#4C5C5C;
 	font-size:12px;
 	width:560px;
@@ -737,8 +770,8 @@ table.photo_table td span a {
 /* Comments */
 .comments_box
 {
-	background-color: #F4F9E5;
-	border:1px solid #ADD039;
+	#background-color: #F4F9E5;
+	#border:1px solid #ADD039;
 	color:#4C5C5C;
 	font-size:12px;
 	width:560px;
@@ -760,7 +793,7 @@ table.comments_table td {
 	vertical-align: top;
 	padding: 8px 8px 4px 4px;
 	text-align:left;
-	border-bottom:1px solid #ADD039;
+	border-bottom:1px solid #ddd;
 }
 
 table.comments_table td span {

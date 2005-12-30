@@ -45,6 +45,7 @@ CREATE TABLE `bands` (
   `confirmation_code` varchar(50) default '',
   `claimed` boolean default 1,
   `created_on` DATETIME,
+  `page_views` int(10) unsigned default 0,
   PRIMARY KEY  (`id`),
   KEY name_key (name),
   KEY band_id_key (band_id)
@@ -64,6 +65,7 @@ CREATE TABLE `venues` (
   `contact_email` varchar(100) NOT NULL,
   `latitude` VARCHAR(30),
   `longitude` VARCHAR(30),
+  `page_views` int(10) unsigned default 0,
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;
 
@@ -83,6 +85,7 @@ CREATE TABLE `fans` (
   `confirmed` boolean NOT NULL default 0,
   `confirmation_code` varchar(50) default '',
   `created_on` DATETIME,
+  `page_views` int(10) unsigned default 0,
   PRIMARY KEY  (`id`),
   KEY name_key (name)
 ) ENGINE=InnoDB;
@@ -184,6 +187,7 @@ CREATE TABLE `shows` (
   `description` TEXT NOT NULL,
   `url` VARCHAR(100) NOT NULL,
   `date` DATETIME NOT NULL,
+  `page_views` int(10) unsigned default 0,
   `venue_id` int(10) unsigned NOT NULL,
   PRIMARY KEY(`id`),
   KEY `fk_venue` (`venue_id`),
@@ -195,6 +199,7 @@ CREATE TABLE `photos` (
   `filename` VARCHAR(100),
   `description` TEXT NOT NULL default '',
   `created_on` DATETIME NOT NULL,
+  `page_views` int(10) unsigned default 0,
   `show_id` int(10) unsigned,
   `band_id` int(10) unsigned,
   `venue_id` int(10) unsigned,

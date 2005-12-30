@@ -8,8 +8,10 @@ class FanPublicController < ApplicationController
   
   layout "public"
   
+  # Show the main fan page
   def index
-  
+    # Record the page view
+    inc_page_views(@fan)
   end
   
   def change_logo

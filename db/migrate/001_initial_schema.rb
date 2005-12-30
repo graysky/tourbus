@@ -21,7 +21,7 @@ class InitialSchema < ActiveRecord::Migration
     # In addition to the regular table created below, there is an additional
     # table added by Rail migration named "schema_info" with which version of the
     # schema is present.
-  
+    
     # Create all the regular tables for TourBus
     create_table "band_services", :force => true do |t|
       t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
@@ -47,6 +47,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "confirmation_code", :string, :limit => 50, :default => ""
       t.column "claimed", :boolean, :default => true
       t.column "created_on", :datetime
+      t.column "page_views", :integer, :limit => 10, :default => 0
     end
     
     add_index "bands", ["name"], :name => "name_key"
@@ -93,6 +94,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "confirmed", :boolean, :default => false, :null => false
       t.column "confirmation_code", :string, :limit => 50, :default => ""
       t.column "created_on", :datetime
+      t.column "page_views", :integer, :limit => 10, :default => 0
     end
     
     add_index "fans", ["name"], :name => "name_key"
@@ -101,6 +103,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "filename", :string, :limit => 100
       t.column "description", :text, :default => "", :null => false
       t.column "created_on", :datetime, :null => false
+      t.column "page_views", :integer, :limit => 10, :default => 0
       t.column "show_id", :integer, :limit => 10
       t.column "band_id", :integer, :limit => 10
       t.column "venue_id", :integer, :limit => 10
@@ -120,6 +123,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "description", :text, :default => "", :null => false
       t.column "url", :string, :limit => 100, :default => "", :null => false
       t.column "date", :datetime, :null => false
+      t.column "page_views", :integer, :limit => 10, :default => 0
       t.column "venue_id", :integer, :limit => 10, :default => 0, :null => false
     end
     
@@ -137,6 +141,15 @@ class InitialSchema < ActiveRecord::Migration
     
     add_index "tags_bands", ["band_id"], :name => "fk_bt_band"
     add_index "tags_bands", ["tag_id"], :name => "fk_bt_tag"
+    
+    create_table "tags_shows", :force => true do |t|
+      t.column "show_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "tag_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "tag_type", :integer, :limit => 10, :default => 0, :null => false
+    end
+    
+    add_index "tags_shows", ["show_id"], :name => "fk_st_show"
+    add_index "tags_shows", ["tag_id"], :name => "fk_st_tag"
     
     create_table "tags_venues", :force => true do |t|
       t.column "venue_id", :integer, :limit => 10, :default => 0, :null => false
@@ -177,6 +190,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "contact_email", :string, :limit => 100, :default => "", :null => false
       t.column "latitude", :string, :limit => 30
       t.column "longitude", :string, :limit => 30
+      t.column "page_views", :integer, :limit => 10, :default => 0
     end
     
     create_table "zip_codes", :id => false, :force => true do |t|
@@ -195,7 +209,6 @@ class InitialSchema < ActiveRecord::Migration
     add_index "zip_codes", ["latitude"], :name => "latitude"
     add_index "zip_codes", ["longitude"], :name => "longitude"
     add_index "zip_codes", ["country"], :name => "country"
+    
   end
-  
-  
 end

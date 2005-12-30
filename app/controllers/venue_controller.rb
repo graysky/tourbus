@@ -19,9 +19,11 @@ class VenueController < ApplicationController
     when "all"
       @shows = @venue.shows
     else
-      puts "illegal value: " + params[:show_display]
-      flash[:error] = "Illegal value for show_display"
+      flash[:error] = "Illegal value for show_display: " + params[:show_display]
     end
+    
+    # Record the page view
+    inc_page_views(@venue)
   end
   
   # TODO FIXME - Can't use "@venue.name" because the venue's ID wans't passed in

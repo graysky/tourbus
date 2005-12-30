@@ -23,6 +23,19 @@ class ApplicationController < ActionController::Base
       end
   end
   
+  # Increments the objects page count and saves it
+  # Assumes that "object.page_views" and "object.save" work
+  def inc_page_views(object)
+  
+    if object.nil?
+      return
+    end
+  
+    # TODO Don't count page views from users G & M
+    object.page_views += 1    
+    object.save
+  end
+  
   # Return the URL of the band, which can be passed
   # as an optional param.
   def public_band_url(band = nil)

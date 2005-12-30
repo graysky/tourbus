@@ -25,6 +25,9 @@ class BandPublicController < ApplicationController
       logger.error "illegal value: " + params[:show_display]
       flash[:error] = "Illegal value for show_display"
     end
+    
+    # Record the page view
+    inc_page_views(@band)
   end
   
   def change_logo

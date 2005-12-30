@@ -57,7 +57,8 @@
 	<%
 		elsif !is_fan and !is_band
 	%>
-		<%= link_to("Login", :controller => "band", :action => "login") %> |
+		<%= link_to("Band Login", :controller => "band", :action => "login") %> |
+		<%= link_to("Fan Login", :controller => "fan", :action => "login") %> |
 		<%= link_to("Feedback", :controller => "feedback") %> |
 	    <%= link_to("Sign Up", :controller => "signup") %>
 	<%

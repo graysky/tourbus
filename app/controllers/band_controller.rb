@@ -27,7 +27,7 @@ class BandController < ApplicationController
   end
 
   def lookup_band_for_show
-    puts "Lookup band name: " + params[:name]
+    #puts "Lookup band name: " + params[:name]
     
     name = params[:name].strip
     if params[:name] && name != ""
@@ -40,7 +40,7 @@ class BandController < ApplicationController
   end
 
   def add_selected_band
-    p params
+    #p params
     id = params[:id]
     if id.nil? or id == "" or id == "null"
       # Are adding a new band with the given name. Make sure it's not a duplicate...

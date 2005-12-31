@@ -24,7 +24,7 @@ class ShowController < ApplicationController
       begin
         create_new_show_and_venue
       rescue Exception => e
-        puts e
+        #puts e
         create_bands_playing_content
         return
       end

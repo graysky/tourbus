@@ -74,8 +74,8 @@ class BandPublicController < ApplicationController
           end
         end
       rescue Exception => ex
-        p ex
-        p ex.backtrace
+        #p ex
+        #p ex.backtrace
         create_bands_playing_content
         return
       end

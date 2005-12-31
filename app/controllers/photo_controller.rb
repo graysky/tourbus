@@ -13,8 +13,8 @@ class PhotoController < ApplicationController
     when Photo.Venue then photo.venue = Venue.find_by_id(params[:id])
     end
     
-    photo.created_by_band_id = logged_in_band if logged_in_band
-    photo.created_by_fan_id = logged_in_fan if logged_in_fan
+    photo.created_by_band = logged_in_band if logged_in_band
+    photo.created_by_fan = logged_in_fan if logged_in_fan
     photo.save
     
     str = render_to_string(

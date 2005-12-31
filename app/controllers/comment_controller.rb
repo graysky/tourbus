@@ -25,8 +25,8 @@ class CommentController < ApplicationController
     end
 
     # Determine who posted the comment    
-    comment.created_by_band_id = logged_in_band if logged_in_band
-    comment.created_by_fan_id = logged_in_fan if logged_in_fan
+    comment.created_by_band = logged_in_band if logged_in_band
+    comment.created_by_fan = logged_in_fan if logged_in_fan
     comment.save
     
     # Render the new comment

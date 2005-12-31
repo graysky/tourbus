@@ -1,4 +1,5 @@
 require 'RMagick'
+require 'pathname'
 
 class Photo < ActiveRecord::Base
   belongs_to :show
@@ -38,6 +39,11 @@ class Photo < ActiveRecord::Base
               { :name => "preview", :size => "120x120>" },
               { :name => "normal", :size => "575x575>" }].freeze
               
+  # The short display name of the photo.
+  # If we want, we can store this in the db and allow the user to set it.
+  def name
+    Pathname.new(self.relative_path).basename(".*").to_s
+  end
   
   def file=(file)
     self.filename = sanitize_filename(file.original_filename)

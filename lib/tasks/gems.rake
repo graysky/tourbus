@@ -1,3 +1,8 @@
+# Taken from:
+# http://nubyonrails.topfunky.com/articles/2005/12/22/freeze-other-gems-to-rails-lib-directory
+# Run with:
+# rake freeze_other_gems
+
 desc "Copy third-party gems into ./lib"
 task :freeze_other_gems do
   # TODO Get this list from parsing environment.rb

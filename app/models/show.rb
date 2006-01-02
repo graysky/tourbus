@@ -29,6 +29,8 @@ class Show < ActiveRecord::Base
     # Create a string that ParseDate can handle
     date_str = "#{@formatted_date} #{@time_hour}:#{@time_minute}#{@time_ampm}"
     components = ParseDate.parsedate(date_str)
+    return if components[0].nil?
+    
     self.date = Time.local(*components)
   end
   

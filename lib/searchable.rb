@@ -12,6 +12,7 @@ module FerretMixin
       
       module ClassMethods
         include Ferret
+        include Ferret::Search # Odd things get doubly-loaded if you don't include this...
         
         def acts_as_searchable(options = {})
           class_eval do
@@ -32,19 +33,55 @@ module FerretMixin
         # num_docs:	The number of results returned. Default is 10
         # sort:	An array of SortFields describing how to sort the results. 
         def ferret_search(q, options = {})
-          query_parser = QueryParser.new(["name", "contents"])
-          query = Search::BooleanQuery.new
-          
-          # Parse the query provided by the user
-          query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
-          
-          # Restrict the query to items of this class
-          query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
+          query = basic_ferret_query(q, options)
           
           #if not date.nil?
             #query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, false, false), Search::BooleanClause::Occur::MUST)
           #end
+          
           logger.debug("Search: #{query.to_s}")
+          ret = []
+          ferret_index.search_each(query, options) do |doc, score|
+            # This is not very efficient, but you can't ask for all the records
+            # at the same time if you want to keep ordering by score.
+            # Luckily, there should never be that many items as search results.
+            # TODO Evaluate this. Another option is to use the FIELD function:
+            # order by field(id, '3','1','4','2'), for example
+            ret << self.find(ferret_index[doc]["id"])
+          end
+          
+          return ret
+        end
+        
+        # Search using the given query but only include results with a date newer than
+        # the given date, and only include results within the given radius (in miles) 
+        # of the given coordinate.
+        #
+        # A date search requires a "date" field, the location search requires a "latitude"
+        # and "longitude" field. 
+        # 
+        # If date is nil then the date search will be ignored for this query.
+        # If latitude or longitude is nil location search will be ignored for this query.
+        # 
+        # Results will first be ordered by date (if applicable), then relevance.
+        #
+        # Options:
+        # filter:	Filters docs from the search result
+        # first_doc:	The index in the results of the first doc retrieved. Default is 0
+        # num_docs:	The number of results returned. Default is 10
+        # sort:	An array of SortFields describing how to sort the results.
+        def ferret_search_date_location(q, date, lat, long, radius, options = {})
+          query = basic_ferret_query(q, options)
+          
+          if not date.nil?
+            query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, true, false), Search::BooleanClause::Occur::MUST)
+            
+            # Sort by date, then relevent
+            date_sort = SortField.new("date", {:sort_type => SortField::SortType::INTEGER})
+            options[:sort] = [date_sort, SortField::FIELD_SCORE]
+          end
+          
+          logger.debug("Search by date and location: #{query.to_s}")
           ret = []
           ferret_index.search_each(query, options) do |doc, score|
             # This is not very efficient, but you can't ask for all the records
@@ -63,6 +100,19 @@ module FerretMixin
                                                      :path => "#{RAILS_ROOT}/db/tb.index",
                                                      :auto_flush => true,
                                                      :create_if_missing => true)                                            
+        end
+        
+        # Set up a basic query
+        def basic_ferret_query(q, options = {})
+          query_parser = QueryParser.new(["name", "contents"])
+          query = Search::BooleanQuery.new
+          
+          # Parse the query provided by the user
+          query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
+          
+          # Restrict the query to items of this class
+          query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
+          return query
         end
       end
     

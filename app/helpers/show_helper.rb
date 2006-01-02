@@ -1,5 +1,5 @@
 module ShowHelper
-  def show_results(shows, show_map)
+  def show_results(shows, show_map, show_venue = true)
     out = ""
     for show in shows
       out << "<div>"
@@ -16,11 +16,20 @@ module ShowHelper
         out << ", " + show.cost
       end
       out << "<br/>"
-      if show.title != ""
-        out << link_to(show.title, :controller => "show", :action => "show", :id => show.id)
-        out << " at "
+      
+      title = show.title
+      if title == ""
+        # TODO Optimize this by saving this string to the db when the show is saved
+        show.bands.each { |band| title << band.name + "/" }
+        title.chomp!("/")
       end
-      out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"
+      
+      out << "<b>" + link_to(title, :controller => "show", :action => "show", :id => show.id) + "</b>"
+      out << "<br/>"
+      if show_venue
+        out << "at "
+        out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"
+      end
       out << show.description + "<br/>"
       out << "</td></tr></table>"
       out << "</div>"

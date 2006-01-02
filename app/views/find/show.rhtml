@@ -5,27 +5,17 @@
 <div id="search_results">
 
 <%= start_form_tag %>
-Search for shows: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
+Search for upcoming shows: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
 <%= end_form_tag %>
 
 <% # TEMP TEMP TEMP TEMP TEMP TEMP %>
 
-<%
+<%= 
 	if @results
-		for result in @results
-%>
-	<div class="result">
-		Got one
-	</div>
-<%
-		end
+		show_results @results, false 
 	end
 %>
 
 </div>
 
-</div>
-
-<div id="side">
-	COOL STUFF OVER HERE
 </div>

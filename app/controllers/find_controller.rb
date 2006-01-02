@@ -1,13 +1,12 @@
 class FindController < ApplicationController
   layout "public"
+  helper :show
   
   def band
     return if request.get?
     
     query = params[:query].strip
-    logger.info "Search for bands: #{query}"
     @results = Band.ferret_search(query)
-    logger.info "Found bands: #{@results}"
   end
 
   def venue
@@ -18,8 +17,6 @@ class FindController < ApplicationController
     return if request.get?
     
     query = params[:query].strip
-    logger.info "Search for shows: #{query}"
-    @results = Show.ferret_search(query)
-    logger.info "Found shows: #{@results}"
+    @results = Show.ferret_search_date_location(query, Time.now, nil, nil, nil)
   end
 end

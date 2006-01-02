@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   database: tourbus_dev
-  host: localhost
+  host: 127.0.0.1
   username: root
   password: bighit
 
@@ -11,13 +11,13 @@ development:
 test:
   adapter: mysql
   database: tourbus_test
-  host: localhost
+  host: 127.0.0.1
   username: root
   password: bighit
 
 production:
   adapter: mysql
   database: tourbus_production
-  host: localhost
+  host: 127.0.0.1
   username: root
   password: bighit

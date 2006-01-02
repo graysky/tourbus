@@ -31,7 +31,7 @@ class UploadAddr < ActiveRecord::Base
       return false
     end
 
-    p "Address: #{addr}"
+    #p "Address: #{addr}"
     
     # Check that the form is a "wordDDword@" (where DD < 100)
     # TODO Need to factor out hardcoded domain

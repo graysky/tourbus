@@ -27,11 +27,9 @@ class BandController < ApplicationController
   end
 
   def lookup_band_for_show
-    #puts "Lookup band name: " + params[:name]
-    
     name = params[:name].strip
     if params[:name] && name != ""
-      bands = Band.ferret_search(name + "*", :num_docs => 5)
+      bands, count = Band.ferret_search(name + "*", :num_docs => 5)
     else
       bands = []
     end

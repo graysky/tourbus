@@ -48,4 +48,13 @@ class Venue < ActiveRecord::Base
     return url
   end
   
+  # Add venue-specific searchable fields for ferret indexing
+  def add_searchable_fields
+    # We need to index our location
+    fields = []
+    fields << Document::Field.new("latitude", self.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("longitude", self.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    return fields
+  end
+  
 end

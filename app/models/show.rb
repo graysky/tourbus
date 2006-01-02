@@ -81,8 +81,13 @@ class Show < ActiveRecord::Base
   
   # Add show-specific searchable fields for ferret indexing
   def add_searchable_fields
+    fields = []
+    fields << Document::Field.new("latitude", self.venue.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    
     # We need to be able to search by the date of the show
-    Document::Field.new("date", Utils::DateTools.time_to_s(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("date", Utils::DateTools.time_to_s(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    return fields
   end
   
   # Add show-specific searchable contents for ferret indexing

@@ -77,8 +77,7 @@ class ShowController < ApplicationController
       @venue_pages, @venues = paginate :venues, 
                                        :conditions => conditions, 
                                        :order_by => "name DESC",
-                                       # FIXME 10 
-                                       :per_page => 1
+                                       :per_page => 10
       
       if (@venue_pages.item_count == 0)
         params[:error_message] = "No results found"

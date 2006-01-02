@@ -578,6 +578,20 @@ table.form-table #selected_venue {
 	font-size:11px;
 }
 
+#search_paging_status {
+	margin-left:8px;
+	#padding-bottom:8px;
+	font-size:11px;
+}
+
+#search_paging_controls {
+	margin-bottom:8px;
+}
+
+#search_paging_controls a {
+	font-size:12px;
+}
+
 #band_logo_select
 {
 	margin-top:8px;

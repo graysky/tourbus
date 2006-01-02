@@ -27,6 +27,9 @@ module FerretMixin
         # Simplest search method. Returns an array of objects matching the query.
         # query is a string or a ferret Query object.
         #
+        # Returns an array where the first element is the results, and the second
+        # is the total number of hits
+        #
         # Options:
         # filter:	Filters docs from the search result
         # first_doc:	The index in the results of the first doc retrieved. Default is 0
@@ -41,7 +44,7 @@ module FerretMixin
           
           logger.debug("Search: #{query.to_s}")
           ret = []
-          ferret_index.search_each(query, options) do |doc, score|
+          count = ferret_index.search_each(query, options) do |doc, score|
             # This is not very efficient, but you can't ask for all the records
             # at the same time if you want to keep ordering by score.
             # Luckily, there should never be that many items as search results.
@@ -50,12 +53,15 @@ module FerretMixin
             ret << self.find(ferret_index[doc]["id"])
           end
           
-          return ret
+          return ret, count
         end
         
         # Search using the given query but only include results with a date newer than
         # the given date, and only include results within the given radius (in miles) 
         # of the given coordinate.
+        #
+        # Returns an array where the first element is the results, and the second
+        # is the total number of hits
         #
         # A date search requires a "date" field, the location search requires a "latitude"
         # and "longitude" field. 
@@ -72,7 +78,7 @@ module FerretMixin
         # sort:	An array of SortFields describing how to sort the results.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
-          
+          p options
           if not date.nil?
             query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, true, false), Search::BooleanClause::Occur::MUST)
             
@@ -83,7 +89,7 @@ module FerretMixin
           
           logger.debug("Search by date and location: #{query.to_s}")
           ret = []
-          ferret_index.search_each(query, options) do |doc, score|
+          count = ferret_index.search_each(query, options) do |doc, score|
             # This is not very efficient, but you can't ask for all the records
             # at the same time if you want to keep ordering by score.
             # Luckily, there should never be that many items as search results.
@@ -92,7 +98,7 @@ module FerretMixin
             ret << self.find(ferret_index[doc]["id"])
           end
           
-          return ret
+          return ret, count
         end
         
         def ferret_index

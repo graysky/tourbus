@@ -40,7 +40,7 @@ class Band < ActiveRecord::Base
   end
   
   def play_show(show, can_edit = true)
-    shows.push_with_attributes(show, :can_edit => can_edit)
+    show.bands << self
   end
   
   # Returns the band if it was authenticated.

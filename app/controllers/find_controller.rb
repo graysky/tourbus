@@ -5,9 +5,9 @@ class FindController < ApplicationController
     return if request.get?
     
     query = params[:query].strip
-    logger.info query
+    logger.info "Search for bands: #{query}"
     @results = Band.ferret_search(query)
-    logger.info @results
+    logger.info "Found bands: #{@results}"
   end
 
   def venue
@@ -16,5 +16,10 @@ class FindController < ApplicationController
 
   def show
     return if request.get?
+    
+    query = params[:query].strip
+    logger.info "Search for shows: #{query}"
+    @results = Show.ferret_search(query)
+    logger.info "Found shows: #{@results}"
   end
 end

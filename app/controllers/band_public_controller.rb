@@ -63,19 +63,19 @@ class BandPublicController < ApplicationController
       begin
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
-            @band.save!
+            @show.bands = @bands_playing
+            @show.save!
+            
             @bands_playing.each do |band| 
               if band.id.nil?
                 band.save!
               end
-              
-              band.play_show(@show, true)
             end
           end
         end
       rescue Exception => ex
-        #p ex
-        #p ex.backtrace
+        logger.error(ex.to_s)
+        @show.ferret_destroy
         create_bands_playing_content
         return
       end

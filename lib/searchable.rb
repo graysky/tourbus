@@ -4,12 +4,15 @@ module FerretMixin
   module Acts
     module Searchable
       
+      
       def self.append_features(base)
         super
         base.extend(ClassMethods)  
       end
       
       module ClassMethods
+        include Ferret
+        
         def acts_as_searchable(options = {})
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
@@ -28,7 +31,20 @@ module FerretMixin
         # first_doc:	The index in the results of the first doc retrieved. Default is 0
         # num_docs:	The number of results returned. Default is 10
         # sort:	An array of SortFields describing how to sort the results. 
-        def ferret_search(query, options = {})
+        def ferret_search(q, options = {})
+          query_parser = QueryParser.new(["name", "contents"])
+          query = Search::BooleanQuery.new
+          
+          # Parse the query provided by the user
+          query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
+          
+          # Restrict the query to items of this class
+          query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
+          
+          #if not date.nil?
+            #query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, false, false), Search::BooleanClause::Occur::MUST)
+          #end
+          logger.debug("Search: #{query.to_s}")
           ret = []
           ferret_index.search_each(query, options) do |doc, score|
             # This is not very efficient, but you can't ask for all the records
@@ -51,21 +67,22 @@ module FerretMixin
       end
     
       module InstanceMethods
+        include Ferret
         
         def ferret_save
           
           doc = Ferret::Document::Document.new
           
           # Index common fields
-          doc << Ferret::Document::Field.new("id", self.id, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-          doc << Ferret::Document::Field.new("ferret_class", self.class.name, 
-                                             Ferret::Document::Field::Store::YES,
-                                             Ferret::Document::Field::Index::UNTOKENIZED,
-                                             Ferret::Document::Field::TermVector::NO,
-                                             :binary => false,
-                                             :boost => 1.5)
+          doc << Ferret::Document::Field.new("id", self.id, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+          doc << Ferret::Document::Field.new("ferret_class", self.class.name.downcase, 
+                                             Document::Field::Store::YES,
+                                             Document::Field::Index::UNTOKENIZED)
           if respond_to?(:name)                                   
-            doc << Ferret::Document::Field.new("name", self.name, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
+            doc << Ferret::Document::Field.new("name", 
+                                               self.name, 
+                                               Document::Field::Store::YES, 
+                                               Document::Field::Index::TOKENIZED)
           end
           
           # Index all commonly searched info as an aggregated content string
@@ -78,15 +95,32 @@ module FerretMixin
             contents << self.tag_names.join(" ")
           end
           
-          doc << Ferret::Document::Field.new("contents", contents, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
+          # Type-specific contents
+          contents << " " + self.add_searchable_contents
           
-          # TODO User-defined
+          doc << Ferret::Document::Field.new("contents", contents.strip, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
+          
+          # Type-specific fields
+          [*self.add_searchable_fields].each { |field| doc << field }
           
           self.class.ferret_index << doc
         end
         
+        
+        protected
+        
+        # Override for type-specific fields
+        def add_searchable_fields
+          []
+        end
+        
+        # Override for type-specific contents
+        def add_searchable_contents
+          ""
+        end
+        
         def ferret_destroy
-          self.class.ferret_index.query_delete("+id:#{self.id} +ferret_class:#{self.class.name}")
+          self.class.ferret_index.query_delete("+id:#{self.id} +ferret_class:#{self.class.name.downcase}")
         end
       end
       

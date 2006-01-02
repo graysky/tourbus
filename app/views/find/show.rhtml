@@ -1,2 +1,31 @@
-<h1>Search#show</h1>
-<p>Find me in app/views/search/show.rhtml</p>
+<div id="main">
+
+<% @page_title = "Search results for \"#{params[:query]}\"" %>
+
+<div id="search_results">
+
+<%= start_form_tag %>
+Search for shows: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
+<%= end_form_tag %>
+
+<% # TEMP TEMP TEMP TEMP TEMP TEMP %>
+
+<%
+	if @results
+		for result in @results
+%>
+	<div class="result">
+		Got one
+	</div>
+<%
+		end
+	end
+%>
+
+</div>
+
+</div>
+
+<div id="side">
+	COOL STUFF OVER HERE
+</div>

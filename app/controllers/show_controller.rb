@@ -32,16 +32,19 @@ class ShowController < ApplicationController
       begin
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
+            @show.bands = @bands_playing
+            @show.save!
+            
             @bands_playing.each do |band| 
               if band.id.nil?
                 band.save!
               end
-              
-              band.play_show(@show, true)
             end
           end
         end
       rescue Exception => ex
+        logger.error(ex.to_s)
+        @show.ferret_destroy
         create_bands_playing_content
         return
       end

@@ -2,10 +2,12 @@ require_dependency "searchable"
 
 require "taggable"
 require "tagging"
+require 'ferret'
 
 # A specific show that is being played a venue by a list of bands.
 class Show < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
+  include Ferret
   
   include Tagging
   has_and_belongs_to_many :bands
@@ -71,6 +73,21 @@ class Show < ActiveRecord::Base
   # Get just the Show tags
   def show_tag_names
     get_tags(Tag.Show)
+  end
+  
+  protected
+  
+  # Add show-specific searchable fields for ferret indexing
+  def add_searchable_fields
+    # We need to be able to search by the date of the show
+    Document::Field.new("date", Utils::DateTools.time_to_s(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+  end
+  
+  # Add show-specific searchable contents for ferret indexing
+  def add_searchable_contents
+    contents = ""
+    self.bands.each { |band| contents << " " + band.name }
+    contents
   end
   
 end

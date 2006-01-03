@@ -33,7 +33,11 @@ class ApplicationController < ActionController::Base
   
     # TODO Don't count page views from users G & M
     object.page_views += 1    
-    object.save
+    
+    # Note: Using this method implies that anything with page views
+    # is an item we index. If this is not a good assumption than we
+    # can revisit it later.
+    object.save_without_indexing
   end
   
   # Return the URL of the band, which can be passed

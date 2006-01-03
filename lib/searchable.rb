@@ -78,7 +78,7 @@ module FerretMixin
         # sort:	An array of SortFields describing how to sort the results.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
-          p options
+          
           if not date.nil?
             query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, true, false), Search::BooleanClause::Occur::MUST)
             
@@ -125,8 +125,16 @@ module FerretMixin
       module InstanceMethods
         include Ferret
         
+        # Useful for saving the object without reindexing it, which can be expensive
+        def save_without_indexing
+          @skip_indexing = true
+          self.save
+          @skip_indexing = false
+        end
+        
         def ferret_save
-          
+          return if @skip_indexing
+
           doc = Ferret::Document::Document.new
           
           # Index common fields

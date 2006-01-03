@@ -9,38 +9,42 @@
 # repository must be the URL of the repository you want this recipe to
 # correspond to. The deploy_to path must be the path on each machine that will
 # form the root of the application path.
-
+#
 # ======
-# This is specific to Mike's linux box (mars) but can serve as a template
-# for other machines
+# This is for deploying to Dreamhost. It is configured for mytourb.us.
 # ======
 #
-# To start a deployment use:
-# switchtower -vvvv -r config/mars_deploy -a [dirty_deploy | deploy | update_code ]
+# Use this to run non-standard switchtower tasks:
+# rake remote_exec ACTION=<action-name>
 #
-# NOTE: Using the rake switchtower tasks doesn't seem to work properly. I
-# think I saw mention on Jamis Buck's blog that the next ST rel fixes this
-
+# To start a deployment calling switchtower directly:
+# switchtower -vvvv -r config/deploy -a [code_deploy | deploy | update_code ]
+#
 # App name
 set :application, "tourbus"
 
-# Need user with bash shell on remote machine with right perms
-set :user, "deployer"        # defaults to the currently logged in user
+# Need user with Bash shell on remote machine with right perms
+# This account has the normal password
+set :user, "downtree"
+#set :user, "figureten"
 
-set :scm, :cvs               # defaults to :subversion
+# Set to CVS - default to svn
+set :scm, :cvs           
 
-# CVS repo, including the user to login as. Might require a single login as that user to set remote cvspass
+# CVS repo, including the user to login as. 
+# Might require a single login as that user to set remote cvspass
 set :repository, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
 
-# Path on the remote box
-set :deploy_to, "/var/www/html/rails/#{application}"
+# Full path on the remote box
+# set :deploy_to, "/home/.kasian/figureten/graysky.org/#{application}"
+set :deploy_to, "/home/.jazzmen/downtree/mytourb.us/#{application}"
 
-# Complained without this
+# Complained without this - don't know if it is truly needed
 set :local, "C:\\workspaces\\acadia1\\tourbus" 
 
 # Part of a hack to the ST CVS code to use this CVS method for the local connection
 # (i.e. before deployment). By default cvs picks up the CVSROOT from the tourbus/CVS/Root
-# file. I think that file could be changed to use a line like this instead. Or,
+# file. I updated this file to get it stop whining, although I think it works without this.
 # {RUBY_HOME}\ruby\lib\ruby\gems\1.8\gems\switchtower-0.10.0\lib\switchtower\scm\cvs.rb
 # Line 68 can be updated to this:
 # `cd #{path || "."} && cvs -d #{configuration.localrepo} -q log -N -rHEAD`
@@ -58,16 +62,20 @@ set :localrepo, ":pserver:champion@graysky.dyndns.org:/home/repos/"
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "graysky.dyndns.org"
-role :app, "graysky.dyndns.org"
-role :db,  "graysky.dyndns.org"
+role :web, "mytourb.us"
+role :app, "mytourb.us"
+role :db,  "mytourb.us"
+
+#role :web, "graysky.org"
+#role :app, "graysky.org"
+#role :db,  "graysky.org"
 
 # =============================================================================
 # TASKS
 # =============================================================================
 
-desc "Quick and Dirty deploy -- MGC"
-task :dirty_deploy do
+desc "Quick and Dirty deploy. Just pushs code and adjusts symlinks -- MGC"
+task :code_deploy do
   transaction do
     update_code
     ## disable_web

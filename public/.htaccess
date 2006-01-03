@@ -15,13 +15,14 @@ Options +FollowSymLinks +ExecCGI
 # 
 # For better performance replace the dispatcher with the fastcgi one
 #
-# Example:
-#   RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 RewriteEngine On
 RewriteRule ^$ index.html [QSA]
 RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.cgi [QSA,L]
+# Uncomment here to enable FCGI - NOTE: Order of rules is important!
+# Having this line earlier will mess up routing!
+#   RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Rails experiences terminal errors
 # Instead of displaying this message you can supply a file here which will be rendered instead

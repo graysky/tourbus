@@ -2,7 +2,7 @@
 # A set of rake tasks for dealing with ferret indices.
 # =============================================================================
 
-desc "Re-index the entire database"
+desc "Re-index the entire database - uses the current RAILS_ENV for which DB to index."
 task :reindex do
   
   cmd = <<END

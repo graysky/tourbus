@@ -15,9 +15,17 @@ test:
   username: root
   password: bighit
 
+# Settings for mytourb.us
 production:
   adapter: mysql
-  database: tourbus_production
-  host: 127.0.0.1
-  username: root
+  database: tb_production
+  host: db.mytourb.us
+  username: downtree
   password: bighit
+
+# Linux production environment
+#  adapter: mysql
+#  database: tourbus_production
+#  host: 127.0.0.1
+#  username: root
+#  password: bighit

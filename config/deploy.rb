@@ -34,6 +34,7 @@ set :scm, :cvs
 
 ### 
 ## CHANGE TO TEST SWITCHTOWER!!!
+## AGAIN!!!
 ## 
 ###
 # Part of a hack to the ST CVS code to use this CVS method for the local connection

@@ -38,7 +38,7 @@ set :scm, :cvs
 # {RUBY_HOME}\ruby\lib\ruby\gems\1.8\gems\switchtower-0.10.0\lib\switchtower\scm\cvs.rb
 # Line 68 can be updated to this:
 # `cd #{path || "."} && cvs -d #{configuration.localrepo} -q log -N -rHEAD`
-set :localrepo, ":pserver:champion@graysky.dyndns.org:/home/repos/"
+set :localrepo, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
 
 # CVS repo, including the user to login as. 
 # Might require a single login as that user to set remote cvspass

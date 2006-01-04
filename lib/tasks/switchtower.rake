@@ -17,9 +17,22 @@ def switchtower_invoke(*actions)
   SwitchTower::CLI.new(args).execute!
 end
 
+desc "Push the latest revision to staging server"
+task :deploy_stage do
+
+  ENV['STAGE'] = "stage"
+  switchtower_invoke :deploy
+end
+
 desc "Push the latest revision into production"
 task :deploy do
   switchtower_invoke :deploy
+end
+
+desc "Rollback to the release before the current release in staging"
+task :rollback_stage do
+  ENV['STAGE'] = "stage"
+  switchtower_invoke :rollback
 end
 
 desc "Rollback to the release before the current release in production"
@@ -35,6 +48,22 @@ end
 desc "Enumerate all available deployment tasks"
 task :show_deploy_tasks do
   switchtower_invoke :show_tasks
+end
+
+desc "Update the currently released version of the software directly via an SCM update operation"
+task :update_current do
+  switchtower_invoke :update_current
+end
+
+desc "Execute a specific action using switchtower"
+task :remote_exec_stage do
+  unless ENV['ACTION']
+    raise "Please specify an action (or comma separated list of actions) via the ACTION environment variable"
+  end
+
+  ENV['STAGE'] = "stage"
+  actions = ENV['ACTION'].split(",")
+  switchtower_invoke(*actions)
 end
 
 desc "Execute a specific action using switchtower"

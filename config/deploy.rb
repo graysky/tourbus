@@ -3,44 +3,34 @@
 # (among other things) the deployment of your application.
 
 # =============================================================================
-# VARIABLES
+# USAGE
 # =============================================================================
-# You must always specify the application and repository for every recipe. The
-# repository must be the URL of the repository you want this recipe to
-# correspond to. The deploy_to path must be the path on each machine that will
-# form the root of the application path.
+# This is for deploying to Dreamhost. It is configured for:
+# tourbus.figureten.com (staging)
+# mytourb.us (real production)
 #
-# ======
-# This is for deploying to Dreamhost. It is configured for mytourb.us.
-# ======
+# To deploy to staging enviroment, use "_stage" commands, namely:
+# rake deploy_stage
+# rake rollback_stage
 #
-# Use this to run non-standard switchtower tasks:
-# rake remote_exec ACTION=<action-name>
-#
+# Use this to run non-rake switchtower tasks:
+# rake remote_exec_stage ACTION=<action-name>
+# 
+# Or, set the "STAGE" env to "stage". The normal tasks run against the live
+# production environment.
+# 
 # To start a deployment calling switchtower directly:
 # switchtower -vvvv -r config/deploy -a [code_deploy | deploy | update_code ]
+#
+# =============================================================================
+# VARIABLES and ROLES
+# =============================================================================
 #
 # App name
 set :application, "tourbus"
 
-# Need user with Bash shell on remote machine with right perms
-# This account has the normal password
-set :user, "downtree"
-#set :user, "figureten"
-
 # Set to CVS - default to svn
 set :scm, :cvs           
-
-# CVS repo, including the user to login as. 
-# Might require a single login as that user to set remote cvspass
-set :repository, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
-
-# Full path on the remote box
-# set :deploy_to, "/home/.kasian/figureten/graysky.org/#{application}"
-set :deploy_to, "/home/.jazzmen/downtree/mytourb.us/#{application}"
-
-# Complained without this - don't know if it is truly needed
-set :local, "C:\\workspaces\\acadia1\\tourbus" 
 
 # Part of a hack to the ST CVS code to use this CVS method for the local connection
 # (i.e. before deployment). By default cvs picks up the CVSROOT from the tourbus/CVS/Root
@@ -50,25 +40,41 @@ set :local, "C:\\workspaces\\acadia1\\tourbus"
 # `cd #{path || "."} && cvs -d #{configuration.localrepo} -q log -N -rHEAD`
 set :localrepo, ":pserver:champion@graysky.dyndns.org:/home/repos/"
 
-# Should already be in the path. Set with right value if it is not.
-#set :cvs, "/usr/bin/cvs"
+# CVS repo, including the user to login as. 
+# Might require a single login as that user to set remote cvspass
+set :repository, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
 
-# =============================================================================
-# ROLES
-# =============================================================================
-# You can define any number of roles, each of which contains any number of
-# machines. Roles might include such things as :web, or :app, or :db, defining
-# what the purpose of each machine is. You can also specify options that can
-# be used to single out a specific subset of boxes in a particular role, like
-# :primary => true.
+# Complained without this - don't know if it is truly needed
+set :local, "C:\\workspaces\\acadia1\\tourbus" 
 
-role :web, "mytourb.us"
-role :app, "mytourb.us"
-role :db,  "mytourb.us"
+# Check for ENV to determine which type of deployment. 
+# 
+if ENV['STAGE'] == "stage"
+  # Staging deployment to tourbus.figureten.com
+  #
+  # Need user with Bash shell on remote machine with right perms
+  # This account has the normal password
+  set :user, "figureten"
+  
+  # Full path on the remote box
+  set :deploy_to, "/home/.kasian/figureten/tourbus.figureten.com/#{application}"
+  # Roles
+  role :web, "tourbus.figureten.com"
+  role :app, "tourbus.figureten.com"
+  role :db,  "tourbus.figureten.com"
+  
+else
+  # Production deployment to mytourb.us
+  #
+  # Password is funny Dave C. skit
+  set :user, "downtree"
+  set :deploy_to, "/home/.jazzmen/downtree/mytourb.us/#{application}"
+  # Roles
+  role :web, "mytourb.us"
+  role :app, "mytourb.us"
+  role :db,  "mytourb.us"
+end
 
-#role :web, "graysky.org"
-#role :app, "graysky.org"
-#role :db,  "graysky.org"
 
 # =============================================================================
 # TASKS
@@ -86,7 +92,6 @@ task :code_deploy do
   # restart
   # enable_web
 end
-
 
 # Tasks may take advantage of several different helper methods to interact
 # with the remote server(s). These are:

@@ -23,6 +23,13 @@ production:
   username: downtree
   password: bighit
 
+# tourbus.figureten.com staging production environment
+#  adapter: mysql
+#  database: tourbus_production
+#  host: db.figureten.com
+#  username: tourbus
+#  password: bighit
+
 # Linux production environment
 #  adapter: mysql
 #  database: tourbus_production

@@ -32,6 +32,10 @@ set :application, "tourbus"
 # Set to CVS - default to svn
 set :scm, :cvs           
 
+### 
+## CHANGE TO TEST SWITCHTOWER!!!
+## 
+###
 # Part of a hack to the ST CVS code to use this CVS method for the local connection
 # (i.e. before deployment). By default cvs picks up the CVSROOT from the tourbus/CVS/Root
 # file. I updated this file to get it stop whining, although I think it works without this.

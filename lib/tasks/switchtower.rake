@@ -24,7 +24,7 @@ task :deploy_stage do
   switchtower_invoke :deploy
 end
 
-desc "Push the latest revision into production"
+desc "Push the latest revision to production server"
 task :deploy do
   switchtower_invoke :deploy
 end

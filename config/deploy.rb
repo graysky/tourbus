@@ -16,7 +16,7 @@
 # Use this to run non-rake switchtower tasks:
 # rake remote_exec_stage ACTION=<action-name>
 # 
-# Or, set the "STAGE" env to "stage". The normal tasks run against the live
+# Or, set the "STAGE" env to "dev". The normal tasks run against the live
 # production environment.
 # 
 # To start a deployment calling switchtower directly:
@@ -49,7 +49,7 @@ set :local, "C:\\workspaces\\acadia1\\tourbus"
 
 # Check for ENV to determine which type of deployment. 
 # 
-if ENV['STAGE'] == "stage"
+if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # Staging deployment to tourbus.figureten.com
   #
   # Need user with Bash shell on remote machine with right perms

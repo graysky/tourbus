@@ -20,7 +20,7 @@ end
 desc "Push the latest revision to staging server"
 task :deploy_stage do
 
-  ENV['STAGE'] = "stage"
+  ENV['STAGE'] = "dev"
   switchtower_invoke :deploy
 end
 
@@ -31,7 +31,7 @@ end
 
 desc "Rollback to the release before the current release in staging"
 task :rollback_stage do
-  ENV['STAGE'] = "stage"
+  ENV['STAGE'] = "dev"
   switchtower_invoke :rollback
 end
 
@@ -61,7 +61,7 @@ task :remote_exec_stage do
     raise "Please specify an action (or comma separated list of actions) via the ACTION environment variable"
   end
 
-  ENV['STAGE'] = "stage"
+  ENV['STAGE'] = "dev"
   actions = ENV['ACTION'].split(",")
   switchtower_invoke(*actions)
 end

@@ -1,7 +1,6 @@
 # This defines a deployment "recipe" that you can feed to switchtower
-# (http://manuals.rubyonrails.com/read/book/17). It allows you to automate
-# (among other things) the deployment of your application.
-
+# (http://manuals.rubyonrails.com/read/book/17). 
+#
 # =============================================================================
 # USAGE
 # =============================================================================
@@ -14,7 +13,7 @@
 # rake rollback_stage
 #
 # Use this to run non-rake switchtower tasks:
-# rake remote_exec_stage ACTION=<action-name>
+# rake remote_exec STAGE=dev ACTION=<action-name>
 # 
 # Or, set the "STAGE" env to "dev". The normal tasks run against the live
 # production environment.
@@ -32,11 +31,6 @@ set :application, "tourbus"
 # Set to CVS - default to svn
 set :scm, :cvs           
 
-### 
-## CHANGE TO TEST SWITCHTOWER!!!
-## AGAIN!!!
-## 
-###
 # Part of a hack to the ST CVS code to use this CVS method for the local connection
 # (i.e. before deployment). By default cvs picks up the CVSROOT from the tourbus/CVS/Root
 # file. I updated this file to get it stop whining, although I think it works without this.

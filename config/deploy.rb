@@ -79,7 +79,7 @@ end
 # TASKS
 # =============================================================================
 
-desc "Quick and Dirty deploy. Just pushs code and adjusts symlinks -- MGC"
+desc "Code deploy. Just push the new code and adjusts symlinks"
 task :code_deploy do
   transaction do
     update_code

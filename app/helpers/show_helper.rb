@@ -20,8 +20,7 @@ module ShowHelper
       title = show.title
       if title == ""
         # TODO Optimize this by saving this string to the db when the show is saved
-        show.bands.each { |band| title << band.name + "/" }
-        title.chomp!("/")
+        title = show.bands.map { |band| band.name }.join("/")
       end
       
       out << "<b>" + link_to(title, :controller => "show", :action => "show", :id => show.id) + "</b>"

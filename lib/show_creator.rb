@@ -99,8 +99,8 @@ module ShowCreator
     return bands
   end
   
-  def create_bands_playing_content
-    bands = calculate_bands
+  def create_bands_playing_content(bands = nil)
+    bands = calculate_bands if bands.nil?
     @bands_playing_content = render_to_string :partial => "shared/band_playing", 
                                               :collection => bands
     

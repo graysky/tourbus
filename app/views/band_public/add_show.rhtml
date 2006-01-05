@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/add_show",
+<% @header_title = "Add a Show" %>
+
+<%= render(:partial => "shared/show_form",
 		   :locals => 
 			{
 			:controller => "/" + @band.band_id, 

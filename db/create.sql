@@ -184,14 +184,22 @@ CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cost` VARCHAR(50),
   `title` VARCHAR(100),
+  `bands_playing_title` VARCHAR(200),
   `description` TEXT NOT NULL,
   `url` VARCHAR(100) NOT NULL,
   `date` DATETIME NOT NULL,
   `page_views` int(10) unsigned default 0,
   `venue_id` int(10) unsigned NOT NULL,
+  `created_by_fan_id` int(10) unsigned,
+  `created_by_band_id` int(10) unsigned,
+  `created_by_system` boolean NOT NULL default 0, 	
   PRIMARY KEY(`id`),
   KEY `fk_venue` (`venue_id`),
-  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`)
+  CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),
+  KEY `fk_show_createdband` (`created_by_band_id`),
+  CONSTRAINT `fk_show_createdband` FOREIGN KEY (`created_by_band_id`) REFERENCES `bands` (`id`),
+  KEY `fk_show_createdfan` (`created_by_fan_id`),
+  CONSTRAINT `fk_show_createdfan` FOREIGN KEY (`created_by_fan_id`) REFERENCES `fans` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `photos` (

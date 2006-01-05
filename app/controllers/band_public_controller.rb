@@ -1,3 +1,5 @@
+require_dependency 'show_creator'
+
 class BandPublicController < ApplicationController
   include ShowCreator
   
@@ -48,7 +50,34 @@ class BandPublicController < ApplicationController
     if @request.get?
       prepare_new_show
     else
-      begin
+      create_edit_show(true)
+      flash[:notice] = 'Show added'
+      redirect_to_band_home
+    end 
+  end
+  
+  def edit_show
+    if @request.get?
+      @show = Show.find(params[:id])
+      create_bands_playing_content(@show.bands)
+      params[:selected_venue_name] = @show.venue.name
+      params[:selected_venue_id] = @show.venue.id
+    else
+      create_edit_show(false)
+      flash[:notice] = 'Show edited'
+      redirect_to_band_home
+    end 
+  end
+  
+  def photo
+    render_component :controller => "photo", :action => "show_one", 
+                     :params => {"photo_id" => params[:photo_id], "name" => @band.name}
+  end
+  
+  private
+  
+  def create_edit_show(new)
+    begin
         create_new_show_and_venue
       rescue Exception => e
         create_bands_playing_content
@@ -59,6 +88,8 @@ class BandPublicController < ApplicationController
       if @bands_playing.find { |band| band.id == @band.id }.nil?
         @bands_playing << @band
       end
+      
+      @show.created_by_band = @band
       
       begin
         Band.transaction(*@bands_playing) do
@@ -79,18 +110,8 @@ class BandPublicController < ApplicationController
         create_bands_playing_content
         return
       end
-      
-      flash[:notice] = 'Show added'
-      redirect_to_band_home
-    end 
   end
   
-  def photo
-    render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:photo_id], "name" => @band.name}
-  end
-  
-  private
   def find_band
     
     # See if we are logged in as the band. If not, just use the URL.

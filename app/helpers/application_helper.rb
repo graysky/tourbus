@@ -29,17 +29,26 @@ module ApplicationHelper
     date.strftime("%m/%d/%y")
   end
   
-  def time_select(var)
+  def time_select(var, default_hour = nil, default_minute = nil, default_ampm = nil)
     out = "<select id=\"#{var}_hour\" name=\"#{var}[time_hour]\">"
-    (1..12).each { |hour| out += "<option value=\"#{hour}\">#{hour}</option>" }
+    (1..12).each do |hour|
+      default = default_hour.nil? ? 7 : default_hour
+      selected = hour == default ? "SELECTED" : ""
+      out += "<option value=\"#{hour}\" #{selected}>#{hour}</option>\n"
+    end
     out += "</select> : "
     
     out += "<select id=\"#{var}_minute\" name=\"#{var}[time_minute]\">"
-    ["00", "15", "30", "45"].each { |minute| out += "<option value=\"#{minute}\">#{minute}</option>" }
+    ["00", "15", "30", "45"].each do |minute|
+      selected = default_minute.nil? ? "" : default_minute
+      out += "<option value=\"#{minute}\" #{selected}>#{minute}</option>"
+    end
     out += "</select> "
     
+    is_pm = true if default_ampm.nil? || default_ampm != "AM"
+    
     out += "<select id=\"#{var}_ampm\" name=\"#{var}[time_ampm]\">"
-    out += "<option value=\"AM\">AM</option><option value=\"PM\" selected=\"true\">PM</option>"
+    out += "<option value=\"AM\">AM</option><option value=\"PM\" selected=\"#{is_pm}\">PM</option>"
     out += "</select>"
     out
   end

@@ -104,6 +104,15 @@ module ShowHelper
     out
   end
   
+  def can_edit_show(show)
+    return if not logged_in?
+    
+    show.created_by_system? or 
+    show.created_by_fan or 
+    (logged_in_band and show.bands.detect {|b| b.id == logged_in_band.id}) or
+    (logged_in_band and logged_in_band == show.created_by_band)
+  end
+  
   #########
   # Private
   #########

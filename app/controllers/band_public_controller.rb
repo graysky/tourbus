@@ -91,7 +91,7 @@ class BandPublicController < ApplicationController
         @bands_playing << @band
       end
       
-      @show.created_by_band = @band
+      @show.created_by_band = @band if new
       
       begin
         Band.transaction(*@bands_playing) do

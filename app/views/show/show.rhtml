@@ -5,7 +5,10 @@
 	@header_title = @show.title
 %>
 
-<%= link_to "Edit this show", :action => "edit", :id => @show.id %>
+<%= if can_edit_show(@show)
+		link_to "Edit this show", :action => "edit", :id => @show.id 
+	end
+%>
 <%= render(
 	:partial => "shared/photo_preview", 
 	:locals => 

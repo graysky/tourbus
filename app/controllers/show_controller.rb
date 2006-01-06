@@ -94,7 +94,12 @@ class ShowController < ApplicationController
       Band.transaction(*@bands_playing) do
         Show.transaction(@show) do
           @show.bands = @bands_playing
-          puts @show.bands.map {|b| b.name }.join(" and ")
+          
+          if new
+            @show.created_by_band = logged_in_band if logged_in_band
+            @show.created_by_fan = logged_in_fan if logged_in_fan
+          end
+          
           @show.save!
           
           @bands_playing.each do |band| 

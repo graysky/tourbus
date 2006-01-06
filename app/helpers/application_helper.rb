@@ -40,7 +40,8 @@ module ApplicationHelper
     
     out += "<select id=\"#{var}_minute\" name=\"#{var}[time_minute]\">"
     ["00", "15", "30", "45"].each do |minute|
-      selected = default_minute.nil? ? "" : default_minute
+      default = default_minute.nil? ? "" : default_minute
+      selected = default.to_s == minute ? "SELECTED" : ""
       out += "<option value=\"#{minute}\" #{selected}>#{minute}</option>"
     end
     out += "</select> "

@@ -1,3 +1,5 @@
+require_dependency "show_creator"
+
 class ShowController < ApplicationController
   include ShowCreator
     
@@ -21,38 +23,26 @@ class ShowController < ApplicationController
     if @request.get?
       prepare_new_show
     else
-      begin
-        create_new_show_and_venue
-      rescue Exception => e
-        #puts e
-        create_bands_playing_content
-        return
-      end
-      
-      begin
-        Band.transaction(*@bands_playing) do
-          Show.transaction(@show) do
-            @show.bands = @bands_playing
-            @show.save!
-            
-            @bands_playing.each do |band| 
-              if band.id.nil?
-                band.save!
-              end
-            end
-          end
-        end
-      rescue Exception => ex
-        logger.error(ex.to_s)
-        @show.ferret_destroy
-        create_bands_playing_content
-        return
-      end
+      result = create_edit_show(true)
+      return if !result
       
       flash[:notice] = 'Show added'
       redirect_to_url "/show/#{@show.id}"
     end
   end
+  
+  def edit
+    if @request.get?
+      create_bands_playing_content(@show.bands)
+      params[:selected_venue_name] = @show.venue.name
+      params[:selected_venue_id] = @show.venue.id
+    else
+      create_edit_show(false)
+      flash[:notice] = 'Show edited'
+      redirect_to_url "/show/#{@show.id}"
+    end 
+  end
+  
   
   # TODO FIXME - Can't use "@show.name" because the show's ID wans't passed in
   def photo
@@ -90,6 +80,37 @@ class ShowController < ApplicationController
   end
   
   private
+  
+  def create_edit_show(new)
+    begin
+      create_new_show_and_venue(new)
+    rescue Exception => e
+      #puts e
+      create_bands_playing_content
+      return
+    end
+      
+    begin
+      Band.transaction(*@bands_playing) do
+        Show.transaction(@show) do
+          @show.bands = @bands_playing
+          puts @show.bands.map {|b| b.name }.join(" and ")
+          @show.save!
+          
+          @bands_playing.each do |band| 
+            if band.id.nil?
+              band.save!
+            end
+          end
+        end
+      end
+    rescue Exception => ex
+      logger.error(ex.to_s)
+      @show.ferret_destroy
+      create_bands_playing_content
+      return
+    end
+  end
   
   # Find the show from the ID param
   def find_show

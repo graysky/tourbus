@@ -50,7 +50,9 @@ class BandPublicController < ApplicationController
     if @request.get?
       prepare_new_show
     else
-      create_edit_show(true)
+      result = create_edit_show(true)
+      return if !result
+      
       flash[:notice] = 'Show added'
       redirect_to_band_home
     end 
@@ -78,10 +80,10 @@ class BandPublicController < ApplicationController
   
   def create_edit_show(new)
     begin
-        create_new_show_and_venue
+        create_new_show_and_venue(new)
       rescue Exception => e
         create_bands_playing_content
-        return
+        return false
       end
       
       # Make sure the current band is in the list of band playing the show
@@ -108,7 +110,7 @@ class BandPublicController < ApplicationController
         logger.error(ex.to_s)
         @show.ferret_destroy
         create_bands_playing_content
-        return
+        return false
       end
   end
   

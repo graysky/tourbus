@@ -9,8 +9,12 @@ module ShowCreator
     @bands_playing_content = ""
   end
   
-  def create_new_show_and_venue
-    @show = Show.new(params[:show])
+  def create_new_show_and_venue(new)
+    if new
+      @show = Show.new(params[:show])
+    else
+      @show.update_attributes(params[:show])
+    end
     
     # Get the new or existing venue
     new_venue = false
@@ -98,9 +102,10 @@ module ShowCreator
     
     return bands
   end
-  
+ 
   def create_bands_playing_content(bands = nil)
     bands = calculate_bands if bands.nil?
+    puts bands.map {|b| b.name }.join(" and ")
     @bands_playing_content = render_to_string :partial => "shared/band_playing", 
                                               :collection => bands
     
@@ -108,5 +113,9 @@ module ShowCreator
     @bands_playing_content.gsub!(/["']/) { |m| "\\#{m}" }
     @bands_playing_content.strip!
     @bands_playing_content.gsub!(/\n/, "")
+    
+    if params[:bands_playing].nil? or params[:bands_playing] == ""
+      params[:bands_playing] = bands.map {|b| b.id }.join(":::")
+    end
   end
 end

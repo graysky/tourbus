@@ -1,9 +1,11 @@
 <div id="main">
 
-<% @page_title = @show.title %>
+<% 
+	@page_title = @show.title 
+	@header_title = @show.title
+%>
 
-<h1><%= @show.title %></h1>
-
+<%= link_to "Edit this show", :action => "edit", :id => @show.id %>
 <%= render(
 	:partial => "shared/photo_preview", 
 	:locals => 

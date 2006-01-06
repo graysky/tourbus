@@ -17,6 +17,8 @@ class Show < ActiveRecord::Base
  
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_at ASC"
+  belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
+  belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
   acts_as_taggable :join_class_name => 'TagShow'
   validates_presence_of :date
   

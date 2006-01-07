@@ -84,6 +84,7 @@ class Show < ActiveRecord::Base
   # Add show-specific searchable fields for ferret indexing
   def add_searchable_fields
     fields = []
+    # TODO Store as radians?
     fields << Document::Field.new("latitude", self.venue.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     

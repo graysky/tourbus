@@ -67,7 +67,7 @@ module FerretMixin
         # and "longitude" field. 
         # 
         # If date is nil then the date search will be ignored for this query.
-        # If latitude or longitude is nil location search will be ignored for this query.
+        # If latitude, longitude radius is nil location search will be ignored for this query.
         # 
         # Results will first be ordered by date (if applicable), then relevance.
         #
@@ -82,9 +82,14 @@ module FerretMixin
           if not date.nil?
             query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, true, false), Search::BooleanClause::Occur::MUST)
             
-            # Sort by date, then relevent
+            # Sort by date, then relevence
             date_sort = SortField.new("date", {:sort_type => SortField::SortType::INTEGER})
             options[:sort] = [date_sort, SortField::FIELD_SCORE]
+          end
+          
+          if lat and long and radius
+            location_filter = LocationFilter.new(self.class_name.downcase, lat, long, radius)
+            options[:filter] = location_filter
           end
           
           logger.debug("Search by date and location: #{query.to_s}")

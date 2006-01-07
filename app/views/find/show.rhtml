@@ -1,11 +1,14 @@
-<div id="main">
-
 <% @page_title = "Search results for \"#{params[:query]}\"" %>
 
 <div id="search_results">
 
 <%= start_form_tag %>
-Search for upcoming shows: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
+Search for: <%= text_field_tag 'query', params[:query] %>
+within
+<%= text_field_tag 'radius', params[:radius], :size => 5 %>
+miles of
+<%= text_field_tag 'location', params[:location]  %>
+<%= submit_tag 'Search' %>
 <%= end_form_tag %>
 
 <% # TEMP TEMP TEMP TEMP TEMP TEMP %>
@@ -21,4 +24,3 @@ Search for upcoming shows: <%= text_field_tag 'query', params[:query] %> <%= sub
 
 </div>
 
-</div>

@@ -76,7 +76,7 @@ body
 
 a
 {
-	// color:#99CC00;
+	/* Blue-ish link color */
 	color: #0F628B;	
 }
 
@@ -268,21 +268,21 @@ td, p
 }
 
 /*-----------------------------------------------------*/
-/* Main panel boxes */
+/* Main content panels  */
 /*-----------------------------------------------------*/
 
-.simple_box_header {
+.panel_header {
 	margin-top:16px;
 	border-bottom: 2px solid #599057;
 	width:580px;
 }
 
-.simple_box_header span {
+.panel_header span {
 	color: black;
 	font-size:12px;
 }
 
-.simple_box_header a {
+.panel_header a {
 	color: #599057;
 	text-decoration:none;
 	font-weight:bold;
@@ -290,12 +290,23 @@ td, p
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-.simple_box_header .title {
+.panel_header .title {
 	color: #599057;
 	font-weight:bold;
 	font-size:18px;
 	padding-right:16px;
 }
+
+.panel_header .actions {
+	color: black;
+	font-size:12px;
+}
+
+.panel_header .actions a {
+	/* Color for the actions on panels */
+	color: #0F628B;
+}
+
 
 .results_box a {
 	color: #99cc00;
@@ -842,7 +853,6 @@ table.photo_table td span {
 
 table.photo_table td span a {
 	font-size:10px;
-	// color: #2B95B6;
 	color: #0F628B;
 }
 

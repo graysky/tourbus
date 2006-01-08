@@ -10,7 +10,7 @@
 	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
 %>
 
-<div class="simple_box_header">
+<div class="panel_header">
 	<span class="title">Photos</span>
 	<% 
 		if not full
@@ -19,11 +19,11 @@
 		    options[:controller] = "fan/" + @fan.name
 		  end 
 	%>
-		<span><%= link_to "View All Photos", options %></span>
-		<span></span>
+		<span class="actions"><%= link_to "View All Photos", options %>
+		&nbsp;&nbsp;
 	<% end %>
 	<% if logged_in? and not showing_creator %> 
-		<span><a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
+		<a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
 	<% end %>
 </div>
 

@@ -83,17 +83,19 @@
 	<% end %>
 </table>
 
-<div class="simple_box_header">
+<div class="panel_header">
 	<span class="title">Shows</span>
 	
+	<span class="actions">
 	<% if @logged_in_as_band %> 
-		<span><%= link_to "Add Show", band_public_action("add_show") %></span>
+		<%= link_to "Add Show", band_public_action("add_show") %>
 	<% end %>
-	<span>&nbsp;</span>
-	<span>&nbsp;</span>
-	<span><%= map_list_toggle "index" %></span>
-	<span>&nbsp;</span>
-	<span><%= show_controls "index" %></span>
+	&nbsp;
+	&nbsp;
+	<%= map_list_toggle "index" %>
+	&nbsp;&nbsp;
+	<%= show_controls "index" %>
+	</span>
 </div>
 
 <% if @params[:show_map] == "true" %>

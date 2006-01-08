@@ -1,10 +1,24 @@
-/* font-family: Trebuchet, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", sans-serif; */
-/* nice blue: #D1ECF5. Too pastel? */
+/*-----------------------------------------------------*/
+/* TourBus CSS. Green Theme. */
+/*-----------------------------------------------------*/
 
-a { color: #99CC00; }
-a:link { color: #99CC00 }
-a:visited { color: #99CC00 }
+/*-----------------------------------------------------*/
+/* Notes*/
+/*
 
+  Some color choices
+  color:#EEEEEE; - near white originally used for header for text.
+  Replaced with CCCCCC as a near gray isntead.
+  
+  color:#EBEBEB - gray for bg
+  #D2D2D2 - gray
+  #0F628B - blue for links
+ */
+/*-----------------------------------------------------*/
+
+/*-----------------------------------------------------*/
+/* Error Messages */
+/*-----------------------------------------------------*/
 
 .fieldWithErrors {
   padding: 2px;
@@ -42,6 +56,9 @@ a:visited { color: #99CC00 }
   list-style: square;
 }
 
+/*-----------------------------------------------------*/
+/* General Style */
+/*-----------------------------------------------------*/
 
 body
 {
@@ -59,7 +76,8 @@ body
 
 a
 {
-	color:#99CC00;	
+	// color:#99CC00;
+	color: #0F628B;	
 }
 
 img
@@ -105,6 +123,10 @@ td, p
 	font-size:14px;
 }	
 
+/*-----------------------------------------------------*/
+/* Structural elements */
+/*-----------------------------------------------------*/
+
 #container
 {
 	margin:8 auto;
@@ -116,11 +138,6 @@ td, p
 	padding-bottom:24px;
 }
 
-.testme
-{
-	padding-right:24px;
-}
-
 #main_logo
 {
 	#margin-top:16px;
@@ -128,9 +145,43 @@ td, p
 	padding-left:16px;
 	text-align:left;
 	font-size:60px;
-	font-family: verdana, arial, helvetica, sans-serif;
-	background-color: #484A4C;
-	color: #99CC00;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	//background-color: #484A4C;
+	background-color: #005422;
+	// color: #99CC00;
+}
+
+#navbar {
+	padding-top:4px;
+	padding-bottom:4px;
+
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+
+	padding-left:20px;
+	font-size:26px;
+	font-weight: bold;
+	text-align: right;
+	
+	/* Orig
+	//border:1px solid #ccc;
+	//background-color:#F4F9E5;
+	color:#99CC00; */
+	
+	//border:1px solid #02441C;
+	// background-color:#005422;
+	//color:#E7E7E7;
+	
+	background-color: #00401A;
+}
+
+#navbar a {
+	text-decoration:none;
+	color: #94C28A;
+}
+
+.nav-option
+{
+	padding-right:28px;
 }
 
 #header
@@ -141,11 +192,12 @@ td, p
 	text-align: right;
 	bottom: 20px;
 	float:right;
+	color:#CCCCCC;
 }
 
-#header a { color: #99CC00; }
-#header a:link { color: #99CC00; }
-#header a:visited { color: #99CC00; }
+#header a { /*color: #EEEEEE;*/ color:#CCCCCC; }
+#header a:link { /*color: #EEEEEE;*/ color:#CCCCCC; }
+#header a:visited { /*color: #EEEEEE;*/ color:#CCCCCC; }
 
 #header strong {
 	margin-left:8px;
@@ -157,17 +209,13 @@ td, p
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-#navbar a {
-	text-decoration:none;
-}
-
 #content_header {
 	padding-top:4px;
 	padding-bottom:4px;
-	border:1px solid #ccc;
-	border-top:0;
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 0px;
 	padding-left:20px;
-	background-color:#eee;
+	background-color:#EBEBEB;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }	
 
@@ -182,7 +230,7 @@ td, p
 	color:#484A4C;
 }
 
-/* Boxes */
+/* Sign up boxes */
 .signup_box
 {
 	background-color: #F4F9E5;
@@ -219,9 +267,13 @@ td, p
 	padding-bottom: 10px;
 }
 
+/*-----------------------------------------------------*/
+/* Main panel boxes */
+/*-----------------------------------------------------*/
+
 .simple_box_header {
 	margin-top:16px;
-	border-bottom: 2px solid #99cc00;
+	border-bottom: 2px solid #599057;
 	width:580px;
 }
 
@@ -230,17 +282,16 @@ td, p
 	font-size:12px;
 }
 
-
 .simple_box_header a {
-	color: #99cc00;
+	color: #599057;
 	text-decoration:none;
 	font-weight:bold;
 	font-size:12px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 .simple_box_header .title {
-	color: #99cc00;
+	color: #599057;
 	font-weight:bold;
 	font-size:18px;
 	padding-right:16px;
@@ -250,9 +301,7 @@ td, p
 	color: #99cc00;
 }
 
-
-
-/* Search Results */
+	/* Search Results */
 .results_box
 {
 	#background-color: #F4F9E5;
@@ -273,25 +322,48 @@ td, p
 	border-bottom:1px solid #ddd;
 }
 
+/*-----------------------------------------------------*/
+/* Side bar boxes */
+/*-----------------------------------------------------*/
 
-
-/* Box for side-bar tags */
 .sidebar-box
 {
-	background-color: #F4F9E5;
-	border:1px solid #99CC00;
+	background-color: #EBEBEB;
+	border:1px solid #B5B5B5;
 	font-size: 11px;
+}
+
+/* Side bar title */
+.sidebar-box h2
+{
+	margin-top:0px;
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:8px;
+	font-size: 13px;
+	/* Gray */
+	background-color: #EBEBEB;
+	border-bottom:1px solid #B5B5B5;
+	/* Near black */
+	color: #484A4C;
 }
 
 .sidebar-box ul
 {
-	margin-left: -8px;	
+	margin-left: -18px;	
 }
 
 .sidebar-box li
 {
-	list-style-type: square;
-	color:#4C5C5C;
+	background: url(/images/bullet.gif) no-repeat;
+	background-position: center left;
+	list-style-type: none;
+
+	color: #0F628B;
+	margin: 0px;
+	padding: 0px 0 0 5px;
+	/* Push the text off the image */
+	text-indent: 8px;
 }
 
 .sidebar-box p
@@ -311,16 +383,7 @@ td, p
 	font-size:12px;
 }
 
-.sidebar-box h2
-{
-	margin-top:0px;
-	padding-top:2px;
-	padding-bottom:2px;
-	padding-left:8px;
-	font-size: 13px;
-	background-color: #99CC00;
-	color: #484A4C;
-}
+
 
 .error-prompt-box
 {
@@ -408,10 +471,13 @@ fieldset
 	margin-top:16px;
 }
 
+/* Form layout */
+
 /* Stolen from rollyo and modified... update! */
 table.form-table {
 	border-collapse: collapse;
-	}
+}
+	
 table.form-table th {
 	width: 120px;
 	padding: 15px 15px 0 0;
@@ -419,7 +485,8 @@ table.form-table th {
 	vertical-align: top;
 	border-bottom: 1px solid #ddd;
 	font-size:13px;
-	}
+}
+
 table.form-table th em {
 	display: block;
 	margin: 2px 0 0 0;
@@ -427,7 +494,8 @@ table.form-table th em {
 	font-weight: normal;
 	font-size: 85%;
 	color: #555;
-	}
+}
+
 table.form-table td {
 	margin: 0 0 10px 0;
 	padding: 15px 20px 15px 0;
@@ -435,7 +503,8 @@ table.form-table td {
 	text-align: left;
 	border-bottom: 1px solid #ddd;
 	font-size: 11px;	
-	}
+}
+
 table.form-table td a {
 	font-size: 12px;
 	}
@@ -447,20 +516,20 @@ table.form-table #cal_trigger
 	
 table.form-table td.last, table.form-table th.last {
 	border-bottom: none;
-	}
+}
+
 table.form-table tr.nobottom td, table.form-table tr.nobottom th {
 	border-bottom: none;
-	}
+}
 	
 table.form-table td p, body.info .box td p{
 	margin: 10px 0 0 0;
 	padding: 0;
 	font-size: 11px;
 	color: #555;
-	}
+}
 	
-	
-	
+
 table.form-table td input.form-text, table.form-table td select {
 	color: #555;
 	background: #eee;
@@ -490,22 +559,31 @@ table.form-table td.info {
 table.form-table .info {
 	font-size: 11px;
 	color: #555;
-	}
+}
+
 table.form-table td.info ul {
 	margin: 10px;
 	padding: 0;
 	list-style: none;
-	}
+}
+
 table.form-table td.info ul li {
 	margin: 0 0 5px 0;
 	padding: 0 0 0 13px;
-	}
+}
+
 table.form-table tr.submit td {
 		border:0px;
-	}
+}
+
 table.form-table tr.submit input {
-		background:#484A4C;
-		color:#99CC00;
+		/* Orig */
+		//background:#484A4C;
+		//color:#99CC00;
+		
+		/* Experiment w/ offwhite on green */
+		background:#005422;
+		color:#EEEEEE;
 		cursor:pointer;
 	}
 
@@ -764,7 +842,8 @@ table.photo_table td span {
 
 table.photo_table td span a {
 	font-size:10px;
-	color: #2B95B6;
+	// color: #2B95B6;
+	color: #0F628B;
 }
 
 .photo_box
@@ -832,7 +911,8 @@ table.comments_table td span {
 }
 
 table.comments_table a {
-	color: #2B95B6;
+	// color: #2B95B6;
+	color: #0F628B;
 }
 
 .comments_table {

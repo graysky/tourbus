@@ -293,7 +293,7 @@ td, p
 .panel_header .title {
 	color: #599057;
 	font-weight:bold;
-	font-size:18px;
+	font-size:20px;
 	padding-right:16px;
 }
 
@@ -309,7 +309,7 @@ td, p
 
 
 .results_box a {
-	color: #99cc00;
+	color: #0F628B;
 }
 
 	/* Search Results */

@@ -1,5 +1,5 @@
-# This defines a deployment "recipe" that you can feed to switchtower
-# (http://manuals.rubyonrails.com/read/book/17). 
+# This defines a deployment "recipe" that you can feed to switchtower:
+# http://manuals.rubyonrails.com/read/book/17
 #
 # =============================================================================
 # USAGE
@@ -28,23 +28,11 @@
 # App name
 set :application, "tourbus"
 
-# Set to CVS - default to svn
-set :scm, :cvs           
-
-# Part of a hack to the ST CVS code to use this CVS method for the local connection
-# (i.e. before deployment). By default cvs picks up the CVSROOT from the tourbus/CVS/Root
-# file. I updated this file to get it stop whining, although I think it works without this.
-# {RUBY_HOME}\ruby\lib\ruby\gems\1.8\gems\switchtower-0.10.0\lib\switchtower\scm\cvs.rb
-# Line 68 can be updated to this:
-# `cd #{path || "."} && cvs -d #{configuration.localrepo} -q log -N -rHEAD`
-set :localrepo, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
-
-# CVS repo, including the user to login as. 
-# Might require a single login as that user to set remote cvspass
-set :repository, ":pserver:deployer@graysky.dyndns.org:/home/repos/"
-
-# Complained without this - don't know if it is truly needed
-set :local, "C:\\workspaces\\acadia1\\tourbus" 
+# SVN repo. Switchtower needs a couple things:
+# - Deploys only what is in your local SVN working copy (not HEAD)
+# - Assumes anon. read access.
+# - Requires that the local copy has "svn" in the path.
+set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
 # Check for ENV to determine which type of deployment. 
 # 

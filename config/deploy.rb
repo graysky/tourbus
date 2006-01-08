@@ -21,6 +21,8 @@
 # To start a deployment calling switchtower directly:
 # switchtower -vvvv -r config/deploy -a [code_deploy | deploy | update_code ]
 #
+# Note: For when we just want to push new code, we can use the "update_current" task
+# which just fetches the latest code. Good for when pushing out small changes, or for our testing.
 # =============================================================================
 # VARIABLES and ROLES
 # =============================================================================
@@ -67,13 +69,28 @@ end
 # TASKS
 # =============================================================================
 
+desc "Freeze the Ferret gem using rake."
+task :freeze_ferret do
+
+    # Execute rake command to freeze Ferret gem. 
+    # Need to source bash_profile to set up correct GEM_PATH. 
+    # Assumes the bash_profile does that.
+    run <<-CMD
+      cd #{release_path} && source ~/.bash_profile && rake freeze_other_gems
+    CMD
+end
+
 desc "Code deploy. Just push the new code and adjusts symlinks"
 task :code_deploy do
   transaction do
+
     update_code
+    
+    freeze_ferret
+    
+    ## migrate
     ## disable_web
     symlink
-    ## migrate
   end
 
   # restart

@@ -34,10 +34,12 @@ class ApplicationController < ActionController::Base
     # TODO Don't count page views from users G & M
     object.page_views += 1    
     
-    # Note: Using this method implies that anything with page views
-    # is an item we index. If this is not a good assumption than we
-    # can revisit it later.
-    object.save_without_indexing
+    # If the object is indexed by ferret, we want to save without reindexing
+    if object.respond_to?(:save_without_indexing)
+      object.save_without_indexing
+    else
+      object.save
+    end
   end
   
   # Return the URL of the band, which can be passed

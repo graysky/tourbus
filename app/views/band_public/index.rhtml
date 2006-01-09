@@ -56,7 +56,7 @@
 			<% if @logged_in_as_band %>
 				<a id="edit_band_bio" href="#">Edit</a>
 				<script type="text/javascript">
-					new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio"})
+					new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio", okText:"Ok", cancelText:"Cancel"})
 				</script>
 			<% end %>
 		</td>

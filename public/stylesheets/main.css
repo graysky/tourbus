@@ -147,8 +147,6 @@ td, p
 	font-size:60px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	background-color: #484A4C;
-	//background-color: #005422;
-	// color: #99CC00;
 }
 
 #navbar {
@@ -157,8 +155,8 @@ td, p
 
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 
-	padding-left:100px;
-	padding-right:0px;
+	padding-left:40px;
+	padding-right:20px;
 	font-size:26px;
 	font-weight: bold;
 	
@@ -321,9 +319,6 @@ td, p
 	/* Search Results */
 .results_box
 {
-	#background-color: #F4F9E5;
-	#border:1px solid #ADD039;
-	#color:#4C5C5C;
 	width:200px;
 	font-size:12px;
 	margin-top:-4px;
@@ -594,9 +589,7 @@ table.form-table tr.submit td {
 }
 
 table.form-table tr.submit input {
-		/* Orig */
-		//background:#484A4C;
-		//color:#99CC00;
+		/* Orig *
 		
 		/* Experiment w/ offwhite on green */
 		background:#005422;
@@ -864,8 +857,6 @@ table.photo_table td span a {
 
 .photo_box
 {
-	#background-color: #F4F9E5;
-	#border:1px solid #ADD039;
 	color:#4C5C5C;
 	font-size:12px;
 	width:560px;
@@ -895,8 +886,6 @@ table.photo_table td span a {
 /* Comments */
 .comments_box
 {
-	#background-color: #F4F9E5;
-	#border:1px solid #ADD039;
 	color:#4C5C5C;
 	font-size:12px;
 	width:560px;
@@ -927,7 +916,6 @@ table.comments_table td span {
 }
 
 table.comments_table a {
-	// color: #2B95B6;
 	color: #0F628B;
 }
 

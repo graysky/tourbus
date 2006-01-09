@@ -21,10 +21,7 @@
 		</td>
 		<td valign="top" style="padding-left:16px" align="left">
 			<table class="info-table">
-				<tr>
-					<th>Member Since:</th>
-					<td><%= simple_date(@fan.created_on) %></td>
-				</tr>
+				
 			</table>
 		</td>
 	</tr>
@@ -65,5 +62,16 @@
 </div>
 
 <div id="side">
-
+	<div class="sidebar-box">
+	<h2>About This User</h2>
+	
+	<p>
+		<strong>Member Since:</strong> <%= simple_date @fan.created_on %>
+		<strong>Profile Views:</strong> <%= @fan.page_views %>
+		
+		<br/>
+		<br/>
+		<a href="javascript:alert('coming soon')">Contact this user</a>
+	</p>
+</div>
 </div>

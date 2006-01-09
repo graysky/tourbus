@@ -131,11 +131,10 @@ td, p
 {
 	margin:8 auto;
 	width:850px;
-	#height:97%;
 	background-color:white;
 	border:1px solid #484A4C;
 	text-align:left;
-	padding-bottom:24px;
+	padding-bottom: 10px;
 }
 
 #main_logo
@@ -227,6 +226,14 @@ td, p
 	margin:0;
 	font-size:28px;
 	color:#484A4C;
+}
+
+/* Footer */
+#footer {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top: 50px;
+	font-size: 11px;
+	text-align:center;
 }
 
 /* Sign up boxes */

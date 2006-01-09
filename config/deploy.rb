@@ -36,11 +36,15 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
+# We don't have sudo permissions on dreamhost - should we use "run" instead?
+# set :restart_via, :run
+
 # Check for ENV to determine which type of deployment. 
 # 
 if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # Staging deployment to tourbus.figureten.com
   #
+  set :stage, "stage"
   # Need user with Bash shell on remote machine with right perms
   # This account has the normal password
   set :user, "figureten"
@@ -55,6 +59,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
 else
   # Production deployment to mytourb.us
   #
+  set :stage, "production"
   # Password is funny Dave C. skit
   set :user, "downtree"
   set :deploy_to, "/home/.jazzmen/downtree/mytourb.us/#{application}"
@@ -80,11 +85,30 @@ task :freeze_ferret do
     CMD
 end
 
+desc "Push the right version of databse.yml."
+task :push_db_file do
+
+  # For stage deployments, move the database.yml for staging
+  if stage == "stage"
+  
+    # Need to delete before pushing the new one, or it just cats it to the top
+    delete("#{release_path}/config/database.yml")
+    
+    put(File.read('config/stage_database.yml'),
+        "#{release_path}/config/database.yml",
+        :mode => 0444)
+  
+  end
+
+end
+
 desc "Code deploy. Just push the new code and adjusts symlinks"
 task :code_deploy do
   transaction do
 
     update_code
+    
+    push_db_file
     
     freeze_ferret
     

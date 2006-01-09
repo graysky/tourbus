@@ -158,18 +158,9 @@ td, p
 	font-size:22px;
 	font-weight: bold;
 	
-	
-	/* Orig
-	//border:1px solid #ccc;
-	//background-color:#F4F9E5;
-	color:#99CC00; */
-	
-
-	
 	background-color: #76b069;
 	background-repeat:repeat-x;
 	background-image: url(/images/navbar_bg.gif);
-	
 }
 
 #navbar a {
@@ -194,16 +185,23 @@ td, p
 	color:#CCCCCC;
 }
 
-#header a { /*color: #EEEEEE;*/ color:#CCCCCC; }
-#header a:link { /*color: #EEEEEE;*/ color:#CCCCCC; }
-#header a:visited { /*color: #EEEEEE;*/ color:#CCCCCC; }
+#header a { 
+	color:#CCCCCC; 
+}
+
+#header a:link {  
+	color:#CCCCCC; 
+}
+
+#header a:visited {  
+	color:#CCCCCC; 
+}
 
 #header strong {
 	margin-left:8px;
 }
 
-#content
-{
+#content {
 	margin:16px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -234,17 +232,15 @@ td, p
 /* Sign up boxes */
 .signup_box
 {
-	background-color: #F4F9E5;
-	border:1px solid #ADD039;
-	color:#4C5C5C;
-	width:330px;
-	height:280px;
+	width:360px;
+	height:380px;
 	
+	color:#4C5C5C;	
 	text-align:left;
-	font-size:16px;
+	font-size:18px;
 	
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-left: 5px;
+	padding-right: 5px;
 
 	margin-top:16px;
 	margin-bottom:16px;
@@ -252,20 +248,40 @@ td, p
 
 .signup_box h3
 {
-	color:#ADD039;
+	color:#599057;
+	border-bottom: 2px solid #599057;
 	text-align:center;
 	font-size:20px;
-	margin-bottom:10px;
+	margin-bottom:20px;
 }
 
 .signup_box ul
 {
+	margin-left: -35px;	
 }
 
 .signup_box li
 {
-	list-style-type: square;
-	padding-bottom: 10px;
+	font-size: 18px;
+
+	background: url(/images/bullet.gif) no-repeat;
+	background-position: center left;
+	list-style-type: none;
+	padding: 0px 0px 0px 5px;
+	margin-bottom: 20px;
+	/* Push the text off the image */
+	text-indent: 8px;
+}
+
+.signup_box a
+{
+	font-size: 1.3em;
+}
+
+.signup_box .highlight
+{
+	font-weight: bold;
+	color:#599057;
 }
 
 /*-----------------------------------------------------*/

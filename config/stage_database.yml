@@ -1,8 +1,0 @@
-# tourbus.figureten.com staging production environment
-#
-production:
-  adapter: mysql
-  database: tourbus_production
-  host: db.figureten.com
-  username: tourbus
-  password: bighit

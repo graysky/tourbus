@@ -16,51 +16,30 @@ module ShowCreator
       @show.update_attributes(params[:show])
     end
     
-    # Get the new or existing venue
-    new_venue = false
-    if params[:venue_type] == "new"
-      new_venue = true
-      @venue = Venue.new(params[:venue])
-    else
-      begin 
-        venue_error = false
-        @venue = Venue.find(params[:selected_venue_id])
-      rescue
-        venue_error = true
-      end
+    # Get the venue
+    begin 
+      venue_error = false
+      @venue = Venue.find(params[:selected_venue_id])
+    rescue
+      venue_error = true
+    end
       
-      if venue_error
-        @show.errors.add(nil, "Please select a venue or add a new one")
-        @venue = Venue.new(params[:venue])
-        raise
-      end
+    if venue_error
+      @show.errors.add(nil, "Please select a venue or add a new one")
+      @venue = Venue.new(params[:venue])
+      raise
     end
   
-    # See if we can locate the venue's address
-    if new_venue
-      if @venue.zipcode == "" and @venue.city == ""
-        @venue.errors.add(nil, "Please enter a city, state and zipcode")
-        raise
-      end
-      
-      if @venue.zipcode != ""
-        addr = "#{@venue.address}, #{@venue.zipcode}"
-      else
-        addr = "#{@venue.address}, #{@venue.city}, #{@venue.state}"
-      end
-      
-      result = Geocoder.geocode(addr)
-      if result && !result["lat"].nil?
-        @venue.latitude = result["lat"]
-        @venue.longitude = result["long"]
-      elsif not params[:ignore_address_error]
-        params[:address_error] = true
+    @bands_playing = calculate_bands
+    @show.venue = @venue
+    
+    if params[:ignore_duplicate_show].nil?
+      # Look for probable dups
+      params[:probable_dupe] = Show.find_probable_dups(@show)
+      if params[:probable_dupe]
         raise
       end
     end
-    
-    @bands_playing = calculate_bands
-    @show.venue = @venue
   end
   
   def venue_location_conditions()

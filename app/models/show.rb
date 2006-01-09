@@ -79,6 +79,14 @@ class Show < ActiveRecord::Base
     get_tags(Tag.Show)
   end
   
+  # Returns a list of shows that are probably identical to the given show,
+  # or nil if there are none
+  def self.find_probable_dups(other)
+    # A bit of a hack here. We need to force the show to update its date attribute
+    other.before_validation
+    Show.find_by_venue_id_and_date(other.venue.id, other.date)
+  end
+  
   protected
   
   # Add show-specific searchable fields for ferret indexing

@@ -42,6 +42,25 @@
 	<%= start_form_tag({:controller => controller, :action => action}, :onsubmit => "setBands()") %>
 	<%= error_messages_for 'show' %>
 
+	<% if params[:probable_dupe] %>
+	<center>
+	<div class="error-prompt-box" style="width:60%">
+		<h3>Possible Duplicate Show</h3>
+		<p>
+		It looks like the show you are trying to create might already be in the system.
+		Check out <%= link_to "this page", {:controller => "show", :action => "show", :id => params[:probable_dupe].id}, :popup => true %>
+		to see if we're right. If so, you may be able to edit the existing show listing (check the show page).
+		If we're wrong and this is a different show, check the box below and resubmit the form.
+		</p>
+		<table><tr>
+			<td><%= check_box_tag "ignore_duplicate_show", value="true", checked=params["ignore_duplicate_show"] == "true" %></td>
+			<td>This is a new show</td>
+		</tr></table>
+	</div>
+	</center>
+	<% end %>
+
+
 	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
 	<input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
 	<table class="form-table">

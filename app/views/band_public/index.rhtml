@@ -134,6 +134,27 @@
 
 <div id="side">
 
+<div class="sidebar-box">
+	<h2>About This Band</h2>
+	
+	<p>
+		<% if @band.claimed? %>
+			<strong>Member Since:</strong> <%= simple_date @band.created_on %>
+		<% end %>
+		<strong>Profile Views:</strong> <%= @band.page_views %>
+		
+		<br/>
+		<br/>
+		<% if @band.claimed? %>
+			<a href="javascript:alert('coming soon')">Contact this band</a>
+		<% else %>
+			<strong>Is this your band?</strong><br/>
+			<a href="javascript:alert('coming soon')">Create a tourb.us account</a>
+		<% end %>
+	</p>
+</div>
+<br/>
+
 	<%= render(
 	:partial => "shared/tags", 
 	:locals => 

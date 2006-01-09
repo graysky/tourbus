@@ -23,6 +23,7 @@
 #
 # Note: For when we just want to push new code, we can use the "update_current" task
 # which just fetches the latest code. Good for when pushing out small changes, or for our testing.
+#
 # =============================================================================
 # VARIABLES and ROLES
 # =============================================================================
@@ -94,21 +95,34 @@ task :push_db_file do
     # Need to delete before pushing the new one, or it just cats it to the top
     delete("#{release_path}/config/database.yml")
     
-    put(File.read('config/stage_database.yml'),
+    put(File.read('config/database_stage.yml'),
         "#{release_path}/config/database.yml",
         :mode => 0444)
-  
   end
-
 end
 
-desc "Code deploy. Just push the new code and adjusts symlinks"
+desc "Push the right version of environment.rb."
+task :push_env_file do
+
+  # For deployments, move the environment_prod.rb into right place
+  
+  # Need to delete before pushing the new one, or it just cats it to the top
+  delete("#{release_path}/config/environment.rb")
+    
+  put(File.read('config/environment_production.rb'),
+      "#{release_path}/config/environment.rb",
+      :mode => 0666)
+end
+
+desc "Code deploy. Get the new code and adjusts symlinks"
 task :code_deploy do
   transaction do
 
     update_code
     
     push_db_file
+    
+    push_env_file
     
     freeze_ferret
     

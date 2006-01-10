@@ -22,7 +22,7 @@ class Band < ActiveRecord::Base
   acts_as_searchable
   
   validates_presence_of :name
-  validates_uniqueness_of :band_id, 
+  validates_uniqueness_of :short_name, 
                           :message => "Sorry, that band public page has already been taken."
                           
   # TODO Not working?                        
@@ -30,7 +30,7 @@ class Band < ActiveRecord::Base
   validates_confirmation_of :password, :if => :validate_password?
   
   def validate
-    if band_id.blank? or band_id != Band.name_to_id(band_id)
+    if short_name.blank? or short_name != Band.name_to_id(short_name)
       errors.add_to_base("Invalid public page address. A valid address contains no spaces or punctuation other than \".\", \"-\", or \"_\"")
     end
     
@@ -46,16 +46,16 @@ class Band < ActiveRecord::Base
   # Returns the band if it was authenticated.
   # May return an unconfirmed band, the caller must check.
   def self.authenticate(login, password)
-    band = find_by_band_id(login)
+    band = find_by_short_name(login)
     return nil if band.nil?
     return find(:first, 
-                :conditions => ["confirmed = 1 and band_id = ? and salted_password = ?", login, Band.salted_password(band.salt, Hash.hashed(password))])
+                :conditions => ["confirmed = 1 and short_name = ? and salted_password = ?", login, Band.salted_password(band.salt, Hash.hashed(password))])
   end
    
   # Creates and sets the confirmation code. DOES NOT save the record.
   # Requires that that object already be populated with required fields
   def create_confirmation_code
-    self.confirmation_code = Hash.hashed(band_id + rand.to_s)
+    self.confirmation_code = Hash.hashed(short_name + rand.to_s)
     return self.confirmation_code
   end
   

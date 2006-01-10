@@ -92,12 +92,12 @@ module PhotoHelper
       if photo.created_by_fan
         return "fan/" + photo.created_by_fan.name
       elsif photo.created_by_band
-        return photo.created_by_band.band_id
+        return photo.created_by_band.short_name
       end
     end
     
     if photo.band
-      photo.band.band_id
+      photo.band.short_name
     elsif photo.venue
       "venue"
     else

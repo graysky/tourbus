@@ -24,7 +24,7 @@ class InitialSchema < ActiveRecord::Migration
     
     # Create all the regular tables for TourBus
     create_table "band_services", :force => true do |t|
-      t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "short_name", :integer, :limit => 10, :default => 0, :null => false
       t.column "myspace_username", :string, :limit => 100, :default => "", :null => false
       t.column "myspace_password", :string, :limit => 40, :default => "", :null => false
       t.column "purevolume_username", :string, :limit => 100, :default => "", :null => false
@@ -33,7 +33,7 @@ class InitialSchema < ActiveRecord::Migration
     
     create_table "bands", :force => true do |t|
       t.column "name", :string, :limit => 100, :default => "", :null => false
-      t.column "band_id", :string, :limit => 100, :default => "", :null => false
+      t.column "short_name", :string, :limit => 100, :default => "", :null => false
       t.column "contact_email", :string, :limit => 100, :default => "", :null => false
       t.column "zipcode", :string, :limit => 5
       t.column "city", :string, :limit => 100, :default => ""

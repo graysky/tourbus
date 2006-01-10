@@ -47,7 +47,8 @@ class ApplicationController < ActionController::Base
   def public_band_url(band = nil)
     band = @band if band.nil?
     band = session[:band] if band.nil?
-    url_for(:controller => '') + band.band_id
+    p band
+    url_for(:controller => '') + band.short_name
   end
   
   def public_fan_url(fan = nil)

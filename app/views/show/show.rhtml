@@ -1,14 +1,53 @@
 <div id="main">
 
 <% 
-	@page_title = @show.title 
-	@header_title = @show.title
+	if @show.title != ""
+		title = @show.title
+	else
+		title = @show.bands.map { |band| band.name }.join("/")
+	end 
+	
+	@page_title = title
+	@header_title = simple_date(@show.date) + " : " + truncate(title, 32)
 %>
+
+
+<div id="bands_playing">
+	<% for band in @show.bands %>
+		<div class="band_playing">
+			<nobr><%= public_band_link band.name, band %></nobr>
+		</div>
+	<% end %>
+</div>
+
+<div id="venue_for_show">
+	<% venue = @show.venue %>
+	<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %><br/>
+	<%= venue.address %><br/>
+	<%= venue.city + "," + venue.state %><br/>
+	<br/>
+	<%= friendly_time(@show.date) %>
+	<% if @show.cost != "" %>
+		<%= ", " + @show.cost %>
+	<% end %>
+	<br/>
+</div>
+
+
+<!-- ugly hack -->
+<div style="clear:both">
+</div>
+
+<div class="show_description">
+<%= @show.description %>
+</div>
 
 <%= if can_edit_show(@show)
 		link_to "Edit this show", :action => "edit", :id => @show.id 
 	end
 %>
+
+
 <%= render(
 	:partial => "shared/photo_preview", 
 	:locals => 

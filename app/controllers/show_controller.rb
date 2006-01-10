@@ -126,7 +126,7 @@ class ShowController < ApplicationController
   def some_login_required
     return true if logged_in_fan
     if logged_in_band
-      redirect_to :controller => logged_in_band.band_id, :action => "add_show"
+      redirect_to :controller => logged_in_band.short_name, :action => "add_show"
       return false
     end
     

@@ -19,7 +19,7 @@ CREATE TABLE `upload_addrs` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `address` varchar(100) NOT NULL,
   `fan_id` int(10) unsigned,
-  `band_id` int(10) unsigned,
+  `short_name` int(10) unsigned,
   KEY `fk_cu_createdband` (`band_id`),
   CONSTRAINT `fk_cu_createdband` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
   KEY `fk_cu_createdfan` (`fan_id`),

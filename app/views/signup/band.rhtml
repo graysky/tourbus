@@ -5,7 +5,7 @@
 	{
 		<% # NOTE: Keep this in sync with the implementation in band.rb! %>
 		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
-		$("band_band_id").value = id.toLowerCase();
+		$("band_short_name").value = id.toLowerCase();
 	}
 </script>
 
@@ -18,7 +18,7 @@
 	</tr>
 	<tr>
 		<th>Public Page:</th>
-		<td>http://mytourb.us/&nbsp;<%= text_field 'band', 'band_id'  %></td>
+		<td>http://mytourb.us/&nbsp;<%= text_field 'band', 'short_name'  %></td>
 	</tr>
 	<tr>
 		<th>Email Address:</th>

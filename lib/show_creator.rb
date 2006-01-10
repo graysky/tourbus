@@ -58,9 +58,9 @@ module ShowCreator
   
   def calculate_bands
     bands = []
-    band_ids = params[:bands_playing].split(":::")
+    short_names = params[:bands_playing].split(":::")
     
-    band_ids.each do |id|
+    short_names.each do |id|
       band = nil
       if id[0] != "*"
         # It's an id of an existing band
@@ -70,7 +70,7 @@ module ShowCreator
       if band.nil?
         band = Band.new
         band.name = CGI.unescape(id[1, id.length])
-        band.band_id = Band.name_to_id(band.name)
+        band.short_name = Band.name_to_id(band.name)
         band.claimed = false
       else
         logger.debug "Found band for show: #{band.name}"

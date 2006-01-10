@@ -117,7 +117,7 @@ class BandPublicController < ApplicationController
   def find_band
     
     # See if we are logged in as the band. If not, just use the URL.
-    @band = Band.find_by_band_id(params[:band_id])
+    @band = Band.find_by_short_name(params[:short_name])
     
     if @band.nil?
       raise "No such band. Put up an error screen"

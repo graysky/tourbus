@@ -43,8 +43,8 @@ class BandController < ApplicationController
     if id.nil? or id == "" or id == "null"
       # Are adding a new band with the given name. Make sure it's not a duplicate...
       name = CGI.unescape(params[:name])
-      band_id = Band.name_to_id(name)
-      if Band.find_by_band_id(band_id)
+      short_name = Band.name_to_id(name)
+      if Band.find_by_short_name(short_name)
         msg = "We found a band with that name in the system."
         msg << "Please search again for this band name and click the result to add the band to the show."
         msg << "If you need to add a new band with the same name, please add the location of the band "

@@ -611,7 +611,6 @@ table.form-table tr.submit td {
 }
 
 table.form-table tr.submit input {
-		/* Orig *
 		
 		/* Experiment w/ offwhite on green */
 		background:#005422;
@@ -746,6 +745,33 @@ table.form-table #selected_venue {
 	font-size:15px;
 	margin: 4px 8px 4px 8px;	
 }
+
+#main #bands_playing {
+	float:left;
+	margin-bottom:8px;
+	margin-left:16px;
+	width:150px;
+}
+
+#main #bands_playing .band_playing {
+	margin-bottom:8px;
+}
+
+#main #bands_playing a {
+	font-weight:bold;
+	font-size:18px;
+}
+
+.show_description {
+	margin-top:16px;
+	color: #4C5C5C;
+}
+
+#main #venue_for_show {
+	float:right;
+	margin-right:60px
+}
+
 
 #main
 {

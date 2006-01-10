@@ -26,7 +26,7 @@ module ApplicationHelper
   end
   
   def simple_date(date)
-    date.strftime("%m/%d/%y")
+    date.strftime("%m.%d.%y")
   end
   
   def time_select(var, default_hour = nil, default_minute = nil, default_ampm = nil)

@@ -31,7 +31,7 @@ CREATE TABLE `upload_addrs` (
 CREATE TABLE `bands` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
-  `short_names` varchar(100) NOT NULL default '',
+  `short_name` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
   `zipcode` VARCHAR(5),
   `city` varchar(100) default '',

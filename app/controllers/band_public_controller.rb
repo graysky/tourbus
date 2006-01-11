@@ -76,6 +76,11 @@ class BandPublicController < ApplicationController
                      :params => {"photo_id" => params[:photo_id], "name" => @band.name}
   end
   
+  def external_map
+    @shows = @band.shows
+    render :layout => "iframe"
+  end
+  
   private
   
   def create_edit_show(new)

@@ -985,3 +985,8 @@ table.comments_table a {
 	font-size:10px;
 	text-align:right;
 }
+
+.paragraph_with_code span {
+	font-family: monospace
+}
+

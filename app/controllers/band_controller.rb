@@ -71,37 +71,11 @@ class BandController < ApplicationController
     return if @request.get?
     save_band_profile("Account information was successfully updated", "settings")
   end
-  
-  # DEPRECATED The the band homepage
-  def home
-    return if @request.get?
-    save_band_profile("Profile information was successfully updated", "home")
+
+  def map_tool
+    # Nothing to do
   end
-  
-  # DEPRECATED Contact info
-  def contact
-    return if @request.get?
-    save_band_profile("Contact information was successfully updated", "contact")
-  end
-  
-  # DEPRECATED
-  def tours
-    if @request.get?
-      @tour = Tour.new
-    else
-      @tour = @band.tours.build(params[:tour])
-      
-      if @band.save
-        flash[:notice] = 'Tour added'
-        redirect_to(:action => "tours")
-      end
-    end
-  end
-  
-  # DEPRECATED
-  def shows
-  end
-  
+
   #########
   # Private
   #########

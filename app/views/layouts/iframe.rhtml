@@ -1,0 +1,14 @@
+<html>
+<head>
+ 
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <%= stylesheet_link_tag "main" %>
+   <%= @content_for_head %>
+</head>
+
+<body onload="<%= @content_for_onload %>" style="margin:0;padding:0;border:0;font-family: Verdana, Arial, Helvetica, sans-serif;">
+
+<%= @content_for_layout %>
+
+</body>
+</html>

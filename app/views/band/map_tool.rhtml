@@ -1,0 +1,39 @@
+<%
+	@page_title = @header_title =  @band.name + "/Map Tools"
+%>
+
+<script type="text/javascript">
+	function update_preview()
+	{
+		$('preview').innerHTML = $('code').value;
+	}
+</script>
+
+<p>
+You can add an interactive map, powered by Google Maps, to your band's website
+simply by cutting and pasting the following HTML code into your page:
+</p>
+
+<%= text_area_tag 'code', external_map_code, :cols => 80, :rows => 3 %>
+
+<p><%= link_to "Update Preview", "javascript:update_preview()" %></p>
+
+<p>
+A preview of what this will look like is shown below. You can edit the HTML code in the box above,
+and click "Update Preview" to see the affect of your changes. The rest of the page will explain
+some of the modifications you might want to make.
+</p>
+
+<div id="preview">
+<%= external_map_code %>
+</div>
+
+<div class="paragraph_with_code">
+<h3>Map Size</h3>
+<p>
+	You can adjust the size of the map by changing the <span>height</span> and <span>width</span> values,
+	which appear in two different places. 
+	You probably want to make sure that both <span>height</span> values and both <span>width</span>
+	values are the same, otherwise the map may have scrollbars or extra space around it.
+</p>
+</div>

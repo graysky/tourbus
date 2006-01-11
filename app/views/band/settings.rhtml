@@ -1,6 +1,7 @@
 <% @header_title = @band.name + "/Account Settings" %>
 
-<div>
+<div id="main">
+
 	<%= start_form_tag({:id => @band}, :multipart => true) %>
 	<%= error_messages_for 'band' %>
 
@@ -35,7 +36,16 @@
 			<td></td>
 			<td><%= submit_tag 'Edit Settings' %></td>
 		</tr>
-	</table>
-	
-	
+	</table>	
+
+</div>
+
+<div id="side">
+	<div class="sidebar-box">
+		<h2>Tools</h2>
+		<p>
+			<%= link_to "Click here", :action => "map_tool" %> to add an interactive of your
+			upcoming shows to your website.
+		</p>	
+	</div>
 </div>

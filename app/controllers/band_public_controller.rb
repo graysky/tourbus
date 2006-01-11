@@ -77,7 +77,7 @@ class BandPublicController < ApplicationController
   end
   
   def external_map
-    @shows = @band.shows
+    @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
     render :layout => "iframe"
   end
   

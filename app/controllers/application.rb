@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   
   def public_fan_url(fan = nil)
     fan = @fan if fan.nil?
-    fan = session[fan] if fan.nil?
+    fan = session[:fan] if fan.nil?
     url_for(:controller => '') + 'fan/' + fan.name
   end
   

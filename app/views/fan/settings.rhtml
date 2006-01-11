@@ -1,6 +1,18 @@
+<% @page_title = "Account Settings" %>
 <% @header_title = @fan.name + "/Account Settings" %>
 
 <%= link_to "Add a Show!", :controller => "shows", :action => "add" %>
+
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
+
+<script type="text/javascript">
+	function init_focus()
+	{
+		$('fan_contact_email').focus()
+	}
+</script>
 
 <div>
 	<%= start_form_tag :id => @fan %>

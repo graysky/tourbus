@@ -1,6 +1,17 @@
 <% @page_title = "Send Feedback" %>
 <% @header_title = "Send Feedback" %>
 
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
+
+<script type="text/javascript">
+	function init_focus()
+	{
+		$('user').focus()
+	}
+</script>
+
 <%= start_form_tag %>
 <table class="form-table">
 	
@@ -17,7 +28,7 @@
 	
 	<tr>
 		<th>Name:</th>
-		<td><%= text_field_tag 'user', name, :size => "30" %></td>
+		<td><%= text_field_tag 'user', name, :size => "35" %></td>
 		<td class="info">
 		</td>
 	</tr>
@@ -25,7 +36,7 @@
 	<tr>
 		<th>Email:</th>
 		
-		<td><%= text_field_tag 'email', email_addr, :size => "30" %></td>
+		<td><%= text_field_tag 'email', email_addr, :size => "35" %></td>
 		<td class="info">
 			Only used to reply to your feedback
 		</td>

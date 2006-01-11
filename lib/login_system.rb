@@ -28,4 +28,13 @@ module LoginSystem
     end
   end
   
+  # Overwrite if you want to have special behavior in case the user is not authorized
+  # to access the current operation. 
+  # the default action is to redirect to the login screen
+  # example use :
+  # a popup window might just close itself for instance
+  def access_denied
+    redirect_to :controller => "login"
+  end
+  
 end

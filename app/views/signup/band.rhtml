@@ -8,7 +8,16 @@
 		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
 		$("band_short_name").value = id.toLowerCase();
 	}
+	
+	function init_focus()
+	{
+		$('band_name').focus()
+	}
 </script>
+
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
 
 <%= start_form_tag %>
 <%= error_messages_for 'band' %>

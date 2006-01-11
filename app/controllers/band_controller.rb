@@ -4,7 +4,7 @@ require_dependency "geocoder"
 class BandController < ApplicationController
   include BandLoginSystem
   
-  before_filter :band_login_required, :except => [:login, :lookup_band_for_show, :add_selected_band]
+  before_filter :band_login_required, :except => [:lookup_band_for_show, :add_selected_band]
   before_filter :find_band, :except => [:lookup_band_for_show, :add_selected_band]
   session :off, :only => %w(lookup_band_for_show add_selected_band)
   
@@ -13,19 +13,6 @@ class BandController < ApplicationController
   def index
   end
   
-  def login
-    return if @request.get?
-    
-    if band = Band.authenticate(params['login'], params['password'])
-	  # TODO check for unclaimed band
-      @session[:band] = band
-      redirect_back_or_default( public_band_url )
-    else
-      @error_message  = "Login unsuccessful. Please check your username and password, and that " +
-                        "your account has been confirmed."
-    end
-  end
-
   def lookup_band_for_show
     name = params[:name].strip
     if params[:name] && name != ""

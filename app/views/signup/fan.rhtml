@@ -1,6 +1,17 @@
 <% @page_title = "Fan Signup" %>
 <% @header_title = "Fan Signup" %>
 
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
+
+<script type="text/javascript">
+	function init_focus()
+	{
+		$('fan_name').focus()
+	}
+</script>
+
 <%= start_form_tag %>
 <%= error_messages_for 'fan' %>
 <table class="form-table">

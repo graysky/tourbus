@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   # Find controller
   map.connect 'find/:action/:id', :controller => 'find'
   
-  # Random public pages
+  # Misc. public pages
   map.connect 'about/', :controller => 'public', :action => 'about_us'
   map.connect 'faq/', :controller => 'public', :action => 'faq'
   

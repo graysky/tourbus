@@ -4,8 +4,9 @@
 <p style="color: red"><%= flash[:error] %></p>
 
 <% if @band %>
-	Your account has been confirmed! You can now log in using the account information
-	sent in your confirmation email.
+	<h2>Your account has been confirmed!</h2>
 	
-	link here
+	<p>You can now <%= link_to("log in", :controller => "login", :action => "") %> using the account information
+	sent in your confirmation email.</p>
+	
 <% end %>

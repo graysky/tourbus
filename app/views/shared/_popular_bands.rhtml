@@ -1,0 +1,25 @@
+<% 
+# Provides div to list the most popular bands
+# Parameters (set as locals):
+# :bands => the most popular bands
+%>
+<div class="portlet_half">
+
+<h3>Popular Bands</h3>
+
+<!-- TODO Right Real Text -->
+
+<%= 
+
+	html = ""
+
+	for band in bands
+	
+	  html << "#{band.name} <br/>"
+	
+	end
+
+	html
+%>
+
+</div>

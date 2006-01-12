@@ -48,7 +48,7 @@ CREATE TABLE `bands` (
   `page_views` int(10) unsigned default 0,
   PRIMARY KEY  (`id`),
   KEY name_key (name),
-  KEY band_id_key (band_id)
+  KEY short_name_key (short_name)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `venues` (
@@ -86,6 +86,7 @@ CREATE TABLE `fans` (
   `confirmation_code` varchar(50) default '',
   `created_on` DATETIME,
   `page_views` int(10) unsigned default 0,
+  `admin` boolean NOT NULL default 0,
   PRIMARY KEY  (`id`),
   KEY name_key (name)
 ) ENGINE=InnoDB;

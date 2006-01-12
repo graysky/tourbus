@@ -602,22 +602,21 @@ table.form-table td p, body.info .box td p{
 	color: #555;
 }
 	
-
 table.form-table td input.form-text, table.form-table td select {
 	color: #555;
 	background: #eee;
 	border: 1px solid #ccc;
-	}
+}
 
 table.form-table td textarea {
 	color: #555;
 	background: #eee;
 	border: 1px solid #ccc;
-	width:300px;
-	}
+}
+	
 table#edit-form input, table#edit-form textarea, table#edit-form select {
 	background: #eee;
-	}
+}
 	
 table.form-table td input {
 	color: #555;

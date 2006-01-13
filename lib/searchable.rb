@@ -115,7 +115,9 @@ module FerretMixin
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
-          query_parser = QueryParser.new(["name", "contents"])
+          q.downcase!
+          options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
+          query_parser = QueryParser.new(["name", "contents"], options)
           query = Search::BooleanQuery.new
           
           # Parse the query provided by the user

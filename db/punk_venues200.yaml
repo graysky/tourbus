@@ -1611,16 +1611,6 @@ venues:
     address: 248 E Wilkes Barre St
     state: PA
   - 
-    city: Wallingford
-    name: Wallingford Knights of Columbus Hall
-    latitude: 41.456097
-    zip: 06492
-    url: http://www.manicproductions.org/
-    phone: 203-269-5510
-    longitude: -72.831379
-    address: 279 Quinnipiac St
-    state: CT
-  - 
     city: North Amityville
     name: The Village Pub South
     latitude: 40.6788

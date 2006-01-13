@@ -4,9 +4,9 @@ venues:
     city: Burlington
     name: "138"
     latitude: 44.476486
-    zip: "05401"
+    zipcode: "05401"
     url: http://www.weare138.tk
-    phone: 802-863-6522
+    phone_number: 802-863-6522
     longitude: -73.205423
     address: 138 South Willard St
     state: VT
@@ -14,9 +14,9 @@ venues:
     city: Kingston
     name: 193 Degrees
     latitude: 41.483831
-    zip: 02881
+    zipcode: 02881
     url: ''
-    phone: 401-874-5060
+    phone_number: 401-874-5060
     longitude: -71.529219
     address: 50 Lower College Road
     state: RI
@@ -24,9 +24,9 @@ venues:
     city: Burlington
     name: 242 Main
     latitude: 44.476089
-    zip: "05401"
+    zipcode: "05401"
     url: http://www.242main.com
-    phone: 802-862-2244
+    phone_number: 802-862-2244
     longitude: -73.209322
     address: 242 Main St.
     state: VT
@@ -34,9 +34,9 @@ venues:
     city: Taunton
     name: All About Records
     latitude: 41.901814
-    zip: 02780
+    zipcode: 02780
     url: http://www.allaboutrecords.com
-    phone: ''
+    phone_number: ''
     longitude: -71.091994
     address: 31 Main St.
     state: MA
@@ -44,9 +44,9 @@ venues:
     city: Enfield
     name: American Legion
     latitude: 42.008488
-    zip: 06082
+    zipcode: 06082
     url: ''
-    phone: 860-745-8817
+    phone_number: 860-745-8817
     longitude: -72.593056
     address: 566 Enfield Street
     state: CT
@@ -54,9 +54,9 @@ venues:
     city: Norway
     name: American Legion
     latitude: 44.210278
-    zip: 04268
+    zipcode: 04268
     url: ''
-    phone: 207-743-7294
+    phone_number: 207-743-7294
     longitude: -70.533624
     address: 82 Main Street
     state: ME
@@ -64,9 +64,9 @@ venues:
     city: South Paris
     name: American Legion
     latitude: 44.223154
-    zip: 04281
+    zipcode: 04281
     url: ''
-    phone: 207-743-8832
+    phone_number: 207-743-8832
     longitude: -70.514219
     address: 72 Church Street
     state: ME
@@ -74,9 +74,9 @@ venues:
     city: Northampton
     name: American Legion
     latitude: 42.325201
-    zip: "01062"
+    zipcode: "01062"
     url: ''
-    phone: 413-584-5519
+    phone_number: 413-584-5519
     longitude: -72.655647
     address: 63 Riverside Drive
     state: MA
@@ -84,19 +84,19 @@ venues:
     city: Providence
     name: AS220
     latitude: 41.821314
-    zip: 02903
+    zipcode: 02903
     url: http://www.as220.org/
-    phone: ''
+    phone_number: ''
     longitude: -71.416083
     address: 115 Empire St.
     state: RI
   - 
     city: Portland
-    name: "Asylum, The"
+    name: "The Asylum"
     latitude: 43.65661
-    zip: "04101"
+    zipcode: "04101"
     url: http://www.asylumportland.com/
-    phone: 207-772-8274
+    phone_number: 207-772-8274
     longitude: -70.259626
     address: 121 Center Street
     state: ME
@@ -104,9 +104,9 @@ venues:
     city: Augusta
     name: Augusta Civic Center
     latitude: 44.34181
-    zip: "04330"
+    zipcode: "04330"
     url: http://www.augustaciviccenter.org/
-    phone: 207-626-2405
+    phone_number: 207-626-2405
     longitude: -69.798064
     address: 76 Community Drive
     state: ME
@@ -114,9 +114,9 @@ venues:
     city: Boston
     name: Axis
     latitude: 42.347097
-    zip: "02215"
+    zipcode: "02215"
     url: http://boston.cc.com/axis.asp
-    phone: 617-262-2437
+    phone_number: 617-262-2437
     longitude: -71.09521
     address: 13 Lansdowne Street
     state: MA
@@ -124,9 +124,9 @@ venues:
     city: New London
     name: Bank Street Cafe
     latitude: 41.3497
-    zip: "06320"
+    zipcode: "06320"
     url: http://www.bankstreetcafe.com
-    phone: 860-444-1444
+    phone_number: 860-444-1444
     longitude: -72.103793
     address: 639 Bank Street
     state: CT
@@ -134,19 +134,19 @@ venues:
     city: Hartford
     name: Bar with No Name
     latitude: 41.766968
-    zip: "06103"
+    zipcode: "06103"
     url: http://www.barwithnoname.com/
-    phone: 860-293-2344
+    phone_number: 860-293-2344
     longitude: -72.675483
     address: 115 Asylum Street
     state: CT
   - 
     city: Wellfleet
-    name: "Beachcomber, The"
+    name: "The Beachcomber"
     latitude: 41.94145
-    zip: "02667"
+    zipcode: "02667"
     url: http://www.thebeachcomber.com/
-    phone: 508-349-6055
+    phone_number: 508-349-6055
     longitude: -69.99478
     address: 1120 Cahoon Hollow Road
     state: MA
@@ -154,9 +154,9 @@ venues:
     city: Boston
     name: Berklee Performance Center
     latitude: 42.346992
-    zip: "02115"
+    zipcode: "02115"
     url: http://www.berkleebpc.com/
-    phone: ''
+    phone_number: ''
     longitude: -71.087798
     address: 136 Massachusetts Avenue
     state: MA
@@ -164,19 +164,19 @@ venues:
     city: Dover
     name: "Biddy Mulligan's Irish Pub"
     latitude: 43.195184
-    zip: 03820
+    zipcode: 03820
     url: ''
-    phone: 603-749-1100
+    phone_number: 603-749-1100
     longitude: -70.872002
     address: 1 Washington Street
     state: NH
   - 
     city: Boston
-    name: "Big Easy, The"
+    name: "The Big Easy"
     latitude: 42.3517
-    zip: "02116"
+    zipcode: "02116"
     url: ''
-    phone: 617-351-7000
+    phone_number: 617-351-7000
     longitude: -71.065981
     address: 1 Boylston Place
     state: MA
@@ -184,9 +184,9 @@ venues:
     city: Boston
     name: "Bill's Bar"
     latitude: 42.347097
-    zip: "02215"
+    zipcode: "02215"
     url: http://www.billsbar.com/
-    phone: 617-421-9678
+    phone_number: 617-421-9678
     longitude: -71.094867
     address: 5 1/2 Lansdowne Street
     state: MA
@@ -194,9 +194,9 @@ venues:
     city: Cumberland Hill
     name: "Blackstone, The"
     latitude: 41.915185
-    zip: 02864
+    zipcode: 02864
     url: http://www.blackstoneclub.com/
-    phone: 401-726-2181
+    phone_number: 401-726-2181
     longitude: -71.404569
     address: 129 Mendon Road
     state: RI
@@ -204,9 +204,9 @@ venues:
     city: Waterbury
     name: Brass City Records
     latitude: 41.557375
-    zip: "06702"
+    zipcode: "06702"
     url: http://pages.cthome.net/bcrgraphics/
-    phone: 203-574-7805
+    phone_number: 203-574-7805
     longitude: -73.046651
     address: 489 Meadow St.
     state: CT
@@ -214,9 +214,9 @@ venues:
     city: Fitchburg
     name: British American Club
     latitude: 42.573989
-    zip: "01420"
+    zipcode: "01420"
     url: ''
-    phone: 978-343-9538
+    phone_number: 978-343-9538
     longitude: -71.837418
     address: 1 Simonds Road
     state: MA 
@@ -224,9 +224,9 @@ venues:
     city: Providence
     name: Cafe Zog
     latitude: 41.818994
-    zip: 02903
+    zipcode: 02903
     url: ''
-    phone: 401-421-2213
+    phone_number: 401-421-2213
     longitude: -71.398171
     address: 239 Wickenden Street
     state: RI
@@ -234,9 +234,9 @@ venues:
     city: Northampton
     name: Calvin Theatre
     latitude: 42.33808
-    zip: "01060"
+    zipcode: "01060"
     url: ''
-    phone: 413-584-1444
+    phone_number: 413-584-1444
     longitude: -72.637572
     address: 19 King Street
     state: MA
@@ -244,9 +244,9 @@ venues:
     city: Cambridge
     name: "Cantab Lounge, The"
     latitude: 42.366305
-    zip: 02139
+    zipcode: 02139
     url: http://www.cantablounge.com
-    phone: 617-354-2685
+    phone_number: 617-354-2685
     longitude: -71.105434
     address: 738 Massachusetts Ave.
     state: MA
@@ -254,9 +254,9 @@ venues:
     city: Barnstable Town
     name: Cape Cod Melody Tent
     latitude: 41.647585
-    zip: "02601"
+    zipcode: "02601"
     url: http://www.melodytent.com/
-    phone: 508-775-9100
+    phone_number: 508-775-9100
     longitude: -70.297637
     address: 21 West Main Street
     state: MA
@@ -264,9 +264,9 @@ venues:
     city: Concord
     name: Capitol Center for the Arts
     latitude: 43.201449
-    zip: "03301"
+    zipcode: "03301"
     url: http://www.ccanh.com/
-    phone: 603-225-1111
+    phone_number: 603-225-1111
     longitude: -71.533831
     address: 44 South Main Street
     state: NH
@@ -274,9 +274,9 @@ venues:
     city: Lowell
     name: "Capo's"
     latitude: 42.645231
-    zip: 01852
+    zipcode: 01852
     url: http://www.caposfolk.com/
-    phone: 978-453-5755
+    phone_number: 978-453-5755
     longitude: -71.310621
     address: 98 Middle Street
     state: MA
@@ -284,9 +284,9 @@ venues:
     city: Natick
     name: Center for Arts in Natick
     latitude: 42.284706
-    zip: "01760"
+    zipcode: "01760"
     url: http://www.natickarts.org/
-    phone: ''
+    phone_number: ''
     longitude: -71.347186
     address: 31 Main Street
     state: MA
@@ -294,9 +294,9 @@ venues:
     city: Manchester
     name: "Chantilly's Billiards"
     latitude: 43.016751
-    zip: "03104"
+    zipcode: "03104"
     url: http://www.chantillys.net/
-    phone: 603-621-0330
+    phone_number: 603-621-0330
     longitude: -71.450228
     address: 545 Hooksett Road
     state: NH
@@ -304,29 +304,19 @@ venues:
     city: Cambridge
     name: "Charlie's Kitchen"
     latitude: 42.372496
-    zip: 02138
+    zipcode: 02138
     url: ''
-    phone: 617-492-9646
+    phone_number: 617-492-9646
     longitude: -71.12193
     address: 10 Eliot St.
-    state: MA
-  - 
-    city: Cambridge
-    name: "Charlie's Kitchen"
-    latitude: 42.372496
-    zip: 02138
-    url: ''
-    phone: 617-492-9646
-    longitude: -71.12193
-    address: 10 Eliot Street
     state: MA
   - 
     city: Haverhill
     name: Chit Chat Lounge
     latitude: 42.77269
-    zip: 01832
+    zipcode: 01832
     url: http://www.chitchatlounge.com/
-    phone: 978-374-9710
+    phone_number: 978-374-9710
     longitude: -71.085934
     address: 103 Washington Street
     state: MA
@@ -334,9 +324,9 @@ venues:
     city: Boston
     name: "Choppin' Block"
     latitude: 42.334097
-    zip: "02115"
+    zipcode: "02115"
     url: http://www.geocities.com/patrickwilson_ig/patrickwilson.html
-    phone: ''
+    phone_number: ''
     longitude: -71.104996
     address: 724 Huntington Avenue
     state: MA
@@ -344,9 +334,9 @@ venues:
     city: Haverhill
     name: Club 125
     latitude: 42.758638
-    zip: 01835
+    zipcode: 01835
     url: http://www.club125.biz/
-    phone: 978-521-0099
+    phone_number: 978-521-0099
     longitude: -71.098415
     address: 725 South Main Street
     state: MA
@@ -354,9 +344,9 @@ venues:
     city: Nashua
     name: Club Drifters
     latitude: 42.761106
-    zip: "03060"
+    zipcode: "03060"
     url: http://www.clubdrifters.com/
-    phone: 603-595-5200
+    phone_number: 603-595-5200
     longitude: -71.466481
     address: 17 Factory Street
     state: NH
@@ -364,9 +354,9 @@ venues:
     city: Revere
     name: Club Hideout
     latitude: 42.414427
-    zip: "02151"
+    zipcode: "02151"
     url: http://www.hideoutboston.com
-    phone: 781-289-3080
+    phone_number: 781-289-3080
     longitude: -70.992049
     address: 1290 North Shore Road
     state: MA
@@ -374,9 +364,9 @@ venues:
     city: Burlington
     name: Club Metronome
     latitude: 44.475995
-    zip: "05401"
+    zipcode: "05401"
     url: http://www.clubmetronome.com/
-    phone: 802-865-4563
+    phone_number: 802-865-4563
     longitude: -73.211674
     address: 188 Main Street
     state: VT
@@ -384,9 +374,9 @@ venues:
     city: Danbury
     name: "Colorado Brewery, The"
     latitude: 41.395031
-    zip: 06810
+    zipcode: 06810
     url: http://www.thecoloradobrewery.com
-    phone: 203-791-1450
+    phone_number: 203-791-1450
     longitude: -73.451119
     address: 6 Delay Street
     state: CT
@@ -394,9 +384,9 @@ venues:
     city: Boston
     name: Common Ground
     latitude: 42.353397
-    zip: "02134"
+    zipcode: "02134"
     url: ''
-    phone: 617-783-2071
+    phone_number: 617-783-2071
     longitude: -71.132497
     address: 85 Harvard Avenue
     state: MA
@@ -404,9 +394,9 @@ venues:
     city: Brattleboro
     name: Common Ground
     latitude: 42.851927
-    zip: "05301"
+    zipcode: "05301"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: -72.558612
     address: 25 Elliot Street
     state: VT
@@ -414,9 +404,9 @@ venues:
     city: Naugatuck
     name: "Cook's Cafe"
     latitude: 41.49009
-    zip: "06770"
+    zipcode: "06770"
     url: http://www.cooksrocks.com/
-    phone: 203-729-3760
+    phone_number: 203-729-3760
     longitude: -73.055563
     address: 203 Church Street
     state: CT
@@ -424,9 +414,9 @@ venues:
     city: Brookline
     name: Coolidge Corner Theatre
     latitude: 42.342292
-    zip: "02446"
+    zipcode: "02446"
     url: http://www.coolidge.org/
-    phone: 617-734-2500
+    phone_number: 617-734-2500
     longitude: -71.121688
     address: 290 Harvard Street
     state: MA
@@ -434,9 +424,9 @@ venues:
     city: Nashua
     name: DRIFTERS
     latitude: 42.761106
-    zip: "03060"
+    zipcode: "03060"
     url: http://www.clubdrifters.com
-    phone: 603-595-5200
+    phone_number: 603-595-5200
     longitude: -71.466481
     address: 17 Factory Street
     state: NH
@@ -444,9 +434,9 @@ venues:
     city: Middletown
     name: "Eagle's Fraternal Order"
     latitude: 41.568027
-    zip: "06457"
+    zipcode: "06457"
     url: ''
-    phone: 860-344-5341
+    phone_number: 860-344-5341
     longitude: -72.656882
     address: 64 Stack Street
     state: CT
@@ -454,9 +444,9 @@ venues:
     city: Salem
     name: Elks Lodge
     latitude: 42.521573
-    zip: 01970
+    zipcode: 01970
     url: ''
-    phone: 978-744-9534
+    phone_number: 978-744-9534
     longitude: -70.898671
     address: 17 North Street
     state: MA
@@ -464,9 +454,9 @@ venues:
     city: Danbury
     name: Empress Ballroom
     latitude: 41.393606
-    zip: 06810
+    zipcode: 06810
     url: http://www.empressballroom.com
-    phone: 203-796-0000
+    phone_number: 203-796-0000
     longitude: -73.451186
     address: 155 Main Street
     state: CT
@@ -474,9 +464,9 @@ venues:
     city: Essex Junction
     name: Essex Teen Center
     latitude: 44.490578
-    zip: "05452"
+    zipcode: "05452"
     url: ''
-    phone: 802-878-6981
+    phone_number: 802-878-6981
     longitude: -73.11114
     address: 2 Lincoln Street
     state: VT
@@ -484,9 +474,9 @@ venues:
     city: Lowell
     name: Evos Arts
     latitude: 42.645231
-    zip: 01852
+    zipcode: 01852
     url: http://www.evosarts.com/
-    phone: 978-441-9906
+    phone_number: 978-441-9906
     longitude: -71.310621
     address: 98 Middle Street
     state: MA
@@ -494,9 +484,9 @@ venues:
     city: Haverhill
     name: Exit 23
     latitude: 42.77769
-    zip: 01830
+    zipcode: 01830
     url: ''
-    phone: 978-372-3911
+    phone_number: 978-372-3911
     longitude: -71.086501
     address: 246 Winter St.
     state: MA
@@ -504,9 +494,9 @@ venues:
     city: Springfield
     name: Fat Cat
     latitude: 42.104545
-    zip: "01103"
+    zipcode: "01103"
     url: ''
-    phone: 413-543-0080
+    phone_number: 413-543-0080
     longitude: -72.591882
     address: 232 Worthington Street
     state: MA
@@ -514,9 +504,9 @@ venues:
     city: Greenfield
     name: Fifth Element Youth Center
     latitude: 42.594882
-    zip: "01301"
+    zipcode: "01301"
     url: http://greenfieldyouthcenter.com
-    phone: 413-775-0144
+    phone_number: 413-775-0144
     longitude: -72.594585
     address: 20 Sanderson Street
     state: MA
@@ -524,19 +514,9 @@ venues:
     city: Fitchburg
     name: Fitchburg State College
     latitude: 42.588189
-    zip: "01420"
+    zipcode: "01420"
     url: http://www.fsc.edu
-    phone: 978-665-3692
-    longitude: -71.78812
-    address: 160 Pearl Street
-    state: MA
-  - 
-    city: Fitchburg
-    name: Fitchburg State College
-    latitude: 42.588189
-    zip: "01420"
-    url: http://www.fsc.edu
-    phone: 978-665-3692
+    phone_number: 978-665-3692
     longitude: -71.78812
     address: 160 Pearl Street
     state: MA
@@ -544,9 +524,9 @@ venues:
     city: Boston
     name: FleetBoston Pavilion
     latitude: 42.348197
-    zip: "02210"
+    zipcode: "02210"
     url: http://www.fleetbostonpavilion.com/
-    phone: 617-728-1600
+    phone_number: 617-728-1600
     longitude: -71.037694
     address: 290 Northern Avenue
     state: MA
@@ -554,9 +534,9 @@ venues:
     city: Burlington
     name: Flynn Theatre
     latitude: 44.475946
-    zip: "05401"
+    zipcode: "05401"
     url: http://www.flynntheatre.org/
-    phone: 802-863-5966
+    phone_number: 802-863-5966
     longitude: -73.212946
     address: 153 Main Street
     state: VT
@@ -564,9 +544,9 @@ venues:
     city: Easthampton
     name: Flywheel Arts Collective
     latitude: 42.26409
-    zip: "01027"
+    zipcode: "01027"
     url: http://www.flywheelarts.org/
-    phone: 413-527-9800
+    phone_number: 413-527-9800
     longitude: -72.663035
     address: 2 Holyoke Street
     state: MA
@@ -574,9 +554,9 @@ venues:
     city: Providence
     name: Green Room
     latitude: 41.817967
-    zip: 02903
+    zipcode: 02903
     url: http://www.snookersgreenroom.com/GreenRoomMain.asp
-    phone: ''
+    phone_number: ''
     longitude: -71.411567
     address: 145 Clifford Street
     state: RI
@@ -584,9 +564,9 @@ venues:
     city: Greenfield
     name: Greenfield Youth Center
     latitude: 42.594882
-    zip: "01301"
+    zipcode: "01301"
     url: http://greenfieldyouthcenter.com
-    phone: 413-775-0144
+    phone_number: 413-775-0144
     longitude: -72.594585
     address: 20 Sanderson St.
     state: MA
@@ -594,9 +574,9 @@ venues:
     city: Hampton
     name: Hampton Beach Casino Ballroom
     latitude: 42.907045
-    zip: 03842
+    zipcode: 03842
     url: http://www.casinoballroom.com/
-    phone: 603-929-4100
+    phone_number: 603-929-4100
     longitude: -70.811408
     address: 169 Ocean Boulevard
     state: NH
@@ -604,9 +584,9 @@ venues:
     city: Boston
     name: Hard Rock Cafe
     latitude: 42.348092
-    zip: "02116"
+    zipcode: "02116"
     url: http://www.hardrock.com/locations/cafes/Cafes.aspx?Lc=BOST
-    phone: 617-424-7625
+    phone_number: 617-424-7625
     longitude: -71.074237
     address: 131 Clarendon Street
     state: MA
@@ -614,9 +594,9 @@ venues:
     city: Boston
     name: "Harper's Ferry"
     latitude: 42.35305
-    zip: "02134"
+    zipcode: "02134"
     url: http://www.harpersferryboston.com/
-    phone: 617-254-9743
+    phone_number: 617-254-9743
     longitude: -71.132683
     address: 156 Brighton Ave
     state: MA
@@ -624,9 +604,9 @@ venues:
     city: Barnstable Town
     name: "Harry's"
     latitude: 41.652986
-    zip: "02601"
+    zipcode: "02601"
     url: ''
-    phone: 508-778-4188
+    phone_number: 508-778-4188
     longitude: -70.319944
     address: 700 W Main St.
     state: MA
@@ -634,9 +614,9 @@ venues:
     city: Acushnet Center
     name: Hen House Restaurant
     latitude: 41.749533
-    zip: "02743"
+    zipcode: "02743"
     url: ''
-    phone: 508-763-4774
+    phone_number: 508-763-4774
     longitude: -70.902092
     address: 1315 Main Street
     state: MA
@@ -644,9 +624,9 @@ venues:
     city: Winooski
     name: Higher Ground
     latitude: 44.489117
-    zip: "05404"
+    zipcode: "05404"
     url: http://www.highergroundmusic.com/
-    phone: 802-654-8888
+    phone_number: 802-654-8888
     longitude: -73.186449
     address: 1 Main Street
     state: VT
@@ -654,9 +634,9 @@ venues:
     city: Shelton
     name: Huntington Street Cafe
     latitude: 41.293227
-    zip: 06484
+    zipcode: 06484
     url: ''
-    phone: 203-925-9064
+    phone_number: 203-925-9064
     longitude: -73.145297
     address: 90 Huntington St
     state: CT
@@ -664,9 +644,9 @@ venues:
     city: Boston
     name: International Community Church (ICC)
     latitude: 42.352577
-    zip: "02134"
+    zipcode: "02134"
     url: ''
-    phone: 617-782-8120
+    phone_number: 617-782-8120
     longitude: -71.140273
     address: 557 Cambridge Street
     state: MA
@@ -674,9 +654,9 @@ venues:
     city: Exeter
     name: Ioka Theatre
     latitude: 42.981344
-    zip: 03833
+    zipcode: 03833
     url: http://www.iokaentertainment.com/
-    phone: ''
+    phone_number: ''
     longitude: -70.945591
     address: 55 Water Street
     state: NH
@@ -684,9 +664,9 @@ venues:
     city: Northampton
     name: Iron Horse Music Hall
     latitude: 42.318934
-    zip: "01060"
+    zipcode: "01060"
     url: http://www.iheg.com
-    phone: 413-584-0610
+    phone_number: 413-584-0610
     longitude: -72.631675
     address: 20 Center Street
     state: MA
@@ -694,9 +674,9 @@ venues:
     city: Boston
     name: "Jacque's"
     latitude: 42.349574
-    zip: "02116"
+    zipcode: "02116"
     url: ''
-    phone: 617-426-8902
+    phone_number: 617-426-8902
     longitude: -71.0674
     address: 79 Broadway
     state: MA
@@ -704,9 +684,9 @@ venues:
     city: Meriden
     name: JC Music
     latitude: 41.540598
-    zip: "06451"
+    zipcode: "06451"
     url: http://www.jc-music.com
-    phone: 203-630-2496
+    phone_number: 203-630-2496
     longitude: -72.821444
     address: 529 West Main Street
     state: CT
@@ -714,9 +694,9 @@ venues:
     city: Storrs
     name: Jorgensen Center for the Performing Arts
     latitude: 41.808136
-    zip: 06269
+    zipcode: 06269
     url: http://www.jorgensen.ct-arts.com/
-    phone: 860-486-4226
+    phone_number: 860-486-4226
     longitude: -72.256322
     address: 2132 Hillside Rd.
     state: CT
@@ -724,9 +704,9 @@ venues:
     city: Orleans
     name: "Juice Bar, The"
     latitude: 41.782478
-    zip: "02653"
+    zipcode: "02653"
     url: http://thejuicebar.cjb.net/
-    phone: 508-255-9467
+    phone_number: 508-255-9467
     longitude: -69.987422
     address: 16 S Orleans Road
     state: MA
@@ -734,9 +714,9 @@ venues:
     city: Pawtucket
     name: "KC's Tap"
     latitude: 41.887799
-    zip: 02860
+    zipcode: 02860
     url: ''
-    phone: 401-722-0150
+    phone_number: 401-722-0150
     longitude: -71.374399
     address: 530 Broadway
     state: RI
@@ -744,9 +724,9 @@ venues:
     city: Boston
     name: "Kells, The"
     latitude: 42.353043
-    zip: "02134"
+    zipcode: "02134"
     url: http://www.thekells.com/
-    phone: 617-782-9082
+    phone_number: 617-782-9082
     longitude: -71.1326
     address: 161 Brighton Avenue
     state: MA
@@ -754,9 +734,9 @@ venues:
     city: Cambridge
     name: "Kendall Cafe, The"
     latitude: 42.367797
-    zip: "02141"
+    zipcode: "02141"
     url: http://www.thekendall.com/
-    phone: 617-661-0993
+    phone_number: 617-661-0993
     longitude: -71.091196
     address: 233 Cardinal Medeiros Avenue
     state: MA
@@ -764,9 +744,9 @@ venues:
     city: Somerville
     name: Kirkland Cafe
     latitude: 42.378296
-    zip: "02143"
+    zipcode: "02143"
     url: ''
-    phone: 617-491-9640
+    phone_number: 617-491-9640
     longitude: -71.106396
     address: 421-425 Washington Street
     state: MA
@@ -774,9 +754,9 @@ venues:
     city: Wallingford
     name: Knights of Columbus
     latitude: 41.456097
-    zip: 06492
+    zipcode: 06492
     url: ''
-    phone: 203-269-5510
+    phone_number: 203-269-5510
     longitude: -72.831379
     address: 279 Quinnipiac Street
     state: CT
@@ -784,9 +764,9 @@ venues:
     city: Attleboro
     name: Knights of Columbus
     latitude: 41.945699
-    zip: "02703"
+    zipcode: "02703"
     url: ''
-    phone: 508-222-0404
+    phone_number: 508-222-0404
     longitude: -71.289397
     address: 2 Hodges Street
     state: MA
@@ -794,9 +774,9 @@ venues:
     city: Kingston
     name: Knights of Columbus
     latitude: 41.986619
-    zip: "02364"
+    zipcode: "02364"
     url: ''
-    phone: 781-585-8190
+    phone_number: 781-585-8190
     longitude: -70.753374
     address: 91 South Street
     state: MA
@@ -804,9 +784,9 @@ venues:
     city: Lawrence
     name: Knights of Columbus
     latitude: 42.701491
-    zip: 01843
+    zipcode: 01843
     url: ''
-    phone: 978-687-9834
+    phone_number: 978-687-9834
     longitude: -71.143102
     address: 1 Market Street
     state: MA
@@ -814,9 +794,9 @@ venues:
     city: East Providence
     name: Knights Of Columbus
     latitude: 41.8544
-    zip: 02916
+    zipcode: 02916
     url: ''
-    phone: 401-434-4620
+    phone_number: 401-434-4620
     longitude: -71.361698
     address: 1 New Road
     state: RI
@@ -824,9 +804,9 @@ venues:
     city: Boston
     name: "Linwood, The"
     latitude: 42.342605
-    zip: "02215"
+    zipcode: "02215"
     url: http://www.hamsterrecords.com/linwood_schedule.html
-    phone: 617-267-8644
+    phone_number: 617-267-8644
     longitude: -71.099595
     address: 69 Kilmarnock Street
     state: MA
@@ -834,9 +814,9 @@ venues:
     city: Leominster
     name: Liquid
     latitude: 42.533771
-    zip: "01453"
+    zipcode: "01453"
     url: http://www.liquidatnight.com/
-    phone: 978-840-3500
+    phone_number: 978-840-3500
     longitude: -71.756342
     address: 54 Main Street
     state: MA
@@ -844,9 +824,9 @@ venues:
     city: Litchfield
     name: Litchfield Community Center
     latitude: 41.735306
-    zip: 06759
+    zipcode: 06759
     url: ''
-    phone: 860-567-8302
+    phone_number: 860-567-8302
     longitude: -73.215941
     address: 421 Bantam Road
     state: CT
@@ -854,9 +834,9 @@ venues:
     city: Providence
     name: Living Room
     latitude: 41.829124
-    zip: 02908
+    zipcode: 02908
     url: ''
-    phone: 401-521-5200
+    phone_number: 401-521-5200
     longitude: -71.428146
     address: 23 Rathbone Street
     state: RI
@@ -864,9 +844,9 @@ venues:
     city: Cambridge
     name: Lizard Lounge
     latitude: 42.381956
-    zip: 02138
+    zipcode: 02138
     url: ''
-    phone: 617-547-0759
+    phone_number: 617-547-0759
     longitude: -71.119757
     address: 1667 Massachusetts Avenue
     state: MA
@@ -874,9 +854,9 @@ venues:
     city: Lowell
     name: Lowell Memorial Auditorium
     latitude: 42.644802
-    zip: 01852
+    zipcode: 01852
     url: http://www.lowellauditorium.com/
-    phone: 978-474-2299
+    phone_number: 978-474-2299
     longitude: -71.304503
     address: 50 East Merrimack Street
     state: MA
@@ -884,9 +864,9 @@ venues:
     city: Worcester
     name: Lucky Dog Music Hall
     latitude: 42.257943
-    zip: "01604"
+    zipcode: "01604"
     url: http://www.luckydogmusic.com/
-    phone: 508-363-1888
+    phone_number: 508-363-1888
     longitude: -71.798094
     address: 89 Green Street
     state: MA
@@ -894,9 +874,9 @@ venues:
     city: Providence
     name: "Lupo's Heartbreak Hotel"
     latitude: 41.822425
-    zip: 02903
+    zipcode: 02903
     url: http://www.lupos.com/
-    phone: 401-272-5876
+    phone_number: 401-272-5876
     longitude: -71.412444
     address: 239 Westminster Street
     state: RI
@@ -904,9 +884,9 @@ venues:
     city: Madison
     name: Madison Arts Barn
     latitude: 41.294584
-    zip: "06443"
+    zipcode: "06443"
     url: http://www.madisonartsbarn.com/
-    phone: 203-245-2689
+    phone_number: 203-245-2689
     longitude: -72.575567
     address: 6 Campus Drive
     state: CT
@@ -914,9 +894,9 @@ venues:
     city: Westfield
     name: Mass Skate Coalition
     latitude: 42.179391
-    zip: 01085
+    zipcode: 01085
     url: ''
-    phone: 413-534-1000
+    phone_number: 413-534-1000
     longitude: -72.707736
     address: 1029 North Road
     state: MA
@@ -924,9 +904,9 @@ venues:
     city: New Milford
     name: "Maxx, The"
     latitude: 41.579494
-    zip: "06776"
+    zipcode: "06776"
     url: http://www.themaxxclub.com/
-    phone: 860-354-0047
+    phone_number: 860-354-0047
     longitude: -73.413265
     address: 94 Railroad Street
     state: CT
@@ -934,9 +914,9 @@ venues:
     city: Gilford
     name: Meadowbrook Musical Arts Center
     latitude: 43.577234
-    zip: 03249
+    zipcode: 03249
     url: http://www.meadowbrookfarm.net/
-    phone: 603-293-4700
+    phone_number: 603-293-4700
     longitude: -71.412271
     address: 72 Meadowbrook Lane
     state: NH
@@ -944,9 +924,9 @@ venues:
     city: Worcester
     name: Mechanics Hall
     latitude: 42.265978
-    zip: 01608
+    zipcode: 01608
     url: http://www.mechanicshall.com/
-    phone: 508-752-5608
+    phone_number: 508-752-5608
     longitude: -71.801384
     address: 321 Main Street
     state: MA
@@ -954,9 +934,9 @@ venues:
     city: Portland
     name: Merrill Auditorium
     latitude: 43.656883
-    zip: "04101"
+    zipcode: "04101"
     url: ''
-    phone: 207-874-8200
+    phone_number: 207-874-8200
     longitude: -70.271193
     address: 239 Park Avenue
     state: ME
@@ -964,9 +944,9 @@ venues:
     city: Providence
     name: Met Cafe
     latitude: 41.822758
-    zip: 02903
+    zipcode: 02903
     url: ''
-    phone: 401-861-2142
+    phone_number: 401-861-2142
     longitude: -71.41315
     address: 130 Union Street
     state: RI
@@ -974,9 +954,9 @@ venues:
     city: Rocky Hill
     name: "Michel Angelo's Lounge"
     latitude: 41.648155
-    zip: "06067"
+    zipcode: "06067"
     url: ''
-    phone: 860-257-3136
+    phone_number: 860-257-3136
     longitude: -72.678525
     address: 825 Cromwell Avenue
     state: CT
@@ -984,9 +964,9 @@ venues:
     city: Cambridge
     name: Middle East (Downstairs)
     latitude: 42.364097
-    zip: 02139
+    zipcode: 02139
     url: http://www.mideastclub.com/
-    phone: 617-864-3278
+    phone_number: 617-864-3278
     longitude: -71.101596
     address: 480 Massachusetts Avenue
     state: MA
@@ -994,9 +974,9 @@ venues:
     city: Cambridge
     name: Middle East (Upstairs)
     latitude: 42.363997
-    zip: 02139
+    zipcode: 02139
     url: http://www.mideastclub.com/
-    phone: 617-864-3278
+    phone_number: 617-864-3278
     longitude: -71.101396
     address: 472 Massachusetts Avenue
     state: MA
@@ -1004,9 +984,9 @@ venues:
     city: Boston
     name: Midway Cafe
     latitude: 42.306148
-    zip: "02130"
+    zipcode: "02130"
     url: http://www.midwaycafe.com/
-    phone: 617-524-9038
+    phone_number: 617-524-9038
     longitude: -71.107714
     address: 3496 Washington Street
     state: MA
@@ -1014,9 +994,9 @@ venues:
     city: Chicopee
     name: "Mike's Sleaze` Cafe"
     latitude: 42.184592
-    zip: "01013"
+    zipcode: "01013"
     url: http://www.sleazymuffin.com
-    phone: 413-218-0169
+    phone_number: 413-218-0169
     longitude: -72.610784
     address: 638 Chicopee St.
     state: MA
@@ -1024,9 +1004,9 @@ venues:
     city: Boston
     name: Milky Way Lounge &amp; Lanes
     latitude: 42.300197
-    zip: "02130"
+    zipcode: "02130"
     url: http://www.milkywayjp.com/
-    phone: 617-524-3740
+    phone_number: 617-524-3740
     longitude: -71.127896
     address: 403-405 Centre Street
     state: MA
@@ -1034,9 +1014,9 @@ venues:
     city: Manchester
     name: "Milly's Tavern"
     latitude: 42.994584
-    zip: "03101"
+    zipcode: "03101"
     url: http://www.millystavern.com
-    phone: 603-625-4444
+    phone_number: 603-625-4444
     longitude: -71.467611
     address: 500 Commercial St.
     state: NH
@@ -1044,9 +1024,9 @@ venues:
     city: Portsmouth
     name: "Music Hall, The"
     latitude: 43.075717
-    zip: 03801
+    zipcode: 03801
     url: http://www.themusichall.org/
-    phone: 603-436-2400
+    phone_number: 603-436-2400
     longitude: -70.759311
     address: 28 Chestnut Street
     state: NH
@@ -1054,9 +1034,9 @@ venues:
     city: Fall River
     name: Narrows Center for the Arts
     latitude: 41.702948
-    zip: "02721"
+    zipcode: "02721"
     url: http://www.ncfta.org/
-    phone: 508-324-1926
+    phone_number: 508-324-1926
     longitude: -71.163527
     address: 16 Anawan Street
     state: MA
@@ -1064,9 +1044,9 @@ venues:
     city: Burlington
     name: "Nectar's"
     latitude: 44.475995
-    zip: "05401"
+    zipcode: "05401"
     url: ''
-    phone: 802-658-4771
+    phone_number: 802-658-4771
     longitude: -73.211674
     address: 188 Main Street
     state: VT
@@ -1074,9 +1054,9 @@ venues:
     city: Exeter
     name: New Outlook
     latitude: 42.977488
-    zip: 03833
+    zipcode: 03833
     url: ''
-    phone: 603-778-3933
+    phone_number: 603-778-3933
     longitude: -70.958301
     address: 120 Front Street
     state: NH
@@ -1084,9 +1064,9 @@ venues:
     city: New Bedford
     name: New Wave Cafe
     latitude: 41.654103
-    zip: "02740"
+    zipcode: "02740"
     url: http://www.newwavecafe.net/
-    phone: 508-984-0080
+    phone_number: 508-984-0080
     longitude: -70.924782
     address: 143 North Front Street
     state: MA
@@ -1094,9 +1074,9 @@ venues:
     city: North Haven
     name: North Haven Congregational Church
     latitude: 41.387534
-    zip: "06473"
+    zipcode: "06473"
     url: ''
-    phone: 203-239-5691
+    phone_number: 203-239-5691
     longitude: -72.860982
     address: 28 Church St.
     state: CT
@@ -1104,9 +1084,9 @@ venues:
     city: Boston
     name: "O'Brien's"
     latitude: 42.355353
-    zip: "02134"
+    zipcode: "02134"
     url: http://www.fanatticrecords.com/obrienshome.html
-    phone: 617-782-6245
+    phone_number: 617-782-6245
     longitude: -71.133182
     address: 3 Harvard Avenue
     state: MA
@@ -1114,9 +1094,9 @@ venues:
     city: Stratford
     name: Odd Fellows Gallery
     latitude: 41.198188
-    zip: "06615"
+    zipcode: "06615"
     url: ''
-    phone: 203-375-1279
+    phone_number: 203-375-1279
     longitude: -73.131846
     address: 5 Cemetery Drive
     state: CT
@@ -1124,19 +1104,19 @@ venues:
     city: Wakefield
     name: one-four-seven elm
     latitude: 42.50883
-    zip: 01880
+    zipcode: 01880
     url: http://147elm.allherkings.com
-    phone: 978-771-5581
+    phone_number: 978-771-5581
     longitude: -71.091903
     address: 147 Elm St.
     state: MA
   - 
-    city: Cambridge
+    city: Somerville
     name: "PA's Lounge"
     latitude: 42.380954
-    zip: "02143"
+    zipcode: "02143"
     url: http://www.paslounge.com/
-    phone: 617-776-1557
+    phone_number: 617-776-1557
     longitude: -71.099079
     address: 345 Somerville Avenue
     state: MA
@@ -1144,9 +1124,9 @@ venues:
     city: Worcester
     name: "Palladium, The"
     latitude: 42.267029
-    zip: 01608
+    zipcode: 01608
     url: http://www.thepalladium.net/
-    phone: 508-797-9696
+    phone_number: 508-797-9696
     longitude: -71.801042
     address: 261 Main Street
     state: MA
@@ -1154,9 +1134,9 @@ venues:
     city: Boston
     name: Paradise Rock Club
     latitude: 42.351546
-    zip: "02215"
+    zipcode: "02215"
     url: http://www.thedise.com/
-    phone: 617-562-8814
+    phone_number: 617-562-8814
     longitude: -71.119556
     address: 967 Commonwealth Ave.
     state: MA
@@ -1164,9 +1144,9 @@ venues:
     city: Concord
     name: Penacook Community Center
     latitude: 43.27743
-    zip: "03303"
+    zipcode: "03303"
     url: ''
-    phone: 603-783-9380
+    phone_number: 603-783-9380
     longitude: -71.593838
     address: 76 Community Drive
     state: NH
@@ -1174,9 +1154,9 @@ venues:
     city: Boston
     name: Pierced Club
     latitude: 42.334616
-    zip: "02127"
+    zipcode: "02127"
     url: ''
-    phone: 617-596-9458
+    phone_number: 617-596-9458
     longitude: -71.030973
     address: 825 East Fourth St.
     state: MA
@@ -1184,9 +1164,9 @@ venues:
     city: Wallingford Center
     name: Planet Bean
     latitude: 41.44774
-    zip: 06492
+    zipcode: 06492
     url: ''
-    phone: 203-269-9921
+    phone_number: 203-269-9921
     longitude: -72.803859
     address: 823 E Center Street
     state: CT
@@ -1194,9 +1174,9 @@ venues:
     city: Dudley
     name: PNA Club
     latitude: 42.038064
-    zip: "01571"
+    zipcode: "01571"
     url: ''
-    phone: 508-943-9705
+    phone_number: 508-943-9705
     longitude: -71.916381
     address: 214 W. Main Street
     state: MA
@@ -1204,9 +1184,9 @@ venues:
     city: Norwich
     name: Pogo Music Club
     latitude: 41.524598
-    zip: "06360"
+    zipcode: "06360"
     url: ''
-    phone: 860-887-1344
+    phone_number: 860-887-1344
     longitude: -72.074121
     address: 2 Cliff St.
     state: CT
@@ -1214,9 +1194,9 @@ venues:
     city: Fall River
     name: Police Athletic League
     latitude: 41.703355
-    zip: "02720"
+    zipcode: "02720"
     url: ''
-    phone: 508-672-9197
+    phone_number: 508-672-9197
     longitude: -71.154439
     address: 31 Franklin Street
     state: MA
@@ -1224,9 +1204,9 @@ venues:
     city: Providence
     name: Providence Performing Arts Center
     latitude: 41.8211
-    zip: 02903
+    zipcode: 02903
     url: http://www.ppacri.org/
-    phone: 401-421-2997
+    phone_number: 401-421-2997
     longitude: -71.41225
     address: 220 Weybosset Street
     state: RI
@@ -1234,9 +1214,9 @@ venues:
     city: Worcester
     name: "Ralph's Diner"
     latitude: 42.277011
-    zip: "01605"
+    zipcode: "01605"
     url: ''
-    phone: 508-753-9543
+    phone_number: 508-753-9543
     longitude: -71.799521
     address: 95 Prescott
     state: MA
@@ -1244,9 +1224,9 @@ venues:
     city: Burlington
     name: Red Square
     latitude: 44.476715
-    zip: "05401"
+    zipcode: "05401"
     url: ''
-    phone: 802-859-8909
+    phone_number: 802-859-8909
     longitude: -73.212366
     address: 136 Church Street
     state: VT
@@ -1254,9 +1234,9 @@ venues:
     city: Boston
     name: "Roxy, The"
     latitude: 42.349574
-    zip: "02116"
+    zipcode: "02116"
     url: ''
-    phone: 617-338-7699
+    phone_number: 617-338-7699
     longitude: -71.06547
     address: 279 Tremont Street
     state: MA
@@ -1264,9 +1244,9 @@ venues:
     city: New Haven
     name: "Rudy's"
     latitude: 41.311726
-    zip: "06511"
+    zipcode: "06511"
     url: ''
-    phone: 203-865-1242
+    phone_number: 203-865-1242
     longitude: -72.933189
     address: 372 Elm Street
     state: CT
@@ -1274,9 +1254,9 @@ venues:
     city: Cambridge
     name: Ryles Jazz Club
     latitude: 42.373497
-    zip: 02139
+    zipcode: 02139
     url: http://www.rylesjazz.com
-    phone: 617-876-9330
+    phone_number: 617-876-9330
     longitude: -71.100796
     address: 212 Hampshire Street
     state: MA
@@ -1284,9 +1264,9 @@ venues:
     city: Providence
     name: Safari Lounge
     latitude: 41.82241
-    zip: 02903
+    zipcode: 02903
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: -71.41155
     address: 103 Eddy St.
     state: RI
@@ -1294,9 +1274,9 @@ venues:
     city: Springfield
     name: Saltly Dog Saloon
     latitude: 42.103839
-    zip: "01103"
+    zipcode: "01103"
     url: http://www.saltydogsaloon.net
-    phone: 413-205-2931
+    phone_number: 413-205-2931
     longitude: -72.591102
     address: 280 Bridge St
     state: MA
@@ -1304,9 +1284,9 @@ venues:
     city: Boston
     name: "Sculler's Jazz Club"
     latitude: 42.351789
-    zip: "02134"
+    zipcode: "02134"
     url: http://www.scullersjazz.com/
-    phone: 617-562-4111
+    phone_number: 617-562-4111
     longitude: -71.1111
     address: 400 Soldiers Field Road
     state: MA
@@ -1314,9 +1294,9 @@ venues:
     city: Hull
     name: "Sea Note, The"
     latitude: 42.267723
-    zip: "02045"
+    zipcode: "02045"
     url: http://www.seanote.com/
-    phone: 781-925-4300
+    phone_number: 781-925-4300
     longitude: -70.85207
     address: 159 Nantasket Avenue
     state: MA
@@ -1324,9 +1304,9 @@ venues:
     city: Bondsville
     name: "Shed, The"
     latitude: 42.200285
-    zip: 01069
+    zipcode: 01069
     url: http://www.theoldstore.org/@theshed/
-    phone: 413-283-9745
+    phone_number: 413-283-9745
     longitude: -72.350948
     address: 52 Fuller Road
     state: MA
@@ -1334,19 +1314,19 @@ venues:
     city: Cambridge
     name: "Sky Bar, The"
     latitude: 42.383071
-    zip: "02143"
+    zipcode: "02143"
     url: http://go.to/theskybar
-    phone: 617-623-5223
+    phone_number: 617-623-5223
     longitude: -71.106271
     address: 518 Somerville Avenue
     state: MA
   - 
     city: Killington
-    name: SkyBox Grille   c/o Mnt Green
+    name: SkyBox Grille
     latitude: 43.629661
-    zip: "05751"
+    zipcode: "05751"
     url: ''
-    phone: 802-422-4991
+    phone_number: 802-422-4991
     longitude: -72.796554
     address: 133 East Mountain Road
     state: VT
@@ -1354,9 +1334,9 @@ venues:
     city: Somerville
     name: Somerville Theatre
     latitude: 42.396573
-    zip: "02144"
+    zipcode: "02144"
     url: http://www.somervilletheatreonline.com/
-    phone: 617-625-4088
+    phone_number: 617-625-4088
     longitude: -71.122517
     address: 55 Davis Square
     state: MA
@@ -1364,9 +1344,9 @@ venues:
     city: Portland
     name: Space
     latitude: 43.655633
-    zip: "04101"
+    zipcode: "04101"
     url: http://www.space538.org/
-    phone: ''
+    phone_number: ''
     longitude: -70.261693
     address: 538 Congress St.
     state: ME
@@ -1374,9 +1354,9 @@ venues:
     city: Portland
     name: Space Gallery
     latitude: 43.655633
-    zip: "04101"
+    zipcode: "04101"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: -70.261693
     address: 538 Congress Street
     state: ME
@@ -1384,9 +1364,9 @@ venues:
     city: Chester
     name: "St. Joseph's Church"
     latitude: 41.401194
-    zip: "06412"
+    zipcode: "06412"
     url: ''
-    phone: 860-526-5495
+    phone_number: 860-526-5495
     longitude: -72.442115
     address: 48 Middlesex Avenue
     state: CT
@@ -1394,9 +1374,9 @@ venues:
     city: Bridgewater
     name: St. Thomas Aquinas Parish Hall
     latitude: 41.997165
-    zip: "02324"
+    zipcode: "02324"
     url: ''
-    phone: 508-697-9528
+    phone_number: 508-697-9528
     longitude: -70.988022
     address: 103 Center Street
     state: MA
@@ -1404,9 +1384,9 @@ venues:
     city: East Hartford
     name: Stage East
     latitude: 41.754399
-    zip: 06118
+    zipcode: 06118
     url: http://www.stereophonicco.com/stageeast (booking site)
-    phone: 860-537-2185
+    phone_number: 860-537-2185
     longitude: -72.641535
     address: 1022 Main Street
     state: CT
@@ -1414,9 +1394,9 @@ venues:
     city: Portland
     name: State Theatre
     latitude: 43.653752
-    zip: "04101"
+    zipcode: "04101"
     url: http://www.liveatthestate.com/
-    phone: 207-780-8265
+    phone_number: 207-780-8265
     longitude: -70.263716
     address: 609 Congress Street
     state: ME
@@ -1424,9 +1404,9 @@ venues:
     city: New London
     name: Station 58
     latitude: 41.358298
-    zip: "06320"
+    zipcode: "06320"
     url: http://www.station58.com
-    phone: 860-443-5858
+    phone_number: 860-443-5858
     longitude: -72.102477
     address: 58 Brainard St.
     state: CT
@@ -1434,9 +1414,9 @@ venues:
     city: Newmarket
     name: "Stone Church, The"
     latitude: 43.078716
-    zip: 03857
+    zipcode: 03857
     url: http://www.thestonechurch.com/
-    phone: 603-659-6321
+    phone_number: 603-659-6321
     longitude: -70.938325
     address: 5 Granite Street
     state: NH
@@ -1444,9 +1424,9 @@ venues:
     city: East Merrimack
     name: Stormy Monday Cafe
     latitude: 42.861686
-    zip: "03054"
+    zipcode: "03054"
     url: http://www.stormymonday.com/
-    phone: 603-424-2755
+    phone_number: 603-424-2755
     longitude: -71.493511
     address: 438 Daniel Webster Highway
     state: NH
@@ -1454,9 +1434,9 @@ venues:
     city: Lowell
     name: Sugar Shack
     latitude: 42.653814
-    zip: 01854
+    zipcode: 01854
     url: http://www.sugarshacksolar.com/
-    phone: 978-454-5955
+    phone_number: 978-454-5955
     longitude: -71.32709
     address: 100 University Avenue
     state: MA
@@ -1464,9 +1444,9 @@ venues:
     city: Southington
     name: Sullivan Hall
     latitude: 41.580753
-    zip: 06479
+    zipcode: 06479
     url: ''
-    phone: 860-621-9670
+    phone_number: 860-621-9670
     longitude: -72.894324
     address: 980 S Main Street
     state: CT
@@ -1474,9 +1454,9 @@ venues:
     city: Hartford
     name: Sully&quot;s Pub
     latitude: 41.756147
-    zip: "06106"
+    zipcode: "06106"
     url: http://www.sullyspub.com
-    phone: 860-231-8881
+    phone_number: 860-231-8881
     longitude: -72.713075
     address: 2071 Park St
     state: CT
@@ -1484,9 +1464,9 @@ venues:
     city: Derry
     name: Summit Cafe
     latitude: 42.881814
-    zip: 03038
+    zipcode: 03038
     url: ''
-    phone: 603-434-7790
+    phone_number: 603-434-7790
     longitude: -71.324499
     address: 42 E Broadway
     state: NH
@@ -1494,9 +1474,9 @@ venues:
     city: Derry
     name: "Summit Cafe, The"
     latitude: 42.881814
-    zip: 03038
+    zipcode: 03038
     url: http://www.thesummitcafe.com
-    phone: 603-434-7790
+    phone_number: 603-434-7790
     longitude: -71.324499
     address: 42 E. Broadway
     state: NH
@@ -1504,9 +1484,9 @@ venues:
     city: Granby
     name: The Amp
     latitude: 42.241109
-    zip: "01033"
+    zipcode: "01033"
     url: http://xanga.com/theamp
-    phone: ''
+    phone_number: ''
     longitude: -72.511607
     address: 151 Taylor St.
     state: MA
@@ -1514,9 +1494,9 @@ venues:
     city: Manchester
     name: The BOMBSHELTER
     latitude: 42.997983
-    zip: "03102"
+    zipcode: "03102"
     url: http://www.bombshelternh.com
-    phone: 603-647-8465
+    phone_number: 603-647-8465
     longitude: -71.474966
     address: 97 Eddy Rd.
     state: NH
@@ -1524,9 +1504,9 @@ venues:
     city: Newburyport
     name: The Campfire
     latitude: 42.811041
-    zip: 01950
+    zipcode: 01950
     url: http://www.samrosen.net
-    phone: 978-317-2938
+    phone_number: 978-317-2938
     longitude: -70.873147
     address: 55 Pleasant St
     state: MA
@@ -1534,9 +1514,9 @@ venues:
     city: Brattleboro
     name: The Common Ground
     latitude: 42.851927
-    zip: "05301"
+    zipcode: "05301"
     url: ''
-    phone: 802-257-7566
+    phone_number: 802-257-7566
     longitude: -72.558612
     address: 25 Elliot Street
     state: VT
@@ -1544,9 +1524,9 @@ venues:
     city: Bucksport
     name: the kave
     latitude: 44.579421
-    zip: "04416"
+    zipcode: "04416"
     url: http://www.thekaveclub.com
-    phone: 207-469-6473
+    phone_number: 207-469-6473
     longitude: -68.794562
     address: 177 silver lake road
     state: ME
@@ -1554,9 +1534,9 @@ venues:
     city: Nashua
     name: The Link
     latitude: 42.761106
-    zip: "03060"
+    zipcode: "03060"
     url: http://*coming soon*
-    phone: ''
+    phone_number: ''
     longitude: -71.466481
     address: 17 Factory St.
     state: NH
@@ -1564,9 +1544,9 @@ venues:
     city: Westport
     name: Toquet Hall Youth Center
     latitude: 41.139007
-    zip: 06880
+    zipcode: 06880
     url: ''
-    phone: 203-341-1155
+    phone_number: 203-341-1155
     longitude: -73.365706
     address: 62 Post Road
     state: CT
@@ -1574,9 +1554,9 @@ venues:
     city: Lowell
     name: Tsongas Arena
     latitude: 42.648055
-    zip: 01852
+    zipcode: 01852
     url: http://www.paultsongasarena.com/
-    phone: ''
+    phone_number: ''
     longitude: -71.313046
     address: 300 Arcand Drive
     state: MA
@@ -1584,9 +1564,9 @@ venues:
     city: Danbury
     name: Tuxedo Junction
     latitude: 41.396494
-    zip: 06810
+    zipcode: 06810
     url: http://www.tuxedojunction.net/
-    phone: 203-748-2561
+    phone_number: 203-748-2561
     longitude: -73.453366
     address: 2 Ives Street
     state: CT
@@ -1594,9 +1574,9 @@ venues:
     city: Mansfield
     name: Tweeter Center for the Performing Arts
     latitude: 41.995114
-    zip: 02048
+    zipcode: 02048
     url: http://tweetercenter.com/boston/
-    phone: 508-339-2333
+    phone_number: 508-339-2333
     longitude: -71.210987
     address: 885 South Main Street
     state: MA
@@ -1604,9 +1584,9 @@ venues:
     city: Barre
     name: Universalist Church
     latitude: 44.196513
-    zip: "05641"
+    zipcode: "05641"
     url: ''
-    phone: 802-479-0114
+    phone_number: 802-479-0114
     longitude: -72.501045
     address: 19 Church Street
     state: VT
@@ -1614,9 +1594,9 @@ venues:
     city: Fairhaven
     name: Varsity Club
     latitude: 41.636904
-    zip: 02719
+    zipcode: 02719
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: -70.897497
     address: 12 Adams Street
     state: MA
@@ -1624,9 +1604,9 @@ venues:
     city: Fairhaven
     name: Varsity Club
     latitude: 41.636616
-    zip: 02719
+    zipcode: 02719
     url: ''
-    phone: 508-993-8153
+    phone_number: 508-993-8153
     longitude: -70.897444
     address: 9 Adams Street
     state: MA
@@ -1634,9 +1614,9 @@ venues:
     city: Manchester
     name: Verizon Wireless Arena
     latitude: 42.986199
-    zip: "03101"
+    zipcode: "03101"
     url: http://www.verizonwirelessarena.com/
-    phone: 603-664-5000
+    phone_number: 603-664-5000
     longitude: -71.462911
     address: 555 Elm Street
     state: NH
@@ -1644,9 +1624,9 @@ venues:
     city: Reading
     name: "Veteran's Hall"
     latitude: 42.523022
-    zip: 01867
+    zipcode: 01867
     url: ''
-    phone: 781-944-9720
+    phone_number: 781-944-9720
     longitude: -71.103048
     address: 575 Main Street
     state: MA
@@ -1654,9 +1634,9 @@ venues:
     city: Prospect
     name: Veterans of Foreign Wars
     latitude: 41.507495
-    zip: "06712"
+    zipcode: "06712"
     url: ''
-    phone: 203-758-4763
+    phone_number: 203-758-4763
     longitude: -72.946479
     address: 218 Cheshire Road
     state: CT
@@ -1664,9 +1644,9 @@ venues:
     city: Waterbury
     name: Veterans of Foreign Wars
     latitude: 41.544549
-    zip: 06708
+    zipcode: 06708
     url: ''
-    phone: 203-574-9520
+    phone_number: 203-574-9520
     longitude: -73.045857
     address: 904 Bank Street
     state: CT
@@ -1674,9 +1654,9 @@ venues:
     city: New Bedford
     name: Washington Club
     latitude: 41.613533
-    zip: "02744"
+    zipcode: "02744"
     url: ''
-    phone: 508-992-8511
+    phone_number: 508-992-8511
     longitude: -70.913281
     address: 90 David Street
     state: MA
@@ -1684,9 +1664,9 @@ venues:
     city: Hartford
     name: Webster Threatre
     latitude: 41.7442
-    zip: "06114"
+    zipcode: "06114"
     url: http://www.webstertheatre.com/
-    phone: ''
+    phone_number: ''
     longitude: -72.682737
     address: 31 Webster St.
     state: CT
@@ -1694,9 +1674,9 @@ venues:
     city: Plainville
     name: "Woody's Bar &amp; Grill"
     latitude: 41.671225
-    zip: "06062"
+    zipcode: "06062"
     url: ''
-    phone: 860-793-2324
+    phone_number: 860-793-2324
     longitude: -72.867823
     address: 21 W Main Street
     state: CT
@@ -1704,9 +1684,9 @@ venues:
     city: Worcester
     name: "Worcester's Centrum Centre"
     latitude: 42.264593
-    zip: 01608
+    zipcode: 01608
     url: http://www.centrumcentre.com/
-    phone: 508-755-6800
+    phone_number: 508-755-6800
     longitude: -71.800415
     address: 50 Foster Street
     state: MA
@@ -1714,9 +1694,9 @@ venues:
     city: Everett
     name: "Zach's Place"
     latitude: 42.407071
-    zip: 02149
+    zipcode: 02149
     url: ''
-    phone: 617-387-7960
+    phone_number: 617-387-7960
     longitude: -71.05602
     address: 10 Norwood Street
     state: MA
@@ -1724,9 +1704,9 @@ venues:
     city: Boston
     name: Zumix
     latitude: 42.368997
-    zip: 02128
+    zipcode: 02128
     url: ''
-    phone: 617-568-9777
+    phone_number: 617-568-9777
     longitude: -71.036394
     address: 202 Maverick Street
     state: MA
@@ -1734,9 +1714,9 @@ venues:
     city: Cambridge
     name: ZuZu!
     latitude: 42.363997
-    zip: 02139
+    zipcode: 02139
     url: http://www.mideastclub.com/zuzu.html
-    phone: 617-864-3278
+    phone_number: 617-864-3278
     longitude: -71.101396
     address: 474 Massachusetts Avenue
     state: MA

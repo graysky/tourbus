@@ -91,4 +91,26 @@ class ApplicationController < ActionController::Base
   def logged_in_fan
     session[:fan]
   end
+  
+    protected
+  
+  # Returns a rails paginator
+  def paginate_search_results(count)
+    @pages = Paginator.new(self, count, PAGE_SIZE, @params['page'])
+  end
+  
+  # Takes into account paging
+  def default_search_options
+    options = {}
+    options[:num_docs] = PAGE_SIZE
+    if params['page']
+      options[:first_doc] = (params['page'].to_i - 1) * PAGE_SIZE
+    end
+    
+    return options
+  end
+  
+  private
+  
+  PAGE_SIZE = 10
 end

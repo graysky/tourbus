@@ -52,29 +52,17 @@ class ShowController < ApplicationController
   
   # Search for a venue as part of adding a show
   def venue_search
-    begin
-      name = params[:name]
-      @venue = Venue.new(params[:venue])
-      conditions = venue_location_conditions
-         
-      if !name.nil? && name != ""
-        conditions << " and " if conditions != ""
-        conditions = ["#{conditions} name like ?", "%#{name}%"]
-      else
-        conditions = nil
-      end
-      
-      @venue_pages, @venues = paginate :venues, 
-                                       :conditions => conditions, 
-                                       :order_by => "name DESC",
-                                       :per_page => 10
-      
-      if (@venue_pages.item_count == 0)
-        params[:error_message] = "No results found"
-      end
-    rescue Exception => ex
-      params[:error_message] = ex.to_s
+    name = params[:venue_search_term]
+    name = params[:name] if name.nil? or name == ""
+    name.strip!
+    
+    if name && name != ""
+      @results, count = Venue.ferret_search(name + "*", default_search_options)
+    else
+      @results = []
     end
+    
+    paginate_search_results(count)
     
     render(:partial => "shared/venue_results")
   end

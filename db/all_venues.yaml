@@ -962,7 +962,7 @@ venues:
     state: CT
   - 
     city: Cambridge
-    name: Middle East (Downstairs)
+    name: The Middle East (Downstairs)
     latitude: 42.364097
     zipcode: 02139
     url: http://www.mideastclub.com/
@@ -972,7 +972,7 @@ venues:
     state: MA
   - 
     city: Cambridge
-    name: Middle East (Upstairs)
+    name: The Middle East (Upstairs)
     latitude: 42.363997
     zipcode: 02139
     url: http://www.mideastclub.com/

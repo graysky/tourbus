@@ -115,6 +115,7 @@ module FerretMixin
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
+          q = "*" if q.nil? or q == ""
           q.downcase!
           options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
           query_parser = QueryParser.new(["name", "contents"], options)

@@ -1,16 +1,14 @@
+<input type="hidden" id="page" name="page" value="1"/>
+
 <% if @pages and @pages.item_count > 0 %>
 	<span id="search_paging_controls">
-	<%=
-		if !@pages.current.first?
-		  link_to  "< Previous", :page => @pages.current.previous, :query => params[:query]
-		end
-	%>
+	<% if !@pages.current.first? %>
+		<a href="#" onclick="javascript:$('page').value='<%=@pages.current.previous.number%>';document.forms[0].submit()">< Previous</a>
+	<% end %>
 	<%= "  " if !@pages.current.first? and !@pages.current.last? %>
-	<%=
-		if !@pages.current.last?
-		  link_to  "Next >", :page => @pages.current.next, :query => params[:query]
-		end
-	%>
+	<% if !@pages.current.last? %>
+		<a href="#" onclick="javascript:$('page').value='<%=@pages.current.next.number%>';document.forms[0].submit()">Next ></a>
+	<% end %>
 	<span id="search_paging_status">
 	(Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %>)
 	</span> 

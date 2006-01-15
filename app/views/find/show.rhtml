@@ -9,10 +9,10 @@ within
 miles of
 <%= text_field_tag 'location', params[:location]  %>
 <%= submit_tag 'Search' %>
-<%= end_form_tag %>
 
 <% # TEMP TEMP TEMP TEMP TEMP TEMP %>
-
+<br/>
+<br/>
 <%= 
 	if @results
 		show_results @results, false 
@@ -22,5 +22,6 @@ miles of
 
 <%= render :partial => "paging" %>
 
+<%= end_form_tag %>
 </div>
 

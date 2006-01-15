@@ -6,10 +6,10 @@
 
 <%= start_form_tag %>
 Search for bands: <%= text_field_tag 'query', params[:query] %> <%= submit_tag 'Search' %>
-<%= end_form_tag %>
 
 <% # TEMP TEMP TEMP TEMP TEMP TEMP %>
-
+<br/>
+<br/>
 <%
 	if @results
 		for result in @results
@@ -36,6 +36,8 @@ Search for bands: <%= text_field_tag 'query', params[:query] %> <%= submit_tag '
 %>
 
 <%= render :partial => "paging" %>
+
+<%= end_form_tag %>
 
 </div>
 

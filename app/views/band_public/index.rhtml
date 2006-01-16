@@ -155,6 +155,39 @@
 </div>
 <br/>
 
+<div class="sidebar-box">
+	<h2>Actions</h2>
+	
+	<p>
+		<table><tr><td><img src="/images/fave_star.png"/></td><td><a style="font-size:11px" href="#" id="fave_link">Add to Favorites</a></td></tr></table>
+		<div class='tooltip fave_tip'>
+			<h3>Add a new favorite band</h3>
+	      <p>
+	      	<%= start_form_tag %>
+	      		<strong>Send reminders about upcoming shows:</strong><br/>
+	      		Within <%= text_field_tag "radius", "", :size => 2 %> miles of
+	      		<%= text_field_tag "location" %>
+	      		<table class="tooltip_table">
+	      			<tr>
+	      				<td><%= check_box_tag "notify_email", "1", true %><td>
+	      				<td>Send to email</td>
+	      			</tr>
+	      			<tr>
+	      				<td><%= check_box_tag "notify_sms", "1", true %><td>
+	      				<td>Send to SMS</td>
+	      			</tr>
+	      		</table>
+	      		<%= link_to "OK", "#" %>&nbsp;
+	      		<%= link_to "Cancel", "#" %>
+	      	<%= end_form_tag %>
+	      </p>
+		       
+		</div>
+	</p>
+</div>
+<br/>
+
+
 	<%= render(
 	:partial => "shared/tags", 
 	:locals => 

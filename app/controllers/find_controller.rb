@@ -33,8 +33,8 @@ class FindController < ApplicationController
     lat = long = nil
     loc = params[:location]
     if not loc.nil? and loc != ""
-      zip = ZipCode.find_by_zip(loc)
-      raise "bad zip code" if zip.nil?  
+      # FIXME handle exception
+      zip = Address::parse_city_state_zip(loc)
       
       lat = zip.latitude
       long = zip.longitude

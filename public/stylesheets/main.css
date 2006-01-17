@@ -1049,15 +1049,19 @@ table.show_table td {
 }
 
 /* Tooltips and favorites */
-.tooltip {
+#add_fave_link, #remove_fave_link {
+	font-size:11px;
+	text-decoration:underline;
 }
 
 .fave_tip {
+	visibility:hidden;
 	background-color:#D0E5CD;
 	border:1px solid gray;
 	position:absolute;
 	margin-left:-100px;
 	padding-right:8px;
+	width:240px;
 }
 
 .fave_tip h3 {

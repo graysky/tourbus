@@ -181,6 +181,14 @@ CREATE TABLE `tours` (
   CONSTRAINT `FK_tours_band_id` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `bands_fans` (
+  `band_id` int(10) unsigned,
+  `fan_id` int(10) unsigned,
+  PRIMARY KEY  (`band_id`,`fan_id`),
+  CONSTRAINT `FK_fave_band_id` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`),
+  CONSTRAINT `FK_fave_fan_id` FOREIGN KEY (`fan_id`) REFERENCES `fans` (`id`)
+) ENGINE=InnoDB;
+
 CREATE TABLE `shows` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cost` VARCHAR(50),

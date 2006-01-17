@@ -26,6 +26,26 @@ class FanController < ApplicationController
     
   end
   
+  def add_favorite_band
+    band = Band.find(params[:id])
+    
+    # If it's already a favorite then something went wrong, maybe someone just typed in the URL
+    return if @fan.has_favorite(band)
+    
+    @fan.bands << band
+    @fan.save!
+    
+    render :partial => "shared/remove_favorite"
+  end
+  
+  def remove_favorite_band
+    band = Band.find(params[:id])
+    @fan.bands.delete(band)
+    @fan.save!
+    
+    render :partial => "shared/add_favorite"
+  end
+  
   #########
   # Private
   #########

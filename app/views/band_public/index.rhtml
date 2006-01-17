@@ -159,30 +159,80 @@
 	<h2>Actions</h2>
 	
 	<p>
-		<table><tr><td><img src="/images/fave_star.png"/></td><td><a style="font-size:11px" href="#" id="fave_link">Add to Favorites</a></td></tr></table>
-		<div class='tooltip fave_tip'>
+		<span id="favorite_control">
+			<%= 
+				if not logged_in_fan.nil? and logged_in_fan.has_favorite(@band)
+					render :partial => "shared/remove_favorite"
+				else
+					render :partial => "shared/add_favorite"
+				end
+			%>	
+		</span>
+		
+		<% if logged_in_fan.nil? %>
+			<div id='add_tip' class='fave_tip'>
 			<h3>Add a new favorite band</h3>
-	      <p>
-	      	<%= start_form_tag %>
-	      		<strong>Send reminders about upcoming shows:</strong><br/>
-	      		Within <%= text_field_tag "radius", "", :size => 2 %> miles of
-	      		<%= text_field_tag "location" %>
-	      		<table class="tooltip_table">
-	      			<tr>
-	      				<td><%= check_box_tag "notify_email", "1", true %><td>
-	      				<td>Send to email</td>
-	      			</tr>
-	      			<tr>
-	      				<td><%= check_box_tag "notify_sms", "1", true %><td>
-	      				<td>Send to SMS</td>
-	      			</tr>
-	      		</table>
-	      		<%= link_to "OK", "#" %>&nbsp;
+	      	<p>
+	      		You must be logged in as a fan to add favorites!<br/><br/>
+	      		
 	      		<%= link_to "Cancel", "#" %>
-	      	<%= end_form_tag %>
-	      </p>
-		       
-		</div>
+	      	</p>
+	      	</div>
+		<% else %>
+			<div id="remove_tip" class='fave_tip'>
+			<h3>Remove a favorite band</h3>
+	      	<p>
+	      		If you click "OK", you will stop receiving reminders of
+		      	this band's upcoming shows.<br/><br/>
+		      	
+		      	<strong>Are you sure you want to remove this band from your favorites?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "favorite_control",
+					:url => { 
+						:controller => "fan",
+						:action => "remove_favorite_band", 
+						:id => @band.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+	      	</p>
+	      	</div>
+		
+			<div id="add_tip" class='fave_tip'>
+			<h3>Add a new favorite band</h3>
+		      <p>
+		      	If you click "OK", you will start receiving reminders of
+		      	this band's upcoming shows in your area. <br/><br/>
+		      	
+		      	<strong>Are you sure you want to add a new favorite band?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "favorite_control",
+					:url => { 
+						:controller => "fan",
+						:action => "add_favorite_band", 
+						:id => @band.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+		      </p>
+			</div>
+		<% end %>
+		
+		<script type="text/javascript">
+			<% if not logged_in_fan.nil? and logged_in_fan.has_favorite(@band) %>
+				Tooltip.add('remove_fave_link', 'remove_tip');
+			<% else %>
+				Tooltip.add('add_fave_link', 'add_tip');
+			<% end %>
+		</script>
 	</p>
 </div>
 <br/>

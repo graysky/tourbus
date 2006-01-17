@@ -10,11 +10,16 @@ class Fan < ActiveRecord::Base
   file_column :logo, :magick => { :geometry => "200x300>" }
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr
+  has_and_belongs_to_many :bands
   
   # TODO No spaces in name
   validates_presence_of :name, :contact_email
   validates_uniqueness_of :name, 
                           :message => "Sorry, that name has already been taken."
+  
+  def has_favorite(band)
+    self.bands.detect { |fav| fav == band }
+  end
                           
   # Creates and sets the confirmation code. DOES NOT save the record.
   # Requires that that object already be populated with required fields

@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS `tags_bands`;
 DROP TABLE IF EXISTS `tags_venues`;
 DROP TABLE IF EXISTS `tags_shows`;
 DROP TABLE IF EXISTS `bands_shows`;
+DROP TABLE IF EXISTS `bands_fans`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `fans`;
 DROP TABLE IF EXISTS `tags`;

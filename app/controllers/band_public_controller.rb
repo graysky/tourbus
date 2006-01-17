@@ -86,7 +86,6 @@ class BandPublicController < ApplicationController
   
   # RSS feed for the band
   def rss
-
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 

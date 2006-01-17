@@ -58,13 +58,6 @@ module CommentHelper
       public_fan_url(comment.created_by_fan)
     end
   end
-    
-  def even?(i)
-    return i % 2 == 0
-  end 
-    
-  def odd?(i)
-    return i % 2 != 0
-  end 
+   
 
 end

@@ -29,6 +29,8 @@ class CommentController < ApplicationController
     comment.created_by_fan = logged_in_fan if logged_in_fan
     comment.save
     
+    ### TODO Need to handle failed validation when adding comments!
+    
     # Render the new comment
     render(
 		:partial => "shared/comment",

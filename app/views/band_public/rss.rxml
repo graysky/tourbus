@@ -7,15 +7,17 @@ xml.instruct!
 xml.rss('version' => '2.0') do
   xml.channel do 
     xml.title("TourBus News about #{@band.name}")
-    xml.link( public_band_rss_url(@band) )
+    xml.link( public_band_url(@band) )
     xml.description("TourBus News about #{@band.name}")
     
-    xml.comment!("Need to add IMG link for band logo")
+    xml.comment!("Need to add IMG link for Tourbus")
+    
+    base_url = public_band_url(@band)
     
     @items.each { |i|
       xml.item do 
         
-        xml_for_item( xml, i )
+        xml_for_item( xml, i, base_url)
 
       end
     }

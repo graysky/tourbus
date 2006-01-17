@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :public_fan_url
   helper_method :public_band_rss_url
   helper_method :public_photo_url
+  helper_method :public_show_url
+  helper_method :public_venue_url
   helper_method :logged_in?
   helper_method :logged_in_fan
   helper_method :logged_in_band
@@ -49,7 +51,6 @@ class ApplicationController < ActionController::Base
   def public_band_url(band = nil)
     band = @band if band.nil?
     band = session[:band] if band.nil?
-    p band
     url_for(:controller => '') + band.short_name
   end
   
@@ -59,16 +60,24 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '') + 'fan/' + fan.name
   end
   
-  # Get the URL to the RSS feed for this band
-  def public_band_rss_url(band = nil)
-    band = @band if band.nil?
+  # public URL to a show
+  def public_show_url(show)
+    url_for(:controller => "show", :action => "show", :id => show.id)
+  end
   
-    url_for(:controller => '') + band.short_name + "/rss"
+  # public URL to a venue 
+  def public_venue_url(venue)
+    url_for(:controller => "venue", :action => "show", :id => venue.id)
   end
   
   # Get the URL to the RSS feed for this band
-  def public_photo_url(photo, version)
+  def public_band_rss_url(band = nil)
+    band = @band if band.nil?  
+    url_for(:controller => '') + band.short_name + "/rss"
+  end
   
+  # Get the full URL to the photo
+  def public_photo_url(photo, version)
     url_for(:controller => '').chop! + photo.relative_path(version)
   end
   

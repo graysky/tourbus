@@ -16,7 +16,14 @@ class Comment < ActiveRecord::Base
   belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
 
   # They must have put in an actual message
-  validates_presence_of :body
+  validates_presence_of :body, :message => "Cannot post empty comments"
+  
+  # Make sure that either a fan or band is associated with the comment.
+  def validate
+    if self.created_by_fan.nil? && self.created_by_band.nil?
+      errors.add_to_base("You must be logged in to post comments")
+    end
+  end
 
   # Objects that can be commented on
   SHOW_COMMENT = 0
@@ -45,13 +52,16 @@ class Comment < ActiveRecord::Base
   def self.Photo
     PHOTO_COMMENT
   end
-
+ 
   # Get the name of the person who created the comment
   def created_by_name
-    if self.created_by_fan
-      self.created_by_fan.name
-    elsif self.created_by_band
-      self.created_by_band.name
-    end
+    creator.name
+  end 
+
+  # The creator of the comment   
+  def creator
+    self.created_by_fan or self.created_by_band
   end
+
+
 end

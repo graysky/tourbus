@@ -29,6 +29,10 @@ module ApplicationHelper
     date.strftime("%m.%d.%y")
   end
   
+  def slash_date(date)
+    date.strftime("%m/%d/%y")
+  end
+  
   def time_select(var, default_hour = nil, default_minute = nil, default_ampm = nil)
     out = "<select id=\"#{var}_hour\" name=\"#{var}[time_hour]\">"
     (1..12).each do |hour|

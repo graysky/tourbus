@@ -1,0 +1,23 @@
+## Assumes that:
+## band => the band for the feed
+## items => the ordered list of items for the feed
+
+xml.instruct!
+
+xml.rss('version' => '2.0') do
+  xml.channel do 
+    xml.title("TourBus News about #{@band.name}")
+    xml.link( public_band_rss_url(@band) )
+    xml.description("TourBus News about #{@band.name}")
+    
+    xml.comment!("Need to add IMG link for band logo")
+    
+    @items.each { |i|
+      xml.item do 
+        
+        xml_for_item( xml, i )
+
+      end
+    }
+  end
+end

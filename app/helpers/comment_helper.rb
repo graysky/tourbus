@@ -1,3 +1,5 @@
+# Helper for displaying comments. Needs to be included in any controller that
+# will display comments.
 module CommentHelper
 
   # Create the table to hold the comments
@@ -11,7 +13,6 @@ module CommentHelper
       return html
     end
     
-    i = 0
     # TODO Need to handle even/odd rows?
     for comment in comments
       html << comment_row(comment)
@@ -29,7 +30,7 @@ module CommentHelper
     from = truncate(comment.created_by_name, 16)
     from_url = public_url_for_creator(comment)
     # Format date as words
-    posted_at = time_ago_in_words(comment.created_at)
+    posted_at = time_ago_in_words(comment.created_on)
     
     # Format anchor for permalink like "comment#3"
     anchor = "<a name='comment#{comment.id}'/>\n" 

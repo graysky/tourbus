@@ -1,5 +1,7 @@
 # Shows the basic public pages of the site
 class PublicController < ApplicationController
+  
+  #helper :porlet
 
   # The front page of the app
   def front_page

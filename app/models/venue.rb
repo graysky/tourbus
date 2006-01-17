@@ -9,7 +9,7 @@ class Venue < ActiveRecord::Base
   
   has_many :shows
   has_many :photos, :order => "created_on DESC"
-  has_many :comments, :order => "created_at ASC"
+  has_many :comments, :order => "created_on ASC"
   acts_as_taggable :join_class_name => 'TagVenue'
   acts_as_searchable
   

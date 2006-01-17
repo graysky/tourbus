@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   helper :debug
   helper_method :public_band_url
   helper_method :public_fan_url
+  helper_method :public_band_rss_url
+  helper_method :public_photo_url
   helper_method :logged_in?
   helper_method :logged_in_fan
   helper_method :logged_in_band
@@ -55,6 +57,19 @@ class ApplicationController < ActionController::Base
     fan = @fan if fan.nil?
     fan = session[:fan] if fan.nil?
     url_for(:controller => '') + 'fan/' + fan.name
+  end
+  
+  # Get the URL to the RSS feed for this band
+  def public_band_rss_url(band = nil)
+    band = @band if band.nil?
+  
+    url_for(:controller => '') + band.short_name + "/rss"
+  end
+  
+  # Get the URL to the RSS feed for this band
+  def public_photo_url(photo, version)
+  
+    url_for(:controller => '').chop! + photo.relative_path(version)
   end
   
   # Whether there is a band or fan logged in

@@ -94,7 +94,7 @@ CREATE TABLE `fans` (
 CREATE TABLE `comments` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `body` TEXT,
-  `created_at` TIMESTAMP,
+  `created_on` DATETIME,
   `show_id` int(10) unsigned,
   `band_id` int(10) unsigned,
   `venue_id` int(10) unsigned,
@@ -201,7 +201,8 @@ CREATE TABLE `shows` (
   `venue_id` int(10) unsigned NOT NULL,
   `created_by_fan_id` int(10) unsigned,
   `created_by_band_id` int(10) unsigned,
-  `created_by_system` boolean NOT NULL default 0, 	
+  `created_by_system` boolean NOT NULL default 0, 
+  `created_on` DATETIME,	
   PRIMARY KEY(`id`),
   KEY `fk_venue` (`venue_id`),
   CONSTRAINT `fk_venue` FOREIGN KEY (`venue_id`) REFERENCES `venues` (`id`),

@@ -1,16 +1,19 @@
 require_dependency 'show_creator'
 
+# Controller for the public page of a band.
 class BandPublicController < ApplicationController
   include ShowCreator
   
+  session :off, :only => :rss
   before_filter :find_band
   helper :show
   helper :map
   helper :tag
   helper :comment
   helper :photo
+  helper :feed
   
-  layout "public"
+  layout "public", :except => [:rss ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -79,6 +82,41 @@ class BandPublicController < ApplicationController
   def external_map
     @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
     render :layout => "iframe"
+  end
+  
+  # RSS feed for the band
+  def rss
+
+    # Set the right content type
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+
+    shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
+    
+    comments = @band.comments.find(:all,
+                                   :order => "created_on DESC",
+                                   :limit => 10
+                                   ) 
+
+    photos = @band.photos.find(:all,
+                               :order => "created_on DESC",
+                               :limit => 10
+                               ) 
+
+    # Items for the feed
+    @items = []
+
+    shows.each { |x| @items << x }
+    comments.each { |x| @items << x }
+    photos.each { |x| @items << x }
+    
+    # Sort the items by when they were created with the most
+    # recent item first in the list
+    @items.sort! do |x,y| 
+      # Maybe test if x & y respond_to?(created_on)
+      # Right now, we just assume it
+      y.created_on <=> x.created_on
+    end
+    
   end
   
   private

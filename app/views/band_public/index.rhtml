@@ -141,7 +141,8 @@
 		<% if @band.claimed? %>
 			<strong>Member Since:</strong> <%= simple_date @band.created_on %>
 		<% end %>
-		<strong>Profile Views:</strong> <%= @band.page_views %>
+		<strong>Profile Views:</strong> <%= @band.page_views %><br/>
+		<strong>Fans:</strong> <%= @band.fans.size %>
 		
 		<br/>
 		<br/>

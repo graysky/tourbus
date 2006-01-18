@@ -1,0 +1,27 @@
+## Assumes that:
+## show => the show for the feed
+## items => the ordered list of items for the feed
+
+xml.instruct!
+
+# The external URL to this show
+base_url = get_show_title(@show)
+
+xml.rss('version' => '2.0') do
+  xml.channel do 
+    xml.title("TourBus News about #{get_show_title(@show)}")
+    xml.link( base_url )
+    xml.description("TourBus News about #{get_show_title(@show)}")
+    
+    xml.comment!("Need to add IMG link for Tourbus")
+
+    # Add each item to the feed    
+    @items.each { |i|
+      xml.item do 
+        
+        xml_for_item( xml, i, base_url)
+
+      end
+    }
+  end
+end

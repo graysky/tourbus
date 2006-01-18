@@ -4,15 +4,16 @@
 
 xml.instruct!
 
+# The external URL to this band
+base_url = public_band_url(@band)
+
 xml.rss('version' => '2.0') do
   xml.channel do 
     xml.title("TourBus News about #{@band.name}")
-    xml.link( public_band_url(@band) )
+    xml.link( base_url )
     xml.description("TourBus News about #{@band.name}")
     
     xml.comment!("Need to add IMG link for Tourbus")
-    
-    base_url = public_band_url(@band)
     
     @items.each { |i|
       xml.item do 

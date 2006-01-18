@@ -1,5 +1,6 @@
 require_dependency "show_creator"
 
+# Handles create/edit/viewing Shows
 class ShowController < ApplicationController
   include ShowCreator
     
@@ -7,10 +8,12 @@ class ShowController < ApplicationController
   helper :tag
   helper :comment
   helper :photo
+  helper :feed
   
+  session :off, :only => :rss
   before_filter :find_show, :except => [ :venue_search ]
   before_filter :some_login_required, :only => [:add]
-  layout "public"
+  layout "public", :except => [:rss ] 
   
   # Show a specific show. (Perhaps this is a bad name for this action?)
   def show
@@ -65,6 +68,37 @@ class ShowController < ApplicationController
     paginate_search_results(count)
     
     render(:partial => "shared/venue_results")
+  end
+  
+  # RSS feed for the show
+  def rss
+    # Set the right content type
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+
+    comments = @show.comments.find(:all,
+                                   :order => "created_on DESC",
+                                   :limit => 20
+                                   ) 
+
+    photos = @show.photos.find(:all,
+                               :order => "created_on DESC",
+                               :limit => 10
+                               ) 
+
+    # Items for the feed
+    @items = []
+
+    comments.each { |x| @items << x }
+    photos.each { |x| @items << x }
+    
+    # Sort the items by when they were created with the most
+    # recent item first in the list
+    @items.sort! do |x,y| 
+      # Maybe test if x & y respond_to?(created_on)
+      # Right now, we just assume it
+      y.created_on <=> x.created_on
+    end
+    
   end
   
   private

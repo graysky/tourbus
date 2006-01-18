@@ -19,6 +19,19 @@ module FeedHelper
   
   end
 
+  # Get the title of a show, using the optional title
+  # or formatted list of bands.
+  def get_show_title(show)
+    
+    if show.title.nil? or show.title.empty?
+      title = show.bands.map { |band| band.name }.join("/")
+    else
+      title = show.title
+    end
+    
+    return title
+  end
+
   private
   
   def format_time(time)
@@ -29,11 +42,7 @@ module FeedHelper
   # Format a Show
   def xml_for_show(xml, show)
      
-    if show.title.nil? or show.title.empty?
-      title = "No Title"
-    else
-      title = show.title
-    end
+    title = get_show_title(show)
      
     xml.title("New Show: #{title}")
     xml.pubDate( format_time(show.created_on) ) 
@@ -56,7 +65,7 @@ module FeedHelper
   
     xml.title("New Comment from #{comment.created_by_name}")
     xml.pubDate( format_time(comment.created_on) )
-    xml.description( comment.body )
+    xml.description( simple_format( sanitize(comment.body) ) )
   end
   
   # Format a Photo
@@ -67,7 +76,7 @@ module FeedHelper
 
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     
-    s << "<br/>#{photo.description}"
+    s << "<br/>#{simple_format(sanitize(photo.description))}"
 
     xml.description( s )
   end

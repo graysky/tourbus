@@ -96,6 +96,8 @@ class VenueController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 
+    shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now])
+  
     comments = @venue.comments.find(:all,
                                    :order => "created_on DESC",
                                    :limit => 20
@@ -109,6 +111,7 @@ class VenueController < ApplicationController
     # Items for the feed
     @items = []
 
+    shows.each { |x| @items << x }
     comments.each { |x| @items << x }
     photos.each { |x| @items << x }
     

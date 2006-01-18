@@ -54,7 +54,7 @@ module FeedHelper
     desc << "<p><b>Who:</b> #{bands}" 
     desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}"
     desc << "<p><b>Where:</b> <a href=\"#{public_venue_url(show.venue)}\">#{show.venue.name}</a>"
-    desc << "<p><b>Description:</b> #{show.description}"
+    desc << "<p><b>Description:</b> #{simple_format( sanitize(show.description) )}"
     desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a>"
     
     xml.description( desc )

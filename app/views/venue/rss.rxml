@@ -1,17 +1,17 @@
 ## Assumes that:
-## show => the show for the feed
+## venue => the venue for the feed
 ## items => the ordered list of items for the feed
 
 xml.instruct!
 
-# The external URL to this show
-base_url = public_show_url(@show)
+# The external URL to this venue
+base_url = public_venue_url(@venue)
 
 xml.rss('version' => '2.0') do
   xml.channel do 
-    xml.title("TourBus News about #{get_show_title(@show)}")
+    xml.title("TourBus News about #{@venue.name}")
     xml.link( base_url )
-    xml.description("TourBus News about #{get_show_title(@show)}")
+    xml.description("TourBus News about #{@venue.name}")
     
     xml.comment!("Need to add IMG link for Tourbus")
 

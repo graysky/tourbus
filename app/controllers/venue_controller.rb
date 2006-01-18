@@ -1,3 +1,4 @@
+# Handles create/edit/viewing Venues
 class VenueController < ApplicationController
   before_filter :find_venue
   helper :show
@@ -5,8 +6,10 @@ class VenueController < ApplicationController
   helper :tag
   helper :comment
   helper :photo
+  helper :feed
 
-  layout "public"
+  session :off, :only => :rss
+  layout "public", :except => [:rss ] 
   
   def add_dialog
     if @request.get?
@@ -86,6 +89,37 @@ class VenueController < ApplicationController
     @venue.url = params[:value]
     @venue.save
     render :text => @venue.url
+  end
+
+  # RSS feed for the venue
+  def rss
+    # Set the right content type
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+
+    comments = @venue.comments.find(:all,
+                                   :order => "created_on DESC",
+                                   :limit => 20
+                                   ) 
+
+    photos = @venue.photos.find(:all,
+                               :order => "created_on DESC",
+                               :limit => 10
+                               ) 
+
+    # Items for the feed
+    @items = []
+
+    comments.each { |x| @items << x }
+    photos.each { |x| @items << x }
+    
+    # Sort the items by when they were created with the most
+    # recent item first in the list
+    @items.sort! do |x,y| 
+      # Maybe test if x & y respond_to?(created_on)
+      # Right now, we just assume it
+      y.created_on <=> x.created_on
+    end
+    
   end
   
   private

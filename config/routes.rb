@@ -33,7 +33,10 @@ ActionController::Routing::Routes.draw do |map|
   # Show controller (TODO Sort this out)
   map.connect 'show/:id', :controller => 'show', :action => 'show'
   #map.connect 'show/:action/:id', :controller => 'show'
+  # Used for RSS action
   map.connect 'show/:id/:action', :controller => 'show'
+  map.connect 'shows/:action/:id', :controller => 'show'
+  
   
   # Public fan pages
   map.connect 'fan/:fan_name/:action/:id', :controller => 'fan_public'
@@ -43,6 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   
   # Venue controller
   map.connect 'venue/:id', :controller => 'venue', :action => 'show'
+  # Used for RSS action
+  map.connect 'venue/:id/:action', :controller => 'venue'
   map.connect 'venues/:action/:id', :controller => 'venue'
   
   # Comment controller

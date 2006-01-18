@@ -91,6 +91,9 @@ class ShowController < ApplicationController
     comments.each { |x| @items << x }
     photos.each { |x| @items << x }
     
+    # Add the show itself to the feed
+    @items << @show
+    
     # Sort the items by when they were created with the most
     # recent item first in the list
     @items.sort! do |x,y| 

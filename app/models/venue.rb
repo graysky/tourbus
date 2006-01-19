@@ -7,7 +7,7 @@ class Venue < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
   include Tagging
   
-  has_many :shows
+  has_many :shows, :order => "date ASC"
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
   acts_as_taggable :join_class_name => 'TagVenue'

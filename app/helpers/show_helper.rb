@@ -1,5 +1,27 @@
 module ShowHelper
   def show_results(shows, show_map, show_venue = true)
+    if true
+      out = ""
+      out << "<table class='show_table'><tr>"
+      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='120px'>Venue</th><th><nobr>More Info</nobr></th>"
+      out << "</tr>"
+      
+      last_date = nil
+      for show in shows
+        out << "<tr>"
+        out << col("<nobr>" + friendly_date(show.date) + "</nobr>")
+        out << col(friendly_time(show.date))
+        out << col("<strong>" + show.bands.map { |band| band.name }.join(", ") +"</strong>")
+        out << col(show.venue.name)
+        out << col("<strong>" + link_to("Click Here", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
+        out << "</tr>"
+      end
+      
+      out << "</table>"
+      return out
+    end
+
+	# FIXME NON-TABLE VERSION
     out = ""
     for show in shows
       out << "<div>"
@@ -117,6 +139,10 @@ module ShowHelper
   # Private
   #########
   private
+  
+  def col(contents)
+    "<td>#{contents}</td>"
+  end
   
   def map_info_show_date(show)
     out =  "html += '<strong>#{friendly_date(show.date)}</strong>&nbsp;&nbsp;';"

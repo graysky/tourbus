@@ -178,6 +178,9 @@ module FerretMixin
           self.class.ferret_index << doc
         end
         
+        def ferret_destroy
+          self.class.ferret_index.query_delete("+id:#{self.id} +ferret_class:#{self.class.name.downcase}")
+        end
         
         protected
         
@@ -191,9 +194,6 @@ module FerretMixin
           ""
         end
         
-        def ferret_destroy
-          self.class.ferret_index.query_delete("+id:#{self.id} +ferret_class:#{self.class.name.downcase}")
-        end
       end
       
     end

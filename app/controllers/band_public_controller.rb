@@ -102,12 +102,8 @@ class BandPublicController < ApplicationController
                                ) 
 
     # Items for the feed
-    @items = []
+    @items = shows + comments + photos
 
-    shows.each { |x| @items << x }
-    comments.each { |x| @items << x }
-    photos.each { |x| @items << x }
-    
     # Sort the items by when they were created with the most
     # recent item first in the list
     @items.sort! do |x,y| 

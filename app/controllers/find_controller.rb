@@ -19,7 +19,25 @@ class FindController < ApplicationController
   def show
     return if request.get? and params[:query].nil?
     
-    query = params[:query].strip
+    query, radius, lat, long = get_location_query_params()
+    
+    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, default_search_options)
+    paginate_search_results(count)
+  end
+  
+  def venue
+    return if request.get? and params[:query].nil?
+    
+    query, radius, lat, long = get_location_query_params()
+    
+    @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+    paginate_search_results(count)
+  end
+  
+  private
+  
+  def get_location_query_params
+   query = params[:query].strip
     
     # For now, expect a zip code
     # This stuff will be updated
@@ -40,7 +58,7 @@ class FindController < ApplicationController
       long = zip.longitude
     end
     
-    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, default_search_options)
-    paginate_search_results(count)
+    return query, radius, lat, long
   end
+  
 end

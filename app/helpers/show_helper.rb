@@ -3,7 +3,7 @@ module ShowHelper
     if true
       out = ""
       out << "<table class='show_table'><tr>"
-      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='120px'>Venue</th><th><nobr>More Info</nobr></th>"
+      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr>More Info</nobr></th>"
       out << "</tr>"
       
       last_date = nil

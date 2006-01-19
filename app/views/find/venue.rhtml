@@ -1,2 +1,36 @@
-<h1>Search#venue</h1>
-<p>Find me in app/views/search/venue.rhtml</p>
+<% @page_title = "Search results for \"#{params[:query]}\"" %>
+
+<div id="search_results">
+
+<%= start_form_tag %>
+Search for: <%= text_field_tag 'query', params[:query] %>
+within
+<%= text_field_tag 'radius', params[:radius], :size => 5 %>
+miles of
+<%= text_field_tag 'location', params[:location]  %>
+<%= submit_tag 'Search' %>
+
+<% # TEMP TEMP TEMP TEMP TEMP TEMP %>
+<br/>
+<br/>
+
+<%
+	if @results
+		for venue in @results
+%>
+		<div class="result">
+			<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %>
+			<%= venue.city + "," + venue.state %>
+		</div>
+<%
+		end
+	end
+%>
+
+<br/>
+<%= render :partial => "paging" %>
+
+<%= end_form_tag %>
+</div>
+
+

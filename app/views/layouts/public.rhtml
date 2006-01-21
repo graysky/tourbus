@@ -28,7 +28,6 @@
 <div id="container">
 <div id="main_logo">
 
-<!-- temporary image -->
 <a href="/"><img src="/images/logo2.gif" style="margin-top:4px;margin-bottom:4px"></a>
 
 <div id="header">
@@ -69,10 +68,11 @@
 
 <div id="navbar">
 
-<span class="nav-option"><%= link_to("Shows", :controller => "find", :action => "show") %></span>
-<span class="nav-option"><%= link_to("Bands", :controller => "find", :action => "band") %></span>
-<span class="nav-option"><%= link_to("Venues", :controller => "find", :action => "venue") %></span>
-<!-- <span class="nav-option"><a href="fake.html">Users</a></span> -->
+<div id="nav-options">
+	<span class="nav-option"><%= link_to("Shows", :controller => "find", :action => "show") %></span>
+	<span class="nav-option"><%= link_to("Bands", :controller => "find", :action => "band") %></span>
+	<span class="nav-option"><%= link_to("Venues", :controller => "find", :action => "venue") %></span>
+</div>
 
 </div>
 

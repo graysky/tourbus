@@ -168,10 +168,19 @@ td, p
 	color: white;
 }
 
+/* Center the Navigation options */
+#nav-options
+{
+	width: 500px;
+	text-align:center;
+	margin-left: 150px;
+}
+
 .nav-option
 {
 	padding-right:14px;
 	padding-left:14px;
+	margin-left:20px;
 }
 
 #header

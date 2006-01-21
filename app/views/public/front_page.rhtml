@@ -1,7 +1,6 @@
 
-
-<!-- Full width welcome -->
-<div sytle="float: none;">
+<!-- Welcome portlet -->
+<div class="portlet_box" sytle="float: none;">
 
 	<%= render(
 		:partial => "shared/welcome", 
@@ -11,17 +10,7 @@
 
 </div>
 
-<!--
-<div class="signup_box" style="float: none; /*border: 1px solid green;*/ width: 800px; height: 150px;">
-
-<h3>Welcome!</h3>
-
-</div>
--->
-
-<div class="signup_box" style="float:left; /*border: 1px solid black;*/">
-
-<div sytle="float: none;">
+<div class="portlet_box" style="float:left; /*border: 1px solid black;*/">
 
 	<%= render(
 		:partial => "shared/popular_bands", 
@@ -34,13 +23,12 @@
 
 </div>
 
+<div class="portlet_box" style="float:right; /*border: 1px solid black;*/ padding-top:0px;">
 
+<div class="portlet_half">
+
+	<h3>Playing Tonight</h3>
 </div>
-
-
-<div class="signup_box" style="float:right; /*border: 1px solid black;*/ padding-top:0px;">
-
-<h3>Playing Tonight</h3>
 
 </div>
 
@@ -48,21 +36,25 @@
 <div style="clear:both">
 </div>
 
-<div class="signup_box" style="float: none; /*border: 1px solid black;*/ width: 800px;">
+<div class="portlet_box" style="float: none; /*border: 1px solid black;*/ width: 800px;">
 
 <h3>List of Upcoming Shows</h3>
 
 </div>
 
-<div class="signup_box" style="float:left; /* border: 1px solid black */">
+<div class="portlet_box" style="float:left; /* border: 1px solid black */">
 
-<h3>New Fans &amp; Bands</h3>
+<div class="portlet_half">
+	<h3>New Fans &amp; Bands</h3>
+</div>
 
 </div>
 
 
-<div class="signup_box" style="float:right; /*border: 1px solid black;*/ padding-top:0px;">
+<div class="portlet_box" style="float:right; /*border: 1px solid black;*/ padding-top:0px;">
 
-<h3>Recent Added Photos</h3>
+<div class="portlet_half">
+	<h3>Recent Added Photos</h3>
+</div>
 
 </div>

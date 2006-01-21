@@ -9,17 +9,39 @@
 
 <!-- TODO Right Real Text -->
 
-<%= 
-
-	html = ""
-
-	for band in bands
-	
-	  html << "#{band.name} <br/>"
-	
-	end
-
-	html
+<%
+  for band in bands
 %>
+  	<div class="item">
+  	
+	<table border="0">
+	<tr>
+	<td rowspan="2">
+		<div class="thumb">
+    		<img id='band_logo' src="<%="#{get_band_logo_url(band)}"%>"/>
+    	</div>
+    </td>
+    
+    <td>
+    	<div class="band">
+    		<%= "<a href=\"#{public_band_url(band)}\">#{band.name}</a>" %> <br/>
+    	</div>
+    </td>
+    
+    <tr>
+    <td>
+    	<div class="info">	
+			<%=band.bio%>		
+			<!-- Include location?? Best if we had there town, state -->
+		</div>
+	</td>
+	</tr>
+	</table>
+	  
+	</div>
+	
+	
+<% end %>
+
 
 </div>

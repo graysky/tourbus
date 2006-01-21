@@ -360,36 +360,68 @@ td, p
 /* Portlets - used on front and section pages */
 /*-----------------------------------------------------*/
 
-/* Half-width portlet */
-.portlet_half {
+/* Portlet boxes that hold the half and full width portlets */
+.portlet_box
+{
+	/* width:360px; */
+	/* height:380px; */
+	
+	color:#4C5C5C;	
+	text-align:left;
+	
+	padding-left: 5px;
+	padding-right: 5px;
 
+	margin-top:16px;
+	margin-bottom:16px;
 }
 
-.portlet_half .title {
+.portlet_box h3
+{
+	color:#599057;
+	border-bottom: 2px solid #599057;
+	text-align:center;
+	font-size:20px;
+	margin-bottom:20px;
+}
 
+/* Holds thumbnail image */
+.portlet_box .thumb
+{
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+/* The band name */
+.portlet_box .band
+{
+	font-size:14px;
+}
+
+.portlet_box .info
+{
+	font-size:11px;
+	color: #555;
+}
+
+/* Half-width portlet */
+.portlet_half 
+{
+	width:360px;
 }
 
 /* Full-width portlet */
-.portlet_full {
-
-	width:740px;
+.portlet_full 
+{
+	width:760px;
 	
 	color:#4C5C5C;	
 	text-align:left;
 	font-size:18px;
 	
-	padding-left: 20px;
-	padding-right: 20px;
 	padding-bottom: 20px;
-
 	margin-top:16px;
 	margin-bottom:16px;
-	
-	margin-left:20px;
-	margin-right:20px;
-	
-	
-	// border: 2px solid #599057;
 }
 
 .portlet_full h3 {
@@ -399,7 +431,6 @@ td, p
 	font-size:20px;
 	margin-bottom:20px;
 }
-
 
 /*-----------------------------------------------------*/
 /* Side bar boxes */

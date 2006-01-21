@@ -12,6 +12,10 @@ module ApplicationHelper
     link_to(text, public_fan_url(fan))
   end
 
+  def simple_separator(text)
+    "<div class='panel_header'><span class='title'>#{text}</span></div>"
+  end
+
   # Return if there is already a valid session
   def valid_session?
     return !(session[:band].nil? or !session[:band].confirmed?)

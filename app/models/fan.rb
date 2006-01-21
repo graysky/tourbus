@@ -1,9 +1,11 @@
 require_dependency "password_protected"
 require_dependency "searchable"
+require_dependency "address"
 
 class Fan < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
   include FerretMixin::Acts::Searchable
+  include Address::ActsAsLocation
   
   acts_as_password_protected
   acts_as_searchable

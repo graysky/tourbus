@@ -100,10 +100,34 @@ module Address
     zipcode
   end
   
+  def self.contains_zip?(str)
+    str.split(/,| /).detect { |token| self.is_zip?(token) }
+  end
+  
   # returns non-nil if the given string appears to be a zipcode
   # only handles 5-digit zips
   def self.is_zip?(zip)
     zip =~ /[0-9][0-9][0-9][0-9][0-9]/
   end
-
+  
+  module ActsAsLocation
+    def city_state_zip=(str)
+      zipcode = Address::parse_city_state_zip(str)
+      if zipcode
+        # TODO For now, don't set the zipcode if the user didn't specify.
+        # Deal with more than one zip per city.
+        self.zipcode = Address::contains_zip?(str) ? zipcode.zip : ""
+        self.state = zipcode.state
+        self.city = zipcode.city
+      else
+        self.zipcode = self.state = self.city = ""
+      end
+    end
+    
+    def city_state_zip
+      return self.zipcode if self.zipcode != ""
+      return self.city + ", " + self.state if self.city != "" and self.state != ""
+      return ""
+    end
+  end
 end

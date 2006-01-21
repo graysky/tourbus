@@ -1,8 +1,6 @@
 <% @page_title = "Account Settings" %>
 <% @header_title = @fan.name + "/Account Settings" %>
 
-<%= link_to "Add a Show!", :controller => "shows", :action => "add" %>
-
 <% content_for("onload") do %>
 	init_focus()
 <% end %>
@@ -14,51 +12,65 @@
 	}
 </script>
 
-<div>
+
+<div id="main">
 	<%= start_form_tag :id => @fan %>
 	<%= error_messages_for 'fan' %>
 
+	<%= simple_separator "General Settings" %>
+	
 	<table class="form-table">
 		<tr>
 			<th>Profile Page:</th>
 			<td><%= public_fan_link public_fan_url %></td>
-			<td class="info"></td>
+			<td class="info">
+				Click here to visit your public profile.
+			</td>
 		</tr>
 		<tr>
 			<th>Email:</th>
 			<td><%= text_field 'fan', 'contact_email' %></td>
-			<td class="info"></td>
+			<td class="info">
+				<strong>Required</strong>&nbsp;
+				The email that show reminders and administrative emails will be sent to.
+			</td>
+		</tr>
+		<tr>
+			<th>Location:</th>
+			<td><%= text_field 'fan',  'city_state_zip' %></td>
+			<td class="info">
+				You can enter a <em>city,state</em> or a <em>zip code</em>. Your location is used
+				to find shows, bands and venues in your area. We highly recommend that
+				that you provide a location.
+			</td>
 		</tr>
 		<tr>
 			<th>Real Name:</th>
 			<td><%= text_field 'fan', 'real_name' %></td>
-			<td class="info"></td>
+			<td class="info">
+				If you want your real name to show up on your public profile.
+			</td>
 		</tr>
 		<tr>
 			<th>Website:</th>
 			<td><%= text_field 'fan', 'website' %></td>
-			<td class="info"></td>
+			<td class="info">
+				An external site that will be linked to from your public profile.
+			</td>
 		</tr>
-		<tr>
-			<th>City:</th>
-			<td><%= text_field 'fan', 'city' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>State:</th>
-			<td><%= select 'fan', 'state', states_for_select %></td>
-			<td></td>
-		</tr>
-		<tr>
-			<th>Zipcode:</th>
-			<td><%= text_field 'fan', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
-			<td></td>
-		</tr>
+		
 		<tr class="submit">
 			<td></td>
 			<td><%= submit_tag 'Edit Settings' %></td>
 		</tr>
 	</table>
-	
-	
+</div>
+
+<div id="side">
+	<div class="sidebar-box">
+		<h2>Actions</h2>
+		<p>
+			<%= link_to "Add a Show", :controller => "shows", :action => "add" %>
+		</p>	
+	</div>
 </div>

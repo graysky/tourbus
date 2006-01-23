@@ -1,0 +1,32 @@
+<html>
+<body>
+	<p>
+		Hi, <%= @fan.name %>. Here's a list of upcoming shows we think you'll be interested in.
+		To make these emails more useful to you in the future, tell tourbus about more of your favorite bands.
+	</p>
+	
+	<% for show in @new_shows %>
+	<p>
+        <strong><%= show.bands.map { |band| band.name }.join("/") %></strong><br/>
+        <%= show.date.strftime("%a %m/%d") %>, <%= show.date.strftime("%I:%M%p") %><br/>
+        @ <%= show.venue.name %> in <%= show.venue.city %>, <%= show.venue.state %><br/>
+        <% if show.description != "" %>
+       		<%= show.description %>
+       		<br/><br/>
+       	<% end %>
+       	<a href="<%= @url_prefix + show.id.to_s %>">More Details</a> 
+       	
+	</p>	
+	<% end %>
+	
+	<hr/>
+	<p>
+		If you'd like to stop receiving these emails from tourbus, log in to your account 
+		<a href="http://mytourb.us">here</a> and modify the "Receive Email Updates" setting.
+	</p>
+	<p>
+		Thanks,<br/>
+		the tourbus team.
+	</p>
+</body>
+</html>

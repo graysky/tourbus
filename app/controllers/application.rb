@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
     session[:fan]
   end
   
-    protected
+  protected
   
   # Returns a rails paginator
   def paginate_search_results(count)

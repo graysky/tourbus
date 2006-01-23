@@ -13,14 +13,21 @@ class Fan < ActiveRecord::Base
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr
   has_and_belongs_to_many :bands
+  has_and_belongs_to_many :shows 
   
   # TODO No spaces in name
   validates_presence_of :name, :contact_email
   validates_uniqueness_of :name, 
                           :message => "Sorry, that name has already been taken."
   
+  # Return if the band is among the fan's favorites
   def has_favorite(band)
     self.bands.detect { |fav| fav == band }
+  end
+  
+  # Return if the show is one the fan is attending
+  def is_attending(show)
+    self.shows.detect { |x| x == show  }
   end
                           
   # Creates and sets the confirmation code. DOES NOT save the record.

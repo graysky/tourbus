@@ -1,0 +1,12 @@
+<table>
+<tr>
+	<td><img src="/images/attend_show.gif"/></td>
+	<td><a href="#" id="add_attending_link">Attend Show</a></td>
+</tr>
+</table>
+
+<% if request.xhr? %>
+<script type="text/javascript">
+	Tooltip.add('add_attending_link', 'add_tip');
+</script>
+<% end %>

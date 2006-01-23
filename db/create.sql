@@ -6,10 +6,10 @@ DROP TABLE IF EXISTS `tags_venues`;
 DROP TABLE IF EXISTS `tags_shows`;
 DROP TABLE IF EXISTS `bands_shows`;
 DROP TABLE IF EXISTS `bands_fans`;
+DROP TABLE IF EXISTS `fans_shows`;
 DROP TABLE IF EXISTS `bands`;
 DROP TABLE IF EXISTS `fans`;
 DROP TABLE IF EXISTS `tags`;
-DROP TABLE IF EXISTS `tours`;
 DROP TABLE IF EXISTS `band_services`;
 DROP TABLE IF EXISTS `shows`;
 DROP TABLE IF EXISTS `venues`;
@@ -176,15 +176,6 @@ CREATE TABLE `band_services` (
   CONSTRAINT `FK_bs_band_id` FOREIGN KEY (`id`) REFERENCES `bands` (`id`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `tours` (
-  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `band_id` INTEGER UNSIGNED NOT NULL,
-  `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY(`id`),
-  KEY `FK_tours_band_id` (`band_id`),
-  CONSTRAINT `FK_tours_band_id` FOREIGN KEY (`band_id`) REFERENCES `bands` (`id`)
-) ENGINE=InnoDB;
-
 CREATE TABLE `bands_fans` (
   `band_id` int(10) unsigned,
   `fan_id` int(10) unsigned,
@@ -215,6 +206,14 @@ CREATE TABLE `shows` (
   CONSTRAINT `fk_show_createdband` FOREIGN KEY (`created_by_band_id`) REFERENCES `bands` (`id`),
   KEY `fk_show_createdfan` (`created_by_fan_id`),
   CONSTRAINT `fk_show_createdfan` FOREIGN KEY (`created_by_fan_id`) REFERENCES `fans` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `fans_shows` (
+  `show_id` int(10) unsigned,
+  `fan_id` int(10) unsigned,
+  PRIMARY KEY  (`show_id`,`fan_id`),
+  CONSTRAINT `FK_attending_show_id` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`),
+  CONSTRAINT `FK_attending_fan_id` FOREIGN KEY (`fan_id`) REFERENCES `fans` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `photos` (

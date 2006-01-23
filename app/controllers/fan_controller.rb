@@ -38,6 +38,7 @@ class FanController < ApplicationController
     render :partial => "shared/remove_favorite"
   end
   
+  
   def remove_favorite_band
     band = Band.find(params[:id])
     @fan.bands.delete(band)
@@ -45,6 +46,30 @@ class FanController < ApplicationController
     
     render :partial => "shared/add_favorite"
   end
+
+  # This fan will attend the show
+  def add_attending_show
+    show = Show.find(params[:id])
+    
+    # If they are already attending, maybe someone just typed in the URL
+    return if @fan.is_attending(show)
+    
+    @fan.shows << show
+    @fan.save!
+    
+    render :partial => "shared/remove_attending"
+  end
+  
+  # This fan will NOT attend the show
+  def remove_attending_show
+    show = Show.find(params[:id])
+    @fan.shows.delete(show)
+    @fan.save!
+    
+    render :partial => "shared/add_attending"
+  end
+  
+  
   
   #########
   # Private

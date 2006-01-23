@@ -10,9 +10,9 @@ class Show < ActiveRecord::Base
   include Ferret
   
   include Tagging
-  has_and_belongs_to_many :bands
+  has_and_belongs_to_many :bands # Bands playing the show
+  has_and_belongs_to_many :fans  # Fans attending the show
   belongs_to :venue
-  belongs_to :tour
   acts_as_searchable
  
   has_many :photos, :order => "created_on DESC"

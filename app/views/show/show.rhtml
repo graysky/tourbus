@@ -95,6 +95,81 @@
 <div class="sidebar-box">
 	<h2>Actions</h2>
 	
+		<p>
+		<span id="attend_control">
+			<%= 
+				if not logged_in_fan.nil? and logged_in_fan.is_attending(@show)
+					render :partial => "shared/remove_attending"
+				else
+					render :partial => "shared/add_attending"
+				end
+			%>	
+		</span>
+		
+		<% if logged_in_fan.nil? %>
+			<div id='add_tip' class='attending_tip'>
+			<h3>Attend the Show</h3>
+	      	<p>
+	      		You must be logged in as a fan to say you're attending!<br/><br/>
+	      		
+	      		<%= link_to "Cancel", "#" %>
+	      	</p>
+	      	</div>
+		<% else %>
+			<div id="remove_tip" class='attending_tip'>
+			<h3>Can't Attend the Show?</h3>
+	      	<p>
+	      	Click "OK" will remove this show from your calendar.<br/><br/>
+		      	
+		      	<strong>Are you sure you want to remove this show from your calendar?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "attend_control",
+					:url => { 
+						:controller => "fan",
+						:action => "remove_attending_show", 
+						:id => @show.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+	      	</p>
+	      	</div>
+		
+			<div id="add_tip" class='attending_tip'>
+			<h3>Attend the show</h3>
+		      <p>
+		      	If you click "OK", this show will be added to your calendar. <br/><br/>
+		      	
+		      	<strong>Are you sure you want to add this show?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "attend_control",
+					:url => { 
+						:controller => "fan",
+						:action => "add_attending_show", 
+						:id => @show.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+		      </p>
+			</div>
+		<% end %>
+		
+		<script type="text/javascript">
+			<% if not logged_in_fan.nil? and logged_in_fan.is_attending(@show) %>
+				Tooltip.add('remove_attending_link', 'remove_tip');
+			<% else %>
+				Tooltip.add('add_attending_link', 'add_tip');
+			<% end %>
+		</script>
+	</p>
+	
 	<p>
 		<!-- TODO Pull in partial -->
 		<table>

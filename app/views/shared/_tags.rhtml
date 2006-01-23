@@ -36,8 +36,7 @@
 </ul>
 
 <%
-	# TODO Need real checking for permission to tag
-	if valid_session?
+	if logged_in?
 %>
 
 	<%= form_remote_tag(:url => { 

@@ -16,11 +16,6 @@ module ApplicationHelper
     "<div class='panel_header'><span class='title'>#{text}</span></div>"
   end
 
-  # Return if there is already a valid session
-  def valid_session?
-    return !(session[:band].nil? or !session[:band].confirmed?)
-  end
-
   def friendly_date(date)
     date.strftime("%a %m/%d")
   end

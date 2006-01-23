@@ -135,6 +135,7 @@ class BandPublicController < ApplicationController
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
             @show.bands = @bands_playing
+            @show.last_updated = Time.now
             @show.save!
             
             @bands_playing.each do |band| 

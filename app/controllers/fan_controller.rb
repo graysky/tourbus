@@ -1,5 +1,5 @@
 class FanController < ApplicationController
- include FanLoginSystem
+  include FanLoginSystem
   
   before_filter :fan_login_required
   before_filter :find_fan

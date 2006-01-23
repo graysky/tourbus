@@ -8,7 +8,7 @@ module ApplicationHelper
     link_to(text, public_band_url(band))
   end
   
-   def public_fan_link(text, fan = nil)
+  def public_fan_link(text, fan = nil)
     link_to(text, public_fan_url(fan))
   end
 

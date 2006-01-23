@@ -7,7 +7,7 @@ class FeedbackMailer < ActionMailer::Base
     # Send to all of us - TODO Should include TB email address
     recipients = ['mike_champion@yahoo.com', 'garypelliott@yahoo.com']
   
-    @subject    = "[TourBus] New Feedback"
+    @subject    = "[tourbus] New Feedback"
     @recipients = recipients
     @from       = 'noreply@mytourb.us'
     @sent_on    = sent_at

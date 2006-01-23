@@ -110,6 +110,28 @@ module Address
     zip =~ /[0-9][0-9][0-9][0-9][0-9]/
   end
   
+  # Returns true if the first point is within radius miles from the center point.
+  # All angles should be measured in degrees.
+  def self.is_within_range(lat, long, center_lat, center_long, radius)
+    # Convert to radians
+    lat = lat * (Math::PI / 180)
+    long = long * (Math::PI / 180)
+    center_lat = center_lat * (Math::PI / 180)
+    center_long = center_long * (Math::PI / 180)
+    
+    # This is the spherical law of cosines
+    x = (Math.sin(lat) * Math.sin(center_lat)) + (Math.cos(lat) * Math.cos(center_lat) * Math.cos(long - center_long))
+    
+    if x <= -1 or x >= 1
+      # Cannot calculate acos
+      distance = 0
+    else
+      distance = Math.acos(x) * 3963 # Radius of earth in miles
+    end
+    
+    distance <= radius
+  end
+  
   module ActsAsLocation
     def city_state_zip=(str)
       zipcode = Address::parse_city_state_zip(str)

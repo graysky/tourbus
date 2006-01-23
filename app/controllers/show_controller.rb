@@ -125,6 +125,7 @@ class ShowController < ApplicationController
             @show.created_by_fan = logged_in_fan if logged_in_fan
           end
           
+          @show.last_updated = Time.now
           @show.save!
           
           @bands_playing.each do |band| 

@@ -1,4 +1,5 @@
 <div id="main">
+<% @page_title = @fan.name %>
 <% @header_title = @fan.name %>
 
 <script type="text/javascript">
@@ -9,6 +10,34 @@
 		$('fan_logo').src = path;
 	}
 </script>
+
+
+<% 
+	if @params[:show_map] == "true"
+%>
+	  <%= gmaps_header	%>
+<% 
+	  content_for("onload") do 
+%>
+	  init_map()
+<%  
+	  end  
+%>
+
+	<script type="text/javascript">
+	
+		function init_map()
+		{
+			var map = new GMap(document.getElementById("map"));
+			
+		  	map.addControl(new GSmallMapControl());
+			<%= center_and_zoom_to_shows(@shows) %>
+			<%= write_show_map_points @shows %>
+		}
+	  </script>
+<%	  	  
+	end 
+%>
 
 <table>
 	<tr>
@@ -46,6 +75,27 @@
 		</td></tr>
 	<% end %>
 </table>
+
+<div class="panel_header">
+	<span class="title">Shows</span>
+	
+	<span class="actions">
+	&nbsp;
+	&nbsp;
+	<%= map_list_toggle "index" %>
+	&nbsp;&nbsp;
+	<%= show_controls "index" %>
+	</span>
+</div>
+
+<% if @params[:show_map] == "true" %>
+	<a name="map_top"/>
+	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+<% end %>
+
+<div class="results_box">
+	<%= show_results @shows, params[:show_map] == "true" %>
+</div>
 
 <%= render(
 	:partial => "shared/photo_preview", 

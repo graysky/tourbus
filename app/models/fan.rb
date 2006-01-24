@@ -13,7 +13,7 @@ class Fan < ActiveRecord::Base
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr
   has_and_belongs_to_many :bands
-  has_and_belongs_to_many :shows 
+  has_and_belongs_to_many :shows, :order => "date ASC"
   
   # TODO No spaces in name
   validates_presence_of :name, :contact_email

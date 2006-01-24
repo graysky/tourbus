@@ -19,6 +19,10 @@ class Fan < ActiveRecord::Base
   validates_presence_of :name, :contact_email
   validates_uniqueness_of :name, 
                           :message => "Sorry, that name has already been taken."
+                          
+  validates_presence_of :password, :if => :validate_password?
+  validates_length_of :password, :minimum => 4, :if => :validate_password?
+  validates_confirmation_of :password, :if => :validate_password?
   
   # Return if the band is among the fan's favorites
   def has_favorite(band)

@@ -132,6 +132,8 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  FAKE_PASSWORD = "******"
+  
   # Returns a rails paginator
   def paginate_search_results(count)
     @pages = Paginator.new(self, count, PAGE_SIZE, @params['page'])

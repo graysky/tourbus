@@ -12,6 +12,10 @@ module ApplicationHelper
     link_to(text, public_fan_url(fan))
   end
 
+  def band_public_action(action)
+    public_band_url + (action.nil? ? "" : "/" + action)
+  end
+
   def simple_separator(text)
     "<div class='panel_header'><span class='title'>#{text}</span></div>"
   end

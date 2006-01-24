@@ -6,9 +6,4 @@ module BandPublicHelper
       "<div id='band_bio'>No bio has been written for this band</div>"
     end
   end
-  
-  def band_public_action(action)
-    public_band_url + (action.nil? ? "" : "/" + action)
-  end
-
 end

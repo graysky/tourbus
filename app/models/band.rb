@@ -24,9 +24,9 @@ class Band < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :short_name, 
                           :message => "Sorry, that band public page has already been taken."
-                          
-  # TODO Not working?                        
+                                         
   validates_presence_of :password, :if => :validate_password?
+  validates_length_of :password, :minimum => 4, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
   
   def validate

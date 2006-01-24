@@ -1,7 +1,7 @@
 class BandMailer < ActionMailer::Base
 
   def notify_signup(band, confirm_url, public_url, sent_at = Time.now)
-    @subject    = 'TourBus Account Confirmation'
+    @subject    = '[tourbus] Account Confirmation'
     @recipients = band.contact_email
     @from       = 'noreply@mytourb.us'
     @sent_on    = sent_at

@@ -69,6 +69,28 @@ class FanController < ApplicationController
     render :partial => "shared/add_attending"
   end
   
+  def change_password
+    if request.get?
+      @fan.password = @fan.password_confirmation = FAKE_PASSWORD
+      return
+    end
+    
+    
+    @fan.update_attributes(params[:fan])
+    if @fan.password == FAKE_PASSWORD and @fan.password_confirmation == FAKE_PASSWORD
+      flash[:error] = "You must enter a new password"
+    else
+      begin
+        @fan.new_password = true
+        if @fan.save
+          flash[:notice] = "Password changed"
+          redirect_to :action => 'settings'
+        end
+      ensure
+        @fan.password = @fan.password_confirmation = ''
+      end
+    end
+  end
   
   
   #########

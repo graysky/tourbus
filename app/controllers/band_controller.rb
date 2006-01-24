@@ -63,6 +63,29 @@ class BandController < ApplicationController
     # Nothing to do
   end
 
+  def change_password
+    if request.get?
+      @band.password = @band.password_confirmation = FAKE_PASSWORD
+      return
+    end
+    
+    
+    @band.update_attributes(params[:band])
+    if @band.password == FAKE_PASSWORD and @band.password_confirmation == FAKE_PASSWORD
+      flash[:error] = "You must enter a new password"
+    else
+      begin
+        @band.new_password = true
+        if @band.save
+          flash[:notice] = "Password changed"
+          redirect_to :action => 'settings'
+        end
+      ensure
+        @band.password = @band.password_confirmation = ''
+      end
+    end
+  end
+
   #########
   # Private
   #########

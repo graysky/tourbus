@@ -1,13 +1,16 @@
 # Initial schema brought into Migration framework
-# This will contain all the tables up to the point of running it in production.
-# The tables will be seeded from the schema.rb generated from:
-# rake db_schema_dump
+# To generate a new migration, use:
+# ruby script/generate migration <MigrationName>
+#
 # To move to the latest migration:
 # rake migrate
 # Or to a specific version
 # rake migrate VERSION=###
 # To run in production environment, use:
 # rake environment RAILS_ENV=production migrate
+#
+# The initial tables are seeded from the schema.rb generated from:
+# rake db_schema_dump
 #
 class InitialSchema < ActiveRecord::Migration
   
@@ -22,9 +25,9 @@ class InitialSchema < ActiveRecord::Migration
     # table added by Rail migration named "schema_info" with which version of the
     # schema is present.
     
-    # Create all the regular tables for TourBus
+    # Create all the initial tables for tourbus
     create_table "band_services", :force => true do |t|
-      t.column "short_name", :integer, :limit => 10, :default => 0, :null => false
+      t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
       t.column "myspace_username", :string, :limit => 100, :default => "", :null => false
       t.column "myspace_password", :string, :limit => 40, :default => "", :null => false
       t.column "purevolume_username", :string, :limit => 100, :default => "", :null => false
@@ -51,7 +54,14 @@ class InitialSchema < ActiveRecord::Migration
     end
     
     add_index "bands", ["name"], :name => "name_key"
-    add_index "bands", ["band_id"], :name => "band_id_key"
+    add_index "bands", ["short_name"], :name => "short_name_key"
+    
+    create_table "bands_fans", :id => false, :force => true do |t|
+      t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "fan_id", :integer, :limit => 10, :default => 0, :null => false
+    end
+    
+    add_index "bands_fans", ["fan_id"], :name => "FK_fave_fan_id"
     
     create_table "bands_shows", :id => false, :force => true do |t|
       t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
@@ -63,7 +73,7 @@ class InitialSchema < ActiveRecord::Migration
     
     create_table "comments", :force => true do |t|
       t.column "body", :text
-      t.column "created_at", :timestamp
+      t.column "created_on", :datetime
       t.column "show_id", :integer, :limit => 10
       t.column "band_id", :integer, :limit => 10
       t.column "venue_id", :integer, :limit => 10
@@ -83,6 +93,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column "name", :string, :limit => 100, :default => "", :null => false
       t.column "real_name", :string, :limit => 100, :default => "", :null => false
       t.column "contact_email", :string, :limit => 100, :default => "", :null => false
+      t.column "mobile_email", :string, :limit => 100, :default => ""
       t.column "zipcode", :string, :limit => 5
       t.column "city", :string, :limit => 100, :default => ""
       t.column "state", :string, :limit => 2, :default => ""
@@ -95,9 +106,20 @@ class InitialSchema < ActiveRecord::Migration
       t.column "confirmation_code", :string, :limit => 50, :default => ""
       t.column "created_on", :datetime
       t.column "page_views", :integer, :limit => 10, :default => 0
+      t.column "last_favorites_email", :datetime
+      t.column "default_radius", :integer, :limit => 6, :default => 35
+      t.column "wants_favorites_emails", :boolean, :default => true, :null => false
+      t.column "admin", :boolean, :default => false, :null => false
     end
     
     add_index "fans", ["name"], :name => "name_key"
+    
+    create_table "fans_shows", :id => false, :force => true do |t|
+      t.column "show_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "fan_id", :integer, :limit => 10, :default => 0, :null => false
+    end
+    
+    add_index "fans_shows", ["fan_id"], :name => "FK_attending_fan_id"
     
     create_table "photos", :force => true do |t|
       t.column "filename", :string, :limit => 100
@@ -120,14 +142,22 @@ class InitialSchema < ActiveRecord::Migration
     create_table "shows", :force => true do |t|
       t.column "cost", :string, :limit => 50
       t.column "title", :string, :limit => 100
+      t.column "bands_playing_title", :string, :limit => 200
       t.column "description", :text, :default => "", :null => false
       t.column "url", :string, :limit => 100, :default => "", :null => false
       t.column "date", :datetime, :null => false
       t.column "page_views", :integer, :limit => 10, :default => 0
       t.column "venue_id", :integer, :limit => 10, :default => 0, :null => false
+      t.column "created_by_fan_id", :integer, :limit => 10
+      t.column "created_by_band_id", :integer, :limit => 10
+      t.column "created_by_system", :boolean, :default => false, :null => false
+      t.column "created_on", :datetime
+      t.column "last_updated", :datetime
     end
     
     add_index "shows", ["venue_id"], :name => "fk_venue"
+    add_index "shows", ["created_by_band_id"], :name => "fk_show_createdband"
+    add_index "shows", ["created_by_fan_id"], :name => "fk_show_createdfan"
     
     create_table "tags", :force => true do |t|
       t.column "name", :string, :limit => 100, :default => "", :null => false
@@ -159,13 +189,6 @@ class InitialSchema < ActiveRecord::Migration
     
     add_index "tags_venues", ["venue_id"], :name => "fk_vt_venue"
     add_index "tags_venues", ["tag_id"], :name => "fk_vt_tag"
-    
-    create_table "tours", :force => true do |t|
-      t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
-      t.column "name", :string, :limit => 100, :default => "", :null => false
-    end
-    
-    add_index "tours", ["band_id"], :name => "FK_tours_band_id"
     
     create_table "upload_addrs", :force => true do |t|
       t.column "address", :string, :limit => 100, :default => "", :null => false

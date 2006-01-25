@@ -77,6 +77,7 @@ CREATE TABLE `fans` (
   `name` varchar(100) NOT NULL default '',
   `real_name` varchar(100) NOT NULL default '',
   `contact_email` varchar(100) NOT NULL default '',
+  `mobile_email` varchar(100) default '',
   `zipcode` VARCHAR(5),
   `city` varchar(100) default '',
   `state` varchar(2) default '',

@@ -11,6 +11,9 @@
 #
 # The initial tables are seeded from the schema.rb generated from:
 # rake db_schema_dump
+# 
+# Documentation on migrations are here:
+# http://api.rubyonrails.com/classes/ActiveRecord/Migration.html
 #
 class InitialSchema < ActiveRecord::Migration
   

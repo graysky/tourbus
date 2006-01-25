@@ -5,11 +5,7 @@
 <div id="main">
 
 <% 
-	if @show.title != ""
-		title = @show.title
-	else
-		title = @show.bands.map { |band| band.name }.join("/")
-	end 
+	title = @show.formatted_title
 	
 	@page_title = title
 	@header_title = simple_date(@show.date) + " : " + truncate(title, 32)

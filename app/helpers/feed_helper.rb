@@ -23,13 +23,7 @@ module FeedHelper
   # or formatted list of bands.
   def get_show_title(show)
     
-    if show.title.nil? or show.title.empty?
-      title = show.bands.map { |band| band.name }.join("/")
-    else
-      title = show.title
-    end
-    
-    return title
+    return show.formatted_title
   end
 
   private

@@ -36,6 +36,20 @@ class Show < ActiveRecord::Base
     self.date = Time.local(*components)
   end
   
+  # Get the show's title formatted as either:
+  # 1) title (if provided)
+  # 2) band1/band2/band3
+  # TODO Optimize this by saving this string to the db when the show is saved
+  def formatted_title
+    if self.title != ""
+      return self.title
+    else
+      # Format the list of bands to be the title
+      self.bands.map { |band| band.name }.join("/")
+    end
+    
+  end
+  
   def formatted_date
     return @formatted_date if self.date.nil?
     

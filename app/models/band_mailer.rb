@@ -13,6 +13,18 @@ class BandMailer < ActionMailer::Base
     @body["public_url"] = public_url
   end
 
+  def forgot_password(band, url, sent_at = Time.now)
+    @subject    = '[tourbus] Reset Your Password'
+    @recipients = band.contact_email
+    @from       = 'noreply@mytourb.us'
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["band"] = band
+    @body["url"] = url
+  end
+
   def notify_confirmed(sent_at = Time.now)
     @subject    = 'BandMailer#confirmed'
     @body       = {}

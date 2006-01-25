@@ -11,6 +11,18 @@ class FanMailer < ActionMailer::Base
     @body["fan"] = fan
     @body["confirm_url"] = confirm_url
   end
+  
+  def forgot_password(fan, url, sent_at = Time.now)
+    @subject    = '[tourbus] Reset Your Password'
+    @recipients = fan.contact_email
+    @from       = 'noreply@mytourb.us'
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["fan"] = fan
+    @body["url"] = url
+  end
 
   def confirmation(sent_at = Time.now)
     @subject    = 'FanMailer#confirmation'

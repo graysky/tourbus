@@ -1,3 +1,4 @@
+BEGIN;
 INSERT INTO zip_codes VALUES ('00210','Portsmouth','NH','43.005895','-71.013202',-5,1,'us');
 INSERT INTO zip_codes VALUES ('00211','Portsmouth','NH','43.005895','-71.013202',-5,1,'us');
 INSERT INTO zip_codes VALUES ('00212','Portsmouth','NH','43.005895','-71.013202',-5,1,'us');
@@ -43185,3 +43186,4 @@ INSERT INTO zip_codes VALUES ('99927','Point Baker','AK','56.337957','-133.60689
 INSERT INTO zip_codes VALUES ('99928','Ward Cove','AK','55.395359','-131.675370',-9,1,'us');
 INSERT INTO zip_codes VALUES ('99929','Wrangell','AK','56.409507','-132.338220',-9,1,'us');
 INSERT INTO zip_codes VALUES ('99950','Ketchikan','AK','55.875767','-131.466330',-9,1,'us');
+COMMIT;

@@ -46,6 +46,11 @@ class Fan < ActiveRecord::Base
     return self.confirmation_code
   end
   
+  # The upload email address, fully qualified like "down42tree@mytourb.us"
+  def upload_email_addr()
+    return upload_addr.address + "@" + UploadAddr.Domain
+  end
+  
   # Returns the band if it was authenticated.
   # May return an unconfirmed band, the caller must check.
   def self.authenticate(login, password)
@@ -55,8 +60,16 @@ class Fan < ActiveRecord::Base
                 :conditions => ["confirmed = 1 and name = ? and salted_password = ?", login, Fan.salted_password(fan.salt, Hash.hashed(password))])
   end
   
-  # The upload email address, fully qualified like "down42tree@mytourb.us"
-  def upload_email_addr()
-    return upload_addr.address + "@" + UploadAddr.Domain
+  # Returns an array of reminder options in minutes
+  def self.reminder_options
+    
+    ops = [
+            ["---", 0], ["15 mins", 15], ["30 mins", 30], ["1 hour", 60], 
+            ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
+            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
+            ["7 days", 10080], ["14 days", 20160]
+          ]
   end
+  
+
 end

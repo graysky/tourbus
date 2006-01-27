@@ -32,7 +32,18 @@
 			<td><%= text_field 'fan', 'contact_email' %></td>
 			<td class="info">
 				<strong>Required</strong>&nbsp;
-				The email that show reminders and administrative emails will be sent to.
+				The email address that show reminders and administrative emails will be sent to.
+			</td>
+		</tr>
+		<tr>
+			<th>Mobile Email:</th>
+			<td>
+				<%= text_field 'fan', 'mobile_email' %>		
+			</td>
+			<td class="info">
+				Mobile phone's email address that reminders can be sent to. 
+				Need help finding the email address of your phone? TODO Add wizzy control
+				<!-- http://tinywords.com/mobile.html -->
 			</td>
 		</tr>
 		<tr>
@@ -58,12 +69,32 @@
 				An external site that will be linked to from your public profile.
 			</td>
 		</tr>
-		
+	</table>
+	
+	<%= simple_separator "Reminder Settings" %>
+	<table class="form-table">
+		<tr>
+			<th>Show Reminders:</th>
+			<td colspan="2">
+			<div style="padding-bottom:0px">
+			Send reminder <%= select('fan', 'show_reminder_first', Fan.reminder_options ) %> before 			
+			and <%= select('fan', 'show_reminder_second', Fan.reminder_options ) %> before the show to your:
+			</div>
+
+			<div style='margin-top: 0px; margin-left:30px;'>
+				<br/><%= check_box(:fan, :wants_email_reminder) %> Email address
+				<br/><br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email
+			</div>
+			</td>
+	
+		</tr>
 		<tr class="submit">
 			<td></td>
 			<td><%= submit_tag 'Edit Settings' %></td>
 		</tr>
 	</table>
+	
+	<%= end_form_tag %>
 </div>
 
 <div id="side">

@@ -71,6 +71,8 @@ module Address
   # FIXME Should be the center
   # Throws an exception if it cannot be recognized
   def self.parse_city_state_zip(str)
+    return nil if str.nil? or str == ""
+    
     city_words = []
     city = state = zip = nil
     

@@ -44,7 +44,8 @@ module MapHelper
   def center_and_zoom_to_shows(shows)
     
     if shows.nil? or shows.empty?
-      return
+      # Center on the US
+      return "map.centerAndZoom(new GPoint(-96.809567, 39.696987), 14);"
     end
     
     # Calculate the min and max longitude/latitude

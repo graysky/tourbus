@@ -4,10 +4,12 @@ require_dependency "searchable"
 require 'ferret'
 require "taggable"
 require "tagging"
+require_dependency "address"
 
 class Band < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
   include FerretMixin::Acts::Searchable
+  include Address::ActsAsLocation
   include Tagging
   include Ferret
   

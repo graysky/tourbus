@@ -28,11 +28,19 @@
 	</tr>
 	<tr>
 		<th>Public Page:</th>
-		<td>http://mytourb.us/&nbsp;<%= text_field 'band', 'short_name'  %></td>
+		<td>http://mytourb.us/&nbsp;<%= text_field 'band', 'short_name', :size => 20  %></td>
 	</tr>
 	<tr>
 		<th>Email Address:</th>
 		<td><%= text_field 'band', 'contact_email'  %></td>
+	</tr>
+	<tr>
+		<th>Location:</th>
+		<td><%= text_field 'band',  'city_state_zip' %></td>
+		<td class="info">
+			You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
+			<strong>We highly recommend that that you provide a location.</strong>
+		</td>
 	</tr>
 	<tr>
 		<th>Password:</th>
@@ -41,11 +49,7 @@
 	<tr>
 		<th>Confirm Password:</th>
 		<td><%= password_field 'band', 'password_confirmation'  %></td>
-	</tr>
-	<tr>
-		<th>Zipcode</th>
-		<td><%= text_field 'band', 'zipcode'  %></td>
-	</tr>				
+	</tr>			
 	<tr class="submit">
 		<td></td>
 		<td><%= submit_tag 'Signup' %></td>

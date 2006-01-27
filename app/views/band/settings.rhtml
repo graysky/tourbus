@@ -29,19 +29,12 @@
 			<td class="info"></td>
 		</tr>
 		<tr>
-			<th>City:</th>
-			<td><%= text_field 'band', 'city' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>State:</th>
-			<td><%= select 'band', 'state', states_for_select %></td>
-			<td></td>
-		</tr>
-		<tr>
-			<th>Zipcode:</th>
-			<td><%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
-			<td></td>
+			<th>Location:</th>
+			<td><%= text_field 'band',  'city_state_zip' %></td>
+			<td class="info">
+				You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
+				<strong>We highly recommend that that you provide a location.</strong>
+			</td>
 		</tr>
 		
 		<tr class="submit">

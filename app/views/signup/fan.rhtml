@@ -18,14 +18,22 @@
 	<tr>
 		<th>Username:</th>
 		<td><%= text_field 'fan', 'name' %></td>
-		<td class="info">
-		</td>
-		
 	</tr>
 	<tr>
 		<th>Email Address:</th>
 		<td><%= text_field 'fan', 'contact_email'  %></td>
 	</tr>
+	<tr>
+		<th>Location:</th>
+		<td><%= text_field 'fan',  'city_state_zip' %></td>
+		<td class="info">
+			You can enter a <em>city,state</em> or a <em>zip code</em>. Your location is used
+			to find shows, bands and venues in your area. Providing a zip code will allow us
+			to be more accurate.
+			<strong>We highly recommend that that you provide a location.</strong>
+		</td>
+	</tr>		
+	
 	<tr>
 		<th>Password:</th>
 		<td><%= password_field 'fan', 'password'  %></td>
@@ -34,10 +42,6 @@
 		<th>Confirm Password:</th>
 		<td><%= password_field 'fan', 'password_confirmation'  %></td>
 	</tr>
-	<tr>
-		<th>Zipcode</th>
-		<td><%= text_field 'fan', 'zipcode'  %></td>
-	</tr>		
 	<tr class="submit">
 		<td></td>
 		<td><%= submit_tag 'Signup' %></td>

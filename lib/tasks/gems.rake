@@ -6,7 +6,7 @@
 desc "Copy third-party gems into ./lib"
 task :freeze_other_gems do
   # TODO Get this list from parsing environment.rb
-  libraries = %w(ferret)
+  libraries = %w(ferret uuidtools)
   require 'rubygems'
   require 'find'
 

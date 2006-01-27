@@ -28,6 +28,7 @@ module LoginSystem
     end
   end
   
+  
   # Overwrite if you want to have special behavior in case the user is not authorized
   # to access the current operation. 
   # the default action is to redirect to the login screen

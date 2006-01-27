@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in
   
   before_filter :configure_charsets
+  before_filter :login_from_cookie
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
@@ -27,6 +28,34 @@ class ApplicationController < ActionController::Base
       suppress(ActiveRecord::StatementInvalid) do
         ActiveRecord::Base.connection.execute 'SET NAMES UTF8'
       end
+  end
+  
+  # See if we can log the user in from a cookie
+  def login_from_cookie
+    return if not session.is_a?(CGI::Session)
+    return if logged_in?
+    
+    if cookies[:login]
+      if cookies[:type] == 'band'
+        band = Band.find_by_uuid(cookies[:login])
+        if not band
+          logger.warn("Can't find band for cookie login: #{cookies['login']}")
+          return
+        end
+        
+        session[:band] = band
+      elsif cookies[:type] == 'fan'
+        fan = Fan.find_by_uuid(cookies[:login])
+        if not fan
+          logger.warn("Can't find fan for cookie login: #{cookies['login']}")
+          return
+        end
+        
+        session[:fan] = fan
+      else
+        logger.error("Invalid cookie type: #{cookies['type']}")
+      end
+    end 
   end
   
   # Increments the objects page count and saves it

@@ -6,7 +6,10 @@ class LoginController < ApplicationController
 
   # The Login form
   def index
-    return if @request.get?
+    if @request.get?
+      params[:remember_me] = 'true' if cookies[:login]
+      return
+    end
     
     login = params['login']
     passwd = params['password']
@@ -23,6 +26,14 @@ class LoginController < ApplicationController
       if fan = Fan.authenticate(login, passwd)
         
         @session[:fan] = fan
+        
+        if params[:remember_me] == 'true'
+          cookies[:type] = { :value => 'fan', :expires => Time.now + 5.years }
+          cookies[:login] = { :value => fan.uuid, :expires => Time.now + 2.weeks }
+        else
+          cookies.delete :login
+        end
+        
         # Send to their profile page
         redirect_back_or_default( public_fan_url )
       
@@ -39,6 +50,15 @@ class LoginController < ApplicationController
 
 	    # TODO check for unclaimed band
         @session[:band] = band
+        
+        if params[:remember_me] == 'true'
+          cookies[:type] = { :value => 'band', :expires => Time.now + 5.years }
+          cookies[:login] = { :value => band.uuid, :expires => Time.now + 2.weeks }
+        else
+          cookies.delete :login
+        end
+        
+          
         # Send to their profile page
         redirect_back_or_default( public_band_url )
 

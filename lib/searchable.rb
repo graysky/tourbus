@@ -175,6 +175,8 @@ module FerretMixin
           # Type-specific fields
           [*self.add_searchable_fields].each { |field| doc << field }
           
+          # TODO Boost documents based on popularity
+          
           self.class.ferret_index << doc
         end
         

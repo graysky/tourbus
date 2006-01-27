@@ -51,6 +51,7 @@ class BandController < ApplicationController
 
   def logout
     session[:band] = nil
+    cookies.delete :login
     redirect_to(:controller => "public", :action => "front_page")
   end
 

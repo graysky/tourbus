@@ -2,7 +2,7 @@
 class PublicController < ApplicationController
   
   helper :portlet
-
+  
   # The front page of the app
   def front_page
     

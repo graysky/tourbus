@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 # Controls registering both fans and bands
 class SignupController < ApplicationController
   layout "public"
@@ -27,6 +29,7 @@ class SignupController < ApplicationController
         
         @band.new_password = true
         @band.claimed = true
+        @band.uuid = UUID.random_create.to_s
         public_url = public_band_url(@band)
         if @band.save
         
@@ -89,7 +92,7 @@ class SignupController < ApplicationController
         confirm_url += "/" + code
         
         @fan.new_password = true
-        
+        @fan.uuid = UUID.random_create.to_s
         if @fan.save
         
           # Generate an upload email address
@@ -104,6 +107,7 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       flash[:notice] = "Error registering your account: #{ex.message}"
+      logger.error(ex)
     end
   end
   

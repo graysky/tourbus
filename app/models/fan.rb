@@ -15,6 +15,8 @@ class Fan < ActiveRecord::Base
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
   
+  validates_uniqueness_of :uuid # just in case
+  
   # TODO No spaces in name
   validates_presence_of :name, :contact_email
   validates_uniqueness_of :name, 

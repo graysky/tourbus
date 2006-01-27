@@ -21,6 +21,7 @@ class Band < ActiveRecord::Base
   has_one :upload_addr
   acts_as_searchable
   
+  validates_uniqueness_of :uuid # just in case
   validates_presence_of :name
   validates_uniqueness_of :short_name, 
                           :message => "Sorry, that band public page has already been taken."
@@ -56,7 +57,7 @@ class Band < ActiveRecord::Base
     return find(:first, 
                 :conditions => ["confirmed = 1 and short_name = ? and salted_password = ?", login, Band.salted_password(band.salt, Hash.hashed(password))])
   end
-   
+ 
   # Creates and sets the confirmation code. DOES NOT save the record.
   # Requires that that object already be populated with required fields
   def create_confirmation_code

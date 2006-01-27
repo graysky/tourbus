@@ -10,6 +10,7 @@ class FanController < ApplicationController
   
   def logout
     session[:fan] = nil
+    cookies.delete :login
     redirect_to(:controller => "public", :action => "front_page")
   end
   

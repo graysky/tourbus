@@ -1,6 +1,7 @@
 require 'cgi'
 require_dependency "geocoder"
 
+# Band private controller for settings
 class BandController < ApplicationController
   include BandLoginSystem
   

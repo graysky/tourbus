@@ -15,7 +15,10 @@ class FanController < ApplicationController
   end
   
   def settings
-     return if @request.get?
+    return if @request.get?
+    
+    # Reload the fan first, in case changes were made by other procs
+    @fan.reload
      
     @fan.update_attributes(params[:fan])
     if @fan.save

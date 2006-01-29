@@ -1,0 +1,9 @@
+<% if @show.title != "" %>
+<%= @show.title -%>
+<% end %>
+<%= @show.bands.map { |band| band.name }.join("/") %>
+<%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %>
+@ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %>
+<% if @show.description != "" %>
+	<%= @show.description %>
+<% end %>

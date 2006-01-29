@@ -31,7 +31,7 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
-desc "Send out show reminders to fans"
+desc "Send out show reminders"
 task :send_reminders do
   
   cmd = <<END

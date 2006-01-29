@@ -30,3 +30,19 @@ END
   
   system "ruby ./script/runner '#{cmd}'"
 end
+
+
+desc "Send out show reminders"
+task :send_reminders do
+  
+  cmd = <<END
+  	puts "Sending show reminders..."
+  	puts "Started at: #{Time.now}"
+  	puts ""
+  	RemindersMailer.do_show_reminders
+  	puts "Ended at: #{Time.now}"
+END
+  
+  system "ruby ./script/runner '#{cmd}'"
+end
+

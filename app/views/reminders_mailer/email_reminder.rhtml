@@ -1,0 +1,24 @@
+<html>
+<body>
+	<p>
+        <strong><%= @show.bands { |band| band.name }.join("/") %></strong><br/>
+        <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
+        @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/>
+        <% if @show.description != "" %>
+       		<%= @show.description %>
+       		<br/><br/>
+       	<% end %>
+       	<a href="<%= @url_prefix + @show.id.to_s %>">More Details</a>
+	</p>	
+	
+	<hr/>
+	<p>
+		If you'd like to stop receiving these reminder emails, log in to your account 
+		<a href="http://mytourb.us">here</a> and modify the "Show Reminders" setting.
+	</p>
+	<p>
+		Thanks,<br/>
+		the tourbus team.
+	</p>
+</body>
+</html>

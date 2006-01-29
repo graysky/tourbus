@@ -1,3 +1,4 @@
+# Private controller of fan settings
 class FanController < ApplicationController
   include FanLoginSystem
   

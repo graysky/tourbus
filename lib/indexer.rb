@@ -1,0 +1,27 @@
+class Indexer
+ 
+  def self.index_db
+    # Find recently updated/created objects and index them
+    stats = IndexStatistics.find(:first) || IndexStatistics.new
+    query = stats.last_indexed_on.nil? ? [] : ["last_updated > ?", stats.last_indexed_on]
+    
+    index_time = Time.now
+    
+    objects = Band.find(:all, :conditions => query) + 
+              Show.find(:all, :conditions => query) + 
+              Venue.find(:all, :conditions => query)
+    begin
+      objects.each do |obj|
+        puts "Indexing #{obj.class.name} #{obj.id}"
+        obj.ferret_save
+      end
+      
+      stats.last_indexed_on = index_time
+      stats.save!
+    rescue Exception => e
+      # Do not save the time of this indexing. We will want to try again next time.
+      puts "Error during indexing: #{e}"
+    end 
+  
+  end
+end

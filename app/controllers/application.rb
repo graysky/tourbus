@@ -67,14 +67,9 @@ class ApplicationController < ActionController::Base
     end
   
     # TODO Don't count page views from users G & M
-    object.page_views += 1    
-    
-    # If the object is indexed by ferret, we want to save without reindexing
-    if object.respond_to?(:save_without_indexing)
-      object.save_without_indexing
-    else
-      object.save
-    end
+    object.page_views += 1
+    object.no_update
+    object.save
   end
   
   # Return the URL of the band, which can be passed

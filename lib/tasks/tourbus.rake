@@ -46,3 +46,17 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Index the database into ferret"
+task :update_index do
+  cmd = <<END
+    puts "Indexing the database..."
+  	puts "Started at: #{Time.now}"
+  	puts ""
+  	Indexer.index_db
+  	puts "Ended at: #{Time.now}"
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
+

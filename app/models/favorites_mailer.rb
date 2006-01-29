@@ -46,7 +46,8 @@ class FavoritesMailer < ActionMailer::Base
         if fan.last_favorites_email.nil? 
           FavoritesMailer.deliver_no_location(fan)
           fan.last_favorites_email = Time.now
-          fan.save_without_indexing
+          fan.no_update
+          fan.save
         end
         
         next

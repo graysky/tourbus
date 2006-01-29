@@ -135,7 +135,6 @@ class BandPublicController < ApplicationController
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
             @show.bands = @bands_playing
-            @show.last_updated = Time.now
             @show.save!
             
             @bands_playing.each do |band| 
@@ -147,7 +146,6 @@ class BandPublicController < ApplicationController
         end
       rescue Exception => ex
         logger.error(ex.to_s)
-        @show.ferret_destroy
         create_bands_playing_content
         return false
       end

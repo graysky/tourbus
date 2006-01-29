@@ -125,7 +125,6 @@ class ShowController < ApplicationController
             @show.created_by_fan = logged_in_fan if logged_in_fan
           end
           
-          @show.last_updated = Time.now
           @show.save!
           
           @bands_playing.each do |band| 
@@ -137,7 +136,6 @@ class ShowController < ApplicationController
       end
     rescue Exception => ex
       logger.error(ex.to_s)
-      @show.ferret_destroy
       create_bands_playing_content
       return
     end

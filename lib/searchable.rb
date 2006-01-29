@@ -18,8 +18,6 @@ module FerretMixin
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
 
-             after_save :ferret_save
-             after_destroy :ferret_destroy
              @@ferret_index = nil
           end
         end
@@ -134,6 +132,7 @@ module FerretMixin
         include Ferret
         
         # Useful for saving the object without reindexing it, which can be expensive
+        # Only useful when automatic saving is enabled.
         def save_without_indexing
           @skip_indexing = true
           self.save

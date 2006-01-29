@@ -66,7 +66,7 @@ class Fan < ActiveRecord::Base
   def self.reminder_options
     
     ops = [
-            ["---", 0], ["15 mins", 15], ["30 mins", 30], ["1 hour", 60], 
+            ["---", 0], ["1 hour", 60], 
             ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
             ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
             ["7 days", 10080], ["14 days", 20160]

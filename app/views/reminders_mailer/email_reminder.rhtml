@@ -1,9 +1,12 @@
 <html>
 <body>
 	<p>
-        <strong><%= @show.bands { |band| band.name }.join("/") %></strong><br/>
+		<% if @show.title != "" %>
+			<strong><%= @show.title  %></strong><br/>
+		<% end %>
+        <strong><%= @show.bands.map { |band| band.name }.join("/") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
-        @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/>
+        @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
         <% if @show.description != "" %>
        		<%= @show.description %>
        		<br/><br/>

@@ -2,8 +2,21 @@
 class RemindersMailer < ActionMailer::Base
   
   # Sends an email for SMS-like viewing
-  def sms_reminder(fan, upoming_shows, sent_at = Time.now)
+  def sms_reminder(fan, show, sent_at = Time.now)
+    @subject    = "Show Reminder"
+    @body       = {}
+    @recipients = fan.mobile_email
+    @from       = 'noreply@mytourb.us'
+    @sent_on    = sent_at
+    @headers    = {}
+    @content_type = "text/plain"
     
+    @body['fan'] = fan
+    @body['show'] = show
+    
+    # FIXME How do I get the URL here without being in a controller?
+    # Maybe the favorites logic should be in a controller and can pass the url in here
+    @body['url_prefix'] = 'http://mytourb.us/show/'
   end
   
   # Sends an email reminder about a show
@@ -88,20 +101,20 @@ class RemindersMailer < ActionMailer::Base
           # Find out what kind of reminder
           if fan.wants_email_reminder?
             RemindersMailer.deliver_email_reminder(fan, show)
+          end
             
-          elsif fan.wants_mobile_reminder?
+          if fan.wants_mobile_reminder?
             RemindersMailer.deliver_sms_reminder(fan, show)
           end
           
           # The fan has had reminders sent, update him
           save_fan = true
-          
         end      
           
       end # shows loop
       
       if save_fan
-        puts "Saving fan #{fan.name} at #{now}"
+        puts "Updating fan at #{now}"
         fan.last_show_reminder = now
         fan.save_without_indexing
       end
@@ -119,9 +132,7 @@ class RemindersMailer < ActionMailer::Base
     def upcoming_shows
       
       shows = []
-      
       shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
-      
     end 
   end
   

@@ -35,7 +35,7 @@ desc "Send out show reminders to fans"
 task :send_reminders do
   
   cmd = <<END
-  	puts "Sending show reminders..."
+  	puts "Sending show reminders to fans..."
   	puts "Started at: #{Time.now}"
   	puts ""
   	RemindersMailer.do_show_reminders

@@ -19,7 +19,7 @@ end
 
 desc "Completely destroys the ferret index"
 task :destroy_index do
-  Dir.glob("db/tb.index/*") do |file|
+  Dir.glob("db/tb.index/**/*") do |file|
   	if File.file?(file) and File.basename(file) != "readme.txt"
   		FileUtils.rm(file)
   	end

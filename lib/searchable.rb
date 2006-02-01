@@ -18,7 +18,10 @@ module FerretMixin
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
 
-             @@ferret_index = nil
+             @@ferret_index = Ferret::Index::Index.new(:key => ["id", "ferret_class"],
+                                                     :path => "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}",
+                                                     :auto_flush => true,
+                                                     :create_if_missing => true)
           end
         end
         
@@ -105,10 +108,7 @@ module FerretMixin
         end
         
         def ferret_index
-          @@ferret_index ||= Ferret::Index::Index.new(:key => ["id", "ferret_class"],
-                                                     :path => "#{RAILS_ROOT}/db/tb.index",
-                                                     :auto_flush => true,
-                                                     :create_if_missing => true)                                            
+          @@ferret_index                                 
         end
         
         # Set up a basic query

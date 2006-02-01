@@ -58,4 +58,29 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Creates the admin user"
+task :create_admin do
+  cmd = <<END
+    puts "Creating admin user..."
+  	puts "Started at: #{Time.now}"
+  	puts ""
+  	
+  	fan = Fan.new
+  	fan.name = "admin"
+  	# FIXME real email addr
+  	fan.contact_email = "info@mytourb.us"
+  	fan.confirmed = true
+  	fan.superuser = true
+  	fan.salt = "eaae1f87fbab40ffc2a9181fb2b05afc2e37639c"
+  	fan.salted_password = "67f5767a8e29b5e70800ea602809cc0c24d97b35"
+  	fan.confirmation_code = "35c9c08c79571afc41b54053a58728ccc6f9d92a"
+  	fan.uuid = "1"
+  	fan.save!
+  	
+  	puts "Ended at: #{Time.now}"
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 

@@ -72,6 +72,7 @@ task :create_admin do
   	fan.confirmed = true
   	fan.superuser = true
   	fan.salt = "eaae1f87fbab40ffc2a9181fb2b05afc2e37639c"
+  	# Remember that bit MM used to do?
   	fan.salted_password = "67f5767a8e29b5e70800ea602809cc0c24d97b35"
   	fan.confirmation_code = "35c9c08c79571afc41b54053a58728ccc6f9d92a"
   	fan.uuid = "1"

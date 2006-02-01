@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :public_band_rss_url
+  helper_method :public_fan_rss_url
   helper_method :public_show_rss_url
   helper_method :public_venue_rss_url
   helper_method :public_photo_url
@@ -100,6 +101,12 @@ class ApplicationController < ActionController::Base
   def public_band_rss_url(band = nil)
     band = @band if band.nil?  
     url_for(:controller => '') + band.short_name + "/rss"
+  end
+  
+  # Get the URL to the RSS feed for this fan
+  def public_fan_rss_url(fan = nil)
+    fan = @fan if fan.nil?  
+    url_for(:controller => "fan_public", :action => "rss", :id => fan.id)
   end
   
   # Get the URL to the RSS feed for this show

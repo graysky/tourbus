@@ -1,18 +1,18 @@
-## Public feed for a band
+## Public feed for a fan
 ## Assumes that:
-## band => the band for the feed
+## fan => the fan for the feed
 ## items => the ordered list of items for the feed
 
 xml.instruct!
 
-# The external URL to this band
-base_url = public_band_url(@band)
+# The external URL to this fan
+base_url = public_fan_url(@fan)
 
 xml.rss('version' => '2.0') do
   xml.channel do 
-    xml.title("TourBus News about #{@band.name}")
+    xml.title("TourBus News for #{@fan.name}")
     xml.link( base_url )
-    xml.description("TourBus News about #{@band.name}")
+    xml.description("TourBus News for #{@fan.name}")
     
     xml.comment!("Need to add IMG link for Tourbus")
     

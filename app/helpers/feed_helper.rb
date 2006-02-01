@@ -38,7 +38,7 @@ module FeedHelper
      
     title = get_show_title(show)
      
-    xml.title("New Show: #{title}")
+    xml.title("Show: #{title}")
     xml.pubDate( format_time(show.created_on) ) 
     
     desc = ""
@@ -57,7 +57,7 @@ module FeedHelper
   # Format a Comment
   def xml_for_comment(xml, comment)
   
-    xml.title("New Comment from #{comment.created_by_name}")
+    xml.title("Comment from #{comment.created_by_name}")
     xml.pubDate( format_time(comment.created_on) )
     xml.description( simple_format( sanitize(comment.body) ) )
   end
@@ -65,7 +65,7 @@ module FeedHelper
   # Format a Photo
   def xml_for_photo(xml, photo)
 
-    xml.title("New Photo from #{photo.created_by_name}")
+    xml.title("Photo from #{photo.created_by_name}")
     xml.pubDate( format_time(photo.created_on) )
 
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"

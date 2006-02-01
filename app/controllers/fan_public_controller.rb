@@ -1,17 +1,21 @@
+require_dependency 'favorites_calculator'
+
+# The public page for a Fan
 class FanPublicController < ApplicationController
   before_filter :find_fan
   helper :show
   helper :map
   helper :tag
   helper :photo
+  helper :feed
+  #model :favorites_mailer
   upload_status_for :change_logo
   
-  layout "public"
+  session :off, :only => :rss
+  layout "public", :except => [:rss ] 
   
   # Show the main fan page
   def index
-    
-    "ALL of fans shows: #{@fan.shows}"
     
     # Determine the shows to display
     case params[:show_display]
@@ -25,8 +29,6 @@ class FanPublicController < ApplicationController
       logger.error "illegal value: " + params[:show_display]
       flash[:error] = "Illegal value for show_display"
     end
-  
-    p "Fan's shows are: #{@shows}"
   
     # Record the page view
     inc_page_views(@fan)
@@ -52,6 +54,34 @@ class FanPublicController < ApplicationController
                      :params => {"photo_id" => params[:photo_id], 
                                  "name" => @fan.name, 
                                  "showing_creator" => true}
+  end
+  
+  # RSS feed for the fan
+  def rss
+    # Set the right content type
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+    
+    # Include upcoming shows they are attending
+    shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
+    
+    # Include favories that have 
+    updated_since = Time.now - 2.weeks
+    
+    faves = FavoritesCalculator.new(@fan, updated_since)
+    
+    new_fave_shows = faves.new_shows
+    
+    # Items for the feed and remove dups
+    @items = shows | new_fave_shows
+
+    # Sort the items by when they were created with the most
+    # recent item first in the list
+    @items.sort! do |x,y| 
+      # Maybe test if x & y respond_to?(created_on)
+      # Right now, we just assume it
+      y.created_on <=> x.created_on
+    end
+  
   end
   
   private

@@ -189,3 +189,10 @@ task :long_deploy do
   restart
   enable_web
 end
+
+desc "Restart the FCGI processes on the app server as a regular user."
+task :restart, :roles => :app do
+  # From Shovel deploy recipe
+  run "killall -9 dispatch.fcgi"
+  #run "#{current_path}/script/process/reaper"
+end

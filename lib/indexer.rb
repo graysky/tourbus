@@ -3,7 +3,7 @@ class Indexer
   def self.index_db
     # Find recently updated/created objects and index them
     stats = IndexStatistics.find(:first) || IndexStatistics.new
-    query = stats.last_indexed_on.nil? ? [] : ["last_updated > ?", stats.last_indexed_on]
+    query = stats.last_indexed_on.nil? ? ["last_updated > ?", Time.now - 5.years] : ["last_updated > ?", stats.last_indexed_on]
     
     index_time = Time.now
     

@@ -4,6 +4,11 @@ module ApplicationHelper
     Address::STATE_ABBREVS
   end
   
+  # List of mobile carriers
+  def carriers_for_select
+    MobileAddress::CARRIERS
+  end
+  
   def public_band_link(text, band = nil)
     link_to(text, public_band_url(band))
   end

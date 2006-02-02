@@ -4,7 +4,7 @@ class FanController < ApplicationController
   
   before_filter :fan_login_required
   before_filter :find_fan
-  layout "public"
+  layout "public", :except => [:send_test_sms ] 
   
   def index
   end
@@ -31,6 +31,16 @@ class FanController < ApplicationController
     
   end
   
+  # Send a test SMS message
+  def send_test_sms
+    # Send the message right away
+    RemindersMailer.deliver_sms_test(@fan)
+    
+    # Return a string
+    render :text => "SMS Message Sent"
+  end
+  
+  # Add a new favorite band
   def add_favorite_band
     band = Band.find(params[:id])
     

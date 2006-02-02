@@ -1,6 +1,19 @@
 # Mailer to send reminders about shows
 class RemindersMailer < ActionMailer::Base
   
+  # Sends a test email for SMS-like viewing
+  def sms_test(fan, sent_at = Time.now)
+    @subject    = "Success!"
+    @body       = {}
+    @recipients = fan.mobile_email
+    @from       = 'noreply@mytourb.us'
+    @sent_on    = sent_at
+    @headers    = {}
+    @content_type = "text/plain"
+    
+    @body['fan'] = fan
+  end
+  
   # Sends an email for SMS-like viewing
   def sms_reminder(fan, show, sent_at = Time.now)
     @subject    = "Show Reminder"
@@ -116,7 +129,7 @@ class RemindersMailer < ActionMailer::Base
       if save_fan
         puts "Updating fan at #{now}"
         fan.last_show_reminder = now
-        fan.save_without_indexing
+        fan.save
       end
       
     end # fan loop 

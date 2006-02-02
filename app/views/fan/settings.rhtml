@@ -24,7 +24,7 @@
 			<th>Profile Page:</th>
 			<td><%= public_fan_link public_fan_url %></td>
 			<td class="info">
-				Click here to visit your public profile.
+				Permanent link to your public profile.
 			</td>
 		</tr>
 		<tr>
@@ -33,17 +33,6 @@
 			<td class="info">
 				<strong>Required</strong>&nbsp;
 				The email address that show reminders and administrative emails will be sent to.
-			</td>
-		</tr>
-		<tr>
-			<th>Mobile Email:</th>
-			<td>
-				<%= text_field 'fan', 'mobile_email' %>		
-			</td>
-			<td class="info">
-				Mobile phone's email address that reminders can be sent to. 
-				Need help finding the email address of your phone? TODO Add wizzy control
-				<!-- http://tinywords.com/mobile.html -->
 			</td>
 		</tr>
 		<tr>
@@ -57,10 +46,10 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Real Name:</th>
+			<th>Public Name:</th>
 			<td><%= text_field 'fan', 'real_name' %></td>
 			<td class="info">
-				If you want your real name to show up on your public profile.
+				If you want a name other than your username to appear on your public profile.
 			</td>
 		</tr>
 		<tr>
@@ -72,22 +61,69 @@
 		</tr>
 	</table>
 	
+<script type="text/javascript">
+	function update_sms_button(request)
+	{
+		var txt = request.responseText;		
+		var but = $("sms_test")		
+		but.innerHTML = txt;
+		but.disabled = true;
+	}
+	
+	function update_sms_button_pressed()
+	{
+		var but = $("sms_test")		
+		but.disabled = true;
+	}
+	
+</script>
+	
 	<%= simple_separator "Reminder Settings" %>
 	<table class="form-table">
-		<tr>
-			<th>Show Reminders:</th>
-			<td colspan="2">
-			<div style="padding-bottom:0px">
-			Send reminder <%= select('fan', 'show_reminder_first', Fan.reminder_options ) %> before 			
-			and <%= select('fan', 'show_reminder_second', Fan.reminder_options ) %> before the show to your:
-			</div>
 
-			<div style='margin-top: 0px; margin-left:30px;'>
-				<br/><%= check_box(:fan, :wants_email_reminder) %> Email address
-				<br/><br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email
+	   	<tr>
+			<th>Mobile email:</th>
+			<td width="40%">
+				<%= text_field('fan', 'mobile_number', { "size" => 10, "maxlength" => 10 }) %> @ 
+				<%= select('fan', 'carrier_type', carriers_for_select ) %>
+				
+				<br/><br/>
+				<div style="margin-left:20px">
+			    
+			    <% # Hack around limit on nesting forms %>
+			    <button id="sms_test" onclick="new Ajax.Request('/fans/send_test_sms/1', {asynchronous:true, evalScripts:true, onComplete:function(request){update_sms_button(request)}, parameters:Form.serialize(this)}); update_sms_button_pressed(); return false;">
+				Send Test Message
+				</button>
+				
+				</div>
+			</td>
+			<td class="info">
+				Mobile phone's 10-digit number and carrier for reminders. You can send
+				a test message to your mobile phone.
+			</td>
+		</tr>
+		<tr>
+			<th>Reminder Times:</th>
+			<td>
+			<div style="padding-bottom:0px">
+			<%= select('fan', 'show_reminder_first', Fan.reminder_options ) %>
+			and <%= select('fan', 'show_reminder_second', Fan.reminder_options ) %>
 			</div>
 			</td>
-	
+			<td class="info">
+				How far in advance to send reminders <strong>before</strong> the show
+			</td>	
+		</tr>
+		<tr>
+			<th>Send To:</th>
+			<td>
+				<%= check_box(:fan, :wants_email_reminder) %> Email address
+				<br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email
+			
+			</td>
+	        <td class="info">
+				Where to send show reminders
+			</td>	
 		</tr>
 		<tr class="submit">
 			<td></td>

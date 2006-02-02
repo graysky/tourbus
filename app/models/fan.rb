@@ -1,11 +1,14 @@
 require_dependency "password_protected"
 require_dependency "searchable"
 require_dependency "address"
+require_dependency "mobile_address"
 
+# Model that describes a music fan
 class Fan < ActiveRecord::Base
   include ActiveRecord::Acts::PasswordProtected
   include FerretMixin::Acts::Searchable
   include Address::ActsAsLocation
+  include MobileAddress
   
   acts_as_password_protected
   file_column :logo, :magick => { :geometry => "200x300>" }
@@ -61,6 +64,12 @@ class Fan < ActiveRecord::Base
                 :conditions => ["confirmed = 1 and name = ? and salted_password = ?", login, Fan.salted_password(fan.salt, Hash.hashed(password))])
   end
   
+  # Get the mobile email address for this fan
+  def mobile_email
+
+    return MobileAddress::get_mobile_email(mobile_number, carrier_type)
+  end  
+  
   # Returns an array of reminder options in minutes
   def self.reminder_options
     
@@ -68,9 +77,8 @@ class Fan < ActiveRecord::Base
             ["---", 0], ["1 hour", 60], 
             ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
             ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
-            ["7 days", 10080], ["14 days", 20160]
+            ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]
   end
-  
 
 end

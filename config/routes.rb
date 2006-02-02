@@ -63,6 +63,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'about/', :controller => 'public', :action => 'about_us'
   map.connect 'faq/', :controller => 'public', :action => 'faq'
   
+  # Admin section
+  map.connect 'admin/:action/:id', :controller => 'admin'
+  
   # Public band pages (must be last)
   map.connect ':short_name/:action/:id', :controller => 'band_public'
 

@@ -3,13 +3,8 @@ module ActiveRecord
   module SelectiveTimestamp
     attr_accessor :skip_last_updated
     
-    def self.append_features(base)
+    def before_save
       super
-      base.before_save :timestamp_last_updated
-      base.after_save :reset_timestamp_control
-    end
-    
-    def timestamp_last_updated
       write_attribute("last_updated", Time.now) if !@skip_last_updated and respond_to?(:last_updated)
     end
     
@@ -17,7 +12,8 @@ module ActiveRecord
       @skip_last_updated = true
     end
     
-    def reset_timestamp_control
+    def after_save
+      super
       @skip_last_updated = false
     end
   end

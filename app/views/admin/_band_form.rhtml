@@ -1,0 +1,72 @@
+<script type="text/javascript">
+	function update_public_page(name_field)
+	{
+		<% # NOTE: Keep this in sync with the implementation in band.rb! %>
+		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
+		$("band_short_name").value = id.toLowerCase();
+	}
+	
+	function init_focus()
+	{
+		$('band_name').focus()
+	}
+</script>
+
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
+
+<% if edit %>
+	<%= if !@band.logo.nil?
+	  image_tag url_for_file_column("band", "logo") , :id => "band_logo"
+	else
+	  "<img id='band_logo' src='images/unknown.jpg'/>".to_s
+ 	end %>
+<% end %>
+
+<%= start_form_tag nil, :multipart => true %>
+<%= error_messages_for 'band' %>
+<% if edit %>
+	<input type="hidden" value="<%= params[:id] %>"/>
+<% end %>
+<table class="form-table">
+	<tr>
+		<th>Band Name:</th>
+		<td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
+	</tr>
+	<tr>
+		<th>Public Page:</th>
+		<td><%= text_field 'band', 'short_name', :size => 20  %></td>
+	</tr>
+	<tr>
+		<th>Email Address:</th>
+		<td><%= text_field 'band', 'contact_email'  %></td>
+	</tr>
+	<tr>
+		<th>Location:</th>
+		<td><%= text_field 'band',  'city_state_zip' %></td>
+	</tr>
+	<tr>
+		<th>Bio:</th>
+		<td><%= text_area 'band', 'bio', "rows" => 4  %></td>
+	</tr>
+	<tr>
+		<th>Logo:</th>
+		<td><%= file_column_field "band", "logo" %></td>
+	</tr>
+	<tr>
+		<th>Website:</th>
+		<td><%= text_field 'band', 'official_website'  %></td>
+	</tr>
+	<tr>
+		<th>Tags (comma-separated TODO BY MIKE):</th>
+		<td><%= text_field_tag 'tags'  %></td>
+	</tr>
+	
+	<tr class="submit">
+		<td></td>
+		<% str = edit ? "Edit Band" : "Create Band" %>
+		<td><%= submit_tag str %></td>
+	</tr>
+</table>
+<%= end_form_tag %>

@@ -36,11 +36,16 @@ class BandPublicController < ApplicationController
   end
   
   def change_logo
-    @band.update_attributes(params[:band])
-    @band.save
-    
-    path = "/" + @band.logo_options[:base_url] + "/" + @band.logo_relative_path
-    finish_upload_status "'#{path}'"
+    begin
+      @band.update_attributes(params[:band])
+      @band.save
+      
+      path = "/" + @band.logo_options[:base_url] + "/" + @band.logo_relative_path
+      finish_upload_status "'#{path}'"
+    rescue Exception  => e
+      puts e
+      p e
+    end
   end
   
   def set_bio

@@ -39,10 +39,6 @@ module FerretMixin
         def ferret_search(q, options = {})
           query = basic_ferret_query(q, options)
           
-          #if not date.nil?
-            #query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, false, false), Search::BooleanClause::Occur::MUST)
-          #end
-          
           logger.debug("Search: #{query.to_s}")
           ret = []
           count = ferret_index.search_each(query, options) do |doc, score|

@@ -162,6 +162,11 @@
 	<h2>Actions</h2>
 	
 	<p>
+		<% if logged_in_fan and logged_in_fan.superuser? %>
+			<b><%= link_to "Edit This Band", :controller => "admin", :action => "edit_band", :id => @band.id %></b>
+			<br/>
+		<% end %>
+		
 		<span id="favorite_control">
 			<%= 
 				if not logged_in_fan.nil? and logged_in_fan.has_favorite(@band)

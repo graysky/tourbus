@@ -54,7 +54,7 @@ class TagController < ApplicationController
   # id => id of the object to lookup
   def lookup_object(ctype, id)
   
-    if ctype == Tag.Genre or ctype == Tag.Influence or ctype == Tag.Misc
+    if ctype == Tag.Band
       return Band.find_by_id(id)
     elsif ctype == Tag.Venue
       return Venue.find_by_id(id)

@@ -36,7 +36,7 @@
 	<tr>
 		<th>Email:</th>
 		
-		<td><%= text_field_tag 'email', email_addr, :size => "35" %></td>
+		<td><%= text_field_tag('email', email_addr, :size => "35") %></td>
 		<td class="info">
 			Only used to reply to your feedback
 		</td>
@@ -44,7 +44,7 @@
 
 	<tr>
 		<th>Feedback:</th>
-		<td colspan="2"><%= text_area_tag 'feedback', nil, {"rows" => 12, "cols" => "12"} %></td>
+		<td colspan="2"><%= text_area_tag('feedback', nil, {"rows" => 12, "cols" => "45"} )%></td>
 	</tr>
 	
 	<tr class="submit">

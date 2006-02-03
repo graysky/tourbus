@@ -28,9 +28,19 @@
   
 <ul class="tags-list" id="tag-list-<%= type %>" >
 
-<% for tag in tags %>
+<% 
+    show_delete = logged_in?
+%>
+
 <% # TODO Add real links and the like %>
-<li><%= tag.name %></li>
+<% for tag in tags %>
+<li><%= tag.name %>
+
+<% if show_delete and false %>
+<img src="/images/delete_small.gif"/>
+<% end %>
+
+</li>
 <% end %>
 
 </ul>

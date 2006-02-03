@@ -75,24 +75,14 @@ class Band < ActiveRecord::Base
     id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
-  # Add Genre tags
-  def genre_tag_names=(tags)
-    add_tags(tags, Tag.Genre)
+  # Add Band tags
+  def band_tag_names=(tags)
+    add_tags(tags, Tag.Band)
   end
 
-  # Get just the Genre tags
-  def genre_tag_names
-    get_tags(Tag.Genre)
-  end
-  
-  # Add Influence tags
-  def influence_tag_names=(tags)
-    add_tags(tags, Tag.Influence)
-  end
-
-  # Get just the Influence tags
-  def influence_tag_names
-    get_tags(Tag.Influence)
+  # Get just the Band tags
+  def band_tag_names
+    get_tags(Tag.Band)
   end
   
   # The upload email address, fully qualified like "down42tree@mytourb.us"

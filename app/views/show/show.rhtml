@@ -75,19 +75,6 @@
 
 <div id="side">
 
-	<%= render(
-	:partial => "shared/tags", 
-	:locals => 
-		{
-		:tags => @show.show_tag_names,
-		:type => Tag.Show,
-		:title => "Tags",
-		:id => @show.id,
-		}) 
-	%>
-
-<br/>
-
 <div class="sidebar-box">
 	<h2>Actions</h2>
 	
@@ -177,5 +164,17 @@
 		
 	</p>	
 </div>
+
+<br/>
+	<%= render(
+	:partial => "shared/tags", 
+	:locals => 
+		{
+		:tags => @show.show_tag_names,
+		:type => Tag.Show,
+		:title => "Tags",
+		:id => @show.id,
+		}) 
+	%>
 
 </div>

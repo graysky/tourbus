@@ -258,29 +258,17 @@
 </div>
 <br/>
 
-
 	<%= render(
 	:partial => "shared/tags", 
 	:locals => 
 		{
-		:tags => @band.genre_tag_names, 
-		:type => Tag.Genre,
-		:title => "Genres",
+		:tags => @band.band_tag_names, 
+		:type => Tag.Band,
+		:title => "Tags",
 		:id => @band.id
 		}) 
 	%>
 	
 	<br/>
-	
-	<%= render(
-	:partial => "shared/tags", 
-	:locals => 
-		{
-		:tags => @band.influence_tag_names, 
-		:type => Tag.Influence,
-		:title => "Influences",
-		:id => @band.id
-		}) 
-	%>
 </div>
 

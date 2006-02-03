@@ -178,19 +178,6 @@ init_map()
 
 <div id="side">
 
-	<%= render(
-	:partial => "shared/tags", 
-	:locals => 
-		{
-		:tags => @venue.venue_tag_names,
-		:type => Tag.Venue,
-		:title => "Tags",
-		:id => @venue.id,
-		}) 
-	%>
-
-<br/>
-
 <div class="sidebar-box">
 	<h2>Actions</h2>
 	
@@ -204,6 +191,18 @@ init_map()
 		</table>
 		
 	</p>	
-</div>	
+</div>
+
+<br/>
+	<%= render(
+	:partial => "shared/tags", 
+	:locals => 
+		{
+		:tags => @venue.tag_names,
+		:type => Tag.Venue,
+		:title => "Tags",
+		:id => @venue.id,
+		}) 
+	%>
 
 </div>

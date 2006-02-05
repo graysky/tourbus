@@ -58,6 +58,24 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Clean out old sessions"
+task :delete_old_sessions do
+
+  # NOTE: Remember the "rake purge_sessions_table" task for deleting ALL sessions
+  # It drops the table and recreates it
+  #
+  # Set to delete sessions older than 24 hours
+  cmd = <<END
+    puts "Deleting old sessions..."
+  	puts "Started at: #{Time.now}"
+  	puts ""
+  	ActiveRecord::Base.connection.delete("DELETE FROM sessions WHERE updated_at < now() - 24*3600")
+  	puts "Ended at: #{Time.now}"
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 desc "Creates the admin user"
 task :create_admin do
   cmd = <<END

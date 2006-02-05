@@ -1,7 +1,6 @@
 require_dependency "searchable"
-
-require "taggable"
-require "tagging"
+require_dependency "taggable"
+require_dependency "tagging"
 require 'ferret'
 
 # A specific show that is being played a venue by a list of bands.

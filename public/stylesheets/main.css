@@ -469,20 +469,22 @@ td, p
 
 .sidebar-box ul
 {
-	margin-left: -18px;	
+	margin-left: -28px;	
 }
 
 .sidebar-box li
 {
+	/*
 	background: url(/images/bullet.gif) no-repeat;
 	background-position: center left;
+	*/
 	list-style-type: none;
 
 	color: #0F628B;
 	margin: 0px;
 	padding: 0px 0 0 5px;
 	/* Push the text off the image */
-	text-indent: 8px;
+	text-indent: 2px;
 }
 
 .sidebar-box p
@@ -535,6 +537,33 @@ td, p
 }
 
 /* END BOXES */
+
+.tags-list
+{
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+
+/* Tag item */
+.tag-item
+{
+    margin-bottom: 0px;
+}
+
+.tag-link
+{
+    font-size:11px;
+    margin-left: 2px;
+}
+
+/* The delete tag action */
+.tag-delete
+{
+    margin-left: 5px;
+    margin-top: 0px;
+	margin-bottom: 2px;
+    padding:0 0 0 0;
+}
 
 /* Dropdown box to autocomplete tags */
 div.auto_complete 
@@ -1089,6 +1118,37 @@ table.show_table td {
 }
 
 /* Tooltips and favorites */
+.generic_tip {
+	visibility:hidden;
+	background-color:#D0E5CD;
+	border:1px solid gray;
+	position:absolute;
+	margin-left:-100px;
+	padding-right:8px;
+	font-size:11px;
+	width:240px;
+}
+
+.generic_tip h3 {
+	margin:4px 16px 4px 4px;
+	font-size:12px;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	/*
+	background-color: #CCCCCC;
+	border-bottom:1px solid #B5B5B5;
+	*/
+	color: #0F628B;
+}
+
+.generic_tip p {
+	margin:4px 8px 4px 4px;
+	font-size:11px;
+}
+
+.generic_tip a {
+	font-weight:bold;
+}
+
 #add_fave_link, #remove_fave_link {
 	font-size:11px;
 	text-decoration:underline;

@@ -1,0 +1,50 @@
+<% 
+# Provides div to add tags to the object
+# Parameters (set as locals):
+# :tag => the tag (the tag object)
+# :type => type of tag 
+# :id => id of the tagged item 
+# :show_delete => true to show the delete action
+#
+# TODO Add real link to search by tag
+%>
+<% t_id = "#{tag.id}" %>
+<div class="tag-item">
+
+<tr id="tag-<%= t_id %>">
+<td align="left"><img src="/images/bullet.gif"/></td>
+<td width="98%"><a class="tag-link" href="#"><%= truncate(tag.name, 22) %></a></td>
+<td>
+<% if show_delete%>
+<span class="tag-delete">
+<a id="remove_tag_link-<%= t_id %>" href="#"><img src="/images/delete_small.gif"/></a>
+</span>
+
+<div id="remove_tag_tip-<%= t_id %>" class='generic_tip'>
+	<h3>Remove Tag</h3>
+	<p>
+	<strong>Remove tag "<%= truncate(tag.name, 30) %>"?</strong>
+		      	
+    <%= form_remote_tag(
+	   :url => { 
+		  :controller => "tag",
+		  :action => "delete", 
+		  :id => id },
+		  :complete => "tag_removed_#{type}(request)") %>
+
+        <%= hidden_field_tag( 'type', "", :value => type ) %>
+        <%= hidden_field_tag( 'tag_id', "", :value => tag.id ) %>
+
+     	<%= submit_tag "Remove" %>&nbsp;<%= link_to "Cancel", "javascript:void(0);" %>
+    <%= end_form_tag %>
+	</p>
+</div>
+
+<script type="text/javascript">
+	Tooltip.add('remove_tag_link-<%= t_id %>', 'remove_tag_tip-<%= t_id %>');
+</script>
+
+<% else %>
+&nbsp;
+<% end %>
+</td></tr></div>

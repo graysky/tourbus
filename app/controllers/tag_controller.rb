@@ -10,20 +10,59 @@ class TagController < ApplicationController
     id = params[:id]
     tag_type = params[:type]
     tag_name = params[:tag]
+    # Pass thru whether to show the delete action for the tag
+    show_delete = params[:show_delete]
     
     # Note the type comes in as a string but needs
     # to be converted for equality testing.
     obj = lookup_object(tag_type.to_i, id)
     
     # Assumes the object includes the tagging mixin
-    obj.add_tag(tag_name, tag_type)
+    saved_tags = obj.add_tag(tag_name, tag_type)
     
-    # Save the object so the new tag will get indexed for search
+    # Need to save the object so the tag is indexed
     obj.save
     
-    # Return the tag name 
-    render :text => tag_name
+    # Returns array of saved tag names, like ["tag1", "tag2"]
+    if saved_tags.nil? or saved_tags.empty?
+      # TODO Handle error case
+    end
+    
+    ## TODO Handle multiple tags added at once
+    tag = Tag.find_by_name( saved_tags[0] )
+    
+    # Render the new tag name
+    render(
+		:partial => "shared/tag",
+		:locals =>
+			{
+			:tag => tag,
+			:type => tag_type,
+			:id => id,
+			:show_delete => show_delete,
+			})
   
+  end
+  
+  # Removes a tag from the given object
+  def delete
+    
+    id = params[:id] # ID of the tagged object 
+    tag_id = params[:tag_id]
+    tag_type = params[:type]
+    
+    # Note the type comes in as a string but needs
+    # to be converted for equality testing.
+    obj = lookup_object(tag_type.to_i, id)
+    
+    obj.delete_tag(tag_id)
+    
+    if obj.save  
+      render :text => "#{tag_id}"
+    else
+      # TODO Handler error
+    end
+    
   end
 
   # Called to auto-complete tag name

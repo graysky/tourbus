@@ -2,8 +2,8 @@ require_dependency "hash"
 require_dependency "password_protected"
 require_dependency "searchable"
 require 'ferret'
-require "taggable"
-require "tagging"
+require_dependency "taggable"
+require_dependency "tagging"
 require_dependency "address"
 
 class Band < ActiveRecord::Base

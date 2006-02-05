@@ -1,5 +1,5 @@
-require "taggable"
-require "tagging"
+require_dependency "taggable"
+require_dependency "tagging"
 require_dependency "searchable"
 
 # Describes a venue where shows are played

@@ -79,7 +79,7 @@ class BandController < ApplicationController
       begin
         @band.new_password = true
         if @band.save
-          flash[:notice] = "Password changed"
+          flash[:success] = "Password changed"
           redirect_to :action => 'settings'
         end
       ensure
@@ -103,7 +103,7 @@ class BandController < ApplicationController
 	
 	@band.update_attributes(params[:band])
     if @band.save
-      flash[:notice] = msg
+      flash[:success] = msg
       redirect_to(:action => redirect)
     end
   end

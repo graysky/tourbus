@@ -44,7 +44,7 @@ class SignupController < ApplicationController
         end
       end
     rescue Exception => ex
-      flash[:notice] = "Error signing up your band: #{ex.message}"
+      flash[:error] = "Error signing up your band: #{ex.message}"
     end
   end
   
@@ -106,7 +106,7 @@ class SignupController < ApplicationController
         end
       end
     rescue Exception => ex
-      flash[:notice] = "Error registering your account: #{ex.message}"
+      flash[:error] = "Error registering your account: #{ex.message}"
       logger.error(ex)
     end
   end

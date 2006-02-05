@@ -64,7 +64,7 @@ class VenueController < ApplicationController
     when "all"
       @shows = @venue.shows
     else
-      flash[:error] = "Illegal value for show_display: " + params[:show_display]
+      flash.now[:error] = "Illegal value for show_display: " + params[:show_display]
     end
     
     # Record the page view

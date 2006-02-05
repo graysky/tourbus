@@ -18,7 +18,7 @@ class AdminController < ApplicationController
     @band = Band.new(params[:band])
     @band.claimed = false
     if @band.save
-      flash[:notice] = "Band created"
+      flash[:success] = "Band created"
       redirect_to :action => 'create_band'
     end
   end
@@ -32,7 +32,7 @@ class AdminController < ApplicationController
     @band = Band.find(params[:id])
     @band.update_attributes(params[:band])
     if @band.save
-      flash[:notice] = "Band saved"
+      flash[:success] = "Band saved"
       redirect_to public_band_url(@band)
     end
   end

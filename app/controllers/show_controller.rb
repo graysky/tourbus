@@ -29,7 +29,7 @@ class ShowController < ApplicationController
       result = create_edit_show(true)
       return if !result
       
-      flash[:notice] = 'Show added'
+      flash[:success] = 'Show added'
       redirect_to_url "/show/#{@show.id}"
     end
   end
@@ -41,7 +41,7 @@ class ShowController < ApplicationController
       params[:selected_venue_id] = @show.venue.id
     else
       create_edit_show(false)
-      flash[:notice] = 'Show edited'
+      flash[:success] = 'Show edited'
       redirect_to_url "/show/#{@show.id}"
     end 
   end

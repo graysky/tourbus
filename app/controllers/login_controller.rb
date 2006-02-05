@@ -117,7 +117,7 @@ class LoginController < ApplicationController
       end
     end
     
-    flash[:notice] = "Instructions on how to reset your password were sent to your email address"
+    flash[:success] = "Instructions on how to reset your password were sent to your email address"
     redirect_to :action => ''
   end
  
@@ -133,12 +133,12 @@ class LoginController < ApplicationController
     end
     
     if user.nil?
-      flash[:error] = "Invalid account id"
+      flash.now[:error] = "Invalid account id"
       return
     end
     
     if key != user.security_token or user.token_expired?
-      flash[:error] = "The link you clicked on is invalid or has expired. Please send email to <a href='mailto:help@mytourb.us'>help@mytourb.us</a> and explain the situation"
+      flash.now[:error] = "The link you clicked on is invalid or has expired. Please send email to <a href='mailto:help@mytourb.us'>help@mytourb.us</a> and explain the situation"
       return
     end
     
@@ -149,7 +149,7 @@ class LoginController < ApplicationController
     user.security_token = user.token_expiry = nil
     if !user.save
       @new_password = nil
-      flash[:error] = "We encountered an error while attempting to reset your password."
+      flash.now[:error] = "We encountered an error while attempting to reset your password."
     end
   end
   

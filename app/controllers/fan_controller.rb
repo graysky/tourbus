@@ -23,7 +23,7 @@ class FanController < ApplicationController
      
     @fan.update_attributes(params[:fan])
     if @fan.save
-      flash[:notice] = "Settings updated"
+      flash.now[:success] = "Settings updated"
     else
       # TODO GOTO ERROR
       flash[:notice] = "error"
@@ -93,12 +93,12 @@ class FanController < ApplicationController
     
     @fan.update_attributes(params[:fan])
     if @fan.password == FAKE_PASSWORD and @fan.password_confirmation == FAKE_PASSWORD
-      flash[:error] = "You must enter a new password"
+      flash.now[:error] = "You must enter a new password"
     else
       begin
         @fan.new_password = true
         if @fan.save
-          flash[:notice] = "Password changed"
+          flash[:success] = "Password changed"
           redirect_to :action => 'settings'
         end
       ensure

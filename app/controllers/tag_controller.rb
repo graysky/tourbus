@@ -65,7 +65,7 @@ class TagController < ApplicationController
     elsif ctype == Tag.Fan
       return Fan.find_by_id(id)
     else
-      flash[:error] = "Tag on this type is not supported"
+      flash.now[:error] = "Tag on this type is not supported"
     end
   
   end

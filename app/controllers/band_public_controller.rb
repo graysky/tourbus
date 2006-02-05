@@ -61,7 +61,7 @@ class BandPublicController < ApplicationController
       result = create_edit_show(true)
       return if !result
       
-      flash[:notice] = 'Show added'
+      flash[:success] = 'Show added'
       redirect_to_band_home
     end 
   end
@@ -74,7 +74,7 @@ class BandPublicController < ApplicationController
       params[:selected_venue_id] = @show.venue.id
     else
       create_edit_show(false)
-      flash[:notice] = 'Show edited'
+      flash[:success] = 'Show edited'
       redirect_to_band_home
     end 
   end

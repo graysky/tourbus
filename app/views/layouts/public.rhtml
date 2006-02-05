@@ -90,7 +90,25 @@
 
 
 <div id="content">
-<p style="color: green"><%= flash[:notice] %></p>
+
+<% if flash[:success] %>
+<div class="success">
+	<%= img_label_table "accept.png", flash[:success] %>
+</div>
+<% end %>
+
+<% if flash[:error] %>
+<div class="error">
+	<%= img_label_table "exclamation.png", flash[:error] %>
+</div>
+<% end %>
+
+<% if flash[:info] %>
+<div class="info_box">
+	<%= img_label_table "information.png", flash[:info] %>
+</div>
+<% end %>
+
 <%= @content_for_layout %>
 </div>
 

@@ -43,7 +43,7 @@ class FindController < ApplicationController
     # This stuff will be updated
     radius = params[:radius]
     if radius != "" and radius.to_f <= 0
-      flash[:error_message] = "The search radius must be a positive number"
+      flash[:error] = "The search radius must be a positive number"
       # FIXME deal with error
       raise "bad radius"
     end

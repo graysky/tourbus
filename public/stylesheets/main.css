@@ -1165,6 +1165,50 @@ table.tooltip_table td {
 	font-weight:bold;
 }
 
+/* error/info/success */
+.success {
+	background-color:#E1F2DE;
+	border:1px solid #85B979;
+	padding-left:4px;
+	margin-bottom:8px;
+}
+
+.success table td {
+	font-size:11px;
+	font-weight:bold;
+	color:#528646;
+}
+
+.info_box {
+	background-color:#D5E2F0;
+	border:1px solid #79A3CD;
+	padding-left:4px;
+	margin-bottom:8px;
+}
+
+.info_box table td {
+	font-size:11px;
+	font-weight:bold;
+	color:#3D70A4;
+}
+
+.error {
+	background-color:#FBD9D0;
+	border:1px solid #EF6843;
+	padding-left:4px;
+	margin-bottom:8px;
+}
+
+.error table td {
+	font-size:11px;
+	font-weight:bold;
+	color:#c84d33;
+}
+
+.error li {
+	font-weight:normal;
+	color:#484A4C;
+}
 
 
 

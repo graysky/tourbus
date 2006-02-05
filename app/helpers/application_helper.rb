@@ -89,4 +89,23 @@ END_JS
     
   end
   
+  def img_label_table(img, label)
+    "<table><tr><td valign='top'><img src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
+  end
+  
+  # Override rails' built in form error reporting
+  def error_messages_for(object_name, options = {})
+    options = options.symbolize_keys
+    object = instance_variable_get("@#{object_name}")
+    unless object.errors.empty?
+    
+      items = content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) })
+    
+      out = "<div class='error'>" + img_label_table("exclamation.png", "We found #{pluralize(object.errors.count, 'error')} on this form! #{items}") + "</div>"
+      
+        #out << content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) })), "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
+      return out
+    end
+  end
+  
 end

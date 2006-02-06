@@ -63,17 +63,46 @@ else
   set :stage, "production"
   # Password is funny Dave C. skit
   set :user, "downtree"
-  set :deploy_to, "/home/.jazzmen/downtree/mytourb.us/#{application}"
+  set :deploy_to, "/home/.jazzmen/downtree/beta.mytourb.us/#{application}"
   # Roles
-  role :web, "mytourb.us"
-  role :app, "mytourb.us"
-  role :db,  "mytourb.us"
+  role :web, "beta.mytourb.us"
+  role :app, "beta.mytourb.us"
+  role :db,  "beta.mytourb.us"
 end
-
 
 # =============================================================================
 # TASKS
 # =============================================================================
+
+desc "Setup task that needs to be run before the 1st deployment"
+task :tb_setup do
+  # Make directories that are shared between releases for images
+  # and the ferret index
+  run <<-CMD
+    mkdir -p -m 777 #{shared_path}/tb.index #{shared_path}/public &&
+    mkdir -p -m 777 #{shared_path}/tb.index/band #{shared_path}/tb.index/venue &&
+    mkdir -p -m 777 #{shared_path}/tb.index/show #{shared_path}/tb.index/fan &&
+    mkdir -p -m 777 #{shared_path}/public/band #{shared_path}/public/venue &&
+    mkdir -p -m 777 #{shared_path}/public/show #{shared_path}/public/fan
+  CMD
+end
+
+desc "Create symlinks for TB-specific directories for images and ferret index"
+task :tb_symlink do
+  # Create TB-specific symlinks for ferret index and images
+  run <<-CMD
+    ln -nfs #{shared_path}/public/band #{release_path}/public/band &&
+    ln -nfs #{shared_path}/public/show #{release_path}/public/show &&
+    ln -nfs #{shared_path}/public/venue #{release_path}/public/venue &&
+    ln -nfs #{shared_path}/public/fan #{release_path}/public/fan &&
+    rm -rf #{release_path}/db/tb.index/band #{release_path}/db/tb.index/show &&
+    rm -rf #{release_path}/db/tb.index/venue #{release_path}/db/tb.index/fan &&
+    ln -nfs #{shared_path}/tb.index/band #{release_path}/db/tb.index/band &&
+    ln -nfs #{shared_path}/tb.index/show #{release_path}/db/tb.index/show &&
+    ln -nfs #{shared_path}/tb.index/venue #{release_path}/db/tb.index/venue &&
+    ln -nfs #{shared_path}/tb.index/fan #{release_path}/db/tb.index/fan
+    CMD
+end
 
 desc "Freeze the Ferret gem using rake."
 task :freeze_ferret do
@@ -126,9 +155,13 @@ task :code_deploy do
     
     freeze_ferret
     
-    ## migrate
+    migrate
+    
     ## disable_web
     symlink
+    
+    ## TB-specific symlinks
+    tb_symlink
   end
 
   # restart
@@ -193,6 +226,6 @@ end
 desc "Restart the FCGI processes on the app server as a regular user."
 task :restart, :roles => :app do
   # From Shovel deploy recipe
-  run "killall -9 dispatch.fcgi"
+  run "killall -USR1 dispatch.fcgi"
   #run "#{current_path}/script/process/reaper"
 end

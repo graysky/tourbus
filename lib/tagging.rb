@@ -32,15 +32,13 @@ module Tagging
   end
   
   # Delete a tag from this object
+  # Note: Does not actually delete the Tag object
+  # just the association
   def delete_tag(tag_id)
   
-    #p "Delete tag id #{tag_id}"
-    #p "Current tags: #{tags}"
     delete_tag = []
     # The tag_id is the TagBand.id (for example) -- NOT the Tag.id
     delete_tag = tags.select {|x| x.id == tag_id.to_i }
-    
-    #p "Deleting tag: #{delete_tag[0].name}"
     
     if delete_tag.empty?
       # Error - couldn't find tag to delete  

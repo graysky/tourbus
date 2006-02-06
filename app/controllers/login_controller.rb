@@ -1,4 +1,4 @@
-# Handle logins
+# Handle logins for band and fans
 class LoginController < ApplicationController
   include LoginSystem
 
@@ -16,9 +16,9 @@ class LoginController < ApplicationController
     type = params['type']
     
     # Standard error message
-    error_msg = "<h2>Login unsuccessful</h2>" +
-                "<p>Please check your username and password, " +
-                "and that your account has been confirmed.</p>"
+    error_msg = "Login unsuccessful<br/>" +
+                "Please check your username and password, " +
+                "and that your account has been confirmed."
     
     if type == "fan"
     
@@ -37,10 +37,9 @@ class LoginController < ApplicationController
         # Send to their profile page
         redirect_back_or_default( public_fan_url )
       
-
       else
         # There was an error
-        @login_error  = error_msg
+        flash.now[:error] = error_msg
       end
     
     elsif type == "band"
@@ -57,13 +56,12 @@ class LoginController < ApplicationController
         else
           cookies.delete :login
         end
-        
           
         # Send to their profile page
         redirect_back_or_default( public_band_url )
 
       else
-        @login_error  = error_msg
+        flash.now[:error] = error_msg
       end
       
     end

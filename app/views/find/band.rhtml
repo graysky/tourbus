@@ -20,7 +20,7 @@ Search for bands: <%= text_field_tag 'query', params[:query] %> <%= submit_tag '
 			<%
 				# TODO If we keep this it should be factored out
 				str = ""
-				for tag in result.get_tags(Tag.Genre)[0..5]
+				for tag in result.tags[0..5]
 					str = str + " / " if str != ""
 					str += tag.name
 				end

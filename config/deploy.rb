@@ -4,17 +4,19 @@
 # =============================================================================
 # USAGE
 # =============================================================================
-# This is for deploying to Dreamhost. It is configured for:
-# tourbus.figureten.com (staging)
-# mytourb.us (real production)
+# This is for deploying to LiquidWeb. It is configured for:
+# tourbus.figureten.com (staging OLD)
+# tourb.us (real production)
 #
+# Use this to run non-rake switchtower tasks:
+# rake remote_exec [STAGE=dev] ACTION=<action-name>
+#
+# Remember that "rake --tasks" will show list of all tasks
+# 
 # To deploy to staging enviroment, use "_stage" commands, namely:
 # rake deploy_stage
 # rake rollback_stage
 #
-# Use this to run non-rake switchtower tasks:
-# rake remote_exec STAGE=dev ACTION=<action-name>
-# 
 # Or, set the "STAGE" env to "dev". The normal tasks run against the live
 # production environment.
 # 
@@ -62,12 +64,12 @@ else
   #
   set :stage, "production"
   # Password is funny Dave C. skit
-  set :user, "downtree"
-  set :deploy_to, "/home/.jazzmen/downtree/beta.mytourb.us/#{application}"
+  set :user, "lighty"
+  set :deploy_to, "/var/www/rails/#{application}"
   # Roles
-  role :web, "beta.mytourb.us"
-  role :app, "beta.mytourb.us"
-  role :db,  "beta.mytourb.us"
+  role :web, "tourb.us"
+  role :app, "tourb.us"
+  role :db,  "tourb.us"
 end
 
 # =============================================================================
@@ -109,7 +111,9 @@ task :freeze_ferret do
 
     # Execute rake command to freeze Ferret gem. 
     # Need to source bash_profile to set up correct GEM_PATH. 
-    # Assumes the bash_profile does that.
+    # Assumes the bash_profile does that, like this:
+    # export GEM_HOME=$HOME/gems
+    # export GEM_PATH=/usr/lib/ruby/gems/1.8:$GEM_HOME
     run <<-CMD
       cd #{release_path} && source ~/.bash_profile && rake freeze_other_gems
     CMD
@@ -153,7 +157,8 @@ task :code_deploy do
     
     push_env_file
     
-    freeze_ferret
+    # Don't need to freeze on tourb.us
+    ##freeze_ferret
     
     migrate
     

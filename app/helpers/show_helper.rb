@@ -3,17 +3,24 @@ module ShowHelper
     if true
       out = ""
       out << "<table class='show_table'><tr>"
-      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr>More Info</nobr></th>"
+      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr></nobr></th>"
       out << "</tr>"
       
       last_date = nil
       for show in shows
+        date = friendly_date(show.date)
+        if last_date == date
+          date = ""
+        else
+          last_date = date
+        end
+        
         out << "<tr>"
-        out << col("<nobr>" + friendly_date(show.date) + "</nobr>")
+        out << col("<nobr>" + date + "</nobr>")
         out << col(friendly_time(show.date))
         out << col("<strong>" + show.bands.map { |band| band.name }.join(", ") +"</strong>")
         out << col(show.venue.name)
-        out << col("<strong>" + link_to("Click Here", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
+        out << col("<strong>" + link_to("Details", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
         out << "</tr>"
       end
       

@@ -72,6 +72,8 @@ module ShowCreator
         band.name = CGI.unescape(id[1, id.length])
         band.short_name = Band.name_to_id(band.name)
         band.claimed = false
+        
+        logger.warn("FIXME: Add band: #{band.name}, #{band.short_name}")
       else
         logger.debug "Found band for show: #{band.name}"
       end

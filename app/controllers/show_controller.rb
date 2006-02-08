@@ -125,11 +125,19 @@ class ShowController < ApplicationController
             @show.created_by_fan = logged_in_fan if logged_in_fan
           end
           
-          @show.save!
+          # FIXME Clean this stuff up. Temp for debugging
+          if !@show.save
+            logger.warn(@show.inspect)
+            create_bands_playing_content
+            return
+          end
           
           @bands_playing.each do |band| 
             if band.id.nil?
-              band.save!
+              if !band.save
+                create_bands_playing_content
+                return
+              end
             end
           end
         end

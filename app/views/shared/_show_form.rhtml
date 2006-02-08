@@ -89,7 +89,7 @@
 				</span>
 				
 				<div id="venue_search" style="margin-top:8px">
-					<%= text_field_tag 'venue_search_term' %> &nbsp;
+					<%= text_field_tag 'venue_search_term', '', :autocomplete => "off" %> &nbsp;
 					<%= observe_field 'venue_search_term', :frequency => 0.7,
 										 :with => "'name=' + escape(value)",
 										 :update => "venue_search_results",

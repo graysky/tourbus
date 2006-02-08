@@ -17,9 +17,11 @@ module FerretMixin
         def acts_as_searchable(options = {})
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
-
+             
+             dir = "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}"
+             Dir.mkdir(dir) if not File.directory?(dir)
              @@ferret_index = Ferret::Index::Index.new(:key => ["id", "ferret_class"],
-                                                     :path => "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}",
+                                                     :path => dir,
                                                      :auto_flush => true,
                                                      :create_if_missing => true)
           end

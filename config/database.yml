@@ -15,12 +15,12 @@ test:
   username: root
   password: bighit
 
-# Settings for mytourb.us
+# Settings for tourb.us - they make us prefix things with tourbus
 production:
   adapter: mysql
-  database: tb_production
-  host: db.mytourb.us
-  username: downtree
+  database: tourbus_production
+  host: 127.0.0.1
+  username: tourbus_root
   password: bighit
 
 # tourbus.figureten.com staging production environment

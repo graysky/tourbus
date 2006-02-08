@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 # To be included by controllers that need to add shows
 module ShowCreator
   private
@@ -72,6 +74,7 @@ module ShowCreator
         band.name = CGI.unescape(id[1, id.length])
         band.short_name = Band.name_to_id(band.name)
         band.claimed = false
+	band.uuid = UUID.random_create.to_s
         
         logger.warn("FIXME: Add band: #{band.name}, #{band.short_name}")
       else

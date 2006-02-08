@@ -50,6 +50,10 @@ class Band < ActiveRecord::Base
   def play_show(show, can_edit = true)
     show.bands << self
   end
+
+  def validate_unique_email?
+    super and self.claimed?
+  end
   
   # Returns the band if it was authenticated.
   # May return an unconfirmed band, the caller must check.

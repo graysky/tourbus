@@ -35,23 +35,23 @@ class FanController < ApplicationController
   
   # Send a test SMS message
   def send_test_sms
-    # Send the message right away to the address they configured
-    # Pull them out of the fan, because these values have NOT been saved
-    mobile_number = @fan.mobile_number
-    carrier_type = @fan.carrier_type
+    # Send the message right away to the address they are testing
+    # NOTE: These params are set in the javascript ajax call
+    mobile_number = params[:num]
+    carrier_type = params[:type]
     
     sms_addr = MobileAddress::get_mobile_email(mobile_number, carrier_type)
     
-    logger.info "mobile number #{mobile_number} at carrier #{carrier_type}, so address: #{sms_addr}"
-    
     if sms_addr.nil? or sms_addr.empty?
-      flash.now[:error] = "Invalid SMS address"
+      logger.warn "Mobile address was invalid - number: #{mobile_number} carrier: #{carrier_type}"
+      resp = "Error sending SMS"
     else
       RemindersMailer.deliver_sms_test(sms_addr)
+      resp = "SMS Message Sent"
     end
     
     # Return a string
-    render :text => "SMS Message Sent"
+    render :text => resp
   end
   
   # Add a new favorite band

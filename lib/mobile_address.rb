@@ -18,6 +18,11 @@ module MobileAddress
   # or nil if we could not determine the number
   def self.get_mobile_email(number, carrier_type)
 
+    if carrier_type.kind_of?(String)
+      # Convert to int
+      carrier_type = carrier_type.to_i
+    end
+    
     if !valid_number?(number) or carrier_type == -1
       return nil
     end
@@ -52,7 +57,6 @@ module MobileAddress
 
   # Try to determine if this is a valid phone number
   def self.valid_number?(num)
-      
       # For now just make sure it is 10 digits long
       return true if num.length == 10      
   end

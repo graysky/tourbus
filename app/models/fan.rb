@@ -67,7 +67,6 @@ class Fan < ActiveRecord::Base
   # Get the mobile email address for this fan
   def mobile_email
 
-    logger.info "mobile number #{mobile_number} at carrier #{carrier_type}"
     return MobileAddress::get_mobile_email(mobile_number, carrier_type)
   end  
   

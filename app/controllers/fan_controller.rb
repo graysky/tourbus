@@ -1,3 +1,5 @@
+require_dependency "mobile_address"
+
 # Private controller of fan settings
 class FanController < ApplicationController
   include FanLoginSystem
@@ -34,7 +36,13 @@ class FanController < ApplicationController
   # Send a test SMS message
   def send_test_sms
     # Send the message right away to the address they configured
-    sms_addr = @fan.mobile_email
+    # Pull them out of the fan, because these values have NOT been saved
+    mobile_number = @fan.mobile_number
+    carrier_type = @fan.carrier_type
+    
+    sms_addr = MobileAddress::get_mobile_email(mobile_number, carrier_type)
+    
+    logger.info "mobile number #{mobile_number} at carrier #{carrier_type}, so address: #{sms_addr}"
     
     if sms_addr.nil? or sms_addr.empty?
       flash.now[:error] = "Invalid SMS address"

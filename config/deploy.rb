@@ -9,27 +9,30 @@
 # tourb.us (real production)
 #
 # Typical usage ("rake --tasks" will list all tasks)
+#
+# Push out full new release, run migration, etc:
 # rake deploy
 #
 # Push out new code from SVN:
 # rake update_current
 #
-# Use this to run non-rake switchtower tasks:
+# Other useful tasks:
+#
+# rollback - rollback to last deployment
+# cleanup - deletes >5 deployments
+# spinner - first start FCGI processes using spinner
+# reaper - kill the FCGI processes using reaper
+#
+# Use this to run any non-rake switchtower tasks:
 # rake remote_exec [STAGE=dev] ACTION=<action-name>
 #
 # To deploy to staging enviroment, use "_stage" commands, namely:
 # rake deploy_stage
 # rake rollback_stage
 #
-# Or, set the "STAGE" env to "dev". The normal tasks run against the live
-# production environment.
+# Or, set the "STAGE" env to "dev", like:
+# rake remote_exec STAGE=dev ACTION=<action-name>
 # 
-# To start a deployment calling switchtower directly:
-# switchtower -vvvv -r config/deploy -a [code_deploy | deploy | update_code ]
-#
-# Note: For when we just want to push new code, we can use the "update_current" task
-# which just fetches the latest code. Good for when pushing out small changes, or for our testing.
-#
 # =============================================================================
 # VARIABLES and ROLES
 # =============================================================================
@@ -43,7 +46,7 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
-# Don't use sudo for restarting lighty.
+# Don't use sudo for restarting tourb.us.
 set :restart_via, :run
 
 # Check for ENV to determine which type of deployment. 
@@ -64,7 +67,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   role :db,  "tourbus.figureten.com"
   
 else
-  # Production deployment to mytourb.us
+  # Production deployment to tourb.us
   #
   set :stage, "production"
   # Password is funny Dave C. skit
@@ -79,6 +82,26 @@ end
 # =============================================================================
 # TASKS
 # =============================================================================
+
+desc <<-DESC
+Task that updates the code, fixes the symlink, migrates the db and restarts the
+application servers.
+DESC
+task :deploy do
+  transaction do
+    update_code
+
+    # Push around the config files    
+    push_db_file
+    push_env_file
+    
+    migrate
+    
+    symlink
+  end
+
+  restart
+end
 
 desc "Setup task that to run before the first deployment for TB-specific setup"
 task :after_setup do
@@ -112,6 +135,10 @@ end
 
 desc "Restart FCGI after update current code"
 task :after_update_current do
+
+  # Do any DB migrations
+  migrate
+  
   # Restart FCGI procs
   restart
 end
@@ -157,89 +184,22 @@ task :push_env_file do
       :mode => 0666)
 end
 
-desc "Code deploy. Get the new code and adjusts symlinks"
-task :code_deploy do
-  transaction do
-
-    update_code
-    
-    push_db_file
-    
-    push_env_file
-    
-    # Don't need to freeze on tourb.us
-    ##freeze_ferret
-    
-    migrate
-    
-    ## disable_web
-    symlink
-    
-    ## TB-specific symlinks
-    tb_symlink
-  end
-
-  # restart
-  # enable_web
+desc "Start the FCGI processes using spinner"
+task :spinner, :roles => :app do
+  # Attempt to spin it every 90 seconds as a daemon
+  # NOTE - this starts 4 FCGI procs
+  run <<-CMD
+    #{current_path}/script/process/spinner -d -i 90 -c '#{current_path}/script/process/spawner -i 4'
+  CMD
 end
 
-desc <<-DESC
-A macro-task that updates the code, fixes the symlink, and restarts the
-application servers.
-DESC
-task :deploy do
-  transaction do
-    update_code
-    
-    push_db_file
-    push_env_file
-    
-    # Don't need to freeze on tourb.us
-    ##freeze_other_gems
-    
-    symlink
-  end
-
-  restart
+desc "Stops the FCGI processes using reaper"
+task :reaper, :roles => :app do
+  # Attempt to stop the FCGI procs
+  run <<-CMD
+    #{current_path}/script/process/reaper -a kill
+  CMD
 end
-
-# Tasks may take advantage of several different helper methods to interact
-# with the remote server(s). These are:
-#
-# * run(command, options={}, &block): execute the given command on all servers
-#   associated with the current task, in parallel. The block, if given, should
-#   accept three parameters: the communication channel, a symbol identifying the
-#   type of stream (:err or :out), and the data. The block is invoked for all
-#   output from the command, allowing you to inspect output and act
-#   accordingly.
-# * sudo(command, options={}, &block): same as run, but it executes the command
-#   via sudo.
-# * delete(path, options={}): deletes the given file or directory from all
-#   associated servers. If :recursive => true is given in the options, the
-#   delete uses "rm -rf" instead of "rm -f".
-# * put(buffer, path, options={}): creates or overwrites a file at "path" on
-#   all associated servers, populating it with the contents of "buffer". You
-#   can specify :mode as an integer value, which will be used to set the mode
-#   on the file.
-# * render(template, options={}) or render(options={}): renders the given
-#   template and returns a string. Alternatively, if the :template key is given,
-#   it will be treated as the contents of the template to render. Any other keys
-#   are treated as local variables, which are made available to the (ERb)
-#   template.
-
-#desc "Demonstrates the various helper methods available to recipes."
-#task :helper_demo do
-#  # "setup" is a standard task which sets up the directory structure on the
-#  # remote servers. It is a good idea to run the "setup" task at least once
-#  # at the beginning of your app's lifetime (it is non-destructive).
-#  setup
-#
-#  buffer = render("maintenance.rhtml", :deadline => ENV['UNTIL'])
-#  put buffer, "#{shared_path}/system/maintenance.html", :mode => 0644
-#  sudo "killall -USR1 dispatch.fcgi"
-#  run "#{release_path}/script/spin"
-#  delete "#{shared_path}/system/maintenance.html"
-#end
 
 #desc <<DESC
 #An imaginary backup task. (Execute the 'show_tasks' task to display all
@@ -253,27 +213,4 @@ end
 #  run "mysqldump -u theuser -p thedatabase > /tmp/dump.sql" do |ch, stream, out|
 #    ch.send_data "thepassword\n" if out =~ /^Enter password:/
 #  end
-#end
-
-# You can use "transaction" to indicate that if any of the tasks within it fail,
-# all should be rolled back (for each task that specifies an on_rollback
-# handler).
-desc "A task demonstrating the use of transactions."
-task :long_deploy do
-  transaction do
-    update_code
-    disable_web
-    symlink
-    migrate
-  end
-
-  restart
-  enable_web
-end
-
-#desc "Restart the FCGI processes on the app server as a regular user."
-#task :restart, :roles => :app do
-#  # From Shovel deploy recipe
-#  run "killall -USR1 dispatch.fcgi"
-#  #run "#{current_path}/script/process/reaper"
 #end

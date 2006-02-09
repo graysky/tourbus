@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
+  # Check for beta invite cookie in the public controller
+  before_filter :beta_cookie, :except => :beta
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
@@ -29,6 +31,16 @@ class ApplicationController < ActionController::Base
       suppress(ActiveRecord::StatementInvalid) do
         ActiveRecord::Base.connection.execute 'SET NAMES UTF8'
       end
+  end
+  
+  def beta_cookie
+    # TODO Change the secret 
+    secret = "tourbus"
+  
+    # Check for the secret cookie
+    unless cookies[:invite] == secret
+      redirect_to("/beta")
+    end
   end
   
   # See if we can log the user in from a cookie

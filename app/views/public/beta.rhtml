@@ -1,0 +1,35 @@
+<% @page_title = "Welcome" %>
+<% @header_title = "Welcome" %>
+
+<% content_for("onload") do %>
+	init_focus()
+<% end %>
+
+<script type="text/javascript">
+	function init_focus()
+	{
+		$('code').focus()
+	}
+</script>
+
+<%= start_form_tag %>
+
+<center>
+<table class="form-table">
+	<tr>
+		<td colspan="3"><center><h2>tourb.us beta</h2></center></td>
+	</tr>
+	<tr>
+		<th>Invite Code:</th>
+		<td><%= text_field_tag('code', nil, :size => 30) %></td>
+		<td class="info">
+		</td>
+	</tr>
+	<tr class="submit">
+		<td></td>
+		<td><%= submit_tag 'Submit' %></td>
+	</tr>
+</table>
+</center>
+
+<%= end_form_tag %>

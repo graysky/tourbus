@@ -62,6 +62,7 @@ ActionController::Routing::Routes.draw do |map|
   # Misc. public pages
   map.connect 'about/', :controller => 'public', :action => 'about_us'
   map.connect 'faq/', :controller => 'public', :action => 'faq'
+  map.connect 'beta/', :controller => 'public', :action => 'beta'
   
   # Admin section
   map.connect 'admin/:action/:id', :controller => 'admin'

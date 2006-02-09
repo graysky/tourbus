@@ -5,14 +5,18 @@
 # USAGE
 # =============================================================================
 # This is for deploying to LiquidWeb. It is configured for:
-# tourbus.figureten.com (staging OLD)
+# OLD - tourbus.figureten.com (staging)
 # tourb.us (real production)
+#
+# Typical usage ("rake --tasks" will list all tasks)
+# rake deploy
+#
+# Push out new code from SVN:
+# rake update_current
 #
 # Use this to run non-rake switchtower tasks:
 # rake remote_exec [STAGE=dev] ACTION=<action-name>
 #
-# Remember that "rake --tasks" will show list of all tasks
-# 
 # To deploy to staging enviroment, use "_stage" commands, namely:
 # rake deploy_stage
 # rake rollback_stage
@@ -39,8 +43,8 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
-# We don't have sudo permissions on dreamhost - should we use "run" instead?
-# set :restart_via, :run
+# Don't use sudo for restarting lighty.
+set :restart_via, :run
 
 # Check for ENV to determine which type of deployment. 
 # 
@@ -76,8 +80,8 @@ end
 # TASKS
 # =============================================================================
 
-desc "Setup task that needs to be run before the 1st deployment"
-task :tb_setup do
+desc "Setup task that to run before the first deployment for TB-specific setup"
+task :after_setup do
   # Make directories that are shared between releases for images
   # and the ferret index
   run <<-CMD
@@ -90,7 +94,7 @@ task :tb_setup do
 end
 
 desc "Create symlinks for TB-specific directories for images and ferret index"
-task :tb_symlink do
+task :after_symlink do
   # Create TB-specific symlinks for ferret index and images
   run <<-CMD
     ln -nfs #{shared_path}/public/band #{release_path}/public/band &&
@@ -106,8 +110,14 @@ task :tb_symlink do
     CMD
 end
 
-desc "Freeze the Ferret gem using rake."
-task :freeze_ferret do
+desc "Restart FCGI after update current code"
+task :after_update_current do
+  # Restart FCGI procs
+  restart
+end
+
+desc "Freeze the other gems using rake. - NEEDED??"
+task :freeze_other_gems do
 
     # Execute rake command to freeze Ferret gem. 
     # Need to source bash_profile to set up correct GEM_PATH. 
@@ -173,6 +183,26 @@ task :code_deploy do
   # enable_web
 end
 
+desc <<-DESC
+A macro-task that updates the code, fixes the symlink, and restarts the
+application servers.
+DESC
+task :deploy do
+  transaction do
+    update_code
+    
+    push_db_file
+    push_env_file
+    
+    # Don't need to freeze on tourb.us
+    ##freeze_other_gems
+    
+    symlink
+  end
+
+  restart
+end
+
 # Tasks may take advantage of several different helper methods to interact
 # with the remote server(s). These are:
 #
@@ -197,24 +227,37 @@ end
 #   are treated as local variables, which are made available to the (ERb)
 #   template.
 
-desc "Demonstrates the various helper methods available to recipes."
-task :helper_demo do
-  # "setup" is a standard task which sets up the directory structure on the
-  # remote servers. It is a good idea to run the "setup" task at least once
-  # at the beginning of your app's lifetime (it is non-destructive).
-  setup
+#desc "Demonstrates the various helper methods available to recipes."
+#task :helper_demo do
+#  # "setup" is a standard task which sets up the directory structure on the
+#  # remote servers. It is a good idea to run the "setup" task at least once
+#  # at the beginning of your app's lifetime (it is non-destructive).
+#  setup
+#
+#  buffer = render("maintenance.rhtml", :deadline => ENV['UNTIL'])
+#  put buffer, "#{shared_path}/system/maintenance.html", :mode => 0644
+#  sudo "killall -USR1 dispatch.fcgi"
+#  run "#{release_path}/script/spin"
+#  delete "#{shared_path}/system/maintenance.html"
+#end
 
-  buffer = render("maintenance.rhtml", :deadline => ENV['UNTIL'])
-  put buffer, "#{shared_path}/system/maintenance.html", :mode => 0644
-  sudo "killall -USR1 dispatch.fcgi"
-  run "#{release_path}/script/spin"
-  delete "#{shared_path}/system/maintenance.html"
-end
+#desc <<DESC
+#An imaginary backup task. (Execute the 'show_tasks' task to display all
+#available tasks.)
+#DESC
+#task :backup, :roles => :db, :only => { :primary => true } do
+#  # the on_rollback handler is only executed if this task is executed within
+#  # a transaction (see below), AND it or a subsequent task fails.
+#  on_rollback { delete "/tmp/dump.sql" }
+#
+#  run "mysqldump -u theuser -p thedatabase > /tmp/dump.sql" do |ch, stream, out|
+#    ch.send_data "thepassword\n" if out =~ /^Enter password:/
+#  end
+#end
 
 # You can use "transaction" to indicate that if any of the tasks within it fail,
 # all should be rolled back (for each task that specifies an on_rollback
 # handler).
-
 desc "A task demonstrating the use of transactions."
 task :long_deploy do
   transaction do
@@ -228,9 +271,9 @@ task :long_deploy do
   enable_web
 end
 
-desc "Restart the FCGI processes on the app server as a regular user."
-task :restart, :roles => :app do
-  # From Shovel deploy recipe
-  run "killall -USR1 dispatch.fcgi"
-  #run "#{current_path}/script/process/reaper"
-end
+#desc "Restart the FCGI processes on the app server as a regular user."
+#task :restart, :roles => :app do
+#  # From Shovel deploy recipe
+#  run "killall -USR1 dispatch.fcgi"
+#  #run "#{current_path}/script/process/reaper"
+#end

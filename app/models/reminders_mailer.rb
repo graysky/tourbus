@@ -2,16 +2,14 @@
 class RemindersMailer < ActionMailer::Base
   
   # Sends a test email for SMS-like viewing
-  def sms_test(fan, sent_at = Time.now)
+  def sms_test(mobile_email, sent_at = Time.now)
     @subject    = "Success!"
     @body       = {}
-    @recipients = fan.mobile_email
+    @recipients = mobile_email
     @from       = 'noreply@mytourb.us'
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/plain"
-    
-    @body['fan'] = fan
   end
   
   # Sends an email for SMS-like viewing

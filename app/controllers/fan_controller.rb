@@ -33,8 +33,14 @@ class FanController < ApplicationController
   
   # Send a test SMS message
   def send_test_sms
-    # Send the message right away
-    RemindersMailer.deliver_sms_test(@fan)
+    # Send the message right away to the address they configured
+    sms_addr = @fan.mobile_email
+    
+    if sms_addr.nil? or sms_addr.empty?
+      flash.now[:error] = "Invalid SMS address"
+    else
+      RemindersMailer.deliver_sms_test(sms_addr)
+    end
     
     # Return a string
     render :text => "SMS Message Sent"

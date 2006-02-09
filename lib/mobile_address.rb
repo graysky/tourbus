@@ -17,7 +17,8 @@ module MobileAddress
   # Get the mobile address of this phone number on this carrier
   # or nil if we could not determine the number
   def self.get_mobile_email(number, carrier_type)
-  
+
+    logger.info "MobileAddress: number #{number} at carrier #{carrier_type}"  
     if !valid_number?(number) or carrier_type == -1
       return nil
     end

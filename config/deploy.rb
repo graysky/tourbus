@@ -98,9 +98,11 @@ task :deploy do
     push_db_file
     push_env_file
     
-    migrate
-    
     symlink
+    
+    # This must come *after* symlinking
+    # to do the "current" migration
+    migrate
   end
 
   restart

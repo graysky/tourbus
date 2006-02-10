@@ -8,7 +8,7 @@
 # OLD - tourbus.figureten.com (staging)
 # tourb.us (real production)
 #
-# Typical usage ("rake --tasks" will list all tasks)
+# Typical usage ("rake show_deploy_tasks" will list all switchtower tasks)
 #
 # Push out full new release, run migration, etc:
 # rake deploy
@@ -16,6 +16,9 @@
 # Push out new code from SVN:
 # rake update_current
 #
+# Rollback to previous release:
+# rake rollback
+# 
 # Other useful tasks:
 #
 # rollback - rollback to last deployment

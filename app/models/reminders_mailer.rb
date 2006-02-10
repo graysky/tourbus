@@ -48,6 +48,24 @@ class RemindersMailer < ActionMailer::Base
     @body['url_prefix'] = 'http://mytourb.us/show/'
   end
   
+  # Sends an email reminder about a watched show
+  def email_reminder_for_watch(fan, show, sent_at = Time.now)
+    @subject    = "[tourbus] Reminder: #{show.formatted_title}"
+    @body       = {}
+    @recipients = fan.contact_email
+    @from       = 'noreply@mytourb.us'
+    @sent_on    = sent_at
+    @headers    = {}
+    @content_type = "text/html"
+    
+    @body['fan'] = fan
+    @body['show'] = show
+    
+    # FIXME How do I get the URL here without being in a controller?
+    # Maybe the favorites logic should be in a controller and can pass the url in here
+    @body['url_prefix'] = 'http://mytourb.us/show/'
+  end
+  
   # Main entry point from the runner script.
   # Calculates what emails need to be sent to fans that have specified
   # show reminders that need to be sent
@@ -62,9 +80,10 @@ class RemindersMailer < ActionMailer::Base
       reminders = RemindersCalculator.new(fan)
       
       upcoming_shows = reminders.upcoming_shows
+      watching_shows = fan.watching_shows
       
       # Skip this fan if they don't have any upcoming shows
-      next if upcoming_shows.nil? or upcoming_shows.empty?
+      next if (upcoming_shows.nil? or upcoming_shows.empty?) and watching_shows.empty?
       
       now = Time.now
       
@@ -123,6 +142,30 @@ class RemindersMailer < ActionMailer::Base
         end      
           
       end # shows loop
+      
+      # TODO Factor all this logic out. Use cool ruby features to do so.
+      # Write unit tests to verify.
+      #
+      # Now check shows the fan is watching
+      if watching_shows.size > 0
+        for show in watching_shows
+        
+          if fan.show_watching_reminder > 0
+           
+            if now + (60 * fan.show_watching_reminder) >= show.date
+              
+              # A reminder needs to be sent. Was it already sent?
+              if fan.last_show_reminder.nil? or
+                (fan.last_show_reminder + (60 * fan.show_watching_reminder) < show.date)
+                
+                RemindersMailer.deliver_email_reminder_for_watch(fan, show)
+                save_fan = true
+              end
+            end
+          end
+          
+        end
+      end
       
       if save_fan
         puts "Updating fan at #{now}"

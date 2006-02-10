@@ -98,6 +98,28 @@ class FanController < ApplicationController
     render :partial => "shared/add_attending"
   end
   
+  # This fan will watch the show
+  def add_watching_show
+    show = Show.find(params[:id])
+    
+    # If they are already watching maybe someone just typed in the URL
+    return if @fan.is_watching(show)
+    
+    @fan.watching_shows << show
+    @fan.save!
+    
+    render :partial => "shared/remove_watching"
+  end
+  
+  # This fan will NOT watch the show
+  def remove_watching_show
+    show = Show.find(params[:id])
+    @fan.watching_shows.delete(show)
+    @fan.save!
+    
+    render :partial => "shared/add_watching"
+  end
+  
   def change_password
     if request.get?
       @fan.password = @fan.password_confirmation = FAKE_PASSWORD

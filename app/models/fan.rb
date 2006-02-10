@@ -16,6 +16,7 @@ class Fan < ActiveRecord::Base
   has_one :upload_addr
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
+  has_and_belongs_to_many :watching_shows, :class_name => "Show", :join_table => 'fans_watching_shows', :order => "date ASC"
   
   validates_uniqueness_of :uuid # just in case
   
@@ -41,6 +42,11 @@ class Fan < ActiveRecord::Base
   # Return if the show is one the fan is attending
   def is_attending(show)
     self.shows.detect { |x| x == show  }
+  end
+  
+  # Return if the show is one the fan is watching
+  def is_watching(show)
+    self.watching_shows.detect { |x| x == show  }
   end
                           
   # Creates and sets the confirmation code. DOES NOT save the record.
@@ -76,6 +82,15 @@ class Fan < ActiveRecord::Base
     ops = [
             ["---", 0], ["1 hour", 60], 
             ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
+            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
+            ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
+          ]
+  end
+  
+  # Returns an array of reminder options in minutes for watching shows
+  def self.watching_reminder_options
+    ops = [
+            ["Never", 0],
             ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
             ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]

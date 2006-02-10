@@ -17,17 +17,19 @@
 <center>
 <table class="form-table">
 	<tr>
-		<td colspan="3"><center><h2>tourb.us beta</h2></center></td>
-	</tr>
-	<tr>
-		<th>Invite Code:</th>
-		<td><%= text_field_tag('code', nil, :size => 30) %></td>
-		<td class="info">
+		<td colspan="3" class="info">
+		<center><h1>tourb.us beta</h1></center>
+		<p>If you have an invitation code enter it below.
+		<br/>If not, please <a href="http://tourb.us/">signup to find out</a> when we're launching.
+		</p>
 		</td>
 	</tr>
-	<tr class="submit">
-		<td></td>
-		<td><%= submit_tag 'Submit' %></td>
+	<tr>
+		<th>Invitation Code:</th>
+		<td><%= text_field_tag('code', nil, :size => 30) %></td>
+		<td class="info">
+		<%= submit_tag 'Submit' %>
+		</td>
 	</tr>
 </table>
 </center>

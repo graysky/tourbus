@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   
   def beta_cookie
     # TODO Change the secret 
-    secret = "tourbus"
+    secret = "3gnm"
   
     # Check for the secret cookie
     unless cookies[:invite] == secret

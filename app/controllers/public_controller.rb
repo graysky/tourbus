@@ -17,7 +17,7 @@ class PublicController < ApplicationController
     invite_code = params['code']
     
     # This needs to match what application has
-    secret = "tourbus"
+    secret = "3gnm"
     
     # Check to see if they should be allowed in
     if invite_code == secret

@@ -54,11 +54,11 @@ end
 # Include your application configuration below
 # Include your app's configuration here:
 ActionMailer::Base.server_settings = {
-  :address=>'mail.mytourb.us',
-  :domain=>'mytourb.us',
+  :address=>'mail.tourb.us',
+  :domain=>'tourb.us',
   :port=>'25',                    
-  :user_name=>'m1147528',
-  :password=>'noreply',
+  :user_name=>'robot+tourb.us',
+  :password=>'bighit',
   :authentication=>:login
 } 
 

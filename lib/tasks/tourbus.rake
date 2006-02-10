@@ -85,8 +85,7 @@ task :create_admin do
   	
   	fan = Fan.new
   	fan.name = "admin"
-  	# FIXME real email addr
-  	fan.contact_email = "info@mytourb.us"
+  	fan.contact_email = "help@tourb.us"
   	fan.confirmed = true
   	fan.superuser = true
   	fan.salt = "eaae1f87fbab40ffc2a9181fb2b05afc2e37639c"

@@ -1,13 +1,13 @@
 # Notifications sent out when a new comment is posted
-class CommentMailer < ActionMailer::Base
+class CommentMailer < BaseMailer
 
   # For when a new comment has been posted
   # comment => The new comment
   # recipients => string or array of recipients
   def notify_comment(comment, recipients, sent_at = Time.now)
-    @subject    = '[TourBus] New Comment Posted'
+    @subject    = '[tourbus] New Comment Posted'
     @recipients = recipients
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     content_type "text/html"

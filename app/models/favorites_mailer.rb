@@ -1,13 +1,13 @@
 require_dependency 'favorites_calculator'
 
 # Sends out email about favorites
-class FavoritesMailer < ActionMailer::Base
+class FavoritesMailer < BaseMailer
   
   def favorites_update(fan, new_shows, updated_shows, sent_at = Time.now)
     @subject    = '[tourbus] Your List of Upcoming Shows'
     @body       = {}
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/html"
@@ -16,16 +16,14 @@ class FavoritesMailer < ActionMailer::Base
     @body['new_shows'] = new_shows
     @body['updated_shows'] = updated_shows
     
-    # FIXME How do I get the URL here without being in a controller?
-    # Maybe the favorites logic should be in a controller and can pass the url in here
-    @body['url_prefix'] = 'http://mytourb.us/show/'
+    @body['url_prefix'] = show_prefix_url
   end
   
   def no_location(fan, sent_at = Time.now)
     @subject    = '[tourbus] Problem sending upcoming show emails'
     @body       = {}
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/html"

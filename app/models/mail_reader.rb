@@ -57,7 +57,7 @@ class MailReader < ActionMailer::Base
       end
     end
     
-    # Rip off the "@mytourb.us" part of the email address
+    # Rip off the "@tourb.us" part of the email address
     domain = "@" + UploadAddr.Domain
     sent_to_addr.sub!(domain, "")
     

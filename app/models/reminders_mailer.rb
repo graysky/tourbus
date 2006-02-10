@@ -1,12 +1,12 @@
 # Mailer to send reminders about shows
-class RemindersMailer < ActionMailer::Base
+class RemindersMailer < BaseMailer
   
   # Sends a test email for SMS-like viewing
   def sms_test(mobile_email, sent_at = Time.now)
     @subject    = "Success!"
     @body       = {}
     @recipients = mobile_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/plain"
@@ -17,7 +17,7 @@ class RemindersMailer < ActionMailer::Base
     @subject    = "Show Reminder"
     @body       = {}
     @recipients = fan.mobile_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/plain"
@@ -25,9 +25,7 @@ class RemindersMailer < ActionMailer::Base
     @body['fan'] = fan
     @body['show'] = show
     
-    # FIXME How do I get the URL here without being in a controller?
-    # Maybe the favorites logic should be in a controller and can pass the url in here
-    @body['url_prefix'] = 'http://mytourb.us/show/'
+    @body['url_prefix'] = show_prefix_url
   end
   
   # Sends an email reminder about a show
@@ -35,7 +33,7 @@ class RemindersMailer < ActionMailer::Base
     @subject    = "[tourbus] Reminder: #{show.formatted_title}"
     @body       = {}
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/html"
@@ -43,9 +41,7 @@ class RemindersMailer < ActionMailer::Base
     @body['fan'] = fan
     @body['show'] = show
     
-    # FIXME How do I get the URL here without being in a controller?
-    # Maybe the favorites logic should be in a controller and can pass the url in here
-    @body['url_prefix'] = 'http://mytourb.us/show/'
+    @body['url_prefix'] = show_prefix_url
   end
   
   # Sends an email reminder about a watched show
@@ -53,7 +49,7 @@ class RemindersMailer < ActionMailer::Base
     @subject    = "[tourbus] Reminder: #{show.formatted_title}"
     @body       = {}
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     @content_type = "text/html"
@@ -61,9 +57,7 @@ class RemindersMailer < ActionMailer::Base
     @body['fan'] = fan
     @body['show'] = show
     
-    # FIXME How do I get the URL here without being in a controller?
-    # Maybe the favorites logic should be in a controller and can pass the url in here
-    @body['url_prefix'] = 'http://mytourb.us/show/'
+    @body['url_prefix'] = show_prefix_url
   end
   
   # Main entry point from the runner script.
@@ -168,6 +162,7 @@ class RemindersMailer < ActionMailer::Base
       end
       
       if save_fan
+        # TODO Use logger instead
         puts "Updating fan at #{now}"
         fan.last_show_reminder = now
         fan.save

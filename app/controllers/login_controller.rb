@@ -136,7 +136,7 @@ class LoginController < ApplicationController
     end
     
     if key != user.security_token or user.token_expired?
-      flash.now[:error] = "The link you clicked on is invalid or has expired. Please send email to <a href='mailto:help@mytourb.us'>help@mytourb.us</a> and explain the situation"
+      flash.now[:error] = "The link you clicked on is invalid or has expired. Please send email to <a href='#{Emails.help}'>#{Emails.help}</a> and explain the situation"
       return
     end
     

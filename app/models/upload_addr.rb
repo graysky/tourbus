@@ -7,9 +7,8 @@ class UploadAddr < ActiveRecord::Base
 'kick','bass','amp','club','dark','punk','star','can','pick','head','lock','key','end','game',
 'ruby','java','code','free','fire','cash','iron','blue','eyes','rip','cell','kit']
 
-  # The email domain, for now. 
-  # TODO Change when we have our real domain
-  EMAIL_DOMAIN = "figureten.com"
+  # The email domain
+  EMAIL_DOMAIN = "tourb.us"
 
   # Make sure that this address is unique
   validates_uniqueness_of :address
@@ -31,11 +30,8 @@ class UploadAddr < ActiveRecord::Base
       return false
     end
 
-    #p "Address: #{addr}"
-    
     # Check that the form is a "wordDDword@" (where DD < 100)
-    # TODO Need to factor out hardcoded domain
-    if addr =~ /\w*\d{1,2}\w*@figureten/
+    if addr =~ /\w*\d{1,2}\w*@tourb/
       return true
     else
       return false
@@ -58,8 +54,6 @@ class UploadAddr < ActiveRecord::Base
     addr << "#{RANDOM_WORDS[idx1]}"
     addr << "#{rand_num}"
     addr << "#{RANDOM_WORDS[idx2]}"
-    
-    #puts "Random address: #{addr}"
     
     return addr
   end

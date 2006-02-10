@@ -113,7 +113,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Reminder Times:</th>
+			<th>Show Reminder Times:</th>
 			<td>
 			<div style="padding-bottom:0px">
 			<%= select('fan', 'show_reminder_first', Fan.reminder_options ) %>
@@ -125,7 +125,7 @@
 			</td>	
 		</tr>
 		<tr>
-			<th>Send To:</th>
+			<th>Send Show Remidners To:</th>
 			<td>
 				<%= check_box(:fan, :wants_email_reminder) %> Email address
 				<br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email

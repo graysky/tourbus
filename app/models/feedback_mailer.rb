@@ -1,15 +1,12 @@
 # Sends us user-submitted feedback
-class FeedbackMailer < ActionMailer::Base
+class FeedbackMailer < BaseMailer
 
   # For when a user submits feedback about the site
   def notify_feedback(feedback, user, email, sent_at = Time.now)
 
-    # Send to all of us - TODO Should include TB email address
-    recipients = ['mike_champion@yahoo.com', 'garypelliott@yahoo.com']
-  
     @subject    = "[tourbus] New Feedback"
-    @recipients = recipients
-    @from       = 'noreply@mytourb.us'
+    @recipients = Emails.feedback
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     content_type "text/html"
@@ -18,7 +15,6 @@ class FeedbackMailer < ActionMailer::Base
     @body["user"] = user
     @body["email"] = email
     @body["feedback"] = feedback
-    
   end
 
 end

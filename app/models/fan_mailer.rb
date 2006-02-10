@@ -1,9 +1,9 @@
-class FanMailer < ActionMailer::Base
+class FanMailer < BaseMailer
 
   def notify_signup(fan, confirm_url, sent_at = Time.now)
     @subject    = '[tourbus] Account Confirmation'
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     content_type "text/html"
@@ -15,7 +15,7 @@ class FanMailer < ActionMailer::Base
   def forgot_password(fan, url, sent_at = Time.now)
     @subject    = '[tourbus] Reset Your Password'
     @recipients = fan.contact_email
-    @from       = 'noreply@mytourb.us'
+    @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
     content_type "text/html"

@@ -67,7 +67,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # Roles
   role :web, "tourbus.figureten.com"
   role :app, "tourbus.figureten.com"
-  role :db,  "tourbus.figureten.com"
+  role :db,  "tourbus.figureten.com", :primary => true
   
 else
   # Production deployment to tourb.us
@@ -79,7 +79,7 @@ else
   # Roles
   role :web, "tourb.us"
   role :app, "tourb.us"
-  role :db,  "tourb.us"
+  role :db,  "tourb.us", :primary => true
 end
 
 # =============================================================================

@@ -89,7 +89,7 @@ class Band < ActiveRecord::Base
     get_tags(Tag.Band)
   end
   
-  # The upload email address, fully qualified like "down42tree@mytourb.us"
+  # The upload email address, fully qualified like "down42tree@tourb.us"
   def upload_email_addr()
     return upload_addr.address + "@" + UploadAddr.Domain
   end

@@ -11,8 +11,9 @@ class Watching < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :fans_watching_shows, :fan_id
+    
     drop_table :fans_watching_shows
     remove_column :fans, :show_watching_reminder
+    remove_index :fans_watching_shows, :fan_id
   end
 end

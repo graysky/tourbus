@@ -81,7 +81,7 @@
 		<p>
 		<span id="attend_control">
 			<%= 
-				if not logged_in_fan.nil? and logged_in_fan.is_attending(@show)
+				if not logged_in_fan.nil? and logged_in_fan.attending?(@show)
 					render :partial => "shared/remove_attending"
 				else
 					render :partial => "shared/add_attending"
@@ -126,7 +126,7 @@
 		      <p>
 		      	If you click "OK", this show will be added to your calendar. <br/><br/>
 		      	
-		      	<% if logged_in_fan.is_watching(@show) %>
+		      	<% if logged_in_fan.watching?(@show) %>
 		      		You will no longer be watching the show.<br/><br/>
 		      	<% end %>
 		      	
@@ -157,7 +157,7 @@
 		<% end %>
 		
 		<script type="text/javascript">
-			<% if not logged_in_fan.nil? and logged_in_fan.is_attending(@show) %>
+			<% if not logged_in_fan.nil? and logged_in_fan.attending?(@show) %>
 				Tooltip.add('remove_attending_link', 'remove_tip');
 			<% else %>
 				Tooltip.add('add_attending_link', 'add_tip');
@@ -168,7 +168,7 @@
 	<p>
 		<span id="watch_control">
 			<%= 
-				if not logged_in_fan.nil? and logged_in_fan.is_watching(@show)
+				if not logged_in_fan.nil? and logged_in_fan.watching?(@show)
 					render :partial => "shared/remove_watching"
 				else
 					render :partial => "shared/add_watching"
@@ -213,7 +213,7 @@
 		      <p>
 		      	If you click "OK", this show will be added to your watchlist. <br/><br/>
 		      	
-		      	<% if logged_in_fan.is_attending(@show) %>
+		      	<% if logged_in_fan.attending?(@show) %>
 		      		If you start watching this show you will no longer be attending it.<br/><br/>
 		      	<% end %>
 		      	
@@ -244,7 +244,7 @@
 		<% end %>
 		
 		<script type="text/javascript">
-			<% if not logged_in_fan.nil? and logged_in_fan.is_watching(@show) %>
+			<% if not logged_in_fan.nil? and logged_in_fan.watching?(@show) %>
 				Tooltip.add('remove_watching_link', 'remove_watch_tip');
 			<% else %>
 				Tooltip.add('add_watching_link', 'add_watch_tip');

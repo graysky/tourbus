@@ -59,10 +59,18 @@ class FanController < ApplicationController
     band = Band.find(params[:id])
     
     # If it's already a favorite then something went wrong, maybe someone just typed in the URL
-    return if @fan.has_favorite(band)
+    return if @fan.favorite?(band)
     
     @fan.bands << band
-    @fan.save!
+    band.num_fans += 1
+    
+    Fan.transaction(@fan) do
+      Band.transaction(band) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        band.save!
+      end
+    end
     
     render :partial => "shared/remove_favorite"
   end
@@ -70,8 +78,18 @@ class FanController < ApplicationController
   
   def remove_favorite_band
     band = Band.find(params[:id])
-    @fan.bands.delete(band)
-    @fan.save!
+    if @fan.bands.include?(band)
+      @fan.bands.delete(band)
+      band.num_fans -= 1
+      
+      Fan.transaction(@fan) do
+        Band.transaction(band) do
+          # FIXME how do we handle errors here?
+          @fan.save!
+          band.save!
+        end
+      end
+    end
     
     render :partial => "shared/add_favorite"
   end
@@ -81,10 +99,17 @@ class FanController < ApplicationController
     show = Show.find(params[:id])
     
     # If they are already attending, maybe someone just typed in the URL
-    return if @fan.is_attending(show)
+    return if @fan.attending?(show)
     
     @fan.shows << show
-    @fan.save!
+    show.num_attendees += 1
+    Fan.transaction(@fan) do
+      Show.transaction(show) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        show.save!
+      end
+    end
     
     render :partial => "shared/remove_attending"
   end
@@ -92,8 +117,19 @@ class FanController < ApplicationController
   # This fan will NOT attend the show
   def remove_attending_show
     show = Show.find(params[:id])
-    @fan.shows.delete(show)
-    @fan.save!
+    if @fan.attending?(show)
+      @fan.shows.delete(show)
+      show.num_attendees -= 1
+      
+      Fan.transaction(@fan) do
+        Show.transaction(show) do
+          # FIXME how do we handle errors here?
+          @fan.save!
+          show.save!
+        end
+      end
+    end
+    
     
     render :partial => "shared/add_attending"
   end
@@ -103,10 +139,18 @@ class FanController < ApplicationController
     show = Show.find(params[:id])
     
     # If they are already watching maybe someone just typed in the URL
-    return if @fan.is_watching(show)
+    return if @fan.watching?(show)
     
     @fan.watching_shows << show
-    @fan.save!
+    show.num_watchers += 1
+    
+    Fan.transaction(@fan) do
+      Show.transaction(show) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        show.save!
+      end
+    end
     
     render :partial => "shared/remove_watching"
   end
@@ -114,8 +158,18 @@ class FanController < ApplicationController
   # This fan will NOT watch the show
   def remove_watching_show
     show = Show.find(params[:id])
-    @fan.watching_shows.delete(show)
-    @fan.save!
+    if @fan.watching?(show)
+      @fan.watching_shows.delete(show)
+      show.num_watchers -= 1
+      
+      Fan.transaction(@fan) do
+        Show.transaction(show) do
+          # FIXME how do we handle errors here?
+          @fan.save!
+          show.save!
+        end
+      end
+    end
     
     render :partial => "shared/add_watching"
   end

@@ -169,7 +169,7 @@
 		
 		<span id="favorite_control">
 			<%= 
-				if not logged_in_fan.nil? and logged_in_fan.has_favorite(@band)
+				if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
 					render :partial => "shared/remove_favorite"
 				else
 					render :partial => "shared/add_favorite"
@@ -235,7 +235,7 @@
 		<% end %>
 		
 		<script type="text/javascript">
-			<% if not logged_in_fan.nil? and logged_in_fan.has_favorite(@band) %>
+			<% if not logged_in_fan.nil? and logged_in_fan.favorite?(@band) %>
 				Tooltip.add('remove_fave_link', 'remove_tip');
 			<% else %>
 				Tooltip.add('add_fave_link', 'add_tip');

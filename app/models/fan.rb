@@ -35,17 +35,17 @@ class Fan < ActiveRecord::Base
   validates_confirmation_of :password, :if => :validate_password?
   
   # Return if the band is among the fan's favorites
-  def has_favorite(band)
+  def favorite?(band)
     self.bands.detect { |fav| fav == band }
   end
   
   # Return if the show is one the fan is attending
-  def is_attending(show)
+  def attending?(show)
     self.shows.detect { |x| x == show  }
   end
   
   # Return if the show is one the fan is watching
-  def is_watching(show)
+  def watching?(show)
     self.watching_shows.detect { |x| x == show  }
   end
                           

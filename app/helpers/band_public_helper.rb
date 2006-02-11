@@ -3,7 +3,7 @@ module BandPublicHelper
     if @band.bio != ""
       "<div id='band_bio'>#{@band.bio}</div>"
     else
-      "<div id='band_bio'>No bio has been written for this band</div>"
+      "<div id='band_bio'></div>"
     end
   end
 end

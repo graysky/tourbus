@@ -49,6 +49,13 @@ class FanPublicController < ApplicationController
     render :text => @fan.bio
   end
   
+  def set_bio
+    @fan.bio = params[:value]
+    @fan.save
+    render :text => @fan.bio
+  end
+  
+  
   def photo
     render_component :controller => "photo", :action => "show_one", 
                      :params => {"photo_id" => params[:photo_id], 

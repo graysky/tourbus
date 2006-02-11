@@ -20,10 +20,14 @@
 /* Error Messages */
 /*-----------------------------------------------------*/
 
-#band_bio {
+#band_bio, #fan_bio {
 	height:140px;
 	width: 320px;
-	overflow:auto;
+	font-size:12px;
+}
+
+#edit_band_bio, #edit_fan_bio, #change_logo {
+	font-size:12px;
 }
 
 .fieldWithErrors {
@@ -859,6 +863,7 @@ table.form-table #selected_venue {
 	font-size:15px;
 	margin: 4px 8px 4px 8px;	
 }
+
 
 #main #bands_playing {
 	float:left;

@@ -101,9 +101,11 @@
 	</tr>
 </table>
 
+<% if @logged_in_as_fan %>
 <script type="text/javascript">
 	new Ajax.InPlaceEditor('fan_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_fan_bio", okText:"Ok", cancelText:"Cancel"})
 </script>
+<% end %>
 
 
 <div class="panel_header">

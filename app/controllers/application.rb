@@ -1,9 +1,12 @@
 require 'cgi'
 require_dependency 'emails'
+require_dependency 'string_helper'
 
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
+  include ActionView::Helpers::TextHelper
+  
   model :band
   helper :debug
   helper_method :public_band_url
@@ -192,6 +195,10 @@ class ApplicationController < ActionController::Base
     end
     
     return options
+  end
+  
+  def sanitize_text_for_display(text)
+    StringHelper::clean_html(text).gsub(/\n/, "<br/>")
   end
   
   private

@@ -49,7 +49,7 @@ class BandPublicController < ApplicationController
   end
   
   def set_bio
-    @band.bio = params[:value]
+    @band.bio = sanitize_text_for_display(params[:value])
     @band.save
     render :text => @band.bio
   end

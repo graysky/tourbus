@@ -10,7 +10,6 @@ class FanPublicController < ApplicationController
   helper :feed
   #model :favorites_mailer
   upload_status_for :change_logo
-  
   session :off, :only => :rss
   layout "public", :except => [:rss ] 
   
@@ -50,7 +49,7 @@ class FanPublicController < ApplicationController
   end
   
   def set_bio
-    @fan.bio = params[:value]
+    @fan.bio = sanitize_text_for_display(params[:value])
     @fan.save
     render :text => @fan.bio
   end

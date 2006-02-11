@@ -201,11 +201,12 @@ class MailReader < ActionMailer::Base
   # http://wiki.rubyonrails.com/rails/pages/HowToReceiveEmailsWithActionMailer
   def self.check_email()
   
-    # Hacked for testing:
+    # Previous hack for testing:
     # "tourbus@figureten.com tourbus/freeman00" - 1 address 
     # "tb@figureten.com m9882612/freeman00" - catch-all address
+    #
     # Should be the address that all email for the domain is funnelled to.
-    Net::POP3.start("mail.figureten.com", nil, "m9882612", "freeman00") do |pop|
+    Net::POP3.start("mail.tourb.us", nil, "incoming+tourb.us", "bighit") do |pop|
       
       if pop.mails.empty?
         logger.info "No Mail at #{Time.now}"

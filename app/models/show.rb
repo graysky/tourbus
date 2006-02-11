@@ -117,7 +117,11 @@ class Show < ActiveRecord::Base
   # Add show-specific searchable contents for ferret indexing
   def add_searchable_contents
     contents = ""
-    self.bands.each { |band| contents << " " + band.name }
+    self.bands.each do |band| 
+      contents << " " + band.name
+      contents << " " + band.tags.join(" ")
+    end
+    
     contents
   end
   

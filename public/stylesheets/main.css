@@ -20,6 +20,12 @@
 /* Error Messages */
 /*-----------------------------------------------------*/
 
+#band_bio {
+	height:140px;
+	width: 320px;
+	overflow:auto;
+}
+
 .fieldWithErrors {
   padding: 2px;
   background-color: red;

@@ -511,6 +511,11 @@ td, p
 	margin-left: 8px;
 }
 
+.sidebar-box table td a
+{
+	font-size:11px;
+}
+
 .sidebar-box input
 {
 	color:#484A4C;

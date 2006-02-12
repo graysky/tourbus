@@ -161,13 +161,20 @@
 	
 	<div class="sidebar-box">
 	<h2>Actions</h2>
-	
+		
+			
 		<p>
 		<!-- TODO Pull in partial -->
 		<table>
+		<% if @logged_in_as_fan %>
+			<tr>
+				<td><img src="/images/add.png"/></td>
+				<td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
+			</tr>
+		<% end %>
 		<tr>
 			<td><img src="/images/feed.png"/></td>
-			<td><a style="font-size:11px" href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
+			<td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
 		</tr>
 		</table>
 		

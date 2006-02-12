@@ -1,69 +1,34 @@
 module ShowHelper
   def show_results(shows, show_map, show_venue = true)
-    if true
-      out = ""
-      out << "<table class='show_table'><tr>"
-      out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr></nobr></th>"
-      out << "</tr>"
-      
-      last_date = nil
-      for show in shows
-        date = friendly_date(show.date)
-        if last_date == date
-          date = ""
-        else
-          last_date = date
-        end
-        
-        out << "<tr>"
-        out << col("<nobr>" + date + "</nobr>")
-        out << col(friendly_time(show.date))
-        out << col("<strong>" + show.bands.map { |band| band.name }.join(", ") +"</strong>")
-        out << col(show.venue.name)
-        out << col("<strong>" + link_to("Details", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
-        out << "</tr>"
-      end
-      
-      out << "</table>"
-      return out
-    end
-
-	# FIXME NON-TABLE VERSION
-    out = ""
-    for show in shows
-      out << "<div>"
-      out << "<table><tr><td valign='top'>"
-      
-      if show_map
-        # Draw a marker that links back to the map and shows a info bubble
-        out << "<a href='#map_top'><img onclick='showInfoWindow(#{show.venue.id})' src='/images/default_marker.png'/></a></td><td>"
-      end 
-      
-      out << "<strong>" + friendly_date(show.date) + "</strong>&nbsp;&nbsp;"
-      out << friendly_time(show.date)
-      if show.cost != ""
-        out << ", " + show.cost
-      end
-      out << "<br/>"
-      
-      title = show.formatted_title
-      
-      out << "<b>" + link_to(title, :controller => "show", :action => "show", :id => show.id) + "</b>"
-      out << "<br/>"
-      if show_venue
-        out << "at "
-        out << link_to(show.venue.name, :controller => "venue", :action => "show", :id => show.venue.id) + "<br/>"
-      end
-      out << show.description + "<br/>"
-      out << "</td></tr></table>"
-      out << "</div>"
-    end
-    
-    # No show results, so put friendly text
+    # TODO Make text specific to context
     if shows == nil || shows.empty?
-      out << "<div><strong>No shows listed</strong></div>"
+      return "<div><strong>No shows found</strong></div>"
     end
     
+    out = ""
+    out << "<table class='show_table'><tr>"
+    out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr></nobr></th>"
+    out << "</tr>"
+    
+    last_date = nil
+    for show in shows
+      date = friendly_date(show.date)
+      if last_date == date
+        date = ""
+      else
+        last_date = date
+      end
+      
+      out << "<tr>"
+      out << col("<nobr>" + date + "</nobr>")
+      out << col(friendly_time(show.date))
+      out << col("<strong>" + show.bands.map { |band| band.name }.join(", ") +"</strong>")
+      out << col(show.venue.name)
+      out << col("<strong>" + link_to("Details", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
+      out << "</tr>"
+    end
+    
+    out << "</table>"
     return out
   end
   

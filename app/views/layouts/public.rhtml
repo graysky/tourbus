@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>tourbus: 
+  <title>tourb.us: 
   <%= 
   	if @page_title 
 	  @page_title
@@ -62,7 +62,6 @@
 	<%
 		end
 	%>
-	
 </div>
 
 </div>
@@ -77,17 +76,11 @@
 
 </div>
 
-
-<%
-	if @header_title
-%>
+<% if @header_title %>
 	<div id="content_header">
 		<h1><%= @header_title %></h1>
 	</div>
-<%
-	end
-%>
-
+<% end %>
 
 <div id="content">
 
@@ -117,16 +110,13 @@
 </div>
 
 <div id="footer">
-
-<a href="/faq">FAQ</a> |
-<a href="http://blog.mytourb.us">Blog</a> | 
-<a href="/about">About</a> |
-<%= link_to("Feedback", :controller => "feedback") %> |
-<a href="http://groups.google.com/group/tourbus">Discussion</a>
-
+  <a href="/faq">FAQ</a> |
+  <a href="http://blog.tourb.us">Blog</a> | 
+  <a href="/about">About</a> |
+  <%= link_to("Feedback", :controller => "feedback") %> 
+  <% # | <a href="http://groups.google.com/group/tourbus">Discussion</a> %>
 </div>
 
 </div>
-
 </body>
 </html>

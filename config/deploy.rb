@@ -22,7 +22,7 @@
 # Other useful tasks:
 #
 # rollback - rollback to last deployment
-# cleanup - deletes >5 deployments
+# cleanup - deletes >5 deployments (needs "rake remote_exec ACTION=cleanup")
 # spinner - first start FCGI processes using spinner
 # reaper - kill the FCGI processes using reaper
 #
@@ -49,12 +49,14 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
-# Don't use sudo for restarting tourb.us.
+# Don't use sudo for tourb.us
 set :restart_via, :run
+set :use_sudo, false
 
 # Check for ENV to determine which type of deployment. 
 # 
 if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
+  # ---DEPRECATED---
   # Staging deployment to tourbus.figureten.com
   #
   set :stage, "stage"

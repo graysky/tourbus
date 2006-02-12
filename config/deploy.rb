@@ -194,9 +194,9 @@ end
 desc "Start the FCGI processes using spinner"
 task :spinner, :roles => :app do
   # Attempt to spin it every 90 seconds as a daemon
-  # NOTE - this starts 4 FCGI procs
+  # NOTE - this controls how many FCGI procs to start
   run <<-CMD
-    #{current_path}/script/process/spinner -d -i 90 -c '#{current_path}/script/process/spawner -i 4'
+    #{current_path}/script/process/spinner -d -i 90 -c '#{current_path}/script/process/spawner -i 3'
   CMD
 end
 

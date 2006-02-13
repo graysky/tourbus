@@ -77,6 +77,7 @@ def probable_band?(name, index)
   return false if downcase.include?("tba") # Too restrictive? Not many words with tba.
   return false if name.split(" ").size > 12 # more like a paragraph than a band name
   return false if downcase.ends_with?("and more...") or downcase.ends_with?("and more") or downcase.ends_with?("more...")
+  return false if index == 0 and downcase.ends_with?(" with")
   
   return true
 end

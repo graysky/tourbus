@@ -5,8 +5,9 @@
 desc "Runs the 1st stage of the crawler"
 task :anansi_crawl do
 
+  # TODO Remove "true" which indicates testing
   cmd = <<END
-  c = AnansiConfig.new 
+  c = AnansiConfig.new(true) 
   c.start("#{RAILS_ROOT}/anansi/")
   c.crawl
 END

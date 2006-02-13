@@ -98,7 +98,7 @@ class Site
     
     http = Net::HTTP.new(uri.host, uri.port)
     
-    if !valid_robots?(http)
+    if !allow_robots?(http)
       p "#{name}: Robots.txt prevents crawling of #{uri.host}"
       return
     end
@@ -123,7 +123,7 @@ class Site
   private
   
   # Checks the remote robots.txt file
-  def valid_robots?(http)
+  def allow_robots?(http)
   
     if http.nil?
       p "HTTP obj was nil"
@@ -132,6 +132,9 @@ class Site
   
     # TODO Add real checking
     #resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
+    
+    # TODO Handle 404 response
+    
     #p "Response: #{resp.body}"
   
     return true

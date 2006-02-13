@@ -12,7 +12,9 @@ Rails::Initializer.run do |config|
   # config.frameworks -= [ :action_web_service, :action_mailer ]
 
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/app/services )
+  # Added the Anansi code
+  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib )
+  #config.load_paths.each { |file| puts "#{file}" }
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)

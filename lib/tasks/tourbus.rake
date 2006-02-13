@@ -2,6 +2,18 @@
 # A set of rake tasks for dealing with tourbus actions
 # =============================================================================
 
+desc "Runs the 1st stage of the crawler"
+task :anansi_crawl do
+
+  cmd = <<END
+  c = AnansiConfig.new 
+  c.start("#{RAILS_ROOT}/anansi/")
+  c.crawl
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 desc "Check for email sent to post comments and photos"
 task :check_email do
   

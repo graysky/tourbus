@@ -15,8 +15,8 @@ class Site
   # The hash of variables currently known by the configuration
   attr_reader :variables
   
-  # User agent to send
-  USER_AGENT = 'tourb.us'
+  # User agent to send with requests
+  USER_AGENT = 'tourbus'
   
   # Defaults for a new site
   def initialize(name = nil)
@@ -40,11 +40,11 @@ class Site
     # if the variable is uppercase, then we add it as a constant to the
     # actor. This is to allow uppercase "variables" to be set and referenced
     # in recipes.
-    if variable.to_s[0].between?(?A, ?Z)
-      klass = @actor.metaclass
-      klass.send(:remove_const, variable) if klass.const_defined?(variable)
-      klass.const_set(variable, value)
-    end
+    #if variable.to_s[0].between?(?A, ?Z)
+      #klass = @actor.metaclass
+      #klass.send(:remove_const, variable) if klass.const_defined?(variable)
+      #klass.const_set(variable, value)
+    #end
     
     value = block if value.nil? && block_given?
     @variables[variable] = value
@@ -58,34 +58,83 @@ class Site
   # and returned.
   def [](variable)
     if @variables[variable].respond_to?(:call)
-      self[:original_value][variable] = @variables[variable]
+      ## MGC turned this off
+      ## self[:original_value][variable] = @variables[variable]
       set variable, @variables[variable].call
     end
     @variables[variable]
   end
   
-  # Fetch the site
+  # Fetch the site's page(s) and store them iff:
+  # 1) The necessary amount of time has passed
+  # 2) robots.txt allows it
   def fetch
     
-    # url could be an arry
+    # Name of the site
+    name = [:name]
+    # URLs to visit
+    urls = []
+    
+    # TODO Need check of proper timing passing
+    #
+    
+    # Url could be a string or array
     url = self[:url]
     
-    p "Url is: #{url}"
+    # Handle single string
+    if url.kind_of?(String)
+      urls[0] = url
+    elsif url.kind_of?(Array)
+      urls = url
+    end
     
-    uri = URI.parse(url)
+    if urls.nil? or urls.empty?
+      p "Site #{name} had no URLs configured - skipping"
+      return
+    end
     
-    # Works
-    #res = Net::HTTP.get_response(uri)
-    #p "Response: #{res.body}"
+    # Get the site's uri and port for robots.txt checking
+    uri = URI.parse(urls[0])
     
     http = Net::HTTP.new(uri.host, uri.port)
     
-    resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
-    p "Response: #{resp.body}"
+    if !valid_robots?(http)
+      p "#{name}: Robots.txt prevents crawling of #{uri.host}"
+      return
+    end
     
-    resp = http.get(uri.path, 'User-Agent' => USER_AGENT)
-    p "Response: #{resp.body}"
+    # Visit each URL
+    urls.each do |url|
+      
+      # Parse the URL    
+      uri = URI.parse(url)
     
+      http = Net::HTTP.new(uri.host, uri.port)
+      # Visit the page
+      resp = http.get(uri.path, 'User-Agent' => USER_AGENT)
+      
+      p "Response: #{resp.body}"
+      
+      # TODO Save to proper location
+    end
+    
+  end
+  
+  private
+  
+  # Checks the remote robots.txt file
+  def valid_robots?(http)
+  
+    if http.nil?
+      p "HTTP obj was nil"
+      return false
+    end
+  
+    # TODO Add real checking
+    #resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
+    #p "Response: #{resp.body}"
+  
+    return true
   end
   
 end

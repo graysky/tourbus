@@ -10,6 +10,10 @@ set :interval, 24
 
 # Or an array of URLs
 #set :url, ["http://tourb.us/shows", "http://new"]
+#
+# Or, as a Proc for lazy evaluation
+# set :url, "http://figureten.com/site/test.html"
+# set(:url)   { "http://figureten.com/page/#{Time.now}" }
 
 # A set of table columns
 set :table_columns, { 0 => :date, 1 => :time, 2 => :bands, 

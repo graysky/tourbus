@@ -17,6 +17,10 @@ module ApplicationHelper
     link_to(text, public_fan_url(fan))
   end
 
+  def public_show_link(text, show)
+    link_to(text, public_show_url(show))
+  end
+
   def band_public_action(action)
     public_band_url + (action.nil? ? "" : "/" + action)
   end

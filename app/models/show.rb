@@ -49,7 +49,9 @@ class Show < ActiveRecord::Base
   end
   
   # Alias name to title to make Show more uniform with other objs
-  alias :name :title
+  def name
+    return self.title
+  end
   
   def formatted_date
     return @formatted_date if self.date.nil?

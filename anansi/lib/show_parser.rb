@@ -9,6 +9,8 @@ class ShowParser
   def initialize(xml, url = nil)
     @doc = xml.is_a?(String) ? Document.new(HTML::strip_tags(xml)) : xml
     @url = url
+    
+    @show = nil # The current show being processed
   end
   
   # Parse the document and return a YAML document with the show info

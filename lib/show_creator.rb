@@ -35,7 +35,7 @@ module ShowCreator
     @bands_playing = calculate_bands
     @show.venue = @venue
     
-    if params[:ignore_duplicate_show].nil?
+    unless params[:ignore_duplicate_show] or not new
       # Look for probable dups
       params[:probable_dupe] = Show.find_probable_dups(@show)
       if params[:probable_dupe]
@@ -89,7 +89,6 @@ module ShowCreator
  
   def create_bands_playing_content(bands = nil)
     bands = calculate_bands if bands.nil?
-    puts bands.map {|b| b.name }.join(" and ")
     @bands_playing_content = render_to_string :partial => "shared/band_playing", 
                                               :collection => bands
     

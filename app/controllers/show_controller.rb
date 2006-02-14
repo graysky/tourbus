@@ -40,7 +40,7 @@ class ShowController < ApplicationController
       params[:selected_venue_name] = @show.venue.name
       params[:selected_venue_id] = @show.venue.id
     else
-      create_edit_show(false)
+      return if not create_edit_show(false)
       flash[:success] = 'Show edited'
       redirect_to_url "/show/#{@show.id}"
     end 
@@ -110,15 +110,15 @@ class ShowController < ApplicationController
     begin
       create_new_show_and_venue(new)
     rescue Exception => e
-      #puts e
+      logger.error("Error creating show:\n#{e.backtrace}")
       create_bands_playing_content
-      return
+      return false
     end
-      
+    
+    @show.bands = @bands_playing  
     begin
       Band.transaction(*@bands_playing) do
         Show.transaction(@show) do
-          @show.bands = @bands_playing
           
           if new
             @show.created_by_band = logged_in_band if logged_in_band
@@ -136,7 +136,7 @@ class ShowController < ApplicationController
             if band.id.nil?
               if !band.save
                 create_bands_playing_content
-                return
+                return true
               end
             end
           end
@@ -145,7 +145,7 @@ class ShowController < ApplicationController
     rescue Exception => ex
       logger.error(ex.to_s)
       create_bands_playing_content
-      return
+      return false
     end
   end
   

@@ -73,12 +73,11 @@ module ShowHelper
   end
   
   def map_list_toggle(action)
-    out = ""
-    out << link_to_unless(params[:show_map] == nil || params[:show_map] == "false",
-                          "Hide Map", :action => action, :show_map => "false", :show_display => params[:show_display])
-    out << " | "
-    out << link_to_unless(params[:show_map] == "true",
-                          "Show Map", :action => action, :show_map => "true", :show_display => params[:show_display])
+    if (params[:show_map] == nil || params[:show_map] == "false")
+      link_to("Show Map", :action => action, :show_map => "true", :show_display => params[:show_display])
+    else
+      link_to("Show List", :action => action, :show_map => "false", :show_display => params[:show_display])
+    end
   end
   
   def show_controls(action)

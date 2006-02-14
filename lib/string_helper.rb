@@ -35,7 +35,29 @@ class StringHelper
         'h5' => nil,
         'h6' => nil,
         'blockquote' => ['cite']
-    }
+    } unless const_defined?("BASIC_TAGS")
+    
+    STRUCTURE_TAGS = {
+        'a' => ['href', 'title'],
+        'br' => [],
+        'table' => nil,
+        'tr' => nil,
+        'td' => ['colspan', 'rowspan'],
+        'th' => nil,
+        'ol' => nil,
+        'ul' => nil,
+        'li' => nil,
+        'p' => nil,
+        'h1' => nil,
+        'h2' => nil,
+        'h3' => nil,
+        'h4' => nil,
+        'h5' => nil,
+        'h6' => nil,
+        'html' => nil,
+        'blockquote' => ['cite']
+    } unless const_defined?("STRUCTURE_TAGS")
+    
 
     def self.clean_html!( text, tags = BASIC_TAGS )
         text.gsub!( /<!\[CDATA\[/, '' )

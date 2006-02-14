@@ -46,8 +46,10 @@ class Show < ActiveRecord::Base
       # Format the list of bands to be the title
       self.bands.map { |band| band.name }.join("/")
     end
-    
   end
+  
+  # Alias name to title to make Show more uniform with other objs
+  alias :name :title
   
   def formatted_date
     return @formatted_date if self.date.nil?

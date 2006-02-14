@@ -16,6 +16,7 @@ class Site
   attr_reader :variables
   
   # User agent to send with requests
+  # DO NOT CHANGE
   USER_AGENT = 'tourbus'
   
   # Defaults for a new site
@@ -48,7 +49,7 @@ class Site
     
     value = block if value.nil? && block_given?
     @variables[variable] = value
-    p "Variable is: #{variable} = #{value}"
+    #p "Variable is: #{variable} = #{value}"
   end
   
   alias :[]= :set
@@ -71,7 +72,7 @@ class Site
   def fetch
     
     # Name of the site
-    name = [:name]
+    name = self[:name]
     # URLs to visit
     urls = []
     
@@ -123,6 +124,8 @@ class Site
   private
   
   # Checks the remote robots.txt file
+  # See this site for documentation:
+  # http://www.robotstxt.org
   def allow_robots?(http)
   
     if http.nil?
@@ -130,13 +133,56 @@ class Site
       return false
     end
   
-    # TODO Add real checking
-    #resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
-    
-    # TODO Handle 404 response
-    
-    #p "Response: #{resp.body}"
+    # Get the robots.txt, if it exists
+    resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
+
+    # robots.txt doesn't exist
+    if resp.code != '200'
+      return true
+    end
+
+    body = resp.body
   
+    # Entries come in pairs like:
+    #User-agent: *
+    #Disallow: /
+    
+    # Boolean to know if we found a rule to check
+    found_rule = false
+    
+    # Parse the body for rules that affect us
+    body.each do |line| 
+      # Clean up the line
+      s = line.downcase.chomp
+      
+      # Skip comments
+      next if s.match(/^#/)
+    
+      if s.match(/user-agent/)
+        # Check for both * or our user agent string
+        # If found, check the next line for rule
+        if s.match(/\*/) or s.match(/tourb/)
+          found_rule = true
+        else
+          # The rule on the next line doesn't apply to us
+          found_rule = false
+        end
+      end
+      
+      # Need to check this rule because it applies to us
+      # Looks for a "/" following the Disallow:
+      # NOTE: This is very simplistic, doesn't check path ("/blah"), just assumes
+      # we're blocked if they include anything ("/").
+      if found_rule and s.match(/disallow/)
+        if s.match(/\//)
+          # This rule blocks us
+          p "Blocking rule: #{s}"
+          return false
+        end
+      end
+    end
+    
+    # No rule blocked us
     return true
   end
   

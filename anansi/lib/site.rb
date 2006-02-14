@@ -1,7 +1,14 @@
+require 'net/http'
+require 'uri'
+require 'rexml/document'
+require 'html/xmltree'
+require 'anansi/lib/html'
+
 # Represents a specific site to crawl or process.
 # TODO This will eventually have a relationship with an ActiveRecord class or become one.
 # TODO Define what vars are valid.  
 class Site
+  include REXML
   
   # The name of the site (automatically gleamed from the config filename) 
   attr_reader :name
@@ -69,7 +76,9 @@ class Site
   # Fetch the site's page(s) and store them iff:
   # 1) The necessary amount of time has passed
   # 2) robots.txt allows it
-  def fetch
+  # Params:
+  # root_path => base dir to write output to
+  def fetch(root_path)
     
     # Name of the site
     name = self[:name]
@@ -77,7 +86,7 @@ class Site
     urls = []
     
     # TODO Need check of proper timing passing
-    #
+    # for us to hit the site again
     
     # Url could be a string or array
     url = self[:url]
@@ -104,6 +113,8 @@ class Site
       return
     end
     
+    dir = File.join(root_path, name)
+    
     # Visit each URL
     urls.each do |url|
       
@@ -116,7 +127,28 @@ class Site
       
       p "Response: #{resp.body}"
       
-      # TODO Save to proper location
+      # TODO We should check for METADATA tags that prevent robots
+      # <META NAME="ROBOTS" CONTENT="NOINDEX"> or
+      # <META NAME="ROBOTS" CONTENT="NOFOLLOW">
+      
+      # Convert HTML to XML and strip tags
+      html = HTML::strip_tags(resp.body)
+      
+      parser = HTMLTree::XMLParser.new(false, false)
+      parser.feed(html)
+
+      # Get REXML doc
+      doc = parser.document
+      
+      # TODO Write intermediate dirs if needed
+      f = File.new(File.join(dir, name), "w")
+      
+      p "File is: #{f}"
+      p "Exists?  #{File.exists?(f)}"
+      #p "Writable? #{File.writable?(f.to_s)}"
+
+      # TODO Save to proper location      
+      doc.write(f)
     end
     
   end

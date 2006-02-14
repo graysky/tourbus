@@ -88,14 +88,12 @@ class AnansiConfig
   def crawl()
     path = File.join(@root_path, "input")
     
-    #p "Path is #{path}"
-    
     return if !valid_dir?(path)
     
     @sites.each do |s|
       # TODO push to real location
       # TODO Need check for 
-      s.fetch
+      s.fetch(path)
     end
   end
   

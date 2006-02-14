@@ -1,6 +1,6 @@
 # Represents a specific site to crawl or process.
 # TODO This will eventually have a relationship with an ActiveRecord class or become one.
-# TODO Define what vars are valid.
+# TODO Define what vars are valid.  
 class Site
   
   # The name of the site (automatically gleamed from the config filename) 

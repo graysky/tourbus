@@ -91,7 +91,7 @@
 				<%= if !@fan.logo.nil?
 				  image_tag url_for_file_column("fan", "logo") , :id => "logo"
 				else
-				  "<img id='fan_logo' src='/images/unknown.jpg'/>".to_s
+				  "<img id='logo' src='/images/unknown.jpg'/>".to_s
 			 	end %>
 			 </div>
 		</td>
@@ -111,6 +111,7 @@
 <div class="panel_header">
 	<span class="title">Shows</span>
 	
+	<!--
 	<span class="actions">
 	&nbsp;
 	&nbsp;
@@ -118,6 +119,15 @@
 	&nbsp;&nbsp;
 	<%= show_controls "index" %>
 	</span>
+	-->
+</div>
+<div style="font-size:12px;position:relative;left:380;margin-top:8px">
+	<select style="font-size:12px">
+		<option>Upcoming Shows</option>
+		<option>Watched Shows</option>
+	</select>
+	&nbsp;
+	<%= map_list_toggle "index" %>
 </div>
 
 <% if @params[:show_map] == "true" %>

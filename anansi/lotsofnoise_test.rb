@@ -2,8 +2,8 @@ require 'rubygems'
 require 'html/xmltree'
 require 'net/http'
 require 'rexml/document'
-require 'anansi/rexml'
-require 'anansi/html'
+require 'anansi/lib/rexml'
+require 'anansi/lib/html'
 require 'lib/string_helper'
 require 'parsedate'
 include REXML
@@ -168,7 +168,8 @@ parser.feed(html)
 doc = parser.document
 
 # Find elem with magic text
-elem = doc.root.find_element("18+")
+elem = doc.root.find_element(["18+", "21+"])
+p elem.to_s
 
 # Find containing table and handle each cell
 table = elem.find_parent("table")

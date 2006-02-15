@@ -33,6 +33,7 @@ class Site
     
     # Set the default name
     set :name, name
+    @name = name
   end
   
   def to_s
@@ -140,7 +141,7 @@ class Site
       # Get REXML doc
       doc = parser.document
       
-      # TODO Write intermediate dirs if needed
+      FileUtils.mkdir_p(dir)
       f = File.new(File.join(dir, name), "w")
       
       p "File is: #{f}"
@@ -150,6 +151,11 @@ class Site
       # TODO Save to proper location      
       doc.write(f)
     end
+    
+  end
+  
+  # TODO sync with above
+  def get_latest_pages(root_path)
     
   end
   

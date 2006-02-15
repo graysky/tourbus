@@ -5,10 +5,11 @@ require 'uri'
 #
 class AnansiConfig
   
+  attr_reader :sites
+  
   # Defaults for a new configuration
   # testing => if this is a test run
   def initialize(testing = false)
-    
     @testing = testing
     @sites = []
     @root_path = nil

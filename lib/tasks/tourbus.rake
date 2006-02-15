@@ -15,6 +15,19 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Runs the 2nd stage of the crawler"
+task :anansi_parse do
+
+  # TODO Remove "true" which indicates testing
+  cmd = <<END
+  p = AnansiParser.new(true) 
+  p.start("#{RAILS_ROOT}/anansi")
+  p.parse
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 desc "Check for email sent to post comments and photos"
 task :check_email do
   

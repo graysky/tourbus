@@ -1,6 +1,6 @@
-# Modified version of the normal enviroment.rb *strictly* for use in 
-# stage/live production enviroment.
-
+# ** NOTE: REMEMBER THERE IS THE DEVELOPMENT ENVIRONMENT **
+# Modified version of the normal enviroment.rb *strictly* for use in production enviroment.
+#
 # Be sure to restart your webserver when you modify this file.
 
 # Force Rails into production mode
@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')
-  # config.action_controller.session_store = :active_record_store
+  config.action_controller.session_store = :active_record_store
 
   # Enable page/fragment caching by setting a file-based store
   # (remember to create the caching directory and make it readable to the application)

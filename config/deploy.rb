@@ -8,8 +8,11 @@
 # OLD - tourbus.figureten.com (staging)
 # tourb.us (real production)
 #
-# Typical usage ("rake show_deploy_tasks" will list all switchtower tasks)
+# Tips: 
+# "rake --tasks" will list all available tasks
+# "rake show_deploy_tasks" will list all switchtower tasks
 #
+# Typical usage:
 # Push out full new release, run migration, etc:
 # rake deploy
 #

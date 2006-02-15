@@ -1,4 +1,7 @@
-  # Be sure to restart your webserver when you modify this file.
+# ** NOTE: REMEMBER THERE IS THE DEVELOPMENT ENVIRONMENT **
+# Consider what changes applied here need to be made in the production environment too. 
+#
+# Be sure to restart your webserver when you modify this file.
 
 # Uncomment below to force Rails into production mode
 # (Use only when you can't set environment variables through your web/app server)

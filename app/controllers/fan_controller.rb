@@ -69,6 +69,7 @@ class FanController < ApplicationController
         # FIXME how do we handle errors here?
         @fan.save!
         band.save!
+        band.ferret_save
       end
     end
     
@@ -87,6 +88,7 @@ class FanController < ApplicationController
           # FIXME how do we handle errors here?
           @fan.save!
           band.save!
+          band.ferret_save
         end
       end
     end
@@ -108,6 +110,7 @@ class FanController < ApplicationController
         # FIXME how do we handle errors here?
         @fan.save!
         show.save!
+        show.ferret_save
       end
     end
     
@@ -126,6 +129,7 @@ class FanController < ApplicationController
           # FIXME how do we handle errors here?
           @fan.save!
           show.save!
+          show.ferret_save
         end
       end
     end
@@ -149,6 +153,7 @@ class FanController < ApplicationController
         # FIXME how do we handle errors here?
         @fan.save!
         show.save!
+        show.ferret_save
       end
     end
     
@@ -167,6 +172,7 @@ class FanController < ApplicationController
           # FIXME how do we handle errors here?
           @fan.save!
           show.save!
+          show.ferret_save
         end
       end
     end

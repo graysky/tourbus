@@ -111,6 +111,7 @@ class ShowController < ApplicationController
       create_new_show_and_venue(new)
     rescue Exception => e
       logger.error("Error creating show:\n#{e.backtrace}")
+      params[:error] = e.to_s
       create_bands_playing_content
       return false
     end
@@ -139,14 +140,20 @@ class ShowController < ApplicationController
                 return true
               end
             end
+            
+            band.ferret_save
           end
         end
       end
     rescue Exception => ex
       logger.error(ex.to_s)
+      params[:error] = ex.to_s
       create_bands_playing_content
       return false
     end
+    
+    @show.ferret_save
+    return true
   end
   
   # Find the show from the ID param

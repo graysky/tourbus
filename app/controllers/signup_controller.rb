@@ -66,6 +66,8 @@ class SignupController < ApplicationController
           flash.now[:error] = "Error saving confirmation status"
           @band.confirmed = false
         end
+        
+        @band.ferret_save
       end
     else
       # Couldn't find it

@@ -45,6 +45,7 @@ class VenueController < ApplicationController
     end
     
     if @venue.save
+      @venue.ferret_save
       render :action => :close_dialog, :layout => false
     end
   end

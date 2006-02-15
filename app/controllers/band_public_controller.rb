@@ -126,6 +126,7 @@ class BandPublicController < ApplicationController
         create_new_show_and_venue(new)
       rescue Exception => e
         create_bands_playing_content
+        params[:error] = e.to_s
         return false
       end
       
@@ -145,15 +146,20 @@ class BandPublicController < ApplicationController
             @bands_playing.each do |band| 
               if band.id.nil?
                 band.save!
+                band.ferret_save
               end
             end
           end
         end
       rescue Exception => ex
         logger.error(ex.to_s)
+        params[:error] = ex.to_s
         create_bands_playing_content
         return false
       end
+      
+      @show.ferret_save
+      return true
   end
   
   def find_band

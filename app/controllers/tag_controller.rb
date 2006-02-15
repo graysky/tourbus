@@ -20,8 +20,9 @@ class TagController < ApplicationController
     # Assumes the object includes the tagging mixin
     saved_tags = obj.add_tag(tag_name, tag_type)
     
-    # Need to save the object so the tag is indexed
+    # Save and index the object
     obj.save
+    obj.ferret_save
     
     # Returns array of saved tag names, like ["tag1", "tag2"]
     if saved_tags.nil? or saved_tags.empty?

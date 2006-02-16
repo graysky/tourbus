@@ -94,7 +94,6 @@ class BandController < ApplicationController
   private
   
   def find_band
-    
     band = logged_in_band
     band ||= Band.new
     @band = band

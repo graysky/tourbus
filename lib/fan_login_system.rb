@@ -33,9 +33,6 @@ module FanLoginSystem
       fan = Fan.find(@session[:fan_id])
       return true if fan.confirmed? and fan.superuser?
     end
-    #if @session[:fan] and @session[:fan].confirmed? and @session[:fan].superuser?
-    #  return true
-    #end
     
     # store current location so that we can 
     # come back after the user logged in

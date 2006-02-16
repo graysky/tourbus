@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first_band:
-  id: 1
-  name: Endgame
-  short_name: endgame
-  contact_email: endgame@band.com
-another_band:
-  id: 2
-  name: Crisis Bureau
-  short_name: crisisbureau
-  contact_email: cb@band.com
+
+<% 
+  1.upto(50) do |number|
+%>
+band_<%= number %>:
+  name: BandName<%= number %>
+  short_name: band<%= number %>
+  created_on: 2006-02-3 09:03:56
+  contact_email: band<%= number %>@band.com
+<% end %>

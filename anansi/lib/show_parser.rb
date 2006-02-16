@@ -49,6 +49,8 @@ class ShowParser
     return false if name.split(" ").size > 12 # more like a paragraph than a band name
     return false if downcase.ends_with?("and more...") or downcase.ends_with?("and more") or downcase.ends_with?("more...")
     return false if index == 0 and downcase.ends_with?(" with")
+    return false if downcase.include?("special guest")
+    return false if downcase.include?("+")
     
     return true
   end

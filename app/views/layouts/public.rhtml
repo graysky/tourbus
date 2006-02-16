@@ -33,13 +33,15 @@
 
 <div id="header">
 	<%
-		is_fan = !session[:fan].nil? && session[:fan].confirmed?
-		is_band = !session[:band].nil? && session[:band].confirmed?
+	    fan = logged_in_fan
+	    band = logged_in_band
+        is_fan = !fan.nil? && fan.confirmed?
+		is_band = !band.nil? && band.confirmed?
 
 		if is_fan
 	%>
-		<%= session[:fan].name %>:
-		<%= public_fan_link "Profile", session[:fan] %> |
+		<%= fan.name %>:
+		<%= public_fan_link "Profile", fan %> |
 		<%= link_to("Settings", :controller => "fan", :action => "settings") %> |
 		<%= link_to("Feedback", :controller => "feedback") %> |
 	    <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
@@ -47,8 +49,8 @@
 	<%
 		elsif is_band
 	%>
-		<%= session[:band].name %>:
-		<%= public_band_link "Home", session[:band] %> |
+		<%= band.name %>:
+		<%= public_band_link "Profile", band %> |
 		<%= link_to("Settings", :controller => "band", :action => "settings") %> |
 		<%= link_to("Feedback", :controller => "feedback") %> |
 	    <%= link_to("Log Out", :controller => "band", :action => "logout") %>

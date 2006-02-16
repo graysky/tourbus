@@ -13,8 +13,10 @@ module BandLoginSystem
   #   def authorize?(user)
   # 
   def band_login_required
-    if @session[:band] and @session[:band].confirmed? and authorize?(@session[:band])
-      return true
+
+    if @session[:band_id]  
+      band = Band.find(@session[:band_id])
+      return true if band.confirmed? and authorize?(band)
     end
     
     # store current location so that we can 

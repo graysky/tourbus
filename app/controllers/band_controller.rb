@@ -51,7 +51,7 @@ class BandController < ApplicationController
   end
 
   def logout
-    session[:band] = nil
+    session[:band_id] = nil
     cookies.delete :login
     redirect_to(:controller => "public", :action => "front_page")
   end
@@ -94,8 +94,10 @@ class BandController < ApplicationController
   private
   
   def find_band
-    session[:band] ||= Band.new
-    @band = session[:band]
+    
+    band = logged_in_band
+    band ||= Band.new
+    @band = band
     @public_url = public_band_url
   end
   

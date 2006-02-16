@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
   
   model :band
+  model :fan
   helper :debug
   helper_method :public_band_url
   helper_method :public_fan_url
@@ -60,7 +61,8 @@ class ApplicationController < ActionController::Base
           return
         end
         
-        session[:band] = band
+        session[:band_id] = band.id
+        
       elsif cookies[:type] == 'fan'
         fan = Fan.find_by_uuid(cookies[:login])
         if not fan
@@ -68,7 +70,7 @@ class ApplicationController < ActionController::Base
           return
         end
         
-        session[:fan] = fan
+        session[:fan_id] = fan.id
       else
         logger.error("Invalid cookie type: #{cookies['type']}")
       end
@@ -93,13 +95,13 @@ class ApplicationController < ActionController::Base
   # as an optional param.
   def public_band_url(band = nil)
     band = @band if band.nil?
-    band = session[:band] if band.nil?
+    band = logged_in_band if band.nil?
     url_for(:controller => '') + band.short_name
   end
   
   def public_fan_url(fan = nil)
     fan = @fan if fan.nil?
-    fan = session[:fan] if fan.nil?
+    fan = logged_in_fan if fan.nil?
     url_for(:controller => '') + 'fan/' + fan.name
   end
   
@@ -169,12 +171,38 @@ class ApplicationController < ActionController::Base
   
   # There is a band logged in
   def logged_in_band
-    session[:band]
+    
+    id = session[:band_id]
+    
+    # Check cache if the band was already looked up during this request
+    if not @cached_band.nil? and @cached_band.id == id
+      return @cached_band
+    end
+      
+    if not id.nil?
+      band = nil
+      band = Band.find(id)
+      @cached_band = band # Cache for rest of the request
+      return band
+    end
   end
   
-  # There is a fan logged in
+  # Check if there is a fan logged in
   def logged_in_fan
-    session[:fan]
+    
+    id = session[:fan_id]
+    
+    # Check cache if the fan was already looked up during this request
+    if not @cached_fan.nil? and @cached_fan.id == id
+      return @cached_fan
+    end
+      
+    if not id.nil?
+      fan = nil
+      fan = Fan.find(id)
+      @cached_fan = fan # Cache for rest of the request
+      return fan
+    end
   end
   
   protected

@@ -12,7 +12,7 @@ class FanController < ApplicationController
   end
   
   def logout
-    session[:fan] = nil
+    session[:fan_id] = nil
     cookies.delete :login
     redirect_to(:controller => "public", :action => "front_page")
   end
@@ -210,7 +210,8 @@ class FanController < ApplicationController
   private
   
   def find_fan
-    session[:fan] ||= Fan.new
-    @fan = session[:fan]
+    fan = logged_in_fan
+    fan ||= Fan.new
+    @fan = fan
   end
 end

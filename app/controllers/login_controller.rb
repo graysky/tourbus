@@ -25,7 +25,7 @@ class LoginController < ApplicationController
       # Fan login
       if fan = Fan.authenticate(login, passwd)
         
-        @session[:fan] = fan
+        @session[:fan_id] = fan.id
         
         if params[:remember_me] == 'true'
           cookies[:type] = { :value => 'fan', :expires => Time.now + 5.years }
@@ -48,7 +48,7 @@ class LoginController < ApplicationController
       if band = Band.authenticate(login, passwd)
 
 	    # TODO check for unclaimed band
-        @session[:band] = band
+        @session[:band_id] = band.id
         
         if params[:remember_me] == 'true'
           cookies[:type] = { :value => 'band', :expires => Time.now + 5.years }

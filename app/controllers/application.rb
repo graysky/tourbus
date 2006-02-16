@@ -171,8 +171,8 @@ class ApplicationController < ActionController::Base
   
   # There is a band logged in
   def logged_in_band
-    
     id = session[:band_id]
+    band = nil
     
     # Check cache if the band was already looked up during this request
     if not @cached_band.nil? and @cached_band.id == id
@@ -180,17 +180,17 @@ class ApplicationController < ActionController::Base
     end
       
     if not id.nil?
-      band = nil
       band = Band.find(id)
       @cached_band = band # Cache for rest of the request
-      return band
     end
+    
+    return band
   end
   
   # Check if there is a fan logged in
   def logged_in_fan
-    
     id = session[:fan_id]
+    fan = nil
     
     # Check cache if the fan was already looked up during this request
     if not @cached_fan.nil? and @cached_fan.id == id
@@ -198,11 +198,11 @@ class ApplicationController < ActionController::Base
     end
       
     if not id.nil?
-      fan = nil
       fan = Fan.find(id)
       @cached_fan = fan # Cache for rest of the request
-      return fan
     end
+    
+    return fan
   end
   
   protected

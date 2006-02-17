@@ -230,7 +230,7 @@ class ApplicationController < ActionController::Base
   end
   
   def page_size
-    return PAGE_SIZE
+    return DEFAULT_PAGE_SIZE
   end
   
   private

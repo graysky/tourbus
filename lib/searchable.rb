@@ -42,17 +42,12 @@ module FerretMixin
           query = basic_ferret_query(q, options)
           
           logger.debug("Search: #{query.to_s}")
-          ret = []
+          ids = []
           count = ferret_index.search_each(query, options) do |doc, score|
-            # This is not very efficient, but you can't ask for all the records
-            # at the same time if you want to keep ordering by score.
-            # Luckily, there should never be that many items as search results.
-            # TODO Evaluate this. Another option is to use the FIELD function:
-            # order by field(id, '3','1','4','2'), for example
-            ret << self.find(ferret_index[doc]["id"])
+            ids << ferret_index[doc]["id"]
           end
           
-          return ret, count
+          return get_results(ids), count
         end
         
         # Search using the given query but only include results with a date newer than
@@ -92,17 +87,12 @@ module FerretMixin
           end
           
           logger.debug("Search by date and location: #{query.to_s}")
-          ret = []
+          ids = []
           count = ferret_index.search_each(query, options) do |doc, score|
-            # This is not very efficient, but you can't ask for all the records
-            # at the same time if you want to keep ordering by score.
-            # Luckily, there should never be that many items as search results.
-            # TODO Evaluate this. Another option is to use the FIELD function:
-            # order by field(id, '3','1','4','2'), for example
-            ret << self.find(ferret_index[doc]["id"])
+            ids << ferret_index[doc]["id"]
           end
           
-          return ret, count
+           return get_results(ids), count
         end
         
         def ferret_index
@@ -123,6 +113,18 @@ module FerretMixin
           # Restrict the query to items of this class
           query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
           return query
+        end
+        
+        protected
+        
+        def get_results(ids)
+          return [] if ids.empty?
+          
+          where = "where id in (#{ids.join(',')})"
+          order = "order by field(id, " + ids.map { |id| "'#{id}'" }.join(',') + ")"
+          sql = "select * from #{self.table_name} #{where} #{order}"
+          
+          self.find_by_sql(sql)
         end
       end
     

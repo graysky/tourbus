@@ -13,10 +13,6 @@ class FindController < ApplicationController
     paginate_search_results(count)
   end
 
-  def venue
-    return if request.get?
-  end
-
   def show
     return if request.get? and params[:query].nil?
     
@@ -33,6 +29,22 @@ class FindController < ApplicationController
     
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
+  end
+  
+  def browse_popular_bands
+    @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
+    render :action => 'band'
+  end
+  
+  def browse_busiest_bands
+    # FIXME
+    @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
+    render :action => 'band'
+  end
+  
+  def browse_newest_bands
+    @pages, @results = paginate :bands, :order_by => 'created_on desc, name asc', :per_page => page_size
+    render :action => 'band'
   end
   
   def page_size

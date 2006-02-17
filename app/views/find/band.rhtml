@@ -7,10 +7,10 @@
 
 <center>
 <div id="browse_links">
-	<%= link_to "Summary" %>
-	<%= link_to "Most Popular Bands" %>
-	<%= link_to "Busiest Bands" %>
-	<%= link_to "Newest Bands" %>
+	<%= link_to_unless_current "Summary", :action => 'band' %>
+	<%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %>
+	<%= link_to_unless_current "Busiest Bands", :action => 'browse_busiest_bands' %>
+	<%= link_to_unless_current "Newest Bands" , :action => 'browse_newest_bands'%>
 </div>
 
 
@@ -30,7 +30,15 @@
 
 <h3>
 	<% if @results and @results.size > 0 %>
-		Search Results:
+		<%= 
+			case params[:action]
+			when 'browse_popular_bands' then 'Browsing Most Popular Bands'
+			when 'browse_busiest_bands' then 'Browsing Busiest Bands'
+			when 'browse_newest_bands' then 'Browsing Newest Bands'
+			else
+			  'Search Results:'
+			end
+		%>
 	<% else %>
 		No results found
 	<% end %>

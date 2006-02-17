@@ -56,8 +56,9 @@ class FanController < ApplicationController
   
   # Add a new favorite band
   def add_favorite_band
-    band = Band.find(params[:id])
     
+    band = Band.find(params[:id])
+    puts "found band: #{band.id}"
     # If it's already a favorite then something went wrong, maybe someone just typed in the URL
     return if @fan.favorite?(band)
     
@@ -67,13 +68,22 @@ class FanController < ApplicationController
     Fan.transaction(@fan) do
       Band.transaction(band) do
         # FIXME how do we handle errors here?
+         puts "found band1: #{band.id}"
         @fan.save!
+         puts "found band2: #{band.id}"
         band.save!
+         puts "found band3: #{band.id}"
         band.ferret_save
+         puts "found band4: #{band.id}"
       end
     end
     
-    render :partial => "shared/remove_favorite"
+    if params[:simple]
+      puts "dp tje re,pve"
+      render :partial => "shared/remove_favorite_simple", :locals => { :band => band }
+    else
+      render :partial => "shared/remove_favorite"
+    end
   end
   
   
@@ -93,7 +103,11 @@ class FanController < ApplicationController
       end
     end
     
-    render :partial => "shared/add_favorite"
+    if params[:simple]
+      render :partial => "shared/add_favorite_simple", :locals => { :band => band }
+    else
+      render :partial => "shared/add_favorite"
+    end
   end
 
   # This fan will attend the show

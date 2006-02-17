@@ -12,10 +12,10 @@ module PortletHelper
     # FileColumn seems to use the instance var in scope
     if !band.logo.nil?
 
-		# Resize for an 80x80 thumbnail
-		logo_url = url_for_image_column(band, "logo", :size => "80x80>", :name => "thumb")
+		# Resize for an 45x45 thumbnail
+		logo_url = url_for_image_column(band, "logo", :size => "45x45!", :crop => "1:1", :name => "thumb")
 	else
-		logo_url = 'images/unknown.jpg'
+		logo_url = '/images/unknown_thumb.gif'
     end
     
     return logo_url

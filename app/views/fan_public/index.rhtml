@@ -19,6 +19,7 @@
 	{
 		new Effect.Fade('fan_logo_select');
 		Element.hide('logo_indicator');
+		// FIXME problem on FF 1.0... try just removing all children with the DOM?
 		$('logo_container').innerHTML = '';
 		var img = document.createElement("IMG");
 		img.src = path;

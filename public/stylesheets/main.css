@@ -938,22 +938,58 @@ table.form-table #selected_venue {
 }
 
 #search_results {
-	
+	font-size:12px;
 }
 
-#search_results .result {
-	margin-bottom:8px;	
+
+#search_results .result_even {
+	height:60px;
+	background-color:#eee;
+	padding:4px 0 0px 4px;
+	width:500px;
+	border:1px solid #ddd;
+	border-top:0px;
 }
 
-#search_results .result a {
+#search_results .result_odd {
+	height:60px;
+	padding:4px 0 0px 4px;
+	background-color:#FAFAFA;
+	width:500px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+#search_results .first_result {
+	border-top:1px solid #ddd;
+}
+
+#search_results .fave_tip input {
+	font-size:12px;
+}
+
+#search_results a {
 	color: #2B95B6;
+	font-size:12px;
+}
+
+#search_results .col2 {
+	width:280px;
+}
+
+#search_results .col3 {
+	font-size:11px;
+	line-height: 160%;
+}
+
+#search_results .col4 {
+	padding-left:12px;
 }
 
 #search_results .result_tags {
 	padding-top:4px;
 	font-size:11px;
 	color: #555;
-	width: 450px;
 	font-weight:bold;
 }
 
@@ -962,6 +998,41 @@ table.form-table #selected_venue {
 	font-size:11px;
 	color: #555;
 	width: 450px;
+}
+
+#search_results .field_info {
+	font-size:11px;
+	color: #555555;
+	font-style:italic;
+}
+
+#search_results table td {
+	font-size:12px;
+	color:#484A4C;
+}
+
+#search_results table th {
+	font-size:14px;
+	color:#484A4C;
+	font-weight:bold;
+}
+
+#search_results table input {
+	font-size:16px;
+	color:#484A4C;
+}
+
+#search_results table .submit input {
+	font-size:14px;
+}
+
+
+#browse_links {
+	margin:8px -8px 16px -8px;
+}
+
+#browse_links a {
+	margin:0 8px 0 8px;
 }
 
 .map_info

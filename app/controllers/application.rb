@@ -211,15 +211,15 @@ class ApplicationController < ActionController::Base
   
   # Returns a rails paginator
   def paginate_search_results(count)
-    @pages = Paginator.new(self, count, PAGE_SIZE, @params['page'])
+    @pages = Paginator.new(self, count, page_size, @params['page'])
   end
   
   # Takes into account paging
   def default_search_options
     options = {}
-    options[:num_docs] = PAGE_SIZE
+    options[:num_docs] = page_size
     if params['page']
-      options[:first_doc] = (params['page'].to_i - 1) * PAGE_SIZE
+      options[:first_doc] = (params['page'].to_i - 1) * page_size
     end
     
     return options
@@ -229,7 +229,11 @@ class ApplicationController < ActionController::Base
     StringHelper::clean_html(text).gsub(/\n/, "<br/>")
   end
   
+  def page_size
+    return PAGE_SIZE
+  end
+  
   private
   
-  PAGE_SIZE = 10
+  DEFAULT_PAGE_SIZE = 10
 end

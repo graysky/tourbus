@@ -3,6 +3,7 @@ require_dependency 'location_filter'
 class FindController < ApplicationController
   layout "public"
   helper :show
+  helper :portlet
   
   def band
     return if request.get? and params[:query].nil?
@@ -32,6 +33,10 @@ class FindController < ApplicationController
     
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
+  end
+  
+  def page_size
+    20
   end
   
   private

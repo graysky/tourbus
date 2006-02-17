@@ -175,7 +175,9 @@ td, p
 }
 
 #navbar a {
+    font-family: Verdana, Ariel, Helvetica, sans-serif;
 	text-decoration:none;
+	font-size:30px;
 	color: white;
 }
 

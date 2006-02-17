@@ -127,4 +127,29 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Load tourbus fixtures into the current environment's database"
+task :load_tb_fixtures => :environment do
+  # Borrowed from "load_fixtures" in rails
+  require 'active_record/fixtures'
+  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  
+  # TODO Need to create admin user?
+  # Note: Need to manually update ferret index
+  
+  # NOTE: Each new fixture needs to be added here!!
+  #
+  # Order is important for loading correctly
+  my_fixtures = [
+    "bands",
+    "fans",
+    "venues",
+    "bands_fans",
+    ]
+  
+  # Load the fixtures
+  my_fixtures.each do |fixture_file|
+    Fixtures.create_fixtures('test/fixtures', fixture_file)
+  end
+end
+
 

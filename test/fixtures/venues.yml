@@ -1,14 +1,22 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% 
+require_dependency "fixture_helper"
+fix = FixtureHelper
+%>
 
 <% 
-  #size = ZipCode.count
-  #p "Number of zipcodes #{size}"
-  1.upto(50) do |number|
+  p "Creating #{fix.num_venues} venues..."
+  
+  1.upto( fix.num_venues ) do |num|
+    zip = fix.rand_zip
 %>
-venue_<%= number %>:
-  name: Club<%= number %>
+venue_<%= num %>:
+  id: <%= num %>
+  name: <%= fix.gen_venue_name(num) %>
   address: 100 Fake Street
-  city: Cambridge
-  state: MA
-  zipcode: 02140
+  city: <%= zip.city %>
+  state: <%= zip.state %>
+  zipcode: <%= zip.zip %>
+  country: <%= zip.country %>
+  latitude: <%= zip.latitude %>
+  longitude: <%= zip.longitude %>
 <% end %>

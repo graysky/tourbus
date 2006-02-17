@@ -1,0 +1,20 @@
+<% 
+require_dependency "fixture_helper"
+fix = FixtureHelper # Shorten typing
+%>
+
+<% 
+  p "Creating #{fix.num_bands_fans} fans of bands..."  
+  
+  num_bands = fix.num_bands
+  num_fans = fix.num_fans
+  
+  1.upto(fix.num_bands_fans) do |number|
+  	rand_fan = fix.rand_fan
+  	rand_band = fix.rand_band
+%>
+
+fan_band_<%= number %>:
+  band_id: <%= rand_band.id %>
+  fan_id: <%= rand_fan.id %>
+<% end %>

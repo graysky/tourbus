@@ -1,5 +1,18 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-#first_fan:
-#  id: 1
-#another_fan:
-#  id: 2
+<% 
+require_dependency "fixture_helper"
+fix = FixtureHelper # Shorten typing
+%>
+
+<% 
+  p "Creating #{fix.num_fans} fans..."
+  
+  now = fix.now 
+  1.upto( fix.num_fans ) do |num|
+%>
+fan_<%= num %>:
+  id: <%= num %>
+  name: Fan<%= num %>
+  real_name: fan<%= num %>
+  created_on: <%= now %>
+  contact_email: fan<%= num %>@fan.com
+<% end %>

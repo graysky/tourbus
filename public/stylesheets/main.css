@@ -160,13 +160,12 @@ td, p
 
 #navbar {
 	padding-top:4px;
-	padding-bottom:4px;
-
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-
+	padding-bottom:2px;
 	padding-left:10px;
 	padding-right:20px;
+	
 	font-size:22px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
 	font-weight: bold;
 	
 	background-color: #76b069;
@@ -174,19 +173,12 @@ td, p
 	background-image: url(/images/navbar_bg.gif);
 }
 
-#navbar a {
-    font-family: Verdana, Ariel, Helvetica, sans-serif;
-	text-decoration:none;
-	font-size:30px;
-	color: white;
-}
-
 /* Center the Navigation options */
 #nav-options
 {
-	width: 500px;
+	width: 600px;
 	text-align:center;
-	margin-left: 150px;
+	margin-left: 120px;
 }
 
 .nav-option

@@ -16,6 +16,10 @@
   <%= javascript_include_tag "effects" %>
   <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "Tooltip.js" %>
+  <!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+  <![endif]-->
+  
   <link rel="shortcut icon" href="/images/favicon.ico" >
   
   <%= @content_for_head %>

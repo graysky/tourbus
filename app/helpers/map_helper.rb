@@ -77,7 +77,8 @@ module MapHelper
   GOOGLE_API_KEYS =
   {
     'beta.tourb.us' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRS5ZthBrIv-T9DBi55MMglpzbCE5xRzIO8d_LpTRN0egaYA2pYC9jLO2g',
-    'localhost' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRTJQa0g3IQ9GZqIMmInSLzwtGDKaBQvnyvA_KrOjoT8VFjieesV3JrWDg'  
+    'localhost' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRTJQa0g3IQ9GZqIMmInSLzwtGDKaBQvnyvA_KrOjoT8VFjieesV3JrWDg',
+    'tourb.us' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRQvbXqN3lu3jZhXwMK1jWlmj5z07xR6MqgQAuu9XJHLylfPKmBxOF70Aw'  
   } unless const_defined?('GOOGLE_API_KEYS')
   
 end

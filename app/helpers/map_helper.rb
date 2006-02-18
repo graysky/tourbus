@@ -1,6 +1,6 @@
 module MapHelper
   def gmaps_header
-    out = "<script src='http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAREnSlDmPnmFHv2KsLa6lqhTJQa0g3IQ9GZqIMmInSLzwtGDKaBSeIlvlsz_AMFN6TbqRWzBC6ZXsWA' type='text/javascript'></script>"
+    out = "<script src='http://maps.google.com/maps?file=api&v=1&key=#{google_api_key}' type='text/javascript'></script>"
     out << "<script src='/javascripts/map.js' type='text/javascript'></script>"
   end
   
@@ -67,4 +67,17 @@ module MapHelper
     js << "var min_zoom = map.spec.getLowestZoomLevel(center, delta, map.viewSize);"
     js << "map.centerAndZoom(center, min_zoom);"
   end
+  
+  private
+  
+  def google_api_key
+    GOOGLE_API_KEYS[request.host]
+  end
+  
+  GOOGLE_API_KEYS =
+  {
+    'beta.tourb.us' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRS5ZthBrIv-T9DBi55MMglpzbCE5xRzIO8d_LpTRN0egaYA2pYC9jLO2g',
+    'localhost' => 'ABQIAAAAY1hCFaQKc0xQEXTL--ZLyRTJQa0g3IQ9GZqIMmInSLzwtGDKaBQvnyvA_KrOjoT8VFjieesV3JrWDg'  
+  } unless const_defined?('GOOGLE_API_KEYS')
+  
 end

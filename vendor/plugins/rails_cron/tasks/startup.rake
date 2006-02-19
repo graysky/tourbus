@@ -4,6 +4,17 @@ def sudo(cmd)
   ENV['RAILSCRON_SUDO'].blank? ? cmd : "sudo -u #{ENV['RAILSCRON_SUDO']} #{cmd}"
 end
 
+desc "Stars RailsCron on Windows in foreground. Stop with Ctrl-C"
+task :cron_win do
+
+  cmd = <<END
+    puts "Starting RailsCron at #{Time.now}"
+    RailsCron.start
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 desc "Starts RailsCron as a daemon"
 task :cron_start do
   if `#{sudo "ps x | grep RailsCron | grep -v grep"}`.strip.blank?

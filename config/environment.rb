@@ -77,6 +77,14 @@ ActionMailer::Base.server_settings = {
 
 ActionController::Base.enable_upload_progress
 
+# Options to control how RailsCron behaves, intervals in seconds.
+# Increase the frequency of db-checking in dev mode
+RailsCron.options = {
+    :sleep => 30,
+    :db_sleep => 60,
+    :allow_concurrency => false
+}
+
 require 'rails_file_column'
 require 'selective_timestamp'
 

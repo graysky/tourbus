@@ -162,4 +162,19 @@ task :load_tb_fixtures => :environment do
   p "Took: #{t}"
 end
 
+desc "Create the cron tasks"
+task :create_cron_tasks do
+
+  # Clean out any old tasks first to avoid dups
+  # Seems like the "create" statement needs to be on 1 line
+  # TODO Add cleaning out old sessions to this
+  cmd = <<END
+    RailsCron.destroy_all
+    
+    RailsCron.create(:command => "MailReader.check_email", :start => 1.minutes.from_now, :every => 1.minutes, :concurrent => false)
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 

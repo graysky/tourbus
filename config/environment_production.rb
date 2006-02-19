@@ -62,6 +62,14 @@ ActionMailer::Base.server_settings = {
   :authentication=>:login
 } 
 
+# Options to control how RailsCron behaves, intervals in seconds.
+# Make it only rarely check the db, since we load the tasks infrequently
+RailsCron.options = {
+    :sleep => 30,
+    :db_sleep => 900,
+    :allow_concurrency => false
+}
+
 ActionController::Base.enable_upload_progress
 
 require 'rails_file_column'

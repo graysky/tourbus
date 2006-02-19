@@ -1,7 +1,8 @@
 OVERVIEW
 ========
 
-RailsCron is a way to execute background tasks using your Ruby on Rails environment.  The RailsCron object is an ActiveRecord, so you can manipulate it in familiar ways:
+RailsCron is a way to execute background tasks using your Ruby on Rails environment.  
+The RailsCron object is an ActiveRecord, so you can manipulate it in familiar ways:
 
     RailsCron.create(
       :command => "Object.do_something()", 
@@ -25,7 +26,9 @@ RailsCron addresses these shortcomings by using one RoR instance with threading 
 USING ACTS_AS_BACKGROUND
 ========================
 
-RailsCron will let you designate a class method of an ActiveRecord model (or another class that includes ActsAsBackground) to be run in the background.  This is useful for asynchronous processing of things like email queues.  Note that by default, only one background thread of a given method will be running at any time (override with :concurrent => true).
+RailsCron will let you designate a class method of an ActiveRecord model (or another class that includes ActsAsBackground) 
+to be run in the background.  This is useful for asynchronous processing of things like email queues.  
+Note that by default, only one background thread of a given method will be running at any time (override with :concurrent => true).
 
 	class EmailQueue < ActiveRecord::Base
 		background :deliver, :every => 1.minute, :concurrent => true
@@ -54,7 +57,8 @@ RailsCron is started and stopped by Rake.  List of Rake tasks:
 * cron_graceful -- Graceful restart
 * cron_status
 
-These commands are UNIX-oriented.  Windows users can start with "ruby script\runner 'RailsCron.start'" and stop with Ctrl-C.  I have no idea (or need) of how to make this a Windows service, but the patch would be welcome. 
+These commands are UNIX-oriented.  Windows users can start with "ruby script\runner 'RailsCron.start'" and stop with Ctrl-C.  
+I have no idea (or need) of how to make this a Windows service, but the patch would be welcome. 
 
 The following environment variables are used by the Rake tasks:
 
@@ -64,7 +68,8 @@ The following environment variables are used by the Rake tasks:
 INSTALLATION
 ============
 
-RailsCron is a standard Ruby on Rails plugin.  For information about how to install plugins, type "ruby script/plugin --help" from within a rails project.
+RailsCron is a standard Ruby on Rails plugin.  For information about how to install plugins, type "ruby script/plugin --help" 
+from within a rails project.
 
 RailsCron will add a table called 'rails_crons' to your database(s), if it does not already exist.
 

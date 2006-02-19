@@ -50,6 +50,17 @@ class FindController < ApplicationController
     render :action => 'band'
   end
   
+  def browse_tonights_shows
+    query, radius, lat, long = prepare_query(Show.table_name)
+    
+    options = default_search_options
+    options[:exact_date] = true
+    
+    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+    paginate_search_results(count)
+    render :action => 'show'
+  end
+  
   def page_size
     20
   end
@@ -74,7 +85,7 @@ class FindController < ApplicationController
   private
   
   def prepare_query(type)
-    query = params[:query].strip
+    query = params[:query].nil? ? "" : params[:query].strip
     
     return query, nil, nil, nil if @session[only_local_session_key(type)] == 'false'
     

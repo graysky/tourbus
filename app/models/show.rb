@@ -114,7 +114,7 @@ class Show < ActiveRecord::Base
     fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     
     # We need to be able to search by the date of the show
-    fields << Document::Field.new("date", Utils::DateTools.time_to_s(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("date", Utils::DateTools.time_to_s(self.date, Utils::DateTools::Resolution::DAY), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     return fields
   end
   

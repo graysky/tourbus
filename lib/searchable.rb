@@ -18,12 +18,7 @@ module FerretMixin
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
              
-             dir = "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}"
-             Dir.mkdir(dir) unless File.directory?(dir) or File.symlink?(dir)
-             @@ferret_index = Ferret::Index::Index.new(:key => ["id", "ferret_class"],
-                                                     :path => dir,
-                                                     :auto_flush => true,
-                                                     :create_if_missing => true)
+             @@ferret_index = {}
           end
         end
         
@@ -70,11 +65,16 @@ module FerretMixin
         # first_doc:	The index in the results of the first doc retrieved. Default is 0
         # num_docs:	The number of results returned. Default is 10
         # sort:	An array of SortFields describing how to sort the results.
+        # exact_date: Only results on the given date.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
           
           if not date.nil?
-            query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date), nil, true, false), Search::BooleanClause::Occur::MUST)
+            if options[:exact_date]
+              query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("date", Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY))), Search::BooleanClause::Occur::MUST)
+            else
+              query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY), nil, true, false), Search::BooleanClause::Occur::MUST)
+            end
             
             # Sort by date, then relevence
             date_sort = SortField.new("date", {:sort_type => SortField::SortType::INTEGER})
@@ -96,13 +96,23 @@ module FerretMixin
         end
         
         def ferret_index
-          @@ferret_index                                 
+          dir = "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}"
+          if @@ferret_index[self.class_name.downcase].nil?
+            Dir.mkdir(dir) unless File.directory?(dir) or File.symlink?(dir)
+          end
+          
+          @@ferret_index[self.class_name.downcase] ||= Ferret::Index::Index.new(
+                                                     :key => ["id"],
+                                                     :path => dir,
+                                                     :auto_flush => true,
+                                                     :create_if_missing => true)                                 
         end
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
           q = "*" if q.nil? or q == ""
           q.downcase!
+          
           options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
           query_parser = QueryParser.new(["name", "contents"], options)
           query = Search::BooleanQuery.new
@@ -180,7 +190,7 @@ module FerretMixin
         end
         
         def ferret_destroy
-          self.class.ferret_index.query_delete("+id:#{self.id} +ferret_class:#{self.class.name.downcase}")
+          self.class.ferret_index.query_delete("+id:#{self.id}")
         end
         
         protected

@@ -78,7 +78,11 @@ module FerretMixin
             
             # Sort by date, then relevence
             date_sort = SortField.new("date", {:sort_type => SortField::SortType::INTEGER})
-            options[:sort] = [date_sort, SortField::FIELD_SCORE]
+            if options[:sort].nil?
+              options[:sort] = [date_sort, SortField::FIELD_SCORE]
+            else
+              options[:sort] = [options[:sort], date_sort, SortField::FIELD_SCORE]
+            end
           end
           
           if lat and long and radius

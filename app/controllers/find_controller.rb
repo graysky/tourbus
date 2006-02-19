@@ -1,6 +1,8 @@
 require_dependency 'location_filter'
 
 class FindController < ApplicationController
+  include Ferret::Search
+  
   layout "public"
   helper :show
   helper :portlet
@@ -55,6 +57,17 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:exact_date] = true
+    
+    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+    paginate_search_results(count)
+    render :action => 'show'
+  end
+  
+  def browse_popular_shows
+    query, radius, lat, long = prepare_query(Show.table_name)
+    
+    options = default_search_options
+    options[:sort] = SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)

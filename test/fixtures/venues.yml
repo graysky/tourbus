@@ -7,7 +7,7 @@ fix = FixtureHelper
   p "Creating #{fix.num_venues} venues..."
   
   1.upto( fix.num_venues ) do |num|
-    zip = fix.rand_zip
+    zip = fix.rand_boston_zip
 %>
 venue_<%= num %>:
   id: <%= num %>

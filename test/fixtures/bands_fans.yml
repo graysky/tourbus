@@ -10,11 +10,9 @@ fix = FixtureHelper # Shorten typing
   num_fans = fix.num_fans
   
   1.upto(fix.num_bands_fans) do |number|
-  	rand_fan = fix.rand_fan
-  	rand_band = fix.rand_band
 %>
 
 fan_band_<%= number %>:
-  band_id: <%= rand_band.id %>
-  fan_id: <%= rand_fan.id %>
+  band_id: <%= fix.rand_band.id %>
+  fan_id: <%= fix.rand_fan.id %>
 <% end %>

@@ -6,7 +6,7 @@ fix = FixtureHelper # Shorten typing
 <% 
   p "Creating #{fix.num_bands} bands..."
   
-  now = fix.now 
+  now = fix.last_week
   1.upto( fix.num_bands ) do |num|
 %>
 band_<%= num %>:

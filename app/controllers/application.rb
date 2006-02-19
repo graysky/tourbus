@@ -180,8 +180,15 @@ class ApplicationController < ActionController::Base
     end
       
     if not id.nil?
-      band = Band.find(id)
-      @cached_band = band # Cache for rest of the request
+      
+      begin
+        band = Band.find(id)
+        @cached_band = band # Cache for rest of the request
+      rescue ActiveRecord::RecordNotFound
+        # In case it was deleted somehow (or during testing)
+        flash.now[:error] = "Could not find Band with ID #{id}"
+        session[:band_id] = nil # Clear it out
+      end
     end
     
     return band
@@ -198,8 +205,14 @@ class ApplicationController < ActionController::Base
     end
       
     if not id.nil?
-      fan = Fan.find(id)
-      @cached_fan = fan # Cache for rest of the request
+      begin
+        fan = Fan.find(id)
+        @cached_fan = fan # Cache for rest of the request
+      rescue ActiveRecord::RecordNotFound
+        # In case it was deleted somehow (or during testing)
+        flash.now[:error] = "Could not find Fan with ID #{id}"
+        session[:fan_id] = nil # Clear it out
+      end
     end
     
     return fan

@@ -20,34 +20,78 @@ class FixtureHelper
   
   VENUE_LAST_NAMES = [ "Club", "Venue", "Lounge", "Bar", "Disco" ]
 
+  # The list of tags
+  TAGS = ["emo", "punk", "hardcore", "indie", "hip-hop", "pop", "indie rock", "folk", "hippie", "surf", "hillbilly", "boston", ]
+
   # Format time like the DB likes it
   def self.format_time(time)
     return time.strftime("%Y-%m-%d %H:%M:%S")
   end
 
-  # Convenience to get the time now
+  # Time for now
   def self.now
     return format_time(Time.now)
   end
 
+  # Time for next week
+  def self.next_week
+    1.week.from_now.to_s(:db)
+  end
+  
+  # Time for last week
+  def self.last_week
+    1.week.ago.to_s(:db)
+  end
+  
+  # Time for some days from now
+  def self.days_from_now(num)
+    num.days.from_now.to_s(:db)
+  end
+
+  # Number of US zip codes
+  def self.num_zips  
+    # Hardcoded
+    43187
+  end
+
   # The number of fans
   def self.num_bands
-    200
+    100
   end
   
   # The number of fans
   def self.num_fans
-    500
+    200
   end
   
-  # The number of venues
+  # Number of venues
   def self.num_venues
+    50
+  end
+  
+  # Number of shows
+  def self.num_shows
+    100
+  end
+  
+  # Number of bands playing shows
+  def self.num_bands_shows
+    200
+  end
+  
+  # The number of tags
+  def self.num_tags
+    TAGS.size
+  end
+  
+  # Number of tags to apply to bands
+  def self.num_tags_bands
     200
   end
   
   # Number of total relationships for fans of bands
   def self.num_bands_fans
-    1000
+    500
   end
 
   # Generate a band name using the id to make it unique
@@ -61,10 +105,16 @@ class FixtureHelper
     
     return name
   end
+
   
   # Generate a fan name using the id to make it unique
   def self.gen_fan_name(id)
     return "Fan#{id}"
+  end
+  
+  # Get the tag at the index
+  def self.get_tag(idx)
+    return TAGS[idx]
   end
   
   # Generate a venue name
@@ -81,21 +131,45 @@ class FixtureHelper
   
   # Get a random ZipCode
   def self.rand_zip
-    
-    # Hardcoded
-    num_zips = 43187
-    
     return ZipCode.find_by_id( rand(num_zips) + 1 )
   end
   
+  # Get a random zipcode from around Boston
+  def self.rand_boston_zip
+    zips = []
+    zips = zips + ZipCode.find(:all, :conditions => "city = 'Boston'")
+    zips = zips + ZipCode.find(:all, :conditions => "city = 'Cambridge'")
+    zips = zips + ZipCode.find(:all, :conditions => "city = 'Somerville'")
+    zips = zips + ZipCode.find(:all, :conditions => "city = 'Brighton'")
+    
+    num = zips.size
+    return zips[ rand(num) ]
+  end
+  
   # Get a random Band (assumes they already exist)
-  def self.rand_band
+  # If show id is passed, use to make sure it is not already playing that show.
+  def self.rand_band(show_id = 0)
     return Band.find( rand(num_bands) + 1 )
   end
   
   # Get a random Fan (assumes they already exist)
   def self.rand_fan
     return Fan.find( rand(num_fans) + 1 )
+  end
+  
+  # Get a random Venue (assumes they already exist)
+  def self.rand_venue
+    return Venue.find( rand(num_venues) + 1 )
+  end
+  
+  # Get a random Show (assumes they already exist)
+  def self.rand_show
+    return Show.find( rand(num_shows) + 1 )
+  end
+  
+  # Get a random Tag (assumes they already exist)
+  def self.rand_tag
+    return Tag.find( rand(num_tags) + 1 )
   end
   
 end

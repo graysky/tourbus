@@ -143,13 +143,23 @@ task :load_tb_fixtures => :environment do
     "bands",
     "fans",
     "venues",
+    "tags",
+    "shows",
+    "bands_shows",
     "bands_fans",
+    "tags_bands",
     ]
+  
+  start = Time.now
   
   # Load the fixtures
   my_fixtures.each do |fixture_file|
     Fixtures.create_fixtures('test/fixtures', fixture_file)
   end
+  
+  finish = Time.now
+  t = finish - start
+  p "Took: #{t}"
 end
 
 

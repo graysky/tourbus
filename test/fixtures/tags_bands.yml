@@ -1,0 +1,15 @@
+<% 
+require_dependency "fixture_helper"
+fix = FixtureHelper
+
+  p "Creating #{fix.num_tags_bands} tags for bands..."
+  
+  # TODO Need to prevent duplicates
+  1.upto( fix.num_tags_bands ) do |num|
+%>
+tag_band_<%= num %>:
+  id: <%= num %>
+  band_id: <%= fix.rand_band.id %>
+  tag_id: <%= fix.rand_tag.id %>
+  tag_type: <%= Tag.Band %>
+<% end %>

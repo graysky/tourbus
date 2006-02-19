@@ -1,7 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-#first_tag:
-#  id: 1
-#  name: hardcore
-#another_tag:
-#  id: 2
-#  name: hot drummer
+<% 
+require_dependency "fixture_helper"
+fix = FixtureHelper # Shorten typing
+%>
+
+<% 
+  p "Creating #{fix.num_tags} tags..."
+  
+  1.upto( fix.num_tags ) do |num|
+%>
+tag_<%= num %>:
+  id: <%= num %>
+  name: <%= fix.get_tag(num-1) %>
+<% end %>

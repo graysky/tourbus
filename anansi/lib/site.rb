@@ -126,7 +126,7 @@ class Site
       # Visit the page
       resp = http.get(uri.path, 'User-Agent' => USER_AGENT)
       
-      p "Response: #{resp.body}"
+      #p "Response: #{resp.body}"
       
       # TODO We should check for METADATA tags that prevent robots
       # <META NAME="ROBOTS" CONTENT="NOINDEX"> or
@@ -141,11 +141,12 @@ class Site
       # Get REXML doc
       doc = parser.document
       
+      # Make needed directories and write the xml out
       FileUtils.mkdir_p(dir)
-      f = File.new(File.join(dir, name), "w")
+      f = File.new(File.join(dir, name + ".xml"), "w")
       
-      p "File is: #{f}"
-      p "Exists?  #{File.exists?(f)}"
+      #p "File is: #{f}"
+      #p "Exists?  #{File.exists?(f)}"
       #p "Writable? #{File.writable?(f.to_s)}"
 
       # TODO Save to proper location      
@@ -210,7 +211,7 @@ class Site
       # Need to check this rule because it applies to us
       # Looks for a "/" following the Disallow:
       # NOTE: This is very simplistic, doesn't check path ("/blah"), just assumes
-      # we're blocked if they include anything ("/").
+      # we're blocked if they include anything like "/".
       if found_rule and s.match(/disallow/)
         if s.match(/\//)
           # This rule blocks us

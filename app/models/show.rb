@@ -50,7 +50,11 @@ class Show < ActiveRecord::Base
   
   # Alias name to title to make Show more uniform with other objs
   def name
-    return self.title
+    if self.title.nil?
+      return ""
+    else
+      return self.title
+    end
   end
   
   def formatted_date

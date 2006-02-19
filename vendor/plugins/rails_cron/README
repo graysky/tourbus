@@ -1,0 +1,75 @@
+OVERVIEW
+========
+
+RailsCron is a way to execute background tasks using your Ruby on Rails environment.  The RailsCron object is an ActiveRecord, so you can manipulate it in familiar ways:
+
+    RailsCron.create(
+      :command => "Object.do_something()", 
+      :start => 2.minutes.from_now,
+      :every => 12.hours,               # default: 1.day 
+      :finish => 2.years.from_now       # optional
+    )
+    
+    RailsCron.destroy_all
+    RailsCron.find_by_command "some_command"
+
+
+Cron, when used with RoR, has the following shortcomings:
+
+* Significant startup resources required
+* Lots of RAM to run simultaneous processes
+* Hard to start/stop/affect the background processes from within Rails.
+
+RailsCron addresses these shortcomings by using one RoR instance with threading (Ruby, native to be added later).
+
+USING ACTS_AS_BACKGROUND
+========================
+
+RailsCron will let you designate a class method of an ActiveRecord model (or another class that includes ActsAsBackground) to be run in the background.  This is useful for asynchronous processing of things like email queues.  Note that by default, only one background thread of a given method will be running at any time (override with :concurrent => true).
+
+	class EmailQueue < ActiveRecord::Base
+		background :deliver, :every => 1.minute, :concurrent => true
+		
+		def self.deliver
+			#process the queue
+		end
+	end
+	
+OPTIONS
+======
+
+RailsCron has a class accessor method called options that takes a hash.  The following keys are used:
+* :sleep -- Polling interval in seconds.  Tasks will not execute more frequently than this. Default: 1 second.
+* :db_sleep -- Polling interval determines when RailsCron will look in the database for new tasks. Default: 1 minute.
+
+STARTING & STOPPING
+==================
+
+RailsCron is started and stopped by Rake.  List of Rake tasks:
+
+* cron_start -- Starts RailsCron as a daemon
+* cron_foreground -- Starts RailsCron in the foreground
+* cron_stop -- Graceful stop
+* cron_kill
+* cron_graceful -- Graceful restart
+* cron_status
+
+These commands are UNIX-oriented.  Windows users can start with "ruby script\runner 'RailsCron.start'" and stop with Ctrl-C.  I have no idea (or need) of how to make this a Windows service, but the patch would be welcome. 
+
+The following environment variables are used by the Rake tasks:
+
+* RAILSCRON_SUDO -- The background job will sudo as this user. Default: Not used
+* RAILS_ENV -- Default: development
+
+INSTALLATION
+============
+
+RailsCron is a standard Ruby on Rails plugin.  For information about how to install plugins, type "ruby script/plugin --help" from within a rails project.
+
+RailsCron will add a table called 'rails_crons' to your database(s), if it does not already exist.
+
+BUGS & FEEDBACK
+===============
+
+Bug reports (as well as patches) and feedback are very welcome. Please send it to
+kyle@kylemaxwell.com

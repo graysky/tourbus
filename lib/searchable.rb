@@ -71,9 +71,9 @@ module FerretMixin
           
           if not date.nil?
             if options[:exact_date]
-              query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("date", Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY))), Search::BooleanClause::Occur::MUST)
+              query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("date", indexable_date(date))), Search::BooleanClause::Occur::MUST)
             else
-              query << Search::BooleanClause.new(Search::RangeQuery.new("date", Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY), nil, true, false), Search::BooleanClause::Occur::MUST)
+              query << Search::BooleanClause.new(Search::RangeQuery.new("date", indexable_date(date), nil, true, false), Search::BooleanClause::Occur::MUST)
             end
             
             # Sort by date, then relevence
@@ -129,6 +129,14 @@ module FerretMixin
           return query
         end
         
+        def indexable_date(date)
+          Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY)
+        end
+        
+        def indexable_date_and_time(date)
+          Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::MINUTE)
+        end
+        
         protected
         
         def get_results(ids)
@@ -170,6 +178,13 @@ module FerretMixin
                                                Document::Field::Index::TOKENIZED)
           end
           
+          if respond_to?(:created_on)
+            doc << Ferret::Document::Field.new("created_on", 
+                                               self.class.indexable_date_and_time(self.created_on), 
+                                               Document::Field::Store::YES, 
+                                               Document::Field::Index::UNTOKENIZED)
+          end
+          
           # Index all commonly searched info as an aggregated content string
           contents = ""
           if respond_to?(:name)
@@ -182,7 +197,6 @@ module FerretMixin
           
           # Type-specific contents
           contents << " " + self.add_searchable_contents
-          
           doc << Ferret::Document::Field.new("contents", contents.strip, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
           
           # Type-specific fields

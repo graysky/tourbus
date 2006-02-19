@@ -125,7 +125,7 @@ class Show < ActiveRecord::Base
     fields << Document::Field.new("popularity", popularity, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     
     # We need to be able to search by the date of the show
-    fields << Document::Field.new("date", Utils::DateTools.time_to_s(self.date, Utils::DateTools::Resolution::DAY), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("date", Show.indexable_date(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     return fields
   end
   

@@ -2,11 +2,11 @@
 <% if @pages and @pages.item_count > 0 %>
 	<span id="search_paging_controls">
 	<% if !@pages.current.first? %>
-		<a href="#" onclick="javascript:$('page').value='<%=@pages.current.previous.number%>';document.forms[0].submit()">< Previous</a>
+		<a href="javascript:void(0)" onclick="javascript:$('page').value='<%=@pages.current.previous.number%>';document.forms[0].submit()">< Previous</a>
 	<% end %>
 	<%= "  " if !@pages.current.first? and !@pages.current.last? %>
 	<% if !@pages.current.last? %>
-		<a href="#" onclick="javascript:$('page').value='<%=@pages.current.next.number%>';document.forms[0].submit()">Next ></a>
+		<a href="javascript:void(0)" onclick="javascript:$('page').value='<%=@pages.current.next.number%>';document.forms[0].submit()">Next ></a>
 	<% end %>
 	<span id="search_paging_status">
 	(Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %>)

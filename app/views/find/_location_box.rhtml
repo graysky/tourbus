@@ -1,0 +1,56 @@
+<script type="text/javascript">
+	function set_location_radius(location, radius)
+	{
+		new Ajax.Request('/find/set_location_radius?location=' + location + '&radius=' + radius, {asynchronous:true, evalScripts:true})
+	}
+	
+	function toggle_only_local(cb)
+	{
+		var checked = cb.checked;
+		new Ajax.Request('/find/toggle_only_local?checked=' + checked + '&type=<%= type %>', {asynchronous:true, evalScripts:true})
+	}
+</script>
+
+<div class="sidebar-box sidebar-box-var2">
+<h2>My Location</h2>
+
+<p>
+	<strong><span id='current_location'><%= @session[:location] %></span><br/>
+		<span id="current_radius">+ <%= @session[:radius] %> miles</span>
+	</strong>
+	<br/>
+	<a id="change_location_link" style="text-decoration:underline" href="#">Change Location</a>
+	
+	<div id="location_tip" class='fave_tip'>
+		<h3>Change your location</h3>
+		  <p>
+		  	<table><tr>
+		  	<td><strong>city,state:</strong></td>
+		  	<td><%= text_field_tag 'new_location', "#{@session[:location]}" %></td>
+		  	</tr><tr>
+		  	<td><strong>radius:</strong></td>
+		  	<td><%= text_field_tag 'new_radius', @session[:radius], :size => "5" %> (miles)</td>
+		  	</tr>
+		  	</table>
+		  </p>
+		  <p>
+		  	<% if logged_in_fan.city %>
+		  		<a onclick="reset_location('<%= logged_in_fan.location %>', '<%= logged_in_fan.default_radius %>')" href="#">Use default</a>&nbsp;(<%= logged_in_fan.location %>)
+		  	<% end %>
+		  </p>
+		  <p>
+		  	<br/>
+		  	<%= submit_tag "OK", :onclick => "confirm_location(event)" %>&nbsp;
+  				<%= link_to "Cancel", "#", :onclick => "cancel_location(event)" %>
+		  </p>
+		</h3>
+	</div>
+	<script type="text/javascript">
+		Tooltip.autoHideClick = false;
+		Tooltip.add('change_location_link', 'location_tip');
+	</script>
+</p>
+<p>
+	<%= check_box_tag "only_local_checkbox", value="true", checked=@session[only_local_session_key(type)] != 'false', :onchange => 'toggle_only_local(this)' %> Only show local <%= type %>
+</p>
+</div>

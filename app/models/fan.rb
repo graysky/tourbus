@@ -61,6 +61,11 @@ class Fan < ActiveRecord::Base
     return upload_addr.address + "@" + UploadAddr.Domain
   end
   
+  def location
+    return self.city + ", " + self.state unless self.city.nil? or self.city == ""
+    return ""
+  end
+  
   # Returns the band if it was authenticated.
   # May return an unconfirmed band, the caller must check.
   def self.authenticate(login, password)

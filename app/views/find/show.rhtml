@@ -1,27 +1,94 @@
 <% @page_title = "Search results for \"#{params[:query]}\"" %>
+<% @header_title = "Find Shows" %>
 
+<% content_for("head") do %>
+	  <%= javascript_include_tag "find.js" %>
+<% end %>
+
+<% type = Show.table_name %>
+
+<div id="main">
 <div id="search_results">
 
-<%= start_form_tag %>
-Search for: <%= text_field_tag 'query', params[:query] %>
-within
-<%= text_field_tag 'radius', params[:radius], :size => 5 %>
-miles of
-<%= text_field_tag 'location', params[:location]  %>
-<%= submit_tag 'Search' %>
+<%= start_form_tag :action => :show %>
 
-<% # TEMP TEMP TEMP TEMP TEMP TEMP %>
+<center>
+
+<div id="browse_links">
+	<%= link_to_unless_current "Summary", :action => 'show' %>
+	<%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %>
+	<%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
+	<%= link_to_unless_current "Newest Shows" , :action => 'browse_newest_shows'%>
+</div>
+
+
+<table>
+<tr><th>Search:</th>
+<td><%= text_field_tag 'query', params[:query], :size => 30 %></td>
+<td class="submit"><%= submit_tag 'Search', :onclick => 'on_search()' %></td>
+</tr>
+<tr><td></td><td colspan="2"><span class="field_info">Bands, genres, clubs</span></td></tr>
+</table>
+
+</center>
+
+<%= render :partial => "hidden_form", :type => type %>
+<%= end_form_tag %>
+
+<h3>
+	<% if @results and @results.size > 0 %>
+		<%= 
+			case params[:action]
+			when 'browse_popular_shows' then 'Browsing Most Popular Shows'
+			when 'browse_tonights_shows' then 'Browsing Tonight\'s Shows'
+			when 'browse_newest_shows' then 'Browsing Newest Shows'
+			else
+			  'Search Results:'
+			end + search_results_suffix(type)
+		%>
+	<% else %>
+		No results found<%= search_results_suffix(type) %>
+	<% end %>
+</h3>
 <br/>
-<br/>
-<%= 
+
+<%
 	if @results
-		show_results @results, false 
+		index = 0
+		for show in @results
+%>
+	<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+		<table>
+			<tr>
+				<td></td>
+				<td class="show_search_result_table col2">
+					<div class="show_search_result_content">
+						<strong><%= friendly_date(show.date) %></strong>&nbsp;&nbsp;<%= friendly_time(show.date) %><br/>
+						<strong><%= link_to(show.formatted_title, :controller => "show", :action => "show", :id => show.id) %></strong><br/>
+						at <strong><%= show.venue.name %></strong> in <%= show.venue.location %>
+					</div>
+				</td>
+				<td class="col3">
+					<nobr>
+					<strong>attending:</strong> <%= show.num_attendees %><br/>
+					<strong>watching:</strong> <%= show.num_watchers %><br/>
+					</nobr>
+				</td>
+			</tr>
+		</table>
+	</div>
+<%			
+		  index += 1
+		end
 	end
 %>
 
 
 <%= render :partial => "paging" %>
+</div>
+</div>
 
-<%= end_form_tag %>
+<div id="side">
+	<%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
 

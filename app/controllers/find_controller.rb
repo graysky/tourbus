@@ -4,11 +4,13 @@ class FindController < ApplicationController
   layout "public"
   helper :show
   helper :portlet
+  helper_method :only_local_session_key
   
   def band
     return if request.get? and params[:query].nil?
     
-    query = params[:query].strip
+    query, radius, lat, long = prepare_query(Band.table_name)
+    
     @results, count = Band.ferret_search(query, default_search_options)
     paginate_search_results(count)
   end
@@ -16,7 +18,7 @@ class FindController < ApplicationController
   def show
     return if request.get? and params[:query].nil?
     
-    query, radius, lat, long = get_location_query_params()
+    query, radius, lat, long = prepare_query(Show.table_name)
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, default_search_options)
     paginate_search_results(count)
@@ -25,19 +27,20 @@ class FindController < ApplicationController
   def venue
     return if request.get? and params[:query].nil?
     
-    query, radius, lat, long = get_location_query_params()
+    query, radius, lat, long = prepare_query(Venue.table_name)
     
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
   end
   
+  # FIXME All browses have to take into account location, and therefore use ferret not the db
+  # There are all broken until then
   def browse_popular_bands
     @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
     render :action => 'band'
   end
   
   def browse_busiest_bands
-    # FIXME
     @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
     render :action => 'band'
   end
@@ -51,14 +54,33 @@ class FindController < ApplicationController
     20
   end
   
+  # To be called via ajax so the session state is always up to date
+  def set_location_radius
+    @session[:location] = params[:location].strip
+    @session[:radius] = params[:radius].strip
+  end
+  
+  def toggle_only_local
+    @session[only_local_session_key(params[:type])] = params[:checked]
+  end
+  
+  protected
+  
+  # A bit of a hack, but create the session key to use with the type name
+  def only_local_session_key(type)
+    "only_local_#{type}".to_sym
+  end
+  
   private
   
-  def get_location_query_params
-   query = params[:query].strip
+  def prepare_query(type)
+    query = params[:query].strip
+    
+    return query, nil, nil, nil if @session[only_local_session_key(type)] == 'false'
     
     # For now, expect a zip code
     # This stuff will be updated
-    radius = params[:radius]
+    radius = @session[:radius]
     if radius != "" and radius.to_f <= 0
       flash[:error] = "The search radius must be a positive number"
       # FIXME deal with error
@@ -66,10 +88,10 @@ class FindController < ApplicationController
     end
     
     lat = long = nil
-    loc = params[:location]
+    loc = @session[:location]
     if not loc.nil? and loc != ""
       # FIXME handle exception
-      zip = Address::parse_city_state_zip(loc)
+      zip = Address::parse_city_state_zip(loc.strip)
       
       lat = zip.latitude
       long = zip.longitude

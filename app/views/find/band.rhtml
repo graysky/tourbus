@@ -3,6 +3,13 @@
 <% @page_title = "Search results for \"#{params[:query]}\"" %>
 <% @header_title = "Find Bands" %>
 
+<% content_for("head") do %>
+	  <%= javascript_include_tag "find.js" %>
+<% end %>
+
+<% type = Band.table_name %>
+<div id="main">
+
 <div id="search_results">
 
 <center>
@@ -15,7 +22,7 @@
 
 
 
-<%= start_form_tag %>
+<%= start_form_tag :action => :band %>
 
 <table>
 <tr><th>Search:</th>
@@ -24,8 +31,10 @@
 </tr>
 <tr><td></td><td colspan="2"><span class="field_info">Band name, genres, influences</span></td></tr>
 </table>
+
 </center>
-<input type="hidden" id="page" name="page" value="1"/>
+
+<%= render :partial => "hidden_form", :type => type %>
 <%= end_form_tag %>
 
 <h3>
@@ -36,11 +45,11 @@
 			when 'browse_busiest_bands' then 'Browsing Busiest Bands'
 			when 'browse_newest_bands' then 'Browsing Newest Bands'
 			else
-			  'Search Results:'
-			end
+			  'Search Results'
+			end + search_results_suffix(type)
 		%>
 	<% else %>
-		No results found
+		No results found<%= search_results_suffix(type) %> 
 	<% end %>
 </h3>
 <br/>
@@ -116,7 +125,11 @@
 
 <%= render :partial => "paging" %>
 
+</div>
+</div>
 
+<div id="side">
+	<%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
 
 

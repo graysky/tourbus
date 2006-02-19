@@ -34,6 +34,11 @@ class Venue < ActiveRecord::Base
     get_tags(Tag.Venue)
   end
   
+  def location
+    return self.city + ", " + self.state unless self.city.nil? or self.city == ""
+    return ""
+  end
+  
   protected
   
   # Validate that it is a valid URL starting with http://

@@ -116,6 +116,13 @@ class Show < ActiveRecord::Base
     # TODO Store as radians?
     fields << Document::Field.new("latitude", self.venue.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("num_watchers", self.num_watchers, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("num_attendees", self.num_attendees, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    
+    # The popularity of a show is determined by the number of watchers and attendees.
+    # An attendee is worth twice as much as a watcher.
+    popularity = self.num_watchers + (2 * self.num_attendees)
+    fields << Document::Field.new("popularity", popularity, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     
     # We need to be able to search by the date of the show
     fields << Document::Field.new("date", Utils::DateTools.time_to_s(self.date, Utils::DateTools::Resolution::DAY), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)

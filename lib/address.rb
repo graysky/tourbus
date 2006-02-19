@@ -143,8 +143,10 @@ module Address
         self.zipcode = Address::contains_zip?(str) ? zipcode.zip : ""
         self.state = zipcode.state
         self.city = zipcode.city
+        self.longitude = zipcode.longitude
+        self.latitude = zipcode.latitude
       else
-        self.zipcode = self.state = self.city = ""
+        self.zipcode = self.state = self.city = self.latitude = self.longitude = ""
       end
     end
     

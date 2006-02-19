@@ -48,8 +48,15 @@ class FindController < ApplicationController
   end
   
   def browse_newest_bands
-    @pages, @results = paginate :bands, :order_by => 'created_on desc, name asc', :per_page => page_size
+    query, radius, lat, long = prepare_query(Band.table_name)
+    
+    options = default_search_options
+    options[:sort] = created_on_sort_field
+    
+    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
+    paginate_search_results(count)
     render :action => 'band'
+
   end
   
   def browse_tonights_shows
@@ -78,7 +85,7 @@ class FindController < ApplicationController
     query, radius, lat, long = prepare_query(Show.table_name)
     
     options = default_search_options
-    options[:sort] = SortField.new("created_on", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+    options[:sort] = created_on_sort_field
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
@@ -104,6 +111,10 @@ class FindController < ApplicationController
   # A bit of a hack, but create the session key to use with the type name
   def only_local_session_key(type)
     "only_local_#{type}".to_sym
+  end
+  
+  def created_on_sort_field
+    SortField.new("created_on", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
   end
   
   private

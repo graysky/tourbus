@@ -83,6 +83,8 @@ module FerretMixin
             else
               options[:sort] = [options[:sort], date_sort, SortField::FIELD_SCORE]
             end
+          elsif options[:sort]
+            options[:sort] = [options[:sort], SortField::FIELD_SCORE]
           end
           
           if lat and long and radius

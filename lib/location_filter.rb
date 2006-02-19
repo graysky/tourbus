@@ -23,6 +23,8 @@ class LocationFilter < Ferret::Search::Filter
       lat = doc["latitude"].to_f
       long = doc["longitude"].to_f
       
+      next if lat == 0 and long == 0
+      
       bits.set(term_docs.doc) if Address::is_within_range(lat, long, @center_lat, @center_long, @radius)
     end 
     

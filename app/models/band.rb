@@ -94,4 +94,12 @@ class Band < ActiveRecord::Base
     return upload_addr.address + "@" + UploadAddr.Domain
   end
   
+  protected
+  
+  # Index band-specific fields
+  def add_searchable_fields
+    fields = []
+    fields << Document::Field.new("latitude", self.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+    fields << Document::Field.new("longitude", self.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+  end
 end

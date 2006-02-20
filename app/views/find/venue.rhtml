@@ -14,12 +14,13 @@
 
 <center>
 <div id="browse_links">
-	<%= link_to_unless_current "Summary", :action => 'venue' %>
+	<%= link_to_unless_current "Search", :action => 'venue' %>
 	<%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%>
 </div>
 
 <%= start_form_tag :action => :venue %>
 
+<% if params[:action] == 'venue' %>
 <table>
 <tr><th>Search:</th>
 <td><%= text_field_tag 'query', params[:query], :size => 30 %></td>
@@ -27,6 +28,7 @@
 </tr>
 <tr><td></td><td colspan="2"><span class="field_info">Venue name, bands, genres</span></td></tr>
 </table>
+<% end %>
 
 </center>
 

@@ -14,7 +14,7 @@
 
 <center>
 <div id="browse_links">
-	<%= link_to_unless_current "Summary", :action => 'band' %>
+	<%= link_to_unless_current "Search", :action => 'band' %>
 	<%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %>
 	<%= link_to_unless_current "Newest Bands" , :action => 'browse_newest_bands'%>
 </div>
@@ -23,6 +23,7 @@
 
 <%= start_form_tag :action => :band %>
 
+<% if params[:action] == 'band' %>
 <table>
 <tr><th>Search:</th>
 <td><%= text_field_tag 'query', params[:query], :size => 30 %></td>
@@ -30,6 +31,7 @@
 </tr>
 <tr><td></td><td colspan="2"><span class="field_info">Band name, genres, influences</span></td></tr>
 </table>
+<% end %>
 
 </center>
 

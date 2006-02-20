@@ -46,7 +46,7 @@
 			  'Search Results'
 			end + search_results_suffix(type)
 		%>
-	<% else %>
+	<% elsif not (request.get? and params[:query].nil?) %>
 		No results found<%= search_results_suffix(type) %> 
 	<% end %>
 </h3>

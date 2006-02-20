@@ -5,7 +5,7 @@
 # USAGE
 # =============================================================================
 # This is for deploying to LiquidWeb. It is configured for:
-# OLD - tourbus.figureten.com (staging)
+# DEPRECATED tourbus.figureten.com (staging)
 # tourb.us (real production)
 #
 # Tips: 
@@ -29,7 +29,7 @@
 # spinner - first start FCGI processes using spinner
 # reaper - kill the FCGI processes using reaper
 #
-# Use this to run any non-rake switchtower tasks:
+# Use this to run any non-rake switchtower tasks (NOT CURRENTLY IN USE):
 # rake remote_exec [STAGE=dev] ACTION=<action-name>
 #
 # To deploy to staging enviroment, use "_stage" commands, namely:

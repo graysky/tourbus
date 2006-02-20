@@ -53,7 +53,6 @@ set :application, "tourbus"
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
 
 # Don't use sudo for tourb.us
-set :restart_via, :run
 set :use_sudo, false
 
 # Check for ENV to determine which type of deployment. 

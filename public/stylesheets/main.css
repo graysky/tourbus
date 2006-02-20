@@ -983,6 +983,10 @@ table.form-table #selected_venue {
 	width:300px;
 }
 
+#search_results .address {
+	line-height: 140%;
+}
+
 #search_results .col3 {
 	font-size:11px;
 	line-height: 160%;

@@ -9,6 +9,7 @@ class FindController < ApplicationController
   helper_method :only_local_session_key
   before_filter :check_location_defaults, :except => [:set_location_radius, :toggle_only_local]
   
+  # Search
   def band
     return if request.get? and params[:query].nil?
     
@@ -36,6 +37,7 @@ class FindController < ApplicationController
     paginate_search_results(count)
   end
   
+  # Browse
   def browse_popular_bands
     query, radius, lat, long = prepare_query(Band.table_name)
     
@@ -91,6 +93,17 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     render :action => 'show'
+  end
+  
+  def browse_popular_venues
+    query, radius, lat, long = prepare_query(Venue.table_name)
+    
+    options = default_search_options
+    options[:sort] = popularity_sort_field
+    
+    @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
+    paginate_search_results(count)
+    render :action => 'venue'
   end
   
   def page_size

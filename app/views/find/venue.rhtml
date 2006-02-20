@@ -1,36 +1,94 @@
+
+
 <% @page_title = "Search results for \"#{params[:query]}\"" %>
+<% @header_title = "Find Venues" %>
+
+<% content_for("head") do %>
+	  <%= javascript_include_tag "find.js" %>
+<% end %>
+
+<% type = Venue.table_name %>
+<div id="main">
 
 <div id="search_results">
 
-<%= start_form_tag %>
-Search for: <%= text_field_tag 'query', params[:query] %>
-within
-<%= text_field_tag 'radius', params[:radius], :size => 5 %>
-miles of
-<%= text_field_tag 'location', params[:location]  %>
-<%= submit_tag 'Search' %>
+<center>
+<div id="browse_links">
+	<%= link_to_unless_current "Summary", :action => 'venue' %>
+	<%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%>
+</div>
 
-<% # TEMP TEMP TEMP TEMP TEMP TEMP %>
-<br/>
+<%= start_form_tag :action => :venue %>
+
+<table>
+<tr><th>Search:</th>
+<td><%= text_field_tag 'query', params[:query], :size => 30 %></td>
+<td class="submit"><%= submit_tag 'Search' %></td>
+</tr>
+<tr><td></td><td colspan="2"><span class="field_info">Venue name</span></td></tr>
+</table>
+
+</center>
+
+<%= render :partial => "hidden_form", :type => type %>
+<%= end_form_tag %>
+
+<h3>
+	<% if @results and @results.size > 0 %>
+		<%= 
+			case params[:action]
+			when 'browse_popular_venues' then 'Browsing Most Popular Venues'
+			else
+			  'Search Results'
+			end + search_results_suffix(type)
+		%>
+	<% elsif not (request.get? and params[:query].nil?) %>
+		No results found<%= search_results_suffix(type) %> 
+	<% end %>
+</h3>
 <br/>
 
 <%
+	index = 0
 	if @results
 		for venue in @results
 %>
-		<div class="result">
-			<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %>
-			<%= venue.city + "," + venue.state %>
-		</div>
+
+	<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+	
+		<table>
+			<tr>
+				<td></td>
+				<td>
+					<div class="col2 address">
+						<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %><br/>
+						<%= venue.address %><br/>
+						<%= venue.city + "," + venue.state %>
+					</div>
+					
+				</td>
+				<td class="col3">
+					<nobr>
+					<strong>upcoming shows:</strong> 1<br/>
+					</nobr>
+				</td>
+			</tr>
+		</table>
+	
+	</div>
 <%
+		index += 1
 		end
 	end
 %>
 
-<br/>
 <%= render :partial => "paging" %>
 
-<%= end_form_tag %>
+</div>
+</div>
+
+<div id="side">
+	<%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
 
 

@@ -8,6 +8,7 @@ class Venue < ActiveRecord::Base
   include Tagging
   
   has_many :shows, :order => "date ASC"
+  has_many :upcoming_shows, :class_name => "Show", :conditions => ["date > ?", Time.now], :order => "date ASC"
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
   acts_as_taggable :join_class_name => 'TagVenue'
@@ -37,6 +38,12 @@ class Venue < ActiveRecord::Base
   def location
     return self.city + ", " + self.state unless self.city.nil? or self.city == ""
     return ""
+  end
+  
+  def popularity
+    # Average popularitiy of all upcoming and recent shows at this venue
+    shows = self.shows.find(:all, :conditions => ["date > ?", Time.now - 6.months], :include => :bands)
+    shows.inject(0) { |sum, show| sum + show.popularity } / shows.size
   end
   
   protected

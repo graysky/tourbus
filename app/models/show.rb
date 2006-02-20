@@ -108,6 +108,20 @@ class Show < ActiveRecord::Base
     Show.find_by_venue_id_and_date(other.venue.id, other.date)
   end
   
+  # The popularity is currently a somewhat arbitrary number.
+  def popularity
+    # The popularity of a show is determined by the number of watchers and attendees,
+    # as well as the popularity of all bands playing the show.
+    # An attendee is worth twice as much as a watcher.
+    popularity = self.num_watchers + (2 * self.num_attendees)
+    
+    fans = self.bands.inject(0) { |sum, band| sum + band.num_fans }
+    
+    # For now, increase popularity by the percentage of all fans that are
+    # fans of a band playing the show.
+    popularity + ((fans.to_f / Fan.count.to_f) * 100).to_i
+  end
+  
   protected
   
   # Add show-specific searchable fields for ferret indexing
@@ -118,11 +132,6 @@ class Show < ActiveRecord::Base
     fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     fields << Document::Field.new("num_watchers", self.num_watchers, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     fields << Document::Field.new("num_attendees", self.num_attendees, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    
-    # The popularity of a show is determined by the number of watchers and attendees.
-    # An attendee is worth twice as much as a watcher.
-    popularity = self.num_watchers + (2 * self.num_attendees)
-    fields << Document::Field.new("popularity", popularity, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     
     # We need to be able to search by the date of the show
     fields << Document::Field.new("date", Show.indexable_date(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)

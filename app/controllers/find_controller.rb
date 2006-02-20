@@ -35,16 +35,16 @@ class FindController < ApplicationController
     paginate_search_results(count)
   end
   
-  # FIXME All browses have to take into account location, and therefore use ferret not the db
-  # There are all broken until then
   def browse_popular_bands
-    @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
+    query, radius, lat, long = prepare_query(Band.table_name)
+    
+    options = default_search_options
+    options[:sort] = popularity_sort_field
+    
+    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
+    paginate_search_results(count)
     render :action => 'band'
-  end
-  
-  def browse_busiest_bands
-    @pages, @results = paginate :bands, :order_by => 'num_fans desc, name asc', :per_page => page_size
-    render :action => 'band'
+
   end
   
   def browse_newest_bands
@@ -74,7 +74,7 @@ class FindController < ApplicationController
     query, radius, lat, long = prepare_query(Show.table_name)
     
     options = default_search_options
-    options[:sort] = SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+    options[:sort] = popularity_sort_field
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
@@ -115,6 +115,10 @@ class FindController < ApplicationController
   
   def created_on_sort_field
     SortField.new("created_on", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+  end
+  
+  def popularity_sort_field
+    SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
   end
   
   private

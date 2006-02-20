@@ -94,6 +94,11 @@ class Band < ActiveRecord::Base
     return upload_addr.address + "@" + UploadAddr.Domain
   end
   
+  # The popularity is currently a somewhat arbitrary number.
+  def popularity
+    self.num_fans
+  end
+  
   protected
   
   # Index band-specific fields

@@ -187,6 +187,13 @@ module FerretMixin
                                                Document::Field::Index::UNTOKENIZED)
           end
           
+          if respond_to?(:popularity)
+            doc << Document::Field.new("popularity", 
+                                       self.popularity, 
+                                       Document::Field::Store::YES, 
+                                       Ferret::Document::Field::Index::UNTOKENIZED)
+          end
+          
           # Index all commonly searched info as an aggregated content string
           contents = ""
           if respond_to?(:name)

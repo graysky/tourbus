@@ -10,7 +10,13 @@ def switchtower_invoke(*actions)
     # no rubygems to load, so we fail silently
   end
 
-  require 'switchtower/cli'
+  require 'switchtower/cli' 
+
+  options = actions.last.is_a?(Hash) ? actions.pop : {}
+
+  args = %w[-r config/deploy]
+  verbose = options[:verbose] || "-vvvvv"
+  args << verbose
 
   args = %w[-vvvvv -r config/deploy]
   args.concat(actions.map { |act| ["-a", act.to_s] }.flatten)
@@ -24,7 +30,7 @@ task :deploy_stage do
   switchtower_invoke :deploy
 end
 
-desc "Push the latest revision to production server"
+desc "Push the latest revision into production"
 task :deploy do
   switchtower_invoke :deploy
 end
@@ -47,23 +53,7 @@ end
 
 desc "Enumerate all available deployment tasks"
 task :show_deploy_tasks do
-  switchtower_invoke :show_tasks
-end
-
-desc "Update the currently released version of the software directly via an SCM update operation"
-task :update_current do
-  switchtower_invoke :update_current
-end
-
-desc "Execute a specific action using switchtower"
-task :remote_exec_stage do
-  unless ENV['ACTION']
-    raise "Please specify an action (or comma separated list of actions) via the ACTION environment variable"
-  end
-
-  ENV['STAGE'] = "dev"
-  actions = ENV['ACTION'].split(",")
-  switchtower_invoke(*actions)
+  switchtower_invoke :show_tasks, :verbose => ""
 end
 
 desc "Execute a specific action using switchtower"

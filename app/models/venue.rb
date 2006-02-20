@@ -42,8 +42,12 @@ class Venue < ActiveRecord::Base
   
   def popularity
     # Average popularitiy of all upcoming and recent shows at this venue
-    shows = self.shows.find(:all, :conditions => ["date > ?", Time.now - 6.months], :include => :bands)
-    shows.inject(0) { |sum, show| sum + show.popularity } / shows.size
+    recent_upcoming_shows.inject(0) { |sum, show| sum + show.popularity } / shows.size
+  end
+  
+  # All recent and upcoming shows at the venue
+  def recent_upcoming_shows
+    self.shows.find(:all, :conditions => ["date > ?", Time.now - 6.months], :include => :bands)
   end
   
   protected
@@ -67,6 +71,19 @@ class Venue < ActiveRecord::Base
     fields << Document::Field.new("latitude", self.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     fields << Document::Field.new("longitude", self.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
     return fields
+  end
+  
+  # Add venue-specific searchable contents for ferret indexing
+  def add_searchable_contents
+    contents = ""
+    self.recent_upcoming_shows.each do |show|
+      show.bands.each do |band| 
+        contents << " " + band.name
+        contents << " " + band.tags.join(" ")
+      end
+    end
+    
+    contents
   end
   
 end

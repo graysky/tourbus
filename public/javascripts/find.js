@@ -1,5 +1,8 @@
 function confirm_location(event)
 {
+	if ($('no_location_msg')) {
+		$('no_location_msg').innerHTML = '';
+	}
 	$('current_location').innerHTML = $('new_location').value;
 	$('current_radius').innerHTML = "+ " + $('new_radius').value + " miles";
 	

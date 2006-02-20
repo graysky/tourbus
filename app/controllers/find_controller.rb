@@ -7,13 +7,14 @@ class FindController < ApplicationController
   helper :show
   helper :portlet
   helper_method :only_local_session_key
+  before_filter :check_location_defaults, :except => [:set_location_radius, :toggle_only_local]
   
   def band
     return if request.get? and params[:query].nil?
     
     query, radius, lat, long = prepare_query(Band.table_name)
     
-    @results, count = Band.ferret_search(query, default_search_options)
+    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
   end
 
@@ -107,6 +108,14 @@ class FindController < ApplicationController
   end
   
   protected
+  
+  # Set some default location params if we are not logged in
+  def check_location_defaults
+    return if logged_in_fan or @session[:location]
+    
+    # TODO Could attempt to figure out the users location
+    set_location_defaults('', '', 'false', 'false', 'false')
+  end
   
   # A bit of a hack, but create the session key to use with the type name
   def only_local_session_key(type)

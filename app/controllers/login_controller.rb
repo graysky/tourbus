@@ -34,16 +34,7 @@ class LoginController < ApplicationController
           cookies.delete :login
         end
         
-        # Set the default location
-        if fan.city
-          @session[:location] = fan.location
-          @session[:radius] = fan.default_radius
-        end
-        
-        # Set up defaults for viewing local stuff
-        @session[:only_local_bands] = 'false'
-        @session[:only_local_shows] = 'true'
-        @session[:only_local_venues] = 'true'
+        set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
         
         # Send to their profile page
         redirect_back_or_default( public_fan_url )

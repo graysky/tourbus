@@ -15,8 +15,17 @@
 <h2>My Location</h2>
 
 <p>
-	<strong><span id='current_location'><%= @session[:location] %></span><br/>
-		<span id="current_radius">+ <%= @session[:radius] %> miles</span>
+	<strong>
+		<% if @session[:location] != "" %>
+			<span id='current_location'><%= @session[:location] %></span>
+			<br/>
+			<span id="current_radius">+ <%= @session[:radius] %> miles</span>
+		<% else %>
+			<span id='no_location_msg'>Where am I?</span>
+			<span id='current_location'></span>
+			<br/>
+			<span id="current_radius"></span>
+		<% end %>
 	</strong>
 	<br/>
 	<a id="change_location_link" style="text-decoration:underline" href="#">Change Location</a>
@@ -34,7 +43,7 @@
 		  	</table>
 		  </p>
 		  <p>
-		  	<% if logged_in_fan.city %>
+		  	<% if logged_in_fan and logged_in_fan.city %>
 		  		<a onclick="reset_location('<%= logged_in_fan.location %>', '<%= logged_in_fan.default_radius %>')" href="#">Use default</a>&nbsp;(<%= logged_in_fan.location %>)
 		  	<% end %>
 		  </p>

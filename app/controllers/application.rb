@@ -222,6 +222,15 @@ class ApplicationController < ActionController::Base
   
   FAKE_PASSWORD = "******"
   
+  # Set the defaults for the user's location for searching and browsing
+  def set_location_defaults(loc, radius, only_bands, only_shows, only_venues)
+    @session[:location] = loc
+    @session[:radius] = radius
+    @session[:only_local_bands] = only_bands
+    @session[:only_local_shows] = only_shows
+    @session[:only_local_venues] = only_venues
+  end
+  
   # Returns a rails paginator
   def paginate_search_results(count)
     @pages = Paginator.new(self, count, page_size, @params['page'])

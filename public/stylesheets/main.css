@@ -39,7 +39,7 @@
 
 #ErrorExplanation {
   width: 400px;
-  border: 2px solid 'red';
+  border: 2px solid red;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -80,7 +80,7 @@ body
 
 .minimal_body
 {
-	#text-align:center;
+	/*#text-align:center;*/
 	background-color: white;
 	margin:0 auto;
 }
@@ -801,7 +801,7 @@ table.form-table #selected_venue {
 
 #paging_status {
 	margin-left:8px;
-	#padding-bottom:8px;
+	/*#padding-bottom:8px;*/
 }
 
 #paging_controls {
@@ -814,7 +814,7 @@ table.form-table #selected_venue {
 
 #search_paging_status {
 	margin-left:8px;
-	#padding-bottom:8px;
+	/*#padding-bottom:8px;*/
 	font-size:11px;
 }
 

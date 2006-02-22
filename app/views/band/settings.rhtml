@@ -46,16 +46,16 @@
 </div>
 
 <div id="side">
-	<div class="sidebar-box">
-		<h2>Tools</h2>
+	<div id="tools-box" class="sidebar-box">
+		<h2 id="tools-title"><span class="title">Tools</span></h2>
 		<p>
 			<%= link_to "Click here", :action => "map_tool" %> to add an interactive of your
 			upcoming shows to your website.
 		</p>	
 	</div>
 	<br/>
-	<div class="sidebar-box">
-		<h2>Actions</h2>
+	<div id="actions-box" class="sidebar-box">
+		<h2 id="actions-title"><span class="title">Actions</span></h2>
 		<p>
 			<%= link_to "Add a Show", band_public_action("add_show") %>
 			<br/>
@@ -63,3 +63,12 @@
 		</p>	
 	</div>
 </div>
+
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('tools-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('tools-title'), {corners:'top', bgColor : white} );
+</script>

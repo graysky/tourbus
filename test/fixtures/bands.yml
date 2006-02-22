@@ -1,5 +1,6 @@
 <% 
 require_dependency "fixture_helper"
+require 'uuidtools'
 fix = FixtureHelper # Shorten typing
 %>
 
@@ -15,4 +16,5 @@ band_<%= num %>:
   short_name: band<%= num %>
   created_on: <%= now %>
   contact_email: band<%= num %>@band.com
+  uuid: <%= UUID.random_create.to_s %>
 <% end %>

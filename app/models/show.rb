@@ -40,7 +40,7 @@ class Show < ActiveRecord::Base
   # 2) band1/band2/band3
   # TODO Optimize this by saving this string to the db when the show is saved
   def formatted_title
-    if self.title != ""
+    if !self.title.nil? and self.title != ""
       return self.title
     else
       # Format the list of bands to be the title

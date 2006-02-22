@@ -56,6 +56,17 @@ task :show_deploy_tasks do
   switchtower_invoke :show_tasks, :verbose => ""
 end
 
+desc "Update current deployed code"
+task :update_current do
+  switchtower_invoke :update_current
+end
+
+desc "Cleanup deployments to leave the most recent 5"
+task :cleanup do
+  switchtower_invoke :cleanup
+end
+
+
 desc "Execute a specific action using switchtower"
 task :remote_exec do
   unless ENV['ACTION']

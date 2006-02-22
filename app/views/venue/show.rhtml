@@ -178,8 +178,8 @@ init_map()
 
 <div id="side">
 
-<div class="sidebar-box">
-	<h2>Actions</h2>
+<div id="actions-box" class="sidebar-box">
+	<h2 id="actions-title"><span class="title">Actions</span></h2>
 	
 	<p>
 		<!-- TODO Pull in partial -->
@@ -204,5 +204,13 @@ init_map()
 		:id => @venue.id,
 		}) 
 	%>
-
+	
 </div>
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
+</script>

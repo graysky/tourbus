@@ -163,8 +163,8 @@
 
 <div id="side">
 
-<div class="sidebar-box">
-	<h2>About This Band</h2>
+<div id="about-box" class="sidebar-box">
+    <h2 id="about-title"><span class="title">About This Band</span></h2>
 	
 	<p>
 		<% if @band.claimed? %>
@@ -185,8 +185,8 @@
 </div>
 <br/>
 
-<div class="sidebar-box">
-	<h2>Actions</h2>
+<div id="actions-box" class="sidebar-box">
+	<h2 id="actions-title"><span class="title">Actions</span></h2>
 	
 	<p>
 		<% if logged_in_fan and logged_in_fan.superuser? %>
@@ -302,3 +302,13 @@
 	adjust_bio_height();
 </script>
 
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
+</script>

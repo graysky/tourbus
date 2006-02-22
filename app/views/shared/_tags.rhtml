@@ -6,8 +6,9 @@
 # :title => title of the box
 # :id => id of the item to be tagged
 # 			'<div id=\"' + added_tag + '\"><li>' + added_tag + '</li></div>');
+# id="type"
 %>
-<div class="sidebar-box" id="<%= type %>" >
+<div id="tags-box" class="sidebar-box">
 
 <script type="text/javascript">    
     // Called when a new tag has been added
@@ -43,7 +44,7 @@
 	}
 </script>
 
-<h2><%= title %></h2>
+<h2 id="tags-title"><span class="title"><%= title %></span></h2>
 
 <table class="tags-list" id="tag-list-<%= type %>" border="0">
 <% 

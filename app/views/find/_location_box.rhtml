@@ -11,8 +11,8 @@
 	}
 </script>
 
-<div class="sidebar-box sidebar-box-var2">
-<h2>My Location</h2>
+<div id="location-box" class="sidebar-box sidebar-box-var2">
+<h2 id="location-title"><span class="title">My Location</span></h2>
 
 <p>
 	<strong>
@@ -63,3 +63,9 @@
 	<%= check_box_tag "only_local_checkbox", value="true", checked=@session[only_local_session_key(type)] != 'false', :onchange => 'toggle_only_local(this)' %> Only show local <%= type %>
 </p>
 </div>
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('location-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('location-title'), {corners:'top', bgColor : white} );
+</script>

@@ -29,6 +29,9 @@ Rico.Corner = {
          color = this._background(e);
 
       var bgColor = this.options.bgColor;
+      // MGC: all bgColor from "parentNode"
+	  if ( this.options.bgColor == "parentNode" )
+         bgColor = this._background(e.parentNode);
       if ( this.options.bgColor == "fromParent" )
          bgColor = this._background(e.offsetParent);
 

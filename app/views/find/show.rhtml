@@ -59,7 +59,7 @@
 		index = 0
 		for show in @results
 %>
-	<%= render :partial => "shared/show_search_result", :locals => { :show => show, :index => index } %>
+	<%= render :partial => "shared/show_search_result", :locals => { :show => show, :index => index, :show_map => false, :show_venue => true } %>
 <%			
 		  index += 1
 		end

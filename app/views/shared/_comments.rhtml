@@ -13,7 +13,8 @@
 	}
 </script>
 
-<%= section "comments_section", "<a href='#add_comment'>#{image_tag('add_comment')}</a>" if logged_in? %>
+<% action = logged_in? ? "<a href='#add_comment'>#{image_tag('add_comment')}</a>" : nil %>
+<%= section "comments_section",  action %>
 
 <div class="comments_box">
 

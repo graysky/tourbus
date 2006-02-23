@@ -34,11 +34,15 @@ module ApplicationHelper
   end
   
   def friendly_time(date)
-    date.strftime("%I:%M%p")
+    s = date.strftime("%I:%M%p")
+    # Strip off any leading "0" padding
+    s.sub!(/^0/, '')
   end
   
   def simple_date(date)
-    date.strftime("%m.%d.%y")
+    s = date.strftime("%m.%d.%y")
+    # Strip off any leading "0" padding
+    s.sub!(/^0/, '')
   end
   
   def slash_date(date)

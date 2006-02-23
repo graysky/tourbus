@@ -1,0 +1,26 @@
+<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+	<table>
+		<tr>
+			<td>
+				<% if show_map %>
+			        <a href='#map_top'><img onclick='showInfoWindow(<%= show.venue.id %>)' src='/images/default_marker.png'/></a></td><td>
+			    <% end %>
+			</td>
+			<td class="show_search_result_table col2">
+				<div class="show_search_result_content">
+					<strong><%= friendly_date(show.date) %></strong>&nbsp;&nbsp;<%= friendly_time(show.date) %><br/>
+					<strong><%= link_to(show.formatted_title, :controller => "show", :action => "show", :id => show.id) %></strong><br/>
+					<% if show_venue %>
+						at <strong><%= show.venue.name %></strong> in <%= show.venue.location %>
+					<% end %>
+				</div>
+			</td>
+			<td class="col3">
+				<nobr>
+				<strong>attending:</strong> <%= show.num_attendees %><br/>
+				<strong>watching:</strong> <%= show.num_watchers %><br/>
+				</nobr>
+			</td>
+		</tr>
+	</table>
+</div>

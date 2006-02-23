@@ -5,6 +5,7 @@ class FindController < ApplicationController
   
   layout "public"
   helper :show
+  helper :band
   helper :portlet
   helper_method :only_local_session_key
   before_filter :check_location_defaults, :except => [:set_location_radius, :toggle_only_local]

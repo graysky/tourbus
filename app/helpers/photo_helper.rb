@@ -73,12 +73,12 @@ module PhotoHelper
         # Show the subject of the picture
         from = truncate(photo.subject.name, 16)
         from_url = public_url_for_subject(photo)
-        html << "<br/><span><a href='#{from_url}'>#{from}</a></span>"
+        html << "<br/><span><a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
       else
         # Show the creator
         from = truncate(photo.created_by_name, 16)
         from_url = public_url_for_creator(photo)
-        html << "<br/><span>From <a href='#{from_url}'>#{from}</a></span>"
+        html << "<br/><span>From <a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
       end
   end
   

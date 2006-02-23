@@ -1,0 +1,25 @@
+<div id="main">
+
+<% @header_title = @page_title = @band.name + "/Shows" %>
+
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+
+<div class="panel_header">
+	<span class="title"> Recent and Upcoming Shows</span>
+</div>
+
+<% if @params[:show_map] == "true" %>
+	<a name="map_top"/>
+	<br/>
+	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+<% end %>
+
+<br/>
+<%= show_results @shows, params[:show_map] == "true" %>
+<br/>
+<%= link_to "See all shows...", :action => :all_shows %>
+</div>
+
+<%= render :partial => "profile_sidebar" %>

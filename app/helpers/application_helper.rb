@@ -97,6 +97,15 @@ END_JS
     "<table><tr><td valign='top'><img src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
   end
   
+  def section(title_img, action)
+    out = "<div class='panel_header'><table><tr>"
+    out << "<td width='580px'>#{image_tag(title_img)}</td>"
+	if action
+	 out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
+	end
+    out << '</tr></table></div>'
+  end
+  
   # Override rails' built in form error reporting
   def error_messages_for(object_name, options = {})
     options = options.symbolize_keys

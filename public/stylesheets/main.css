@@ -298,7 +298,7 @@ td, p
 
 .panel_header {
 	margin-top:16px;
-	border-bottom: 2px solid #599057;
+	border-bottom: 2px solid #78b36d;
 	width:580px;
 }
 
@@ -316,7 +316,7 @@ td, p
 }
 
 .panel_header .title {
-	color: #599057;
+	color: #78b36d;
 	font-weight:bold;
 	font-size:20px;
 	padding-right:16px;
@@ -937,13 +937,16 @@ table.form-table #selected_venue {
 {
 	font-size:12px;
 }
+#main a {
+	font-size:12px;
+}
 
-#search_results {
+.search_results {
 	font-size:12px;
 }
 
 
-#search_results .result_even {
+.search_results .result_even {
 	height:60px;
 	background-color:#eee;
 	padding:4px 0 0px 4px;
@@ -952,7 +955,7 @@ table.form-table #selected_venue {
 	border-top:0px;
 }
 
-#search_results .result_odd {
+.search_results .result_odd {
 	height:60px;
 	padding:4px 0 0px 4px;
 	background-color:#FAFAFA;
@@ -961,11 +964,11 @@ table.form-table #selected_venue {
 	border-top:0px;
 }
 
-#search_results .first_result {
+.search_results .first_result {
 	border-top:1px solid #ddd;
 }
 
-#search_results .fave_tip input {
+.search_results .fave_tip input {
 	font-size:12px;
 }
 
@@ -974,70 +977,70 @@ table.form-table #selected_venue {
 }
 
 
-#search_results a {
+.search_results a {
 	color: #2B95B6;
 	font-size:12px;	
 }
 
-#search_results .col2 {
+.search_results .col2 {
 	width:300px;
 }
 
-#search_results .address {
+.search_results .address {
 	line-height: 140%;
 }
 
-#search_results .col3 {
+.search_results .col3 {
 	font-size:11px;
 	line-height: 160%;
 }
 
-#search_results .col4 {
+.search_results .col4 {
 	padding-left:24px;
 }
 
-#search_results .show_search_result_content {
+.search_results .show_search_result_content {
 	line-height:140%;
 	width:420px;	
 }
 
-#search_results .result_tags {
+.search_results .result_tags {
 	padding-top:4px;
 	font-size:11px;
 	color: #555;
 	font-weight:bold;
 }
 
-#search_results .result_description {
+.search_results .result_description {
 	padding-top:4px;
 	font-size:11px;
 	color: #555;
 	width: 450px;
 }
 
-#search_results .field_info {
+.search_results .field_info {
 	font-size:11px;
 	color: #555555;
 	font-style:italic;
 }
 
-#search_results table td {
+.search_results table td {
 	font-size:12px;
 	color:#484A4C;
 }
 
-#search_results table th {
+.search_results table th {
 	font-size:14px;
 	color:#484A4C;
 	font-weight:bold;
 }
 
-#search_results table input {
+.search_results table input {
 	font-size:16px;
 	color:#484A4C;
 }
 
-#search_results table .submit input {
+.search_results table .submit input {
 	font-size:14px;
 }
 
@@ -1119,12 +1122,13 @@ table.photo_table td span a {
 .photo_box
 {
 	color:#4C5C5C;
-	font-size:12px;
+	font-size:10px;
 	width:560px;
 	margin-top:-4px;
 	padding: 8px;
 	line-height: 140%;
 }
+
 
 .photo_box table.form-table th {
 	width:80px;
@@ -1142,6 +1146,11 @@ table.photo_table td span a {
 #main_no_side .photo_box
 {
 	width:740px;
+}
+
+.go_back_link {
+	margin-bottom:12px;
+	font-weight:bold;
 }
 
 /* Comments */

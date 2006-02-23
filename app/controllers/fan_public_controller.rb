@@ -13,24 +13,22 @@ class FanPublicController < ApplicationController
   session :off, :only => :rss
   layout "public", :except => [:rss ] 
   
+  
   # Show the main fan page
   def index
     
-    # Determine the shows to display
-    case params[:show_display]
-    when nil, "upcoming"
-      @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
-    when "recent"
-      @shows = @fan.shows.find(:all, :conditions => ["date > ? and date < ?", Time.now - 1.week, Time.now])
-    when "all"
-      @shows = @fan.shows
-    else
-      logger.error "illegal value: " + params[:show_display]
-      flash[:error] = "Illegal value for show_display"
-    end
+    @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
   
     # Record the page view
     inc_page_views(@fan)
+  end
+  
+  def shows
+    @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days])
+  end
+  
+  def all_shows
+    @shows = @fan.shows.find(:all)
   end
   
   def change_logo

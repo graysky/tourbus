@@ -8,133 +8,24 @@
 <% @header_title = @band.name %>
 
 
-<script type="text/javascript">
-	function adjust_bio_height(force)
-	{
-		var logo_height = parseInt(Element.getHeight('logo'));
-		var bio_height = parseInt($('band_bio').offsetHeight);
-		if ((force || logo_height > bio_height) && logo_height > 140) {
-			$('band_bio').style.height = logo_height;
-		}
-		else if (force && logo_height < 140) {
-			$('band_bio').style.height = 140;
-		}
-	}
-	
-	function finish_image_upload(path)
-	{
-		new Effect.Fade('band_logo_select');
-		Element.hide('logo_indicator');
-		$('logo_container').innerHTML = '';
-		var img = document.createElement("IMG");
-		img.src = path;
-		img.id = 'logo';
-		$('logo_container').appendChild(img);
-		adjust_bio_height(true);
-	}
-	
-</script>
-
-<% 
-	if @params[:show_map] == "true"
-%>
-	  <%= gmaps_header	%>
-<% 
-	  content_for("onload") do 
-%>
-	  init_map()
-<%  
-	  end  
-%>
-
-	<script type="text/javascript">
-	
-		function init_map()
-		{
-			var map = new GMap(document.getElementById("map"));
-			
-		  	map.addControl(new GSmallMapControl());
-			<%= center_and_zoom_to_shows(@shows) %>
-			<%= write_show_map_points @shows %>
-		}
-	  </script>
-<%	  	  
-	end 
-%>
-
-<table width="95%">
-	<% if @logged_in_as_band %>
-		<tr><td>
-			<a href="#" id="change_logo" onclick="new Effect.Appear('band_logo_select')">Change Logo</a>
-		 	<div id="band_logo_select" style="display:none">
-		 		<%= form_tag_with_upload_progress({ :action => 'change_logo' },
-		 										  {	:begin => "Element.show('logo_indicator')",
-		 										  	:finish => "finish_image_upload(arguments[0])" })
-		 										  %>
-		 		<%= file_column_field "band", "logo" %>
-		 		
-			 		<br/>
-			 		<table><tr>
-			 			<td><%= submit_tag "OK" %></td>
-			 			<td><img id="logo_indicator" src="/images/indicator.gif" style="display:none"/></td>
-			 			<td><%= upload_status_tag %></td>
-			 		</tr></table>
-			 		<%= end_form_tag %>
-		 	</div>
-		</td>
-		<td style="padding-left:24px">
-			<% if @logged_in_as_band %>
-				<a id="edit_band_bio" href="#">Edit Your Bio</a>
-			<% end %>
-		</td>
-		</tr>
-	<% end %>
-	<tr>
-		<td valign="top">
-			<div id="logo_container">
-				<%= if !@band.logo.nil?
-				  image_tag url_for_file_column("band", "logo") , :id => "logo"
-				else
-				  "<img id='logo' src='images/unknown.jpg'/>".to_s
-			 	end %>
-		 	</div>
-		</td>
-		<td valign="top" style="padding-left:24px">
-			<%= band_bio_for_editing %>
-		</td>
-	</tr>
-</table>
-
-<% if @logged_in_as_band %>
-<script type="text/javascript">
-	new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio", okText:"Ok", cancelText:"Cancel"})
-</script>
-<% end %>
+<%= render :partial => "profile_header", :locals => { :front_page => true } %>
 
 
-<div class="panel_header">
-	<span class="title">Shows</span>
-	
-	<span class="actions">
-	<% if @logged_in_as_band %> 
-		<%= link_to "Add Show", band_public_action("add_show") %>
-	<% end %>
-	&nbsp;
-	&nbsp;
-	<%= map_list_toggle "index" %>
-	&nbsp;&nbsp;
-	<%= show_controls "index" %>
-	</span>
-</div>
+<%= section "shows_section", map_list_toggle("index") %>
 
 <% if @params[:show_map] == "true" %>
 	<a name="map_top"/>
+	<br/>
 	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
 
-<div class="results_box">
-	<%= show_results @shows, params[:show_map] == "true" %>
-</div>
+<br/>
+<%= show_results @shows, params[:show_map] == "true" %>
+<% if @shows.size > 0 %>
+<br/>
+<%= link_to "See more shows...", :action => :shows %>
+<% end %>
+
 
 	<%= render(
 	:partial => "shared/photo_preview", 
@@ -161,154 +52,4 @@
 
 </div>
 
-<div id="side">
-
-<div id="about-box" class="sidebar-box">
-    <h2 id="about-title"><span class="title">About This Band</span></h2>
-	
-	<p>
-		<% if @band.claimed? %>
-			<strong>Member Since:</strong> <%= simple_date @band.created_on %>
-		<% end %>
-		<strong>Profile Views:</strong> <%= @band.page_views %><br/>
-		<strong>Fans:</strong> <%= @band.fans.size %>
-		
-		<br/>
-		<br/>
-		<% if @band.claimed? %>
-			<a href="javascript:alert('coming soon')">Contact this band</a>
-		<% else %>
-			<strong>Is this your band?</strong><br/>
-			<a href="javascript:alert('coming soon')">Create a tourb.us account</a>
-		<% end %>
-	</p>
-</div>
-<br/>
-
-<div id="actions-box" class="sidebar-box">
-	<h2 id="actions-title"><span class="title">Actions</span></h2>
-	
-	<p>
-		<% if logged_in_fan and logged_in_fan.superuser? %>
-			<b><%= link_to "Edit This Band", :controller => "admin", :action => "edit_band", :id => @band.id %></b>
-			<br/>
-		<% end %>
-		
-		<span id="favorite_control">
-			<%= 
-				if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
-					render :partial => "shared/remove_favorite"
-				else
-					render :partial => "shared/add_favorite"
-				end
-			%>	
-		</span>
-		
-		<% if logged_in_fan.nil? %>
-			<div id='add_tip' class='fave_tip'>
-			<h3>Add a new favorite band</h3>
-	      	<p>
-	      		You must be logged in as a fan to add favorites!<br/><br/>
-	      		
-	      		<%= link_to "Cancel", "#" %>
-	      	</p>
-	      	</div>
-		<% else %>
-			<div id="remove_tip" class='fave_tip'>
-			<h3>Remove a favorite band</h3>
-	      	<p>
-	      		If you click "OK", you will stop receiving reminders of
-		      	this band's upcoming shows.<br/><br/>
-		      	
-		      	<strong>Are you sure you want to remove this band from your favorites?</strong>
-		      	
-		      	<%= form_remote_tag(
-					:update => "favorite_control",
-					:url => { 
-						:controller => "fan",
-						:action => "remove_favorite_band", 
-						:id => @band.id
-					}) 
-					%>
-					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
-		      	<%= end_form_tag %>
-	      	</p>
-	      	</div>
-		
-			<div id="add_tip" class='fave_tip'>
-			<h3>Add a new favorite band</h3>
-		      <p>
-		      	If you click "OK", you will start receiving reminders of
-		      	this band's upcoming shows in your area. <br/><br/>
-		      	
-		      	<strong>Are you sure you want to add a new favorite band?</strong>
-		      	
-		      	<%= form_remote_tag(
-					:update => "favorite_control",
-					:url => { 
-						:controller => "fan",
-						:action => "add_favorite_band", 
-						:id => @band.id
-					}) 
-					%>
-					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
-		      	<%= end_form_tag %>
-		      </p>
-			</div>
-		<% end %>
-		
-		<script type="text/javascript">
-			<% if not logged_in_fan.nil? and logged_in_fan.favorite?(@band) %>
-				Tooltip.add('remove_fave_link', 'remove_tip');
-			<% else %>
-				Tooltip.add('add_fave_link', 'add_tip');
-			<% end %>
-		</script>
-	</p>
-	
-	<p>
-		<!-- TODO Pull in partial -->
-		<table>
-		<tr>
-		<td><img src="/images/feed.png"/></td>
-		<td><a style="font-size:11px" href="<%= public_band_rss_url %>" id="rss_link">Subscribe to News</a></td>
-		</tr>
-		</table>
-		
-	</p>
-	
-	
-</div>
-<br/>
-
-	<%= render(
-	:partial => "shared/tags", 
-	:locals => 
-		{
-		:tags => @band.band_tag_names, 
-		:type => Tag.Band,
-		:title => "Tags",
-		:id => @band.id
-		}) 
-	%>
-	
-	<br/>
-</div>
-<script>
-	adjust_bio_height();
-</script>
-
-<script type="text/javascript">
-    var white = '#FFFFFF';
-
-    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
-    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
-    Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
-</script>
+<%= render :partial => "profile_sidebar" %>

@@ -57,16 +57,7 @@ class VenueController < ApplicationController
   # For displaying a single venue
   def show
     # Determine the shows to display
-    case params[:show_display]
-    when nil, "upcoming"
-      @shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now])
-    when "recent"
-      @shows = @venue.shows.find(:all, :conditions => ["date > ? and date < ?", Time.now - 1.week, Time.now])
-    when "all"
-      @shows = @venue.shows
-    else
-      flash.now[:error] = "Illegal value for show_display: " + params[:show_display]
-    end
+    @shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
     
     # Record the page view
     inc_page_views(@venue)

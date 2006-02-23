@@ -13,13 +13,7 @@
 	}
 </script>
 
-<div class="panel_header">
-	<span class="title">Comments</span>
-	
-	<% if logged_in? %> 
-		<span class="actions"><a href="#add_comment">Add a Comment</a></span>
-	<% end %>
-</div>
+<%= section "comments_section", "<a href='#add_comment'>#{image_tag('add_comment')}</a>" if logged_in? %>
 
 <div class="comments_box">
 

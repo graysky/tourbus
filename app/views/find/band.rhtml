@@ -10,7 +10,7 @@
 <% type = Band.table_name %>
 <div id="main">
 
-<div id="search_results">
+<div class="search_results">
 
 <center>
 <div id="browse_links">
@@ -54,74 +54,7 @@
 </h3>
 <br/>
 
-<%
-	index = 0
-	if @results
-		for result in @results
-%>
-
-	<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
-	
-		<table>
-			<tr>
-				<td><img class="photo_img" src="<%= get_band_logo_url(result) %>"/></td>
-				<td>
-					<div class="col2">
-						<%= public_band_link result.name, result %>
-						<br/>
-						<div class="result_tags">
-						<%
-							# TODO If we keep this it should be factored out
-							str = ""
-							for tag in result.tags[0..2]
-								str = str + " / " if str != ""
-								str += tag.name
-							end
-						%>
-						
-						<%= str %>
-						</div>
-					</div>
-					
-				</td>
-				<td class="col3">
-					<nobr>
-					<strong>upcoming shows:</strong> 1<br/>
-					<strong>fans:</strong> <%= result.num_fans %><br/>
-					</nobr>
-				</td>
-				<td class="col4" id="fave_column_<%= result.id %>">
-					<% if logged_in_fan %>
-						<% if logged_in_fan.favorite?(result) %>
-							<%= render(
-								:partial => "shared/remove_favorite_simple", 
-								:locals => 
-									{
-									:band => result
-									}) 
-								%>
-						<% else %>
-							<%= render(
-							:partial => "shared/add_favorite_simple", 
-							:locals => 
-								{
-								:band => result
-								}) 
-							%>
-						<% end %>
-					<% else %>
-						
-					<% end %>
-				</td>
-			</tr>
-		</table>
-	
-	</div>
-<%
-		index += 1
-		end
-	end
-%>
+<%= band_results(@results) if @results %>
 
 <%= render :partial => "paging" %>
 

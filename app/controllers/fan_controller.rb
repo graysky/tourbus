@@ -4,6 +4,7 @@ require_dependency "mobile_address"
 class FanController < ApplicationController
   include FanLoginSystem
   
+  helper :band
   before_filter :fan_login_required, :except => [:logout]
   before_filter :find_fan
   layout "public", :except => [:send_test_sms ] 

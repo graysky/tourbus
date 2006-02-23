@@ -8,25 +8,14 @@
 	 end
 	 
 	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
+	 action = nil
+	 if logged_in? and not showing_creator
+	 	action = "<a href='javascript:void(0)' onclick='new Effect.Appear(\"add_photo\")'>#{image_tag('upload_photo')}</a>"
+	 end
 %>
 
-<div class="panel_header">
-	<span class="title">Photos</span>
-	<% 
-		if not full
-		  options = { :action => "photos", :id => id }
-		  if type == Photo.FromFan
-		    options[:controller] = "fan/" + @fan.name
-		  end 
-	%>
-		<span class="actions"><%= link_to "View All Photos", options %>
-		&nbsp;&nbsp;
-	<% end %>
-	<% if logged_in? and not showing_creator %> 
-		<a href="#" onclick="new Effect.Appear('add_photo')">Add a Photo</a></span>
-	<% end %>
-</div>
 
+<%= section "photos_section", action %>
 
 <% # TODO Pull out into js file %>
 <script type="text/javascript">
@@ -137,6 +126,17 @@
 	%>
 		<strong>There are no photos yet.</strong>
 	</span>
+	<% elsif not full %>
+	<% 
+		if not full
+		  options = { :action => "photos", :id => id }
+		  if type == Photo.FromFan
+		    options[:controller] = "fan/" + @fan.name
+		  end
+		end 
+	%>
+	<br/>
+	<%= link_to "See more photos...", options %>
 	<%
 		end
 	%>

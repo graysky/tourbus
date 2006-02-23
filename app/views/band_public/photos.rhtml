@@ -1,11 +1,11 @@
-<div id="main_no_side">
+<div id="main">
 
-<% @header_title = @band.name + "/Photos" %>
+<% @header_title = @page_title = @band.name + "/Photos" %>
 
 
-<span><%= public_band_link "Back To Main Band Page", @band %></span>
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
-	<%= render(
+<%= render(
 	:partial => "shared/photo_preview", 
 	:locals => 
 		{
@@ -15,5 +15,5 @@
 		:full => true
 		}) 
 	%>
-	
-</div>
+
+<%= render :partial => "profile_sidebar" %>

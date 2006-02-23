@@ -1,0 +1,149 @@
+<div id="side">
+
+<div id="about-box" class="sidebar-box">
+    <h2 id="about-title"><span class="title">About This Band</span></h2>
+	
+	<p>
+		<% if @band.claimed? %>
+			<strong>Member Since:</strong> <%= simple_date @band.created_on %>
+		<% end %>
+		<strong>Profile Views:</strong> <%= @band.page_views %><br/>
+		<strong>Fans:</strong> <%= @band.fans.size %>
+		
+		<br/>
+		<br/>
+		<% if @band.claimed? %>
+			<a href="javascript:alert('coming soon')">Contact this band</a>
+		<% else %>
+			<strong>Is this your band?</strong><br/>
+			<a href="javascript:alert('coming soon')">Create a tourb.us account</a>
+		<% end %>
+	</p>
+</div>
+<br/>
+
+<div id="actions-box" class="sidebar-box">
+	<h2 id="actions-title"><span class="title">Actions</span></h2>
+	
+	<p>
+		<% if logged_in_fan and logged_in_fan.superuser? %>
+			<b><%= link_to "Edit This Band", :controller => "admin", :action => "edit_band", :id => @band.id %></b>
+			<br/>
+		<% end %>
+		
+		<span id="favorite_control">
+			<%= 
+				if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
+					render :partial => "shared/remove_favorite"
+				else
+					render :partial => "shared/add_favorite"
+				end
+			%>	
+		</span>
+		
+		<% if logged_in_fan.nil? %>
+			<div id='add_tip' class='fave_tip'>
+			<h3>Add a new favorite band</h3>
+	      	<p>
+	      		You must be logged in as a fan to add favorites!<br/><br/>
+	      		
+	      		<%= link_to "Cancel", "#" %>
+	      	</p>
+	      	</div>
+		<% else %>
+			<div id="remove_tip" class='fave_tip'>
+			<h3>Remove a favorite band</h3>
+	      	<p>
+	      		If you click "OK", you will stop receiving reminders of
+		      	this band's upcoming shows.<br/><br/>
+		      	
+		      	<strong>Are you sure you want to remove this band from your favorites?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "favorite_control",
+					:url => { 
+						:controller => "fan",
+						:action => "remove_favorite_band", 
+						:id => @band.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+	      	</p>
+	      	</div>
+		
+			<div id="add_tip" class='fave_tip'>
+			<h3>Add a new favorite band</h3>
+		      <p>
+		      	If you click "OK", you will start receiving reminders of
+		      	this band's upcoming shows in your area. <br/><br/>
+		      	
+		      	<strong>Are you sure you want to add a new favorite band?</strong>
+		      	
+		      	<%= form_remote_tag(
+					:update => "favorite_control",
+					:url => { 
+						:controller => "fan",
+						:action => "add_favorite_band", 
+						:id => @band.id
+					}) 
+					%>
+					
+		      		<%= submit_tag "OK" %>&nbsp;
+		      		<%= link_to "Cancel", "#" %>
+		      	<%= end_form_tag %>
+		      </p>
+			</div>
+		<% end %>
+		
+		<script type="text/javascript">
+			<% if not logged_in_fan.nil? and logged_in_fan.favorite?(@band) %>
+				Tooltip.add('remove_fave_link', 'remove_tip');
+			<% else %>
+				Tooltip.add('add_fave_link', 'add_tip');
+			<% end %>
+		</script>
+	</p>
+	
+	<p>
+		<!-- TODO Pull in partial -->
+		<table>
+		<tr>
+		<td><img src="/images/feed.png"/></td>
+		<td><a style="font-size:11px" href="<%= public_band_rss_url %>" id="rss_link">Subscribe to News</a></td>
+		</tr>
+		</table>
+		
+	</p>
+	
+	
+</div>
+<br/>
+
+	<%= render(
+	:partial => "shared/tags", 
+	:locals => 
+		{
+		:tags => @band.band_tag_names, 
+		:type => Tag.Band,
+		:title => "Tags",
+		:id => @band.id
+		}) 
+	%>
+	
+	<br/>
+</div>
+
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
+</script>   
+

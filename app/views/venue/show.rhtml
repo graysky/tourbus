@@ -135,22 +135,11 @@ init_map()
 </table>
 
 
-<div class="panel_header">
-	<span class="title">Shows</span>
-	<span class="actions">
-	&nbsp;
-	&nbsp;
-	&nbsp;
-	&nbsp;
-	&nbsp;
-	&nbsp;
-	<%= show_controls "show" %>
-	</span>	
-</div>
+<%= section "shows_section", nil %>
 
-<div class="results_box">
-	<%= show_results @shows, false, false %>
-</div>
+<br/>
+<%= show_results @shows, false, false %>
+
 	<%= render(
 	:partial => "shared/photo_preview", 
 	:locals => 

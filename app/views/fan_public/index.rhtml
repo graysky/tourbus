@@ -108,37 +108,15 @@
 </script>
 <% end %>
 
-
-<div class="panel_header">
-	<span class="title">Shows</span>
-	
-	<!--
-	<span class="actions">
-	&nbsp;
-	&nbsp;
-	<%= map_list_toggle "index" %>
-	&nbsp;&nbsp;
-	<%= show_controls "index" %>
-	</span>
-	-->
-</div>
-<div style="font-size:12px;position:relative;left:380;margin-top:8px">
-	<select style="font-size:12px">
-		<option>Upcoming Shows</option>
-		<option>Watched Shows</option>
-	</select>
-	&nbsp;
-	<%= map_list_toggle "index" %>
-</div>
-
+<%= section "shows_section", map_list_toggle("index") %>
+<br/>
 <% if @params[:show_map] == "true" %>
 	<a name="map_top"/>
 	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
 
-<div class="results_box">
-	<%= show_results @shows, params[:show_map] == "true" %>
-</div>
+
+<%= show_results @shows, params[:show_map] == "true" %>
 
 <%= render(
 	:partial => "shared/photo_preview", 

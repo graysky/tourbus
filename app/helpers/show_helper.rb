@@ -1,35 +1,15 @@
 module ShowHelper
   def show_results(shows, show_map, show_venue = true)
-    # TODO Make text specific to context
-    if shows == nil || shows.empty?
-      return "<div><strong>No shows found</strong></div>"
-    end
-    
-    out = ""
-    out << "<table class='show_table'><tr>"
-    out << "<th>Date</th><th>Time</th><th>Bands</th><th width='100px'>Venue</th><th><nobr></nobr></th>"
-    out << "</tr>"
-    
-    last_date = nil
+    return if shows == nil || shows.empty?
+     
+    out = "<div class='search_results'>"
+    index = 0
     for show in shows
-      date = friendly_date(show.date)
-      if last_date == date
-        date = ""
-      else
-        last_date = date
-      end
-      
-      out << "<tr>"
-      out << col("<nobr>" + date + "</nobr>")
-      out << col(friendly_time(show.date))
-      out << col("<strong>" + show.bands.map { |band| band.name }.join(", ") +"</strong>")
-      out << col(show.venue.name)
-      out << col("<strong>" + link_to("Details", :controller => "show", :action => "show", :id => show.id) + "</strong>" )
-      out << "</tr>"
+      out << render(:partial => "shared/show_search_result", 
+                    :locals => { :show => show, :index => index, :show_map => show_map, :show_venue => show_venue })
+      index += 1
     end
-    
-    out << "</table>"
-    return out
+    out << "</div>"
   end
   
   def write_show_map_points(shows_by_date)
@@ -74,25 +54,12 @@ module ShowHelper
   
   def map_list_toggle(action)
     if (params[:show_map] == nil || params[:show_map] == "false")
-      link_to("Show Map", :action => action, :show_map => "true", :show_display => params[:show_display])
+      link_to(image_tag("show_map"), :action => action, :show_map => "true", :show_display => params[:show_display])
     else
-      link_to("Show List", :action => action, :show_map => "false", :show_display => params[:show_display])
+      link_to(image_tag("show_list"), :action => action, :show_map => "false", :show_display => params[:show_display])
     end
   end
-  
-  def show_controls(action)
-    out = ""
-    out << link_to_unless(params[:show_display] == nil || params[:show_display] == "upcoming",
-                          "Upcoming", :action => action, :show_display => "upcoming", :show_map => params[:show_map])
-    out << " | "
-    out << link_to_unless(params[:show_display] == "recent",
-                          "Recent", :action => action, :show_display => "recent", :show_map => params[:show_map])
-    out << " | "
-    out << link_to_unless(params[:show_display] == "all",
-                          "All", :action => action, :show_display => "all", :show_map => params[:show_map])
-    out
-  end
-  
+    
   def can_edit_show(show)
     return if not logged_in?
     

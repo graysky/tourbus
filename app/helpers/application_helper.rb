@@ -97,7 +97,7 @@ END_JS
     "<table><tr><td valign='top'><img src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
   end
   
-  def section(title_img, action)
+  def section(title_img, action = nil)
     out = "<div class='panel_header'><table><tr>"
     out << "<td width='580px'>#{image_tag(title_img)}</td>"
 	if action

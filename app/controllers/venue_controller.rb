@@ -63,6 +63,15 @@ class VenueController < ApplicationController
     inc_page_views(@venue)
   end
   
+  def shows
+    @shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days])
+  end
+  
+  def all_shows
+    @shows = @venue.shows.find(:all)
+  end
+  
+  
   # TODO FIXME - Can't use "@venue.name" because the venue's ID wans't passed in
   def photo
     render_component :controller => "photo", :action => "show_one", 

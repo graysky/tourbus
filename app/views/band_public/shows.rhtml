@@ -6,9 +6,7 @@
 <%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
 
-<div class="panel_header">
-	<span class="title"> Recent and Upcoming Shows</span>
-</div>
+<%= section "recent_and_upcoming_shows_section" %>
 
 <% if @params[:show_map] == "true" %>
 	<a name="map_top"/>

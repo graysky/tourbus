@@ -2,143 +2,24 @@
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<%= public_venue_rss_url(@venue) %>"/>
 <% end %>
 
-<div id="main">
 
 <% @page_title = @venue.name %>
 <% @header_title = @venue.name %>
 
-<%= gmaps_header %>
+<div id="main">
 
-<% content_for("onload") do %>
-init_map()
-<% end %>
+<%= render :partial => "profile_header", :locals => { :front_page => true } %>
 
-<script type="text/javascript">
-	
-	function init_map()
-	{
-		var map = new GMap(document.getElementById("map"));
-	
-		var latitude = <%=@venue.latitude%> ;
-		var longitude = <%=@venue.longitude%> ;
-		
-		var point = new GPoint(longitude, latitude);
-		
-	  map.centerAndZoom(point, 3);
-	  map.addControl(new GSmallMapControl());
-		//map.addControl(new GMapTypeControl());
-		
-		// Need to specially handle text so that it wraps properly. Seems to default
-		// to wrapping at any blank spaces
-		// var html = "<small>Wellesley&nbsp;High&nbsp; School</small>";
-		var html = "<div class='map_info'>";
-		html += "<b><%= gmarker_fmt(@venue.name) %></b> <BR/>";
-		html += "<%= gmarker_fmt(@venue.address) %> <BR/>";
-		html += "<%= gmarker_fmt(@venue.city)%>, <%=gmarker_fmt(@venue.state)%> <%= gmarker_fmt(@venue.zipcode) %> <BR/>";
-		html += "</div>";
-
-		var marker = createMarker(point, html);
-		
-	  map.addOverlay(marker);
-	}
-</script>
-
-
-<table width="95%">
-	<tr>
-		<td valign="top">
-		
-		<div style="width: 280px; height:280px" id="map"></div>
-		
-		</td>
-		<td valign="top" style="padding-left:16px">
-
-		<table width="100%">
-		  <tr>
-		  		
-				<td valign="top" style="padding-bottom:8px">
-				<b>Address:</b>
-				</td>
-				
-				<td valign="top" style="padding-left:8px">
-				<%= @venue.address %>
-				<BR/>
-				<%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %>
-				
-				</td>
-			</tr>
-			
-			<tr>
-				<td valign="top" style="padding-bottom:8px">
-				<b>Phone:</b>
-				</td>
-				
-				<td valign="top" style="padding-left:8px">
-				<%= @venue.phone_number %>
-				</td>
-			</tr>
-			
-			<tr>
-				<td valign="top" style="padding-bottom:8px">
-				<b>Web Page:</b>
-				</td>
-				
-				<td valign="top" style="padding-left:8px">
-				<%= venue_url_for_editing %>
-				<% if logged_in? %>
-					<!-- Link with no body -->
-				<script type="text/javascript">
-					new Ajax.InPlaceEditor('venue_url', '<%= url_for(:action => "set_url", :id => @venue.id) %>', {rows:1, cols:25, externalControl:"edit_venue_all"})
-				</script>
-				
-				<% end %>
-				</td>
-			</tr>
-			
-			<tr>
-				<td valign="top" style="padding-bottom:8px">
-				<b>Description:</b>
-				</td>
-				
-				<td valign="top" style="padding-left:8px">
-				<%= venue_desc_for_editing %>
-				<% if logged_in? %>
-					<!-- <a href="#" id="edit_venue_all">Edit Venue</a> -->
-				<% end %>
-				
-				<% if logged_in? %>
-					<a id="edit_venue_all" href="#">Edit</a>
-				<script type="text/javascript">
-					new Ajax.InPlaceEditor('venue_desc', '<%= url_for(:action => "set_description", :id => @venue.id) %>', {rows:5, cols:20, externalControl:"edit_venue_all"})
-				</script>
-				<% end %>
-				
-				
-				</td>
-			</tr>
-			
-			<tr>
-				<td valign="top" style="padding-bottom:8px">
-				
-				</td>
-			</tr>
-			
-		</table>
-			
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<%= google_map_link(@venue) %>
-		</td>
-	</tr>
-</table>
 
 
 <%= section "shows_section", nil %>
 
 <br/>
 <%= show_results @shows, false, false %>
+<% if @shows.size > 0 %>
+<br/>
+<%= link_to "See more shows...", :action => :shows %>
+<% end %>
 
 	<%= render(
 	:partial => "shared/photo_preview", 
@@ -165,41 +46,4 @@ init_map()
 
 </div>
 
-<div id="side">
-
-<div id="actions-box" class="sidebar-box">
-	<h2 id="actions-title"><span class="title">Actions</span></h2>
-	
-	<p>
-		<!-- TODO Pull in partial -->
-		<table>
-		<tr>
-		<td><img src="/images/feed.png"/></td>
-		<td><a style="font-size:11px" href="<%= public_venue_rss_url(@venue) %>" id="rss_link">Subscribe to News</a></td>
-		</tr>
-		</table>
-		
-	</p>	
-</div>
-
-<br/>
-	<%= render(
-	:partial => "shared/tags", 
-	:locals => 
-		{
-		:tags => @venue.tag_names,
-		:type => Tag.Venue,
-		:title => "Tags",
-		:id => @venue.id,
-		}) 
-	%>
-	
-</div>
-<script type="text/javascript">
-    var white = '#FFFFFF';
-
-    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
-    Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
-</script>
+<%= render :partial => "profile_sidebar" %>

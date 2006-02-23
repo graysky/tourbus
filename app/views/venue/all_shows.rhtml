@@ -1,0 +1,14 @@
+<div id="main">
+
+<% @header_title = @venue.name + "/All Shows" %>
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+<%= section "all_shows_section" %>
+<br/>
+<%= show_results @shows, false, false %>
+<br/>
+<%= link_to "See just recent and upcoming shows...", :action => :shows %>
+</div>	
+
+<%= render :partial => "profile_sidebar" %>

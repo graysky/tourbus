@@ -15,6 +15,32 @@ class Tag < ActiveRecord::Base
   PHOTO_TYPE = 4
   SHOW_TYPE = 5
   
+  # Converts from tag type to string representing tag type
+  # Useful for tag link to search
+  def self.get_type_name(tag_type)
+    
+    # Convert from string to fixnum if needed
+    if tag_type.kind_of?(String)
+      tag_type = tag_type.to_i
+    end
+    
+    case tag_type
+      
+    when BAND_TYPE
+      return "band"
+    when VENUE_TYPE
+      return "venue"
+    when SHOW_TYPE
+      return "show"
+    when PHOTO_TYPE
+      return "photo"
+    when FAN_TYPE
+      return "fan"
+    end
+
+    return "unknown"    
+  end
+  
   # Getter for type
   def self.Band
     BAND_TYPE

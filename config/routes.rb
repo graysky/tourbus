@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'tag/:action/:id', :controller => 'tag'
   
   # Find controller
-  map.connect 'find/:action/:id', :controller => 'find'
+  map.connect 'find/:action/:query', :controller => 'find'
   
   # Misc. public pages
   map.connect 'about/', :controller => 'public', :action => 'about_us'

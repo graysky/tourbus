@@ -5,15 +5,21 @@
 # :type => type of tag 
 # :id => id of the tagged item 
 # :show_delete => true to show the delete action
-#
-# TODO Add real link to search by tag
 %>
-<% t_id = "#{tag.id}" %>
+<% 
+  t_id = "#{tag.id}" 
+  # Determine which object to search for
+  link_action = Tag.get_type_name(type)
+%>
 <div class="tag-item">
 
 <tr id="tag-<%= t_id %>">
 <td align="left"><img src="/images/bullet.gif"/></td>
-<td width="98%"><a class="tag-link" href="#"><%= truncate(tag.name, 22) %></a></td>
+<td width="98%">
+<%= link_to(truncate(tag.name, 22), 
+           {:controller => "find", :action => link_action, :query => tag.name }, 
+           :post => true) %>
+</td>
 <td>
 <% if show_delete%>
 <span class="tag-delete">

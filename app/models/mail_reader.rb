@@ -22,10 +22,10 @@ class MailReader < ActionMailer::Base
     body = email.body
     to_addrs = email.to_addrs
     
-    p "Mail received at: #{date}"
-    p "Received email from: #{from_name} (#{from_addr})"
-    p "Subject: #{subject}"
-    p "Body: #{body}"
+    #p "Mail received at: #{date}"
+    #p "Received email from: #{from_name} (#{from_addr})"
+    #p "Subject: #{subject}"
+    #p "Body: #{body}"
 
     # If the email contains a valid "to" address
     valid_to_addr = false
@@ -146,7 +146,7 @@ class MailReader < ActionMailer::Base
     upload_addr = UploadAddr.find_by_address(sent_to_addr)
     
     if upload_addr.nil?
-      p "Upload address not found!"
+      # p "Upload address not found!"
       logger.warn "Upload address not found!"
       return false
     end

@@ -22,6 +22,11 @@ class UploadAddr < ActiveRecord::Base
     return EMAIL_DOMAIN
   end 
   
+  # Format the address as email address
+  def to_s
+    return address + "@" + EMAIL_DOMAIN
+  end
+  
   # Quick check to see if a given email address is of the pattern we use. 
   # This is to prevent extra hits to the db when there is a lot of spam to filter out.
   def self.valid_address?(addr)

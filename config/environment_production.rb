@@ -65,8 +65,8 @@ ActionMailer::Base.server_settings = {
 # Options to control how RailsCron behaves, intervals in seconds.
 # Make it only rarely check the db, since we load the tasks infrequently
 RailsCron.options = {
-    :sleep => 30,
-    :db_sleep => 900,
+    :sleep => 60,
+    :db_sleep => 1800,
     :allow_concurrency => false
 }
 

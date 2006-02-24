@@ -171,7 +171,7 @@ task :create_cron_tasks do
   cmd = <<END
     RailsCron.destroy_all
     
-    RailsCron.create(:command => "MailReader.check_email", :start => 1.minutes.from_now, :every => 1.minutes, :concurrent => false)
+    RailsCron.create(:command => "MailReader.check_email", :start => 1.minutes.from_now, :every => 10.minutes, :concurrent => false)
 END
 
   system "ruby ./script/runner '#{cmd}'"

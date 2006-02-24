@@ -21,10 +21,8 @@
 
 <br/>
 <%= show_results @shows, params[:show_map] == "true" %>
-<% if @shows.size > 0 %>
 <br/>
 <%= link_to "See more shows...", :action => :shows %>
-<% end %>
 
 
 	<%= render(

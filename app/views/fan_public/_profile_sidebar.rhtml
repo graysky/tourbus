@@ -1,0 +1,49 @@
+<div id="side">
+	<div id="about-box" class="sidebar-box">
+	<h2 id="about-title"><span class="title">About This User</span></h2>
+	
+	<p>
+		<strong>Member Since:</strong> <%= simple_date @fan.created_on %>
+		<strong>Profile Views:</strong> <%= @fan.page_views %>
+		
+		<br/>
+		<br/>
+		<a href="javascript:alert('coming soon')">Contact this user</a>
+	</p>
+	</div>
+	
+	<br/>
+	
+	<div id="actions-box" class="sidebar-box">
+	<h2 id="actions-title"><span class="title">Actions</span></h2>
+		
+			
+		<p>
+		<!-- TODO Pull in partial -->
+		<table>
+		<% if @logged_in_as_fan %>
+			<tr>
+				<td><img src="/images/add.png"/></td>
+				<td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td><img src="/images/feed.png"/></td>
+			<td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
+		</tr>
+		</table>
+		
+		</p>
+	
+	</div>
+</div>
+<script>
+	adjust_bio_height();
+	
+	var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+</script>

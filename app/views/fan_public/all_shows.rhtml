@@ -1,0 +1,23 @@
+<div id="main">
+
+<% @header_title = @page_title = @fan.name + "/All Shows" %>
+
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+
+<%= section("all_shows_section") %>
+
+<% if @params[:show_map] == "true" %>
+	<a name="map_top"/>
+	<br/>
+	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+<% end %>
+
+<br/>
+<%= show_results @shows, params[:show_map] == "true" %>
+<br/>
+<%= link_to "See just recent and upcoming shows...", :action => :shows %>
+</div>
+
+<%= render :partial => "profile_sidebar" %>

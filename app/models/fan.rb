@@ -16,8 +16,7 @@ class Fan < ActiveRecord::Base
   has_one :upload_addr
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
-  has_and_belongs_to_many :watching_shows, :class_name => "Show", :join_table => 'fans_watching_shows', :order => "date ASC"
-  
+ 
   validates_uniqueness_of :uuid # just in case
   
   # TODO No spaces in name
@@ -39,9 +38,41 @@ class Fan < ActiveRecord::Base
     self.bands.detect { |fav| fav == band }
   end
   
+  def attend_show(show)
+    self.shows.push_with_attributes(show, { :attending => true, :watching => false })
+    show.num_attendees += 1
+  end
+  
+  def stop_attending_show(show)
+    if self.attending?(show)
+      self.shows.delete(show)
+      show.num_attendees -= 1
+    end
+  end
+  
+  def watch_show(show)
+    self.shows.push_with_attributes(show, { :attending => false, :watching => true })
+    show.num_watchers += 1
+  end
+  
+  def stop_watching_show(show)
+    if self.watching?(show)
+      self.shows.delete(show)
+      show.num_watchers -= 1
+    end
+  end
+  
+  def watching_shows
+    self.shows.find(:all, :conditions => "watching = 1")
+  end
+  
+  def attending_shows
+    self.shows.find(:all, :conditions => "attending = 1")
+  end
+  
   # Return if the show is one the fan is attending
   def attending?(show)
-    self.shows.detect { |x| x == show  }
+    self.attending_shows.detect { |x| x == show  }
   end
   
   # Return if the show is one the fan is watching

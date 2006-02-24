@@ -74,7 +74,7 @@ class RemindersMailer < BaseMailer
       reminders = RemindersCalculator.new(fan)
       
       upcoming_shows = reminders.upcoming_shows
-      watching_shows = fan.watching_shows
+      watching_shows = fan.shows.find(:all, :conditions => ["date > ? and watching = 1", Time.now])
       
       # Skip this fan if they don't have any upcoming shows
       next if (upcoming_shows.nil? or upcoming_shows.empty?) and watching_shows.empty?
@@ -181,7 +181,7 @@ class RemindersMailer < BaseMailer
     def upcoming_shows
       
       shows = []
-      shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
+      shows = @fan.shows.find(:all, :conditions => ["date > ? and attending = 1", Time.now])
     end 
   end
   

@@ -1,9 +1,8 @@
-<div id="main_no_side">
+<div id="main">
 
 <% @header_title = @fan.name + "/Photos" %>
-<!--
-<h1><%= @fan.name %> <span><%= public_fan_link "Back To Main Fan Profile", @fan %></span></h1>
--->
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
 	<%= render(
 	:partial => "shared/photo_preview", 
@@ -17,3 +16,5 @@
 	%>
 	
 </div>
+
+<%= render :partial => "profile_sidebar" %>

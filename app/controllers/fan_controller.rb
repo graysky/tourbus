@@ -112,8 +112,7 @@ class FanController < ApplicationController
     # If they are already attending, maybe someone just typed in the URL
     return if @fan.attending?(show)
     
-    @fan.shows << show
-    show.num_attendees += 1
+    @fan.attend_show(show)
     Fan.transaction(@fan) do
       Show.transaction(show) do
         # FIXME how do we handle errors here?
@@ -129,20 +128,15 @@ class FanController < ApplicationController
   # This fan will NOT attend the show
   def remove_attending_show
     show = Show.find(params[:id])
-    if @fan.attending?(show)
-      @fan.shows.delete(show)
-      show.num_attendees -= 1
-      
-      Fan.transaction(@fan) do
-        Show.transaction(show) do
-          # FIXME how do we handle errors here?
-          @fan.save!
-          show.save!
-          show.ferret_save
-        end
+    @fan.stop_attending_show(show)
+    Fan.transaction(@fan) do
+      Show.transaction(show) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        show.save!
+        show.ferret_save
       end
     end
-    
     
     render :partial => "shared/add_attending"
   end
@@ -154,9 +148,7 @@ class FanController < ApplicationController
     # If they are already watching maybe someone just typed in the URL
     return if @fan.watching?(show)
     
-    @fan.watching_shows << show
-    show.num_watchers += 1
-    
+    @fan.watch_show(show)
     Fan.transaction(@fan) do
       Show.transaction(show) do
         # FIXME how do we handle errors here?
@@ -172,17 +164,13 @@ class FanController < ApplicationController
   # This fan will NOT watch the show
   def remove_watching_show
     show = Show.find(params[:id])
-    if @fan.watching?(show)
-      @fan.watching_shows.delete(show)
-      show.num_watchers -= 1
-      
-      Fan.transaction(@fan) do
-        Show.transaction(show) do
-          # FIXME how do we handle errors here?
-          @fan.save!
-          show.save!
-          show.ferret_save
-        end
+    @fan.stop_watching_show(show)
+    Fan.transaction(@fan) do
+      Show.transaction(show) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        show.save!
+        show.ferret_save
       end
     end
     

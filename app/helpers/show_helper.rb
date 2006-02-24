@@ -1,12 +1,12 @@
 module ShowHelper
-  def show_results(shows, show_map, show_venue = true)
+  def show_results(shows, show_map, show_venue = true, fan = nil)
     return if shows == nil || shows.empty?
      
     out = "<div class='search_results'>"
     index = 0
     for show in shows
       out << render(:partial => "shared/show_search_result", 
-                    :locals => { :show => show, :index => index, :show_map => show_map, :show_venue => show_venue })
+                    :locals => { :show => show, :index => index, :show_map => show_map, :show_venue => show_venue, :fan => fan })
       index += 1
     end
     out << "</div>"
@@ -67,6 +67,12 @@ module ShowHelper
     show.created_by_fan or 
     (logged_in_band and show.bands.detect {|b| b.id == logged_in_band.id}) or
     (logged_in_band and logged_in_band == show.created_by_band)
+  end
+  
+  def fan_status(show, fan)
+    label = "status"
+    value = fan.attending?(show) ? :"ATTENDING" : "WATCHING"
+    "<strong>#{label}:</strong> #{value}"
   end
   
   #########

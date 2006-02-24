@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	function adjust_bio_height(force)
+	{
+		var logo_height = parseInt(Element.getHeight('logo'));
+		var bio_height = parseInt($('fan_bio').offsetHeight);
+		if ((force || logo_height > bio_height) && logo_height > 140) {
+			$('fan_bio').style.height = logo_height;
+		}
+		else if (force && logo_height < 140) {
+			$('fan_bio').style.height = 140;
+		}
+	}
+	
+	function finish_image_upload(path)
+	{
+		new Effect.Fade('fan_logo_select');
+		Element.hide('logo_indicator');
+		// FIXME problem on FF 1.0... try just removing all children with the DOM?
+		$('logo_container').innerHTML = '';
+		var img = document.createElement("IMG");
+		img.src = path;
+		img.id = 'logo';
+		$('logo_container').appendChild(img);
+		adjust_bio_height(true);
+	}
+	
+</script>
+
+
+
+<% 
+	if @params[:show_map] == "true"
+%>
+	  <%= gmaps_header	%>
+<% 
+	  content_for("onload") do 
+%>
+	  init_map()
+<%  
+	  end  
+%>
+
+	<script type="text/javascript">
+	
+		function init_map()
+		{
+			var map = new GMap(document.getElementById("map"));
+			
+		  	map.addControl(new GSmallMapControl());
+			<%= center_and_zoom_to_shows(@shows) %>
+			<%= write_show_map_points @shows %>
+		}
+	  </script>
+<%	  	  
+	end 
+%>
+
+<% if not front_page %>
+<div class='go_back_link'><%= public_fan_link "Back to profile", @fan %></div>
+<% end %>
+
+<table>
+	<% if @logged_in_as_fan %>
+		<tr><td>
+			<a href="#" id="change_logo" onclick="new Effect.Appear('fan_logo_select')">Change Logo</a>
+		 	<div id="fan_logo_select" style="display:none">
+		 		<%= form_tag_with_upload_progress({ :action => 'change_logo' },
+		 										  {	:begin => "Element.show('logo_indicator')",
+		 										  	:finish => "finish_image_upload(arguments[0])" })
+		 										  %>
+		 		<%= file_column_field "fan", "logo" %>
+		 		
+			 		<br/>
+			 		<table><tr>
+			 			<td><%= submit_tag "OK" %></td>
+			 			<td><img id="logo_indicator" src="/images/indicator.gif" style="display:none"/></td>
+			 			<td><%= upload_status_tag %></td>
+			 		</tr></table>
+			 		<%= end_form_tag %>
+		 	</div>
+		</td>
+		<td style="padding-left:24px">
+			<% if @logged_in_as_fan %>
+				<a id="edit_fan_bio" href="#">Edit Your Bio</a>
+			<% end %>
+		</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td valign="top">
+			<div id='logo_container'>
+				<%= if !@fan.logo.nil?
+				  image_tag url_for_file_column("fan", "logo") , :id => "logo"
+				else
+				  "<img id='logo' src='/images/unknown.jpg'/>".to_s
+			 	end %>
+			 </div>
+		</td>
+		<td valign="top" style="padding-left:24px">
+			<%= fan_bio_for_editing %>
+		</td>
+	</tr>
+</table>
+
+<% if @logged_in_as_fan %>
+<script type="text/javascript">
+	new Ajax.InPlaceEditor('fan_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_fan_bio", okText:"Ok", cancelText:"Cancel"})
+</script>
+<% end %>

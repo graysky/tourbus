@@ -4,6 +4,8 @@ require_dependency 'favorites_calculator'
 class FanPublicController < ApplicationController
   before_filter :find_fan
   helper :show
+  helper :portlet
+  helper :band
   helper :map
   helper :tag
   helper :photo
@@ -18,7 +20,8 @@ class FanPublicController < ApplicationController
   def index
     
     @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
-  
+    @bands = @fan.bands.find(:all, :limit => 5)
+    
     # Record the page view
     inc_page_views(@fan)
   end
@@ -29,6 +32,10 @@ class FanPublicController < ApplicationController
   
   def all_shows
     @shows = @fan.shows.find(:all)
+  end
+  
+  def favorite_bands
+    @bands = @fan.bands.find(:all)
   end
   
   def change_logo

@@ -11,13 +11,40 @@
 	@header_title = simple_date(@show.date) + " : " + truncate(title, 32)
 %>
 
+<div class="search_results" style="width:300px; float:left;">
 
-<div id="bands_playing">
-	<% for band in @show.bands %>
-		<div class="band_playing">
-			<nobr><%= public_band_link band.name, band %></nobr>
-		</div>
-	<% end %>
+<%
+	index = 0
+    for band in @show.bands
+%>
+	<div class="<%= index % 2 == 0 ? 'result_even_narrow' : 'result_odd_narrow' %> <%= 'first_result' if index == 0 %>">	
+		<table>
+			<tr>
+				<td><img class="photo_img" src="<%= get_band_logo_url(band) %>"/></td>
+			    <td>
+				<div class="col2_narrow">
+					<%= public_band_link band.name, band %>
+					<br/>
+					<div class="result_tags">
+					<%
+						# TODO If we keep this it should be factored out
+						str = ""
+						for tag in band.tags[0..2]
+							str = str + " / " if str != ""
+							str += tag.name
+						end
+					%>
+					<%= str %>
+					</div>
+				</div>
+			</td>
+			</tr>
+		</table>
+	</div>
+<%
+	index += 1
+	end
+%>
 </div>
 
 <div id="venue_for_show">

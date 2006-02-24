@@ -9,6 +9,7 @@ class ShowController < ApplicationController
   helper :comment
   helper :photo
   helper :feed
+  helper :portlet
   
   session :off, :only => :rss
   before_filter :find_show, :except => [ :venue_search ]

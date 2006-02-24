@@ -895,9 +895,14 @@ table.form-table #selected_venue {
 
 #main #venue_for_show {
 	float:right;
-	margin-right:60px
+	margin-right:120px;
+	font-size:16px;
+	line-height:120%;
 }
 
+#main #venue_for_show a {
+    font-size:14px;
+}
 
 #main
 {
@@ -945,7 +950,6 @@ table.form-table #selected_venue {
 	font-size:12px;
 }
 
-
 .search_results .result_even {
 	height:60px;
 	background-color:#eee;
@@ -955,11 +959,29 @@ table.form-table #selected_venue {
 	border-top:0px;
 }
 
+.search_results .result_even_narrow {
+	height:60px;
+	background-color:#eee;
+	padding:4px 0 0px 4px;
+	width:300px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
 .search_results .result_odd {
 	height:60px;
 	padding:4px 0 0px 4px;
 	background-color:#FAFAFA;
 	width:570px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+.search_results .result_odd_narrow {
+	height:60px;
+	padding:4px 0 0px 4px;
+	background-color:#FAFAFA;
+	width:300px;
 	border:1px solid #ddd;
 	border-top:0px;
 }
@@ -976,7 +998,6 @@ table.form-table #selected_venue {
 	font-size:11px;
 }
 
-
 .search_results a {
 	color: #2B95B6;
 	font-size:12px;	
@@ -985,6 +1006,11 @@ table.form-table #selected_venue {
 .search_results .col2 {
 	width:300px;
 }
+
+.search_results .col2_narrow {
+	width:200px;
+}
+
 
 .search_results .address {
 	line-height: 140%;

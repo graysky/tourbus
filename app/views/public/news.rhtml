@@ -4,7 +4,7 @@
 <div id="main">
 
 <% for item in @announcements %>
-<div id="news-item-#{item.id}" class="news_item_outer">
+<div id="news-item-<%=item.id%>" class="news_item_outer">
 
 <div class="news_item">
 
@@ -18,7 +18,7 @@
 
 <script type="text/javascript">
     var white = '#FFFFFF';
-    var id = "news-item-#{item.id}"
+    var id = "news-item-<%=item.id%>"
     Rico.Corner.round( $(id), {bgColor : white} );
 </script>   
 

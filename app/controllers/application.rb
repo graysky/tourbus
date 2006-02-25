@@ -38,6 +38,20 @@ class ApplicationController < ActionController::Base
       end
   end
   
+  def announcement
+      # Check if there is a current announcement to show
+      t = Time.now.to_s(:db)
+      current = Announcement.find(:first, :conditions => ["expire_at > ?", t])
+      
+      return if current.nil?
+      
+      # TODO Need to check for all / fan / band
+      
+      # TODO Need to check cookie to let them dismiss it
+      
+      flash.now[:info] = "#{current.teaser}<br/><a href='/news'>Read more...</a>"
+  end
+  
   def beta_cookie
     # TODO Change the secret 
     secret = "3gnm"

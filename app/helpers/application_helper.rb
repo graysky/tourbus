@@ -29,6 +29,10 @@ module ApplicationHelper
     "<div class='panel_header'><span class='title'>#{text}</span></div>"
   end
 
+  def long_date(date)
+    date.strftime("%A, %B %d, %Y")
+  end
+
   def friendly_date(date)
     date.strftime("%a %m/%d")
   end

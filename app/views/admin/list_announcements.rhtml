@@ -1,0 +1,38 @@
+<div id="main">
+
+<% @page_title = "List Announcements" %>
+<% @header_title = "List Announcements" %>
+
+<h2>List Announcements</h2>
+<p>
+	<%= link_to "Create an Announcement", :action => "create_announcement" %>	
+</p>
+
+<p>
+
+<table>
+  <tr>
+  <% for column in Announcement.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for announcement in @announcements %>
+  <tr>
+  <% for column in Announcement.content_columns %>
+    <td><%=h announcement.send(column.name) %></td>
+  <% end %>
+    <!-- <td><%= link_to 'Show', :action => 'show', :id => announcement %></td> -->
+    <td><%= link_to 'Edit', :action => 'edit_announcement', :id => announcement %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy_announcement', :id => announcement }, :confirm => 'Are you sure?' %></td>
+  </tr>
+<% end %>
+</table>
+
+</p>
+
+</div>
+
+<div id="side">
+
+</div>

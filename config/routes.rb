@@ -37,7 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'show/:id/:action', :controller => 'show'
   map.connect 'shows/:action/:id', :controller => 'show'
   
-  
   # Public fan pages
   map.connect 'fan/:fan_name/:action/:id', :controller => 'fan_public'
   
@@ -63,7 +62,9 @@ ActionController::Routing::Routes.draw do |map|
   # Misc. public pages
   map.connect 'about/', :controller => 'public', :action => 'about_us'
   map.connect 'faq/', :controller => 'public', :action => 'faq'
+  map.connect 'news/', :controller => 'public', :action => 'news'
   map.connect 'beta/', :controller => 'public', :action => 'beta'
+  
   
   # Admin section
   map.connect 'admin/:action/:id', :controller => 'admin'

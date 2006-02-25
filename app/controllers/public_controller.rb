@@ -2,6 +2,7 @@
 class PublicController < ApplicationController
   
   helper :portlet
+  before_filter :announcement, :only => :front_page
   
   # The front page of the app
   def front_page
@@ -33,14 +34,18 @@ class PublicController < ApplicationController
     
   end
   
+  # The News page
+  def news
+    # TODO Need to paginate
+    @announcements = Announcement.find(:all, :order => "created_at DESC")
+  end
+  
   # The About Us page
   def about_us
-  
   end
   
   # The FAQ page
   def faq
-  
   end
   
   private

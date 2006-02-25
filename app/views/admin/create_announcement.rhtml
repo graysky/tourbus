@@ -1,0 +1,13 @@
+<% @header_title = "Create Announcement" %>
+
+<%= start_form_tag :action => 'create_announcement' %>
+
+<%= render(:partial => "announcement_form",
+		   :locals => 
+			{
+			})  
+%>
+
+<%= submit_tag "Create" %>
+<%= end_form_tag %>
+

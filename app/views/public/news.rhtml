@@ -1,0 +1,29 @@
+<% @page_title = "News" %>
+<% @header_title = "News" %>
+
+<div id="main">
+
+<% for item in @announcements %>
+<div id="news-item-#{item.id}" class="news_item_outer">
+
+<div class="news_item">
+
+    <div class="datestamp"><%= long_date(item.created_at) %></div>
+
+    <div class="title"><%= item.title %></div>
+
+    <div class="body"><%= item.message %></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    var white = '#FFFFFF';
+    var id = "news-item-#{item.id}"
+    Rico.Corner.round( $(id), {bgColor : white} );
+</script>   
+
+<% end %>
+</div>
+
+<div id="side">
+</div>

@@ -8,6 +8,43 @@ class AdminController < ApplicationController
   def index
   end
   
+  def list_announcements
+    @announcements = Announcement.find(:all)
+  end
+  
+  def destroy_announcement
+    Announcement.find(params[:id]).destroy
+    flash[:success] = "Announcement deleted"
+    redirect_to :action => 'list_announcements'
+  end
+  
+  def create_announcement
+    if request.get?
+      @announcement = Announcement.new
+      return
+    end
+    
+    @announcement = Announcement.new(params[:announcement])
+    if @announcement.save
+      flash[:success] = "Announcement created"
+      redirect_to :action => 'list_announcements'
+    end
+  end
+  
+  def edit_announcement
+    if request.get?
+      @announcement = Announcement.find(params[:id])
+      return
+    end
+    
+    @announcement = Announcement.find(params[:id])
+    @announcement.update_attributes(params[:announcement])
+    if @announcement.save
+      flash[:success] = "Announcement saved"
+      redirect_to :action => 'list_announcements'
+    end
+  end
+  
   # TODO Tags
   def create_band
     if request.get?

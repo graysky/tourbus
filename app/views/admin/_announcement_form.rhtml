@@ -1,0 +1,32 @@
+<table class="form-table">
+	<tr>
+		<th>Applies to:</th>
+		<td><%= select('announcement', 'applies_to', Announcement.Types ) %></td>
+		<td class="info">Who will see the news item</td>
+	</tr>
+	
+    <tr>
+		<th>Expire on:</th>
+		<td><%= date_select 'announcement', 'expire_at'  %></p></td>
+		<td class="info">Expire from front page after this date</td>
+	</tr>
+	
+    <tr>
+		<th>Teaser:</th>
+		<td><%= text_area 'announcement', 'teaser', {:cols => 40, :rows => 2} %></td>
+		<td class="info">Shown on the front page and <b>NOT</b> on the News page</td>
+	</tr>
+	
+    <tr>
+		<th>Title:</th>
+		<td><%= text_field 'announcement', 'title', "size" => 50 %></td>
+		<td class="info">Title for item on News page</td>
+	</tr>
+	
+    <tr>
+		<th>Message:</th>
+		<td><%= text_area 'announcement', 'message' %></td>
+		<td class="info">Shown on the news page and <b>NOT</b> on the front page. Accepts HTML.</td>
+	</tr>
+	
+</table>

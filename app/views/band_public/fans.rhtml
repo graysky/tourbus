@@ -1,0 +1,14 @@
+<div id="main">
+
+<% @header_title = @page_title = @band.name + "/Fans" %>
+
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+<%= section("fans_section") %>
+<br/>
+<%= fan_results(@band.fans) %>
+	
+</div>
+
+<%= render :partial => "profile_sidebar", :locals => { :show_fans => false } %>

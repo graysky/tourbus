@@ -105,6 +105,10 @@ class ShowController < ApplicationController
     
   end
   
+  def fans
+  
+  end
+  
   private
   
   def create_edit_show(new)

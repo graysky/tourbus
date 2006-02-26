@@ -200,7 +200,14 @@
 	<strong>Watching:</strong> <%= @show.num_watchers %>
 	</p>
 	
+	<% if show_fans %>
 	<%= tiny_fan_results(@show.fans_attending_first[0..4]) %>
+		<% if @show.num_watchers + @show.num_attendees > 0 %>
+			<p>
+				<%= link_to "Show more fans...", :action => "fans" %>
+			</p>
+		<% end %>
+	<% end %>
 </div>
 
 <br/>

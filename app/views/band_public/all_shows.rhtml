@@ -20,4 +20,4 @@
 <%= link_to "See just recent and upcoming shows...", :action => :shows %>
 </div>
 
-<%= render :partial => "profile_sidebar" %>
+<%= render :partial => "profile_sidebar", :locals => { :show_fans => true } %>

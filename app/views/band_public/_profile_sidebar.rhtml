@@ -134,17 +134,24 @@
 	%>
 	
 	<br/>
-	
+
+<% if show_fans %>	
 <div id="fans-box" class="sidebar-box">
 	<h2 id="fans-title"><span class="title">Fans</span></h2>
 	
 	<% if @band.fans.empty? %>
-	<p>
-		<strong>This band has no fans</strong>
-	</p>
+		<p>
+			<strong>This band has no fans</strong>
+		</p>
+	<% else%>
+		<%= tiny_fan_results(@band.fans[0..4]) %>
+		<p>
+			<%= link_to "Show more fans...", :action => "fans" %>
+		</p>
 	<% end %>
-	<%= tiny_fan_results(@band.fans[0..4]) %>
+	
 </div>
+<% end %>
 	
 </div>
 
@@ -157,7 +164,9 @@
     Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
+    <% if show_fans %>
     Rico.Corner.round( $('fans-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('fans-title'), {corners:'top', bgColor : white} );
+    <% end %>
 </script>   
 

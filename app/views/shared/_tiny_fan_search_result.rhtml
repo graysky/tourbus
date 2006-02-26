@@ -2,7 +2,7 @@
 	<table>
 		<tr>
 			<td class="col1"><img class="photo_img" src="<%= get_tiny_fan_logo_url(fan) %>"/></td>
-			<td class="col2"><a href="#"><%= fan.name %></a></td>
+			<td class="col2"><%= link_to fan.name, public_fan_url(fan) %></td>
 		</tr>
 	</table>
 </div>

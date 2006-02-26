@@ -21,7 +21,22 @@ module PortletHelper
     return logo_url
   end
   
-   def get_tiny_fan_logo_url(fan)
+  def get_fan_logo_url(fan)
+  
+    logo_url = nil
+  
+    if !fan.logo.nil?
+
+		# Resize for an 45x45 thumbnail
+		logo_url = url_for_image_column(fan, "logo", :size => "45x45!", :crop => "1:1", :name => "thumb")
+	else
+		logo_url = '/images/unknown_thumb.gif'
+    end
+    
+    return logo_url
+  end
+  
+  def get_tiny_fan_logo_url(fan)
   
     logo_url = nil
     if !fan.logo.nil?

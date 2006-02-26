@@ -1,0 +1,11 @@
+<% @header_title = @show.formatted_title + "/Fans" %>
+
+<div id="main">
+	<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+	
+	<%= section("fans_section") %>
+	<br/>
+	<%= fan_results(@show.fans_attending_first, true) %>
+</div>
+
+<%= render :partial => "profile_sidebar", :locals => { :show_fans => false } %>

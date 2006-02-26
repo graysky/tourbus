@@ -20,4 +20,4 @@
 <%= link_to "See all shows...", :action => :all_shows %>
 </div>
 
-<%= render :partial => "profile_sidebar" %>
+<%= render :partial => "profile_sidebar", :locals => { :show_fans => true } %>

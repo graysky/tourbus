@@ -8,4 +8,15 @@ module FanHelper
 	end	
     out << "</div>"
   end
+  
+  def fan_results(fans, show_status = false)
+    out = "<div class='search_results'>"
+    index = 0
+	for fan in fans 
+	  out << render(:partial => "shared/fan_search_result", 
+	                :locals => { :fan => fan, :index => index, :show_status => show_status })
+	  index += 1
+	end	
+    out << "</div>"
+  end
 end

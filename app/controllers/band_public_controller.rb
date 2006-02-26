@@ -32,6 +32,10 @@ class BandPublicController < ApplicationController
     @shows = @band.shows.find(:all)
   end
   
+  def fans
+  
+  end
+  
   def change_logo
     begin
       @band.update_attributes(params[:band])

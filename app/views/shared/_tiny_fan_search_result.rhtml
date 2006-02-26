@@ -1,0 +1,8 @@
+<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+	<table>
+		<tr>
+			<td class="col1"><img class="photo_img" src="<%= get_tiny_fan_logo_url(fan) %>"/></td>
+			<td class="col2"><a href="#"><%= fan.name %></a></td>
+		</tr>
+	</table>
+</div>

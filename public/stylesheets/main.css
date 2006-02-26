@@ -1115,6 +1115,35 @@ table.form-table #selected_venue {
 	font-size:14px;
 }
 
+.fan_preview_list {
+	margin-left:8px;
+}
+
+.fan_preview_list .result_even {
+	height:30px;
+	padding:0px 0 2px 4px;
+	background-color:#FAFAFA;
+	width:165px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+.fan_preview_list .result_odd {
+	height:30px;
+	background-color:#eee;
+	padding:0px 0 2px 4px;
+	width:165px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+.fan_preview_list .first_result {
+	border-top:1px solid #ddd;
+}
+
+.fan_preview_list .col2 {
+	padding-left:4px;
+}
 
 #browse_links {
 	margin:8px -8px 16px -8px;

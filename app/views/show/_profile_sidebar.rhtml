@@ -191,6 +191,21 @@
 </div>
 
 <br/>
+
+<div id="fans-box" class="sidebar-box">
+	<h2 id="fans-title"><span class="title">Fans</span></h2>
+	
+	<p>
+	<strong>Attending:</strong> <%= @show.num_attendees %><br/>
+	<strong>Watching:</strong> <%= @show.num_watchers %>
+	</p>
+	
+	<%= tiny_fan_results(@show.fans_attending_first[0..4]) %>
+</div>
+
+<br/>
+
+
 	<%= render(
 	:partial => "shared/tags", 
 	:locals => 
@@ -211,4 +226,6 @@
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('fans-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('fans-title'), {corners:'top', bgColor : white} );
 </script>

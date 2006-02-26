@@ -100,6 +100,10 @@ class Show < ActiveRecord::Base
     get_tags(Tag.Show)
   end
   
+  def fans_attending_first
+    self.fans.find(:all, :order => "attending DESC")
+  end
+  
   # Returns a list of shows that are probably identical to the given show,
   # or nil if there are none
   def self.find_probable_dups(other)

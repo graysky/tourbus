@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   model :band
   model :fan
   helper :debug
+  helper :fan
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :public_band_rss_url

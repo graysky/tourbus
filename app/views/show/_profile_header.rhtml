@@ -2,22 +2,19 @@
 <div class='go_back_link'><%= link_to("Back to main show page", public_show_url(@show)) %></div>
 <% end %>
 
+<div class="band_listings">
 
-<div class="search_results" style="width:300px; float:left;">
-
-<%
-	index = 0
-    for band in @show.bands
-%>
-	<div class="<%= index % 2 == 0 ? 'result_even_narrow' : 'result_odd_narrow' %> <%= 'first_result' if index == 0 %>">	
+<% for band in @show.bands %>
+	<div class="item">	
 		<table>
 			<tr>
 				<td><img class="photo_img" src="<%= get_band_logo_url(band) %>"/></td>
 			    <td>
 				<div class="col2_narrow">
-					<%= public_band_link band.name, band %>
+					<% # Hack to get link text size bigger %>
+					<%= link_to(band.name, public_band_url(band), :style => "font-size:11pt;") %>
 					<br/>
-					<div class="result_tags">
+					<div class="band_tags">
 					<%
 						# TODO If we keep this it should be factored out
 						str = ""
@@ -33,36 +30,46 @@
 			</tr>
 		</table>
 	</div>
-<%
-	index += 1
-	end
-%>
+<% end %>
 </div>
 
-<div id="venue_for_show">
-	<% venue = @show.venue %>
-	<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %><br/>
-	<%= venue.address %><br/>
-	<%= venue.city + "," + venue.state %><br/>
-	<br/>
-	<%= friendly_time(@show.date) %>
-	<% if @show.cost != "" %>
-		<%= ", " + @show.cost %>
-	<% end %>
-	<br/>
-</div>
+<% venue = @show.venue %>
+<div class="venue_for_show">
+<table border="0">
 
+<tr>
+<td class="venue_info">Where:</td>
+<td>
+<b><%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %></b><br/>
+<%= venue.address %><br/>
+<%= venue.city + "," + venue.state %><br/>
+</td>
+
+<tr>
+<td class="venue_info">When:</td>
+<td><%= friendly_time(@show.date) %></td>
+
+<% if @show.cost != "" %>
+  <tr>
+  <td class="venue_info">Cost:</td>
+  <td><%= @show.cost %></td>
+  </tr>
+<% end %>
+
+<% if @show.description != "" %>
+  <tr>
+  <td colspan="2"><%= @show.description %></td>
+  </tr>
+<% end %>
+
+</table>
+</div>
 
 <!-- ugly hack -->
 <div style="clear:both">
-</div>
-
-<div class="show_description">
-<%= @show.description %>
 </div>
 
 <%= if can_edit_show(@show)
 		link_to "Edit this show", :action => "edit", :id => @show.id 
 	end
 %>
-

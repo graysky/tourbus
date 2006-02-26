@@ -938,16 +938,27 @@ table.form-table #selected_venue {
 	color: #4C5C5C;
 }
 
+/*
 #main #venue_for_show {
 	float:right;
-	margin-right:120px;
-	font-size:16px;
+	width: 150px;
+	margin-top: 10px;
+	margin-right: 60px;
+	padding-right: 80px;
+	
+	font-size:14px;
 	line-height:120%;
 }
+*/
+
+
+
+/*
 
 #main #venue_for_show a {
     font-size:14px;
 }
+*/
 
 #main
 {
@@ -991,6 +1002,69 @@ table.form-table #selected_venue {
 	font-size:12px;
 }
 
+/* Venue listing on Show page */
+.venue_for_show {
+	float:right;
+	width: 300px;
+	margin-top: 10px;
+	margin-right: 30px;
+	
+	font-size:14px;
+	line-height:120%;
+}
+
+.venue_for_show a {
+    font-size:14px;
+}
+
+.venue_for_show table {
+    width: 100%;
+}
+
+.venue_for_show td {
+	padding-right: 6px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.venue_info {
+    width: 10%;
+    color: #555;
+    font-weight: bold;
+}
+
+/* For show page band listings */
+.band_listings {
+    width: 100px; 
+    float: left;
+    font-size:12px;
+}
+
+/* Styles used on Show page */
+.band_listings .item {
+	height:60px;
+	padding:4px 0 0px 4px;
+	width:200px;
+	border-top:0px;
+}
+
+.band_listings a {
+	color: #2B95B6;
+	font-weight: bold;
+}
+
+.band_listings .col2_narrow {
+	width:200px;
+}
+
+.band_listings .band_tags {
+	padding-top:4px;
+	font-size:11px;
+	color: #555;
+	font-weight:bold;
+}
+
+/* Search results markup */
 .search_results {
 	font-size:12px;
 }
@@ -1004,29 +1078,11 @@ table.form-table #selected_venue {
 	border-top:0px;
 }
 
-.search_results .result_even_narrow {
-	height:60px;
-	background-color:#eee;
-	padding:4px 0 0px 4px;
-	width:300px;
-	border:1px solid #ddd;
-	border-top:0px;
-}
-
 .search_results .result_odd {
 	height:60px;
 	padding:4px 0 0px 4px;
 	background-color:#FAFAFA;
 	width:570px;
-	border:1px solid #ddd;
-	border-top:0px;
-}
-
-.search_results .result_odd_narrow {
-	height:60px;
-	padding:4px 0 0px 4px;
-	background-color:#FAFAFA;
-	width:300px;
 	border:1px solid #ddd;
 	border-top:0px;
 }
@@ -1051,11 +1107,6 @@ table.form-table #selected_venue {
 .search_results .col2 {
 	width:300px;
 }
-
-.search_results .col2_narrow {
-	width:200px;
-}
-
 
 .search_results .address {
 	line-height: 140%;

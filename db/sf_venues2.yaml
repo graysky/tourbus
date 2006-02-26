@@ -1,0 +1,3542 @@
+--- 
+venues: 
+  - 
+    city: SAN FRANCISCO
+    name: Caffe Sempione
+    latitude: "37.798532"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.408155"
+    address: 641 Vallejo St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Calvary Presbyterian Church
+    latitude: "37.792722"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.434797"
+    address: 2515 Fillmore St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Calvin Simmons Theater
+    latitude: "37.796897"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.260665"
+    address: 10 10th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Cama
+    latitude: "37.764937"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.42383"
+    address: 3192 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Canvas Cafe and Gallery
+    latitude: "37.765768"
+    zip: "94122"
+    url: www.thecanvasgallery.com
+    phone: 415-504-0060
+    longitude: "-122.466216"
+    address: 1200 9th Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Casanova Lounge
+    latitude: "37.764416"
+    zip: "94110"
+    url: www.casanovasf.com
+    phone: 415-863-9328
+    longitude: "-122.421663"
+    address: 527 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Catalyst Cocktails
+    latitude: "37.775284"
+    zip: "94103"
+    url: www.catalystcocktails.com
+    phone: 415-621-1722
+    longitude: "-122.402929"
+    address: 312 Harriet St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Cato&apos;s Ale House
+    latitude: "37.824855"
+    zip: "94611"
+    url: ''
+    phone: ''
+    longitude: "-122.254692"
+    address: 3891 Piedmont Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Cellar
+    latitude: "37.788707"
+    zip: "94102"
+    url: www.cellarsf.com
+    phone: 415-441-5678
+    longitude: "-122.41151"
+    address: 685 Sutter St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: CELLspace
+    latitude: "37.761129"
+    zip: "94110"
+    url: www.cellspace.org
+    phone: 415-648-7562
+    longitude: "-122.41027"
+    address: 2050 Bryant St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Center for New Music and Audio Technologies
+    latitude: "37.87662"
+    zip: "94709"
+    url: ''
+    phone: ''
+    longitude: "-122.264142"
+    address: 1750 Arch St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Chieftain
+    latitude: "37.781492"
+    zip: "94103"
+    url: www.thechieftain.com
+    phone: 415-615-0916
+    longitude: "-122.405154"
+    address: 198 5th St
+    state: CA
+  - 
+    city: CONCORD
+    name: Chronicle Pavilion
+    latitude: "37.959506"
+    zip: "94521"
+    url: ''
+    phone: ''
+    longitude: "-121.946021"
+    address: 2000 Kirker Pass Rd
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Church of Advent
+    latitude: "37.775888"
+    zip: "94102"
+    url: www.advent-sf.org
+    phone: 415-431-5439
+    longitude: "-122.422069"
+    address: 261 Fell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Cinch
+    latitude: "37.792672"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.421303"
+    address: 1723 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Cip
+    latitude: "37.774553"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.410414"
+    address: 1225 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club 220
+    latitude: "37.783288"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.412285"
+    address: 220 Jones St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Caliente
+    latitude: "37.771901"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.41425"
+    address: 298 11th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Deluxe
+    latitude: "37.76983"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.447167"
+    address: 1509 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Jazz Nouveau
+    latitude: "37.80702"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.4191"
+    address: 2801 Leavenworth St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Lamia
+    latitude: "37.781311"
+    zip: "94118"
+    url: ''
+    phone: ''
+    longitude: "-122.461359"
+    address: 3910 Geary Blvd
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Malibu
+    latitude: "37.742681"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.421639"
+    address: 3369 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club NV
+    latitude: "37.78813"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.396342"
+    address: 525 Howard St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Q
+    latitude: "37.782048"
+    zip: "94102"
+    url: www.clubqsf.com
+    phone: 415-255-1668
+    longitude: "-122.411587"
+    address: 61 Golden Gate Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Six
+    latitude: "37.781422"
+    zip: "94103"
+    url: www.clubsix1.com
+    phone: 415-863-1221
+    longitude: "-122.409469"
+    address: 60 6th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Club Waziema
+    latitude: "37.774486"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.43786"
+    address: 543 Divisadero St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Community Music Center
+    latitude: "37.757961"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.41808"
+    address: 544 Capp St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Community Music Center
+    latitude: "37.757961"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.41808"
+    address: 544 Capp St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Concourse Exhibition Center
+    latitude: "37.776464"
+    zip: "94118"
+    url: ''
+    phone: ''
+    longitude: "-122.466128"
+    address: 635 8th Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Connecticut Yankee
+    latitude: "37.764947"
+    zip: "94107"
+    url: www.theyankee.com
+    phone: 415-552-4440
+    longitude: "-122.39795"
+    address: 100 Connecticut St
+    state: CA
+  - 
+    city: OAKLAND
+    name: The Continental Club
+    latitude: "37.810872"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.296617"
+    address: 1658 12th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Cosmopolitan Cafe
+    latitude: "37.792359"
+    zip: "94105"
+    url: www.thecosmopolitancafe.com
+    phone: 415-543-4001
+    longitude: "-122.393585"
+    address: 121 Spear St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Costello&apos;s Four Deuces
+    latitude: "37.742234"
+    zip: "94116"
+    url: ''
+    phone: ''
+    longitude: "-122.490997"
+    address: 2319 Taraval St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: CounterPULSE
+    latitude: "37.776171"
+    zip: "94103"
+    url: www.counterpulse.org
+    phone: 415-626-2060
+    longitude: "-122.41499"
+    address: 1310 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Cow Palace
+    latitude: "37.7083"
+    zip: "94134"
+    url: ''
+    phone: ''
+    longitude: "-122.4201"
+    address: Geneva Ave At Santos St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Crocker Galleria
+    latitude: "37.789136"
+    zip: "94104"
+    url: ''
+    phone: ''
+    longitude: "-122.402875"
+    address: 50 Post St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Cyclone
+    latitude: "37.748807"
+    zip: "94124"
+    url: ''
+    phone: ''
+    longitude: "-122.386625"
+    address: 1842 Illinois St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Daddy&apos;s
+    latitude: "37.761941"
+    zip: "94114"
+    url: www.daddysbar.com
+    phone: 415-621-8732
+    longitude: "-122.43523"
+    address: 440 Castro St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dalva
+    latitude: "37.764763"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.422424"
+    address: 3121 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dark Room Theater
+    latitude: "37.760833"
+    zip: "94110"
+    url: www.darkroomsf.com
+    phone: 415-401-7987
+    longitude: "-122.419103"
+    address: 2263 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Davies Symphony Hall
+    latitude: "37.777422"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.419898"
+    address: 201 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Deco Lounge
+    latitude: "37.782625"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.417171"
+    address: 510 Larkin St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Deli
+    latitude: "37.745583"
+    zip: "94124"
+    url: ''
+    phone: ''
+    longitude: "-122.400995"
+    address: 2246 Jerrold Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Delirium Cocktails
+    latitude: "37.764763"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.422725"
+    address: 3139 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Detour
+    latitude: "37.763523"
+    zip: "94114"
+    url: ''
+    phone: ''
+    longitude: "-122.434162"
+    address: 2348 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Diamond Hall
+    latitude: "37.745583"
+    zip: "94124"
+    url: ''
+    phone: ''
+    longitude: "-122.400995"
+    address: 2246 Jerrold Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dimension 7
+    latitude: "37.789847"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.391572"
+    address: 150 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Dirty Martini
+    latitude: "37.80702"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.4191"
+    address: 2801 Leavenworth St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Divas
+    latitude: "37.786715"
+    zip: "94109"
+    url: www.divassf.com
+    phone: 415-928-6006
+    longitude: "-122.419472"
+    address: 1081 Post St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: DNA Lounge
+    latitude: "37.771061"
+    zip: "94103"
+    url: www.dnalounge.com
+    phone: 415-626-1409
+    longitude: "-122.412795"
+    address: 375 11th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Dogpatch Saloon
+    latitude: "37.758148"
+    zip: "94107"
+    url: ''
+    phone: ''
+    longitude: "-122.388592"
+    address: 2496 3rd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dolce
+    latitude: "37.798265"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.404458"
+    address: 440 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dolores Park Cafe
+    latitude: "37.761278"
+    zip: "94110"
+    url: www.doloresparkcafe.org
+    phone: 415-621-2936
+    longitude: "-122.425808"
+    address: 501 Dolores St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Don Ramon&apos;s
+    latitude: "37.772967"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.415128"
+    address: 225 11th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dot Restaurant
+    latitude: "37.785604"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.42866"
+    address: 1625 Post St
+    state: CA
+  - 
+    city: BERKELEY
+    name: downtown
+    latitude: "37.871521"
+    zip: "94704"
+    url: www.downtownrestaurant.com
+    phone: 510-649-3810
+    longitude: "-122.268508"
+    address: 2102 Shattuck Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dragon Bar
+    latitude: "37.797914"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.405073"
+    address: 473 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Dylan&apos;s
+    latitude: "37.760356"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.414616"
+    address: 2301 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: E  &amp;  O Trading Co.
+    latitude: "37.789691"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.405762"
+    address: 314 Sutter St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Eagle Tavern
+    latitude: "37.770064"
+    zip: "94103"
+    url: www.sfeagle.com
+    phone: 415-626-0880
+    longitude: "-122.413347"
+    address: 398 12th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Eastside West
+    latitude: "37.798772"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.435677"
+    address: 3154 Fillmore St
+    state: CA
+  - 
+    city: WALNUT CREEK
+    name: Echo
+    latitude: "37.899137"
+    zip: "94596"
+    url: ''
+    phone: ''
+    longitude: "-122.062241"
+    address: 1411 Locust St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Edge
+    latitude: "37.760713"
+    zip: "94114"
+    url: ''
+    phone: ''
+    longitude: "-122.435525"
+    address: 4149 18th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Edinburgh Castle
+    latitude: "37.786135"
+    zip: "94109"
+    url: www.castlenews.com
+    phone: 415-885-4074
+    longitude: "-122.418932"
+    address: 950 Geary St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Ego Park Gallery
+    latitude: "37.812684"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.268482"
+    address: 492 23rd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Eight
+    latitude: "37.775698"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.409007"
+    address: 1151 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: El Rincon
+    latitude: "37.765621"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.41329"
+    address: 2700 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: El Rio
+    latitude: "37.746657"
+    zip: "94110"
+    url: www.elriosf.com
+    phone: 415-282-3325
+    longitude: "-122.419392"
+    address: 3158 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: El Valenciano
+    latitude: "37.754468"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.42072"
+    address: 1153 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Elbo Room
+    latitude: "37.762746"
+    zip: "94110"
+    url: www.elbo.com
+    phone: 415-552-7788
+    longitude: "-122.421525"
+    address: 647 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Element Lounge
+    latitude: "37.785971"
+    zip: "94109"
+    url: www.elementlounge.com
+    phone: 415-571-1362
+    longitude: "-122.420281"
+    address: 1028 Geary St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Endup
+    latitude: "37.777301"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.403847"
+    address: 401 6th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Enrico&apos;s
+    latitude: "37.798105"
+    zip: "94133"
+    url: www.enricossidewalkcafe.com
+    phone: 415-982-6223
+    longitude: "-122.405735"
+    address: 504 Broadway
+    state: CA
+  - 
+    city: BERKELEY
+    name: Epic Art Studio
+    latitude: "37.854474"
+    zip: "94703"
+    url: ''
+    phone: ''
+    longitude: "-122.270695"
+    address: 1923 Ashby Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Eros
+    latitude: "37.768215"
+    zip: "94114"
+    url: ''
+    phone: ''
+    longitude: "-122.427728"
+    address: 2051 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Esta Noche
+    latitude: "37.764833"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.421207"
+    address: 3079 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: EZ5
+    latitude: "37.794183"
+    zip: "94111"
+    url: www.ez5bar.com
+    phone: 415-362-9321
+    longitude: "-122.40432"
+    address: 682 Commercial St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Factory
+    latitude: "37.785549"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.393432"
+    address: 525 Harrison St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Fairmont Hotel
+    latitude: "37.792307"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.410899"
+    address: 950 Mason St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Femina Potens
+    latitude: "37.765973"
+    zip: "94103"
+    url: www.feminapotens.com
+    phone: 415-861-2240
+    longitude: "-122.417341"
+    address: 465 S Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Fiddler&apos;s Green
+    latitude: "37.806387"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.419216"
+    address: 1333 Columbus Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Fillmore
+    latitude: "37.784034"
+    zip: "94115"
+    url: www.thefillmore.com
+    phone: 415-346-6000
+    longitude: "-122.433095"
+    address: 1805 Geary Blvd
+    state: CA
+  - 
+    city: OAKLAND
+    name: The Fish Tank
+    latitude: "37.821835"
+    zip: "94611"
+    url: ''
+    phone: ''
+    longitude: "-122.259317"
+    address: 3405 Piedmont Ave
+    state: CA
+  - 
+    city: CUPERTINO
+    name: Flint Center
+    latitude: "37.322663"
+    zip: "95014"
+    url: ''
+    phone: ''
+    longitude: "-122.045868"
+    address: 21250 Stevens Creek Blvd
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Florence Gould Theater
+    latitude: "37.7816"
+    zip: "94121"
+    url: ''
+    phone: ''
+    longitude: "-122.4945"
+    address: 34th Ave At Clement St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Fluid
+    latitude: "37.787112"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.401188"
+    address: 662 Mission St
+    state: CA
+  - 
+    city: SAN RAFAEL
+    name: Fourth Street Tavern
+    latitude: "37.972391"
+    zip: "94901"
+    url: ''
+    phone: ''
+    longitude: "-122.523143"
+    address: 711 4th St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Freight  &amp;  Salvage Coffee House
+    latitude: "37.868377"
+    zip: "94702"
+    url: ''
+    phone: ''
+    longitude: "-122.291241"
+    address: 1111 Addison St
+    state: CA
+  - 
+    city: OAKLAND
+    name: French Fry Factory
+    latitude: "37.796137"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.271798"
+    address: 278 4th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Fuse
+    latitude: "37.797892"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.405248"
+    address: 493 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: G Bar
+    latitude: "37.787531"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.446673"
+    address: 488 Presidio Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Galería de la Raza
+    latitude: "37.752663"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.409352"
+    address: 2857 24th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Gallery Lounge
+    latitude: "37.778153"
+    zip: "94107"
+    url: www.thegallerylounge.com
+    phone: 415-227-0449
+    longitude: "-122.396952"
+    address: 510 Brannan St
+    state: CA
+  - 
+    city: OAKLAND
+    name: George Kaye&apos;s
+    latitude: "37.82795"
+    zip: "94611"
+    url: ''
+    phone: ''
+    longitude: "-122.256269"
+    address: 4044 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Gift Center Pavilion
+    latitude: "37.771665"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.405192"
+    address: 888 Brannan St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Gingerbread Warehouse
+    latitude: "37.75022"
+    zip: "94107"
+    url: ''
+    phone: ''
+    longitude: "-122.396155"
+    address: 1275 Connecticut St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Glas Kat
+    latitude: "37.77926"
+    zip: "94107"
+    url: www.glaskat.com
+    phone: 415-495-6626
+    longitude: "-122.397929"
+    address: 520 4th St
+    state: CA
+  - 
+    city: OAKLAND
+    name: The Golden Bull
+    latitude: "37.804079"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.270292"
+    address: 412 14th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Grace Cathedral
+    latitude: "37.791714"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.412696"
+    address: 1100 California St
+    state: CA
+  - 
+    city: OAKLAND
+    name: The Graduate
+    latitude: "37.849486"
+    zip: "94618"
+    url: ''
+    phone: ''
+    longitude: "-122.252044"
+    address: 6202 Claremont Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Grand
+    latitude: "37.78766"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.421554"
+    address: 1300 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Grant  &amp;  Green
+    latitude: "37.799363"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.4075"
+    address: 1371 Grant Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Gravity
+    latitude: "37.799689"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.441272"
+    address: 3251 Scott St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Harry Denton&apos;s Starlight Room
+    latitude: "37.788778"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.408328"
+    address: 450 Powell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Harry&apos;s on Fillmore
+    latitude: "37.788288"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.433485"
+    address: 2020 Fillmore St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Harvey&apos;s
+    latitude: "37.760756"
+    zip: "94114"
+    url: ''
+    phone: ''
+    longitude: "-122.435164"
+    address: 500 Castro St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Hawaii West Joint
+    latitude: "37.798412"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.409185"
+    address: 729 Vallejo St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Hemlock Tavern
+    latitude: "37.78742"
+    zip: "94109"
+    url: www.hemlocktavern.com
+    phone: 415-923-0923
+    longitude: "-122.420198"
+    address: 1131 Polk St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Henry J. Kaiser Auditorium
+    latitude: "37.796897"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.260665"
+    address: 10 10th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Herbst Theatre
+    latitude: "37.779195"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.420224"
+    address: 401 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: HiFi
+    latitude: "37.799674"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.436546"
+    address: 2125 Lombard St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Hillside Club
+    latitude: "37.878825"
+    zip: "94709"
+    url: ''
+    phone: ''
+    longitude: "-122.264998"
+    address: 2286 Cedar St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Historic Sweet&apos;s Ballroom
+    latitude: "37.808335"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.268864"
+    address: 1933 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Hole in the Wall
+    latitude: "37.775284"
+    zip: "94103"
+    url: www.holeinthewallsaloon.com
+    phone: 415-431-HOWL
+    longitude: "-122.410209"
+    address: 289 8th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Hotel Utah
+    latitude: "37.779406"
+    zip: "94107"
+    url: www.thehotelutahsaloon.com
+    phone: 415-546-6300
+    longitude: "-122.398105"
+    address: 500 4th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: House of Shields
+    latitude: "37.78817"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.401091"
+    address: 39 New Montgomery St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Houston&apos;s
+    latitude: "37.805762"
+    zip: "94111"
+    url: ''
+    phone: ''
+    longitude: "-122.405127"
+    address: 1800 Montgomery St
+    state: CA
+  - 
+    city: SAN JOSE
+    name: HP Pavilion
+    latitude: "37.332137"
+    zip: "95113"
+    url: ''
+    phone: ''
+    longitude: "-121.900499"
+    address: 525 W Santa Clara St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Hush Hush
+    latitude: "37.768157"
+    zip: "94103"
+    url: www.hushhushlounge.com
+    phone: 415-241-9944
+    longitude: "-122.42419"
+    address: 496 14th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: ICAN Gallery
+    latitude: "37.776171"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.41499"
+    address: 1310 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Il Pirata
+    latitude: "37.765663"
+    zip: "94103"
+    url: www.ilpirata.com
+    phone: 415-626-2626
+    longitude: "-122.406812"
+    address: 2007 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Independent
+    latitude: "37.775339"
+    zip: "94117"
+    url: www.independentsf.com
+    phone: 415-771-1421
+    longitude: "-122.437697"
+    address: 628 Divisadero St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Intersection for the Arts
+    latitude: "37.765809"
+    zip: "94103"
+    url: www.theintersection.org
+    phone: 415-626-2787
+    longitude: "-122.422096"
+    address: 446 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Ireland&apos;s 32
+    latitude: "37.781305"
+    zip: "94118"
+    url: www.irelands32sanfrancisco.com
+    phone: 415-386-6173
+    longitude: "-122.461425"
+    address: 3920 Geary Blvd
+    state: CA
+  - 
+    city: OAKLAND
+    name: Jack&apos;s Bistro
+    latitude: "37.794882"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.277286"
+    address: 1 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Jazz at Pearl&apos;s
+    latitude: "37.797669"
+    zip: "94133"
+    url: www.jazzatpearls.com
+    phone: 415-291-8255
+    longitude: "-122.406009"
+    address: 256 Columbus Ave
+    state: CA
+  - 
+    city: BERKELEY
+    name: The Jazz House
+    latitude: "37.850846"
+    zip: "94703"
+    url: ''
+    phone: ''
+    longitude: "-122.270773"
+    address: 3192 Adeline St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Jerry Garcia Amphitheater (McLaren Park)
+    latitude: "37.7189"
+    zip: "94134"
+    url: ''
+    phone: ''
+    longitude: "-122.4117"
+    address: Visitacion Ave At Mansell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Jillian&apos;s
+    latitude: "37.784512"
+    zip: "94103"
+    url: www.jillians.com
+    phone: 415-369-6100
+    longitude: "-122.404047"
+    address: 101 4th St
+    state: CA
+  - 
+    city: ALAMEDA
+    name: John Patrick&apos;s
+    latitude: "37.769172"
+    zip: "94501"
+    url: ''
+    phone: ''
+    longitude: "-122.238814"
+    address: 1813 Park St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: John&apos;s Grill
+    latitude: "37.785444"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.407138"
+    address: 63 Ellis St
+    state: CA
+  - 
+    city: ALAMEDA
+    name: Julie&apos;s Coffee  &amp;  Tea Garden
+    latitude: "37.760781"
+    zip: "94501"
+    url: ''
+    phone: ''
+    longitude: "-122.244485"
+    address: 1223 Park Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Julie&apos;s Supper Club
+    latitude: "37.776096"
+    zip: "94103"
+    url: www.juliessupperclub.com
+    phone: 415-861-0707
+    longitude: "-122.408453"
+    address: 1123 Folsom St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Jupiter
+    latitude: "37.869719"
+    zip: "94704"
+    url: ''
+    phone: ''
+    longitude: "-122.267789"
+    address: 2181 Shattuck Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Kate O&apos;Brien&apos;s
+    latitude: "37.787534"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.397088"
+    address: 579 Howard St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Kells Irish Restaurant  &amp;  Bar
+    latitude: "37.796484"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.403983"
+    address: 530 Jackson St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Kelly&apos;s Mission Rock
+    latitude: "37.765667"
+    zip: 
+    url: www.kellysmissionrock.com
+    phone: 415-626-5355
+    longitude: "-122.386469"
+    address: 817 China Basin St
+    state: CA
+  - 
+    city: ALAMEDA
+    name: Kelly&apos;s of Alameda
+    latitude: "37.7626"
+    zip: "94501"
+    url: ''
+    phone: ''
+    longitude: "-122.242699"
+    address: 1313 Park Ave
+    state: CA
+  - 
+    city: EMERYVILLE
+    name: Kimball&apos;s East
+    latitude: "37.839564"
+    zip: "94608"
+    url: ''
+    phone: ''
+    longitude: "-122.293361"
+    address: 5800 Shellmound St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Kimo&apos;s
+    latitude: "37.789349"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.420613"
+    address: 1351 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The King George Hotel
+    latitude: "37.786821"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.409592"
+    address: 334 Mason St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Kingman&apos;s Lucky Lounge
+    latitude: "37.81283"
+    zip: "94610"
+    url: ''
+    phone: ''
+    longitude: "-122.2469"
+    address: 3332 Grand Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Knockout
+    latitude: "37.745164"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.420021"
+    address: 3223 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: La Barca
+    latitude: "37.800158"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.435091"
+    address: 2036 Lombard St
+    state: CA
+  - 
+    city: BERKELEY
+    name: La Peña Cultural Center
+    latitude: "37.852957"
+    zip: "94705"
+    url: ''
+    phone: ''
+    longitude: "-122.266002"
+    address: 3105 Shattuck Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: Lake Merritt Dance Center
+    latitude: "37.810574"
+    zip: "94610"
+    url: ''
+    phone: ''
+    longitude: "-122.260169"
+    address: 200 Grand Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Laszlo
+    latitude: "37.756526"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.419009"
+    address: 2526 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Le Colonial
+    latitude: "37.788189"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.412617"
+    address: 20 Cosmo Pl
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lennon Rehearsal Studios
+    latitude: "37.771305"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.409446"
+    address: 271 Dore St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Les Joulins Jazz Bistro
+    latitude: "37.785745"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.406949"
+    address: 44 Ellis St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Levende Lounge
+    latitude: "37.769765"
+    zip: "94103"
+    url: www.levendesf.com
+    phone: 415-864-5585
+    longitude: "-122.420245"
+    address: 1710 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lexington Club
+    latitude: "37.760312"
+    zip: "94110"
+    url: www.lexingtonclub.com
+    phone: 415-863-2052
+    longitude: "-122.420811"
+    address: 3464 19th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Li Po Lounge
+    latitude: "37.795439"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.406353"
+    address: 916 Grant Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Light Leak Gallery
+    latitude: "37.772416"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.428995"
+    address: 400 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lime
+    latitude: "37.764937"
+    zip: "94114"
+    url: www.lime-sf.com
+    phone: 415-621-5256
+    longitude: "-122.431881"
+    address: 2247 Market St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Liminal
+    latitude: "37.81279"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.280214"
+    address: 2000 Myrtle St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lingba Lounge
+    latitude: "37.762654"
+    zip: "94107"
+    url: www.lingba.com
+    phone: 415-355-0001
+    longitude: "-122.397342"
+    address: 1498 18th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lit Lounge
+    latitude: "37.78101"
+    zip: "94103"
+    url: www.litloungesf.com
+    phone: 415-278-0940
+    longitude: "-122.408444"
+    address: 101 6th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Little Baobab
+    latitude: "37.760367"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.418876"
+    address: 3388 19th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: LJ&apos;s Martini Club
+    latitude: "37.784512"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.404047"
+    address: 101 4th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Locus Arts
+    latitude: "37.752663"
+    zip: "94110"
+    url: www.locusarts.org
+    phone: 415-269-0698
+    longitude: "-122.409352"
+    address: 2857 24th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Loft 11
+    latitude: "37.771529"
+    zip: "94103"
+    url: www.loft11sf.com
+    phone: 415-701-8111
+    longitude: "-122.413806"
+    address: 316 11th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Lost  &amp;  Found Saloon
+    latitude: "37.799249"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.407474"
+    address: 1353 Grant Ave
+    state: CA
+  - 
+    city: BERKELEY
+    name: "Lower Sproul Plaza, UC Berkeley"
+    latitude: "37.8693"
+    zip: "94704"
+    url: ''
+    phone: ''
+    longitude: "-122.2546"
+    address: College Ave At Bancroft Way
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Luggage Store
+    latitude: "37.781934"
+    zip: "94103"
+    url: www.luggagestoregallery.org
+    phone: 415-255-5971
+    longitude: "-122.410396"
+    address: 1007 Market St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Luka&apos;s Taproom  &amp;  Lounge
+    latitude: "37.811239"
+    zip: "94612"
+    url: www.lukasoakland.com
+    phone: 510-451-4677
+    longitude: "-122.26707"
+    address: 2221 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Luna Lounge
+    latitude: "37.775284"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.409998"
+    address: 1192 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Mad Dog in the Fog
+    latitude: "37.772167"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.431078"
+    address: 530 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Madrone Lounge
+    latitude: "37.774262"
+    zip: "94117"
+    url: www.madronelounge.com
+    phone: 415-241-0202
+    longitude: "-122.437457"
+    address: 500 Divisadero St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Magnet
+    latitude: "37.761005"
+    zip: "94114"
+    url: www.magnetsf.org
+    phone: 415-581-1600
+    longitude: "-122.435358"
+    address: 4122 18th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Make-Out Room
+    latitude: "37.755312"
+    zip: "94110"
+    url: www.makeoutroom.com
+    phone: 415-647-2888
+    longitude: "-122.419289"
+    address: 3225 22nd St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Mama Buzz Cafe
+    latitude: "37.812803"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.268571"
+    address: 2318 Telegraph Ave
+    state: CA
+  - 
+    city: SAN RAFAEL
+    name: Marin Center Veterans Memorial Auditorium
+    latitude: "38.002945"
+    zip: "94903"
+    url: ''
+    phone: ''
+    longitude: "-122.534176"
+    address: 10 Avenue Of The Flags
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Marlena&apos;s
+    latitude: "37.776875"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.424315"
+    address: 488 Hayes St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Marrakech
+    latitude: "37.785863"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.411573"
+    address: 419 Ofarrell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Martuni&apos;s
+    latitude: "37.772332"
+    zip: "94103"
+    url: www.martunis.citysearch.com
+    phone: 415-241-0205
+    longitude: "-122.422754"
+    address: 4 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Masonic Auditorium
+    latitude: "37.791426"
+    zip: "94108"
+    url: www.masonicauditorium.com
+    phone: 415-776-4702
+    longitude: "-122.412782"
+    address: 1111 California St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Matrix Fillmore
+    latitude: "37.798731"
+    zip: "94123"
+    url: www.plumpjack.com/pjmatrix
+    phone: 415-563-4180
+    longitude: "-122.435669"
+    address: 3138 Fillmore St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Maxfield&apos;s House of Caffeine
+    latitude: "37.76314"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.426473"
+    address: 398 Dolores St
+    state: CA
+  - 
+    city: OAKLAND
+    name: McAfee Coliseum
+    latitude: "37.747037"
+    zip: "94621"
+    url: www.theoaklandarena.com
+    phone: 510-569-2121
+    longitude: "-122.200849"
+    address: 7000 Coliseum Way
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Mecca
+    latitude: "37.768649"
+    zip: "94114"
+    url: www.sfmecca.com
+    phone: 415-621-7000
+    longitude: "-122.4272"
+    address: 2029 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Medjool
+    latitude: "37.756625"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.419022"
+    address: 2518 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Meridian Gallery
+    latitude: "37.788972"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.409314"
+    address: 545 Sutter St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Metreon
+    latitude: "37.784512"
+    zip: "94103"
+    url: www.metreon.com
+    phone: 415-369-6000
+    longitude: "-122.404047"
+    address: 101 4th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Metronome Ballroom
+    latitude: "37.764937"
+    zip: "94103"
+    url: www.metronomedancecenter.com
+    phone: 415-252-9000
+    longitude: "-122.401941"
+    address: 1830 17th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Mezzanine
+    latitude: "37.782252"
+    zip: "94103"
+    url: www.mezzaninesf.com
+    phone: "415- 625-8880"
+    longitude: "-122.408378"
+    address: 444 Jessie St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Michael&apos;s Octavia Lounge
+    latitude: "37.772728"
+    zip: "94102"
+    url: www.octavialounge.com
+    phone: 415-863-3516
+    longitude: "-122.422593"
+    address: 1722 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Mighty
+    latitude: "37.768175"
+    zip: "94103"
+    url: www.mighty119.com
+    phone: 415-626-7001
+    longitude: "-122.4066"
+    address: 119 Utah St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Milk
+    latitude: "37.769451"
+    zip: "94117"
+    url: www.milksf.com
+    phone: 415-387-MILK
+    longitude: "-122.452605"
+    address: 1840 Haight St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Mills College Concert Hall
+    latitude: "37.782213"
+    zip: "94613"
+    url: ''
+    phone: ''
+    longitude: "-122.18758"
+    address: 5000 Macarthur Blvd
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Mint Karaoke Lounge
+    latitude: "37.770087"
+    zip: "94102"
+    url: www.themint.net
+    phone: 415-626-4726
+    longitude: "-122.425826"
+    address: 1942 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Moby Dick&apos;s
+    latitude: "37.760863"
+    zip: "94114"
+    url: www.mobydicksf.com
+    phone: 415-431-4278
+    longitude: "-122.433696"
+    address: 4049 18th St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Mod Lang Records
+    latitude: "37.872162"
+    zip: "94704"
+    url: ''
+    phone: ''
+    longitude: "-122.267331"
+    address: 2136 University Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Molotov&apos;s
+    latitude: "37.772084"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.431739"
+    address: 582 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Monkey Club
+    latitude: "37.757778"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.409236"
+    address: 2730 21st St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Montclair Presbyterian Church
+    latitude: "37.834099"
+    zip: "94611"
+    url: ''
+    phone: ''
+    longitude: "-122.212986"
+    address: 5701 Thornhill Dr
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Moose&apos;s
+    latitude: "37.800942"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.40913"
+    address: 1652 Stockton St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Music Store
+    latitude: "37.740202"
+    zip: "94127"
+    url: ''
+    phone: ''
+    longitude: "-122.466635"
+    address: 66 W Portal Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Music Union Hall
+    latitude: "37.775898"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.414564"
+    address: 116 9th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: N&apos;Touch Dance Club
+    latitude: "37.791066"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.420625"
+    address: 1548 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: New Langton Arts
+    latitude: "37.774534"
+    zip: "94103"
+    url: www.newlangtonarts.org
+    phone: 415-626-5416
+    longitude: "-122.410927"
+    address: 1246 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Nickie&apos;s
+    latitude: "37.772319"
+    zip: "94117"
+    url: www.nickies.com
+    phone: 415-621-6508
+    longitude: "-122.429818"
+    address: 460 Haight St
+    state: CA
+  - 
+    city: SAUSALITO
+    name: No Name Bar
+    latitude: "37.856598"
+    zip: "94965"
+    url: ''
+    phone: ''
+    longitude: "-122.480213"
+    address: 757 Bridgeway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Noe Valley Ministry
+    latitude: "37.752797"
+    zip: "94114"
+    url: www.noevalleyministry.org
+    phone: 415-282-2317
+    longitude: "-122.429581"
+    address: 1021 Sanchez St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Nomad Cafe
+    latitude: "37.850437"
+    zip: "94609"
+    url: www.nomadcafe.net
+    phone: 510-595-5344
+    longitude: "-122.265725"
+    address: 6500 Shattuck Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: North End Caffe
+    latitude: "37.799874"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.40726"
+    address: 1402 Grant Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: O&apos;Reilly&apos;s Holy Grail
+    latitude: "37.788339"
+    zip: "94109"
+    url: www.oreillysholygrail.com
+    phone: 415-928-1233
+    longitude: "-122.420402"
+    address: 1233 Polk St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Oakland Box Theater
+    latitude: "37.808599"
+    zip: "94612"
+    url: www.oaklandbox.com
+    phone: 510-451-1932
+    longitude: "-122.269635"
+    address: 1928 Telegraph Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: Oakland Metro
+    latitude: "37.796178"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.276406"
+    address: 201 Broadway
+    state: CA
+  - 
+    city: OAKLAND
+    name: Oaklandish
+    latitude: "37.795594"
+    zip: "94607"
+    url: ''
+    phone: ''
+    longitude: "-122.275525"
+    address: 411 2nd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: ODC Theater
+    latitude: "37.763463"
+    zip: "94110"
+    url: www.odctheater.org
+    phone: 415-863-9834
+    longitude: "-122.416459"
+    address: 3153 17th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Old First Presbyterian Church
+    latitude: "37.791262"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.42169"
+    address: 1751 Sacramento St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Old Saint Mary&apos;s Cathedral
+    latitude: "37.792637"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.40575"
+    address: 660 California St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Olive
+    latitude: "37.784867"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.418007"
+    address: 743 Larkin St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Otis
+    latitude: "37.788204"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.404024"
+    address: 25 Maiden Ln
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Oxygen Bar Sushi  &amp;  Sake Lounge
+    latitude: "37.760306"
+    zip: "94110"
+    url: www.oxygensf.com
+    phone: 415-255-2102
+    longitude: "-122.421249"
+    address: 795 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Ozumo
+    latitude: "37.792619"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.392116"
+    address: 161 Steuart St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pacific Musical Society
+    latitude: "37.790606"
+    zip: "94118"
+    url: ''
+    phone: ''
+    longitude: "-122.450261"
+    address: 3368 Jackson St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Palace of Fine Arts
+    latitude: "37.80135"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.447973"
+    address: 3301 Lyon St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Papa Toby&apos;s Revolution Cafe  &amp;  Art Bar
+    latitude: "37.755552"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.419727"
+    address: 3248 22nd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Paradise Lounge
+    latitude: "37.7717"
+    zip: "94103"
+    url: www.paradiselounge.com
+    phone: 415-621-1911
+    longitude: "-122.413978"
+    address: 1501 Folsom St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Paramount Theatre
+    latitude: "37.809451"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.268161"
+    address: 2025 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Park
+    latitude: "37.778662"
+    zip: "94107"
+    url: www.theparksf.com
+    phone: 415-974-1925
+    longitude: "-122.392244"
+    address: 747 3rd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pat O&apos;Shea&apos;s
+    latitude: "37.781337"
+    zip: "94118"
+    url: ''
+    phone: ''
+    longitude: "-122.460537"
+    address: 3848 Geary Blvd
+    state: CA
+  - 
+    city: BERKELEY
+    name: Pat Ryan&apos;s Celtic Junket
+    latitude: "37.863412"
+    zip: "94710"
+    url: ''
+    phone: ''
+    longitude: "-122.314763"
+    address: 160 University Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Peacock Lounge
+    latitude: "37.772132"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.431358"
+    address: 552 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pearl&apos;s
+    latitude: "37.737466"
+    zip: "94127"
+    url: ''
+    phone: ''
+    longitude: "-122.469474"
+    address: 329 W Portal Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Peña PachaMama
+    latitude: "37.799652"
+    zip: "94133"
+    url: www.penapachamama.com
+    phone: 415-646-0018
+    longitude: "-122.4105"
+    address: 1630 Powell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Pendulum
+    latitude: "37.760988"
+    zip: "94114"
+    url: ''
+    phone: ''
+    longitude: "-122.435542"
+    address: 4146 18th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Perry&apos;s Joint
+    latitude: "37.784885"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.433228"
+    address: 1661 Fillmore St
+    state: CA
+  - 
+    city: SAN JOSE
+    name: Pete Escovedo&apos;s Night Club
+    latitude: "37.329957"
+    zip: "95113"
+    url: www.petesnightclub.com
+    phone: 408-947-7500
+    longitude: "-121.885761"
+    address: 400 S 1st St
+    state: CA
+  - 
+    city: SAN RAFAEL
+    name: Pete&apos;s 881 Club
+    latitude: "37.967934"
+    zip: "94901"
+    url: www.petes881.com
+    phone: 415-453-5888
+    longitude: "-122.52285"
+    address: 721 Lincoln Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pier 1 Deli
+    latitude: "37.7966"
+    zip: "94111"
+    url: ''
+    phone: ''
+    longitude: "-122.3956"
+    address: The Embarcadero At Washington St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pier 40
+    latitude: "37.77985"
+    zip: "94107"
+    url: ''
+    phone: ''
+    longitude: "-122.3896"
+    address: 2nd St At King St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pink
+    latitude: "37.765012"
+    zip: "94103"
+    url: www.pinksf.com
+    phone: 415-431-8889
+    longitude: "-122.418045"
+    address: 2925 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Plough  &amp;  Stars
+    latitude: "37.783237"
+    zip: "94118"
+    url: pweb.jps.net/~jgilder/plough.html
+    phone: 415-751-1122
+    longitude: "-122.460478"
+    address: 116 Clement St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Pound-SF
+    latitude: "37.740437"
+    zip: "94124"
+    url: www.poundsf.com
+    phone: 415-826-5009
+    longitude: "-122.376844"
+    address: 100 Cargo Way
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Power Exchange
+    latitude: "37.772172"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.420122"
+    address: 74 Otis St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Powerhouse
+    latitude: "37.773075"
+    zip: "94103"
+    url: www.powerhouse-sf.com
+    phone: 415-552-8689
+    longitude: "-122.41223"
+    address: 1347 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Prive Lounge and Roe Resturant
+    latitude: "37.785692"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.399411"
+    address: 651 Howard St Ste B
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Purple Onion
+    latitude: "37.796741"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.404703"
+    address: 140 Columbus Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: Radio Bar
+    latitude: "37.803176"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.27095"
+    address: 435 13th St
+    state: CA
+  - 
+    city: SAN RAFAEL
+    name: Rafters
+    latitude: "37.972799"
+    zip: "94901"
+    url: ''
+    phone: ''
+    longitude: "-122.524143"
+    address: 812 4th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Ramp
+    latitude: "37.765033"
+    zip: 
+    url: ''
+    phone: ''
+    longitude: "-122.38699"
+    address: 855 China Basin St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rasselas Jazz Club
+    latitude: "37.783677"
+    zip: "94115"
+    url: ''
+    phone: ''
+    longitude: "-122.432605"
+    address: 1534 Fillmore St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rawhide
+    latitude: "37.776996"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.408385"
+    address: 280 7th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Red Devil Lounge
+    latitude: "37.792216"
+    zip: "94109"
+    url: www.reddevillounge.com
+    phone: 415-921-1695
+    longitude: "-122.421234"
+    address: 1695 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Red Poppy Art House
+    latitude: "37.754246"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.414481"
+    address: 2698 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Red Rock
+    latitude: "37.734363"
+    zip: "94131"
+    url: ''
+    phone: ''
+    longitude: "-122.433725"
+    address: 699 Chenery St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: "Redwood Room, Clift Hotel"
+    latitude: "37.786892"
+    zip: "94102"
+    url: www.clifthotel.com
+    phone: 415-775-4700
+    longitude: "-122.411249"
+    address: 495 Geary St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Regency Center
+    latitude: "37.787734"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.4212"
+    address: 1270 Sutter St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rhythm  &amp;  Motion Studios
+    latitude: "37.778543"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.41154"
+    address: 1133 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rick&apos;s Restaurant  &amp;  Bar
+    latitude: "37.742692"
+    zip: "94116"
+    url: ''
+    phone: ''
+    longitude: "-122.486896"
+    address: 1940 Taraval St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rickshaw Stop
+    latitude: "37.776156"
+    zip: "94102"
+    url: www.rickshawstop.com
+    phone: 415-861-2011
+    longitude: "-122.420341"
+    address: 155 Fell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Riptide
+    latitude: "37.74162"
+    zip: "94116"
+    url: ''
+    phone: ''
+    longitude: "-122.505049"
+    address: 3639 Taraval St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Roccapulco
+    latitude: "37.747216"
+    zip: "94110"
+    url: www.roccapulco.com
+    phone: 415-648-6611
+    longitude: "-122.419027"
+    address: 3140 Mission St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rockit Room
+    latitude: "37.783137"
+    zip: "94118"
+    url: rock-it-room.com
+    phone: 415-387-6343
+    longitude: "-122.463612"
+    address: 406 Clement St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Roe / Prive
+    latitude: "37.785692"
+    zip: "94105"
+    url: ''
+    phone: ''
+    longitude: "-122.399411"
+    address: 651 Howard St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: RoHan Lounge
+    latitude: "37.781063"
+    zip: "94118"
+    url: www.rohanlounge.com
+    phone: 415-221-5095
+    longitude: "-122.46024"
+    address: 3809 Geary Blvd
+    state: CA
+  - 
+    city: ALAMEDA
+    name: Rooster&apos;s Roadhouse
+    latitude: "37.776021"
+    zip: "94501"
+    url: ''
+    phone: ''
+    longitude: "-122.252805"
+    address: 1700 Clement Ave
+    state: CA
+  - 
+    city: BERKELEY
+    name: Rose Street House of Music
+    latitude: "37.881467"
+    zip: "94703"
+    url: ''
+    phone: ''
+    longitude: "-122.27488"
+    address: 1839 Rose St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rouge
+    latitude: "37.796014"
+    zip: "94109"
+    url: www.rougesf.com
+    phone: 415-346-7683
+    longitude: "-122.421996"
+    address: 1500 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Royale
+    latitude: "37.799126"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.407094"
+    address: 1326 Grant Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: The Ruby Room
+    latitude: "37.801472"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.263567"
+    address: 132 14th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Ruby Skye
+    latitude: "37.787602"
+    zip: "94102"
+    url: www.rubyskye.com
+    phone: 415-693-0777
+    longitude: "-122.409752"
+    address: 420 Mason St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Rx Gallery
+    latitude: "37.784464"
+    zip: "94102"
+    url: www.rxgallery.com
+    phone: 415-474-7973
+    longitude: "-122.409936"
+    address: 132 Eddy St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Sacred Grounds
+    latitude: "37.773208"
+    zip: "94117"
+    url: ''
+    phone: ''
+    longitude: "-122.450622"
+    address: 2085 Hayes St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Sadie&apos;s Flying Elephant
+    latitude: "37.76343"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.407142"
+    address: 491 Potrero Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Saloon
+    latitude: "37.798088"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.406881"
+    address: 1232 Grant Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: San Francisco Brewing Co.
+    latitude: "37.796639"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.405064"
+    address: 155 Columbus Ave
+    state: CA
+  - 
+    city: SAN JOSE
+    name: San Jose State Event Center Arena
+    latitude: "37.333914"
+    zip: 
+    url: ''
+    phone: ''
+    longitude: "-121.879994"
+    address: 290 S 7th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Savanna Jazz Club
+    latitude: "37.750018"
+    zip: "94110"
+    url: www.savannajazz.com
+    phone: 415-285-3369
+    longitude: "-122.418046"
+    address: 2937 Mission St
+    state: CA
+  - 
+    city: SAUSALITO
+    name: Saylor&apos;s Landing
+    latitude: "37.868604"
+    zip: "94965"
+    url: ''
+    phone: ''
+    longitude: "-122.498579"
+    address: 305 Harbor Dr
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: SF Museum of Modern Art
+    latitude: "37.785636"
+    zip: "94103"
+    url: www.sfmoma.org
+    phone: 415-357-4000
+    longitude: "-122.400981"
+    address: 151 3rd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: SF Weekly  Warfield
+    latitude: "37.782663"
+    zip: "94102"
+    url: www.cc.com
+    phone: 415-775-7722
+    longitude: "-122.409984"
+    address: 982 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: SFSU Campus/Cesar Chavez Student Center
+    latitude: "37.720949"
+    zip: "94132"
+    url: ''
+    phone: ''
+    longitude: "-122.477163"
+    address: 1600 Holloway Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Shadow Lounge
+    latitude: "37.773995"
+    zip: "94103"
+    url: www.shadowloungesf.com
+    phone: 415-302-4684
+    longitude: "-122.41162"
+    address: 299 9th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Shanghai 1930
+    latitude: "37.79293"
+    zip: "94105"
+    url: www.shanghai1930.com
+    phone: 415-896-5600
+    longitude: "-122.3925"
+    address: 133 Steuart St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Sharon Meadow
+    latitude: "37.771066"
+    zip: "94101"
+    url: ''
+    phone: ''
+    longitude: "-122.454866"
+    address: Kezar Dr At John F Kennedy Dr
+    state: CA
+  - 
+    city: BERKELEY
+    name: The Shattuck Down Low
+    latitude: "37.867913"
+    zip: "94704"
+    url: www.shattuckdownlow.com
+    phone: 510-548-1159
+    longitude: "-122.268007"
+    address: 2284 Shattuck Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Shelton Theater
+    latitude: "37.788991"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.409162"
+    address: 533 Sutter St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Shine
+    latitude: "37.775684"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.415135"
+    address: 1337 Mission St
+    state: CA
+  - 
+    city: MOUNTAIN VIEW
+    name: Shoreline Amphitheatre
+    latitude: "37.423248"
+    zip: "94043"
+    url: ''
+    phone: ''
+    longitude: "-122.078152"
+    address: 1 Amphitheatre Pkwy
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Simple Pleasures
+    latitude: "37.775937"
+    zip: "94121"
+    url: ''
+    phone: ''
+    longitude: "-122.495597"
+    address: 3434 Balboa St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Sixth Street Books
+    latitude: "37.780341"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.40806"
+    address: 144 6th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Skip&apos;s Tavern
+    latitude: "37.739237"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.416823"
+    address: 453 Cortland Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Skylark Lounge
+    latitude: "37.764763"
+    zip: "94103"
+    url: www.skylarkbar.com
+    phone: 415-621-9294
+    longitude: "-122.421645"
+    address: 3089 16th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Skylight Cafe
+    latitude: "37.742804"
+    zip: "94116"
+    url: ''
+    phone: ''
+    longitude: "-122.484639"
+    address: 1722 Taraval St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Slim&apos;s
+    latitude: "37.771526"
+    zip: "94103"
+    url: www.slims-sf.com
+    phone: 415-522-0333
+    longitude: "-122.413332"
+    address: 333 11th St
+    state: CA
+  - 
+    city: BOLINAS
+    name: Smiley&apos;s Schooner Saloon
+    latitude: "37.909897"
+    zip: "94924"
+    url: ''
+    phone: ''
+    longitude: "-122.685429"
+    address: 41 Wharf Rd
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Soluna Café  &amp;  Lounge
+    latitude: "37.780737"
+    zip: "94102"
+    url: www.solunasf.com
+    phone: 415-621-2200
+    longitude: "-122.416422"
+    address: 272 Mcallister St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: SomArts Cultural Center
+    latitude: "37.770923"
+    zip: "94103"
+    url: www.somarts.org
+    phone: 415-863-1414
+    longitude: "-122.406097"
+    address: 934 Brannan St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Space 550
+    latitude: "37.739582"
+    zip: "94124"
+    url: www.space550.com
+    phone: 415-550-8286
+    longitude: "-122.404573"
+    address: 550 Barneveld Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: Spasso Coffeehouse
+    latitude: "37.848269"
+    zip: "94618"
+    url: ''
+    phone: ''
+    longitude: "-122.252318"
+    address: 6021 College Ave
+    state: CA
+  - 
+    city: BERKELEY
+    name: St. John&apos;s Presbyterian Church
+    latitude: "37.860991"
+    zip: "94705"
+    url: ''
+    phone: ''
+    longitude: "-122.253265"
+    address: 2727 College Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: St. Francis of Assisi Church
+    latitude: "37.798899"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.407477"
+    address: 610 Vallejo St
+    state: CA
+  - 
+    city: BERKELEY
+    name: St. Joseph the Worker
+    latitude: "37.869794"
+    zip: "94703"
+    url: ''
+    phone: ''
+    longitude: "-122.278146"
+    address: 1640 Addison St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: St. Mary&apos;s Cathedral
+    latitude: "37.783606"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.424518"
+    address: 1111 Gough St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: St. Patrick&apos;s Church
+    latitude: "37.785406"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.403361"
+    address: 756 Mission St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Starry Plough
+    latitude: "37.852974"
+    zip: "94705"
+    url: ''
+    phone: ''
+    longitude: "-122.266004"
+    address: 3101 Shattuck Ave
+    state: CA
+  - 
+    city: OAKLAND
+    name: Stork Club
+    latitude: "37.812867"
+    zip: "94612"
+    url: ''
+    phone: ''
+    longitude: "-122.268555"
+    address: 2330 Telegraph Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Stud
+    latitude: "37.772697"
+    zip: "94103"
+    url: www.studsf.com
+    phone: 415-252-7883
+    longitude: "-122.410093"
+    address: 399 9th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Studio 1072
+    latitude: "37.758443"
+    zip: "94107"
+    url: ''
+    phone: ''
+    longitude: "-122.387525"
+    address: 1072 Illinois St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Studio Z
+    latitude: "37.771551"
+    zip: "94103"
+    url: www.studioz.tv
+    phone: 415-252-7666
+    longitude: "-122.413831"
+    address: 314 11th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Sublounge
+    latitude: "37.760699"
+    zip: "94107"
+    url: www.sublounge.com
+    phone: 415-552-3603
+    longitude: "-122.387953"
+    address: 628 20th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Suede
+    latitude: "37.80551"
+    zip: "94133"
+    url: www.suedesf.com
+    phone: 415-399-9555
+    longitude: "-122.413183"
+    address: 383 Bay St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Suite one8one
+    latitude: "37.784114"
+    zip: "94102"
+    url: www.suite181.com
+    phone: 415-345-9900
+    longitude: "-122.410555"
+    address: 181 Eddy St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Swedish American Hall
+    latitude: "37.766475"
+    zip: "94114"
+    url: www.swedishamericanhall.com
+    phone: 415-431-7578
+    longitude: "-122.430442"
+    address: 2174 Market St
+    state: CA
+  - 
+    city: MILL VALLEY
+    name: Sweetwater
+    latitude: "37.905442"
+    zip: "94941"
+    url: ''
+    phone: ''
+    longitude: "-122.549177"
+    address: 153 Throckmorton Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Swig
+    latitude: "37.786716"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.412698"
+    address: 571 Geary St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Synergy School
+    latitude: "37.750813"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.420362"
+    address: 1387 Valencia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Temple Bar
+    latitude: "37.782362"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.418857"
+    address: 600 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Ten 15 Folsom
+    latitude: "37.778221"
+    zip: "94103"
+    url: www.1015.com
+    phone: 415-431-1200
+    longitude: "-122.405719"
+    address: 1015 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Terra
+    latitude: "37.785749"
+    zip: "94105"
+    url: www.terrasf.com
+    phone: 415-864-8833
+    longitude: "-122.393187"
+    address: 511 Harrison St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Theater Artaud
+    latitude: "37.763588"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.411421"
+    address: 450 Florida St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Theatre Tableau Vivant
+    latitude: "37.778953"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.409465"
+    address: 574 Natoma St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Thee Parkside
+    latitude: "37.765116"
+    zip: "94107"
+    url: www.theeparkside.com
+    phone: 415-503-0393
+    longitude: "-122.399896"
+    address: 1600 17th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Thirsty Bear Brewing Company
+    latitude: "37.785548"
+    zip: "94105"
+    url: www.thirstybear.com
+    phone: 415-974-0905
+    longitude: "-122.399587"
+    address: 661 Howard St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Three Dollar Bill Cafe
+    latitude: "37.771643"
+    zip: "94102"
+    url: www.threedollarbill.com
+    phone: 415-503-1532
+    longitude: "-122.423839"
+    address: 1800 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Tongue  &amp;  Groove
+    latitude: "37.798796"
+    zip: "94109"
+    url: www.tongueandgroovesf.com
+    phone: 415-928-0404
+    longitude: "-122.424217"
+    address: 2513 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Tonic
+    latitude: "37.7984"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.422042"
+    address: 2360 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Tower Records
+    latitude: "37.764665"
+    zip: "94114"
+    url: www.towerrecords.com
+    phone: 621-0588
+    longitude: "-122.432739"
+    address: 2280 Market St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Trax
+    latitude: "37.769984"
+    zip: "94117"
+    url: www.traxsf.com
+    phone: 415-864-4213
+    longitude: "-122.445974"
+    address: 1437 Haight St
+    state: CA
+  - 
+    city: SAUSALITO
+    name: Treviso
+    latitude: "37.858184"
+    zip: "94965"
+    url: ''
+    phone: ''
+    longitude: "-122.484813"
+    address: 39 Caledonia St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Triangle Lounge
+    latitude: "37.799543"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.436203"
+    address: 3231 Fillmore St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Trinity Chapel
+    latitude: "37.867985"
+    zip: 
+    url: ''
+    phone: ''
+    longitude: "-122.261582"
+    address: 2320 Dana St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Trinity Episcopal Church
+    latitude: "37.788306"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.424661"
+    address: 1668 Bush St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Tropi-Gala Night Club
+    latitude: "37.723149"
+    zip: "94112"
+    url: ''
+    phone: ''
+    longitude: "-122.444621"
+    address: 358 Ocean Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Tunnel Top
+    latitude: "37.790226"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.407216"
+    address: 601 Bush St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Underground SF
+    latitude: "37.772377"
+    zip: "94117"
+    url: www.undergroundsf.com
+    phone: 415-864-7386
+    longitude: "-122.429324"
+    address: 424 Haight St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Union Square Park
+    latitude: "37.7874"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.4082"
+    address: Geary St At Powell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: United Nations Plaza
+    latitude: "37.7805"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.4125"
+    address: Market St At 7th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The Velvet Lounge
+    latitude: "37.797989"
+    zip: "94133"
+    url: www.thevelvetlounge.com
+    phone: 415-788-0228
+    longitude: "-122.404445"
+    address: 443 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Verdi Club
+    latitude: "37.763302"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.407652"
+    address: 2424 Mariposa St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Vertigo
+    latitude: "37.787559"
+    zip: "94109"
+    url: ''
+    phone: ''
+    longitude: "-122.419874"
+    address: 1160 Polk St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Victorian Englander House
+    latitude: "37.781867"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.422473"
+    address: 807 Franklin St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Virgin Megastore
+    latitude: "37.785976"
+    zip: "94108"
+    url: ''
+    phone: ''
+    longitude: "-122.406041"
+    address: 2 Stockton St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Voda
+    latitude: "37.791368"
+    zip: "94104"
+    url: ''
+    phone: ''
+    longitude: "-122.403536"
+    address: 56 Belden Pl
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Voodoo Lounge
+    latitude: "37.801416"
+    zip: "94123"
+    url: ''
+    phone: ''
+    longitude: "-122.424698"
+    address: 1400 Lombard St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: The W Hotel
+    latitude: "37.785268"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.400545"
+    address: 181 3rd St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: War Memorial and Performing Arts Center&apos;s Green Room
+    latitude: "37.779195"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.420224"
+    address: 401 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: War Memorial Opera House
+    latitude: "37.778428"
+    zip: "94102"
+    url: ''
+    phone: ''
+    longitude: "-122.420096"
+    address: 301 Van Ness Ave
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Washington Square Bar  &amp;  Grill
+    latitude: "37.800343"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.410997"
+    address: 1707 Powell St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Washington Square Park
+    latitude: "37.8003"
+    zip: "94133"
+    url: ''
+    phone: ''
+    longitude: "-122.4102"
+    address: Columbus Ave At Union St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Whisper
+    latitude: "37.762509"
+    zip: "94110"
+    url: www.whispersf.com
+    phone: 415-356-9800
+    longitude: "-122.410987"
+    address: 535 Florida St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Wilde Oscar&apos;s
+    latitude: "37.76675"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.415655"
+    address: 1900 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Wish
+    latitude: "37.771164"
+    zip: "94103"
+    url: www.wishsf.com
+    phone: 415-278-9474
+    longitude: "-122.414514"
+    address: 1539 Folsom St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Women&apos;s Building
+    latitude: "37.761519"
+    zip: "94110"
+    url: ''
+    phone: ''
+    longitude: "-122.422545"
+    address: 3543 18th St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: "X - Bar Sushi"
+    latitude: "37.761237"
+    zip: "94122"
+    url: ''
+    phone: ''
+    longitude: "-122.490389"
+    address: 2648 Judah St
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: xyz
+    latitude: "37.771164"
+    zip: "94103"
+    url: ''
+    phone: ''
+    longitude: "-122.414514"
+    address: 1539 Folsom St
+    state: CA
+  - 
+    city: OAKLAND
+    name: Yoshi&apos;s
+    latitude: "37.796164"
+    zip: "94607"
+    url: www.yoshis.com
+    phone: 510-238-9200
+    longitude: "-122.278256"
+    address: 510 Embarcadero W
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Zebra Lounge
+    latitude: "37.797942"
+    zip: "94133"
+    url: www.zebrasf.net
+    phone: 415-88-0188
+    longitude: "-122.404845"
+    address: 447 Broadway
+    state: CA
+  - 
+    city: SAN FRANCISCO
+    name: Zebulon
+    latitude: "37.787528"
+    zip: "94105"
+    url: www.zebulonsf.com
+    phone: 415-975-5705
+    longitude: "-122.398157"
+    address: 83 Natoma St
+    state: CA
+  - 
+    city: BERKELEY
+    name: Zellerbach Hall
+    latitude: "37.8687"
+    zip: "94704"
+    url: ''
+    phone: ''
+    longitude: "-122.2592"
+    address: Bancroft Way At Telegraph Ave
+    state: CA

@@ -101,8 +101,9 @@ END_JS
     
   end
   
+  # Notification image table for error/info/success
   def img_label_table(img, label)
-    "<table><tr><td valign='top'><img src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
+    "<table><tr><td valign='top'><img width='16px' height='16px' src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
   end
   
   def section(title_img, action = nil)

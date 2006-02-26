@@ -20,7 +20,7 @@
 	<%= if !@band.logo.nil?
 	  image_tag url_for_file_column("band", "logo") , :id => "band_logo"
 	else
-	  "<img id='band_logo' src='images/unknown.jpg'/>".to_s
+	  "<img id='band_logo' src='/images/unknown.jpg'/>".to_s
  	end %>
 <% end %>
 

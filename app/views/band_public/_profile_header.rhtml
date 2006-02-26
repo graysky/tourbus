@@ -70,7 +70,7 @@
 				<%= if !@band.logo.nil?
 				  image_tag url_for_file_column("band", "logo") , :id => "logo"
 				else
-				  "<img id='logo' src='images/unknown.jpg'/>".to_s
+				  "<img id='logo' src='/images/unknown.jpg'/>".to_s
 			 	end %>
 		 	</div>
 		</td>

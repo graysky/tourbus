@@ -42,7 +42,7 @@ class Site
   end
   
   ##
-  ## Borrowed from the Switchtower config
+  ## Borrowed from the Switchtower configuration
   ##
   # Set a variable to the given value.
   def set(variable, value=nil, &block)
@@ -57,6 +57,13 @@ class Site
     
     value = block if value.nil? && block_given?
     @variables[variable] = value
+    
+    if !block_given?
+    #  @ + "#{variable}" = value
+      # Define the variable so it can be refferred to easily as "url"
+      instance_variable_set( "@#{variable}", value)
+    end
+
     #p "Variable is: #{variable} = #{value}"
   end
   
@@ -74,6 +81,23 @@ class Site
     @variables[variable]
   end
   
+  # Defines a new method on the site
+  # name => name of the method
+  # options => options for the method (NOT IMPLEMENTED)
+  # block => the block to execute
+  def method(name, options={}, &block)
+  
+    #puts "Defining new method: #{name} with #{options}"
+    
+    # Define the new method
+    define_method(name) do
+      
+      # Wrap the method call, if needed
+      block.call
+    end
+  
+  end
+  
   # Fetch the site's page(s) and store them iff:
   # 1) The necessary amount of time has passed
   # 2) robots.txt allows it
@@ -82,7 +106,7 @@ class Site
   def fetch(root_path)
     
     # Name of the site
-    name = self[:name]
+    name = @name #self[:name]
     # URLs to visit
     urls = []
     
@@ -90,7 +114,7 @@ class Site
     # for us to hit the site again
     
     # Url could be a string or array
-    url = self[:url]
+    url = @url # self[:url]
     
     # Handle single string
     if url.kind_of?(String)
@@ -160,7 +184,17 @@ class Site
     
   end
   
+  # Get the metaclass for this object
+  def metaclass
+      class << self; self; end
+  end
+
   private
+
+  # Define a new method on this object
+  def define_method(name, &block)
+    metaclass.send(:define_method, name, &block)
+  end
   
   # Checks the remote robots.txt file
   # See this site for documentation:

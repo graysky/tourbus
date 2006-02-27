@@ -81,6 +81,8 @@ class AnansiConfig
         @sites << s
       end
     end
+    
+    return @sites
   end
   
   # Perform the crawl and write HTML starting at the

@@ -34,3 +34,7 @@ set :marker_text, ["Event Title"]
 # DEFINE METHODS
 # =============================================================================
 #
+method :preprocess_bands_text, {:args => 1} do |text|
+  # The first "with" is probably a separator
+  text.sub(/with/, ',')
+end

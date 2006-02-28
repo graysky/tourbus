@@ -47,7 +47,6 @@ class TableParser < ShowParser
     end
     
     # Collect the shows
-    shows = []
     table.elements.each("tr") do |row|
       path = @nested ? "td/table/tr/td" : "td"
       
@@ -61,7 +60,7 @@ class TableParser < ShowParser
         end
         
         puts "\n#{@show.to_yaml}"
-        shows << @show
+        @shows << @show
       rescue Exception => e
         # Not a valid show
         # Could us some logging here
@@ -70,7 +69,7 @@ class TableParser < ShowParser
       end
     end
     
-    shows
+    @shows
   end
   
   #

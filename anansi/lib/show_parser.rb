@@ -5,12 +5,15 @@ require 'anansi/lib/html' # temp
 class ShowParser
   include REXML
   
+  attr_reader :shows
+  
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
     @doc = xml.is_a?(String) ? Document.new(HTML::strip_tags(xml)) : xml
     @url = url
     
     @show = nil # The current show being processed
+    @shows = []
   end
   
   # Set the site for this parser
@@ -31,6 +34,9 @@ class ShowParser
     # Remove ampersand if it begins with it
     name.gsub!(/&/, '') if name[0..0] == "&"
     name.gsub!(/&amp;/, '') if name[0..4] == "&amp;"
+    
+    name.gsub!(/&apos;/, '\'')
+    name.gsub!(/\s/, ' ')
     
     extra = nil
     
@@ -68,7 +74,7 @@ class ShowParser
     
     return nil if down.ends_with?(":")
     return nil if down.include?("tba") or down.include?("t.b.a") # Too restrictive? Not many words with tba.
-    return nil if down.split(" ").size > 10 # more like a paragraph than a band name
+    return nil if down.split(" ").size > 8 # more like a paragraph than a band name
     return nil if down.ends_with?("and more...") or down.ends_with?("and more") or down.ends_with?("more...")
     return nil if down.include?("special guest")
     return nil if down.include?("many more")

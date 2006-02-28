@@ -5,9 +5,15 @@
 desc "Runs the 1st stage of the crawler"
 task :anansi_crawl do
 
+  # Can run like:
+  # rake site=foo anansi_crawl
+  # where foo is the *only* site to crawl
+  site = ENV['site']
+
   # TODO Remove "true" which indicates testing
   cmd = <<END
   c = AnansiConfig.new(true) 
+  c.only_site = "#{site}"
   c.start
   c.crawl
 END

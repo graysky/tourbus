@@ -24,7 +24,6 @@ class AnansiParser
       @only_site = nil
     else
       @only_site = site # Only run this site if set
-      p "Only site is: #{@only_site}"
     end
   end
   

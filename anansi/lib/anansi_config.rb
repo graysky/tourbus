@@ -7,12 +7,23 @@ class AnansiConfig
   
   attr_reader :sites
   
+  attr_reader :only_site
+  
   # Defaults for a new configuration
   # testing => if this is a test run
   def initialize(testing = false)
     @testing = testing
     @sites = []
     @root_path = nil
+  end
+  
+  # Only crawl the site given - must match the name of the site
+  def only_site=(site)
+    if site.nil? or site.empty?
+      @only_site = nil
+    else
+      @only_site = site # Only run this site if set
+    end
   end
   
   # Create the configuration for the crawler at the top of the anansi directory
@@ -89,6 +100,9 @@ class AnansiConfig
   def crawl()
     
     @sites.each do |s|
+
+      # If only_site is set, skip all others
+      next if not @only_site.nil? and s.name != @only_site
 
       # Before visiting the site, check the interval to see
       # if we need to visit the site

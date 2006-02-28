@@ -69,6 +69,24 @@ class ShowParser
     return name
   end
   
+  # Parse the given string as a date
+  def parse_as_date(str, raise_on_error = true)
+    # The parsedate method can't handle dotted dates like 02.12.06,
+    # and confuses dates with months when using dashes
+    str.gsub!(/(\.|-)/, '/')
+  
+    values = ParseDate.parsedate(str, true)
+    
+    # Need at least a month and a date. Assume this year (for now)
+    if values[1].nil? or values[2].nil?
+      raise "Bad date: #{contents}" if raise_on_error
+      return nil
+    end
+    
+    year = Time.now.year if values[0].nil? or values[0] != Time.now.year or values[0] != Time.now.year + 1
+    Time.local(year, values[1], values[2])
+  end
+  
   # Get the metaclass for this object
   def metaclass
     class << self; self; end

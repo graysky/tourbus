@@ -94,18 +94,7 @@ class TableParser < ShowParser
   
   # Default type parsers. Sites can define their own.
   def parse_date(cell, contents)
-    # The parsedate method can't handle dotted dates like 02.12.06,
-    # and confuses dates with months when using dashes
-    contents.gsub!(/(\.|-)/, '/')
-  
-    values = ParseDate.parsedate(contents, true)
-    
-    # Need at least a month and a date. Assume this year (for now)
-    raise "Bad date: #{contents}" if values[1].nil? or values[2].nil?
-    
-    year = Time.now.year if values[0].nil? or values[0] != Time.now.year or values[0] != Time.now.year + 1
-    date = Time.local(year, values[1], values[2])
-    @show[:date] = date
+    @show[:date] = parse_as_date(contents)
   end
   
   def parse_time(cell, contents)

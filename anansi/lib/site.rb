@@ -54,7 +54,7 @@ class Site
     @name = name
   end
   
-  # The directory where the pages pulled in the crawl are stored
+  # Directory where the pages pulled in the crawl are stored
   def crawl_dir
     crawl_dir = File.join(site_dir, "crawl")
     
@@ -66,7 +66,7 @@ class Site
     return crawl_dir
   end
   
-  # The directory where the parsed pages are archived
+  # Directory where the parsed pages are archived
   def archive_dir
     archive_dir = File.join(site_dir, "archive")
     
@@ -76,6 +76,18 @@ class Site
     end
     
     return archive_dir
+  end
+  
+  # Directory where the parsed shows as YAML files are written
+  def parse_dir
+    parse_dir = File.join(site_dir, "parse")
+    
+    # Make the dir if needed
+    if not File.exists?(parse_dir)
+      FileUtils.mkdir_p(parse_dir)
+    end
+    
+    return parse_dir
   end
   
   # Get the current list of files that the crawler found

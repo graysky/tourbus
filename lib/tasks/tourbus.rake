@@ -18,9 +18,15 @@ end
 desc "Runs the 2nd stage of the crawler"
 task :anansi_parse do
 
+  # Can run like:
+  # rake site=foo anansi_parse
+  # where foo is the *only* site to parse
+  site = ENV['site']
+  
   # TODO Remove "true" which indicates testing
   cmd = <<END
-  p = AnansiParser.new(true) 
+  p = AnansiParser.new(true)
+  p.only_site = "#{site}"
   p.start
   p.parse
 END

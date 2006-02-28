@@ -4,15 +4,28 @@ require 'anansi/lib/html'
 require 'lib/string_helper'
 require 'parsedate'
 require 'anansi/lib/table_parser'
+require 'yaml'
 
 # Runs stage 2 of the anansi system. 
 class AnansiParser
 
-  # set testing to true if this is a test run
+  attr_reader :only_site
+
+  # testing => set to true if this is a test run
   def initialize(testing = false)
     @testing = testing
     @sites = []
     @config = nil
+  end
+  
+  # Only parse the site given - must match the name of the site
+  def only_site=(site)
+    if site.nil? or site.empty?
+      @only_site = nil
+    else
+      @only_site = site # Only run this site if set
+      p "Only site is: #{@only_site}"
+    end
   end
   
   # Load the site configs 
@@ -26,6 +39,9 @@ class AnansiParser
   def parse
     @sites.each do |site| 
       next if site.name == "sample" # Ignore sample site
+      
+      # If only_site is set, skip all others
+      next if not @only_site.nil? and site.name != @only_site
       
       # Parser each file for this site      
       site.crawled_files.each do |file|
@@ -50,7 +66,17 @@ class AnansiParser
         parser.site = site
       
         # Parse the REXML doc
-        shows = parser.parse
+        parser.parse
+
+        all_shows = ""
+        # Gather all the shows as YAML
+        parser.shows.each { |show| all_shows << show.to_yaml }
+        
+        # Create a file with the same name (with .yml ext) in the parse directory
+        yml_file = File.new(File.join(site.parse_dir, File.basename(file, ".xml") + ".yml"), "w")
+        
+        # Write out the yaml file
+        yml_file.write(all_shows)
       end
     end
   end

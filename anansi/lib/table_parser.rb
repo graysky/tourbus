@@ -65,8 +65,8 @@ class TableParser < ShowParser
       rescue Exception => e
         # Not a valid show
         # Could us some logging here
-        puts e.inspect
-        puts e.backtrace
+        #puts e.inspect
+        #puts e.backtrace
       end
       
     end
@@ -127,6 +127,11 @@ class TableParser < ShowParser
     parse_cost(cell, contents)
   end
   
+  # To be overriden
+  def preprocess_bands_text(text)
+    text
+  end
+  
   # TODO If we determine that any entries are probably not bands, but we have a least
   # one that we think is, then we should probably add the entire chunk of text as the
   # description of the show, just so no information is lost in case it's relevant and
@@ -156,6 +161,7 @@ class TableParser < ShowParser
       separator = "|"
     end
     
+    text = preprocess_bands_text(text)
     cell_index = 0
     text.split(separator, limit).each do |chunk|
       # TODO Lots of times parens contain the band someone is in.

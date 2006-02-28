@@ -14,7 +14,7 @@ class ShowParser
   end
   
   # Set the site for this parser
-  def set_site(site)
+  def site=(site)
     @site = site
     
     # Pull in the overridden methods from the site

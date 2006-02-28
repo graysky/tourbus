@@ -57,6 +57,33 @@ class ShowParser
     [name.strip, extra]
   end
   
+  def process_first_band(name, preamble = nil)
+    down = name.downcase
+    
+    # The first one is tricky because it could have some preamble that
+    # we need to strip off and save, and still get the headlining band.
+    # But first, if we end with these strings than this entire first chunk
+    # is just a preamble. TODO We should probably save it
+    return nil if down.ends_with?(" with")
+    return nil if down.ends_with?("presents")
+    return nil if down.ends_with?("present")
+    return nil if down.ends_with?("featuring")
+    return nil if down.ends_with?("special guest")
+    return nil if down.ends_with?(":")
+    
+    keywords = [":", "featuring", "presents", "presenting", "special guest", 
+                "welcomes", "evening with"]
+    index = first_index_in(keywords, down)
+    if index
+      new_preamble = name[0..index].strip
+      new_preamble = preamble + ' ' + new_preamble if preamble
+      name = name[index, name.length]
+      name, preamble = process_first_band(name, new_preamble)
+    end
+    
+    return name.strip, preamble.nil? ? nil : preamble.strip
+  end
+  
   # Index is there because certain phrases are more likely to mean there is not a band playing
   # TODO We need a config option so that sites can override this. People do wacky things with band listings!
   def probable_band(name, index, starting_preamble = nil)
@@ -78,6 +105,11 @@ class ShowParser
     return nil if down.ends_with?("and more...") or down.ends_with?("and more") or down.ends_with?("more...")
     return nil if down.include?("special guest")
     return nil if down.include?("many more")
+    return nil if down.include?("performing songs")
+    return nil if down.include?("perform songs")
+    return nil if down.include?("performing works")
+    return nil if down.include?("art show")
+    return nil if down.include?("crafts fair")
     return nil if down.include?("+")
     
     band = {}
@@ -87,33 +119,7 @@ class ShowParser
     
     band
   end
-  
-  def process_first_band(name, preamble = nil)
-    down = name.downcase
     
-    # The first one is tricky because it could have some preamble that
-    # we need to strip off and save, and still get the headlining band.
-    # But first, if we end with these strings than this entire first chunk
-    # is just a preamble. TODO We should probably save it
-    return nil if down.ends_with?(" with")
-    return nil if down.ends_with?("presents")
-    return nil if down.ends_with?("present")
-    return nil if down.ends_with?("featuring")
-    return nil if down.ends_with?("special guest")
-    return nil if down.ends_with?(":")
-    
-    keywords = [":", "featuring", "presents", "presenting", "special guest"]
-    index = first_index_in(keywords, down)
-    if index
-      new_preamble = name[0..index].strip
-      new_preamble = preamble + ' ' + new_preamble if preamble
-      name = name[index, name.length]
-      name, preamble = process_first_band(name, new_preamble)
-    end
-    
-    return name.strip, preamble.nil? ? nil : preamble.strip
-  end
-  
   # Parse the given string as a date
   def parse_as_date(str, raise_on_error = true)
     # The parsedate method can't handle dotted dates like 02.12.06,

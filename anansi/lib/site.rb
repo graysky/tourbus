@@ -10,7 +10,8 @@ require 'anansi/lib/html'
 class Site
   include REXML
   
-  # The name of the site (automatically gleamed from the config filename) 
+  # The name of the site (automatically gleamed from the config filename)
+  # It must be unique
   attr_reader :name
   
   # The URL of the site - can be a String or an Array
@@ -22,6 +23,9 @@ class Site
   # The hash of variables currently known by the configuration
   attr_reader :variables
   
+  # The hast of methods defined by the site
+  attr_reader :methods
+  
   # User agent to send with requests
   # DO NOT CHANGE
   USER_AGENT = 'tourbus'
@@ -30,6 +34,7 @@ class Site
   def initialize(name = nil)
     
     @variables = {}
+    @methods = {}
     
     # Set the default name
     set :name, name
@@ -50,21 +55,18 @@ class Site
     # actor. This is to allow uppercase "variables" to be set and referenced
     # in recipes.
     #if variable.to_s[0].between?(?A, ?Z)
-      #klass = @actor.metaclass
-      #klass.send(:remove_const, variable) if klass.const_defined?(variable)
-      #klass.const_set(variable, value)
+    #klass = @actor.metaclass
+    #klass.send(:remove_const, variable) if klass.const_defined?(variable)
+    #klass.const_set(variable, value)
     #end
     
     value = block if value.nil? && block_given?
     @variables[variable] = value
     
     if !block_given?
-    #  @ + "#{variable}" = value
       # Define the variable so it can be refferred to easily as "url"
       instance_variable_set( "@#{variable}", value)
     end
-
-    #p "Variable is: #{variable} = #{value}"
   end
   
   alias :[]= :set
@@ -83,19 +85,65 @@ class Site
   
   # Defines a new method on the site
   # name => name of the method
-  # options => options for the method (NOT IMPLEMENTED)
+  # options => options for the method (only :args is supported)
   # block => the block to execute
   def method(name, options={}, &block)
-  
-    #puts "Defining new method: #{name} with #{options}"
     
-    # Define the new method
-    define_method(name) do
-      
-      # Wrap the method call, if needed
-      block.call
-    end
+    puts "Defining new method: #{name} with #{options}"
+    
+    # Remember what methods were added
+    # Array with proc and num of args
+    args = options[:args] || 0
+    value = [block, args]
+    @methods[name] = value
+    
+    # Define the new method on the site
+    create_method(self, name, value)
+  end
   
+  # Create new method for:
+  # name => name of the method
+  # value => [block, num of args it takes]
+  # Returns the string to define the newly created method
+  def create_method(obj, name, value)
+    # Pull out the proc and num of arguments
+    proc = value[0]
+    num_args = value[1]
+    
+    # Just a list of unique var names
+    l = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]
+    
+    # Build up a string like:
+    # define_method(name) { |a, b| proc.call(a,b) }"
+    # so that the overriden method is passed the right args
+    cmd = "define_method(name) { "
+    
+    var_cmd = "| "
+    proc_cmd = " proc.call("
+    
+    # Add in each argument
+    i = 0
+    while i < num_args
+      if i == 0
+        var_cmd = var_cmd + l[i]
+        proc_cmd = proc_cmd + l[i]
+      else
+        # Put in comma to seperate them
+        var_cmd = var_cmd + ", " + l[i]
+        proc_cmd = proc_cmd + ", " + l[i]
+      end
+      
+      i = i + 1
+    end
+    
+    # Close off the string
+    var_cmd = var_cmd + " |"
+    proc_cmd = proc_cmd + " ) }"
+    
+    # Build the full command
+    cmd = cmd + var_cmd + proc_cmd
+    #return cmd
+    obj.instance_eval(cmd)
   end
   
   # Fetch the site's page(s) and store them iff:
@@ -103,6 +151,7 @@ class Site
   # 2) robots.txt allows it
   # Params:
   # root_path => base dir to write output to
+  # Return true if successful, false otherwise
   def fetch(root_path)
     
     # Name of the site
@@ -125,7 +174,7 @@ class Site
     
     if urls.nil? or urls.empty?
       p "Site #{name} had no URLs configured - skipping"
-      return
+      return false
     end
     
     # Get the site's uri and port for robots.txt checking
@@ -145,7 +194,7 @@ class Site
       
       # Parse the URL    
       uri = URI.parse(url)
-    
+      
       http = Net::HTTP.new(uri.host, uri.port)
       # Visit the page
       resp = http.get(uri.path, 'User-Agent' => USER_AGENT)
@@ -161,7 +210,7 @@ class Site
       
       parser = HTMLTree::XMLParser.new(false, false)
       parser.feed(html)
-
+      
       # Get REXML doc
       doc = parser.document
       
@@ -172,11 +221,12 @@ class Site
       #p "File is: #{f}"
       #p "Exists?  #{File.exists?(f)}"
       #p "Writable? #{File.writable?(f.to_s)}"
-
+      
       # TODO Save to proper location      
       doc.write(f)
     end
     
+    return true
   end
   
   # TODO sync with above
@@ -186,11 +236,11 @@ class Site
   
   # Get the metaclass for this object
   def metaclass
-      class << self; self; end
+    class << self; self; end
   end
-
+  
   private
-
+  
   # Define a new method on this object
   def define_method(name, &block)
     metaclass.send(:define_method, name, &block)
@@ -200,22 +250,22 @@ class Site
   # See this site for documentation:
   # http://www.robotstxt.org
   def allow_robots?(http)
-  
+    
     if http.nil?
       p "HTTP obj was nil"
       return false
     end
-  
+    
     # Get the robots.txt, if it exists
     resp = http.get("/robots.txt", 'User-Agent' => USER_AGENT)
-
+    
     # robots.txt doesn't exist
     if resp.code != '200'
       return true
     end
-
+    
     body = resp.body
-  
+    
     # Entries come in pairs like:
     #User-agent: *
     #Disallow: /
@@ -230,7 +280,7 @@ class Site
       
       # Skip comments
       next if s.match(/^#/)
-    
+      
       if s.match(/user-agent/)
         # Check for both * or our user agent string
         # If found, check the next line for rule

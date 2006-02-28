@@ -13,6 +13,14 @@ class ShowParser
     @show = nil # The current show being processed
   end
   
+  # Set the site for this parser
+  def set_site(site)
+    @site = site
+    
+    # Pull in the overridden methods from the site
+    import_site_methods
+  end
+  
   # Parse the document and return a YAML document with the show info
   def parse
     raise "Implement this method in the subclass"
@@ -55,5 +63,29 @@ class ShowParser
     return true
   end
   
+  # Get the metaclass for this object
+  def metaclass
+    class << self; self; end
+  end
+  
+  private
+  
+  # Define a new method on this object
+  def define_method(name, &block)
+    metaclass.send(:define_method, name, &block)
+  end
+  
+  # Pull in the overriden methods from the site object
+  def import_site_methods
+    
+    # For each method the site overrides, pull out:
+    # name => the name of the method
+    # value => array of the proc and num of arguments it takes
+    @site.methods.each do |name, value|
+      
+      # Define the new method on this parser
+      @site.create_method(self, name, value)
+    end
+  end
   
 end

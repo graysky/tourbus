@@ -94,9 +94,31 @@ class AnansiConfig
     return if !valid_dir?(path)
     
     @sites.each do |s|
-      # TODO push to real location
-      # TODO Need check for 
+
+      # Before visiting the site, check the interval to see
+      # if we need to visit the site
+      visit = SiteVisit.find_by_name(s.name)
+      
+      if visit.nil?
+        # First visit to this site
+        visit = SiteVisit.new
+        visit.name = s.name
+      
+      # Check interval to see if it needs revisiting
+      # Don't check during testing.
+      elsif !@testing and Time.now - s.interval.hours < visit.updated_at
+        # Skip it, we hit it within the defined interval
+        p "Skipping site: #{s.name}"
+        next
+      end
+      
       s.fetch(path)
+      
+      # Save the visit
+      if not visit.save
+        p "Error saving SiteVisit"
+      end
+      
     end
   end
   

@@ -34,7 +34,7 @@ module REXML
       text = ''
       @children.each do |e|
         if e.class == Text
-          text << e.to_s
+          text << e.to_s + " "
         else
           text << e.recursive_text
         end

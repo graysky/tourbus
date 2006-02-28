@@ -53,8 +53,7 @@ class TableParser < ShowParser
       
       # Each cell is part of a new show
       @show = {}
-      cell_index = 0
-      
+      cell_index = 0 
       begin
         row.elements.each(path) do |cell|
           handle_cell(cell, cell_index)
@@ -66,8 +65,8 @@ class TableParser < ShowParser
       rescue Exception => e
         # Not a valid show
         # Could us some logging here
-        #puts ""
-        #puts e.backtrace
+        puts e.inspect
+        puts e.backtrace
       end
       
     end
@@ -81,14 +80,16 @@ class TableParser < ShowParser
   #
   protected
   
-  DEFAULT_MARKER_TEXT = ['18+', '21+', 'all ages', '$8']
+  DEFAULT_MARKER_TEXT = ['18+', '21+', 'all ages', 'a/a', '$8']
   
   # Handle a single cell
   def handle_cell(cell, index)
-    type = @table_columns[index]
-    return if type.nil? or type == :ignore
-
-    send("parse_" + type.to_s, cell, cell.recursive_text)
+    types = @table_columns[index]
+    return if types.nil? or types == :ignore
+    
+    types = [types] if !types.is_a?(Array)
+  
+    types.each { |type| send("parse_" + type.to_s, cell, cell.recursive_text) }
   end
   
   # Default type parsers. Sites can define their own.
@@ -102,7 +103,7 @@ class TableParser < ShowParser
     # Need at least a month and a date. Assume this year (for now)
     raise "Bad date: #{contents}" if values[1].nil? or values[2].nil?
     
-    year = values[0] || Time.now.year
+    year = Time.now.year if values[0].nil? or values[0] != Time.now.year or values[0] != Time.now.year + 1
     date = Time.local(year, values[1], values[2])
     @show[:date] = date
   end
@@ -135,45 +136,42 @@ class TableParser < ShowParser
     # First try to figure out the separator.
     raw = cell.to_s
     
-    # FIXME Lots of factoring to do here
-    if @band_separator == "br" or raw.downcase.include?("<br>") or raw.downcase.include?("<br/>")
-      # The band are probably separately by <br> tags
-      processed = HTML::strip_all_tags(raw.gsub(/<br(\/)?(\s)*>/i, "|"))
-      
-      cell_index = 0
-      processed.split("|").each do |chunk|
-        chunk = prepare_band_name(chunk)
-        if probable_band?(chunk, cell_index)
-          bands << chunk 
-        else
-          puts "**** Not a band: #{chunk}"
-        end
-        
-        cell_index += 1
+    limit = 0 # Unlimited chunks returned from split
+    separator = @band_separator
+    if separator.nil?
+      if raw.downcase.include?("<br>") or raw.downcase.include?("<br/>")
+        separator = "<br>" 
+      elsif raw.include?(",")
+        separator = ","
+      else
+        # Don't split at all...
+        limit = 1
+      end
+    end
+    
+    text = cell.recursive_text
+    if separator == "<br>"
+      # Convert to something easier to deal with
+      text = HTML::strip_all_tags(raw.gsub(/<br(\/)?(\s)*>/i, "|"))
+      separator = "|"
+    end
+    
+    cell_index = 0
+    text.split(separator, limit).each do |chunk|
+      # TODO Lots of times parens contain the band someone is in.
+      # This is useful for searches, but we don't want to create a
+      # new band record... what do we do? Add to description? title?
+      # TODO What about encoded chars like &amp;?
+      # TODO mailto links and their content should be stripped out
+      # TODO What about a band name like Damage, Inc.?
+      band = probable_band(chunk, cell_index)
+      if band
+        bands << band
+      else
+        puts "**** Not a band: #{chunk}"
       end
       
-    elsif @band_separator == "," or raw.include?(",")
-      # Try going by comma
-      cell_index = 0
-      cell.recursive_text.split(",").each do |chunk|
-        # TODO Lots of times parens contain the band someone is in.
-        # This is useful for searches, but we don't want to create a
-        # new band record... what do we do? Add to description? title?
-        # TODO What about encoded chars like &amp;?
-        # TODO mailto links and their content should be stripped out
-        # TODO What about a band name like Damage, Inc.?
-        
-        chunk = prepare_band_name(chunk)
-        if probable_band?(chunk, cell_index)
-          bands << chunk 
-        else
-          puts "**** Not a band: #{chunk}"
-        end
-        
-        cell_index += 1
-      end
-    else
-      # TODO Maybe just one band
+      cell_index += 1
     end
     
     raise "No bands" if bands.empty?

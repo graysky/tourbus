@@ -27,6 +27,10 @@ class ShowParser
   end
   
   def prepare_band_name(name)
+    # Remove ampersand if it begins with it
+    name.gsub(/&/, '') if name[0..0] == "&"
+    name.gsub(/&amp;/, '') if name[0..4] == "&amp;"
+    
     # Remove parts in parens
     name = name.gsub(/\((.)*\)/, '')
     
@@ -40,27 +44,29 @@ class ShowParser
     name.strip
   end
   
-  # TODO This should use our database and myspace, as well
   # Index is there because certain phrases are more likely to mean there is not a band playing
   # TODO We need a config option so that sites can override this. People do wacky things with band listings!
-  def probable_band?(name, index)
+  def probable_band(name, index, extra = nil)
     downcase = name.downcase
+    return nil if name.nil? or name.strip == ""
+    
+    name = prepare_band_name(name)
     
     # This list will grow a lot over time... this is very basic.
     # Not all of these will necessarily apply to non-table layouts. Will need to figure out
     # how to handle all the different cases.
-    return false if name.nil? or name.strip == ""
-    return false if name.ends_with?(":")
-    return false if index == 0 and downcase.include?(":")
-    return false if index == 0 and downcase.ends_with?("presents")
-    return false if downcase.include?("tba") # Too restrictive? Not many words with tba.
-    return false if name.split(" ").size > 12 # more like a paragraph than a band name
-    return false if downcase.ends_with?("and more...") or downcase.ends_with?("and more") or downcase.ends_with?("more...")
-    return false if index == 0 and downcase.ends_with?(" with")
-    return false if downcase.include?("special guest")
-    return false if downcase.include?("+")
+    # TODO take everything AFTER : or present or with ALSO DO "Featuring"
+    return nil if index == 0 and downcase.include?(":")
+    return nil if index == 0 and downcase.ends_with?("presents")
+    return nil if index == 0 and downcase.ends_with?(" with")
+    return nil if name.ends_with?(":")
+    return nil if downcase.include?("tba") or downcase.include?("t.b.a") # Too restrictive? Not many words with tba.
+    return nil if name.split(" ").size > 12 # more like a paragraph than a band name
+    return nil if downcase.ends_with?("and more...") or downcase.ends_with?("and more") or downcase.ends_with?("more...")
+    return nil if downcase.include?("special guest")
+    return nil if downcase.include?("+")
     
-    return true
+    return name
   end
   
   # Get the metaclass for this object

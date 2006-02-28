@@ -25,6 +25,9 @@ set :parser_type, :table
 # Table columns for the shows
 set :table_columns, { 0 => [:date, :time], 1 => :bands}
 
+# Comma separates bands
+set :band_separator, ','
+
 # Text to mark the shows table
 set :marker_text, ["Event Title"]
 

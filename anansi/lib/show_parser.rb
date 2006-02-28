@@ -17,8 +17,8 @@ class ShowParser
   def site=(site)
     @site = site
     
-    # Pull in the overridden methods from the site
-    import_site_methods
+    # Pull in the overridden vars & methods from the site
+    import_site_properties
   end
   
   # Parse the document and return a YAML document with the show info
@@ -176,8 +176,8 @@ class ShowParser
     metaclass.send(:define_method, name, &block)
   end
   
-  # Pull in the overriden methods from the site object
-  def import_site_methods
+  # Pull in the overriden variables and methods from the site
+  def import_site_properties
     
     # For each method the site overrides, pull out:
     # name => the name of the method
@@ -187,6 +187,13 @@ class ShowParser
       # Define the new method on this parser
       @site.create_method(self, name, value)
     end
+    
+    # Apply each variable from the site to the parser
+    @site.variables.each do |var, value|
+    
+      instance_variable_set( "@#{var}", value)
+    end
+    
   end
   
 end

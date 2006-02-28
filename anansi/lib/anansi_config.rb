@@ -16,16 +16,16 @@ class AnansiConfig
   end
   
   # Create the configuration for the crawler at the top of the anansi directory
-  # path => "#{RAILS_ROOT}/lib/anansi"
-  def start(path)
+  # path => "#{RAILS_ROOT}/anansi/sites"
+  def start(path = "#{RAILS_ROOT}/anansi/sites" )
     
     dir = Dir.new(path)
     
-    puts "Anansi started at #{dir.path}"
+    debug "Anansi started [#{dir.path}]"
     @root_path = dir.path
     
     # Load all the sites from here down
-    load(File.join(dir.path, "config"))
+    load(dir.path)
   end
   
   # Load a set of sites from a directory
@@ -48,6 +48,9 @@ class AnansiConfig
       
       # Only read "sample" dir if we are testing
       next if !@testing and e == "sample"
+      
+      # Uncomment to *only* run the sample file for testing
+      #next if @testing and e != "sample"
         
       child = File.join(dir.path, e)
       # Only consider subdirs      
@@ -60,19 +63,16 @@ class AnansiConfig
         # Only act on .rb files
         next unless f =~ /.rb$/
         
-        # TODO Skip example file in production
-        # next if f =~ /sample/  
-        #p "Matched #{f}"
-        
         # Get full path and read it in        
         file = File.join(subdir.path, f)
-        
+                
         str = File.read(file)
         
         name = f.sub(/.rb/, '')
         
-        # Create a new site
-        s = Site.new(name)
+        # Create a new site for each config file we find.
+        # They each get their own directory for storing files
+        s = Site.new(File.join(subdir.path, name), name)
         
         # and pull in the config file
         s.instance_eval(str)
@@ -85,13 +85,8 @@ class AnansiConfig
     return @sites
   end
   
-  # Perform the crawl and write HTML starting at the
-  # path, like
-  # #{path}/input/<site-name>/<file-name>
+  # Perform the crawl for all the configured sites
   def crawl()
-    path = File.join(@root_path, "input")
-    
-    return if !valid_dir?(path)
     
     @sites.each do |s|
 
@@ -108,15 +103,16 @@ class AnansiConfig
       # Don't check during testing.
       elsif !@testing and Time.now - s.interval.hours < visit.updated_at
         # Skip it, we hit it within the defined interval
-        p "Skipping site: #{s.name}"
+        p "Skipping site: #{s.name} because of time rule"
         next
       end
       
-      s.fetch(path)
+      # Crawl the site
+      s.crawl
       
       # Save the visit
       if not visit.save
-        p "Error saving SiteVisit"
+        p "**** Error saving SiteVisit for #{s.name}"
       end
       
     end
@@ -133,6 +129,13 @@ class AnansiConfig
     end
     
     return true
+  end
+
+  # Print debugging string if testing
+  def debug(str)
+    if @testing
+      puts "#{str}"
+    end
   end
   
 end

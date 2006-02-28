@@ -8,7 +8,7 @@ task :anansi_crawl do
   # TODO Remove "true" which indicates testing
   cmd = <<END
   c = AnansiConfig.new(true) 
-  c.start("#{RAILS_ROOT}/anansi/")
+  c.start
   c.crawl
 END
 
@@ -21,7 +21,7 @@ task :anansi_parse do
   # TODO Remove "true" which indicates testing
   cmd = <<END
   p = AnansiParser.new(true) 
-  p.start("#{RAILS_ROOT}/anansi")
+  p.start
   p.parse
 END
 

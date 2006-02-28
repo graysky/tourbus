@@ -5,8 +5,6 @@ require 'html/xmltree'
 require 'anansi/lib/html'
 
 # Represents a specific site to crawl or process.
-# TODO This will eventually have a relationship with an ActiveRecord class or become one.
-# TODO Define what vars are valid.  
 class Site
   include REXML
   
@@ -20,6 +18,12 @@ class Site
   # Interval for often to check site, in days
   attr_reader :interval
   
+  # The parent directory to where the site is stored
+  attr_reader :site_dir
+  
+  # The type of parser to use for this site
+  attr_reader :parser_type
+  
   # The hash of variables currently known by the configuration
   attr_reader :variables
   
@@ -30,15 +34,78 @@ class Site
   # DO NOT CHANGE
   USER_AGENT = 'tourbus'
   
-  # Defaults for a new site
-  def initialize(name = nil)
+  # Create a new site with:
+  # parent_path => the parent directory of the site
+  # this will affect where output is written and stored, ex.
+  # [site_dir]/crawl => where files pulled in during the crawl are placed (stage1)
+  # [site_dir]/archives => where files are put after being parsed (stage2)
+  # name => optional name for this site
+  def initialize(site_dir, name = nil)
     
     @variables = {}
     @methods = {}
     
+    # Set the site directory
+    set :site_dir, site_dir
+    @site_dir = site_dir
+    
     # Set the default name
     set :name, name
     @name = name
+  end
+  
+  # The directory where the pages pulled in the crawl are stored
+  def crawl_dir
+    crawl_dir = File.join(site_dir, "crawl")
+    
+    # Make the dir if needed
+    if not File.exists?(crawl_dir)
+      FileUtils.mkdir_p(crawl_dir)
+    end
+    
+    return crawl_dir
+  end
+  
+  # The directory where the parsed pages are archived
+  def archive_dir
+    archive_dir = File.join(site_dir, "archive")
+    
+    # Make the dir if needed
+    if not File.exists?(archive_dir)
+      FileUtils.mkdir_p(archive_dir)
+    end
+    
+    return archive_dir
+  end
+  
+  # Get the current list of files that the crawler found
+  def crawled_files
+    files = []
+    
+    # Grab all the crawled files in the crawl directory
+    dir = Dir.new(crawl_dir)
+    
+    # Grab each site under the directory
+    dir.each do |e|
+    
+      child = File.join(dir.path, e)
+      # Only consider files
+      next unless File.file?(child)
+      # Only consider XML files
+      next unless e =~ /.xml$/
+      
+      next if e =~ /sample.xml/ # Skip sample file
+      
+      # Add to the list with absolute path
+      files << File.expand_path(child)
+    end
+
+    return files
+  end
+  
+  # Archive the current crawled files
+  def archive!
+    # TODO Implement to actually move the crawled files to the archives
   end
   
   def to_s
@@ -72,7 +139,7 @@ class Site
   alias :[]= :set
   
   # Access a named variable. If the value of the variable responds_to? :call,
-  # #call will be invoked (without parameters) and the return value cached
+  # call will be invoked (without parameters) and the return value cached
   # and returned.
   def [](variable)
     if @variables[variable].respond_to?(:call)
@@ -88,8 +155,6 @@ class Site
   # options => options for the method (only :args is supported)
   # block => the block to execute
   def method(name, options={}, &block)
-    
-    puts "Defining new method: #{name} with #{options}"
     
     # Remember what methods were added
     # Array with proc and num of args
@@ -146,24 +211,21 @@ class Site
     obj.instance_eval(cmd)
   end
   
-  # Fetch the site's page(s) and store them iff:
+  # Crawl the site's page(s) and store them iff:
   # 1) The necessary amount of time has passed
   # 2) robots.txt allows it
   # Params:
-  # root_path => base dir to write output to
+  # root_path => base dir for this site. 
   # Return true if successful, false otherwise
-  def fetch(root_path)
+  def crawl()
     
     # Name of the site
-    name = @name #self[:name]
+    name = @name
     # URLs to visit
     urls = []
     
-    # TODO Need check of proper timing passing
-    # for us to hit the site again
-    
     # Url could be a string or array
-    url = @url # self[:url]
+    url = @url
     
     # Handle single string
     if url.kind_of?(String)
@@ -182,24 +244,24 @@ class Site
     
     http = Net::HTTP.new(uri.host, uri.port)
     
-    if !allow_robots?(http)
-      p "#{name}: Robots.txt prevents crawling of #{uri.host}"
-      return
-    end
-    
-    dir = File.join(root_path, name)
-    
     # Visit each URL
     urls.each do |url|
       
       # Parse the URL    
       uri = URI.parse(url)
       
+      if !allow_robots?(http, uri.path)
+        p "#{name}: Robots.txt prevents crawling of #{uri.path}"
+        next
+      end
+      
       http = Net::HTTP.new(uri.host, uri.port)
       # Visit the page
-      resp = http.get(uri.path, 'User-Agent' => USER_AGENT)
       
-      #p "Response: #{resp.body}"
+      debug "Crawling #{name} at #{uri.request_uri}"
+
+      # Need to include query string, so use request uri
+      resp = http.get(uri.request_uri, 'User-Agent' => USER_AGENT)
       
       # TODO We should check for METADATA tags that prevent robots
       # <META NAME="ROBOTS" CONTENT="NOINDEX"> or
@@ -208,30 +270,25 @@ class Site
       # Convert HTML to XML and strip tags
       html = HTML::strip_tags(resp.body)
       
+      html.gsub!(/&nbsp;/, ' ') # TODO Needed?
+      
       parser = HTMLTree::XMLParser.new(false, false)
       parser.feed(html)
       
       # Get REXML doc
       doc = parser.document
       
-      # Make needed directories and write the xml out
-      FileUtils.mkdir_p(dir)
-      f = File.new(File.join(dir, name + ".xml"), "w")
-      
-      #p "File is: #{f}"
-      #p "Exists?  #{File.exists?(f)}"
-      #p "Writable? #{File.writable?(f.to_s)}"
-      
-      # TODO Save to proper location      
+      # Write the REXML out
+      # TODO Need indiv. name per URL
+      f = File.new(File.join(crawl_dir, name + ".xml"), "w")
       doc.write(f)
+      
+      # Uncomment to write the raw HTML
+      #raw = File.new(File.join(crawl_dir, name + ".html"), "w")
+      #raw.write(resp.body)
     end
     
     return true
-  end
-  
-  # TODO sync with above
-  def get_latest_pages(root_path)
-    
   end
   
   # Get the metaclass for this object
@@ -249,7 +306,9 @@ class Site
   # Checks the remote robots.txt file
   # See this site for documentation:
   # http://www.robotstxt.org
-  def allow_robots?(http)
+  # http => HTTP obj to request robots.txt
+  # uri_path => The path we're requesting (like /site/shows.html)
+  def allow_robots?(http, uri_path)
     
     if http.nil?
       p "HTTP obj was nil"
@@ -266,9 +325,11 @@ class Site
     
     body = resp.body
     
-    # Entries come in pairs like:
-    #User-agent: *
-    #Disallow: /
+    # Entries come in lists like:
+    # User-agent: *
+    # Disallow: /
+    # Disallow: /sub
+    # Disallow: /sub/path
     
     # Boolean to know if we found a rule to check
     found_rule = false
@@ -283,11 +344,11 @@ class Site
       
       if s.match(/user-agent/)
         # Check for both * or our user agent string
-        # If found, check the next line for rule
+        # If found, check the next lines for rules
         if s.match(/\*/) or s.match(/tourb/)
           found_rule = true
         else
-          # The rule on the next line doesn't apply to us
+          # The next set of rules doesn't apply to us
           found_rule = false
         end
       end
@@ -297,9 +358,13 @@ class Site
       # NOTE: This is very simplistic, doesn't check path ("/blah"), just assumes
       # we're blocked if they include anything like "/".
       if found_rule and s.match(/disallow/)
-        if s.match(/\//)
+        # Pull out just the rule path
+        rule = s.sub(/disallow:\s*/, '')
+
+        # See if the rule appears in our request path
+        if uri_path.index(rule)
           # This rule blocks us
-          p "Blocking rule: #{s}"
+          debug "**** robots.txt blocking rule: #{s}"
           return false
         end
       end
@@ -309,4 +374,12 @@ class Site
     return true
   end
   
+  # Print debugging string if testing
+  def debug(str)
+    debug = true # flip when done testing
+    if debug
+      puts "#{str}"
+    end
+  end
+    
 end

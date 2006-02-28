@@ -1,14 +1,14 @@
 ## 
 ## Anansi config file
 ##
+## Note: The name of this config file affects where the stored files will appear.
+##
 #
 #
 # =============================================================================
 # REQUIRED VARIABLES
 # =============================================================================
 
-#
-# set :name # Defaults to name of this config file
 #
 # The URL for this site - mandatory
 # Can be single url:
@@ -21,8 +21,13 @@ set :url, "http://figureten.com/site/test.html"
 # set(:url) { "http://figureten.com/page/#{ Time.now.strftime("%b") }" }
 #
 
-# How often (in hours) to check the site (can set to 0 to force checking everytime)
+# How often (in hours) to crawl the site.
+#  - set to 0 to force checking everytime
+#  - set to -1 to never check it
 set :interval, 3
+
+# Which parser to use
+set :parser_type, :table
 
 # =============================================================================
 # OPTIONAL VARIABLES

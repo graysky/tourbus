@@ -126,6 +126,33 @@ class ShowParser
     Time.local(year, values[1], values[2])
   end
   
+  def parse_as_time(str, raise_on_error = false)
+    # Break this up into multiple regexps for readability
+    # With am/pm
+    regexp1 = /(\d(\d)?(:\d\d)?((\s)?(am|pm)))/i
+    
+    # Without am/pm but WITH colon. Just a number won't do.
+    regexp2 = /(\d(\d)?:\d\d)/
+    
+    if str =~ regexp1 or str =~ regexp2
+      return $1
+    elsif raise_on_error
+      raise "Bad time: #{str}"
+    else
+      return nil
+    end
+  end
+  
+  def parse_as_age_limit(str)
+    str.strip =~ /(18\+|21\+|all ages|a\/a)/i
+    return "all ages" if $1 == "a/a"
+    return $1
+  end
+  
+  def parse_as_cost(str)
+    $1 if str.strip =~ /(\$\d(\d)?(\.\d\d)?)/
+  end
+  
   # Get the metaclass for this object
   def metaclass
     class << self; self; end

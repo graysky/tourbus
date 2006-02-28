@@ -68,7 +68,6 @@ class TableParser < ShowParser
         #puts e.inspect
         #puts e.backtrace
       end
-      
     end
     
     shows
@@ -98,15 +97,7 @@ class TableParser < ShowParser
   end
   
   def parse_time(cell, contents)
-    
-    # Break this up into multiple regexps for readability
-    # With am/pm
-    regexp1 = /(\d(\d)?(:\d\d)?((\s)?(am|pm)))/i
-    
-    # Without am/pm but WITH colon. Just a number won't do.
-    regexp2 = /(\d(\d)?:\d\d)/
-    
-    @show[:time] = $1 if contents =~ regexp1 or contents =~ regexp2
+    @show[:time] = parse_as_time(contents)
   end
   
   # Time age and cost all jammed into one cell.
@@ -182,11 +173,11 @@ class TableParser < ShowParser
   end
   
   def parse_age_limit(cell, contents)
-    @show[:age_limit] = $1 if contents.strip =~ /(18\+|21\+|all ages)/i
+    @show[:age_limit] = parse_as_age_limit(contents)
   end
   
   def parse_cost(cell, contents)
-    @show[:cost] = $1 if contents.strip =~ /(\$\d(\d)?(\.\d\d)?)/
+    @show[:cost] = parse_as_cost(contents)
   end
   
   

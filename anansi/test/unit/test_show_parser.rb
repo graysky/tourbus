@@ -22,6 +22,35 @@ class ShowParserTest < Test::Unit::TestCase
     assert_raise(RuntimeError) { @parser.parse_as_date("not a date") }
   end
   
+  def test_parse_as_time
+    assert_equal("9am", @parser.parse_as_time("9am"))
+    assert_equal("9 am", @parser.parse_as_time("9 am"))
+    assert_equal("10 PM", @parser.parse_as_time("10 PM"))
+    assert_equal("12:30pm", @parser.parse_as_time("12:30pm"))
+    assert_equal("12:30", @parser.parse_as_time("12:30"))
+    
+    assert_nil(@parser.parse_as_time("7"))
+    assert_nil(@parser.parse_as_time("12 o'clock"))
+    assert_nil(@parser.parse_as_time("backswash"))
+  end
+  
+  def test_parse_as_age_limit
+    assert_equal("18+", @parser.parse_as_age_limit("18+"))
+    assert_equal("21+", @parser.parse_as_age_limit("this how is 21+ only"))
+    assert_equal("all ages", @parser.parse_as_age_limit("all ages"))
+    assert_equal("all ages", @parser.parse_as_age_limit("a/a"))
+    
+    assert_nil(@parser.parse_as_age_limit("anyone is welcome"))
+  end
+  
+  def test_parse_as_cost
+    assert_equal("$7", @parser.parse_as_cost("$7"))
+    assert_equal("$7.50", @parser.parse_as_cost("$7.50"))
+    assert_equal("$7", @parser.parse_as_cost("cost is $7"))
+    
+    assert_nil(@parser.parse_as_cost("eleven"))
+  end
+  
   def test_prepare_band_name
     assert_equal(["endgame", nil], @parser.prepare_band_name("& endgame"))
     assert_equal(["endgame", nil], @parser.prepare_band_name("endgame"))
@@ -50,5 +79,13 @@ class ShowParserTest < Test::Unit::TestCase
                  @parser.process_first_band("webster presents a show featuring crisis bureau"))
     assert_equal(["crisis bureau", "webster featuring a show presents"], 
                  @parser.process_first_band("webster featuring a show presents crisis bureau"))
+  end
+  
+  def test_probable_band
+    assert_nil(@parser.probable_band("TBA", 0))
+    assert_nil(@parser.probable_band("t.b.a", 1))
+    assert_equal({ :name => "crisis bureau" }, @parser.probable_band("crisis bureau", 1))
+    assert_equal({ :name => "christmas presents" }, @parser.probable_band("christmas presents", 1)) 
+    assert_nil(@parser.probable_band("christmas presents", 0))
   end
 end

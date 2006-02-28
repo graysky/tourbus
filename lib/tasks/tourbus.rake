@@ -28,6 +28,12 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Run anansi unit tests"
+Rake::TestTask.new(:anansi_unit_tests) do |t|
+  t.test_files = FileList['anansi/test/unit/test*.rb']
+  t.verbose = true
+end
+
 desc "Check for email sent to post comments and photos"
 task :check_email do
   

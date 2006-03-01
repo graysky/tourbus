@@ -43,5 +43,17 @@ module REXML
       return text
     end
     
+    # Find an element with the given name text
+    def find_node_by_text(type, text)
+      @children.each do |e|
+        next if e.is_a?(Text)
+        return e if e.name == type and e.text == text
+        node = e.find_node_by_text(type, text)
+        return node if node
+      end
+      
+      nil
+    end
+    
   end
 end

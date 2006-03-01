@@ -77,15 +77,15 @@ class ShowParserTest < Test::Unit::TestCase
     assert_equal(["crisis bureau", "a record label presents:"], @parser.process_first_band("a record label presents: crisis bureau"))
     assert_equal(["crisis bureau", "webster presents a show featuring"], 
                  @parser.process_first_band("webster presents a show featuring crisis bureau"))
-    assert_equal(["crisis bureau", "webster featuring a show presents"], 
-                 @parser.process_first_band("webster featuring a show presents crisis bureau"))
+    assert_equal(["Josh Rouse", "PASTE presents an evening with"], 
+                 @parser.process_first_band("PASTE presents an evening with Josh Rouse"))
   end
   
   def test_probable_band
-    assert_nil(@parser.probable_band("TBA", 0))
-    assert_nil(@parser.probable_band("t.b.a", 1))
-    assert_equal({ :name => "crisis bureau" }, @parser.probable_band("crisis bureau", 1))
-    assert_equal({ :name => "christmas presents" }, @parser.probable_band("christmas presents", 1)) 
-    assert_nil(@parser.probable_band("christmas presents", 0))
+    assert_nil(@parser.probable_band("TBA", 0, nil))
+    assert_nil(@parser.probable_band("t.b.a", 1, nil))
+    assert_equal({ :name => "crisis bureau" }, @parser.probable_band("crisis bureau", 1, nil))
+    assert_equal({ :name => "christmas presents" }, @parser.probable_band("christmas presents", 1,  nil)) 
+    assert_nil(@parser.probable_band("christmas presents", 0, nil))
   end
 end

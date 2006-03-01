@@ -150,7 +150,7 @@ class TableParser < ShowParser
       # TODO What about encoded chars like &amp;?
       # TODO mailto links and their content should be stripped out
       # TODO What about a band name like Damage, Inc.?
-      band = probable_band(chunk, cell_index)
+      band = probable_band(chunk, cell_index, cell)
       if band
         bands << band
       else

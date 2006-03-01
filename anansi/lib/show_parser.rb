@@ -85,10 +85,12 @@ class ShowParser
   end
   
   # Index is there because certain phrases are more likely to mean there is not a band playing
+  # context is the rexml element that contains the whole chunk of band text we care about
   # TODO We need a config option so that sites can override this. People do wacky things with band listings!
-  def probable_band(name, index, starting_preamble = nil)
+  def probable_band(name, index, context, starting_preamble = nil)
     return nil if name.nil? or name.strip == ""
     
+    orig_name = name
     name, extra = prepare_band_name(name)
     preamble = nil
     
@@ -117,7 +119,18 @@ class ShowParser
     band[:extra] = extra if extra
     band[:preamble] = preamble if preamble
     
+    url = find_url(name, orig_name, context)
+    band[:url] = url if url and url.starts_with?("http")
+    
     band
+  end
+  
+  # Find an URL with anchor text of name or orig_name in the given context
+  def find_url(name, orig_name, context)
+    return nil if context.nil?
+    
+    link = context.find_node_by_text("a", name)
+    link.nil? ? nil : link.attributes["href"] 
   end
     
   # Parse the given string as a date

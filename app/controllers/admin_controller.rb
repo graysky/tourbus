@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 class AdminController < ApplicationController
   include FanLoginSystem
   
@@ -54,6 +56,7 @@ class AdminController < ApplicationController
     
     @band = Band.new(params[:band])
     @band.claimed = false
+    @band.uuid = UUID.random_create.to_s
     if @band.save
       flash[:success] = "Band created"
       redirect_to :action => 'create_band'

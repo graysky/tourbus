@@ -58,8 +58,7 @@ module Address
   } unless const_defined?("STATES")
   
   def self.state_abbrev(name_or_abbrev)
-    name_or_abbrev.upcase!
-    val = STATE_ABBREVS.find { |abbrev| abbrev == name_or_abbrev }
+    val = STATE_ABBREVS.find { |abbrev| abbrev == name_or_abbrev.upcase }
     return val if val
     
     STATES[name_or_abbrev.downcase]
@@ -76,17 +75,14 @@ module Address
     city_words = []
     city = state = zip = nil
     
-    str.split(/,| /).each do |token|
-      if (state_abbrev = self.state_abbrev(token))
-        state = state_abbrev
-      elsif self.is_zip?(token)
-        zip = token
-      else
-        city_words << token
-      end
+    tokens = str.split(/,/)
+    if tokens.size == 1
+      zip = tokens[0].strip
+    else
+      city = tokens[0].strip
+      state = self.state_abbrev(tokens[1].strip)
     end
     
-    city = city_words.join(" ")
     raise "Invalid address: Missing city or zipcode" if city == "" and zip.nil?
     raise "Invalid address: Missing state" if state.nil? and zip.nil?
     
@@ -96,7 +92,7 @@ module Address
       raise "Invalid address: Unknown zipcode: #{zip}" if zipcode.nil?
     else
       zipcode = ZipCode.find_by_city_and_state(city.capitalize, state.upcase)
-      raise "Invalid address: Unknown city and state" if zipcode.nil?
+      raise "Invalid address: Unknown city and state: #{city}, #{state}" if zipcode.nil?
     end
     
     zipcode

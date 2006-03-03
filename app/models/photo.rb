@@ -1,3 +1,17 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  filename            :string(100)   
+#  description         :text          default(), not null
+#  created_on          :datetime      not null
+#  page_views          :integer(10)   default(0)
+#  show_id             :integer(10)   
+#  band_id             :integer(10)   
+#  venue_id            :integer(10)   
+#  created_by_fan_id   :integer(10)   
+#  created_by_band_id  :integer(10)   
+#
+
 require 'RMagick'
 require 'pathname'
 

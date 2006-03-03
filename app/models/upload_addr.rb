@@ -1,3 +1,11 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  address             :string(100)   default(), not null
+#  fan_id              :integer(10)   
+#  band_id             :integer(10)   
+#
+
 # Unique email address for bands/fans to use to send comments/photos
 class UploadAddr < ActiveRecord::Base
 

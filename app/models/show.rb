@@ -1,3 +1,23 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  cost                :string(50)    
+#  title               :string(100)   
+#  bands_playing_title :string(200)   
+#  description         :text          default(), not null
+#  url                 :string(100)   default(), not null
+#  date                :datetime      not null
+#  page_views          :integer(10)   default(0)
+#  venue_id            :integer(10)   default(0), not null
+#  created_by_fan_id   :integer(10)   
+#  created_by_band_id  :integer(10)   
+#  created_by_system   :boolean(1)    not null
+#  created_on          :datetime      
+#  last_updated        :datetime      
+#  num_attendees       :integer(11)   default(0)
+#  num_watchers        :integer(11)   default(0)
+#
+
 require_dependency "searchable"
 require_dependency "taggable"
 require_dependency "tagging"

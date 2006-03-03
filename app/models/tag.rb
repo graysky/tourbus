@@ -1,3 +1,9 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  name                :string(100)   default(), not null
+#
+
 # A tag that is applied to different objects in the system.
 # There is only 1 tag for any name, even if it is applied to different
 # objects. 

@@ -1,3 +1,22 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  name                :string(100)   default(), not null
+#  url                 :string(100)   default(), not null
+#  address             :string(255)   default(), not null
+#  city                :string(100)   default(), not null
+#  state               :string(2)     default(), not null
+#  zipcode             :string(10)    default(), not null
+#  country             :string(45)    default(), not null
+#  phone_number        :string(15)    default(), not null
+#  description         :text          default(), not null
+#  contact_email       :string(100)   default(), not null
+#  latitude            :string(30)    
+#  longitude           :string(30)    
+#  page_views          :integer(10)   default(0)
+#  last_updated        :datetime      
+#
+
 require_dependency "taggable"
 require_dependency "tagging"
 require_dependency "searchable"

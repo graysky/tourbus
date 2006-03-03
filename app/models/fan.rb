@@ -1,3 +1,42 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  name                :string(100)   default(), not null
+#  real_name           :string(100)   default(), not null
+#  contact_email       :string(100)   default(), not null
+#  zipcode             :string(5)     
+#  city                :string(100)   default()
+#  state               :string(2)     default()
+#  bio                 :text          
+#  salt                :string(40)    
+#  website             :string(100)   default()
+#  salted_password     :string(40)    default(), not null
+#  logo                :string(100)   default(), not null
+#  confirmed           :boolean(1)    not null
+#  confirmation_code   :string(50)    default()
+#  created_on          :datetime      
+#  page_views          :integer(10)   default(0)
+#  last_favorites_email:datetime      
+#  default_radius      :integer(6)    default(35)
+#  wants_favorites_emai:boolean(1)    default(true), not null
+#  admin               :boolean(1)    not null
+#  security_token      :string(40)    
+#  token_expiry        :datetime      
+#  show_reminder_first :integer(10)   default(4320)
+#  show_reminder_second:integer(10)   default(360)
+#  wants_email_reminder:boolean(1)    default(true)
+#  wants_mobile_reminde:boolean(1)    
+#  last_show_reminder  :datetime      
+#  uuid                :string(40)    
+#  last_updated        :datetime      
+#  superuser           :boolean(1)    
+#  mobile_number       :string(20)    
+#  carrier_type        :integer(10)   default(-1)
+#  show_watching_remind:integer(10)   default(4320)
+#  latitude            :string(30)    
+#  longitude           :string(30)    
+#
+
 require_dependency "password_protected"
 require_dependency "searchable"
 require_dependency "address"

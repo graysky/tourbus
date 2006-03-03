@@ -1,3 +1,31 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  name                :string(100)   default(), not null
+#  short_name          :string(100)   default(), not null
+#  contact_email       :string(100)   default(), not null
+#  zipcode             :string(5)     
+#  city                :string(100)   default()
+#  state               :string(2)     default()
+#  bio                 :text          
+#  salt                :string(40)    default()
+#  official_website    :string(100)   default()
+#  salted_password     :string(40)    default(), not null
+#  logo                :string(100)   default()
+#  confirmed           :boolean(1)    
+#  confirmation_code   :string(50)    default()
+#  claimed             :boolean(1)    default(true)
+#  created_on          :datetime      
+#  page_views          :integer(10)   default(0)
+#  security_token      :string(40)    
+#  token_expiry        :datetime      
+#  uuid                :string(40)    
+#  last_updated        :datetime      
+#  num_fans            :integer(11)   default(0)
+#  latitude            :string(30)    
+#  longitude           :string(30)    
+#
+
 require_dependency "hash"
 require_dependency "password_protected"
 require_dependency "searchable"

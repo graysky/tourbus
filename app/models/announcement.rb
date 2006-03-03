@@ -1,3 +1,15 @@
+# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+#
+#  id                  :integer(11)   not null
+#  applies_to          :string(255)   default(), not null
+#  teaser              :text          default(), not null
+#  message             :text          default(), not null
+#  title               :text          
+#  updated_at          :datetime      
+#  created_at          :datetime      
+#  expire_at           :datetime      not null
+#
+
 # Represents an Announcement to inform users about site updates
 class Announcement < ActiveRecord::Base
 

@@ -13,7 +13,9 @@ module Tagging
   end
     
   # Add the following tags of the specified type.
-  def add_tags(tags, tag_type)
+  # Note the strange name because "add_tags" is taken by AR.
+  # Aargh, this was done when I was just starting with ruby and it shows.
+  def apply_tags(tags, tag_type)
   
     # Split the list of possible tags at commas
     tags_array = tags.split(",").each { |tag| tag.strip! }

@@ -47,7 +47,6 @@ class AdminController < ApplicationController
     end
   end
   
-  # TODO Tags
   def create_band
     if request.get?
       @band = Band.new
@@ -55,6 +54,12 @@ class AdminController < ApplicationController
     end
     
     @band = Band.new(params[:band])
+    
+    # Split the tags
+    tags = params[:tags]
+    
+    @band.apply_tags(tags, Tag.Band)
+    
     @band.claimed = false
     @band.uuid = UUID.random_create.to_s
     if @band.save
@@ -66,11 +71,21 @@ class AdminController < ApplicationController
   def edit_band
     if request.get?
       @band = Band.find(params[:id])
+
+      # Make the tags available for editing
+      tmp = @band.tags.map {|t| t.name }
+      @tags = tmp.join(',')
       return
     end
-    
+        
     @band = Band.find(params[:id])
     @band.update_attributes(params[:band])
+
+    # Split the tags
+    tags = params[:tags]
+
+    @band.apply_tags(tags, Tag.Band)
+
     if @band.save
       flash[:success] = "Band saved"
       redirect_to public_band_url(@band)

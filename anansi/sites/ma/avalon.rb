@@ -7,9 +7,7 @@
 
 #
 # The URL for the site
-# Can be single url:
-set :url, "http://www.teapartyconcerts.com/venues.html?venueID=371"
-#
+set :url, "http://www.teapartyconcerts.com/venues.html?venueID=372"
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
@@ -37,7 +35,6 @@ set :marker_text, TeapartyHelper.marker_text
 # DEFINE METHODS
 # =============================================================================
 #
-
 method :preprocess_bands_text, {:args => 1} do |text|
   # The first "with" is probably a separator
   text.sub(/with/, ',')
@@ -46,5 +43,5 @@ end
 # All shows for this site are at the same venue
 method :get_venue do
   # TODO Change to be real venue format
-  "Paradise Rock Club"
+  "Avalon"
 end

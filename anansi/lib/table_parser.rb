@@ -59,6 +59,10 @@ class TableParser < ShowParser
           cell_index += 1
         end
         
+        if @show[:venue].nil?
+          @show[:venue] = get_venue
+        end
+        
         puts "\n#{@show.to_yaml}"
         @shows << @show
       rescue Exception => e

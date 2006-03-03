@@ -24,7 +24,7 @@ set :url, "http://figureten.com/site/test.html"
 # How often (in hours) to crawl the site.
 #  - set to 0 to force checking everytime
 #  - set to -1 to never check it
-set :interval, 3
+set :interval, 48 # Defaults to 72 hours
 
 # Which parser to use
 set :parser_type, :table

@@ -39,12 +39,10 @@ set :marker_text, TeapartyHelper.marker_text
 #
 
 method :preprocess_bands_text, {:args => 1} do |text|
-  # The first "with" is probably a separator
-  text.sub(/with/, ',')
+  TeapartyHelper.preprocess_bands_text(text)
 end
 
 # All shows for this site are at the same venue
 method :get_venue do
-  # TODO Change to be real venue format
-  "Paradise Rock Club"
+  { :name => "Paradise Rock Club", :city => "Boston", :state => "MA" } 
 end

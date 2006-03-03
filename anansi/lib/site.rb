@@ -32,7 +32,7 @@ class Site
   
   # User agent to send with requests
   # DO NOT CHANGE
-  USER_AGENT = 'tourbus'
+  USER_AGENT = 'tourbusbot'
   
   # Create a new site with:
   # parent_path => the parent directory of the site
@@ -52,6 +52,9 @@ class Site
     # Set the default name
     set :name, name
     @name = name
+
+    # Set default interval to 3 days    
+    set :interval, 72
   end
   
   # Directory where the pages pulled in the crawl are stored

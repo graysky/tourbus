@@ -1,5 +1,5 @@
 ## 
-## Anansi config file for Avalon in Boston
+## Anansi config file for the Somerville Theater in Somerville
 #
 # =============================================================================
 # REQUIRED VARIABLES
@@ -7,7 +7,7 @@
 
 #
 # The URL for the site
-set :url, "http://www.teapartyconcerts.com/venues.html?venueID=372"
+set :url, "http://www.teapartyconcerts.com/venues.html?venueID=1524"
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
@@ -34,13 +34,12 @@ set :marker_text, TeapartyHelper.marker_text
 # =============================================================================
 # DEFINE METHODS
 # =============================================================================
-
-
+#
 method :preprocess_bands_text, {:args => 1} do |text|
   TeapartyHelper.preprocess_bands_text(text)
 end
 
 # All shows for this site are at the same venue
 method :get_venue do
-  { :name => "Avalon", :city => "Boston", :state => "MA" } 
+  { :name => "Somerville Theater", :city => "Somerville", :state => "MA" } 
 end

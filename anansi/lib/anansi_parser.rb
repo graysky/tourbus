@@ -4,6 +4,7 @@ require 'anansi/lib/html'
 require 'lib/string_helper'
 require 'parsedate'
 require 'anansi/lib/table_parser'
+require 'anansi/lib/mideast_parser'
 require 'yaml'
 
 # Runs stage 2 of the anansi system. 
@@ -55,7 +56,8 @@ class AnansiParser
           when :table then
             # Use table parser
             parser = TableParser.new(xml)
-          
+          when :mideast then
+            parser = MidEastParser.new(xml)
           else
             puts "**** Error: Parser type not found!"
             next

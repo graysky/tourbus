@@ -30,6 +30,9 @@ class Site
   # The hast of methods defined by the site
   attr_reader :methods
   
+  # If true don't replace nbsp's
+  attr_reader :leave_nbsps
+  
   # User agent to send with requests
   # DO NOT CHANGE
   USER_AGENT = 'tourbusbot'
@@ -285,7 +288,7 @@ class Site
       # Convert HTML to XML and strip tags
       html = HTML::strip_tags(resp.body)
       
-      html.gsub!(/&nbsp;/, ' ') # TODO Needed?
+      html.gsub!(/&nbsp;/, ' ') unless @leave_nbsps # TODO Needed?
       
       parser = HTMLTree::XMLParser.new(false, false)
       parser.feed(html)

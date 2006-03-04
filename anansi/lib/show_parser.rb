@@ -96,7 +96,7 @@ class ShowParser
     
     if index == 0
       name, preamble = process_first_band(name)
-      return nil if name.nil?
+      return nil if name.nil? or name == ""
     end
     
     down = name.downcase
@@ -115,7 +115,7 @@ class ShowParser
     return nil if down.include?("+")
     
     band = {}
-    band[:name] = name
+    band[:name] = name.gsub(/\s+/, ' ')
     band[:extra] = extra if extra
     band[:preamble] = preamble if preamble
     

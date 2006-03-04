@@ -24,6 +24,7 @@ require_dependency "searchable"
 # Describes a venue where shows are played
 class Venue < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
+  include Address::ActsAsLocation
   include Tagging
   
   has_many :shows, :order => "date ASC"
@@ -57,6 +58,19 @@ class Venue < ActiveRecord::Base
   def location
     return self.city + ", " + self.state unless self.city.nil? or self.city == ""
     return ""
+  end
+  
+  def address_one_line
+    self.address + "," + self.city_state_zip
+  end
+  
+  def set_location_from_hash(result)
+    self.latitude = result[:latitude]
+    self.longitude = result[:longitude]
+    self.city = result[:city]
+    self.address = result[:address]
+    self.state = result[:state]
+    self.zipcode = result[:zipcode]
   end
   
   def popularity

@@ -31,16 +31,6 @@ venues:
     address: 242 Main St.
     state: VT
   - 
-    city: Taunton
-    name: All About Records
-    latitude: 41.901814
-    zipcode: 02780
-    url: http://www.allaboutrecords.com
-    phone_number: ''
-    longitude: -71.091994
-    address: 31 Main St.
-    state: MA
-  - 
     city: Enfield
     name: American Legion
     latitude: 42.008488
@@ -90,16 +80,6 @@ venues:
     longitude: -71.416083
     address: 115 Empire St.
     state: RI
-  - 
-    city: Portland
-    name: "The Asylum"
-    latitude: 43.65661
-    zipcode: "04101"
-    url: http://www.asylumportland.com/
-    phone_number: 207-772-8274
-    longitude: -70.259626
-    address: 121 Center Street
-    state: ME
   - 
     city: Augusta
     name: Augusta Civic Center
@@ -201,26 +181,6 @@ venues:
     address: 129 Mendon Road
     state: RI
   - 
-    city: Waterbury
-    name: Brass City Records
-    latitude: 41.557375
-    zipcode: "06702"
-    url: http://pages.cthome.net/bcrgraphics/
-    phone_number: 203-574-7805
-    longitude: -73.046651
-    address: 489 Meadow St.
-    state: CT
-  - 
-    city: Fitchburg
-    name: British American Club
-    latitude: 42.573989
-    zipcode: "01420"
-    url: ''
-    phone_number: 978-343-9538
-    longitude: -71.837418
-    address: 1 Simonds Road
-    state: MA 
-  - 
     city: Providence
     name: Cafe Zog
     latitude: 41.818994
@@ -291,16 +251,6 @@ venues:
     address: 31 Main Street
     state: MA
   - 
-    city: Manchester
-    name: "Chantilly's Billiards"
-    latitude: 43.016751
-    zipcode: "03104"
-    url: http://www.chantillys.net/
-    phone_number: 603-621-0330
-    longitude: -71.450228
-    address: 545 Hooksett Road
-    state: NH
-  - 
     city: Cambridge
     name: "Charlie's Kitchen"
     latitude: 42.372496
@@ -325,20 +275,10 @@ venues:
     name: "Choppin' Block"
     latitude: 42.334097
     zipcode: "02115"
-    url: http://www.geocities.com/patrickwilson_ig/patrickwilson.html
+    url:
     phone_number: ''
     longitude: -71.104996
     address: 724 Huntington Avenue
-    state: MA
-  - 
-    city: Haverhill
-    name: Club 125
-    latitude: 42.758638
-    zipcode: 01835
-    url: http://www.club125.biz/
-    phone_number: 978-521-0099
-    longitude: -71.098415
-    address: 725 South Main Street
     state: MA
   - 
     city: Nashua
@@ -355,7 +295,7 @@ venues:
     name: Club Hideout
     latitude: 42.414427
     zipcode: "02151"
-    url: http://www.hideoutboston.com
+    url: http://www.clubmetronome.com/
     phone_number: 781-289-3080
     longitude: -70.992049
     address: 1290 North Shore Road
@@ -370,16 +310,6 @@ venues:
     longitude: -73.211674
     address: 188 Main Street
     state: VT
-  - 
-    city: Danbury
-    name: "Colorado Brewery, The"
-    latitude: 41.395031
-    zipcode: 06810
-    url: http://www.thecoloradobrewery.com
-    phone_number: 203-791-1450
-    longitude: -73.451119
-    address: 6 Delay Street
-    state: CT
   - 
     city: Boston
     name: Common Ground
@@ -421,16 +351,6 @@ venues:
     address: 290 Harvard Street
     state: MA
   - 
-    city: Nashua
-    name: DRIFTERS
-    latitude: 42.761106
-    zipcode: "03060"
-    url: http://www.clubdrifters.com
-    phone_number: 603-595-5200
-    longitude: -71.466481
-    address: 17 Factory Street
-    state: NH
-  - 
     city: Middletown
     name: "Eagle's Fraternal Order"
     latitude: 41.568027
@@ -460,26 +380,6 @@ venues:
     longitude: -73.451186
     address: 155 Main Street
     state: CT
-  - 
-    city: Essex Junction
-    name: Essex Teen Center
-    latitude: 44.490578
-    zipcode: "05452"
-    url: ''
-    phone_number: 802-878-6981
-    longitude: -73.11114
-    address: 2 Lincoln Street
-    state: VT
-  - 
-    city: Lowell
-    name: Evos Arts
-    latitude: 42.645231
-    zipcode: 01852
-    url: http://www.evosarts.com/
-    phone_number: 978-441-9906
-    longitude: -71.310621
-    address: 98 Middle Street
-    state: MA
   - 
     city: Haverhill
     name: Exit 23
@@ -1385,7 +1285,7 @@ venues:
     name: Stage East
     latitude: 41.754399
     zipcode: 06118
-    url: http://www.stereophonicco.com/stageeast (booking site)
+    url: http://www.stereophonicco.com/stageeast
     phone_number: 860-537-2185
     longitude: -72.641535
     address: 1022 Main Street
@@ -1431,16 +1331,6 @@ venues:
     address: 438 Daniel Webster Highway
     state: NH
   - 
-    city: Lowell
-    name: Sugar Shack
-    latitude: 42.653814
-    zipcode: 01854
-    url: http://www.sugarshacksolar.com/
-    phone_number: 978-454-5955
-    longitude: -71.32709
-    address: 100 University Avenue
-    state: MA
-  - 
     city: Southington
     name: Sullivan Hall
     latitude: 41.580753
@@ -1480,16 +1370,6 @@ venues:
     longitude: -71.324499
     address: 42 E. Broadway
     state: NH
-  - 
-    city: Granby
-    name: The Amp
-    latitude: 42.241109
-    zipcode: "01033"
-    url: http://xanga.com/theamp
-    phone_number: ''
-    longitude: -72.511607
-    address: 151 Taylor St.
-    state: MA
   - 
     city: Manchester
     name: The BOMBSHELTER
@@ -1561,44 +1441,14 @@ venues:
     address: 300 Arcand Drive
     state: MA
   - 
-    city: Danbury
-    name: Tuxedo Junction
-    latitude: 41.396494
-    zipcode: 06810
-    url: http://www.tuxedojunction.net/
-    phone_number: 203-748-2561
-    longitude: -73.453366
-    address: 2 Ives Street
-    state: CT
-  - 
     city: Mansfield
-    name: Tweeter Center for the Performing Arts
+    name: Tweeter Center
     latitude: 41.995114
     zipcode: 02048
     url: http://tweetercenter.com/boston/
     phone_number: 508-339-2333
     longitude: -71.210987
     address: 885 South Main Street
-    state: MA
-  - 
-    city: Barre
-    name: Universalist Church
-    latitude: 44.196513
-    zipcode: "05641"
-    url: ''
-    phone_number: 802-479-0114
-    longitude: -72.501045
-    address: 19 Church Street
-    state: VT
-  - 
-    city: Fairhaven
-    name: Varsity Club
-    latitude: 41.636904
-    zipcode: 02719
-    url: ''
-    phone_number: ''
-    longitude: -70.897497
-    address: 12 Adams Street
     state: MA
   - 
     city: Fairhaven
@@ -1641,16 +1491,6 @@ venues:
     address: 218 Cheshire Road
     state: CT
   - 
-    city: Waterbury
-    name: Veterans of Foreign Wars
-    latitude: 41.544549
-    zipcode: 06708
-    url: ''
-    phone_number: 203-574-9520
-    longitude: -73.045857
-    address: 904 Bank Street
-    state: CT
-  - 
     city: New Bedford
     name: Washington Club
     latitude: 41.613533
@@ -1682,7 +1522,7 @@ venues:
     state: CT
   - 
     city: Worcester
-    name: "Worcester's Centrum Centre"
+    name: "Worcester Centrum Centre"
     latitude: 42.264593
     zipcode: 01608
     url: http://www.centrumcentre.com/

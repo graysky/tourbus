@@ -5751,16 +5751,6 @@ venues:
     address: 97 Atlantic Ave
     state: NY
   - 
-    city: Boston
-    name: "Dorchester Polish American Citizen's Club"
-    latitude: 42.326811
-    zip: "02125"
-    url: http://www.fnsboston.net
-    phone: 617-436-8852
-    longitude: -71.058538
-    address: 82 Boston St
-    state: MA
-  - 
     city: Buffalo
     name: Soundlab
     latitude: 42.899541
@@ -10051,36 +10041,6 @@ venues:
     address: 85 S Prospect St
     state: VT
   - 
-    city: Hamden
-    name: Lucky Fried Chicken
-    latitude: 41.338319
-    zip: "06514"
-    url: ''
-    phone: 203-777-4475
-    longitude: -72.940903
-    address: 141 Arch St
-    state: CT
-  - 
-    city: Moorestown-Lenola
-    name: Moorestown Recreation Center
-    latitude: 39.964164
-    zip: 08057
-    url: ''
-    phone: 856-234-5230
-    longitude: -74.949281
-    address: 111 W 2nd St
-    state: NJ
-  - 
-    city: Pittsburgh
-    name: Carnegie Library of Pittsburgh
-    latitude: 40.444359
-    zip: "015213"
-    url: http://www.carnegielibrary.org
-    phone: 412-622-3114
-    longitude: -79.949359
-    address: 4400 Forbes Ave
-    state: PA
-  - 
     city: Baltimore
     name: The G Spot
     latitude: 39.310547
@@ -10239,26 +10199,6 @@ venues:
     phone: 207-780-0118
     longitude: -70.262889
     address: 34 Gray St
-    state: ME
-  - 
-    city: Cape Neddick
-    name: York High School
-    latitude: 43.156213
-    zip: 03910
-    url: http://www.yorkschools.org/yhs
-    phone: 207-363-3621
-    longitude: -70.623277
-    address: 1 Webber Rd
-    state: ME
-  - 
-    city: Portland
-    name: Center For Cultural Exchange
-    latitude: 43.666582
-    zip: "04103"
-    url: ''
-    phone: 
-    longitude: -70.280194
-    address: 1 Longfellow Sq
     state: ME
   - 
     city: Waterville
@@ -12140,13 +12080,3 @@ venues:
     longitude: -74.647942
     address: 116 Prospect Ave
     state: NJ
-  - 
-    city: Utica
-    name: Valley View Golf Course
-    latitude: 43.087669
-    zip: "013501"
-    url: ''
-    phone: 315-266-0125
-    longitude: -75.253709
-    address: 620 Memorial Pkwy
-    state: NY

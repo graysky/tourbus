@@ -512,7 +512,7 @@ venues:
     state: PA
   - 
     city: Cambridge
-    name: "T.T. the Bear's"
+    name: "T.T. The Bear's"
     latitude: 42.363797
     zip: 02139
     url: http://www.ttthebears.com/

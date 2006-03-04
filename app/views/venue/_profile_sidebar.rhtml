@@ -2,7 +2,11 @@
 
 <div id="actions-box" class="sidebar-box">
 	<h2 id="actions-title"><span class="title">Actions</span></h2>
-	
+	<% if logged_in_fan and logged_in_fan.superuser? %>
+		<b><%= link_to "Edit This Venue", :controller => "admin", :action => "edit_venue", :id => @venue.id %></b>
+		<br/>
+		<b><%= link_to "Delete", :controller => "admin", :action => "delete_venue", :id => @venue.id %></b>
+	<% end %>
 	<p>
 		<!-- TODO Pull in partial -->
 		<table>

@@ -23,21 +23,10 @@ class VenueController < ApplicationController
     
     @venue = Venue.new(params[:venue])
     
-    # Construct and verify the full address
-    citystatezip = params[:citystatezip]
-    addr = @venue.address
-    addr += "," if addr != ""
-    addr += citystatezip
-    
-    result = Geocoder.yahoo(addr)
+    result = Geocoder.yahoo(@venue.address_one_line)
     
     if result && result[:precision] == "address"
-      @venue.latitude = result[:latitude]
-      @venue.longitude = result[:longitude]
-      @venue.city = result[:city]
-      @venue.address = result[:address]
-      @venue.state = result[:state]
-      @venue.zipcode = result[:zipcode]
+      @venue.set_location_from_hash(result)
     elsif not params[:ignore_address_error]
       params[:address_error] = true
       render :layout => "minimal"

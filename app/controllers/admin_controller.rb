@@ -92,7 +92,56 @@ class AdminController < ApplicationController
     end
   end
   
+  def create_venue
+    if request.get?
+      @venue = Venue.new
+      return
+    end
+    
+    @venue = Venue.new(params[:venue])
+    save_venue
+  end
+  
+  def edit_venue
+    if request.get?
+      @venue = Venue.find(params[:id])
+      return
+    end
+    
+    @venue = Venue.find(params[:id])
+    @venue.update_attributes(params[:venue])
+    save_venue
+  end
+  
+  def delete_venue
+    @venue = Venue.find(params[:id])
+    if @venue.shows.empty?
+      Venue.delete(params[:id])
+      flash.now[:success] = "It's gone"
+    else
+      flash.now[:error] = "That venue has shows"
+    end
+  end
+  
   private 
+  
+  def save_venue
+    result = Geocoder.yahoo(@venue.address_one_line)
+    
+    if result && result[:precision] == "address"
+      @venue.set_location_from_hash(result)
+    else
+      flash.now[:error] = "Bad address"
+    end
+    
+    if @venue.save
+      @venue.ferret_save
+      flash[:success] = "Venue saved"
+      redirect_to public_venue_url(@venue)
+    else
+      flash.now[:error] = "Error saving"
+    end
+  end
   
   def find_fan
     session[:fan] ||= Fan.new

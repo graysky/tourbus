@@ -72,6 +72,15 @@
 				<td class="col3">
 					<nobr>
 					<strong>upcoming shows:</strong> 1<br/>
+					<% if logged_in_fan and logged_in_fan.superuser? %>
+							&nbsp;
+							<b><%= link_to "Delete", :controller => "admin", :action => "delete_venue", :id => venue.id %></b>
+							, &nbsp;
+							<% if logged_in_fan and logged_in_fan.superuser? %>
+								<b><%= link_to "Edit", :controller => "admin", :action => "edit_venue", :id => venue.id %></b>
+								<br/>
+							<% end %>
+						<% end %>
 					</nobr>
 				</td>
 			</tr>

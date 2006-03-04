@@ -18,6 +18,7 @@ module FerretMixin
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
              
+             after_destroy :ferret_destroy
              @@ferret_index = {}
           end
         end

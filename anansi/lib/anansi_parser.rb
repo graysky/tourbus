@@ -4,6 +4,7 @@ require 'anansi/lib/html'
 require 'lib/string_helper'
 require 'parsedate'
 require 'anansi/lib/table_parser'
+require 'anansi/lib/multi_table_parser'
 require 'anansi/lib/mideast_parser'
 require 'yaml'
 
@@ -58,6 +59,8 @@ class AnansiParser
             parser = TableParser.new(xml)
           when :mideast then
             parser = MidEastParser.new(xml)
+          when :multi_table then
+            parser = MultiTableParser.new(xml)
           else
             puts "**** Error: Parser type not found!"
             next

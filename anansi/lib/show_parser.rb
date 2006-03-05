@@ -113,6 +113,7 @@ class ShowParser
     return nil if down.include?("art show")
     return nil if down.include?("crafts fair")
     return nil if down.include?("+")
+    return nil if down.include?("music festival")
     
     band = {}
     band[:name] = name.gsub(/\s+/, ' ')
@@ -181,6 +182,12 @@ class ShowParser
   # Get the metaclass for this object
   def metaclass
     class << self; self; end
+  end
+  
+  protected
+  
+  def get_venue
+    nil
   end
   
   private

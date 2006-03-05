@@ -13,31 +13,25 @@ class TableParser < ShowParser
   attr_accessor :marker_text
   attr_accessor :nested
   attr_accessor :band_separator
+  attr_accessor :root
   
   def initialize(xml, url = nil)
     super
     
     # Initialize default attributes that the user can override
     @marker_text = DEFAULT_MARKER_TEXT
-    @nested = false
+    @nested = nil
   end
   
   # Parse out the shows  
-  def parse
-    #raise "You must specify table columns" if @table_columns.nil?
-    
+  def parse    
     # Find an element with the marker text
-    elem = @doc.root.find_element(marker_text)
-    raise "Could not find marker text" if elem.nil?
-    
-    # Find the table containing the text
-    table = elem.find_parent("table")
-    raise "Did not find parent table of elem: #{elem.to_s}" if table.nil?
+    table = find_table
     
     if @nested
       table = table.find_parent("table")
       raise "Did not find super parent table in specified nested table structure" if table.nil?
-    else
+    elsif @nested.nil?
       # If there is only one row in this table it's probably nested
       if table.get_elements("tr").size == 1
         @nested = true
@@ -76,13 +70,25 @@ class TableParser < ShowParser
     @shows
   end
   
+  def find_table
+    r = @root || @doc.root
+    elem = r.find_element(marker_text)
+    raise "Could not find marker text" if elem.nil?
+    
+    # Find the table containing the text
+    table = elem.find_parent("table")
+    raise "Did not find parent table of elem: #{elem.to_s}" if table.nil?
+   
+    table
+  end
+  
   #
   # Protected
   # NOTE A lot of this will get factored down into ShowParser
   #
   protected
   
-  DEFAULT_MARKER_TEXT = ['18+', '21+', 'all ages', 'a/a', '$8']
+  DEFAULT_MARKER_TEXT = ['18+', '21+', 'all ages', 'a/a', '$8', '$5', 'All Ages', 'ALL AGES']
   
   # Handle a single cell
   def handle_cell(cell, index)
@@ -174,6 +180,16 @@ class TableParser < ShowParser
   # Can add config options for city/state to look in if we only have a name
   def parse_venue(cell, contents)
     @show[:venue] = contents.strip
+  end
+  
+  def parse_venue_name(cell, contents)
+    @show[:venue] ||= {}
+    @show[:venue][:name] = contents.strip
+  end
+  
+  def parse_venue_location(cell, contents)
+    @show[:venue] ||= {}
+    @show[:venue][:location] = contents.strip
   end
   
   def parse_age_limit(cell, contents)

@@ -5,15 +5,18 @@ module REXML
     # Find The first element with text that contains the given content,
     # which can be an array of strings or a string
     def find_element(content)
-      @elements.each("//") do |elem|
-        next if elem.text.nil?
-        
-        str = elem.texts.join(" ")
-        if content.is_a?(String)
-          return elem if str.include?(content)
-        elsif content.is_a?(Array)
-          content.each { |s| return elem if str.include?(s) }
+      self.each_element do |elem|
+        if not elem.text.nil?
+          str = elem.texts.join(" ")
+          if content.is_a?(String)
+            return elem if str.include?(content)
+          elsif content.is_a?(Array)
+            content.each { |s| return elem if str.include?(s) }
+          end
         end
+        
+        val = elem.find_element(content)
+        return val if val
       end
       
       return nil

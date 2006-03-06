@@ -351,16 +351,6 @@ venues:
     address: 290 Harvard Street
     state: MA
   - 
-    city: Middletown
-    name: "Eagle's Fraternal Order"
-    latitude: 41.568027
-    zipcode: "06457"
-    url: ''
-    phone_number: 860-344-5341
-    longitude: -72.656882
-    address: 64 Stack Street
-    state: CT
-  - 
     city: Salem
     name: Elks Lodge
     latitude: 42.521573
@@ -501,26 +491,6 @@ venues:
     address: 156 Brighton Ave
     state: MA
   - 
-    city: Barnstable Town
-    name: "Harry's"
-    latitude: 41.652986
-    zipcode: "02601"
-    url: ''
-    phone_number: 508-778-4188
-    longitude: -70.319944
-    address: 700 W Main St.
-    state: MA
-  - 
-    city: Acushnet Center
-    name: Hen House Restaurant
-    latitude: 41.749533
-    zipcode: "02743"
-    url: ''
-    phone_number: 508-763-4774
-    longitude: -70.902092
-    address: 1315 Main Street
-    state: MA
-  - 
     city: Winooski
     name: Higher Ground
     latitude: 44.489117
@@ -550,16 +520,6 @@ venues:
     longitude: -71.140273
     address: 557 Cambridge Street
     state: MA
-  - 
-    city: Exeter
-    name: Ioka Theatre
-    latitude: 42.981344
-    zipcode: 03833
-    url: http://www.iokaentertainment.com/
-    phone_number: ''
-    longitude: -70.945591
-    address: 55 Water Street
-    state: NH
   - 
     city: Northampton
     name: Iron Horse Music Hall
@@ -781,16 +741,6 @@ venues:
     address: 239 Westminster Street
     state: RI
   - 
-    city: Madison
-    name: Madison Arts Barn
-    latitude: 41.294584
-    zipcode: "06443"
-    url: http://www.madisonartsbarn.com/
-    phone_number: 203-245-2689
-    longitude: -72.575567
-    address: 6 Campus Drive
-    state: CT
-  - 
     city: Westfield
     name: Mass Skate Coalition
     latitude: 42.179391
@@ -820,16 +770,6 @@ venues:
     longitude: -71.412271
     address: 72 Meadowbrook Lane
     state: NH
-  - 
-    city: Worcester
-    name: Mechanics Hall
-    latitude: 42.265978
-    zipcode: 01608
-    url: http://www.mechanicshall.com/
-    phone_number: 508-752-5608
-    longitude: -71.801384
-    address: 321 Main Street
-    state: MA
   - 
     city: Portland
     name: Merrill Auditorium
@@ -1509,16 +1449,6 @@ venues:
     phone_number: ''
     longitude: -72.682737
     address: 31 Webster St.
-    state: CT
-  - 
-    city: Plainville
-    name: "Woody's Bar &amp; Grill"
-    latitude: 41.671225
-    zipcode: "06062"
-    url: ''
-    phone_number: 860-793-2324
-    longitude: -72.867823
-    address: 21 W Main Street
     state: CT
   - 
     city: Worcester

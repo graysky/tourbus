@@ -50,51 +50,49 @@ init_map()
 		<table width="100%">
 		  <tr>
 		  		
-				<td valign="top" style="padding-bottom:8px">
+				<td>
 				<b>Address:</b>
 				</td>
-				
-				<td valign="top" style="padding-left:8px">
+		</tr>
+		</tr>		
+				<td  style="padding-left:8px;padding-bottom:4px;">
 				<%= @venue.address %>
 				<BR/>
 				<%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %>
 				
 				</td>
-			</tr>
+		</tr>
 			
 			<tr>
-				<td valign="top" style="padding-bottom:8px">
+				<td>
 				<b>Phone:</b>
 				</td>
-				
-				<td valign="top" style="padding-left:8px">
+			</tr>
+			<tr>	
+				<td style="padding-left:8px;padding-bottom:4px;">
 				<%= @venue.phone_number %>
 				</td>
 			</tr>
 			
 			<tr>
-				<td valign="top" style="padding-bottom:8px">
+				<td>
 				<b>Web Page:</b>
 				</td>
-			
-				<td valign="top" style="padding-left:8px">
+			</tr>
+			<tr>
+				<td style="padding-left:8px;padding-bottom:4px">
       				<%= venue_url %>
 				</td>
 			</tr>
 			
 			<tr>
-				<td valign="top" style="padding-bottom:8px">
+				<td>
 				<b>Description:</b>
 				</td>
-				
-				<td valign="top" style="padding-left:8px">
-					<%= venue_desc %>
-				</td>
 			</tr>
-			
 			<tr>
-				<td valign="top" style="padding-bottom:8px">
-				
+				<td style="padding-left:8px;padding-bottom:4px">
+					<%= venue_desc %>
 				</td>
 			</tr>
 			

@@ -7,8 +7,12 @@ YAML::load_documents(File.open("db/all_venues.yaml")) do |v|
     if hash["name"].chomp!(", The")
       hash["name"] = "The " + hash["name"]
     end
+    hash["url]" = "" if hash["url"].nil?
     puts "Saving " + hash["name"]
-    Venue.new(hash).save
+    v = Venue.new(hash)
+    v.save
+    v.ferret_save
+    
     
   end
 end

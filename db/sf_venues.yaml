@@ -4,7 +4,7 @@ venues:
     city: San francisco
     name: 101 California Street Plaza
     latitude: "37.7935"
-    zip: "94111"
+    zipcode: "94111"
     url: ''
     phone: ''
     longitude: "-122.3976"
@@ -14,7 +14,7 @@ venues:
     city: San francisco
     name: 111 Minna Gallery
     latitude: "37.787278"
-    zip: "94105"
+    zipcode: "94105"
     url: www.111minnagallery.com
     phone: 415-974-1719
     longitude: "-122.399438"
@@ -24,7 +24,7 @@ venues:
     city: San francisco
     name: 12 Galaxies
     latitude: "37.756072"
-    zip: "94110"
+    zipcode: "94110"
     url: www.12galaxies.com
     phone: 415-970-9777
     longitude: "-122.4186"
@@ -34,7 +34,7 @@ venues:
     city: San francisco
     name: 1275 Market Street Plaza
     latitude: "37.7787"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.4148"
@@ -44,7 +44,7 @@ venues:
     city: San francisco
     name: 13 Views
     latitude: "37.794685"
-    zip: "94111"
+    zipcode: "94111"
     url: ''
     phone: ''
     longitude: "-122.399273"
@@ -54,7 +54,7 @@ venues:
     city: San francisco
     name: 1596 Howard
     latitude: "37.771923"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.416934"
@@ -64,7 +64,7 @@ venues:
     city: Fairfax
     name: 19 Broadway
     latitude: "37.986853"
-    zip: "94930"
+    zipcode: "94930"
     url: ''
     phone: ''
     longitude: "-122.587908"
@@ -74,7 +74,7 @@ venues:
     city: Oakland
     name: 200 Grand
     latitude: "37.810574"
-    zip: "94610"
+    zipcode: "94610"
     url: www.200grand.com
     phone: 510-482-0730
     longitude: "-122.260169"
@@ -84,7 +84,7 @@ venues:
     city: Oakland
     name: 21 Grand
     latitude: "37.814303"
-    zip: "94612"
+    zipcode: "94612"
     url: www.21grand.org
     phone: 510-444-7263
     longitude: "-122.265421"
@@ -94,7 +94,7 @@ venues:
     city: San francisco
     name: 222 Club
     latitude: "37.782901"
-    zip: "94102"
+    zipcode: "94102"
     url: ''
     phone: ''
     longitude: "-122.415588"
@@ -104,7 +104,7 @@ venues:
     city: San francisco
     name: 26 Mix
     latitude: "37.748824"
-    zip: "94110"
+    zipcode: "94110"
     url: www.26mix.com
     phone: 415-826-7378
     longitude: "-122.418304"
@@ -114,7 +114,7 @@ venues:
     city: San francisco
     name: 303 Second Street Building
     latitude: "37.7893"
-    zip: "94105"
+    zipcode: "94105"
     url: ''
     phone: ''
     longitude: "-122.4014"
@@ -124,7 +124,7 @@ venues:
     city: San francisco
     name: 330 Ritch
     latitude: "37.779172"
-    zip: "94107"
+    zipcode: "94107"
     url: ''
     phone: ''
     longitude: "-122.39449"
@@ -134,7 +134,7 @@ venues:
     city: San francisco
     name: 425 Market
     latitude: "37.791406"
-    zip: "94105"
+    zipcode: "94105"
     url: ''
     phone: ''
     longitude: "-122.39844"
@@ -144,7 +144,7 @@ venues:
     city: San francisco
     name: 450 Golden Gate
     latitude: "37.781435"
-    zip: "94102"
+    zipcode: "94102"
     url: ''
     phone: ''
     longitude: "-122.418032"
@@ -154,7 +154,7 @@ venues:
     city: San francisco
     name: 509 Cultural Center
     latitude: "37.784517"
-    zip: "94109"
+    zipcode: "94109"
     url: ''
     phone: ''
     longitude: "-122.414552"
@@ -164,7 +164,7 @@ venues:
     city: San francisco
     name: 540 Clement
     latitude: "37.783113"
-    zip: "94118"
+    zipcode: "94118"
     url: ''
     phone: ''
     longitude: "-122.464667"
@@ -174,7 +174,7 @@ venues:
     city: San francisco
     name: 555 California
     latitude: "37.7927"
-    zip: "94104"
+    zipcode: "94104"
     url: ''
     phone: ''
     longitude: "-122.4044"
@@ -184,7 +184,7 @@ venues:
     city: Oakland
     name: 5th Amendment
     latitude: "37.81053"
-    zip: "94610"
+    zipcode: "94610"
     url: ''
     phone: ''
     longitude: "-122.245158"
@@ -194,7 +194,7 @@ venues:
     city: San francisco
     name: 699 Market
     latitude: "37.787673"
-    zip: "94105"
+    zipcode: "94105"
     url: ''
     phone: ''
     longitude: "-122.403256"
@@ -204,7 +204,7 @@ venues:
     city: San francisco
     name: 715 Harrison
     latitude: "37.782191"
-    zip: "94107"
+    zipcode: "94107"
     url: ''
     phone: ''
     longitude: "-122.397666"
@@ -214,7 +214,7 @@ venues:
     city: Berkeley
     name: 924 Gilman
     latitude: "37.879582"
-    zip: "94710"
+    zipcode: "94710"
     url: ''
     phone: ''
     longitude: "-122.299623"
@@ -224,7 +224,7 @@ venues:
     city: San francisco
     name: Abbey Tavern
     latitude: "37.78122"
-    zip: "94118"
+    zipcode: "94118"
     url: www.abbeytavern-sf.com
     phone: 415-221-7767
     longitude: "-122.46339"
@@ -234,7 +234,7 @@ venues:
     city: San francisco
     name: Academy of Art College
     latitude: "37.787999"
-    zip: "94102"
+    zipcode: "94102"
     url: ''
     phone: ''
     longitude: "-122.409699"
@@ -244,7 +244,7 @@ venues:
     city: San francisco
     name: The Accordian
     latitude: "37.741606"
-    zip: "94124"
+    zipcode: "94124"
     url: ''
     phone: ''
     longitude: "-122.406588"
@@ -254,7 +254,7 @@ venues:
     city: Berkeley
     name: Acme Bar
     latitude: "37.86753"
-    zip: "94702"
+    zipcode: "94702"
     url: ''
     phone: ''
     longitude: "-122.291428"
@@ -264,7 +264,7 @@ venues:
     city: Oakland
     name: African American Museum and Library at Oakland
     latitude: "37.806218"
-    zip: "94612"
+    zipcode: "94612"
     url: www.oaklandlibrary.org
     phone: 510-637-0200
     longitude: "-122.276382"
@@ -274,7 +274,7 @@ venues:
     city: Oakland
     name: AK Press
     latitude: "37.813915"
-    zip: "94612"
+    zipcode: "94612"
     url: ''
     phone: ''
     longitude: "-122.273791"
@@ -284,7 +284,7 @@ venues:
     city: Berkeley
     name: The Albatross Pub
     latitude: "37.871305"
-    zip: "94702"
+    zipcode: "94702"
     url: ''
     phone: ''
     longitude: "-122.293056"
@@ -294,7 +294,7 @@ venues:
     city: Berkeley
     name: All Souls Episcopal Church
     latitude: "37.878675"
-    zip: "94709"
+    zipcode: "94709"
     url: ''
     phone: ''
     longitude: "-122.266166"
@@ -304,7 +304,7 @@ venues:
     city: San francisco
     name: Alpha Bar  &amp;  Lounge
     latitude: "37.781337"
-    zip: "94118"
+    zipcode: "94118"
     url: ''
     phone: ''
     longitude: "-122.460537"
@@ -314,7 +314,7 @@ venues:
     city: San francisco
     name: Amber
     latitude: "37.767837"
-    zip: "94114"
+    zipcode: "94114"
     url: ''
     phone: ''
     longitude: "-122.429379"
@@ -324,7 +324,7 @@ venues:
     city: San francisco
     name: Amnesia
     latitude: "37.759292"
-    zip: "94110"
+    zipcode: "94110"
     url: www.amnesiathebar.com
     phone: 415-970-0012
     longitude: "-122.421125"
@@ -334,7 +334,7 @@ venues:
     city: San francisco
     name: Amoeba Music
     latitude: "37.769156"
-    zip: "94117"
+    zipcode: "94117"
     url: www.amoebamusic.com
     phone: 415-831-1200
     longitude: "-122.452741"
@@ -344,7 +344,7 @@ venues:
     city: San francisco
     name: An Bodhran
     latitude: "37.771906"
-    zip: "94117"
+    zipcode: "94117"
     url: ''
     phone: ''
     longitude: "-122.433161"
@@ -354,7 +354,7 @@ venues:
     city: San francisco
     name: Ana Mandara
     latitude: "37.806099"
-    zip: "94109"
+    zipcode: "94109"
     url: ''
     phone: ''
     longitude: "-122.423499"
@@ -362,39 +362,9 @@ venues:
     state: CA
   - 
     city: San francisco
-    name: Andrew Jaeger&apos;s House of Seafood  &amp;  Jazz
-    latitude: "37.798396"
-    zip: "94133"
-    url: www.condorsf.com
-    phone: 415-781-8222
-    longitude: "-122.407129"
-    address: 300 Columbus Ave
-    state: CA
-  - 
-    city: Berkeley
-    name: Anna&apos;s Jazz Island
-    latitude: "37.869339"
-    zip: "94704"
-    url: www.themarsh.org
-    phone: 510-841-2599
-    longitude: "-122.267423"
-    address: 2120 Allston Way
-    state: CA
-  - 
-    city: San francisco
-    name: Annie&apos;s Cocktail Lounge
-    latitude: "37.775065"
-    zip: "94103"
-    url: www.anniescocktaillounge.com
-    phone: 415-703-0865
-    longitude: "-122.403241"
-    address: 15 Boardman Pl
-    state: CA
-  - 
-    city: San francisco
     name: Annie&apos;s Social Club
     latitude: "37.779884"
-    zip: "94107"
+    zipcode: "94107"
     url: www.thecherrybar.com
     phone: 415-974-1585
     longitude: "-122.403676"
@@ -404,7 +374,7 @@ venues:
     city: San francisco
     name: Anú
     latitude: "37.781727"
-    zip: "94103"
+    zipcode: "94103"
     url: www.anu-bar.com
     phone: 415-543-3505
     longitude: "-122.409363"
@@ -414,7 +384,7 @@ venues:
     city: San francisco
     name: Argus Lounge
     latitude: "37.745853"
-    zip: "94110"
+    zipcode: "94110"
     url: www.arguslounge.com
     phone: 415-824-1447
     longitude: "-122.419535"
@@ -424,7 +394,7 @@ venues:
     city: San francisco
     name: Arrow Bar
     latitude: "37.781944"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.410183"
@@ -434,7 +404,7 @@ venues:
     city: Berkeley
     name: Ashkenaz
     latitude: "37.880139"
-    zip: "94702"
+    zipcode: "94702"
     url: ''
     phone: ''
     longitude: "-122.295498"
@@ -444,7 +414,7 @@ venues:
     city: San francisco
     name: AsiaSF
     latitude: "37.775009"
-    zip: "94103"
+    zipcode: "94103"
     url: www.asiasf.com
     phone: 415-255-2742
     longitude: "-122.412943"
@@ -454,7 +424,7 @@ venues:
     city: San francisco
     name: Atlas Cafe
     latitude: "37.758963"
-    zip: "94110"
+    zipcode: "94110"
     url: www.atlascafe.net
     phone: 415-648-1047
     longitude: "-122.411147"
@@ -464,7 +434,7 @@ venues:
     city: San francisco
     name: The Attic
     latitude: "37.752337"
-    zip: "94110"
+    zipcode: "94110"
     url: ''
     phone: ''
     longitude: "-122.419308"
@@ -474,7 +444,7 @@ venues:
     city: San francisco
     name: Aunt Charlie&apos;s Lounge
     latitude: "37.782991"
-    zip: "94102"
+    zipcode: "94102"
     url: www.auntcharlieslounge.com
     phone: 415-441-2922
     longitude: "-122.411362"
@@ -484,7 +454,7 @@ venues:
     city: San francisco
     name: Avalon Ballroom
     latitude: "37.787739"
-    zip: "94109"
+    zipcode: "94109"
     url: ''
     phone: ''
     longitude: "-122.421174"
@@ -494,7 +464,7 @@ venues:
     city: San francisco
     name: Azul
     latitude: "37.789163"
-    zip: "94108"
+    zipcode: "94108"
     url: www.azul-sf.com
     phone: 415-362-9750
     longitude: "-122.405473"
@@ -504,7 +474,7 @@ venues:
     city: San francisco
     name: Bacar
     latitude: "37.779163"
-    zip: "94107"
+    zipcode: "94107"
     url: www.bacarsf.com
     phone: 415-904-4100
     longitude: "-122.395701"
@@ -514,7 +484,7 @@ venues:
     city: San francisco
     name: Badlands
     latitude: "37.760733"
-    zip: "94114"
+    zipcode: "94114"
     url: www.sfbadlands.com
     phone: 415-626-9320
     longitude: "-122.435312"
@@ -524,7 +494,7 @@ venues:
     city: San francisco
     name: Balazo 18 Gallery
     latitude: "37.762121"
-    zip: "94110"
+    zipcode: "94110"
     url: www.balazogallery.com
     phone: 415-550-1108
     longitude: "-122.419259"
@@ -534,7 +504,7 @@ venues:
     city: San francisco
     name: Bamboo Hut
     latitude: "37.797907"
-    zip: "94133"
+    zipcode: "94133"
     url: ''
     phone: ''
     longitude: "-122.405125"
@@ -544,7 +514,7 @@ venues:
     city: San francisco
     name: Bambuddha Lounge
     latitude: "37.783143"
-    zip: "94109"
+    zipcode: "94109"
     url: www.bambuddhalounge.com
     phone: 415-885-5088
     longitude: "-122.41766"
@@ -554,7 +524,7 @@ venues:
     city: San francisco
     name: The Bar on Castro
     latitude: "37.761695"
-    zip: "94114"
+    zipcode: "94114"
     url: ''
     phone: ''
     longitude: "-122.435216"
@@ -564,7 +534,7 @@ venues:
     city: San francisco
     name: Bas
     latitude: "37.80551"
-    zip: "94133"
+    zipcode: "94133"
     url: ''
     phone: ''
     longitude: "-122.413183"
@@ -574,7 +544,7 @@ venues:
     city: San francisco
     name: Bazaar Cafe
     latitude: "37.783928"
-    zip: "94121"
+    zipcode: "94121"
     url: www.bazaarcafe.com
     phone: 415-831-5620
     longitude: "-122.481057"
@@ -582,19 +552,9 @@ venues:
     state: CA
   - 
     city: San francisco
-    name: Beach Chalet Brewery
-    latitude: "37.770381"
-    zip: "94121"
-    url: ''
-    phone: ''
-    longitude: "-122.510805"
-    address: 1000 Great Hwy
-    state: CA
-  - 
-    city: San francisco
     name: The Beat Lounge
     latitude: "37.797838"
-    zip: "94133"
+    zipcode: "94133"
     url: ''
     phone: ''
     longitude: "-122.405647"
@@ -604,7 +564,7 @@ venues:
     city: San francisco
     name: Beauty Bar
     latitude: "37.76035"
-    zip: "94110"
+    zipcode: "94110"
     url: www.beautybar.com
     phone: 415-285-0323
     longitude: "-122.419043"
@@ -614,7 +574,7 @@ venues:
     city: Berkeley
     name: Beckett&apos;s Irish Pub
     latitude: "37.868099"
-    zip: "94704"
+    zipcode: "94704"
     url: ''
     phone: ''
     longitude: "-122.267679"
@@ -624,7 +584,7 @@ venues:
     city: Oakland
     name: Bench  &amp;  Bar
     latitude: "37.810161"
-    zip: "94612"
+    zipcode: "94612"
     url: ''
     phone: ''
     longitude: "-122.26683"
@@ -634,7 +594,7 @@ venues:
     city: San francisco
     name: Bender&apos;s Bar  &amp;  Grill
     latitude: "37.760176"
-    zip: "94110"
+    zipcode: "94110"
     url: www.bendersbar.com
     phone: 415-824-1800
     longitude: "-122.417259"
@@ -644,7 +604,7 @@ venues:
     city: Berkeley
     name: Berkeley Community Theater
     latitude: "37.868718"
-    zip: "94704"
+    zipcode: "94704"
     url: ''
     phone: ''
     longitude: "-122.271969"
@@ -654,7 +614,7 @@ venues:
     city: San francisco
     name: Beta Lounge
     latitude: "37.758443"
-    zip: "94107"
+    zipcode: "94107"
     url: ''
     phone: ''
     longitude: "-122.387525"
@@ -664,7 +624,7 @@ venues:
     city: San francisco
     name: Bethany United Methodist Church
     latitude: "37.748858"
-    zip: "94114"
+    zipcode: "94114"
     url: ''
     phone: ''
     longitude: "-122.42953"
@@ -674,7 +634,7 @@ venues:
     city: San francisco
     name: Bigfoot Lodge
     latitude: "37.792866"
-    zip: "94109"
+    zipcode: "94109"
     url: ''
     phone: ''
     longitude: "-122.420976"
@@ -684,7 +644,7 @@ venues:
     city: San francisco
     name: Bill Graham Civic Auditorium
     latitude: "37.778386"
-    zip: "94102"
+    zipcode: "94102"
     url: www.billgrahamcivic.com
     phone: 415-974-4060
     longitude: "-122.418"
@@ -694,7 +654,7 @@ venues:
     city: San francisco
     name: Bimbo&apos;s 365 Club
     latitude: "37.803727"
-    zip: "94133"
+    zipcode: "94133"
     url: www.bimbos365club.com
     phone: 415-474-0365
     longitude: "-122.415357"
@@ -704,7 +664,7 @@ venues:
     city: San francisco
     name: Bindlestiff Studio
     latitude: "37.780079"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.407246"
@@ -714,7 +674,7 @@ venues:
     city: San francisco
     name: Bird  &amp;  Beckett
     latitude: "37.734846"
-    zip: "94131"
+    zipcode: "94131"
     url: ''
     phone: ''
     longitude: "-122.43399"
@@ -724,7 +684,7 @@ venues:
     city: San francisco
     name: Biscuits  &amp;  Blues
     latitude: "37.787301"
-    zip: "94102"
+    zipcode: "94102"
     url: www.biscuitsandblues.com
     phone: 415-292-BLUE (2583)
     longitude: "-122.410073"
@@ -734,7 +694,7 @@ venues:
     city: Berkeley
     name: Bison Brewing Company
     latitude: "37.863459"
-    zip: "94704"
+    zipcode: "94704"
     url: ''
     phone: ''
     longitude: "-122.258856"
@@ -744,7 +704,7 @@ venues:
     city: Hayward
     name: The Bistro
     latitude: "37.672798"
-    zip: "94541"
+    zipcode: "94541"
     url: ''
     phone: ''
     longitude: "-122.082438"
@@ -754,7 +714,7 @@ venues:
     city: San francisco
     name: Blackthorn Tavern
     latitude: "37.764137"
-    zip: "94122"
+    zipcode: "94122"
     url: ''
     phone: ''
     longitude: "-122.466731"
@@ -764,7 +724,7 @@ venues:
     city: Berkeley
     name: Blake&apos;s on Telegraph
     latitude: "37.86747"
-    zip: "94704"
+    zipcode: "94704"
     url: ''
     phone: ''
     longitude: "-122.258748"
@@ -774,7 +734,7 @@ venues:
     city: San francisco
     name: The Blarney Stone
     latitude: "37.780163"
-    zip: "94121"
+    zipcode: "94121"
     url: ''
     phone: ''
     longitude: "-122.479762"
@@ -784,7 +744,7 @@ venues:
     city: San francisco
     name: Bliss Bar
     latitude: "37.751506"
-    zip: "94114"
+    zipcode: "94114"
     url: ''
     phone: ''
     longitude: "-122.432568"
@@ -794,7 +754,7 @@ venues:
     city: San francisco
     name: Blondie&apos;s Bar  &amp;  No Grill
     latitude: "37.764215"
-    zip: "94110"
+    zipcode: "94110"
     url: www.blondiesbar.com
     phone: 415-864-2419
     longitude: "-122.421987"
@@ -804,7 +764,7 @@ venues:
     city: San francisco
     name: Blue Cube
     latitude: "37.783805"
-    zip: "94102"
+    zipcode: "94102"
     url: www.bluecubesf.com
     phone: 415-259-8629
     longitude: "-122.409003"
@@ -814,7 +774,7 @@ venues:
     city: San francisco
     name: The Blue Maguey
     latitude: "37.763123"
-    zip: "94107"
+    zipcode: "94107"
     url: ''
     phone: ''
     longitude: "-122.390889"
@@ -824,7 +784,7 @@ venues:
     city: Burlingame
     name: Blush
     latitude: "37.579302"
-    zip: "94010"
+    zipcode: "94010"
     url: ''
     phone: ''
     longitude: "-122.344868"
@@ -834,7 +794,7 @@ venues:
     city: San francisco
     name: Boedekker Park
     latitude: "37.7839"
-    zip: "94102"
+    zipcode: "94102"
     url: ''
     phone: ''
     longitude: "-122.4126"
@@ -844,7 +804,7 @@ venues:
     city: San francisco
     name: Boom Boom Room
     latitude: "37.784628"
-    zip: "94115"
+    zipcode: "94115"
     url: www.boomboomblues.com
     phone: 415-673-8000
     longitude: "-122.433191"
@@ -854,7 +814,7 @@ venues:
     city: San francisco
     name: Bottom of the Hill
     latitude: "37.765024"
-    zip: "94107"
+    zipcode: "94107"
     url: www.bottomofthehill.com
     phone: 415-621-4455
     longitude: "-122.396168"
@@ -864,7 +824,7 @@ venues:
     city: San francisco
     name: Brainwash
     latitude: "37.776321"
-    zip: "94103"
+    zipcode: "94103"
     url: www.brainwash.com
     phone: 415-861-3663
     longitude: "-122.408652"
@@ -874,7 +834,7 @@ venues:
     city: San francisco
     name: Brazilian Cultural Center
     latitude: "37.755318"
-    zip: "94110"
+    zipcode: "94110"
     url: ''
     phone: ''
     longitude: "-122.419219"
@@ -884,7 +844,7 @@ venues:
     city: San francisco
     name: Broadway Showgirls
     latitude: "37.798301"
-    zip: "94133"
+    zipcode: "94133"
     url: www.showgirlssf.com
     phone: 415-391-2800
     longitude: "-122.404134"
@@ -894,7 +854,7 @@ venues:
     city: San francisco
     name: Broadway Studios
     latitude: "37.797999"
-    zip: "94133"
+    zipcode: "94133"
     url: www.broadwaystudios.com
     phone: 415-291-0333
     longitude: "-122.404353"
@@ -904,7 +864,7 @@ venues:
     city: San francisco
     name: Bruno&apos;s
     latitude: "37.758884"
-    zip: "94110"
+    zipcode: "94110"
     url: www.brunoslive.com
     phone: 415-648-7701
     longitude: "-122.41886"
@@ -914,7 +874,7 @@ venues:
     city: San francisco
     name: Bubble Lounge
     latitude: "37.79609"
-    zip: "94111"
+    zipcode: "94111"
     url: www.bubblelounge.com
     phone: 415-434-4204
     longitude: "-122.40326"
@@ -924,7 +884,7 @@ venues:
     city: San francisco
     name: Buriel Clay Theater
     latitude: "37.778116"
-    zip: "94102"
+    zipcode: "94102"
     url: ''
     phone: ''
     longitude: "-122.429224"
@@ -934,7 +894,7 @@ venues:
     city: San francisco
     name: Butter
     latitude: "37.771108"
-    zip: "94103"
+    zipcode: "94103"
     url: www.smoothasbutter.com
     phone: 415-863-5964
     longitude: "-122.41332"
@@ -944,7 +904,7 @@ venues:
     city: San francisco
     name: Buzz 9
     latitude: "37.777295"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.41262"
@@ -954,7 +914,7 @@ venues:
     city: San francisco
     name: The Cafe
     latitude: "37.763066"
-    zip: "94114"
+    zipcode: "94114"
     url: www.CafeSF.com
     phone: 415-861-3846
     longitude: "-122.434235"
@@ -964,7 +924,7 @@ venues:
     city: San francisco
     name: Cafe Anju
     latitude: "37.78756"
-    zip: "94102"
+    zipcode: "94102"
     url: www.anjuzen.com
     phone: 415-724-8675
     longitude: "-122.411454"
@@ -974,7 +934,7 @@ venues:
     city: San francisco
     name: Café Arguello
     latitude: "37.751689"
-    zip: "94110"
+    zipcode: "94110"
     url: ''
     phone: ''
     longitude: "-122.4186"
@@ -984,7 +944,7 @@ venues:
     city: San francisco
     name: Cafe Claude
     latitude: "37.789952"
-    zip: "94108"
+    zipcode: "94108"
     url: www.cafeclaude.com
     phone: 415-392-3505
     longitude: "-122.404407"
@@ -994,7 +954,7 @@ venues:
     city: San francisco
     name: Cafe Cocomo
     latitude: "37.762304"
-    zip: "94107"
+    zipcode: "94107"
     url: www.cafecocomo.com
     phone: 415-824-6910
     longitude: "-122.391826"
@@ -1004,7 +964,7 @@ venues:
     city: San francisco
     name: Cafe de la Presse
     latitude: "37.790988"
-    zip: "94104"
+    zipcode: "94104"
     url: ''
     phone: ''
     longitude: "-122.403203"
@@ -1014,7 +974,7 @@ venues:
     city: San francisco
     name: Café Du Nord
     latitude: "37.76652"
-    zip: "94114"
+    zipcode: "94114"
     url: www.cafedunord.com
     phone: 415-861-5016
     longitude: "-122.430385"
@@ -1024,7 +984,7 @@ venues:
     city: San francisco
     name: Cafe Flore
     latitude: "37.764408"
-    zip: "94114"
+    zipcode: "94114"
     url: ''
     phone: ''
     longitude: "-122.433076"
@@ -1034,7 +994,7 @@ venues:
     city: San francisco
     name: Cafe Franco
     latitude: "37.80383"
-    zip: "94123"
+    zipcode: "94123"
     url: ''
     phone: ''
     longitude: "-122.428169"
@@ -1044,7 +1004,7 @@ venues:
     city: San francisco
     name: Cafe International
     latitude: "37.772202"
-    zip: "94117"
+    zipcode: "94117"
     url: ''
     phone: ''
     longitude: "-122.430798"
@@ -1054,7 +1014,7 @@ venues:
     city: San francisco
     name: Cafe Mars
     latitude: "37.773317"
-    zip: "94103"
+    zipcode: "94103"
     url: ''
     phone: ''
     longitude: "-122.403172"
@@ -1064,7 +1024,7 @@ venues:
     city: San francisco
     name: Cafe Neon
     latitude: "37.777242"
-    zip: "94115"
+    zipcode: "94115"
     url: ''
     phone: ''
     longitude: "-122.441855"
@@ -1074,7 +1034,7 @@ venues:
     city: Oakland
     name: Cafe Van Kleef
     latitude: "37.806342"
-    zip: "94612"
+    zipcode: "94612"
     url: ''
     phone: ''
     longitude: "-122.270539"

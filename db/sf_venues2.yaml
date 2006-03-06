@@ -6,7 +6,7 @@ venues:
     latitude: "37.798532"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.408155"
     address: 641 Vallejo St
     state: CA
@@ -16,7 +16,7 @@ venues:
     latitude: "37.792722"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.434797"
     address: 2515 Fillmore St
     state: CA
@@ -26,7 +26,7 @@ venues:
     latitude: "37.796897"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.260665"
     address: 10 10th St
     state: CA
@@ -36,7 +36,7 @@ venues:
     latitude: "37.764937"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.42383"
     address: 3192 16th St
     state: CA
@@ -46,7 +46,7 @@ venues:
     latitude: "37.765768"
     zipcode: "94122"
     url: www.thecanvasgallery.com
-    phone: 415-504-0060
+    phone_number: 415-504-0060
     longitude: "-122.466216"
     address: 1200 9th Ave
     state: CA
@@ -56,7 +56,7 @@ venues:
     latitude: "37.764416"
     zipcode: "94110"
     url: www.casanovasf.com
-    phone: 415-863-9328
+    phone_number: 415-863-9328
     longitude: "-122.421663"
     address: 527 Valencia St
     state: CA
@@ -66,7 +66,7 @@ venues:
     latitude: "37.775284"
     zipcode: "94103"
     url: www.catalystcocktails.com
-    phone: 415-621-1722
+    phone_number: 415-621-1722
     longitude: "-122.402929"
     address: 312 Harriet St
     state: CA
@@ -76,7 +76,7 @@ venues:
     latitude: "37.824855"
     zipcode: "94611"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.254692"
     address: 3891 Piedmont Ave
     state: CA
@@ -86,7 +86,7 @@ venues:
     latitude: "37.788707"
     zipcode: "94102"
     url: www.cellarsf.com
-    phone: 415-441-5678
+    phone_number: 415-441-5678
     longitude: "-122.41151"
     address: 685 Sutter St
     state: CA
@@ -96,7 +96,7 @@ venues:
     latitude: "37.761129"
     zipcode: "94110"
     url: www.cellspace.org
-    phone: 415-648-7562
+    phone_number: 415-648-7562
     longitude: "-122.41027"
     address: 2050 Bryant St
     state: CA
@@ -106,7 +106,7 @@ venues:
     latitude: "37.87662"
     zipcode: "94709"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.264142"
     address: 1750 Arch St
     state: CA
@@ -116,7 +116,7 @@ venues:
     latitude: "37.781492"
     zipcode: "94103"
     url: www.thechieftain.com
-    phone: 415-615-0916
+    phone_number: 415-615-0916
     longitude: "-122.405154"
     address: 198 5th St
     state: CA
@@ -126,7 +126,7 @@ venues:
     latitude: "37.959506"
     zipcode: "94521"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-121.946021"
     address: 2000 Kirker Pass Rd
     state: CA
@@ -136,7 +136,7 @@ venues:
     latitude: "37.775888"
     zipcode: "94102"
     url: www.advent-sf.org
-    phone: 415-431-5439
+    phone_number: 415-431-5439
     longitude: "-122.422069"
     address: 261 Fell St
     state: CA
@@ -146,7 +146,7 @@ venues:
     latitude: "37.792672"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.421303"
     address: 1723 Polk St
     state: CA
@@ -156,7 +156,7 @@ venues:
     latitude: "37.774553"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.410414"
     address: 1225 Folsom St
     state: CA
@@ -166,7 +166,7 @@ venues:
     latitude: "37.783288"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.412285"
     address: 220 Jones St
     state: CA
@@ -176,7 +176,7 @@ venues:
     latitude: "37.771901"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41425"
     address: 298 11th St
     state: CA
@@ -186,7 +186,7 @@ venues:
     latitude: "37.76983"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.447167"
     address: 1509 Haight St
     state: CA
@@ -196,7 +196,7 @@ venues:
     latitude: "37.80702"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4191"
     address: 2801 Leavenworth St
     state: CA
@@ -206,7 +206,7 @@ venues:
     latitude: "37.781311"
     zipcode: "94118"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.461359"
     address: 3910 Geary Blvd
     state: CA
@@ -216,7 +216,7 @@ venues:
     latitude: "37.742681"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.421639"
     address: 3369 Mission St
     state: CA
@@ -226,7 +226,7 @@ venues:
     latitude: "37.78813"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.396342"
     address: 525 Howard St
     state: CA
@@ -236,7 +236,7 @@ venues:
     latitude: "37.782048"
     zipcode: "94102"
     url: www.clubqsf.com
-    phone: 415-255-1668
+    phone_number: 415-255-1668
     longitude: "-122.411587"
     address: 61 Golden Gate Ave
     state: CA
@@ -246,7 +246,7 @@ venues:
     latitude: "37.781422"
     zipcode: "94103"
     url: www.clubsix1.com
-    phone: 415-863-1221
+    phone_number: 415-863-1221
     longitude: "-122.409469"
     address: 60 6th St
     state: CA
@@ -256,7 +256,7 @@ venues:
     latitude: "37.774486"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.43786"
     address: 543 Divisadero St
     state: CA
@@ -266,7 +266,7 @@ venues:
     latitude: "37.757961"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41808"
     address: 544 Capp St
     state: CA
@@ -276,7 +276,7 @@ venues:
     latitude: "37.757961"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41808"
     address: 544 Capp St
     state: CA
@@ -286,7 +286,7 @@ venues:
     latitude: "37.776464"
     zipcode: "94118"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.466128"
     address: 635 8th Ave
     state: CA
@@ -296,7 +296,7 @@ venues:
     latitude: "37.764947"
     zipcode: "94107"
     url: www.theyankee.com
-    phone: 415-552-4440
+    phone_number: 415-552-4440
     longitude: "-122.39795"
     address: 100 Connecticut St
     state: CA
@@ -306,7 +306,7 @@ venues:
     latitude: "37.810872"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.296617"
     address: 1658 12th St
     state: CA
@@ -316,7 +316,7 @@ venues:
     latitude: "37.792359"
     zipcode: "94105"
     url: www.thecosmopolitancafe.com
-    phone: 415-543-4001
+    phone_number: 415-543-4001
     longitude: "-122.393585"
     address: 121 Spear St
     state: CA
@@ -326,7 +326,7 @@ venues:
     latitude: "37.742234"
     zipcode: "94116"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.490997"
     address: 2319 Taraval St
     state: CA
@@ -336,7 +336,7 @@ venues:
     latitude: "37.776171"
     zipcode: "94103"
     url: www.counterpulse.org
-    phone: 415-626-2060
+    phone_number: 415-626-2060
     longitude: "-122.41499"
     address: 1310 Mission St
     state: CA
@@ -346,7 +346,7 @@ venues:
     latitude: "37.7083"
     zipcode: "94134"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4201"
     address: Geneva Ave At Santos St
     state: CA
@@ -356,7 +356,7 @@ venues:
     latitude: "37.789136"
     zipcode: "94104"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.402875"
     address: 50 Post St
     state: CA
@@ -366,7 +366,7 @@ venues:
     latitude: "37.748807"
     zipcode: "94124"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.386625"
     address: 1842 Illinois St
     state: CA
@@ -376,7 +376,7 @@ venues:
     latitude: "37.761941"
     zipcode: "94114"
     url: www.daddysbar.com
-    phone: 415-621-8732
+    phone_number: 415-621-8732
     longitude: "-122.43523"
     address: 440 Castro St
     state: CA
@@ -386,7 +386,7 @@ venues:
     latitude: "37.764763"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.422424"
     address: 3121 16th St
     state: CA
@@ -396,7 +396,7 @@ venues:
     latitude: "37.760833"
     zipcode: "94110"
     url: www.darkroomsf.com
-    phone: 415-401-7987
+    phone_number: 415-401-7987
     longitude: "-122.419103"
     address: 2263 Mission St
     state: CA
@@ -406,7 +406,7 @@ venues:
     latitude: "37.777422"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419898"
     address: 201 Van Ness Ave
     state: CA
@@ -416,7 +416,7 @@ venues:
     latitude: "37.782625"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.417171"
     address: 510 Larkin St
     state: CA
@@ -426,7 +426,7 @@ venues:
     latitude: "37.745583"
     zipcode: "94124"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.400995"
     address: 2246 Jerrold Ave
     state: CA
@@ -436,7 +436,7 @@ venues:
     latitude: "37.764763"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.422725"
     address: 3139 16th St
     state: CA
@@ -446,7 +446,7 @@ venues:
     latitude: "37.763523"
     zipcode: "94114"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.434162"
     address: 2348 Market St
     state: CA
@@ -456,7 +456,7 @@ venues:
     latitude: "37.745583"
     zipcode: "94124"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.400995"
     address: 2246 Jerrold Ave
     state: CA
@@ -466,7 +466,7 @@ venues:
     latitude: "37.789847"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.391572"
     address: 150 Folsom St
     state: CA
@@ -476,7 +476,7 @@ venues:
     latitude: "37.80702"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4191"
     address: 2801 Leavenworth St
     state: CA
@@ -486,7 +486,7 @@ venues:
     latitude: "37.786715"
     zipcode: "94109"
     url: www.divassf.com
-    phone: 415-928-6006
+    phone_number: 415-928-6006
     longitude: "-122.419472"
     address: 1081 Post St
     state: CA
@@ -496,7 +496,7 @@ venues:
     latitude: "37.771061"
     zipcode: "94103"
     url: www.dnalounge.com
-    phone: 415-626-1409
+    phone_number: 415-626-1409
     longitude: "-122.412795"
     address: 375 11th St
     state: CA
@@ -506,7 +506,7 @@ venues:
     latitude: "37.758148"
     zipcode: "94107"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.388592"
     address: 2496 3rd St
     state: CA
@@ -516,7 +516,7 @@ venues:
     latitude: "37.798265"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.404458"
     address: 440 Broadway
     state: CA
@@ -526,7 +526,7 @@ venues:
     latitude: "37.761278"
     zipcode: "94110"
     url: www.doloresparkcafe.org
-    phone: 415-621-2936
+    phone_number: 415-621-2936
     longitude: "-122.425808"
     address: 501 Dolores St
     state: CA
@@ -536,7 +536,7 @@ venues:
     latitude: "37.772967"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.415128"
     address: 225 11th St
     state: CA
@@ -546,7 +546,7 @@ venues:
     latitude: "37.785604"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.42866"
     address: 1625 Post St
     state: CA
@@ -556,7 +556,7 @@ venues:
     latitude: "37.871521"
     zipcode: "94704"
     url: www.downtownrestaurant.com
-    phone: 510-649-3810
+    phone_number: 510-649-3810
     longitude: "-122.268508"
     address: 2102 Shattuck Ave
     state: CA
@@ -566,7 +566,7 @@ venues:
     latitude: "37.797914"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405073"
     address: 473 Broadway
     state: CA
@@ -576,7 +576,7 @@ venues:
     latitude: "37.760356"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.414616"
     address: 2301 Folsom St
     state: CA
@@ -586,7 +586,7 @@ venues:
     latitude: "37.789691"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405762"
     address: 314 Sutter St
     state: CA
@@ -596,7 +596,7 @@ venues:
     latitude: "37.770064"
     zipcode: "94103"
     url: www.sfeagle.com
-    phone: 415-626-0880
+    phone_number: 415-626-0880
     longitude: "-122.413347"
     address: 398 12th St
     state: CA
@@ -606,7 +606,7 @@ venues:
     latitude: "37.798772"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.435677"
     address: 3154 Fillmore St
     state: CA
@@ -616,7 +616,7 @@ venues:
     latitude: "37.899137"
     zipcode: "94596"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.062241"
     address: 1411 Locust St
     state: CA
@@ -626,7 +626,7 @@ venues:
     latitude: "37.760713"
     zipcode: "94114"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.435525"
     address: 4149 18th St
     state: CA
@@ -636,7 +636,7 @@ venues:
     latitude: "37.786135"
     zipcode: "94109"
     url: www.castlenews.com
-    phone: 415-885-4074
+    phone_number: 415-885-4074
     longitude: "-122.418932"
     address: 950 Geary St
     state: CA
@@ -646,7 +646,7 @@ venues:
     latitude: "37.812684"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.268482"
     address: 492 23rd St
     state: CA
@@ -656,7 +656,7 @@ venues:
     latitude: "37.775698"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409007"
     address: 1151 Folsom St
     state: CA
@@ -666,7 +666,7 @@ venues:
     latitude: "37.765621"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41329"
     address: 2700 16th St
     state: CA
@@ -676,7 +676,7 @@ venues:
     latitude: "37.746657"
     zipcode: "94110"
     url: www.elriosf.com
-    phone: 415-282-3325
+    phone_number: 415-282-3325
     longitude: "-122.419392"
     address: 3158 Mission St
     state: CA
@@ -686,7 +686,7 @@ venues:
     latitude: "37.754468"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.42072"
     address: 1153 Valencia St
     state: CA
@@ -696,7 +696,7 @@ venues:
     latitude: "37.762746"
     zipcode: "94110"
     url: www.elbo.com
-    phone: 415-552-7788
+    phone_number: 415-552-7788
     longitude: "-122.421525"
     address: 647 Valencia St
     state: CA
@@ -706,7 +706,7 @@ venues:
     latitude: "37.785971"
     zipcode: "94109"
     url: www.elementlounge.com
-    phone: 415-571-1362
+    phone_number: 415-571-1362
     longitude: "-122.420281"
     address: 1028 Geary St
     state: CA
@@ -716,7 +716,7 @@ venues:
     latitude: "37.777301"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.403847"
     address: 401 6th St
     state: CA
@@ -726,7 +726,7 @@ venues:
     latitude: "37.798105"
     zipcode: "94133"
     url: www.enricossidewalkcafe.com
-    phone: 415-982-6223
+    phone_number: 415-982-6223
     longitude: "-122.405735"
     address: 504 Broadway
     state: CA
@@ -736,7 +736,7 @@ venues:
     latitude: "37.854474"
     zipcode: "94703"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.270695"
     address: 1923 Ashby Ave
     state: CA
@@ -746,7 +746,7 @@ venues:
     latitude: "37.768215"
     zipcode: "94114"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.427728"
     address: 2051 Market St
     state: CA
@@ -756,7 +756,7 @@ venues:
     latitude: "37.764833"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.421207"
     address: 3079 16th St
     state: CA
@@ -766,7 +766,7 @@ venues:
     latitude: "37.794183"
     zipcode: "94111"
     url: www.ez5bar.com
-    phone: 415-362-9321
+    phone_number: 415-362-9321
     longitude: "-122.40432"
     address: 682 Commercial St
     state: CA
@@ -776,7 +776,7 @@ venues:
     latitude: "37.785549"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.393432"
     address: 525 Harrison St
     state: CA
@@ -786,7 +786,7 @@ venues:
     latitude: "37.792307"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.410899"
     address: 950 Mason St
     state: CA
@@ -796,7 +796,7 @@ venues:
     latitude: "37.765973"
     zipcode: "94103"
     url: www.feminapotens.com
-    phone: 415-861-2240
+    phone_number: 415-861-2240
     longitude: "-122.417341"
     address: 465 S Van Ness Ave
     state: CA
@@ -806,7 +806,7 @@ venues:
     latitude: "37.806387"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419216"
     address: 1333 Columbus Ave
     state: CA
@@ -816,7 +816,7 @@ venues:
     latitude: "37.784034"
     zipcode: "94115"
     url: www.thefillmore.com
-    phone: 415-346-6000
+    phone_number: 415-346-6000
     longitude: "-122.433095"
     address: 1805 Geary Blvd
     state: CA
@@ -826,7 +826,7 @@ venues:
     latitude: "37.821835"
     zipcode: "94611"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.259317"
     address: 3405 Piedmont Ave
     state: CA
@@ -836,7 +836,7 @@ venues:
     latitude: "37.322663"
     zipcode: "95014"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.045868"
     address: 21250 Stevens Creek Blvd
     state: CA
@@ -846,7 +846,7 @@ venues:
     latitude: "37.7816"
     zipcode: "94121"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4945"
     address: 34th Ave At Clement St
     state: CA
@@ -856,7 +856,7 @@ venues:
     latitude: "37.787112"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.401188"
     address: 662 Mission St
     state: CA
@@ -866,7 +866,7 @@ venues:
     latitude: "37.972391"
     zipcode: "94901"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.523143"
     address: 711 4th St
     state: CA
@@ -876,7 +876,7 @@ venues:
     latitude: "37.868377"
     zipcode: "94702"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.291241"
     address: 1111 Addison St
     state: CA
@@ -886,7 +886,7 @@ venues:
     latitude: "37.796137"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.271798"
     address: 278 4th St
     state: CA
@@ -896,7 +896,7 @@ venues:
     latitude: "37.797892"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405248"
     address: 493 Broadway
     state: CA
@@ -906,7 +906,7 @@ venues:
     latitude: "37.787531"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.446673"
     address: 488 Presidio Ave
     state: CA
@@ -916,7 +916,7 @@ venues:
     latitude: "37.752663"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409352"
     address: 2857 24th St
     state: CA
@@ -926,7 +926,7 @@ venues:
     latitude: "37.778153"
     zipcode: "94107"
     url: www.thegallerylounge.com
-    phone: 415-227-0449
+    phone_number: 415-227-0449
     longitude: "-122.396952"
     address: 510 Brannan St
     state: CA
@@ -936,7 +936,7 @@ venues:
     latitude: "37.82795"
     zipcode: "94611"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.256269"
     address: 4044 Broadway
     state: CA
@@ -946,7 +946,7 @@ venues:
     latitude: "37.771665"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405192"
     address: 888 Brannan St
     state: CA
@@ -956,7 +956,7 @@ venues:
     latitude: "37.75022"
     zipcode: "94107"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.396155"
     address: 1275 Connecticut St
     state: CA
@@ -966,7 +966,7 @@ venues:
     latitude: "37.77926"
     zipcode: "94107"
     url: www.glaskat.com
-    phone: 415-495-6626
+    phone_number: 415-495-6626
     longitude: "-122.397929"
     address: 520 4th St
     state: CA
@@ -976,7 +976,7 @@ venues:
     latitude: "37.804079"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.270292"
     address: 412 14th St
     state: CA
@@ -986,7 +986,7 @@ venues:
     latitude: "37.791714"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.412696"
     address: 1100 California St
     state: CA
@@ -996,7 +996,7 @@ venues:
     latitude: "37.849486"
     zipcode: "94618"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.252044"
     address: 6202 Claremont Ave
     state: CA
@@ -1006,7 +1006,7 @@ venues:
     latitude: "37.78766"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.421554"
     address: 1300 Van Ness Ave
     state: CA
@@ -1016,7 +1016,7 @@ venues:
     latitude: "37.799363"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4075"
     address: 1371 Grant Ave
     state: CA
@@ -1026,7 +1026,7 @@ venues:
     latitude: "37.799689"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.441272"
     address: 3251 Scott St
     state: CA
@@ -1036,7 +1036,7 @@ venues:
     latitude: "37.788778"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.408328"
     address: 450 Powell St
     state: CA
@@ -1046,7 +1046,7 @@ venues:
     latitude: "37.788288"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.433485"
     address: 2020 Fillmore St
     state: CA
@@ -1056,7 +1056,7 @@ venues:
     latitude: "37.760756"
     zipcode: "94114"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.435164"
     address: 500 Castro St
     state: CA
@@ -1066,7 +1066,7 @@ venues:
     latitude: "37.798412"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409185"
     address: 729 Vallejo St
     state: CA
@@ -1076,7 +1076,7 @@ venues:
     latitude: "37.78742"
     zipcode: "94109"
     url: www.hemlocktavern.com
-    phone: 415-923-0923
+    phone_number: 415-923-0923
     longitude: "-122.420198"
     address: 1131 Polk St
     state: CA
@@ -1086,7 +1086,7 @@ venues:
     latitude: "37.796897"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.260665"
     address: 10 10th St
     state: CA
@@ -1096,7 +1096,7 @@ venues:
     latitude: "37.779195"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420224"
     address: 401 Van Ness Ave
     state: CA
@@ -1106,7 +1106,7 @@ venues:
     latitude: "37.799674"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.436546"
     address: 2125 Lombard St
     state: CA
@@ -1116,7 +1116,7 @@ venues:
     latitude: "37.878825"
     zipcode: "94709"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.264998"
     address: 2286 Cedar St
     state: CA
@@ -1126,7 +1126,7 @@ venues:
     latitude: "37.808335"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.268864"
     address: 1933 Broadway
     state: CA
@@ -1136,7 +1136,7 @@ venues:
     latitude: "37.775284"
     zipcode: "94103"
     url: www.holeinthewallsaloon.com
-    phone: 415-431-HOWL
+    phone_number: 415-431-HOWL
     longitude: "-122.410209"
     address: 289 8th St
     state: CA
@@ -1146,7 +1146,7 @@ venues:
     latitude: "37.779406"
     zipcode: "94107"
     url: www.thehotelutahsaloon.com
-    phone: 415-546-6300
+    phone_number: 415-546-6300
     longitude: "-122.398105"
     address: 500 4th St
     state: CA
@@ -1156,7 +1156,7 @@ venues:
     latitude: "37.78817"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.401091"
     address: 39 New Montgomery St
     state: CA
@@ -1166,7 +1166,7 @@ venues:
     latitude: "37.805762"
     zipcode: "94111"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405127"
     address: 1800 Montgomery St
     state: CA
@@ -1176,7 +1176,7 @@ venues:
     latitude: "37.332137"
     zipcode: "95113"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-121.900499"
     address: 525 W Santa Clara St
     state: CA
@@ -1186,7 +1186,7 @@ venues:
     latitude: "37.768157"
     zipcode: "94103"
     url: www.hushhushlounge.com
-    phone: 415-241-9944
+    phone_number: 415-241-9944
     longitude: "-122.42419"
     address: 496 14th St
     state: CA
@@ -1196,7 +1196,7 @@ venues:
     latitude: "37.776171"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41499"
     address: 1310 Mission St
     state: CA
@@ -1206,7 +1206,7 @@ venues:
     latitude: "37.765663"
     zipcode: "94103"
     url: www.ilpirata.com
-    phone: 415-626-2626
+    phone_number: 415-626-2626
     longitude: "-122.406812"
     address: 2007 16th St
     state: CA
@@ -1216,7 +1216,7 @@ venues:
     latitude: "37.775339"
     zipcode: "94117"
     url: www.independentsf.com
-    phone: 415-771-1421
+    phone_number: 415-771-1421
     longitude: "-122.437697"
     address: 628 Divisadero St
     state: CA
@@ -1226,7 +1226,7 @@ venues:
     latitude: "37.765809"
     zipcode: "94103"
     url: www.theintersection.org
-    phone: 415-626-2787
+    phone_number: 415-626-2787
     longitude: "-122.422096"
     address: 446 Valencia St
     state: CA
@@ -1236,7 +1236,7 @@ venues:
     latitude: "37.781305"
     zipcode: "94118"
     url: www.irelands32sanfrancisco.com
-    phone: 415-386-6173
+    phone_number: 415-386-6173
     longitude: "-122.461425"
     address: 3920 Geary Blvd
     state: CA
@@ -1246,7 +1246,7 @@ venues:
     latitude: "37.794882"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.277286"
     address: 1 Broadway
     state: CA
@@ -1256,7 +1256,7 @@ venues:
     latitude: "37.797669"
     zipcode: "94133"
     url: www.jazzatpearls.com
-    phone: 415-291-8255
+    phone_number: 415-291-8255
     longitude: "-122.406009"
     address: 256 Columbus Ave
     state: CA
@@ -1266,7 +1266,7 @@ venues:
     latitude: "37.850846"
     zipcode: "94703"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.270773"
     address: 3192 Adeline St
     state: CA
@@ -1276,7 +1276,7 @@ venues:
     latitude: "37.7189"
     zipcode: "94134"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4117"
     address: Visitacion Ave At Mansell St
     state: CA
@@ -1286,7 +1286,7 @@ venues:
     latitude: "37.784512"
     zipcode: "94103"
     url: www.jillians.com
-    phone: 415-369-6100
+    phone_number: 415-369-6100
     longitude: "-122.404047"
     address: 101 4th St
     state: CA
@@ -1296,7 +1296,7 @@ venues:
     latitude: "37.769172"
     zipcode: "94501"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.238814"
     address: 1813 Park St
     state: CA
@@ -1306,7 +1306,7 @@ venues:
     latitude: "37.785444"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407138"
     address: 63 Ellis St
     state: CA
@@ -1316,7 +1316,7 @@ venues:
     latitude: "37.760781"
     zipcode: "94501"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.244485"
     address: 1223 Park Ave
     state: CA
@@ -1326,7 +1326,7 @@ venues:
     latitude: "37.776096"
     zipcode: "94103"
     url: www.juliessupperclub.com
-    phone: 415-861-0707
+    phone_number: 415-861-0707
     longitude: "-122.408453"
     address: 1123 Folsom St
     state: CA
@@ -1336,7 +1336,7 @@ venues:
     latitude: "37.869719"
     zipcode: "94704"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.267789"
     address: 2181 Shattuck Ave
     state: CA
@@ -1346,7 +1346,7 @@ venues:
     latitude: "37.787534"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.397088"
     address: 579 Howard St
     state: CA
@@ -1356,7 +1356,7 @@ venues:
     latitude: "37.796484"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.403983"
     address: 530 Jackson St
     state: CA
@@ -1366,7 +1366,7 @@ venues:
     latitude: "37.765667"
     zipcode: 
     url: www.kellysmissionrock.com
-    phone: 415-626-5355
+    phone_number: 415-626-5355
     longitude: "-122.386469"
     address: 817 China Basin St
     state: CA
@@ -1376,7 +1376,7 @@ venues:
     latitude: "37.7626"
     zipcode: "94501"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.242699"
     address: 1313 Park Ave
     state: CA
@@ -1386,7 +1386,7 @@ venues:
     latitude: "37.839564"
     zipcode: "94608"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.293361"
     address: 5800 Shellmound St
     state: CA
@@ -1396,7 +1396,7 @@ venues:
     latitude: "37.789349"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420613"
     address: 1351 Polk St
     state: CA
@@ -1406,7 +1406,7 @@ venues:
     latitude: "37.786821"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409592"
     address: 334 Mason St
     state: CA
@@ -1416,7 +1416,7 @@ venues:
     latitude: "37.81283"
     zipcode: "94610"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.2469"
     address: 3332 Grand Ave
     state: CA
@@ -1426,7 +1426,7 @@ venues:
     latitude: "37.745164"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420021"
     address: 3223 Mission St
     state: CA
@@ -1436,7 +1436,7 @@ venues:
     latitude: "37.800158"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.435091"
     address: 2036 Lombard St
     state: CA
@@ -1446,7 +1446,7 @@ venues:
     latitude: "37.852957"
     zipcode: "94705"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.266002"
     address: 3105 Shattuck Ave
     state: CA
@@ -1456,7 +1456,7 @@ venues:
     latitude: "37.810574"
     zipcode: "94610"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.260169"
     address: 200 Grand Ave
     state: CA
@@ -1466,7 +1466,7 @@ venues:
     latitude: "37.756526"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419009"
     address: 2526 Mission St
     state: CA
@@ -1476,7 +1476,7 @@ venues:
     latitude: "37.788189"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.412617"
     address: 20 Cosmo Pl
     state: CA
@@ -1486,7 +1486,7 @@ venues:
     latitude: "37.771305"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409446"
     address: 271 Dore St
     state: CA
@@ -1496,7 +1496,7 @@ venues:
     latitude: "37.785745"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.406949"
     address: 44 Ellis St
     state: CA
@@ -1506,7 +1506,7 @@ venues:
     latitude: "37.769765"
     zipcode: "94103"
     url: www.levendesf.com
-    phone: 415-864-5585
+    phone_number: 415-864-5585
     longitude: "-122.420245"
     address: 1710 Mission St
     state: CA
@@ -1516,7 +1516,7 @@ venues:
     latitude: "37.760312"
     zipcode: "94110"
     url: www.lexingtonclub.com
-    phone: 415-863-2052
+    phone_number: 415-863-2052
     longitude: "-122.420811"
     address: 3464 19th St
     state: CA
@@ -1526,7 +1526,7 @@ venues:
     latitude: "37.795439"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.406353"
     address: 916 Grant Ave
     state: CA
@@ -1536,7 +1536,7 @@ venues:
     latitude: "37.772416"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.428995"
     address: 400 Haight St
     state: CA
@@ -1546,7 +1546,7 @@ venues:
     latitude: "37.764937"
     zipcode: "94114"
     url: www.lime-sf.com
-    phone: 415-621-5256
+    phone_number: 415-621-5256
     longitude: "-122.431881"
     address: 2247 Market St
     state: CA
@@ -1556,7 +1556,7 @@ venues:
     latitude: "37.81279"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.280214"
     address: 2000 Myrtle St
     state: CA
@@ -1566,7 +1566,7 @@ venues:
     latitude: "37.762654"
     zipcode: "94107"
     url: www.lingba.com
-    phone: 415-355-0001
+    phone_number: 415-355-0001
     longitude: "-122.397342"
     address: 1498 18th St
     state: CA
@@ -1576,7 +1576,7 @@ venues:
     latitude: "37.78101"
     zipcode: "94103"
     url: www.litloungesf.com
-    phone: 415-278-0940
+    phone_number: 415-278-0940
     longitude: "-122.408444"
     address: 101 6th St
     state: CA
@@ -1586,7 +1586,7 @@ venues:
     latitude: "37.760367"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.418876"
     address: 3388 19th St
     state: CA
@@ -1596,7 +1596,7 @@ venues:
     latitude: "37.784512"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.404047"
     address: 101 4th St
     state: CA
@@ -1606,7 +1606,7 @@ venues:
     latitude: "37.752663"
     zipcode: "94110"
     url: www.locusarts.org
-    phone: 415-269-0698
+    phone_number: 415-269-0698
     longitude: "-122.409352"
     address: 2857 24th St
     state: CA
@@ -1616,7 +1616,7 @@ venues:
     latitude: "37.771529"
     zipcode: "94103"
     url: www.loft11sf.com
-    phone: 415-701-8111
+    phone_number: 415-701-8111
     longitude: "-122.413806"
     address: 316 11th St
     state: CA
@@ -1626,7 +1626,7 @@ venues:
     latitude: "37.799249"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407474"
     address: 1353 Grant Ave
     state: CA
@@ -1636,7 +1636,7 @@ venues:
     latitude: "37.8693"
     zipcode: "94704"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.2546"
     address: College Ave At Bancroft Way
     state: CA
@@ -1646,7 +1646,7 @@ venues:
     latitude: "37.781934"
     zipcode: "94103"
     url: www.luggagestoregallery.org
-    phone: 415-255-5971
+    phone_number: 415-255-5971
     longitude: "-122.410396"
     address: 1007 Market St
     state: CA
@@ -1656,7 +1656,7 @@ venues:
     latitude: "37.811239"
     zipcode: "94612"
     url: www.lukasoakland.com
-    phone: 510-451-4677
+    phone_number: 510-451-4677
     longitude: "-122.26707"
     address: 2221 Broadway
     state: CA
@@ -1666,7 +1666,7 @@ venues:
     latitude: "37.775284"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409998"
     address: 1192 Folsom St
     state: CA
@@ -1676,7 +1676,7 @@ venues:
     latitude: "37.772167"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.431078"
     address: 530 Haight St
     state: CA
@@ -1686,7 +1686,7 @@ venues:
     latitude: "37.774262"
     zipcode: "94117"
     url: www.madronelounge.com
-    phone: 415-241-0202
+    phone_number: 415-241-0202
     longitude: "-122.437457"
     address: 500 Divisadero St
     state: CA
@@ -1696,7 +1696,7 @@ venues:
     latitude: "37.761005"
     zipcode: "94114"
     url: www.magnetsf.org
-    phone: 415-581-1600
+    phone_number: 415-581-1600
     longitude: "-122.435358"
     address: 4122 18th St
     state: CA
@@ -1706,7 +1706,7 @@ venues:
     latitude: "37.755312"
     zipcode: "94110"
     url: www.makeoutroom.com
-    phone: 415-647-2888
+    phone_number: 415-647-2888
     longitude: "-122.419289"
     address: 3225 22nd St
     state: CA
@@ -1716,7 +1716,7 @@ venues:
     latitude: "37.812803"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.268571"
     address: 2318 Telegraph Ave
     state: CA
@@ -1726,7 +1726,7 @@ venues:
     latitude: "38.002945"
     zipcode: "94903"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.534176"
     address: 10 Avenue Of The Flags
     state: CA
@@ -1736,7 +1736,7 @@ venues:
     latitude: "37.776875"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.424315"
     address: 488 Hayes St
     state: CA
@@ -1746,7 +1746,7 @@ venues:
     latitude: "37.785863"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.411573"
     address: 419 Ofarrell St
     state: CA
@@ -1756,7 +1756,7 @@ venues:
     latitude: "37.772332"
     zipcode: "94103"
     url: www.martunis.citysearch.com
-    phone: 415-241-0205
+    phone_number: 415-241-0205
     longitude: "-122.422754"
     address: 4 Valencia St
     state: CA
@@ -1766,7 +1766,7 @@ venues:
     latitude: "37.791426"
     zipcode: "94108"
     url: www.masonicauditorium.com
-    phone: 415-776-4702
+    phone_number: 415-776-4702
     longitude: "-122.412782"
     address: 1111 California St
     state: CA
@@ -1776,7 +1776,7 @@ venues:
     latitude: "37.798731"
     zipcode: "94123"
     url: www.plumpjack.com/pjmatrix
-    phone: 415-563-4180
+    phone_number: 415-563-4180
     longitude: "-122.435669"
     address: 3138 Fillmore St
     state: CA
@@ -1786,7 +1786,7 @@ venues:
     latitude: "37.76314"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.426473"
     address: 398 Dolores St
     state: CA
@@ -1796,7 +1796,7 @@ venues:
     latitude: "37.747037"
     zipcode: "94621"
     url: www.theoaklandarena.com
-    phone: 510-569-2121
+    phone_number: 510-569-2121
     longitude: "-122.200849"
     address: 7000 Coliseum Way
     state: CA
@@ -1806,7 +1806,7 @@ venues:
     latitude: "37.768649"
     zipcode: "94114"
     url: www.sfmecca.com
-    phone: 415-621-7000
+    phone_number: 415-621-7000
     longitude: "-122.4272"
     address: 2029 Market St
     state: CA
@@ -1816,7 +1816,7 @@ venues:
     latitude: "37.756625"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419022"
     address: 2518 Mission St
     state: CA
@@ -1826,7 +1826,7 @@ venues:
     latitude: "37.788972"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409314"
     address: 545 Sutter St
     state: CA
@@ -1836,7 +1836,7 @@ venues:
     latitude: "37.784512"
     zipcode: "94103"
     url: www.metreon.com
-    phone: 415-369-6000
+    phone_number: 415-369-6000
     longitude: "-122.404047"
     address: 101 4th St
     state: CA
@@ -1846,7 +1846,7 @@ venues:
     latitude: "37.764937"
     zipcode: "94103"
     url: www.metronomedancecenter.com
-    phone: 415-252-9000
+    phone_number: 415-252-9000
     longitude: "-122.401941"
     address: 1830 17th St
     state: CA
@@ -1856,7 +1856,7 @@ venues:
     latitude: "37.782252"
     zipcode: "94103"
     url: www.mezzaninesf.com
-    phone: "415- 625-8880"
+    phone_number: "415- 625-8880"
     longitude: "-122.408378"
     address: 444 Jessie St
     state: CA
@@ -1866,7 +1866,7 @@ venues:
     latitude: "37.772728"
     zipcode: "94102"
     url: www.octavialounge.com
-    phone: 415-863-3516
+    phone_number: 415-863-3516
     longitude: "-122.422593"
     address: 1722 Market St
     state: CA
@@ -1876,7 +1876,7 @@ venues:
     latitude: "37.768175"
     zipcode: "94103"
     url: www.mighty119.com
-    phone: 415-626-7001
+    phone_number: 415-626-7001
     longitude: "-122.4066"
     address: 119 Utah St
     state: CA
@@ -1886,7 +1886,7 @@ venues:
     latitude: "37.769451"
     zipcode: "94117"
     url: www.milksf.com
-    phone: 415-387-MILK
+    phone_number: 415-387-MILK
     longitude: "-122.452605"
     address: 1840 Haight St
     state: CA
@@ -1896,7 +1896,7 @@ venues:
     latitude: "37.782213"
     zipcode: "94613"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.18758"
     address: 5000 Macarthur Blvd
     state: CA
@@ -1906,7 +1906,7 @@ venues:
     latitude: "37.770087"
     zipcode: "94102"
     url: www.themint.net
-    phone: 415-626-4726
+    phone_number: 415-626-4726
     longitude: "-122.425826"
     address: 1942 Market St
     state: CA
@@ -1916,7 +1916,7 @@ venues:
     latitude: "37.760863"
     zipcode: "94114"
     url: www.mobydicksf.com
-    phone: 415-431-4278
+    phone_number: 415-431-4278
     longitude: "-122.433696"
     address: 4049 18th St
     state: CA
@@ -1926,7 +1926,7 @@ venues:
     latitude: "37.872162"
     zipcode: "94704"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.267331"
     address: 2136 University Ave
     state: CA
@@ -1936,7 +1936,7 @@ venues:
     latitude: "37.772084"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.431739"
     address: 582 Haight St
     state: CA
@@ -1946,7 +1946,7 @@ venues:
     latitude: "37.757778"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409236"
     address: 2730 21st St
     state: CA
@@ -1956,7 +1956,7 @@ venues:
     latitude: "37.834099"
     zipcode: "94611"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.212986"
     address: 5701 Thornhill Dr
     state: CA
@@ -1966,7 +1966,7 @@ venues:
     latitude: "37.800942"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.40913"
     address: 1652 Stockton St
     state: CA
@@ -1976,7 +1976,7 @@ venues:
     latitude: "37.740202"
     zipcode: "94127"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.466635"
     address: 66 W Portal Ave
     state: CA
@@ -1986,7 +1986,7 @@ venues:
     latitude: "37.775898"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.414564"
     address: 116 9th St
     state: CA
@@ -1996,7 +1996,7 @@ venues:
     latitude: "37.791066"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420625"
     address: 1548 Polk St
     state: CA
@@ -2006,7 +2006,7 @@ venues:
     latitude: "37.774534"
     zipcode: "94103"
     url: www.newlangtonarts.org
-    phone: 415-626-5416
+    phone_number: 415-626-5416
     longitude: "-122.410927"
     address: 1246 Folsom St
     state: CA
@@ -2016,7 +2016,7 @@ venues:
     latitude: "37.772319"
     zipcode: "94117"
     url: www.nickies.com
-    phone: 415-621-6508
+    phone_number: 415-621-6508
     longitude: "-122.429818"
     address: 460 Haight St
     state: CA
@@ -2026,7 +2026,7 @@ venues:
     latitude: "37.856598"
     zipcode: "94965"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.480213"
     address: 757 Bridgeway
     state: CA
@@ -2036,7 +2036,7 @@ venues:
     latitude: "37.752797"
     zipcode: "94114"
     url: www.noevalleyministry.org
-    phone: 415-282-2317
+    phone_number: 415-282-2317
     longitude: "-122.429581"
     address: 1021 Sanchez St
     state: CA
@@ -2046,7 +2046,7 @@ venues:
     latitude: "37.850437"
     zipcode: "94609"
     url: www.nomadcafe.net
-    phone: 510-595-5344
+    phone_number: 510-595-5344
     longitude: "-122.265725"
     address: 6500 Shattuck Ave
     state: CA
@@ -2056,7 +2056,7 @@ venues:
     latitude: "37.799874"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.40726"
     address: 1402 Grant Ave
     state: CA
@@ -2066,7 +2066,7 @@ venues:
     latitude: "37.788339"
     zipcode: "94109"
     url: www.oreillysholygrail.com
-    phone: 415-928-1233
+    phone_number: 415-928-1233
     longitude: "-122.420402"
     address: 1233 Polk St
     state: CA
@@ -2076,7 +2076,7 @@ venues:
     latitude: "37.808599"
     zipcode: "94612"
     url: www.oaklandbox.com
-    phone: 510-451-1932
+    phone_number: 510-451-1932
     longitude: "-122.269635"
     address: 1928 Telegraph Ave
     state: CA
@@ -2086,7 +2086,7 @@ venues:
     latitude: "37.796178"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.276406"
     address: 201 Broadway
     state: CA
@@ -2096,7 +2096,7 @@ venues:
     latitude: "37.795594"
     zipcode: "94607"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.275525"
     address: 411 2nd St
     state: CA
@@ -2106,7 +2106,7 @@ venues:
     latitude: "37.763463"
     zipcode: "94110"
     url: www.odctheater.org
-    phone: 415-863-9834
+    phone_number: 415-863-9834
     longitude: "-122.416459"
     address: 3153 17th St
     state: CA
@@ -2116,7 +2116,7 @@ venues:
     latitude: "37.791262"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.42169"
     address: 1751 Sacramento St
     state: CA
@@ -2126,7 +2126,7 @@ venues:
     latitude: "37.792637"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.40575"
     address: 660 California St
     state: CA
@@ -2136,7 +2136,7 @@ venues:
     latitude: "37.784867"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.418007"
     address: 743 Larkin St
     state: CA
@@ -2146,7 +2146,7 @@ venues:
     latitude: "37.788204"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.404024"
     address: 25 Maiden Ln
     state: CA
@@ -2156,7 +2156,7 @@ venues:
     latitude: "37.760306"
     zipcode: "94110"
     url: www.oxygensf.com
-    phone: 415-255-2102
+    phone_number: 415-255-2102
     longitude: "-122.421249"
     address: 795 Valencia St
     state: CA
@@ -2166,7 +2166,7 @@ venues:
     latitude: "37.792619"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.392116"
     address: 161 Steuart St
     state: CA
@@ -2176,7 +2176,7 @@ venues:
     latitude: "37.790606"
     zipcode: "94118"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.450261"
     address: 3368 Jackson St
     state: CA
@@ -2186,7 +2186,7 @@ venues:
     latitude: "37.80135"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.447973"
     address: 3301 Lyon St
     state: CA
@@ -2196,7 +2196,7 @@ venues:
     latitude: "37.755552"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419727"
     address: 3248 22nd St
     state: CA
@@ -2206,7 +2206,7 @@ venues:
     latitude: "37.7717"
     zipcode: "94103"
     url: www.paradiselounge.com
-    phone: 415-621-1911
+    phone_number: 415-621-1911
     longitude: "-122.413978"
     address: 1501 Folsom St
     state: CA
@@ -2216,7 +2216,7 @@ venues:
     latitude: "37.809451"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.268161"
     address: 2025 Broadway
     state: CA
@@ -2226,7 +2226,7 @@ venues:
     latitude: "37.778662"
     zipcode: "94107"
     url: www.theparksf.com
-    phone: 415-974-1925
+    phone_number: 415-974-1925
     longitude: "-122.392244"
     address: 747 3rd St
     state: CA
@@ -2236,7 +2236,7 @@ venues:
     latitude: "37.781337"
     zipcode: "94118"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.460537"
     address: 3848 Geary Blvd
     state: CA
@@ -2246,7 +2246,7 @@ venues:
     latitude: "37.863412"
     zipcode: "94710"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.314763"
     address: 160 University Ave
     state: CA
@@ -2256,7 +2256,7 @@ venues:
     latitude: "37.772132"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.431358"
     address: 552 Haight St
     state: CA
@@ -2266,7 +2266,7 @@ venues:
     latitude: "37.737466"
     zipcode: "94127"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.469474"
     address: 329 W Portal Ave
     state: CA
@@ -2276,7 +2276,7 @@ venues:
     latitude: "37.799652"
     zipcode: "94133"
     url: www.penapachamama.com
-    phone: 415-646-0018
+    phone_number: 415-646-0018
     longitude: "-122.4105"
     address: 1630 Powell St
     state: CA
@@ -2286,7 +2286,7 @@ venues:
     latitude: "37.760988"
     zipcode: "94114"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.435542"
     address: 4146 18th St
     state: CA
@@ -2296,7 +2296,7 @@ venues:
     latitude: "37.784885"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.433228"
     address: 1661 Fillmore St
     state: CA
@@ -2306,7 +2306,7 @@ venues:
     latitude: "37.329957"
     zipcode: "95113"
     url: www.petesnightclub.com
-    phone: 408-947-7500
+    phone_number: 408-947-7500
     longitude: "-121.885761"
     address: 400 S 1st St
     state: CA
@@ -2316,7 +2316,7 @@ venues:
     latitude: "37.967934"
     zipcode: "94901"
     url: www.petes881.com
-    phone: 415-453-5888
+    phone_number: 415-453-5888
     longitude: "-122.52285"
     address: 721 Lincoln Ave
     state: CA
@@ -2326,7 +2326,7 @@ venues:
     latitude: "37.7966"
     zipcode: "94111"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.3956"
     address: The Embarcadero At Washington St
     state: CA
@@ -2336,7 +2336,7 @@ venues:
     latitude: "37.77985"
     zipcode: "94107"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.3896"
     address: 2nd St At King St
     state: CA
@@ -2346,7 +2346,7 @@ venues:
     latitude: "37.765012"
     zipcode: "94103"
     url: www.pinksf.com
-    phone: 415-431-8889
+    phone_number: 415-431-8889
     longitude: "-122.418045"
     address: 2925 16th St
     state: CA
@@ -2356,7 +2356,7 @@ venues:
     latitude: "37.783237"
     zipcode: "94118"
     url: pweb.jps.net/~jgilder/plough.html
-    phone: 415-751-1122
+    phone_number: 415-751-1122
     longitude: "-122.460478"
     address: 116 Clement St
     state: CA
@@ -2366,7 +2366,7 @@ venues:
     latitude: "37.740437"
     zipcode: "94124"
     url: www.poundsf.com
-    phone: 415-826-5009
+    phone_number: 415-826-5009
     longitude: "-122.376844"
     address: 100 Cargo Way
     state: CA
@@ -2376,7 +2376,7 @@ venues:
     latitude: "37.772172"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420122"
     address: 74 Otis St
     state: CA
@@ -2386,7 +2386,7 @@ venues:
     latitude: "37.773075"
     zipcode: "94103"
     url: www.powerhouse-sf.com
-    phone: 415-552-8689
+    phone_number: 415-552-8689
     longitude: "-122.41223"
     address: 1347 Folsom St
     state: CA
@@ -2396,7 +2396,7 @@ venues:
     latitude: "37.785692"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.399411"
     address: 651 Howard St Ste B
     state: CA
@@ -2406,7 +2406,7 @@ venues:
     latitude: "37.796741"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.404703"
     address: 140 Columbus Ave
     state: CA
@@ -2416,7 +2416,7 @@ venues:
     latitude: "37.803176"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.27095"
     address: 435 13th St
     state: CA
@@ -2426,7 +2426,7 @@ venues:
     latitude: "37.972799"
     zipcode: "94901"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.524143"
     address: 812 4th St
     state: CA
@@ -2436,7 +2436,7 @@ venues:
     latitude: "37.765033"
     zipcode: 
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.38699"
     address: 855 China Basin St
     state: CA
@@ -2446,7 +2446,7 @@ venues:
     latitude: "37.783677"
     zipcode: "94115"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.432605"
     address: 1534 Fillmore St
     state: CA
@@ -2456,7 +2456,7 @@ venues:
     latitude: "37.776996"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.408385"
     address: 280 7th St
     state: CA
@@ -2466,7 +2466,7 @@ venues:
     latitude: "37.792216"
     zipcode: "94109"
     url: www.reddevillounge.com
-    phone: 415-921-1695
+    phone_number: 415-921-1695
     longitude: "-122.421234"
     address: 1695 Polk St
     state: CA
@@ -2476,7 +2476,7 @@ venues:
     latitude: "37.754246"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.414481"
     address: 2698 Folsom St
     state: CA
@@ -2486,7 +2486,7 @@ venues:
     latitude: "37.734363"
     zipcode: "94131"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.433725"
     address: 699 Chenery St
     state: CA
@@ -2496,7 +2496,7 @@ venues:
     latitude: "37.786892"
     zipcode: "94102"
     url: www.clifthotel.com
-    phone: 415-775-4700
+    phone_number: 415-775-4700
     longitude: "-122.411249"
     address: 495 Geary St
     state: CA
@@ -2506,7 +2506,7 @@ venues:
     latitude: "37.787734"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4212"
     address: 1270 Sutter St
     state: CA
@@ -2516,7 +2516,7 @@ venues:
     latitude: "37.778543"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.41154"
     address: 1133 Mission St
     state: CA
@@ -2526,7 +2526,7 @@ venues:
     latitude: "37.742692"
     zipcode: "94116"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.486896"
     address: 1940 Taraval St
     state: CA
@@ -2536,7 +2536,7 @@ venues:
     latitude: "37.776156"
     zipcode: "94102"
     url: www.rickshawstop.com
-    phone: 415-861-2011
+    phone_number: 415-861-2011
     longitude: "-122.420341"
     address: 155 Fell St
     state: CA
@@ -2546,7 +2546,7 @@ venues:
     latitude: "37.74162"
     zipcode: "94116"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.505049"
     address: 3639 Taraval St
     state: CA
@@ -2556,7 +2556,7 @@ venues:
     latitude: "37.747216"
     zipcode: "94110"
     url: www.roccapulco.com
-    phone: 415-648-6611
+    phone_number: 415-648-6611
     longitude: "-122.419027"
     address: 3140 Mission St
     state: CA
@@ -2566,7 +2566,7 @@ venues:
     latitude: "37.783137"
     zipcode: "94118"
     url: rock-it-room.com
-    phone: 415-387-6343
+    phone_number: 415-387-6343
     longitude: "-122.463612"
     address: 406 Clement St
     state: CA
@@ -2576,7 +2576,7 @@ venues:
     latitude: "37.785692"
     zipcode: "94105"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.399411"
     address: 651 Howard St
     state: CA
@@ -2586,7 +2586,7 @@ venues:
     latitude: "37.781063"
     zipcode: "94118"
     url: www.rohanlounge.com
-    phone: 415-221-5095
+    phone_number: 415-221-5095
     longitude: "-122.46024"
     address: 3809 Geary Blvd
     state: CA
@@ -2596,7 +2596,7 @@ venues:
     latitude: "37.776021"
     zipcode: "94501"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.252805"
     address: 1700 Clement Ave
     state: CA
@@ -2606,7 +2606,7 @@ venues:
     latitude: "37.881467"
     zipcode: "94703"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.27488"
     address: 1839 Rose St
     state: CA
@@ -2616,7 +2616,7 @@ venues:
     latitude: "37.796014"
     zipcode: "94109"
     url: www.rougesf.com
-    phone: 415-346-7683
+    phone_number: 415-346-7683
     longitude: "-122.421996"
     address: 1500 Broadway
     state: CA
@@ -2626,7 +2626,7 @@ venues:
     latitude: "37.799126"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407094"
     address: 1326 Grant Ave
     state: CA
@@ -2636,7 +2636,7 @@ venues:
     latitude: "37.801472"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.263567"
     address: 132 14th St
     state: CA
@@ -2646,7 +2646,7 @@ venues:
     latitude: "37.787602"
     zipcode: "94102"
     url: www.rubyskye.com
-    phone: 415-693-0777
+    phone_number: 415-693-0777
     longitude: "-122.409752"
     address: 420 Mason St
     state: CA
@@ -2656,7 +2656,7 @@ venues:
     latitude: "37.784464"
     zipcode: "94102"
     url: www.rxgallery.com
-    phone: 415-474-7973
+    phone_number: 415-474-7973
     longitude: "-122.409936"
     address: 132 Eddy St
     state: CA
@@ -2666,7 +2666,7 @@ venues:
     latitude: "37.773208"
     zipcode: "94117"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.450622"
     address: 2085 Hayes St
     state: CA
@@ -2676,7 +2676,7 @@ venues:
     latitude: "37.76343"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407142"
     address: 491 Potrero Ave
     state: CA
@@ -2686,7 +2686,7 @@ venues:
     latitude: "37.798088"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.406881"
     address: 1232 Grant Ave
     state: CA
@@ -2696,7 +2696,7 @@ venues:
     latitude: "37.796639"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.405064"
     address: 155 Columbus Ave
     state: CA
@@ -2706,7 +2706,7 @@ venues:
     latitude: "37.333914"
     zipcode: 
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-121.879994"
     address: 290 S 7th St
     state: CA
@@ -2716,7 +2716,7 @@ venues:
     latitude: "37.750018"
     zipcode: "94110"
     url: www.savannajazz.com
-    phone: 415-285-3369
+    phone_number: 415-285-3369
     longitude: "-122.418046"
     address: 2937 Mission St
     state: CA
@@ -2726,7 +2726,7 @@ venues:
     latitude: "37.868604"
     zipcode: "94965"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.498579"
     address: 305 Harbor Dr
     state: CA
@@ -2736,7 +2736,7 @@ venues:
     latitude: "37.785636"
     zipcode: "94103"
     url: www.sfmoma.org
-    phone: 415-357-4000
+    phone_number: 415-357-4000
     longitude: "-122.400981"
     address: 151 3rd St
     state: CA
@@ -2746,7 +2746,7 @@ venues:
     latitude: "37.782663"
     zipcode: "94102"
     url: www.cc.com
-    phone: 415-775-7722
+    phone_number: 415-775-7722
     longitude: "-122.409984"
     address: 982 Market St
     state: CA
@@ -2756,7 +2756,7 @@ venues:
     latitude: "37.720949"
     zipcode: "94132"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.477163"
     address: 1600 Holloway Ave
     state: CA
@@ -2766,7 +2766,7 @@ venues:
     latitude: "37.773995"
     zipcode: "94103"
     url: www.shadowloungesf.com
-    phone: 415-302-4684
+    phone_number: 415-302-4684
     longitude: "-122.41162"
     address: 299 9th St
     state: CA
@@ -2776,7 +2776,7 @@ venues:
     latitude: "37.79293"
     zipcode: "94105"
     url: www.shanghai1930.com
-    phone: 415-896-5600
+    phone_number: 415-896-5600
     longitude: "-122.3925"
     address: 133 Steuart St
     state: CA
@@ -2786,7 +2786,7 @@ venues:
     latitude: "37.771066"
     zipcode: "94101"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.454866"
     address: Kezar Dr At John F Kennedy Dr
     state: CA
@@ -2796,7 +2796,7 @@ venues:
     latitude: "37.867913"
     zipcode: "94704"
     url: www.shattuckdownlow.com
-    phone: 510-548-1159
+    phone_number: 510-548-1159
     longitude: "-122.268007"
     address: 2284 Shattuck Ave
     state: CA
@@ -2806,7 +2806,7 @@ venues:
     latitude: "37.788991"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409162"
     address: 533 Sutter St
     state: CA
@@ -2816,7 +2816,7 @@ venues:
     latitude: "37.775684"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.415135"
     address: 1337 Mission St
     state: CA
@@ -2826,7 +2826,7 @@ venues:
     latitude: "37.423248"
     zipcode: "94043"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.078152"
     address: 1 Amphitheatre Pkwy
     state: CA
@@ -2836,7 +2836,7 @@ venues:
     latitude: "37.775937"
     zipcode: "94121"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.495597"
     address: 3434 Balboa St
     state: CA
@@ -2846,7 +2846,7 @@ venues:
     latitude: "37.780341"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.40806"
     address: 144 6th St
     state: CA
@@ -2856,7 +2856,7 @@ venues:
     latitude: "37.739237"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.416823"
     address: 453 Cortland Ave
     state: CA
@@ -2866,7 +2866,7 @@ venues:
     latitude: "37.764763"
     zipcode: "94103"
     url: www.skylarkbar.com
-    phone: 415-621-9294
+    phone_number: 415-621-9294
     longitude: "-122.421645"
     address: 3089 16th St
     state: CA
@@ -2876,7 +2876,7 @@ venues:
     latitude: "37.742804"
     zipcode: "94116"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.484639"
     address: 1722 Taraval St
     state: CA
@@ -2886,7 +2886,7 @@ venues:
     latitude: "37.771526"
     zipcode: "94103"
     url: www.slims-sf.com
-    phone: 415-522-0333
+    phone_number: 415-522-0333
     longitude: "-122.413332"
     address: 333 11th St
     state: CA
@@ -2896,7 +2896,7 @@ venues:
     latitude: "37.909897"
     zipcode: "94924"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.685429"
     address: 41 Wharf Rd
     state: CA
@@ -2906,7 +2906,7 @@ venues:
     latitude: "37.780737"
     zipcode: "94102"
     url: www.solunasf.com
-    phone: 415-621-2200
+    phone_number: 415-621-2200
     longitude: "-122.416422"
     address: 272 Mcallister St
     state: CA
@@ -2916,7 +2916,7 @@ venues:
     latitude: "37.770923"
     zipcode: "94103"
     url: www.somarts.org
-    phone: 415-863-1414
+    phone_number: 415-863-1414
     longitude: "-122.406097"
     address: 934 Brannan St
     state: CA
@@ -2926,7 +2926,7 @@ venues:
     latitude: "37.739582"
     zipcode: "94124"
     url: www.space550.com
-    phone: 415-550-8286
+    phone_number: 415-550-8286
     longitude: "-122.404573"
     address: 550 Barneveld Ave
     state: CA
@@ -2936,7 +2936,7 @@ venues:
     latitude: "37.848269"
     zipcode: "94618"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.252318"
     address: 6021 College Ave
     state: CA
@@ -2946,7 +2946,7 @@ venues:
     latitude: "37.860991"
     zipcode: "94705"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.253265"
     address: 2727 College Ave
     state: CA
@@ -2956,7 +2956,7 @@ venues:
     latitude: "37.798899"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407477"
     address: 610 Vallejo St
     state: CA
@@ -2966,7 +2966,7 @@ venues:
     latitude: "37.869794"
     zipcode: "94703"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.278146"
     address: 1640 Addison St
     state: CA
@@ -2976,7 +2976,7 @@ venues:
     latitude: "37.783606"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.424518"
     address: 1111 Gough St
     state: CA
@@ -2986,7 +2986,7 @@ venues:
     latitude: "37.785406"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.403361"
     address: 756 Mission St
     state: CA
@@ -2996,7 +2996,7 @@ venues:
     latitude: "37.852974"
     zipcode: "94705"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.266004"
     address: 3101 Shattuck Ave
     state: CA
@@ -3006,7 +3006,7 @@ venues:
     latitude: "37.812867"
     zipcode: "94612"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.268555"
     address: 2330 Telegraph Ave
     state: CA
@@ -3016,7 +3016,7 @@ venues:
     latitude: "37.772697"
     zipcode: "94103"
     url: www.studsf.com
-    phone: 415-252-7883
+    phone_number: 415-252-7883
     longitude: "-122.410093"
     address: 399 9th St
     state: CA
@@ -3026,7 +3026,7 @@ venues:
     latitude: "37.758443"
     zipcode: "94107"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.387525"
     address: 1072 Illinois St
     state: CA
@@ -3036,7 +3036,7 @@ venues:
     latitude: "37.771551"
     zipcode: "94103"
     url: www.studioz.tv
-    phone: 415-252-7666
+    phone_number: 415-252-7666
     longitude: "-122.413831"
     address: 314 11th St
     state: CA
@@ -3046,7 +3046,7 @@ venues:
     latitude: "37.760699"
     zipcode: "94107"
     url: www.sublounge.com
-    phone: 415-552-3603
+    phone_number: 415-552-3603
     longitude: "-122.387953"
     address: 628 20th St
     state: CA
@@ -3056,7 +3056,7 @@ venues:
     latitude: "37.80551"
     zipcode: "94133"
     url: www.suedesf.com
-    phone: 415-399-9555
+    phone_number: 415-399-9555
     longitude: "-122.413183"
     address: 383 Bay St
     state: CA
@@ -3066,7 +3066,7 @@ venues:
     latitude: "37.784114"
     zipcode: "94102"
     url: www.suite181.com
-    phone: 415-345-9900
+    phone_number: 415-345-9900
     longitude: "-122.410555"
     address: 181 Eddy St
     state: CA
@@ -3076,7 +3076,7 @@ venues:
     latitude: "37.766475"
     zipcode: "94114"
     url: www.swedishamericanhall.com
-    phone: 415-431-7578
+    phone_number: 415-431-7578
     longitude: "-122.430442"
     address: 2174 Market St
     state: CA
@@ -3086,7 +3086,7 @@ venues:
     latitude: "37.905442"
     zipcode: "94941"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.549177"
     address: 153 Throckmorton Ave
     state: CA
@@ -3096,7 +3096,7 @@ venues:
     latitude: "37.786716"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.412698"
     address: 571 Geary St
     state: CA
@@ -3106,7 +3106,7 @@ venues:
     latitude: "37.750813"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420362"
     address: 1387 Valencia St
     state: CA
@@ -3116,7 +3116,7 @@ venues:
     latitude: "37.782362"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.418857"
     address: 600 Polk St
     state: CA
@@ -3126,7 +3126,7 @@ venues:
     latitude: "37.778221"
     zipcode: "94103"
     url: www.1015.com
-    phone: 415-431-1200
+    phone_number: 415-431-1200
     longitude: "-122.405719"
     address: 1015 Folsom St
     state: CA
@@ -3136,7 +3136,7 @@ venues:
     latitude: "37.785749"
     zipcode: "94105"
     url: www.terrasf.com
-    phone: 415-864-8833
+    phone_number: 415-864-8833
     longitude: "-122.393187"
     address: 511 Harrison St
     state: CA
@@ -3146,7 +3146,7 @@ venues:
     latitude: "37.763588"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.411421"
     address: 450 Florida St
     state: CA
@@ -3156,7 +3156,7 @@ venues:
     latitude: "37.778953"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.409465"
     address: 574 Natoma St
     state: CA
@@ -3166,7 +3166,7 @@ venues:
     latitude: "37.765116"
     zipcode: "94107"
     url: www.theeparkside.com
-    phone: 415-503-0393
+    phone_number: 415-503-0393
     longitude: "-122.399896"
     address: 1600 17th St
     state: CA
@@ -3176,7 +3176,7 @@ venues:
     latitude: "37.785548"
     zipcode: "94105"
     url: www.thirstybear.com
-    phone: 415-974-0905
+    phone_number: 415-974-0905
     longitude: "-122.399587"
     address: 661 Howard St
     state: CA
@@ -3186,7 +3186,7 @@ venues:
     latitude: "37.771643"
     zipcode: "94102"
     url: www.threedollarbill.com
-    phone: 415-503-1532
+    phone_number: 415-503-1532
     longitude: "-122.423839"
     address: 1800 Market St
     state: CA
@@ -3196,7 +3196,7 @@ venues:
     latitude: "37.798796"
     zipcode: "94109"
     url: www.tongueandgroovesf.com
-    phone: 415-928-0404
+    phone_number: 415-928-0404
     longitude: "-122.424217"
     address: 2513 Van Ness Ave
     state: CA
@@ -3206,7 +3206,7 @@ venues:
     latitude: "37.7984"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.422042"
     address: 2360 Polk St
     state: CA
@@ -3216,7 +3216,7 @@ venues:
     latitude: "37.764665"
     zipcode: "94114"
     url: www.towerrecords.com
-    phone: 621-0588
+    phone_number: 621-0588
     longitude: "-122.432739"
     address: 2280 Market St
     state: CA
@@ -3226,7 +3226,7 @@ venues:
     latitude: "37.769984"
     zipcode: "94117"
     url: www.traxsf.com
-    phone: 415-864-4213
+    phone_number: 415-864-4213
     longitude: "-122.445974"
     address: 1437 Haight St
     state: CA
@@ -3236,7 +3236,7 @@ venues:
     latitude: "37.858184"
     zipcode: "94965"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.484813"
     address: 39 Caledonia St
     state: CA
@@ -3246,7 +3246,7 @@ venues:
     latitude: "37.799543"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.436203"
     address: 3231 Fillmore St
     state: CA
@@ -3256,7 +3256,7 @@ venues:
     latitude: "37.867985"
     zipcode: 
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.261582"
     address: 2320 Dana St
     state: CA
@@ -3266,7 +3266,7 @@ venues:
     latitude: "37.788306"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.424661"
     address: 1668 Bush St
     state: CA
@@ -3276,7 +3276,7 @@ venues:
     latitude: "37.723149"
     zipcode: "94112"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.444621"
     address: 358 Ocean Ave
     state: CA
@@ -3286,7 +3286,7 @@ venues:
     latitude: "37.790226"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407216"
     address: 601 Bush St
     state: CA
@@ -3296,7 +3296,7 @@ venues:
     latitude: "37.772377"
     zipcode: "94117"
     url: www.undergroundsf.com
-    phone: 415-864-7386
+    phone_number: 415-864-7386
     longitude: "-122.429324"
     address: 424 Haight St
     state: CA
@@ -3306,7 +3306,7 @@ venues:
     latitude: "37.7874"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4082"
     address: Geary St At Powell St
     state: CA
@@ -3316,7 +3316,7 @@ venues:
     latitude: "37.7805"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4125"
     address: Market St At 7th St
     state: CA
@@ -3326,7 +3326,7 @@ venues:
     latitude: "37.797989"
     zipcode: "94133"
     url: www.thevelvetlounge.com
-    phone: 415-788-0228
+    phone_number: 415-788-0228
     longitude: "-122.404445"
     address: 443 Broadway
     state: CA
@@ -3336,7 +3336,7 @@ venues:
     latitude: "37.763302"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.407652"
     address: 2424 Mariposa St
     state: CA
@@ -3346,7 +3346,7 @@ venues:
     latitude: "37.787559"
     zipcode: "94109"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.419874"
     address: 1160 Polk St
     state: CA
@@ -3356,7 +3356,7 @@ venues:
     latitude: "37.781867"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.422473"
     address: 807 Franklin St
     state: CA
@@ -3366,7 +3366,7 @@ venues:
     latitude: "37.785976"
     zipcode: "94108"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.406041"
     address: 2 Stockton St
     state: CA
@@ -3376,7 +3376,7 @@ venues:
     latitude: "37.791368"
     zipcode: "94104"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.403536"
     address: 56 Belden Pl
     state: CA
@@ -3386,7 +3386,7 @@ venues:
     latitude: "37.801416"
     zipcode: "94123"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.424698"
     address: 1400 Lombard St
     state: CA
@@ -3396,7 +3396,7 @@ venues:
     latitude: "37.785268"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.400545"
     address: 181 3rd St
     state: CA
@@ -3406,7 +3406,7 @@ venues:
     latitude: "37.779195"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420224"
     address: 401 Van Ness Ave
     state: CA
@@ -3416,7 +3416,7 @@ venues:
     latitude: "37.778428"
     zipcode: "94102"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.420096"
     address: 301 Van Ness Ave
     state: CA
@@ -3426,7 +3426,7 @@ venues:
     latitude: "37.800343"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.410997"
     address: 1707 Powell St
     state: CA
@@ -3436,7 +3436,7 @@ venues:
     latitude: "37.8003"
     zipcode: "94133"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.4102"
     address: Columbus Ave At Union St
     state: CA
@@ -3446,7 +3446,7 @@ venues:
     latitude: "37.762509"
     zipcode: "94110"
     url: www.whispersf.com
-    phone: 415-356-9800
+    phone_number: 415-356-9800
     longitude: "-122.410987"
     address: 535 Florida St
     state: CA
@@ -3456,7 +3456,7 @@ venues:
     latitude: "37.76675"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.415655"
     address: 1900 Folsom St
     state: CA
@@ -3466,7 +3466,7 @@ venues:
     latitude: "37.771164"
     zipcode: "94103"
     url: www.wishsf.com
-    phone: 415-278-9474
+    phone_number: 415-278-9474
     longitude: "-122.414514"
     address: 1539 Folsom St
     state: CA
@@ -3476,7 +3476,7 @@ venues:
     latitude: "37.761519"
     zipcode: "94110"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.422545"
     address: 3543 18th St
     state: CA
@@ -3486,7 +3486,7 @@ venues:
     latitude: "37.761237"
     zipcode: "94122"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.490389"
     address: 2648 Judah St
     state: CA
@@ -3496,7 +3496,7 @@ venues:
     latitude: "37.771164"
     zipcode: "94103"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.414514"
     address: 1539 Folsom St
     state: CA
@@ -3506,7 +3506,7 @@ venues:
     latitude: "37.796164"
     zipcode: "94607"
     url: www.yoshis.com
-    phone: 510-238-9200
+    phone_number: 510-238-9200
     longitude: "-122.278256"
     address: 510 Embarcadero W
     state: CA
@@ -3516,7 +3516,7 @@ venues:
     latitude: "37.797942"
     zipcode: "94133"
     url: www.zebrasf.net
-    phone: 415-88-0188
+    phone_number: 415-88-0188
     longitude: "-122.404845"
     address: 447 Broadway
     state: CA
@@ -3526,7 +3526,7 @@ venues:
     latitude: "37.787528"
     zipcode: "94105"
     url: www.zebulonsf.com
-    phone: 415-975-5705
+    phone_number: 415-975-5705
     longitude: "-122.398157"
     address: 83 Natoma St
     state: CA
@@ -3536,7 +3536,7 @@ venues:
     latitude: "37.8687"
     zipcode: "94704"
     url: ''
-    phone: ''
+    phone_number: ''
     longitude: "-122.2592"
     address: Bancroft Way At Telegraph Ave
     state: CA

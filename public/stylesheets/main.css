@@ -1070,7 +1070,7 @@ table.form-table #selected_venue {
 }
 
 .search_results .result_even {
-	height:60px;
+	min-height:60px;
 	background-color:#eee;
 	padding:4px 0 0px 4px;
 	width:570px;
@@ -1079,7 +1079,7 @@ table.form-table #selected_venue {
 }
 
 .search_results .result_odd {
-	height:60px;
+	min-height:60px;
 	padding:4px 0 0px 4px;
 	background-color:#FAFAFA;
 	width:570px;

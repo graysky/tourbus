@@ -10,7 +10,7 @@
 	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
 	 action = nil
 	 if logged_in? and not showing_creator
-	 	action = "<a href='javascript:void(0)' onclick='new Effect.Appear(\"add_photo\")'>#{image_tag('upload_photo')}</a>"
+	 	action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo')}</a>"
 	 end
 %>
 

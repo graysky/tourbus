@@ -10,7 +10,8 @@ module VenueHelper
   
   def venue_url
     if @venue.url != ""
-      html = "<div id='venue_url'><a href='#{@venue.url}'>#{@venue.url}</a></div>"
+      link = @venue.url.sub(/http:\/\//, '') # Shorten link to remove "http://"
+      html = "<div id='venue_url'><a href='#{@venue.url}'>#{link}</a></div>"
     else
       "<div id='venue_url'></div>"
     end

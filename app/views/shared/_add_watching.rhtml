@@ -9,5 +9,11 @@
 <script type="text/javascript">
 	Tooltip.add("add_watching_link", "add_watch_tip");
 </script>
-
 <% end %>
+
+<script type="text/javascript">
+	function toggleWatching(event)
+	{
+		Tooltip.toggle($('add_watching_link'), event);
+	}
+</script>

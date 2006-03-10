@@ -5,3 +5,10 @@
 	Tooltip.add('add_fave_link', 'add_tip');
 </script>
 <% end %>
+
+<script type="text/javascript">
+	function toggleFave(event)
+	{
+		Tooltip.toggle($('add_fave_link'), event);
+	}
+</script>

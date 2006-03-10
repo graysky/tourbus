@@ -1414,10 +1414,15 @@ table.show_table td {
 	font-weight:bold;
 }
 
-#add_fave_link, #remove_fave_link {
+#add_fave_link, #remove_fave_link, #report_problem_link {
 	font-size:11px;
 	text-decoration:underline;
 }
+
+#report_problem_link {
+	color:#f83a2d;
+}
+
 
 .fave_tip {
 	visibility:hidden;
@@ -1447,6 +1452,14 @@ table.show_table td {
 
 .fave_tip a {
 	font-weight:bold;
+}
+
+#report_problem_tip {
+	background-color:#FBD9D0;
+}
+
+#report_problem_tip h3 {
+	color: #c84d33;
 }
 
 table.tooltip_table td {

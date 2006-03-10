@@ -1,0 +1,44 @@
+<tr>
+<td><img src="/images/flag_red.png"/></td>
+<td>
+	<a href="#" id="report_problem_link">Report a Problem</a>
+	<div id="report_problem_tip" class='fave_tip'>
+		<h3>Report a Problem</h3>
+		  <p>
+		  	Is something wroing with this listing? Sorry about that! <br/><br/>
+		  	
+		  	<strong>Select the problem below, and add some notes if you can.</strong>
+		  </p>
+		  <p>	
+		  		<%= form_remote_tag(
+				:url => { 
+					:controller => "feedback",
+					:action => "report_problem", 
+					:id => id,
+					:type => type
+				}) 
+				%>
+				
+		  	<select id="reason" name="reason">
+			  	<% for reason in reasons %>
+			  		<option><%= reason %></option>
+		  		<% end%>
+		  		<option>Other (please add a note)</option>
+		  	</select>
+		  	<br/><br/>
+		  	<p>Notes:</p>
+		  	<%= text_area_tag 'notes', '', :size => '20' %>
+
+		  
+	  		<%= submit_tag "Submit", :onclick => "Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!'" %>&nbsp;
+	  		<%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('report_problem_link'), event)" %>
+		  	<%= end_form_tag %>
+		  </p>
+		</div>
+		
+		<script type="text/javascript">
+			Tooltip.autoHideClick = false;
+			Tooltip.add('report_problem_link', 'report_problem_tip');
+		</script>
+</td>
+</tr>

@@ -115,6 +115,8 @@ class ShowParser
     return nil if down.include?("+")
     return nil if down.include?("music festival")
     
+    # in concert, benefit, karoeke, no cover, .com, prom
+    
     band = {}
     band[:name] = name.gsub(/\s+/, ' ')
     band[:extra] = extra if extra

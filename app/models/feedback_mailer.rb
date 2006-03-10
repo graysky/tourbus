@@ -17,4 +17,22 @@ class FeedbackMailer < BaseMailer
     @body["feedback"] = feedback
   end
 
+  # For when a user reports a problem with the site
+  def problem_report(type, id, reason, notes, fan, sent_at = Time.now)
+    @subject    = "[tourbus] Problem Report"
+    @recipients = Emails.feedback
+    @from       = Emails.from
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["sent"] = "#{sent_at}"
+    @body["fan"] = fan.nil? ? "Anonymous" : fan.name
+    @body["type"] = type
+    @body["id"] = id
+    @body["notes"] = notes
+    @body["reason"] = reason
+  end
+  
+
 end

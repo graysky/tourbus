@@ -10,3 +10,10 @@
 	Tooltip.add('add_attending_link', 'add_tip');
 </script>
 <% end %>
+
+<script type="text/javascript">
+	function toggleAttending(event)
+	{
+		Tooltip.toggle($('add_attending_link'), event);
+	}
+</script>

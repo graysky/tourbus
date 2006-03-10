@@ -20,7 +20,7 @@
 	      	<p>
 	      		You must be logged in as a fan to say you're attending!<br/><br/>
 	      		
-	      		<%= link_to "Cancel", "#" %>
+	      		<%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
 	      	</p>
 	      	</div>
 		<% else %>
@@ -40,8 +40,8 @@
 					}) 
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleAttending(event);" %>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
 		      	<%= end_form_tag %>
 	      	</p>
 	      	</div>
@@ -74,8 +74,8 @@
 							)  
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleWatching(event);"%>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
 		      	<%= end_form_tag %>
 		      </p>
 			</div>
@@ -107,7 +107,7 @@
 	      	<p>
 	      		You must be logged in as a fan to watch a show!<br/><br/>
 	      		
-	      		<%= link_to "Cancel", "#" %>
+	      		<%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
 	      	</p>
 	      	</div>
 		<% else %>
@@ -127,8 +127,8 @@
 					}) 
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleWatching(event);" %>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
 		      	<%= end_form_tag %>
 	      	</p>
 	      	</div>
@@ -161,8 +161,8 @@
 							) 
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleAttending(event);" %>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
 		      	<%= end_form_tag %>
 		      </p>
 			</div>
@@ -185,6 +185,14 @@
 		<td><img src="/images/feed.png"/></td>
 		<td><a style="font-size:11px" href="<%= public_show_rss_url(@show) %>" id="rss_link">Subscribe to News</a></td>
 		</tr>
+		<%= 
+			render :partial => "shared/report_problem",
+				   :locals => { :id => @show.id, :type => "show",
+				   				:reasons => ["Inaccurate Information", 
+				   							 "Duplicate Show", 
+				   							 "Spam"]
+				   			  }
+		%>
 		</table>
 		
 	</p>	

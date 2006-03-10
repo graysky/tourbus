@@ -1,0 +1,18 @@
+<html>
+<body>
+
+<p>
+Problem report sent at: <%= @sent %> <br/> <br/>
+
+From: <%= @fan %> <br/>
+Type: <%= @type %> <br/>
+id: <%= @id %> <br/>
+Reason: <%= @reason %> <br/>
+
+<%= simple_format( sanitize(@notes) ) %>
+
+</p>
+
+
+</body>
+</html>

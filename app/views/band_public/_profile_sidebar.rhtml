@@ -47,7 +47,7 @@
 	      	<p>
 	      		You must be logged in as a fan to add favorites!<br/><br/>
 	      		
-	      		<%= link_to "Cancel", "#" %>
+	      		<%= link_to "Cancel", "#", :onclick => "toggleFave(event);" %>
 	      	</p>
 	      	</div>
 		<% else %>
@@ -68,8 +68,8 @@
 					}) 
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleFave(event);" %>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleFave(event);" %>
 		      	<%= end_form_tag %>
 	      	</p>
 	      	</div>
@@ -91,8 +91,8 @@
 					}) 
 					%>
 					
-		      		<%= submit_tag "OK" %>&nbsp;
-		      		<%= link_to "Cancel", "#" %>
+		      		<%= submit_tag "OK", :onclick => "toggleFave(event);" %>&nbsp;
+		      		<%= link_to "Cancel", "#", :onclick => "toggleFave(event);" %>
 		      	<%= end_form_tag %>
 		      </p>
 			</div>
@@ -114,6 +114,14 @@
 		<td><img src="/images/feed.png"/></td>
 		<td><a style="font-size:11px" href="<%= public_band_rss_url %>" id="rss_link">Subscribe to News</a></td>
 		</tr>
+		<% if !@band.confirmed? %>
+			<%= 
+				render :partial => "shared/report_problem",
+					   :locals => { :id => @band.id, :type => "band",
+					   				:reasons => ["Inaccurate Information", "Duplicate Band", "This isn't even a band", "Spam"]
+					   			  }
+			%>
+		<% end %>
 		</table>
 		
 	</p>

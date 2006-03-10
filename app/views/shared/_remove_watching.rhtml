@@ -10,3 +10,10 @@
 	Tooltip.add('remove_watching_link', 'remove_watch_tip');
 </script>
 <% end %>
+
+<script type="text/javascript">
+	function toggleWatching(event)
+	{
+		Tooltip.toggle($('remove_watching_link'), event);
+	}
+</script>

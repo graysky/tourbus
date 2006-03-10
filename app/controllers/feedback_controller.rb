@@ -27,5 +27,11 @@ class FeedbackController < ApplicationController
     # Tell them the message was sent
     render :action => 'feedback_success'
   end
+  
+  def report_problem
+    return if request.get?
+    
+    FeedbackMailer.deliver_problem_report(params[:type], params[:id], params[:reason], params[:notes], logged_in_fan)
+  end
 
 end

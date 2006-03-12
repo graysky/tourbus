@@ -28,8 +28,7 @@ class FanController < ApplicationController
     if @fan.save
       flash.now[:success] = "Settings updated"
     else
-      # TODO GOTO ERROR
-      flash[:notice] = "error"
+      flash[:error] = "There was an error updating your settings. Please try again."
     end
     
   end

@@ -83,7 +83,7 @@ class AnansiConfig
       subdir.each do |f|
         
         # Only act on .rb files
-        next unless f =~ /.rb$/ or f == 'venue_map.rb'
+        next unless f =~ /.rb$/ and f != 'venue_map.rb'
         
         # Get full path and read it in        
         file = File.join(subdir.path, f)

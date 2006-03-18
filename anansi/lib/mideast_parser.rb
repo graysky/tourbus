@@ -54,6 +54,10 @@ class MidEastParser < ShowParser
         time = parse_as_time(str)
         @show[:time] = time || default_time
         
+        if @show[:venue].nil?
+          @show[:venue] = get_venue
+        end
+        
         puts "Show is #{@show.to_yaml}\n\n"
         @shows << @show
       rescue Exception => e

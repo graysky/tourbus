@@ -35,3 +35,7 @@ set :band_separator, '<br>'
 # DEFINE METHODS
 # =============================================================================
 #
+# All shows for this site are at the same venue
+method :get_venue do
+  { :name => "Great Scott", :city => "Allston", :state => "MA" } 
+end

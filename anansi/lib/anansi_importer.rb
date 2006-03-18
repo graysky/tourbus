@@ -45,30 +45,19 @@ class AnansiImporter
       next if not @only_site.nil? and site.name != @only_site
     
       @site = site
-      
-      # TODO Factor out
       site.crawled_files.each do |file|
         path = File.join(site.parse_dir, File.basename(file, ".xml") + ".yml")
         
         YAML::load_documents(File.open(path)) do |shows|
-          temp = 0
           for show in shows
-            temp += 1
-            next if temp < 200
             @show = show
             show[:site] = site.name
             prepare_show(show)
-           
-            break if temp >= 210
           end
         end
         
       end
-      
-      break
     end
-    
-    @shows.each { |show| puts "#{show.to_yaml}\n\n" }
     
     save_shows
   end
@@ -232,7 +221,7 @@ class AnansiImporter
     # Assume we already have a venue id
     min = @show[:date].hour * 60 + @show[:date].min
     max = 24 * 60 - min
-    existing_show = Show.find(:first, ["venue = ? and date >= ? and date <= ?", 
+    existing_show = Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
                                        @show[:venue][:id], @show[:date] - min.minutes, @show[:date] + max.minutes])
     return existing_show ? true : false
   end

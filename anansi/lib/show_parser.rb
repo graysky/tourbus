@@ -217,7 +217,7 @@ class ShowParser
     # For each method the site overrides, pull out:
     # name => the name of the method
     # value => array of the proc and num of arguments it takes
-    @site.parser_methods.each do |name, value|
+    @site.methods.each do |name, value|
       
       # Define the new method on this parser
       @site.create_method(self, name, value)

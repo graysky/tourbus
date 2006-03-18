@@ -40,6 +40,38 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Runs the 3rd stage of the crawler"
+task :anansi_prepare_import do
+
+  # Can run like:
+  # rake site=foo anansi_parse
+  # where foo is the *only* site to parse
+  site = ENV['site']
+  
+  # TODO Remove "true" which indicates testing
+  cmd = <<END
+  p = AnansiImporter.new(true)
+  p.only_site = "#{site}"
+  p.start
+  p.prepare
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
+desc "Runs the final stage of the crawler"
+task :anansi_import do
+
+  # TODO Remove "true" which indicates testing
+  cmd = <<END
+  p = AnansiImporter.new(true)
+  p.import
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
+
 desc "Run anansi unit tests"
 Rake::TestTask.new(:anansi_unit_tests) do |t|
   t.test_files = FileList['anansi/test/unit/test*.rb']

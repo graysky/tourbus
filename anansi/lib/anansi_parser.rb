@@ -72,15 +72,15 @@ class AnansiParser
         # Parse the REXML doc
         parser.parse
 
-        all_shows = ""
+        all_shows = []
         # Gather all the shows as YAML
-        parser.shows.each { |show| all_shows << show.to_yaml }
+        parser.shows.each { |show| all_shows << show }
         
         # Create a file with the same name (with .yml ext) in the parse directory
         yml_file = File.new(File.join(site.parse_dir, File.basename(file, ".xml") + ".yml"), "w")
         
         # Write out the yaml file
-        yml_file.write(all_shows)
+        yml_file.write(all_shows.to_yaml)
       end
     end
   end

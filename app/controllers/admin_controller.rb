@@ -123,6 +123,29 @@ class AdminController < ApplicationController
     end
   end
   
+  def list_shows_to_import
+    load_shows #if @session[:shows_by_status].nil?
+  end
+  
+  def shows_by_status
+    @shows = @session[:shows_by_status][params[:status].to_sym]
+    p @shows
+  end
+  
+  def load_shows
+    importer = AnansiImporter.new
+    shows = importer.latest_prepared_shows
+    
+    shows_by_status = {}
+    for show in shows
+      list = shows_by_status[show[:status]] ||= []
+      list << show
+    end
+    
+    #@session[:shows_by_site] = shows_by_site
+    @session[:shows_by_status] = shows_by_status
+  end
+  
   private 
   
   def save_venue

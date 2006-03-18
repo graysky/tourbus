@@ -33,7 +33,27 @@ set :band_separator, ','
 # DEFINE METHODS
 # =============================================================================
 #
-method :preprocess_bands_text, {:args => 1} do |text|
+parser_method :preprocess_bands_text, {:args => 1} do |text|
   # Sometimes slashes sneak in
   text.sub(/\//, ',')
+end
+
+parser_method :parse_venue_xxx, {:args => 2} do |cell, contents|
+  puts "SHOW IS"
+  #p self.class
+  return if true
+  
+  @show[:venue] ||= {}
+  puts "CONTENTS US " + contents
+  chunks = contents.split(",")
+  @show[:venue][:name] = chunks[0]
+  
+  if chunks.size > 1
+    loc = chunks[1..(chunks.size - 1)].join(", ")
+    loc.gsub!(/s\.f\./i, 'San Francisco')
+    loc += ", CA"
+    @show[:venue][:location] = loc
+  end
+  
+  @show[:state] = 'CA'
 end

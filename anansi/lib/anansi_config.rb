@@ -69,10 +69,21 @@ class AnansiConfig
       
       subdir = Dir.new(child)
       
+      # Assume the subdir is the state abbreviation
+      state = e.upcase
+      
+      venue_map = {}
+      # venue_map.rb is special, and contains a mapping for venue names to ids
+      # for every site in this subdir (effectively one per state)
+      file = File.join(subdir.path, 'venue_map.rb')
+      if File.exist?(file)
+        venue_map = instance_eval(File.read(file))
+      end
+      
       subdir.each do |f|
         
         # Only act on .rb files
-        next unless f =~ /.rb$/
+        next unless f =~ /.rb$/ or f == 'venue_map.rb'
         
         # Get full path and read it in        
         file = File.join(subdir.path, f)
@@ -85,8 +96,12 @@ class AnansiConfig
         # They each get their own directory for storing files
         s = Site.new(File.join(subdir.path, name), name)
         
+        # Add the default state first so instance_eval has a chance to override it
+        s.add_state(state)
+        
         # and pull in the config file
         s.instance_eval(str)
+        s.venue_map = venue_map
         
         # Add the site      
         @sites << s

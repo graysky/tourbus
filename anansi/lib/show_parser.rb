@@ -6,6 +6,7 @@ class ShowParser
   include REXML
   
   attr_reader :shows
+  attr_reader :show
   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -216,7 +217,7 @@ class ShowParser
     # For each method the site overrides, pull out:
     # name => the name of the method
     # value => array of the proc and num of arguments it takes
-    @site.methods.each do |name, value|
+    @site.parser_methods.each do |name, value|
       
       # Define the new method on this parser
       @site.create_method(self, name, value)

@@ -1,0 +1,9 @@
+<div id='main'>
+
+<p>
+<% @session[:shows_by_status].each_key do |key| %>
+	<%= link_to key, :action => 'shows_by_status', :status => key %><br/>
+<% end %>
+</p>
+
+</div>

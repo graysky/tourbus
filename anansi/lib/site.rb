@@ -21,6 +21,9 @@ class Site
   # The parent directory to where the site is stored
   attr_reader :site_dir
   
+  # An array of states that this site will have shows in
+  attr_reader :states
+  
   # The type of parser to use for this site
   attr_reader :parser_type
   
@@ -30,8 +33,14 @@ class Site
   # The hast of methods defined by the site
   attr_reader :methods
   
+  # Hash of methods defined on the parser
+  attr_reader :parser_methods
+  
   # If true don't replace nbsp's
   attr_reader :leave_nbsps
+  
+  # The map of venue aliases to venue ids
+  attr_accessor :venue_map
   
   # User agent to send with requests
   # DO NOT CHANGE
@@ -47,6 +56,9 @@ class Site
     
     @variables = {}
     @methods = {}
+    @parser_methods = {}
+    @venue_map = {}
+    @states = []
     
     # Set the site directory
     set :site_dir, site_dir
@@ -121,6 +133,10 @@ class Site
     return files
   end
   
+  def add_state(state)
+    @states << state
+  end
+  
   # Archive the current crawled files
   def archive!
     # TODO Implement to actually move the crawled files to the archives
@@ -184,6 +200,20 @@ class Site
     create_method(self, name, value)
   end
   
+  # Defines a new method on the parser
+  # name => name of the method
+  # options => options for the method (only :args is supported)
+  # block => the block to execute
+  def parser_method(name, options={}, &block)
+    
+    # Remember what methods were added
+    # Array with proc and num of args
+    args = options[:args] || 0
+    value = [block, args]
+    @parser_methods[name] = value
+  end
+  
+  
   # Create new method for:
   # name => name of the method
   # value => [block, num of args it takes]
@@ -225,7 +255,7 @@ class Site
     
     # Build the full command
     cmd = cmd + var_cmd + proc_cmd
-    #return cmd
+ 
     obj.instance_eval(cmd)
   end
   

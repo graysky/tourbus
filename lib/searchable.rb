@@ -117,15 +117,17 @@ module FerretMixin
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
+          q = q.strip.downcase
           q = "*" if q.nil? or q == ""
-          q.downcase!
           
-          options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
-          query_parser = QueryParser.new(["name", "contents"], options)
           query = Search::BooleanQuery.new
-          
-          # Parse the query provided by the user
-          query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
+          if q != "*"
+            options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
+            query_parser = QueryParser.new(["name", "contents"], options)
+            
+            # Parse the query provided by the user
+            query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
+          end
           
           # Restrict the query to items of this class
           query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)

@@ -47,6 +47,7 @@ class Band < ActiveRecord::Base
   has_and_belongs_to_many :fans
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
+  has_many :links
   file_column :logo, :magick => { :geometry => "240x320>" }
   has_one :upload_addr
   acts_as_searchable

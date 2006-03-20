@@ -128,25 +128,81 @@ class AdminController < ApplicationController
   end
   
   def shows_by_status
-    @shows = @session[:shows_by_status][params[:status].to_sym]
-    p @shows
+    load_shows
+    @shows = @shows_by_status[params['status'].to_sym]
+  end
+  
+  def edit_import_show
+    load_shows
+   
+    id = params[:id]
+    @shows_by_status.each do |status, list|
+      i = 0
+      list.each do |show|
+        if show[:id].to_s == id
+          @show = show
+          break
+        end
+        
+        i += 1
+      end
+    end
+    
+    return if request.get?
+    
+    status = @show[:status]
+    reconstruct_show_hash(@show)
+    set_ok(@show) if params['do_ok'] == 'true'
+    import_show(@show) if params['do_import'] == 'true'
+    
+    importer = AnansiImporter.new
+    importer.save_shows_by_status(@shows_by_status)
+    
+    redirect_to :action => :shows_by_status, :status => status.to_s
   end
   
   def load_shows
     importer = AnansiImporter.new
     shows = importer.latest_prepared_shows
     
-    shows_by_status = {}
+    @shows_by_status = {}
     for show in shows
-      list = shows_by_status[show[:status]] ||= []
+      list = @shows_by_status[show[:status]] ||= []
       list << show
     end
-    
-    #@session[:shows_by_site] = shows_by_site
-    @session[:shows_by_status] = shows_by_status
   end
   
   private 
+  
+  def import_show(show)
+    importer = AnansiImporter.new
+    new_show = importer.import_show(show)
+    new_show.ferret_save
+    set_ok(show)
+  end
+  
+  def set_ok(show)
+    show[:status] = :ok
+    show[:explanation] = ''
+  end
+  
+  def reconstruct_show_hash(orig)
+    set_if_overriden(:age, orig, params)
+    set_if_overriden(:cost, orig, params)
+    set_if_overriden(:preamble, orig, params)
+    orig[:venue][:id] = params['venue_id']
+    
+    orig[:bands].each_with_index do |band, i|
+      orig[:bands][i][:name] = params["band#{i}_name"]
+      orig[:bands][i][:url] = params["band#{i}_url"]
+      orig[:bands][i][:extra] = params["band#{i}_extra"]
+    end
+    
+  end
+  
+  def set_if_overriden(key, orig, override)
+    orig[key] = override[key.to_s] if override.has_key?(key.to_s)
+  end
   
   def save_venue
     result = Geocoder.yahoo(@venue.address_one_line)

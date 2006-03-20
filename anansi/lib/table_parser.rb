@@ -161,6 +161,7 @@ class TableParser < ShowParser
       # TODO mailto links and their content should be stripped out
       # TODO What about a band name like Damage, Inc.?
       band = probable_band(chunk, cell_index, cell)
+      # TODO RIGHT WAY - add separator argu
       if band
         bands << band
       else

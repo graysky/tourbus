@@ -1,10 +1,10 @@
 <div id='main'>
-	<h2>Status: <%= params[:status] %></h2>
+	<h2>Status: <%= params[:status] %>. Count: <%= @shows.size %></h2>
 	<p>
 		<% for show in @shows %>
 		<div style="border:1px solid gray;padding:16px;">
-			<table>
-				
+			<table class='admin_table'>
+				<%= show_import_hash(show) %>
 			</table>
 		</div>
 		<% end %>

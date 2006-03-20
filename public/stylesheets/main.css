@@ -1304,6 +1304,14 @@ table.photo_table td span a {
 	font-weight:bold;
 }
 
+.admin_table td {
+	font-size:11px;
+}
+
+.admin_table a {
+	font-size:11px;
+}
+
 /* Comments */
 .comments_box
 {

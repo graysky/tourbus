@@ -1,0 +1,13 @@
+<id id='main'>
+    <h2>Edit import show: <%= @show[:id] %></h2>
+    
+    <%= start_form_tag %>
+        <table class='admin_table'>
+            <%= import_show_form(@show) %>
+        </table>
+        <%= check_box_tag "do_import", value="true", checked=false %> Import after edit<br/>
+        <%= check_box_tag "do_ok", value="true", checked=false %> Set to ok after edit
+        <br/>
+        <%= submit_tag "Edit" %>
+    <%= end_form_tag %>
+</div>

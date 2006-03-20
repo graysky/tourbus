@@ -95,6 +95,7 @@ class AnansiImporter
     end
     
     @imported_show_count += 1
+    return show
   end
   
   def add_band(show, b)
@@ -152,10 +153,21 @@ class AnansiImporter
 
   # Save all show data out to a yaml file
   def save_shows
-    dir = File.join(@data_dir, '/latest')
+    dir = File.join(@data_dir, 'latest')
     FileUtils.mkdir_p(dir) if not File.exists?(dir)
     yml_file = File.new(File.join(dir, 'shows.yaml'), "w")
     yml_file.write(@shows.to_yaml)
+  end
+
+  def save_shows_by_status(shows_by_status)
+    @shows = []
+    shows_by_status.each do |status, list|
+      list.each do |show|
+        @shows << show
+      end
+    end
+    
+    save_shows
   end
 
   protected

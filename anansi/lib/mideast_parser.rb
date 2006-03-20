@@ -21,6 +21,7 @@ class MidEastParser < ShowParser
         
         bands = []
         index = 0
+        str.gsub!(/(\(.*),(.*\))/, "\\1 \\2")
         chunks = str.split(",")
         chunks.each do |chunk|
           if index == 0 and index != chunks.size - 1

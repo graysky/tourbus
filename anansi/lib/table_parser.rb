@@ -152,7 +152,8 @@ class TableParser < ShowParser
     
     text = preprocess_bands_text(text)
     cell_index = 0
-    # TODO Try to ignore the separator if it's in parens. Possible?
+    # Ignore the separator if it's in parens.
+    text.gsub!(Regexp.new("(\\(.*)#{separator}(.*\\))"), "\\1 \\2")
     text.split(separator, limit).each do |chunk|
       # TODO Lots of times parens contain the band someone is in.
       # This is useful for searches, but we don't want to create a

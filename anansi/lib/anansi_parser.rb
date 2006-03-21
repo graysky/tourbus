@@ -6,6 +6,7 @@ require 'parsedate'
 require 'anansi/lib/table_parser'
 require 'anansi/lib/multi_table_parser'
 require 'anansi/lib/mideast_parser'
+require 'anansi/lib/tts_parser'
 require 'yaml'
 
 # Runs stage 2 of the anansi system. 
@@ -61,6 +62,8 @@ class AnansiParser
             parser = MidEastParser.new(xml)
           when :multi_table then
             parser = MultiTableParser.new(xml)
+          when :tts then
+            parser = TTsParser.new(xml)
           else
             puts "**** Error: Parser type not found!"
             next

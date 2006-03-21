@@ -1,0 +1,15 @@
+<% 
+# Show a form for a link.
+# Create new link if one wasn't passed
+  link = Link.new unless link.nil? 
+%>
+<table class="compact-form-table">
+	<tr>
+		<th>Name:</th>
+		<td><%= text_field('link', 'name', {:size => 32} ) %></td>
+	</tr>
+	<tr>
+		<th>URL:</th>
+		<td><%= text_field('link', 'data', {:size => 32} ) %></td>
+	</tr>
+</table>

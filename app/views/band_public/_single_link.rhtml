@@ -1,0 +1,5 @@
+<%
+# Display a single link in the list - assumes "link" in local scope
+puts "Rendering single_link.rhtml with #{link.name}"
+%>
+<li><a href="<%=link.url%>"><%=h(link.name)%></a></li>

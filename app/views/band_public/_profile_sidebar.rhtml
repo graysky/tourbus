@@ -18,6 +18,12 @@
 			<strong>Is this your band?</strong><br/>
 			<a href="javascript:alert('coming soon')">Create a tourb.us account</a>
 		<% end %>
+		
+		<%= list_links(@band.links) %>
+		
+		<% if logged_in_band %>
+		  <%= render :partial => "add_link" %>
+		<% end %>
 	</p>
 </div>
 <br/>

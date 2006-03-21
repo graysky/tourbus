@@ -13,7 +13,7 @@ class BandPublicController < ApplicationController
   helper :photo
   helper :feed
   
-  layout "public", :except => [:rss ] 
+  layout "public", :except => [:rss, :add_link ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -77,6 +77,25 @@ class BandPublicController < ApplicationController
       flash[:success] = 'Show edited'
       redirect_to_band_home
     end 
+  end
+  
+  # Add link to external site
+  def add_link
+    return if @request.get?
+
+    link = Link.new(params[:link])
+    
+    @band.links << link
+    
+    if not @band.save
+      flash.now[:error] = "Trouble saving the link"
+    end
+    
+    str = render(:partial => "single_link", :locals => { :link => link })
+    
+    puts "RENDERED: #{str}"
+    
+    str
   end
   
   def photo

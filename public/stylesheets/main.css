@@ -676,9 +676,8 @@ fieldset
 	margin-top:16px;
 }
 
-/* Form layout */
+/* Form layouts */
 
-/* Stolen from rollyo and modified... update! */
 table.form-table {
 	border-collapse: collapse;
 }
@@ -712,7 +711,7 @@ table.form-table td {
 
 table.form-table td a {
 	font-size: 12px;
-	}
+}
 	
 table.form-table #cal_trigger
 {
@@ -754,7 +753,7 @@ table.form-table td input {
 	color: #555;
 	background: #eee;
 	border: 1px solid #ccc;
-	}
+}
 		
 table.form-table td.info {
 	font-size: 11px;
@@ -795,6 +794,36 @@ table.form-table table.venue_result_table {
 table.form-table #selected_venue {
 	font-size:12px;	
 }
+
+/* Compact format layout for popups */
+table.compact-form-table {
+	border-collapse: collapse;
+}
+	
+table.compact-form-table th {
+	width: 40px;
+	padding-right: 5px;
+	padding-top: 5px;
+	
+	text-align: right;
+	vertical-align: top;
+	border-bottom: 0px solid #ddd;
+	font-size:11px;
+}
+
+table.compact-form-table td {
+	vertical-align: top;
+	text-align: left;
+	font-size: 11px;	
+}
+
+table.compact-form-table td input, table.compact-form-table td select {
+	margin-top: 5px;
+	color: #555;
+	vertical-align: top;
+}
+
+/* Additional Styles */
 
 #venue_search_results {
 	border:1px solid #ccc;
@@ -916,7 +945,6 @@ table.form-table #selected_venue {
 	margin: 4px 8px 4px 8px;	
 }
 
-
 #main #bands_playing {
 	float:left;
 	margin-bottom:8px;
@@ -938,36 +966,12 @@ table.form-table #selected_venue {
 	color: #4C5C5C;
 }
 
-/*
-#main #venue_for_show {
-	float:right;
-	width: 150px;
-	margin-top: 10px;
-	margin-right: 60px;
-	padding-right: 80px;
-	
-	font-size:14px;
-	line-height:120%;
-}
-*/
-
-
-
-/*
-
-#main #venue_for_show a {
-    font-size:14px;
-}
-*/
-
-#main
-{
+#main {
 	float:left;
 	width: 620px;
 }
 
-#side
-{
+#side {
 	padding-top:0px;
 	float: right;
 	width: 190px;
@@ -977,8 +981,7 @@ table.form-table #selected_venue {
 	width: 800px;
 }
 
-#footer
-{
+#footer {
 	clear: both;
 }	
 
@@ -988,7 +991,6 @@ table.form-table #selected_venue {
 	margin-bottom:4px;	
 }
 
-		
 #main .results_box
 {
 	width:560px;
@@ -1280,7 +1282,6 @@ table.photo_table td span a {
 	line-height: 140%;
 }
 
-
 .photo_box table.form-table th {
 	width:80px;
 	padding: 15px 15px 0 0;
@@ -1310,6 +1311,19 @@ table.photo_table td span a {
 
 .admin_table a {
 	font-size:11px;
+}
+
+/* Sidebar Links for Bands */
+.links_list ul
+{
+    list-style-type:none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.links_list li
+{
+    margin: 0 0 6px 0;
 }
 
 /* Comments */

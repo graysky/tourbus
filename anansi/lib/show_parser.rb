@@ -114,7 +114,10 @@ class ShowParser
     return nil if down.include?("art show")
     return nil if down.include?("crafts fair")
     return nil if down.include?("+")
+    return nil if down.include?("*")
     return nil if down.include?("music festival")
+    return nil if down.count("_") > 2
+    return nil if down.count("-") > 2
     
     # in concert, benefit, karoeke, no cover, .com, prom
     

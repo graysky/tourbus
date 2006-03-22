@@ -9,29 +9,40 @@ require 'anansi/lib/string' # TEMP
 class TTsParser < ShowParser
   include REXML
   
+  attr_accessor :month
+  attr_accessor :year
+  
   def parse
     @doc.root.each_element("//div") do |div|
       begin
         if div.attribute('class').to_s == 'MONTH_NUMBER'
           @show = {}
           @show[:bands] = []
-          month = div.recursive_text.to_i
-               
+          
+          index = 0
           show_div = div.next_element
           show_div.each_element do |elem|
             if elem.name == 'span' and elem.attribute('class').to_s == 'PERF_NAME'
               band = {}
-              band[:name] = elem.recursive_text.strip
-              elem.each_element('a') do |a| 
-                band[:url] = a.attribute('href').to_s.strip
-              end
+              band = probable_band(elem.recursive_text.strip, index, elem)
               
-              @show[:bands] << band
+              if band
+                elem.each_element('a') do |a| 
+                  band[:url] = a.attribute('href').to_s.strip
+                end
+                
+                @show[:bands] << band
+              end
+               
+              index += 1
             end
           end
           
           next if @show[:bands].empty?
-        
+          
+          day = div.recursive_text.to_i
+          @show[:date] = Time.local(@year, @month, day)
+          @show[:time] = default_time     
           @show[:venue] = {}
           @show[:venue][:name] = "T.T. The Bear's"
           

@@ -102,6 +102,8 @@ class AnansiConfig
         # and pull in the config file
         s.instance_eval(str)
         s.venue_map = venue_map
+        # Stash away the string that defined the site
+        s.site_contents = str
         
         # Add the site      
         @sites << s

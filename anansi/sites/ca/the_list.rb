@@ -33,12 +33,12 @@ set :band_separator, ','
 # DEFINE METHODS
 # =============================================================================
 #
-parser_method :preprocess_bands_text, {:args => 1} do |text|
+method :preprocess_bands_text, {:args => 1} do |text|
   # Sometimes slashes sneak in
   text.sub(/\//, ',')
 end
 
-parser_method :parse_venue_xxx, {:args => 2} do |cell, contents|
+method :parse_venue_xxx, {:args => 2} do |cell, contents|
   puts "SHOW IS"
   #p self.class
   return if true

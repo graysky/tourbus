@@ -29,9 +29,6 @@ class MetaSite
   # The hast of methods defined by the site
   attr_reader :methods
   
-  # Hash of methods defined on the parser
-  attr_reader :parser_methods
-  
   # If true don't replace nbsp's
   attr_reader :leave_nbsps
   
@@ -42,7 +39,6 @@ class MetaSite
   def initialize()
     @variables = {}
     @methods = {}
-    @parser_methods = {}
     @venue_map = {}
     @states = []
   end

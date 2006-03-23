@@ -113,20 +113,6 @@ class Site < MetaSite
       "#{@variables}"
   end
   
-  # TODO Needed??
-  # Defines a new method on the parser
-  # name => name of the method
-  # options => options for the method (only :args is supported)
-  # block => the block to execute
-  def parser_method(name, options={}, &block)
-    
-    # Remember what methods were added
-    # Array with proc and num of args
-    args = options[:args] || 0
-    value = [block, args]
-    @parser_methods[name] = value
-  end
-  
   # Crawl the site's page(s) and store them iff:
   # 1) The necessary amount of time has passed
   # 2) robots.txt allows it

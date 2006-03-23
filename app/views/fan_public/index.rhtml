@@ -12,8 +12,39 @@
 <% end %>
 
 <%= show_results @shows, params[:show_map] == "true", true, @fan %>
-<br/>
-<%= link_to "See more shows...", :action => :shows %>
+    <% if not @shows.empty? %>
+        <%= link_to "See more shows...", :action => :shows %>
+        <br/>
+    <% elsif @logged_in_as_fan and @fan.shows.find(:all).empty? %>
+		<%= start_profile_info_box %>
+		    <strong>You haven't added any shows yet.</strong>
+		    <br/><br/>
+		    To find shows,
+		    <%= link_to 'search for a band', :controller => 'find', :action => 'band' %>
+		    and look at their upcoming shows, or just
+		    <%= link_to 'search for a show directly', :controller => 'find', :action => 'show' %>.
+		    <br/><br/>
+		    Once you find a show you're interested in, click <strong>"Attend Show"</strong> if you want to get email 
+		    and SMS reminders about the show so you won't miss it.
+		    <br/><br/>
+		    If you're not sure you're going yet, click <strong>"Watch Show"</strong>. The show will end up in this list but
+		    you won't get any SMS reminders about it.
+		<%= end_profile_info_box %>
+    <% elsif @logged_in_as_fan and @shows.empty? %>
+        <%= start_profile_info_box %>
+	        <strong>You don't have any recent shows or shows in the next few days.</strong>
+	        <br/><br/>
+	        <%= link_to 'Recent and upcoming shows', :action => 'shows' %><br/>
+	        <%= link_to 'All Shows', :action => 'all_shows' %>.
+	    <%= end_profile_info_box %>
+	<% else %>
+	   <%= start_profile_info_box %>
+	        <strong><%= @fan.name %> isn't going to any shows in the next few days.</strong>
+	        <br/><br/>
+	        <%= link_to 'Recent and upcoming shows', :action => 'shows' %><br/>
+	        <%= link_to 'All Shows', :action => 'all_shows' %>
+	    <%= end_profile_info_box %>
+	<% end %>
 <br/>
 
 <%= section "favorite_bands_section" %>

@@ -115,6 +115,14 @@ END_JS
     out << '</tr></table></div>'
   end
   
+  def start_profile_info_box
+    '<div class="info_box profile_box"><div>'
+  end
+  
+  def end_profile_info_box
+    '</div></div>'
+  end
+  
   # Override rails' built in form error reporting
   def error_messages_for(object_name, options = {})
     options = options.symbolize_keys

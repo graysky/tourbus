@@ -2,7 +2,7 @@ require 'rexml/document'
 require 'anansi/lib/html' # temp
 
 # Base class for all show parsers
-class ShowParser
+class ShowParser < MetaSite
   include REXML
   
   attr_reader :shows
@@ -10,6 +10,9 @@ class ShowParser
   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
+  
+    super()
+  
     @doc = xml.is_a?(String) ? Document.new(HTML::strip_tags(xml)) : xml
     @url = url
     
@@ -21,8 +24,8 @@ class ShowParser
   def site=(site)
     @site = site
     
-    # Pull in the overridden vars & methods from the site
-    import_site_properties
+    # Pull in the vars & methods from the site
+    self.instance_eval(@site.site_contents)
   end
   
   # Parse the document and return a YAML document with the show info
@@ -185,11 +188,6 @@ class ShowParser
     $1 if str.strip =~ /(\$\d(\d)?(\.\d\d)?)/
   end
   
-  # Get the metaclass for this object
-  def metaclass
-    class << self; self; end
-  end
-  
   protected
   
   def get_venue
@@ -207,31 +205,6 @@ class ShowParser
     end
     
     nil
-  end
-  
-  # Define a new method on this object
-  def define_method(name, &block)
-    metaclass.send(:define_method, name, &block)
-  end
-  
-  # Pull in the overriden variables and methods from the site
-  def import_site_properties
-    
-    # For each method the site overrides, pull out:
-    # name => the name of the method
-    # value => array of the proc and num of arguments it takes
-    @site.methods.each do |name, value|
-      
-      # Define the new method on this parser
-      @site.create_method(self, name, value)
-    end
-    
-    # Apply each variable from the site to the parser
-    @site.variables.each do |var, value|
-    
-      instance_variable_set( "@#{var}", value)
-    end
-    
   end
   
 end

@@ -38,21 +38,15 @@ method :preprocess_bands_text, {:args => 1} do |text|
   text.sub(/\//, ',')
 end
 
-method :parse_venue_xxx, {:args => 2} do |cell, contents|
-  puts "SHOW IS"
-  #p self.class
-  return if true
-  
+method :parse_venue, {:args => 2} do |cell, contents|
   @show[:venue] ||= {}
-  puts "CONTENTS US " + contents
   chunks = contents.split(",")
-  @show[:venue][:name] = chunks[0]
+  @show[:venue][:name] = chunks[0].strip
   
   if chunks.size > 1
     loc = chunks[1..(chunks.size - 1)].join(", ")
     loc.gsub!(/s\.f\./i, 'San Francisco')
-    loc += ", CA"
-    @show[:venue][:location] = loc
+    @show[:venue][:city] = loc.strip
   end
   
   @show[:state] = 'CA'

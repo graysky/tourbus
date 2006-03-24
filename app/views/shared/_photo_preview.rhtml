@@ -12,6 +12,8 @@
 	 if logged_in? and not showing_creator
 	 	action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo')}</a>"
 	 end
+	 
+	 options = { :action => "photos", :id => id }
 %>
 
 
@@ -121,24 +123,54 @@
  	
  	<%= photo_preview_table photos, rows, cols, showing_creator %>
  	<span id="no_photos_msg">
-	<%
-		if photos.nil? or photos.empty?
-	%>
-		<strong>There are no photos yet.</strong>
-	</span>
-	<% elsif not full %>
-	<% 
-		if not full
-		  options = { :action => "photos", :id => id }
-		  if type == Photo.FromFan
-		    options[:controller] = "fan/" + @fan.name
-		  end
-		end 
-	%>
 	<br/>
-	<%= link_to "See more photos...", options %>
-	<%
-		end
-	%>
-	
+	  <% if photos and !photos.empty? and not full %>
+	   <%= link_to "See more photos...", options %>
+	  <% end %>
 </div>
+
+<%
+	if photos.nil? or photos.empty?
+%>
+   <% if type == Photo.FromFan and @logged_in_as_fan %>
+	    <%= start_profile_info_box %>
+	        <strong>You haven't uploaded any photos!</strong>
+	        <br/><br/>
+	        If you have any photos of a show, band or venue you can go its profile
+	        and click 'Upload Photo' to contribute it to the site. It's also really easy
+	        to upload a photo you took with your cameraphone from your cell phone. You can
+	        learn more about that here (TODO)
+        <%= end_profile_info_box %>
+   <% elsif type == Photo.FromFan %>    
+        <%= start_profile_info_box %>
+	        <strong><%= @fan.name %> hasn't uploaded any photos!</strong>
+        <%= end_profile_info_box %>
+   <% elsif type == Photo.Band %>    
+        <%= start_profile_info_box %>
+	        <strong>There are no photos of this band.
+	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+	        </strong>
+        <%= end_profile_info_box %>
+   <% elsif type == Photo.Venue %>    
+        <%= start_profile_info_box %>
+	        <strong>There are no photos of this venue.
+	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+	        </strong>
+        <%= end_profile_info_box %>
+   <% elsif type == Photo.Show %>    
+        <%= start_profile_info_box %>
+	        <strong>There are no photos of this show.
+	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+	        </strong>
+        <%= end_profile_info_box %>
+   <% end %>
+</span>
+<% elsif not full %>
+<% 
+	if not full
+	  if type == Photo.FromFan
+	    options[:controller] = "fan/" + @fan.name
+	  end
+	end 
+%>
+<% end %>

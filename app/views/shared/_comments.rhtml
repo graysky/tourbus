@@ -16,16 +16,19 @@
 <% action = logged_in? ? "<a href='#add_comment'>#{image_tag('add_comment')}</a>" : nil %>
 <%= section "comments_section",  action %>
 
+<% if comments.nil? || comments.empty? %>
+    <br/>
+	<%= start_profile_info_box %>
+	    <strong>
+	       There are no comments yet.
+	       <% if not logged_in? %>If you were logged in you could add some!<% end %>
+	    </strong>
+    <%= end_profile_info_box %>
+<% end %>
+
 <div class="comments_box">
 
 <%= comments_table(comments, 50) %>
-
-<% if comments.nil? || comments.empty? %>
-	<span id="no_comments_msg">	
-	<strong>There are no comments yet.</strong>
-	</span>
-<% end %>
-
 
 <div id="comment_form">
 
@@ -59,11 +62,6 @@
  	</table>	
 
 	<%= end_form_tag %>
-
-	<% else %>
-
-	<p>If you logged in, you could add comments!</p>
-
 	<% end %>
 	
 </div>	

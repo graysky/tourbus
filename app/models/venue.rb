@@ -82,7 +82,7 @@ class Venue < ActiveRecord::Base
   
   # All recent and upcoming shows at the venue
   def recent_upcoming_shows
-    self.shows.find(:all, :conditions => ["date > ?", Time.now - 6.months], :include => :bands)
+    self.shows.find(:all, :conditions => ["date > ?", Time.now - 2.months], :include => :bands)
   end
   
   protected

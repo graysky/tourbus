@@ -176,11 +176,15 @@ module FerretMixin
           doc << Ferret::Document::Field.new("ferret_class", self.class.name.downcase, 
                                              Document::Field::Store::YES,
                                              Document::Field::Index::UNTOKENIZED)
+                                             
           if respond_to?(:name)                                   
             doc << Ferret::Document::Field.new("name", 
                                                self.name, 
                                                Document::Field::Store::YES, 
-                                               Document::Field::Index::TOKENIZED)
+                                               Document::Field::Index::TOKENIZED,
+                                               Document::Field::TermVector::NO,
+                                               false,
+                                               2.0)
           end
           
           if respond_to?(:created_on)
@@ -191,10 +195,16 @@ module FerretMixin
           end
           
           if respond_to?(:popularity)
+            popularity = self.popularity
             doc << Document::Field.new("popularity", 
-                                       self.popularity, 
+                                       popularity, 
                                        Document::Field::Store::YES, 
                                        Ferret::Document::Field::Index::UNTOKENIZED)
+                                       
+            # Boost document based on popularity
+            # TODO This is not very good. Think of a better way to do this.
+            # All this really does is make sure that completely unpopular things are further down the scale.
+            doc.boost = 1.3 if popularity > 10
           end
           
           # Index all commonly searched info as an aggregated content string
@@ -213,8 +223,6 @@ module FerretMixin
           
           # Type-specific fields
           [*self.add_searchable_fields].each { |field| doc << field }
-          
-          # TODO Boost documents based on popularity
           
           self.class.ferret_index << doc
         end

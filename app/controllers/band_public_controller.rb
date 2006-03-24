@@ -91,11 +91,7 @@ class BandPublicController < ApplicationController
       flash.now[:error] = "Trouble saving the link"
     end
     
-    str = render(:partial => "single_link", :locals => { :link => link })
-    
-    puts "RENDERED: #{str}"
-    
-    str
+    render(:partial => "single_link", :locals => { :link => link })
   end
   
   def photo

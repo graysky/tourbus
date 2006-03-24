@@ -59,6 +59,10 @@ class AdminController < ApplicationController
     tags = params[:tags]
     
     @band.apply_tags(tags, Tag.Band)
+   
+    # Add all the links
+    links = extract_links(params, @band)
+    links.each { |link| @band.links << link }
     
     @band.claimed = false
     @band.uuid = UUID.random_create.to_s
@@ -75,6 +79,8 @@ class AdminController < ApplicationController
       # Make the tags available for editing
       tmp = @band.tags.map {|t| t.name }
       @tags = tmp.join(',')
+      
+      prepare_links(@band.links)
       return
     end
         
@@ -86,6 +92,10 @@ class AdminController < ApplicationController
 
     @band.apply_tags(tags, Tag.Band)
 
+    # Add all the links
+    links = extract_links(params, @band)
+    links.each { |link| @band.links << link }
+  
     if @band.save
       flash[:success] = "Band saved"
       redirect_to public_band_url(@band)
@@ -173,6 +183,52 @@ class AdminController < ApplicationController
   end
   
   private 
+  
+  # Prepare instance vars for the form to display
+  def prepare_links(links)
+  
+    num = 1
+    links.each do |link|
+    
+      name_var = "name_link#{num}"
+      url_var = "url_link#{num}"
+    
+      # Hack to set "@name_link1" so that the form will make editing easy
+      self.instance_variable_set( "@#{name_var}", link.name)
+      self.instance_variable_set( "@#{url_var}", link.data)
+      
+      num = num + 1
+    end
+  end
+  
+  # Pull out the links from the params array and
+  # return an array of Links
+  def extract_links(params, band = nil)
+  
+    links = []
+    
+    # Try to find all the links in the param
+    (1..8).each do |num|
+      
+      name_key = "name_link" + num.to_s
+      url_key = "url_link" + num.to_s
+      
+      name = params[name_key.to_sym]
+      url = params[url_key.to_sym]
+      
+      # Don't add it's empty
+      break if name.empty? or url.empty?
+      
+      # Create the new link
+      link = Link.new
+      link.name = name
+      link.data = url
+      
+      links << link
+    end
+    
+    return links
+  end
   
   def import_show(show)
     importer = AnansiImporter.new

@@ -9,7 +9,6 @@
 #  state               :string(2)     default()
 #  bio                 :text          
 #  salt                :string(40)    default()
-#  official_website    :string(100)   default()
 #  salted_password     :string(40)    default(), not null
 #  logo                :string(100)   default()
 #  confirmed           :boolean(1)    

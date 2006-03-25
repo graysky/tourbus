@@ -110,6 +110,16 @@ class AnansiImporter
       band.name = b[:name]
       band.short_name = short_name
       band.uuid = UUID.random_create.to_s
+      
+      # Add link to the band if we have one
+      if b[:url]
+        puts "Creating new Link #{b[:url]}"
+        link = Link.new
+        link.name = "Official Website"
+        link.data = b[:url]
+        band.links << link
+      end
+      
       band.save!
       
       @new_band_count += 1

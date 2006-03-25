@@ -3,7 +3,11 @@
 <% end %>
 
 <div class="band_listings">
-
+<% if @show.preamble and @show.preamble != "" %>
+    <div class="preamble">
+    <%= @show.preamble %>
+    </div>
+<% end %>
 <% for band in @show.bands %>
 	<div class="item">	
 		<table>

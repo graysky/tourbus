@@ -71,7 +71,7 @@ class AnansiImporter
     
     begin
       Show.transaction do
-          @shows.each do |shows|
+          @shows.each do |show|
           if show[:status] == :ok
             result = import_show(show)
             show[:status] = :imported if result
@@ -99,6 +99,7 @@ class AnansiImporter
     show.date = s[:date]
     show.cost = s[:cost]
     show.description = s[:description] || ''
+    show.preamble = s[:preamble]
     
     show.venue = Venue.find(s[:venue][:id])
     raise "Missing venue #{s[:venue][:id]}" if show.venue.nil?
@@ -146,6 +147,8 @@ class AnansiImporter
   # Prepare a show hash for import
   def prepare_show(show)
     @shows << show
+    
+    clean_hash_text(show)
     
     show[:id] = @shows.size - 1
     show[:status] = :unknown
@@ -199,6 +202,25 @@ class AnansiImporter
   
   def latest_data
     File.join(@data_dir, 'latest', 'shows.yaml')
+  end
+  
+  def clean_hash_text(obj)
+    if obj.is_a?(Hash)
+      obj.each { |key, value| clean_hash_text(value) }
+    elsif obj.is_a?(String)
+      obj.replace(clean_text(obj))
+    elsif obj.is_a?(Array)
+      obj.each { |v| clean_hash_text(v) }
+    end
+  end
+  
+  def clean_text(str)
+    str.gsub!(/&amp;/, '&')
+    str.gsub!(/&apos;/, '\'')
+    str.gsub!(/&quot;/, '"')
+    str.gsub!(/\n/, '')
+    
+    return str.strip.squeeze(' ')
   end
   
   def set_status(status, explanation = "") 
@@ -263,12 +285,12 @@ class AnansiImporter
     conditions << city if city
   end 
   
-  def duplicate_show?
+  def duplicate_show?(s = @show)
     # Assume we already have a venue id
-    min = @show[:date].hour * 60 + @show[:date].min
+    min = s[:date].hour * 60 + s[:date].min
     max = 24 * 60 - min
     existing_show = Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
-                                       @show[:venue][:id], @show[:date] - min.minutes, @show[:date] + max.minutes])
+                                       s[:venue][:id], s[:date] - min.minutes, s[:date] + max.minutes])
     return existing_show ? true : false
   end
 end

@@ -85,6 +85,12 @@ class Venue < ActiveRecord::Base
     self.shows.find(:all, :conditions => ["date > ?", Time.now - 2.months], :include => :bands)
   end
   
+  # The short name is name with whitespace and punctuation stripped out, all lowercase
+  def self.name_to_short_name(name)
+    # Remove anything that's not a letter, number or selected punctuation
+    name.gsub(/[^\w|\d|_|.|-]/, '').downcase
+  end
+  
   protected
   
   # Validate that it is a valid URL starting with http://

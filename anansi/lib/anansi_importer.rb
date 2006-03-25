@@ -67,18 +67,32 @@ class AnansiImporter
   end
   
   def import
-    YAML::load_documents(File.open(latest_data)) do |shows|
+    @shows = latest_prepared_shows
+    
+    begin
       Show.transaction do
-        for show in shows
-          import_show(show) if show[:status] == :ok
+          @shows.each do |shows|
+          if show[:status] == :ok
+            result = import_show(show)
+            show[:status] = :imported if result
+          end
         end
       end
+    ensure
+      puts "Savings shows to YAML..."
+      save_shows
     end
     
     puts "Imported #{@imported_show_count} shows and created #{@new_band_count} new bands"
   end
   
   def import_show(s)
+    # Double check that this is not a duplicate.
+    if duplicate_show?(s) and not s[:override_duplicate]
+      puts "Skipping duplicate show: #{s[:date]} @ #{s[:venue][:name]}"
+      return nil
+    end
+  
     puts "Importing show on #{s[:date]} @ #{s[:venue][:name]}"
     show = Show.new
     
@@ -92,6 +106,7 @@ class AnansiImporter
     s[:bands].each { |band| add_band(show, band) }
     if !show.save
       puts "Error saving show"
+      return nil
     end
     
     @imported_show_count += 1
@@ -227,17 +242,26 @@ class AnansiImporter
   end
   
   def lookup_venue(name, city, state)
-    query = "name = ? and state = ?"
+    short_name = Venue.name_to_short_name(name)
+    conditions = get_venue_conditions(short_name, city, state)
+    venue = Venue.find(:first, :conditions => conditions)
+   
+    if venue.nil?
+      # Try with/without 'the'
+      short_name = short_name.starts_with?('the') ? short_name[3..short_name.length] : 'the' + short_name
+      conditions = get_venue_conditions(short_name, city, state)
+      venue = Venue.find(:first, :conditions => conditions)
+    end
+      
+    return venue
+  end
+  
+  def get_venue_conditions(name, city, state)
+    query = "short_name = ? and state = ?"
     query << " and city = ?" if city
     conditions = [query, name, state]
     conditions << city if city
-   
-    venues = Venue.find(:all, :conditions => conditions)
-   
-    # TODO Do anything special for dupes?
-    return nil if venues.nil? or venues.size > 1
-    return venues[0]
-  end
+  end 
   
   def duplicate_show?
     # Assume we already have a venue id

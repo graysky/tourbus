@@ -126,6 +126,8 @@ class TableParser < ShowParser
   # description of the show, just so no information is lost in case it's relevant and
   # it will be available in searches.
   def parse_bands(cell, contents)
+    before_parse_bands(cell, contents)
+    
     bands = []
     # First try to figure out the separator.
     raw = cell.to_s
@@ -177,6 +179,12 @@ class TableParser < ShowParser
     @show[:bands] = bands
   end
   
+  # To be overriden by sites
+  # TODO Make a generic thing
+  def before_parse_bands(cell, contents)
+  
+  end
+  
   # TODO This might almost always require a site-specific callback if it is not
   # the site of an individual venue.
   # Can add config options for city/state to look in if we only have a name
@@ -192,7 +200,9 @@ class TableParser < ShowParser
   
   def parse_venue_location(cell, contents)
     @show[:venue] ||= {}
-    @show[:venue][:location] = contents.strip
+    chunks = contents.strip.split(',')
+    @show[:venue][:city] = chunks[0].strip
+    @show[:venue][:state] = chunks[1].strip if chunks.size > 1
   end
   
   def parse_age_limit(cell, contents)

@@ -75,7 +75,7 @@ class ShowParser < MetaSite
     return nil if down.ends_with?("special guest")
     return nil if down.ends_with?(":")
     
-    keywords = [":", "featuring", "presents", "presenting", "special guest", 
+    keywords = [":", "featuring", "presents", "present", "presenting", "special guest", 
                 "welcomes", "evening with"]
     index = first_index_in(keywords, down)
     if index
@@ -119,6 +119,7 @@ class ShowParser < MetaSite
     return nil if down.include?("+")
     return nil if down.include?("*")
     return nil if down.include?("music festival")
+    return nil if down.include?("emergenza")
     return nil if down.count("_") > 2
     return nil if down.count("-") > 2
     

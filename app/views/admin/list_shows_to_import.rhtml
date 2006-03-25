@@ -2,7 +2,7 @@
 
 <p>
 <% @shows_by_status.each_key do |key| %>
-	<%= link_to key, :action => 'shows_by_status', :status => key %><br/>
+	<%= link_to key, :action => 'shows_by_status', :status => key %> (<%= @shows_by_status[key].size %>)<br/>
 <% end %>
 </p>
 

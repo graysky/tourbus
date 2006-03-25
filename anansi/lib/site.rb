@@ -34,8 +34,8 @@ class Site < MetaSite
     set :name, name
     @name = name
 
-    # Set default interval to 3 days    
-    set :interval, 72
+    # Set default interval to 2 days
+    set :interval, 48
   end
   
   # Directory where the pages pulled in the crawl are stored
@@ -137,7 +137,7 @@ class Site < MetaSite
     end
     
     if urls.nil? or urls.empty?
-      p "Site #{name} had no URLs configured - skipping"
+      puts "Site #{name} had no URLs configured - skipping"
       return false
     end
     
@@ -153,7 +153,7 @@ class Site < MetaSite
       uri = URI.parse(url)
       
       if !allow_robots?(http, uri.path)
-        p "#{name}: Robots.txt prevents crawling of #{uri.path}"
+        puts "#{name}: Robots.txt prevents crawling of #{uri.path}"
         next
       end
       

@@ -43,12 +43,22 @@ class AnansiConfig
   def load(path)
     
     if !valid_dir?(path)
+      puts "Invalid path - not a directory: #{path}"
       return
     end
     
     # Expect a directory. Descend into sub-dirs
     # for actual configs
     dir = Dir.new(path)
+    
+    # The data dir lives at the same level as the sites:
+    # data
+    #     /axis
+    #     /avalon
+    # sites
+    #   /ma
+    #      /axis   
+    data_dir = File.join(path, "..", "data")
     
     # Grab each site under the directory
     dir.each do |e|
@@ -94,7 +104,7 @@ class AnansiConfig
         
         # Create a new site for each config file we find.
         # They each get their own directory for storing files
-        s = Site.new(File.join(subdir.path, name), name)
+        s = Site.new(File.join(data_dir, name), name)
         
         # Add the default state first so instance_eval has a chance to override it
         s.add_state(state)

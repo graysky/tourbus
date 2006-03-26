@@ -25,8 +25,8 @@
 # Other useful tasks:
 #
 # rollback - rollback to last deployment
-# cleanup - deletes >5 deployments (needs "rake remote_exec ACTION=cleanup")
-# spinner - first start FCGI processes using spinner
+# cleanup - deletes >5 deployments (needs "rake remote:exec ACTION=cleanup")
+# spawner - first start FCGI processes using spawner ("rake remote:exec ACTION=spawner")
 # reaper - kill the FCGI processes using reaper
 #
 # Use this to run any non-rake switchtower tasks (NOT CURRENTLY IN USE):
@@ -194,9 +194,11 @@ task :push_env_file do
 end
 
 desc "Start the FCGI processes using spinner"
-task :spinner, :roles => :app do
-  # Attempt to spin it every 90 seconds as a daemon
+task :spawner, :roles => :app do
+  # Attempt to spin it every 90 seconds as a daemon starting on port 8000 (must match lighty config)
   # NOTE - this controls how many FCGI procs to start
+  # Rails 1.1 doesn't include spinner, just spawner, but couldn't run it in daemon mode:
+  # #{current_path}/script/process/spawner -p 8000 -i 3 -r 90
   run <<-CMD
     #{current_path}/script/process/spinner -d -i 90 -c '#{current_path}/script/process/spawner -i 3'
   CMD

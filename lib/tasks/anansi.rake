@@ -4,7 +4,7 @@
 
 # TODO Should probably use rake namespaces
 
-desk "Bundle up the crawl, parse, and prepare import"
+desc "Bundle up the crawl, parse, and prepare import"
 task :anansi_all => [:anansi_crawl, :anansi_parse, :anansi_prepare_import ]
 
 desc "Runs the 1st stage of the crawler"

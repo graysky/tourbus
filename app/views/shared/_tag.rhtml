@@ -27,27 +27,27 @@
 </span>
 
 <div id="remove_tag_tip-<%= t_id %>" class='generic_tip'>
-	<h3>Remove Tag</h3>
-	<p>
-	<strong>Remove tag "<%= truncate(tag.name, 30) %>"?</strong>
-		      	
+  <h3>Remove Tag</h3>
+  <p>
+  <strong>Remove tag "<%= truncate(tag.name, 30) %>"?</strong>
+            
     <%= form_remote_tag(
-	   :url => { 
-		  :controller => "tag",
-		  :action => "delete", 
-		  :id => id },
-		  :complete => "tag_removed_#{type}(request)") %>
+     :url => { 
+      :controller => "tag",
+      :action => "delete", 
+      :id => id },
+      :complete => "tag_removed_#{type}(request)") %>
 
         <%= hidden_field_tag( 'type', "", :value => type ) %>
         <%= hidden_field_tag( 'tag_id', "", :value => tag.id ) %>
 
-     	<%= submit_tag "Remove" %>&nbsp;<%= link_to "Cancel", "javascript:void(0);" %>
+       <%= submit_tag "Remove" %>&nbsp;<%= link_to "Cancel", "javascript:void(0);" %>
     <%= end_form_tag %>
-	</p>
+  </p>
 </div>
 
 <script type="text/javascript">
-	Tooltip.add('remove_tag_link-<%= t_id %>', 'remove_tag_tip-<%= t_id %>');
+  Tooltip.add('remove_tag_link-<%= t_id %>', 'remove_tag_tip-<%= t_id %>');
 </script>
 
 <% else %>

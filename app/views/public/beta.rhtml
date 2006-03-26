@@ -2,35 +2,35 @@
 <% @header_title = "Welcome" %>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <script type="text/javascript">
-	function init_focus()
-	{
-		$('code').focus()
-	}
+  function init_focus()
+  {
+    $('code').focus()
+  }
 </script>
 
 <%= start_form_tag %>
 
 <center>
 <table class="form-table">
-	<tr>
-		<td colspan="3" class="info">
-		<center><h1>tourb.us beta</h1></center>
-		<p>If you have an invitation code enter it below.
-		<br/>If not, please <a href="http://tourb.us/">signup to find out</a> when we're launching.
-		</p>
-		</td>
-	</tr>
-	<tr>
-		<th>Invitation Code:</th>
-		<td><%= text_field_tag('code', nil, :size => 30) %></td>
-		<td class="info">
-		<%= submit_tag 'Submit' %>
-		</td>
-	</tr>
+  <tr>
+    <td colspan="3" class="info">
+    <center><h1>tourb.us beta</h1></center>
+    <p>If you have an invitation code enter it below.
+    <br/>If not, please <a href="http://tourb.us/">signup to find out</a> when we're launching.
+    </p>
+    </td>
+  </tr>
+  <tr>
+    <th>Invitation Code:</th>
+    <td><%= text_field_tag('code', nil, :size => 30) %></td>
+    <td class="info">
+    <%= submit_tag 'Submit' %>
+    </td>
+  </tr>
 </table>
 </center>
 

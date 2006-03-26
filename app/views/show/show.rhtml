@@ -3,10 +3,10 @@
 <% end %>
 
 <% 
-	title = @show.formatted_title
-	
-	@page_title = title
-	@header_title = simple_date(@show.date) + " : " + truncate(title, 32)
+  title = @show.formatted_title
+  
+  @page_title = title
+  @header_title = simple_date(@show.date) + " : " + truncate(title, 32)
 %>
 
 <div id="main">
@@ -14,27 +14,27 @@
 <%= render :partial => "profile_header", :locals => { :front_page => true } %>
 
 <%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @show.photos,
-		:type => Photo.Show,
-		:id => @show.id,
-		:full => false
-		}) 
-	%>
-	
-	<br/>
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @show.photos,
+    :type => Photo.Show,
+    :id => @show.id,
+    :full => false
+    }) 
+  %>
+  
+  <br/>
 
-	<%= render(
-		:partial => "shared/comments",
-		:locals =>
-			{
-			:comments => @show.comments,
-			:type => Comment.Show,
-			:id => @show.id,
-			})
-	%>
+  <%= render(
+    :partial => "shared/comments",
+    :locals =>
+      {
+      :comments => @show.comments,
+      :type => Comment.Show,
+      :id => @show.id,
+      })
+  %>
 
 </div>
 

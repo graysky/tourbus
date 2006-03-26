@@ -4,7 +4,7 @@
 <% @header_title = "Find Venues" %>
 
 <% content_for("head") do %>
-	  <%= javascript_include_tag "find.js" %>
+    <%= javascript_include_tag "find.js" %>
 <% end %>
 
 <% type = Venue.table_name %>
@@ -14,8 +14,8 @@
 
 <center>
 <div id="browse_links">
-	<%= link_to_unless_current "Search", :action => 'venue' %>
-	<%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%>
+  <%= link_to_unless_current "Search", :action => 'venue' %>
+  <%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%>
 </div>
 
 <%= start_form_tag :action => :venue %>
@@ -36,61 +36,61 @@
 <%= end_form_tag %>
 
 <h3>
-	<% if @results and @results.size > 0 %>
-		<%= 
-			case params[:action]
-			when 'browse_popular_venues' then 'Browsing Most Popular Venues'
-			else
-			  'Search Results'
-			end + search_results_suffix(type)
-		%>
-	<% elsif not (request.get? and params[:query].nil?) %>
-		No results found<%= search_results_suffix(type) %> 
-	<% end %>
+  <% if @results and @results.size > 0 %>
+    <%= 
+      case params[:action]
+      when 'browse_popular_venues' then 'Browsing Most Popular Venues'
+      else
+        'Search Results'
+      end + search_results_suffix(type)
+    %>
+  <% elsif not (request.get? and params[:query].nil?) %>
+    No results found<%= search_results_suffix(type) %> 
+  <% end %>
 </h3>
 <br/>
 
 <%
-	index = 0
-	if @results
-		for venue in @results
+  index = 0
+  if @results
+    for venue in @results
 %>
 
-	<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
-	
-		<table>
-			<tr>
-				<td></td>
-				<td>
-					<div class="col2 address">
-						<%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %><br/>
-						<%= venue.address %><br/>
-						<%= venue.city + "," + venue.state %>
-					</div>
-					
-				</td>
-				<td class="col3">
-					<nobr>
-					<strong>upcoming shows:</strong> 1<br/>
-					<% if logged_in_fan and logged_in_fan.superuser? %>
-							&nbsp;
-							<b><%= link_to "Delete", :controller => "admin", :action => "delete_venue", :id => venue.id %></b>
-							, &nbsp;
-							<% if logged_in_fan and logged_in_fan.superuser? %>
-								<b><%= link_to "Edit", :controller => "admin", :action => "edit_venue", :id => venue.id %></b>
-								<br/>
-							<% end %>
-						<% end %>
-					</nobr>
-				</td>
-			</tr>
-		</table>
-	
-	</div>
+  <div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+  
+    <table>
+      <tr>
+        <td></td>
+        <td>
+          <div class="col2 address">
+            <%= link_to venue.name, :controller => "venue", :action => "show", :id => venue.id %><br/>
+            <%= venue.address %><br/>
+            <%= venue.city + "," + venue.state %>
+          </div>
+          
+        </td>
+        <td class="col3">
+          <nobr>
+          <strong>upcoming shows:</strong> 1<br/>
+          <% if logged_in_fan and logged_in_fan.superuser? %>
+              &nbsp;
+              <b><%= link_to "Delete", :controller => "admin", :action => "delete_venue", :id => venue.id %></b>
+              , &nbsp;
+              <% if logged_in_fan and logged_in_fan.superuser? %>
+                <b><%= link_to "Edit", :controller => "admin", :action => "edit_venue", :id => venue.id %></b>
+                <br/>
+              <% end %>
+            <% end %>
+          </nobr>
+        </td>
+      </tr>
+    </table>
+  
+  </div>
 <%
-		index += 1
-		end
-	end
+    index += 1
+    end
+  end
 %>
 
 <%= render :partial => "paging" %>
@@ -99,7 +99,7 @@
 </div>
 
 <div id="side">
-	<%= render :partial => "location_box", :locals => { :type => type } %>
+  <%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
 
 

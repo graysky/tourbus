@@ -3,23 +3,23 @@
 
 <div id="add_external_tip" class='fave_tip'>
     <h3>Add a new link</h3>
-	
-	<p>Add a link to external site<br/><br/>
+  
+  <p>Add a link to external site<br/><br/>
 
-	<%= form_remote_tag(
-	        :update => "list_of_links",
-			:position => :bottom,
-			:url => { 
-				:action => "add_link", 
-				}) %>
+  <%= form_remote_tag(
+          :update => "list_of_links",
+      :position => :bottom,
+      :url => { 
+        :action => "add_link", 
+        }) %>
         
         <%= render :partial => "link_form" %><br/>
         <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('add_external_link'), event);" %>&nbsp;
-	  	<%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('add_external_link'), event)" %>
-	<%= end_form_tag %>
-	</p>
+      <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('add_external_link'), event)" %>
+  <%= end_form_tag %>
+  </p>
 </div>
 <script type="text/javascript">
     Tooltip.autoHideClick = false;
-	Tooltip.add('add_external_link', 'add_external_tip');
+  Tooltip.add('add_external_link', 'add_external_tip');
 </script>

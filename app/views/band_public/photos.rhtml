@@ -6,15 +6,15 @@
 <%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
 <%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @band.photos,
-		:type => Photo.Band,
-		:id => @band.id,
-		:full => true
-		}) 
-	%>
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @band.photos,
+    :type => Photo.Band,
+    :id => @band.id,
+    :full => true
+    }) 
+  %>
 </div>
 
 <%= render :partial => "profile_sidebar", :locals => { :show_fans => true } %>

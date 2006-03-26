@@ -5,33 +5,33 @@ init_map()
 <% end %>
 
 <script type="text/javascript">
-	
-	function init_map()
-	{
-		var map = new GMap(document.getElementById("map"));
-	
-		var latitude = <%=@venue.latitude%> ;
-		var longitude = <%=@venue.longitude%> ;
-		
-		var point = new GPoint(longitude, latitude);
-		
-	  map.centerAndZoom(point, 3);
-	  map.addControl(new GSmallMapControl());
-		//map.addControl(new GMapTypeControl());
-		
-		// Need to specially handle text so that it wraps properly. Seems to default
-		// to wrapping at any blank spaces
-		// var html = "<small>Wellesley&nbsp;High&nbsp; School</small>";
-		var html = "<div class='map_info'>";
-		html += "<b><%= gmarker_fmt(@venue.name) %></b> <BR/>";
-		html += "<%= gmarker_fmt(@venue.address) %> <BR/>";
-		html += "<%= gmarker_fmt(@venue.city)%>, <%=gmarker_fmt(@venue.state)%> <%= gmarker_fmt(@venue.zipcode) %> <BR/>";
-		html += "</div>";
+  
+  function init_map()
+  {
+    var map = new GMap(document.getElementById("map"));
+  
+    var latitude = <%=@venue.latitude%> ;
+    var longitude = <%=@venue.longitude%> ;
+    
+    var point = new GPoint(longitude, latitude);
+    
+    map.centerAndZoom(point, 3);
+    map.addControl(new GSmallMapControl());
+    //map.addControl(new GMapTypeControl());
+    
+    // Need to specially handle text so that it wraps properly. Seems to default
+    // to wrapping at any blank spaces
+    // var html = "<small>Wellesley&nbsp;High&nbsp; School</small>";
+    var html = "<div class='map_info'>";
+    html += "<b><%= gmarker_fmt(@venue.name) %></b> <BR/>";
+    html += "<%= gmarker_fmt(@venue.address) %> <BR/>";
+    html += "<%= gmarker_fmt(@venue.city)%>, <%=gmarker_fmt(@venue.state)%> <%= gmarker_fmt(@venue.zipcode) %> <BR/>";
+    html += "</div>";
 
-		var marker = createMarker(point, html);
-		
-	  map.addOverlay(marker);
-	}
+    var marker = createMarker(point, html);
+    
+    map.addOverlay(marker);
+  }
 </script>
 
 <% if not front_page %>
@@ -39,71 +39,71 @@ init_map()
 <% end %>
 
 <table width="95%">
-	<tr>
-		<td valign="top">
-		
-		<div style="width: 280px; height:280px" id="map"></div>
-		
-		</td>
-		<td valign="top" style="padding-left:16px">
+  <tr>
+    <td valign="top">
+    
+    <div style="width: 280px; height:280px" id="map"></div>
+    
+    </td>
+    <td valign="top" style="padding-left:16px">
 
-		<table width="100%">
-		  <tr>
-		  		
-				<td>
-				<b>Address:</b>
-				</td>
-		</tr>
-		</tr>		
-				<td  style="padding-left:8px;padding-bottom:4px;">
-				<%= @venue.address %>
-				<BR/>
-				<%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %>
-				
-				</td>
-		</tr>
-			
-			<tr>
-				<td>
-				<b>Phone:</b>
-				</td>
-			</tr>
-			<tr>	
-				<td style="padding-left:8px;padding-bottom:4px;">
-				<%= @venue.phone_number %>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-				<b>Web Page:</b>
-				</td>
-			</tr>
-			<tr>
-				<td style="padding-left:8px;padding-bottom:4px">
-      				<%= venue_url %>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-				<b>Description:</b>
-				</td>
-			</tr>
-			<tr>
-				<td style="padding-left:8px;padding-bottom:4px">
-					<%= venue_desc %>
-				</td>
-			</tr>
-			
-		</table>
-			
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<%= google_map_link(@venue) %>
-		</td>
-	</tr>
+    <table width="100%">
+      <tr>
+          
+        <td>
+        <b>Address:</b>
+        </td>
+    </tr>
+    </tr>    
+        <td  style="padding-left:8px;padding-bottom:4px;">
+        <%= @venue.address %>
+        <BR/>
+        <%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %>
+        
+        </td>
+    </tr>
+      
+      <tr>
+        <td>
+        <b>Phone:</b>
+        </td>
+      </tr>
+      <tr>  
+        <td style="padding-left:8px;padding-bottom:4px;">
+        <%= @venue.phone_number %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+        <b>Web Page:</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-left:8px;padding-bottom:4px">
+              <%= venue_url %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+        <b>Description:</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-left:8px;padding-bottom:4px">
+          <%= venue_desc %>
+        </td>
+      </tr>
+      
+    </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <%= google_map_link(@venue) %>
+    </td>
+  </tr>
 </table>
 

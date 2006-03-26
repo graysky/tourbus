@@ -29,8 +29,9 @@ class Show < ActiveRecord::Base
   include Ferret
   
   include Tagging
-  has_and_belongs_to_many :bands # Bands playing the show
-  has_and_belongs_to_many :fans  # Fans attending the show
+  has_many :appearences
+  has_many :bands, :through => :appearences
+  has_and_belongs_to_many :fans
   belongs_to :venue
   acts_as_searchable
  

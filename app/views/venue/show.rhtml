@@ -28,28 +28,28 @@
 <%= end_profile_info_box %>
 <% end %>
 
-	<%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @venue.photos,
-		:type => Photo.Venue,
-		:id => @venue.id,
-		:full => false
-		}) 
-	%>
-	
-	<br/>
+  <%= render(
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @venue.photos,
+    :type => Photo.Venue,
+    :id => @venue.id,
+    :full => false
+    }) 
+  %>
+  
+  <br/>
 
-	<%= render(
-		:partial => "shared/comments",
-		:locals =>
-			{
-			:comments => @venue.comments,
-			:type => Comment.Venue,
-			:id => @venue.id,
-			})
-	%>
+  <%= render(
+    :partial => "shared/comments",
+    :locals =>
+      {
+      :comments => @venue.comments,
+      :type => Comment.Venue,
+      :id => @venue.id,
+      })
+  %>
 
 </div>
 

@@ -1,19 +1,19 @@
 <%
-	 if (full)
-	   rows = nil
-	   cols = 5
-	 else
-	   rows = 1
-	   cols = 4
-	 end
-	 
-	 showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
-	 action = nil
-	 if logged_in? and not showing_creator
-	 	action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo')}</a>"
-	 end
-	 
-	 options = { :action => "photos", :id => id }
+   if (full)
+     rows = nil
+     cols = 5
+   else
+     rows = 1
+     cols = 4
+   end
+   
+   showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
+   action = nil
+   if logged_in? and not showing_creator
+     action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo')}</a>"
+   end
+   
+   options = { :action => "photos", :id => id }
 %>
 
 
@@ -21,156 +21,156 @@
 
 <% # TODO Pull out into js file %>
 <script type="text/javascript">
-	function update_photos(new_contents)
-	{
-		var table = $('photo_preview_table');
-		var src = new_contents;
-		var next_src = null;
-		
-		for (var row_index = 0; row_index < table.rows.length; row_index++) {
-			var row = table.rows[row_index];
-			var added_cell = false;
-			if (row.cells.length < <%= cols %>) {
-				// Add a new cell and blank image
-				var td = document.createElement("td");
-				row.appendChild(td);
-				var newImage = document.createElement("img");
-				td.appendChild(newImage);
-				added_cell = true;
-			}
-			
-			for (var i = 0; i < row.cells.length; i++) {
-				var next_src = row.cells[i].innerHTML;
-				
-				row.cells[i].innerHTML = src;
-				
-				var img = row.cells[i].getElementsByTagName("img")[0];
-				if (row_index == 0 && i == 0) {
-					Element.hide(img);
-				}
-				
-				src = next_src;
-				if (row_index == 0 && i == 0) {
-					new Effect.Appear(img);
-				}
-				
-				if (next_src == null) {
-					break;
-				}
-			}
-			
-			<% if not rows.nil? %>
-			if (row_index + 1 == <%= rows %>) {
-				break;
-			}
-			<% else %>
-			if (!added_cell && (row_index + 1 == table.rows.length)) {
-				// Create a new row
-				table.insertRow(table.rows.length);
-			}
-			<% end %>
-		}
-	}
-	
-	function finish_photo_upload(path)
-	{
-		$("photo_file").value = '';
-		$("photo_description").value = '';
-		$("no_photos_msg").innerHTML = '';
-		
-		new Effect.Fade('add_photo');
-		
-		// Wait a second for the fade to finish before updating the photos
-		setTimeout((function() { update_photos(path); }), 1000);
-	}
+  function update_photos(new_contents)
+  {
+    var table = $('photo_preview_table');
+    var src = new_contents;
+    var next_src = null;
+    
+    for (var row_index = 0; row_index < table.rows.length; row_index++) {
+      var row = table.rows[row_index];
+      var added_cell = false;
+      if (row.cells.length < <%= cols %>) {
+        // Add a new cell and blank image
+        var td = document.createElement("td");
+        row.appendChild(td);
+        var newImage = document.createElement("img");
+        td.appendChild(newImage);
+        added_cell = true;
+      }
+      
+      for (var i = 0; i < row.cells.length; i++) {
+        var next_src = row.cells[i].innerHTML;
+        
+        row.cells[i].innerHTML = src;
+        
+        var img = row.cells[i].getElementsByTagName("img")[0];
+        if (row_index == 0 && i == 0) {
+          Element.hide(img);
+        }
+        
+        src = next_src;
+        if (row_index == 0 && i == 0) {
+          new Effect.Appear(img);
+        }
+        
+        if (next_src == null) {
+          break;
+        }
+      }
+      
+      <% if not rows.nil? %>
+      if (row_index + 1 == <%= rows %>) {
+        break;
+      }
+      <% else %>
+      if (!added_cell && (row_index + 1 == table.rows.length)) {
+        // Create a new row
+        table.insertRow(table.rows.length);
+      }
+      <% end %>
+    }
+  }
+  
+  function finish_photo_upload(path)
+  {
+    $("photo_file").value = '';
+    $("photo_description").value = '';
+    $("no_photos_msg").innerHTML = '';
+    
+    new Effect.Fade('add_photo');
+    
+    // Wait a second for the fade to finish before updating the photos
+    setTimeout((function() { update_photos(path); }), 1000);
+  }
 </script>
 
 <% # TODO AAGH... how do we make these styles common? The other right now is results_box... %>
 <div class="photo_box">
-	<% if not showing_creator %>
-	<div id="add_photo" style="display:none">
- 		<%= form_tag_with_upload_progress({ :action => "upload_photo",
- 											:controller => "photo",
- 											:id => id,
- 											:type => type },
- 										  {	#:begin => "Element.show('logo_indicator')",
- 										  	:finish => "finish_photo_upload(arguments[0])" },
- 										  { :action => "upload_status",
- 											:controller => "photo",
- 											:id => id,
- 											:type => type })
- 										  %>		
- 		<table class="form-table">
- 			<tr>
- 				<th>File:</th>
- 				<td colspan="5"><%= file_field "photo", "file" %></td>
- 			</tr>
- 			<tr>
- 				<th>Caption:</th>
- 				<td colspan="5"><%= text_area 'photo', 'description', "rows" => 2  %></td>
- 			</tr>
- 			<tr class="submit">
-				<td align="right"></td>
-				<td>
-					<%= submit_tag 'Upload' %><br/><br/>
-					<%= upload_status_tag %>
-				</td>
-			</tr>
- 		</table>								   		
- 		<%= end_form_tag %>
- 	</div>
- 	<% end %>
- 	
- 	<%= photo_preview_table photos, rows, cols, showing_creator %>
- 	<span id="no_photos_msg">
-	<br/>
-	  <% if photos and !photos.empty? and not full %>
-	   <%= link_to "See more photos...", options %>
-	  <% end %>
+  <% if not showing_creator %>
+  <div id="add_photo" style="display:none">
+     <%= form_tag_with_upload_progress({ :action => "upload_photo",
+                       :controller => "photo",
+                       :id => id,
+                       :type => type },
+                       {  #:begin => "Element.show('logo_indicator')",
+                         :finish => "finish_photo_upload(arguments[0])" },
+                       { :action => "upload_status",
+                       :controller => "photo",
+                       :id => id,
+                       :type => type })
+                       %>    
+     <table class="form-table">
+       <tr>
+         <th>File:</th>
+         <td colspan="5"><%= file_field "photo", "file" %></td>
+       </tr>
+       <tr>
+         <th>Caption:</th>
+         <td colspan="5"><%= text_area 'photo', 'description', "rows" => 2  %></td>
+       </tr>
+       <tr class="submit">
+        <td align="right"></td>
+        <td>
+          <%= submit_tag 'Upload' %><br/><br/>
+          <%= upload_status_tag %>
+        </td>
+      </tr>
+     </table>                       
+     <%= end_form_tag %>
+   </div>
+   <% end %>
+   
+   <%= photo_preview_table photos, rows, cols, showing_creator %>
+   <span id="no_photos_msg">
+  <br/>
+    <% if photos and !photos.empty? and not full %>
+     <%= link_to "See more photos...", options %>
+    <% end %>
 </div>
 
 <%
-	if photos.nil? or photos.empty?
+  if photos.nil? or photos.empty?
 %>
    <% if type == Photo.FromFan and @logged_in_as_fan %>
-	    <%= start_profile_info_box %>
-	        <strong>You haven't uploaded any photos!</strong>
-	        <br/><br/>
-	        If you have any photos of a show, band or venue you can go its profile
-	        and click 'Upload Photo' to contribute it to the site. It's also really easy
-	        to upload a photo you took with your cameraphone from your cell phone. You can
-	        learn more about that here (TODO)
+      <%= start_profile_info_box %>
+          <strong>You haven't uploaded any photos!</strong>
+          <br/><br/>
+          If you have any photos of a show, band or venue you can go its profile
+          and click 'Upload Photo' to contribute it to the site. It's also really easy
+          to upload a photo you took with your cameraphone from your cell phone. You can
+          learn more about that here (TODO)
         <%= end_profile_info_box %>
    <% elsif type == Photo.FromFan %>    
         <%= start_profile_info_box %>
-	        <strong><%= @fan.name %> hasn't uploaded any photos!</strong>
+          <strong><%= @fan.name %> hasn't uploaded any photos!</strong>
         <%= end_profile_info_box %>
    <% elsif type == Photo.Band %>    
         <%= start_profile_info_box %>
-	        <strong>There are no photos of this band.
-	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-	        </strong>
+          <strong>There are no photos of this band.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </strong>
         <%= end_profile_info_box %>
    <% elsif type == Photo.Venue %>    
         <%= start_profile_info_box %>
-	        <strong>There are no photos of this venue.
-	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-	        </strong>
+          <strong>There are no photos of this venue.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </strong>
         <%= end_profile_info_box %>
    <% elsif type == Photo.Show %>    
         <%= start_profile_info_box %>
-	        <strong>There are no photos of this show.
-	        <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-	        </strong>
+          <strong>There are no photos of this show.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </strong>
         <%= end_profile_info_box %>
    <% end %>
 </span>
 <% elsif not full %>
 <% 
-	if not full
-	  if type == Photo.FromFan
-	    options[:controller] = "fan/" + @fan.name
-	  end
-	end 
+  if not full
+    if type == Photo.FromFan
+      options[:controller] = "fan/" + @fan.name
+    end
+  end 
 %>
 <% end %>

@@ -1,8 +1,8 @@
 <div id="main">
 
 <% 
-	@page_title = @name
-	header = @name
+  @page_title = @name
+  header = @name
 %>
 
 <% @header_title = @name + "/Photos/" + @photo.name %>
@@ -13,36 +13,36 @@
 <br/><br/>
 <div id='caption'><%= @photo.description %></div>
 <% 
-	if (@photo.created_by_fan and @photo.created_by_fan == logged_in_fan) or
-	   (@photo.created_by_band and @photo.created_by_band == logged_in_band)	
+  if (@photo.created_by_fan and @photo.created_by_fan == logged_in_fan) or
+     (@photo.created_by_band and @photo.created_by_band == logged_in_band)  
 %>
-	<a id="edit_caption" href="#">Edit Caption</a>
-	<script type="text/javascript">
-		new Ajax.InPlaceEditor('caption', '<%= url_for(:controller => "photo", :action => "set_caption", :id => @photo.id) %>', {rows:5, externalControl:"edit_caption"})
-	</script>
+  <a id="edit_caption" href="#">Edit Caption</a>
+  <script type="text/javascript">
+    new Ajax.InPlaceEditor('caption', '<%= url_for(:controller => "photo", :action => "set_caption", :id => @photo.id) %>', {rows:5, externalControl:"edit_caption"})
+  </script>
 <% end %> 
 
 </td></tr>
 </table>
 
-	<%= render(
-		:partial => "shared/comments",
-		:locals =>
-			{
-			:comments => @photo.comments,
-			:type => Comment.Photo,
-			:id => @photo.id,
-			})
-	%>
+  <%= render(
+    :partial => "shared/comments",
+    :locals =>
+      {
+      :comments => @photo.comments,
+      :type => Comment.Photo,
+      :id => @photo.id,
+      })
+  %>
 
 </div>
 
 <div id="side">
-	<div class="sidebar-box">
-		<h2>Navigation</h2>
-		<center>
-		<%= photo_navigation_table @photo, @showing_creator %>
-		</center>
-	</div>
+  <div class="sidebar-box">
+    <h2>Navigation</h2>
+    <center>
+    <%= photo_navigation_table @photo, @showing_creator %>
+    </center>
+  </div>
 </div>
 

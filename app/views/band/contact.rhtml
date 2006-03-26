@@ -1,40 +1,40 @@
 <%= render(:partial => "tabs", :locals => {:active => "home"}) %>
 
 <div>
-	<%= start_form_tag :id => @band %>
-	<%= error_messages_for 'band' %>
+  <%= start_form_tag :id => @band %>
+  <%= error_messages_for 'band' %>
 
-	<table class="form-table">
-		<tr>
-			<th>Email:</th>
-			<td><%= text_field 'band', 'contact_email' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>Official Website:</th>
-			<td><%= text_field 'band', 'official_website' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>City:</th>
-			<td><%= text_field 'band', 'city' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>State:</th>
-			<td><%= select 'band', 'state', states_for_select %></td>
-			<td></td>
-		</tr>
-		<tr>
-			<th>Zipcode:</th>
-			<td><%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
-			<td></td>
-		</tr>
-		<tr class="submit">
-			<td></td>
-			<td><%= submit_tag 'Edit Contact Information' %></td>
-		</tr>
-	</table>
-	
-	
+  <table class="form-table">
+    <tr>
+      <th>Email:</th>
+      <td><%= text_field 'band', 'contact_email' %></td>
+      <td class="info"></td>
+    </tr>
+    <tr>
+      <th>Official Website:</th>
+      <td><%= text_field 'band', 'official_website' %></td>
+      <td class="info"></td>
+    </tr>
+    <tr>
+      <th>City:</th>
+      <td><%= text_field 'band', 'city' %></td>
+      <td class="info"></td>
+    </tr>
+    <tr>
+      <th>State:</th>
+      <td><%= select 'band', 'state', states_for_select %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Zipcode:</th>
+      <td><%= text_field 'band', 'zipcode', "size" => 5, "maxsize" => 5  %></td>
+      <td></td>
+    </tr>
+    <tr class="submit">
+      <td></td>
+      <td><%= submit_tag 'Edit Contact Information' %></td>
+    </tr>
+  </table>
+  
+  
 </div>

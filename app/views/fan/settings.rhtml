@@ -2,173 +2,173 @@
 <% @header_title = @fan.name + "/Account Settings" %>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <script type="text/javascript">
-	function init_focus()
-	{
-		$('fan_contact_email').focus()
-	}
+  function init_focus()
+  {
+    $('fan_contact_email').focus()
+  }
 </script>
 
 
 <div id="main">
-	<%= start_form_tag :id => @fan %>
-	<%= error_messages_for 'fan' %>
+  <%= start_form_tag :id => @fan %>
+  <%= error_messages_for 'fan' %>
 
-	<%= simple_separator "General Settings" %>
-	
-	<table class="form-table">
-		<tr>
-			<th>Profile Page:</th>
-			<td><%= public_fan_link public_fan_url %></td>
-			<td class="info">
-				Permanent link to your public profile.
-			</td>
-		</tr>
-		<tr>
-			<th>Upload Address:</th>
-			<td><%= mail_to( @fan.upload_addr ) %></td>
-			<td class="info">
-			     Your unique address to upload photos and comments by email. Learn how. TODO
-			</td>
-		</tr>
-		<tr>
-			<th>Email:</th>
-			<td><%= text_field 'fan', 'contact_email' %></td>
-			<td class="info">
-				<strong>Required</strong>&nbsp;
-				The email address that show reminders and administrative emails will be sent to.
-			</td>
-		</tr>
-		<tr>
-			<th>Location:</th>
-			<td><%= text_field 'fan',  'city_state_zip' %></td>
-			<td class="info">
-				You can enter a <em>city,state</em> or a <em>zip code</em>. Your location is used
-				to find shows, bands and venues in your area. Providing a zip code will allow us
-				to be more accurate.
-				<strong>We highly recommend that that you provide a location.</strong>
-			</td>
-		</tr>
-		<tr>
-			<th>Public Name:</th>
-			<td><%= text_field 'fan', 'real_name' %></td>
-			<td class="info">
-				If you want a name other than your username to appear on your public profile.
-			</td>
-		</tr>
-		<tr>
-			<th>Website:</th>
-			<td><%= text_field 'fan', 'website' %></td>
-			<td class="info">
-				An external site that will be linked to from your public profile.
-			</td>
-		</tr>
-	</table>
-	
+  <%= simple_separator "General Settings" %>
+  
+  <table class="form-table">
+    <tr>
+      <th>Profile Page:</th>
+      <td><%= public_fan_link public_fan_url %></td>
+      <td class="info">
+        Permanent link to your public profile.
+      </td>
+    </tr>
+    <tr>
+      <th>Upload Address:</th>
+      <td><%= mail_to( @fan.upload_addr ) %></td>
+      <td class="info">
+           Your unique address to upload photos and comments by email. Learn how. TODO
+      </td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td><%= text_field 'fan', 'contact_email' %></td>
+      <td class="info">
+        <strong>Required</strong>&nbsp;
+        The email address that show reminders and administrative emails will be sent to.
+      </td>
+    </tr>
+    <tr>
+      <th>Location:</th>
+      <td><%= text_field 'fan',  'city_state_zip' %></td>
+      <td class="info">
+        You can enter a <em>city,state</em> or a <em>zip code</em>. Your location is used
+        to find shows, bands and venues in your area. Providing a zip code will allow us
+        to be more accurate.
+        <strong>We highly recommend that that you provide a location.</strong>
+      </td>
+    </tr>
+    <tr>
+      <th>Public Name:</th>
+      <td><%= text_field 'fan', 'real_name' %></td>
+      <td class="info">
+        If you want a name other than your username to appear on your public profile.
+      </td>
+    </tr>
+    <tr>
+      <th>Website:</th>
+      <td><%= text_field 'fan', 'website' %></td>
+      <td class="info">
+        An external site that will be linked to from your public profile.
+      </td>
+    </tr>
+  </table>
+  
 <script type="text/javascript">
-	function update_sms_button(request)
-	{
-		var txt = request.responseText;		
-		var but = $("sms_test")		
-		but.innerHTML = txt;
-		but.disabled = true;
-	}
-	
-	// The params for the sms test
-	var params;
-	
-	function update_sms_button_pressed()
-	{
-	    // Change the button next
-		var but = $("sms_test")		
-		but.disabled = true;
-		
-		// Gather the params
-		num = $("fan_mobile_number").value
-		type = $("fan_carrier_type").value
-		
-		// Form param string
-		params = 'num=' + num + '&type=' + type;
-	}
+  function update_sms_button(request)
+  {
+    var txt = request.responseText;    
+    var but = $("sms_test")    
+    but.innerHTML = txt;
+    but.disabled = true;
+  }
+  
+  // The params for the sms test
+  var params;
+  
+  function update_sms_button_pressed()
+  {
+      // Change the button next
+    var but = $("sms_test")    
+    but.disabled = true;
+    
+    // Gather the params
+    num = $("fan_mobile_number").value
+    type = $("fan_carrier_type").value
+    
+    // Form param string
+    params = 'num=' + num + '&type=' + type;
+  }
 </script>
-	
-	<%= simple_separator "Reminder Settings" %>
-	<table class="form-table">
+  
+  <%= simple_separator "Reminder Settings" %>
+  <table class="form-table">
 
-	   	<tr>
-			<th>Mobile email:</th>
-			<td width="40%">
-				<%= text_field('fan', 'mobile_number', { "size" => 10, "maxlength" => 10 }) %> @ 
-				<%= select('fan', 'carrier_type', carriers_for_select ) %>
-				
-				<br/><br/>
-				<div style="margin-left:20px">
-			    
-			    <% # Hack around limit on nesting forms -- uses JS to gather number and carrier %>
-			    <button id="sms_test" onclick="update_sms_button_pressed(); new Ajax.Request('/fans/send_test_sms', {asynchronous:true, evalScripts:true, onComplete:function(request){update_sms_button(request)}, parameters:params}); return false;">			    
-				Send Test Message
-				</button>
-				
-				</div>
-			</td>
-			<td class="info">
-				Mobile phone's 10-digit number and carrier for reminders. You can send
-				a test message to your mobile phone.
-			</td>
-		</tr>
-		<tr>
-			<th>Show Reminder Times:</th>
-			<td>
-			<div style="padding-bottom:0px">
-			<%= select('fan', 'show_reminder_first', Fan.reminder_options ) %>
-			and <%= select('fan', 'show_reminder_second', Fan.reminder_options ) %>
-			</div>
-			</td>
-			<td class="info">
-				How far in advance to send reminders <strong>before</strong> the show
-			</td>	
-		</tr>
-		<tr>
-			<th>Send Show Remidners To:</th>
-			<td>
-				<%= check_box(:fan, :wants_email_reminder) %> Email address
-				<br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email
-			
-			</td>
-	        <td class="info">
-				Where to send show reminders
-			</td>	
-		</tr>
-		<tr>
-			<th>Reminder For Watched Shows (email only):</th>
-			<td>
-				<%= select('fan', 'show_watching_reminder', Fan.watching_reminder_options ) %>
-			</td>
-			<td class="info">
-				How far in advance to send a reminder <strong>before</strong> shows
-				that you have added to your watchlist. <br/>We only send reminders for watched
-				shows to your email address.
-			</td>
-		</tr>
-		<tr class="submit">
-			<td></td>
-			<td><%= submit_tag 'Edit Settings' %></td>
-		</tr>
-	</table>
-	
-	<%= end_form_tag %>
+       <tr>
+      <th>Mobile email:</th>
+      <td width="40%">
+        <%= text_field('fan', 'mobile_number', { "size" => 10, "maxlength" => 10 }) %> @ 
+        <%= select('fan', 'carrier_type', carriers_for_select ) %>
+        
+        <br/><br/>
+        <div style="margin-left:20px">
+          
+          <% # Hack around limit on nesting forms -- uses JS to gather number and carrier %>
+          <button id="sms_test" onclick="update_sms_button_pressed(); new Ajax.Request('/fans/send_test_sms', {asynchronous:true, evalScripts:true, onComplete:function(request){update_sms_button(request)}, parameters:params}); return false;">          
+        Send Test Message
+        </button>
+        
+        </div>
+      </td>
+      <td class="info">
+        Mobile phone's 10-digit number and carrier for reminders. You can send
+        a test message to your mobile phone.
+      </td>
+    </tr>
+    <tr>
+      <th>Show Reminder Times:</th>
+      <td>
+      <div style="padding-bottom:0px">
+      <%= select('fan', 'show_reminder_first', Fan.reminder_options ) %>
+      and <%= select('fan', 'show_reminder_second', Fan.reminder_options ) %>
+      </div>
+      </td>
+      <td class="info">
+        How far in advance to send reminders <strong>before</strong> the show
+      </td>  
+    </tr>
+    <tr>
+      <th>Send Show Remidners To:</th>
+      <td>
+        <%= check_box(:fan, :wants_email_reminder) %> Email address
+        <br/><%= check_box(:fan, :wants_mobile_reminder) %> Mobile email
+      
+      </td>
+          <td class="info">
+        Where to send show reminders
+      </td>  
+    </tr>
+    <tr>
+      <th>Reminder For Watched Shows (email only):</th>
+      <td>
+        <%= select('fan', 'show_watching_reminder', Fan.watching_reminder_options ) %>
+      </td>
+      <td class="info">
+        How far in advance to send a reminder <strong>before</strong> shows
+        that you have added to your watchlist. <br/>We only send reminders for watched
+        shows to your email address.
+      </td>
+    </tr>
+    <tr class="submit">
+      <td></td>
+      <td><%= submit_tag 'Edit Settings' %></td>
+    </tr>
+  </table>
+  
+  <%= end_form_tag %>
 </div>
 
 <div id="side">
-	<div id="actions-box" class="sidebar-box">
-		<h2 id="actions-title"><span class="title">Actions</span></h2>
-		<p>
-			<%= link_to "Change Password", :action => "change_password" %>
-		</p>	
-	</div>
+  <div id="actions-box" class="sidebar-box">
+    <h2 id="actions-title"><span class="title">Actions</span></h2>
+    <p>
+      <%= link_to "Change Password", :action => "change_password" %>
+    </p>  
+  </div>
 </div>
 <script type="text/javascript">
     var white = '#FFFFFF';

@@ -1,34 +1,34 @@
 <html>
 <body>
-	<p>
-		<% if @show.title != "" %>
-			<strong><%= @show.title  %></strong><br/>
-		<% end %>
+  <p>
+    <% if @show.title != "" %>
+      <strong><%= @show.title  %></strong><br/>
+    <% end %>
         <strong><%= @show.bands.map { |band| band.name }.join("/") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
         <% if @show.description != "" %>
-       		<%= @show.description %>
-       		<br/><br/>
-       	<% end %>
-       	<a href="<%= @url_prefix + @show.id.to_s %>">More Details</a>
-	</p>	
-	
-	<p>
-		You are currently watching this show. If you are going to attend, click
-		<a href="<%= @url_prefix + @show.id.to_s %>">here</a> and then click on "Attend Show".
-		You can then get email and SMS reminders closer to the date of the show.
-	</p>
-	
-	<hr/>
-	<p>
-		If you'd like to stop receiving these reminder emails, log in to your account 
-		<a href="http://tourb.us">here</a> and modify the "Show Reminders" setting 
-		for watched shows.
-	</p>
-	<p>
-		Thanks,<br/>
-		the tourbus team.
-	</p>
+           <%= @show.description %>
+           <br/><br/>
+         <% end %>
+         <a href="<%= @url_prefix + @show.id.to_s %>">More Details</a>
+  </p>  
+  
+  <p>
+    You are currently watching this show. If you are going to attend, click
+    <a href="<%= @url_prefix + @show.id.to_s %>">here</a> and then click on "Attend Show".
+    You can then get email and SMS reminders closer to the date of the show.
+  </p>
+  
+  <hr/>
+  <p>
+    If you'd like to stop receiving these reminder emails, log in to your account 
+    <a href="http://tourb.us">here</a> and modify the "Show Reminders" setting 
+    for watched shows.
+  </p>
+  <p>
+    Thanks,<br/>
+    the tourbus team.
+  </p>
 </body>
 </html>

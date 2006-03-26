@@ -89,14 +89,14 @@ module ApplicationHelper
     # The calenda setup javascript
     out += <<END_JS
       <script type="text/javascript">
-		Calendar.setup(
-  		  {
-  		    inputField : "#{var}_#{field}",
-  		    ifFormat : "%B %d, %Y",
-  		    button : "#{trigger_id}"
-  		  }
-		);
-	  </script>
+    Calendar.setup(
+        {
+          inputField : "#{var}_#{field}",
+          ifFormat : "%B %d, %Y",
+          button : "#{trigger_id}"
+        }
+    );
+    </script>
 END_JS
     
   end
@@ -109,9 +109,9 @@ END_JS
   def section(title_img, action = nil)
     out = "<div class='panel_header'><table><tr>"
     out << "<td width='580px'>#{image_tag(title_img)}</td>"
-	if action
-	 out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
-	end
+  if action
+   out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
+  end
     out << '</tr></table></div>'
   end
   

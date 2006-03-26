@@ -14,9 +14,9 @@
 <%= section "shows_section", map_list_toggle("index") %>
 
 <% if @params[:show_map] == "true" %>
-	<a name="map_top"/>
-	<br/>
-	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+  <a name="map_top"/>
+  <br/>
+  <div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
 
 <br/>
@@ -34,28 +34,28 @@
 <% end %>
 
 
-	<%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @band.photos,
-		:type => Photo.Band,
-		:id => @band.id,
-		:full => false
-		}) 
-	%>
+  <%= render(
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @band.photos,
+    :type => Photo.Band,
+    :id => @band.id,
+    :full => false
+    }) 
+  %>
 
-	<br/>
+  <br/>
 
-	<%= render(
-		:partial => "shared/comments",
-		:locals =>
-			{
-			:comments => @band.comments,
-			:type => Comment.Band,
-			:id => @band.id,
-			})
-	%>
+  <%= render(
+    :partial => "shared/comments",
+    :locals =>
+      {
+      :comments => @band.comments,
+      :type => Comment.Band,
+      :id => @band.id,
+      })
+  %>
 
 </div>
 

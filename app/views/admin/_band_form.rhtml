@@ -1,109 +1,109 @@
 <script type="text/javascript">
-	function update_public_page(name_field)
-	{
-		<% # NOTE: Keep this in sync with the implementation in band.rb! %>
-		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
-		$("band_short_name").value = id.toLowerCase();
-	}
-	
-	function init_focus()
-	{
-		$('band_name').focus()
-	}
+  function update_public_page(name_field)
+  {
+    <% # NOTE: Keep this in sync with the implementation in band.rb! %>
+    var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
+    $("band_short_name").value = id.toLowerCase();
+  }
+  
+  function init_focus()
+  {
+    $('band_name').focus()
+  }
 </script>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <% if edit %>
-	<%= if !@band.logo.nil?
-	  image_tag url_for_file_column("band", "logo") , :id => "band_logo"
-	else
-	  "<img id='band_logo' src='/images/unknown.jpg'/>".to_s
- 	end %>
+  <%= if !@band.logo.nil?
+    image_tag url_for_file_column("band", "logo") , :id => "band_logo"
+  else
+    "<img id='band_logo' src='/images/unknown.jpg'/>".to_s
+   end %>
 <% end %>
 
 <%= start_form_tag nil, :multipart => true %>
 <%= error_messages_for 'band' %>
 <% if edit %>
-	<input type="hidden" value="<%= params[:id] %>"/>
+  <input type="hidden" value="<%= params[:id] %>"/>
 <% end %>
 <table class="form-table">
-	<tr>
-		<th>Band Name:</th>
-		<td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
-	</tr>
-	<tr>
-		<th>Public Page:</th>
-		<td><%= text_field 'band', 'short_name', :size => 20  %></td>
-	</tr>
-	<tr>
-		<th>Email Address:</th>
-		<td><%= text_field 'band', 'contact_email'  %></td>
-	</tr>
-	<tr>
-		<th>Location:</th>
-		<td><%= text_field 'band',  'city_state_zip' %></td>
-	</tr>
-	<tr>
-		<th>Bio:</th>
-		<td><%= text_area 'band', 'bio', "rows" => 4  %></td>
-	</tr>
-	<tr>
-		<th>Logo:</th>
-		<td><%= file_column_field "band", "logo" %></td>
-	</tr>
-	<tr>
-		<th>Tags:</th>
-		<td><%= text_field_tag 'tags', @tags, :size => 30 %></td>
-		<td class="info">
-		Deleting tags here will <b>not</b> delete them.
-		</td>
-	</tr>
-	
-	<tr>
-		<th>1st Link Name:</th>
-		<td><%= text_field_tag 'name_link1', @name_link1, :size => 30  %></td>
-		<td class="info">
-		Deleting links here will <b>not</b> delete them. Only useful adding new links.
-	</tr>
-		<tr>
-		<th>1st Link URL:</th>
-		<td><%= text_field_tag 'url_link1', @url_link1, :size => 30  %></td>
-	</tr>
-	
-	<tr>
-		<th>2nd Link Name:</th>
-		<td><%= text_field_tag 'name_link2', @name_link2, :size => 30  %></td>
-	</tr>
-		<tr>
-		<th>2nd Link URL:</th>
-		<td><%= text_field_tag 'url_link2', @url_link2, :size => 30  %></td>
-	</tr>
-	
+  <tr>
+    <th>Band Name:</th>
+    <td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
+  </tr>
+  <tr>
+    <th>Public Page:</th>
+    <td><%= text_field 'band', 'short_name', :size => 20  %></td>
+  </tr>
+  <tr>
+    <th>Email Address:</th>
+    <td><%= text_field 'band', 'contact_email'  %></td>
+  </tr>
+  <tr>
+    <th>Location:</th>
+    <td><%= text_field 'band',  'city_state_zip' %></td>
+  </tr>
+  <tr>
+    <th>Bio:</th>
+    <td><%= text_area 'band', 'bio', "rows" => 4  %></td>
+  </tr>
+  <tr>
+    <th>Logo:</th>
+    <td><%= file_column_field "band", "logo" %></td>
+  </tr>
+  <tr>
+    <th>Tags:</th>
+    <td><%= text_field_tag 'tags', @tags, :size => 30 %></td>
+    <td class="info">
+    Deleting tags here will <b>not</b> delete them.
+    </td>
+  </tr>
+  
+  <tr>
+    <th>1st Link Name:</th>
+    <td><%= text_field_tag 'name_link1', @name_link1, :size => 30  %></td>
+    <td class="info">
+    Deleting links here will <b>not</b> delete them. Only useful adding new links.
+  </tr>
     <tr>
-		<th>3rd Link Name:</th>
-		<td><%= text_field_tag 'name_link3', @name_link3, :size => 30  %></td>
-	</tr>
-		<tr>
-		<th>3rd Link URL:</th>
-		<td><%= text_field_tag 'url_link3', @url_link3, :size => 30  %></td>
-	</tr>
-	
+    <th>1st Link URL:</th>
+    <td><%= text_field_tag 'url_link1', @url_link1, :size => 30  %></td>
+  </tr>
+  
+  <tr>
+    <th>2nd Link Name:</th>
+    <td><%= text_field_tag 'name_link2', @name_link2, :size => 30  %></td>
+  </tr>
     <tr>
-		<th>4th Link Name:</th>
-		<td><%= text_field_tag 'name_link4', @name_link4, :size => 30  %></td>
-	</tr>
-		<tr>
-		<th>4th Link URL:</th>
-		<td><%= text_field_tag 'url_link4', @url_link4, :size => 30  %></td>
-	</tr>
-	
-	<tr class="submit">
-		<td></td>
-		<% str = edit ? "Edit Band" : "Create Band" %>
-		<td><%= submit_tag str %></td>
-	</tr>
+    <th>2nd Link URL:</th>
+    <td><%= text_field_tag 'url_link2', @url_link2, :size => 30  %></td>
+  </tr>
+  
+    <tr>
+    <th>3rd Link Name:</th>
+    <td><%= text_field_tag 'name_link3', @name_link3, :size => 30  %></td>
+  </tr>
+    <tr>
+    <th>3rd Link URL:</th>
+    <td><%= text_field_tag 'url_link3', @url_link3, :size => 30  %></td>
+  </tr>
+  
+    <tr>
+    <th>4th Link Name:</th>
+    <td><%= text_field_tag 'name_link4', @name_link4, :size => 30  %></td>
+  </tr>
+    <tr>
+    <th>4th Link URL:</th>
+    <td><%= text_field_tag 'url_link4', @url_link4, :size => 30  %></td>
+  </tr>
+  
+  <tr class="submit">
+    <td></td>
+    <% str = edit ? "Edit Band" : "Create Band" %>
+    <td><%= submit_tag str %></td>
+  </tr>
 </table>
 <%= end_form_tag %>

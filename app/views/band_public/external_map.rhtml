@@ -1,31 +1,31 @@
 <%= gmaps_header %>
 <% 
-	  content_for("onload") do 
+    content_for("onload") do 
 %>
-	  init_map()
+    init_map()
 <%  
-	  end  
+    end  
 %>
 
 <script type="text/javascript">
-	
-	function init_map()
-	{
-		var map = new GMap(document.getElementById("map"));
-		
-	  	map.addControl(new GSmallMapControl());
-		<%= center_and_zoom_to_shows(@shows) %>
-		<%= write_show_map_points @shows %>
-	}
+  
+  function init_map()
+  {
+    var map = new GMap(document.getElementById("map"));
+    
+      map.addControl(new GSmallMapControl());
+    <%= center_and_zoom_to_shows(@shows) %>
+    <%= write_show_map_points @shows %>
+  }
 </script>
 
 <%
-	p params
-	width = params[:width]
-	width = "500px" if width == "" or width.nil?
-	
-	height = params[:height]
-	height = "350px" if height == "" or height.nil?
+  p params
+  width = params[:width]
+  width = "500px" if width == "" or width.nil?
+  
+  height = params[:height]
+  height = "350px" if height == "" or height.nil?
 %>
 
 

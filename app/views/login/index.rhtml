@@ -2,51 +2,51 @@
 <% @header_title = "Login" %>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <script type="text/javascript">
-	function init_focus()
-	{
-		$('login').focus()
-	}
+  function init_focus()
+  {
+    $('login').focus()
+  }
 </script>
 
 <%= start_form_tag %>
 
 <table class="form-table">
-	<tr>
-		<th>Username:</th>
-		<td><%= text_field_tag('login', nil, :size => 30) %></td>
-		<td class="info">
-		</td>
-	</tr>
-	<tr>
-		<th>Password:</th>
-		<td><%= password_field_tag('password', nil, :size => 30) %></td>
-	</tr>
+  <tr>
+    <th>Username:</th>
+    <td><%= text_field_tag('login', nil, :size => 30) %></td>
+    <td class="info">
+    </td>
+  </tr>
+  <tr>
+    <th>Password:</th>
+    <td><%= password_field_tag('password', nil, :size => 30) %></td>
+  </tr>
 
-	<tr>
-		<th>You Are a:</th>
-		<td>
+  <tr>
+    <th>You Are a:</th>
+    <td>
 
-		<input checked="checked" id="fan-type" name="type" type="radio" value="fan" />
-		<label for="fan-type" style="font-size: 12; font-weight: bold;">Fan</label>
-	
-		<input id="band-type" name="type" type="radio" value="band" style="margin-left: 35px"/>
-		<label for="band-type" style="font-size: 12; font-weight: bold;">Band</label>
-		
-		</td>
-	</tr>
-	<tr>
-		<th>Remember Me:</th>
-		<td><%= check_box_tag "remember_me", value="true", checked=params[:remember_me] == "true" %></td>
-	</tr>
-	<tr class="submit">
-		<td></td>
-		<td><%= submit_tag 'Login' %></td>
-	</tr>
-	
+    <input checked="checked" id="fan-type" name="type" type="radio" value="fan" />
+    <label for="fan-type" style="font-size: 12; font-weight: bold;">Fan</label>
+  
+    <input id="band-type" name="type" type="radio" value="band" style="margin-left: 35px"/>
+    <label for="band-type" style="font-size: 12; font-weight: bold;">Band</label>
+    
+    </td>
+  </tr>
+  <tr>
+    <th>Remember Me:</th>
+    <td><%= check_box_tag "remember_me", value="true", checked=params[:remember_me] == "true" %></td>
+  </tr>
+  <tr class="submit">
+    <td></td>
+    <td><%= submit_tag 'Login' %></td>
+  </tr>
+  
 </table>
 
 <%= end_form_tag %>

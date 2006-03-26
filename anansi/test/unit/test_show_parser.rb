@@ -1,4 +1,4 @@
-require 'anansi/test/unit/base'	
+require 'anansi/test/unit/base'  
 
 class ShowParserTest < Test::Unit::TestCase
   def setup

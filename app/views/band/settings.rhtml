@@ -2,66 +2,66 @@
 <% @header_title = @band.name + "/Account Settings" %>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <script type="text/javascript">
-	function init_focus()
-	{
-		$('band_contact_email').focus()
-	}
+  function init_focus()
+  {
+    $('band_contact_email').focus()
+  }
 </script>
 
 <div id="main">
 
-	<%= start_form_tag({:id => @band}, :multipart => true) %>
-	<%= error_messages_for 'band' %>
+  <%= start_form_tag({:id => @band}, :multipart => true) %>
+  <%= error_messages_for 'band' %>
 
-	<table class="form-table">
-		<tr>
-			<th>Email:</th>
-			<td><%= text_field 'band', 'contact_email' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>Official Website:</th>
-			<td><%= text_field 'band', 'official_website' %></td>
-			<td class="info"></td>
-		</tr>
-		<tr>
-			<th>Location:</th>
-			<td><%= text_field 'band',  'city_state_zip' %></td>
-			<td class="info">
-				You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
-				<strong>We highly recommend that that you provide a location.</strong>
-			</td>
-		</tr>
-		
-		<tr class="submit">
-			<td></td>
-			<td><%= submit_tag 'Edit Settings' %></td>
-		</tr>
-	</table>	
+  <table class="form-table">
+    <tr>
+      <th>Email:</th>
+      <td><%= text_field 'band', 'contact_email' %></td>
+      <td class="info"></td>
+    </tr>
+    <tr>
+      <th>Official Website:</th>
+      <td><%= text_field 'band', 'official_website' %></td>
+      <td class="info"></td>
+    </tr>
+    <tr>
+      <th>Location:</th>
+      <td><%= text_field 'band',  'city_state_zip' %></td>
+      <td class="info">
+        You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
+        <strong>We highly recommend that that you provide a location.</strong>
+      </td>
+    </tr>
+    
+    <tr class="submit">
+      <td></td>
+      <td><%= submit_tag 'Edit Settings' %></td>
+    </tr>
+  </table>  
 
 </div>
 
 <div id="side">
-	<div id="tools-box" class="sidebar-box">
-		<h2 id="tools-title"><span class="title">Tools</span></h2>
-		<p>
-			<%= link_to "Click here", :action => "map_tool" %> to add an interactive of your
-			upcoming shows to your website.
-		</p>	
-	</div>
-	<br/>
-	<div id="actions-box" class="sidebar-box">
-		<h2 id="actions-title"><span class="title">Actions</span></h2>
-		<p>
-			<%= link_to "Add a Show", band_public_action("add_show") %>
-			<br/>
-			<%= link_to "Change Password", :action => "change_password" %>
-		</p>	
-	</div>
+  <div id="tools-box" class="sidebar-box">
+    <h2 id="tools-title"><span class="title">Tools</span></h2>
+    <p>
+      <%= link_to "Click here", :action => "map_tool" %> to add an interactive of your
+      upcoming shows to your website.
+    </p>  
+  </div>
+  <br/>
+  <div id="actions-box" class="sidebar-box">
+    <h2 id="actions-title"><span class="title">Actions</span></h2>
+    <p>
+      <%= link_to "Add a Show", band_public_action("add_show") %>
+      <br/>
+      <%= link_to "Change Password", :action => "change_password" %>
+    </p>  
+  </div>
 </div>
 
 <script type="text/javascript">

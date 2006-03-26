@@ -172,6 +172,11 @@ class AdminController < ApplicationController
   end
   
   def load_shows
+    #if @session[:shows_by_status]
+    #  @shows_by_status = @session[:shows_by_status]
+    #  return
+    #end
+    
     importer = AnansiImporter.new
     shows = importer.latest_prepared_shows
     
@@ -180,6 +185,8 @@ class AdminController < ApplicationController
       list = @shows_by_status[show[:status]] ||= []
       list << show
     end
+    
+    #@session[:shows_by_status] = @shows_by_status
   end
   
   private 

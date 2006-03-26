@@ -30,10 +30,10 @@ module FerretMixin
         # is the total number of hits
         #
         # Options:
-        # filter:	Filters docs from the search result
-        # first_doc:	The index in the results of the first doc retrieved. Default is 0
-        # num_docs:	The number of results returned. Default is 10
-        # sort:	An array of SortFields describing how to sort the results. 
+        # filter:  Filters docs from the search result
+        # first_doc:  The index in the results of the first doc retrieved. Default is 0
+        # num_docs:  The number of results returned. Default is 10
+        # sort:  An array of SortFields describing how to sort the results. 
         def ferret_search(q, options = {})
           query = basic_ferret_query(q, options)
           
@@ -62,10 +62,10 @@ module FerretMixin
         # Results will first be ordered by date (if applicable), then relevance.
         #
         # Options:
-        # filter:	Filters docs from the search result
-        # first_doc:	The index in the results of the first doc retrieved. Default is 0
-        # num_docs:	The number of results returned. Default is 10
-        # sort:	An array of SortFields describing how to sort the results.
+        # filter:  Filters docs from the search result
+        # first_doc:  The index in the results of the first doc retrieved. Default is 0
+        # num_docs:  The number of results returned. Default is 10
+        # sort:  An array of SortFields describing how to sort the results.
         # exact_date: Only results on the given date.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)

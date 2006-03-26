@@ -29,9 +29,9 @@ module ShowHelper
     shows_by_venue.each do |venue, shows|
       out << "{"
       out << "var latitude = #{venue.latitude};"
-	  out << "var longitude = #{venue.longitude};"
-	  out << "var point = new GPoint(longitude, latitude);"
-	  
+    out << "var longitude = #{venue.longitude};"
+    out << "var point = new GPoint(longitude, latitude);"
+    
       div_class = shows.size > 1 ? "map_info" : "map_info"
       out << "var html = \"<div class='#{div_class}'>\";"
       
@@ -90,9 +90,9 @@ module ShowHelper
   end
   
   def map_info_venue_details(venue)
-	out =  "html += '<b>#{gmarker_fmt(venue.name)}</b><br/>';"
-	out << "html += '#{gmarker_fmt(venue.address)}<br/>';"
-	out << "html += '#{gmarker_fmt(venue.city)}, #{gmarker_fmt(venue.state)} #{gmarker_fmt(venue.zipcode)} <br/>';"
+  out =  "html += '<b>#{gmarker_fmt(venue.name)}</b><br/>';"
+  out << "html += '#{gmarker_fmt(venue.address)}<br/>';"
+  out << "html += '#{gmarker_fmt(venue.city)}, #{gmarker_fmt(venue.state)} #{gmarker_fmt(venue.zipcode)} <br/>';"
   end
   
 end

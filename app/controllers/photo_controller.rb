@@ -18,11 +18,11 @@ class PhotoController < ApplicationController
     photo.save
     
     str = render_to_string(
-	:partial => "photo/photo_preview_contents", 
-	:locals => 
-		{
-		:photo => photo,
-		})
+  :partial => "photo/photo_preview_contents", 
+  :locals => 
+    {
+    :photo => photo,
+    })
     
     # Escape single quotes (TODO Factor out)
     str.gsub!(/["']/) { |m| "\\#{m}" }

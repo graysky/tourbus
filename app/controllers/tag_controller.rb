@@ -34,14 +34,14 @@ class TagController < ApplicationController
     
     # Render the new tag name
     render(
-		:partial => "shared/tag",
-		:locals =>
-			{
-			:tag => tag,
-			:type => tag_type,
-			:id => id,
-			:show_delete => show_delete,
-			})
+    :partial => "shared/tag",
+    :locals =>
+      {
+      :tag => tag,
+      :type => tag_type,
+      :id => id,
+      :show_delete => show_delete,
+      })
   
   end
   
@@ -78,11 +78,11 @@ class TagController < ApplicationController
 
     # Show the tag hits in a drop down box
     render(
-	:partial => "shared/tag_hits", 
-	:locals => 
-		{
-		:tags => tags, 
-		}) 
+  :partial => "shared/tag_hits", 
+  :locals => 
+    {
+    :tags => tags, 
+    }) 
     
   end
   

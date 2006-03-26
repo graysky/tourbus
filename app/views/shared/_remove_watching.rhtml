@@ -7,13 +7,13 @@
 
 <% if request.xhr? %>
 <script type="text/javascript">
-	Tooltip.add('remove_watching_link', 'remove_watch_tip');
+  Tooltip.add('remove_watching_link', 'remove_watch_tip');
 </script>
 <% end %>
 
 <script type="text/javascript">
-	function toggleWatching(event)
-	{
-		Tooltip.toggle($('remove_watching_link'), event);
-	}
+  function toggleWatching(event)
+  {
+    Tooltip.toggle($('remove_watching_link'), event);
+  }
 </script>

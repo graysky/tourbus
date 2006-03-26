@@ -25,11 +25,11 @@ class MultiTableParser < TableParser
         
         @shows = []
 
-		# The root is the table
+    	# The root is the table
         self.root = elem
         temp = super
         
-		# Set the date on each show
+    	# Set the date on each show
         temp.each do |show|
           show[:date] = date
           all_shows << show

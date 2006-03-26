@@ -1,19 +1,19 @@
 <table>
 <tr>
-	<td><img src="/images/attend_show.gif"/></td>
-	<td><a href="#" id="add_attending_link">Attend Show</a></td>
+  <td><img src="/images/attend_show.gif"/></td>
+  <td><a href="#" id="add_attending_link">Attend Show</a></td>
 </tr>
 </table>
 
 <% if request.xhr? %>
 <script type="text/javascript">
-	Tooltip.add('add_attending_link', 'add_tip');
+  Tooltip.add('add_attending_link', 'add_tip');
 </script>
 <% end %>
 
 <script type="text/javascript">
-	function toggleAttending(event)
-	{
-		Tooltip.toggle($('add_attending_link'), event);
-	}
+  function toggleAttending(event)
+  {
+    Tooltip.toggle($('add_attending_link'), event);
+  }
 </script>

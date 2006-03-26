@@ -7,10 +7,10 @@
 %>
 
 <script type="text/javascript">
-	function finish_comment_submit()
-	{
-		$("comment_body").value = '';
-	}
+  function finish_comment_submit()
+  {
+    $("comment_body").value = '';
+  }
 </script>
 
 <% action = logged_in? ? "<a href='#add_comment'>#{image_tag('add_comment')}</a>" : nil %>
@@ -18,11 +18,11 @@
 
 <% if comments.nil? || comments.empty? %>
     <br/>
-	<%= start_profile_info_box %>
-	    <strong>
-	       There are no comments yet.
-	       <% if not logged_in? %>If you were logged in you could add some!<% end %>
-	    </strong>
+  <%= start_profile_info_box %>
+      <strong>
+         There are no comments yet.
+         <% if not logged_in? %>If you were logged in you could add some!<% end %>
+      </strong>
     <%= end_profile_info_box %>
 <% end %>
 
@@ -32,39 +32,39 @@
 
 <div id="comment_form">
 
-	<% if logged_in? %>
+  <% if logged_in? %>
 
-	<%= form_remote_tag(
-		:update => "comment-list",
-		:position => :bottom,
-		:complete => "finish_comment_submit()",
-		:url => { 
-			:controller => "comment",
-			:action => "create", 
-			:id => id,
-			:type => type,
-		}) 
-		%>
+  <%= form_remote_tag(
+    :update => "comment-list",
+    :position => :bottom,
+    :complete => "finish_comment_submit()",
+    :url => { 
+      :controller => "comment",
+      :action => "create", 
+      :id => id,
+      :type => type,
+    }) 
+    %>
 
-	<table class="form-table">
- 		<tr>
- 			<th>Comment:</th>
- 			<td>
- 				<%= text_area( "comment", "body", { "rows" => 5, "cols" => 50 } ) %>
- 			</td>
- 		</tr>
- 		<tr class="submit">
-			<td align="right"></td>
-			<td>
-				<%= submit_tag "Post Comment" %>
-			</td>
-		</tr>
- 	</table>	
+  <table class="form-table">
+     <tr>
+       <th>Comment:</th>
+       <td>
+         <%= text_area( "comment", "body", { "rows" => 5, "cols" => 50 } ) %>
+       </td>
+     </tr>
+     <tr class="submit">
+      <td align="right"></td>
+      <td>
+        <%= submit_tag "Post Comment" %>
+      </td>
+    </tr>
+   </table>  
 
-	<%= end_form_tag %>
-	<% end %>
-	
-</div>	
+  <%= end_form_tag %>
+  <% end %>
+  
+</div>  
 
 </div>
 <% # Need to have nbsp to fix css bug %>

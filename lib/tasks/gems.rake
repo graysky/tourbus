@@ -22,17 +22,17 @@ task :freeze_other_gems do
 
     # Copy files recursively to ./lib
     folder_for_library_with_lib = "vendor/#{folder_for_library}/lib/"
-		Find.find(folder_for_library_with_lib) do |original_file|
-		  destination_file = "./lib/" + original_file.gsub(folder_for_library_with_lib, '')
-		  
-		  if File.directory?(original_file)
-		    if !File.exist?(destination_file)
-		      Dir.mkdir destination_file
-		    end
-	    else
-	      File.copy original_file, destination_file
-		  end
-		end
+    Find.find(folder_for_library_with_lib) do |original_file|
+      destination_file = "./lib/" + original_file.gsub(folder_for_library_with_lib, '')
+      
+      if File.directory?(original_file)
+        if !File.exist?(destination_file)
+          Dir.mkdir destination_file
+        end
+      else
+        File.copy original_file, destination_file
+      end
+    end
 
     system "rm -r vendor/#{folder_for_library}"  
   end

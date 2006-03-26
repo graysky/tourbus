@@ -3,23 +3,23 @@
 <div id="venue_search_contents">
 
 <% if @params[:error_message] %>
-	<span class="error_message"><%= @params[:error_message] %></span>
-	<br/>
-	<br/>
+  <span class="error_message"><%= @params[:error_message] %></span>
+  <br/>
+  <br/>
 <% end %>
 
-<% if !@results.nil? %>	
+<% if !@results.nil? %>  
 <table id="venue_results_table">
-	<% for venue in @results %>
-		<tr>
-			<td>
-				<!-- FIXME: This trouble with apostrophes in the name! -->
-				<a href="#" onclick='use_existing_venue("<%= venue.id %>", "<%= h(venue.name) %>", "search")'>
-				<%= venue.name %></a>
-			</td>
-			<td><%= venue.city %>, <%= venue.state %></td>
-		</tr>
-	<%  end %>
+  <% for venue in @results %>
+    <tr>
+      <td>
+        <!-- FIXME: This trouble with apostrophes in the name! -->
+        <a href="#" onclick='use_existing_venue("<%= venue.id %>", "<%= h(venue.name) %>", "search")'>
+        <%= venue.name %></a>
+      </td>
+      <td><%= venue.city %>, <%= venue.state %></td>
+    </tr>
+  <%  end %>
 </table>
 
 
@@ -36,30 +36,30 @@
 <!-- FACTOR THIS OUT -->
 
 <% if @pages.item_count > 0 %>
-	<span id="paging_status">
-	Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %> 
-	</span>   
-	<span id="paging_controls">
-	<%=
-		if !@pages.current.first?
-		  link_to_remote  "< Prev",
-							:update => 'venue_search_results',
-							:url => { :action => :venue_search, :page => @pages.current.previous },
-							:loading => "do_venue_loading()",
-							:with => "Form.serialize(document.forms[0])"
-		end
-	%>
-	<%= "|" if !@pages.current.first? and !@pages.current.last? %>
-	<%=
-		if !@pages.current.last?
-		  link_to_remote  "Next >",
-							:update => 'venue_search_results',
-							:url => { :action => :venue_search, :page => @pages.current.next },
-							:loading => "do_venue_loading()",
-							:with => "Form.serialize(document.forms[0])"
-		end
-	%>
-	</span>
+  <span id="paging_status">
+  Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %> 
+  </span>   
+  <span id="paging_controls">
+  <%=
+    if !@pages.current.first?
+      link_to_remote  "< Prev",
+              :update => 'venue_search_results',
+              :url => { :action => :venue_search, :page => @pages.current.previous },
+              :loading => "do_venue_loading()",
+              :with => "Form.serialize(document.forms[0])"
+    end
+  %>
+  <%= "|" if !@pages.current.first? and !@pages.current.last? %>
+  <%=
+    if !@pages.current.last?
+      link_to_remote  "Next >",
+              :update => 'venue_search_results',
+              :url => { :action => :venue_search, :page => @pages.current.next },
+              :loading => "do_venue_loading()",
+              :with => "Form.serialize(document.forms[0])"
+    end
+  %>
+  </span>
 <% end %> 
 <% end %>
 </div>     

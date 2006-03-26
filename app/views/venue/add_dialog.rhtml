@@ -3,59 +3,59 @@
 <%= error_messages_for 'venue' %>
 
 <% if params[:address_error] %>
-	<center>
-	<div class="error-prompt-box" style="width:80%">
-		<h3>Address Error</h3>
-		<p>
-		We could not find the address you entered for the new venue.
-		It is very important that we have an accurate address for the venue
-		so users that are nearby will know about shows taking place there. 
-		Please correct the address if you can,
-		but if you are willing to add a venue without an address check the
-		box below and click "Add Venue" again.
-		</p>
-		<table><tr>
-			<td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td>
-			<td>Add venue with invalid address</td>
-		</tr></table>
-	</div>
-	</center>
+  <center>
+  <div class="error-prompt-box" style="width:80%">
+    <h3>Address Error</h3>
+    <p>
+    We could not find the address you entered for the new venue.
+    It is very important that we have an accurate address for the venue
+    so users that are nearby will know about shows taking place there. 
+    Please correct the address if you can,
+    but if you are willing to add a venue without an address check the
+    box below and click "Add Venue" again.
+    </p>
+    <table><tr>
+      <td><%= check_box_tag "ignore_address_error", value="true", checked=params["ignore_address_error"] == "true" %></td>
+      <td>Add venue with invalid address</td>
+    </tr></table>
+  </div>
+  </center>
 <% end %>
 
 
 <table class="form-table">
-	<tr>
-		<th>Name:</th>
-		<td><%= text_field 'venue', 'name' %></td>
-		<td class="info">
-			
-		</td>
-	</tr>
-	<tr>
-		<th>Address:</th>
-		<td><%= text_field 'venue', 'address' %></td>
-		<td class="info">
-			
-		</td>
-	</tr>
-	<tr>
-		<th>City,State or Zip:</th>
-		<td><%= text_field_tag 'citystatezip', '', :size => 30 %></td>
-		<td class="info">
-			The zipcode is optional
-		</td>
-	</tr>
-	<tr>
-		<th>Website:</th>
-		<td><%= text_field 'venue', 'url' %></td>
-		<td class="info">
-		</td>
-	</tr>
-	
-	<tr class="submit">
-		<td></td>
-		<td><%= submit_tag 'Add Venue' %></td>
-	</tr>
+  <tr>
+    <th>Name:</th>
+    <td><%= text_field 'venue', 'name' %></td>
+    <td class="info">
+      
+    </td>
+  </tr>
+  <tr>
+    <th>Address:</th>
+    <td><%= text_field 'venue', 'address' %></td>
+    <td class="info">
+      
+    </td>
+  </tr>
+  <tr>
+    <th>City,State or Zip:</th>
+    <td><%= text_field_tag 'citystatezip', '', :size => 30 %></td>
+    <td class="info">
+      The zipcode is optional
+    </td>
+  </tr>
+  <tr>
+    <th>Website:</th>
+    <td><%= text_field 'venue', 'url' %></td>
+    <td class="info">
+    </td>
+  </tr>
+  
+  <tr class="submit">
+    <td></td>
+    <td><%= submit_tag 'Add Venue' %></td>
+  </tr>
 </table>
 
 <%= end_form_tag %>

@@ -3,28 +3,28 @@
 <div id="remove_tip_<%= band.id %>" class='fave_tip'>
 <h3>Remove a favorite band</h3>
   <p>
-  	If you click "OK", you will stop receiving reminders of
-  	this band's upcoming shows.<br/><br/>
-  	
-  	<strong>Are you sure you want to remove this band from your favorites?</strong>
-		      	
-  	
-  	<%= form_remote_tag(
-		:update => "fave_column_#{band.id}",
-		:url => { 
-			:controller => "fan",
-			:action => "remove_favorite_band", 
-			:id => band.id,
-			:simple => true
-		}) 
-		%>
-		
-  		<%= submit_tag "OK" %>&nbsp;
-  		<%= link_to "Cancel", "#" %>
-  	<%= end_form_tag %>
+    If you click "OK", you will stop receiving reminders of
+    this band's upcoming shows.<br/><br/>
+    
+    <strong>Are you sure you want to remove this band from your favorites?</strong>
+            
+    
+    <%= form_remote_tag(
+    :update => "fave_column_#{band.id}",
+    :url => { 
+      :controller => "fan",
+      :action => "remove_favorite_band", 
+      :id => band.id,
+      :simple => true
+    }) 
+    %>
+    
+      <%= submit_tag "OK" %>&nbsp;
+      <%= link_to "Cancel", "#" %>
+    <%= end_form_tag %>
   </p>
 </div>
 
 <script type="text/javascript">
-	Tooltip.add('remove_fave_link_<%= band.id %>', 'remove_tip_<%= band.id %>');
+  Tooltip.add('remove_fave_link_<%= band.id %>', 'remove_tip_<%= band.id %>');
 </script>

@@ -5,43 +5,43 @@
 # :type => type of tag to create
 # :title => title of the box
 # :id => id of the item to be tagged
-# 			'<div id=\"' + added_tag + '\"><li>' + added_tag + '</li></div>');
+#       '<div id=\"' + added_tag + '\"><li>' + added_tag + '</li></div>');
 # id="type"
 %>
 <div id="tags-box" class="sidebar-box">
 
 <script type="text/javascript">    
     // Called when a new tag has been added
-	function tag_added_<%= type %>(request)
-	{
-		// The name of the new tag partial
-		var tag_partial = null;
-		tag_partial = request.responseText;
-		
-		if (tag_partial == null || tag_partial == "") {
-		  return;
-		}
-		
-		// Add the new tag section at the bottom
-		new Insertion.Bottom(
-			"tag-list-<%= type %>",
-			tag_partial);
-	}
-	// Called when a tag has been removed
-	// Expects the request to contain the tag id to remove
-	function tag_removed_<%= type %>(request)
-	{
-		// The response from the controller
-		var tag_id = null;
-		
-		tag_id = request.responseText;
+  function tag_added_<%= type %>(request)
+  {
+    // The name of the new tag partial
+    var tag_partial = null;
+    tag_partial = request.responseText;
+    
+    if (tag_partial == null || tag_partial == "") {
+      return;
+    }
+    
+    // Add the new tag section at the bottom
+    new Insertion.Bottom(
+      "tag-list-<%= type %>",
+      tag_partial);
+  }
+  // Called when a tag has been removed
+  // Expects the request to contain the tag id to remove
+  function tag_removed_<%= type %>(request)
+  {
+    // The response from the controller
+    var tag_id = null;
+    
+    tag_id = request.responseText;
         // Verify valid tag to remove
         if (tag_id == null || tag_id == "")
             return;
 
         var del_tag = $("tag-" + tag_id);
-		Effect.Fade(del_tag);
-	}
+    Effect.Fade(del_tag);
+  }
 </script>
 
 <h2 id="tags-title"><span class="title"><%= title %></span></h2>
@@ -52,43 +52,43 @@
     show_delete = logged_in?
 %>
 <% for tag in tags %>
-	<%= render(
-	:partial => "shared/tag", 
-	:locals => 
-		{
-		:tag => tag,
-		:type => type, 
-		:id => id,
-		:show_delete => show_delete
-		}) 
-	%>
+  <%= render(
+  :partial => "shared/tag", 
+  :locals => 
+    {
+    :tag => tag,
+    :type => type, 
+    :id => id,
+    :show_delete => show_delete
+    }) 
+  %>
 <% end %>
 </table>
 
 <%
-	if logged_in?
+  if logged_in?
 %>
 
-	<%= form_remote_tag(
+  <%= form_remote_tag(
 
-	   :url => { 
-		  :controller => "tag",
-		  :action => "create", 
-		  :id => id },
-	   :complete => "tag_added_#{type}(request)") %>
+     :url => { 
+      :controller => "tag",
+      :action => "create", 
+      :id => id },
+     :complete => "tag_added_#{type}(request)") %>
 
-	<%= hidden_field_tag( 'type', "", :value => type ) %>
-	<%= hidden_field_tag( 'show_delete', "", :value => show_delete ) %>
+  <%= hidden_field_tag( 'type', "", :value => type ) %>
+  <%= hidden_field_tag( 'show_delete', "", :value => show_delete ) %>
 
-	<%= tag_field_with_auto_complete type,
-		{ :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, 
-		:skip_style => true %>
+  <%= tag_field_with_auto_complete type,
+    { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, 
+    :skip_style => true %>
 
-	<%= submit_tag "Add" %>
-	<%= end_form_tag %>
+  <%= submit_tag "Add" %>
+  <%= end_form_tag %>
 
 <% else %>
-	<p>If you logged in, you could add tags!</p>
+  <p>If you logged in, you could add tags!</p>
 <% end %>
-    	
+      
 </div>

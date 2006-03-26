@@ -2,11 +2,11 @@
 <head>
   <title>tourb.us |
   <%= 
-  	if @page_title 
-	  @page_title
-   	else
+    if @page_title 
+    @page_title
+     else
       "Find Local, Live Music" 
-   	end
+     end
    %>
   </title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -20,7 +20,7 @@
   <%= javascript_include_tag "rounder" %>
   <%= javascript_include_tag "debug.js" %>
   <!--[if lt IE 7.]>
-	<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+  <script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
   <![endif]-->
   
   <%= @content_for_head %>
@@ -33,38 +33,38 @@
 <a href="/"><img src="/images/logo2.gif" style="margin-top:4px;margin-bottom:4px"></a>
 
 <div id="header">
-	<%
-	    fan = logged_in_fan
-	    band = logged_in_band
+  <%
+      fan = logged_in_fan
+      band = logged_in_band
         is_fan = !fan.nil? && fan.confirmed?
-		is_band = !band.nil? && band.confirmed?
+    is_band = !band.nil? && band.confirmed?
 
-		if is_fan
-	%>
-		<%= fan.name %>:
-		<%= public_fan_link "Profile", fan %> |
-		<%= link_to("Settings", :controller => "fan", :action => "settings") %> |
-		<%= link_to("Feedback", :controller => "feedback") %> |
-	    <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
-	
-	<%
-		elsif is_band
-	%>
-		<%= band.name %>:
-		<%= public_band_link "Profile", band %> |
-		<%= link_to("Settings", :controller => "band", :action => "settings") %> |
-		<%= link_to("Feedback", :controller => "feedback") %> |
-	    <%= link_to("Log Out", :controller => "band", :action => "logout") %>
-	
-	<%
-		elsif !is_fan and !is_band
-	%>
-		<%= link_to("Login", :controller => "login") %> |
-		<%= link_to("Feedback", :controller => "feedback") %> |
-	    <%= link_to("Sign Up", :controller => "signup") %>
-	<%
-		end
-	%>
+    if is_fan
+  %>
+    <%= fan.name %>:
+    <%= public_fan_link "Profile", fan %> |
+    <%= link_to("Settings", :controller => "fan", :action => "settings") %> |
+    <%= link_to("Feedback", :controller => "feedback") %> |
+      <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
+  
+  <%
+    elsif is_band
+  %>
+    <%= band.name %>:
+    <%= public_band_link "Profile", band %> |
+    <%= link_to("Settings", :controller => "band", :action => "settings") %> |
+    <%= link_to("Feedback", :controller => "feedback") %> |
+      <%= link_to("Log Out", :controller => "band", :action => "logout") %>
+  
+  <%
+    elsif !is_fan and !is_band
+  %>
+    <%= link_to("Login", :controller => "login") %> |
+    <%= link_to("Feedback", :controller => "feedback") %> |
+      <%= link_to("Sign Up", :controller => "signup") %>
+  <%
+    end
+  %>
 </div>
 
 </div>
@@ -73,42 +73,42 @@
   <div id="nav-options">
     <table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; width:100%">
     <tr valign="top"><td>
-	<span class="nav-option">
-	<%= link_to(image_tag("nav_shows.png", :alt => "Find Shows", :size => "130x30", :border => 0), :controller => "find", :action => "show") %>
-	</span>
-	<span class="nav-option">
-	<%= link_to(image_tag("nav_bands.png", :alt => "Find Bands", :size => "130x30", :border => 0), :controller => "find", :action => "band") %>
-	</span>
-	<span class="nav-option">
-	<%= link_to(image_tag("nav_venues.png", :alt => "Find Venues", :size => "130x30", :border => 0), :controller => "find", :action => "venue") %>
-	</span>
-	</td></tr></table>	
+  <span class="nav-option">
+  <%= link_to(image_tag("nav_shows.png", :alt => "Find Shows", :size => "130x30", :border => 0), :controller => "find", :action => "show") %>
+  </span>
+  <span class="nav-option">
+  <%= link_to(image_tag("nav_bands.png", :alt => "Find Bands", :size => "130x30", :border => 0), :controller => "find", :action => "band") %>
+  </span>
+  <span class="nav-option">
+  <%= link_to(image_tag("nav_venues.png", :alt => "Find Venues", :size => "130x30", :border => 0), :controller => "find", :action => "venue") %>
+  </span>
+  </td></tr></table>  
   </div>
 </div>
 
 <% if @header_title %>
-	<div id="content_header">
-		<h1><%= @header_title %></h1>
-	</div>
+  <div id="content_header">
+    <h1><%= @header_title %></h1>
+  </div>
 <% end %>
 
 <div id="content">
 
 <% if flash[:success] %>
 <div class="success">
-	<%= img_label_table "accept.png", flash[:success] %>
+  <%= img_label_table "accept.png", flash[:success] %>
 </div>
 <% end %>
 
 <% if flash[:error] %>
 <div class="error">
-	<%= img_label_table "exclamation.png", flash[:error] %>
+  <%= img_label_table "exclamation.png", flash[:error] %>
 </div>
 <% end %>
 
 <% if flash[:info] %>
 <div class="info_box">
-	<%= img_label_table "information.png", flash[:info] %>
+  <%= img_label_table "information.png", flash[:info] %>
 </div>
 <% end %>
 

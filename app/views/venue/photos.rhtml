@@ -4,17 +4,17 @@
 
 <%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
-	<%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @venue.photos,
-		:type => Photo.Venue,
-		:id => @venue.id,
-		:full => true
-		}) 
-	%>
-	
+  <%= render(
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @venue.photos,
+    :type => Photo.Venue,
+    :id => @venue.id,
+    :full => true
+    }) 
+  %>
+  
 </div>
 
 <%= render :partial => "profile_sidebar" %>

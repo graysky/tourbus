@@ -16,9 +16,9 @@ module BandPublicHelper
   # Display the list of external links for a band
   def list_links(links)
     out = "<div class='links_list'><ul id='list_of_links'>"
-	for link in links
+  for link in links
       out << render(:partial => "single_link", :locals => { :link => link } )
-	end	
+  end  
     out << "</ul></div>"
   end
 end

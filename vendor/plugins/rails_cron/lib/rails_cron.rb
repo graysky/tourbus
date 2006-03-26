@@ -18,7 +18,7 @@ class RailsCron < ActiveRecord::Base
       begin
         Signal.trap("USR1") do
           trace "RailsCron shutting down (Caught signal USR1)"
-	      @@running = false 
+        @@running = false 
         end
       rescue ArgumentError
         trace "RailsCron unsupported signal USR1"
@@ -28,34 +28,34 @@ class RailsCron < ActiveRecord::Base
     @@running = true
     threads = {}
     
-		while @@running
-  	  task_list.each do |job|
-  	    if job.should_run_now
-    	    key = (job.concurrent?) ? (Time.now.to_f + rand) : (job.command)
-  	      threads[key] ||= Thread.new do
-	          eval job.command
-	          RailsCron.trace key, job.command
-	        end
-	      end
+    while @@running
+      task_list.each do |job|
+        if job.should_run_now
+          key = (job.concurrent?) ? (Time.now.to_f + rand) : (job.command)
+          threads[key] ||= Thread.new do
+            eval job.command
+            RailsCron.trace key, job.command
+          end
+        end
       end
-		  threads = threads.delete_if{|key, value| !value.alive? }
-			sleep @@options[:sleep]
-		end		
-		
-		threads.each{|t| t.join}
-	  RailsCron.trace "RailsCron ended gracefully"
-	end	
-	
-	def self.trace(*args)
-	  if @@options[:log]
-	    File.open(File.join(File.expand_path(RAILS_ROOT), "log", "rails_cron.log"), "a") do |f| 
-	      f.puts "#{Time.now}\t#{args.join "\t"}" 
+      threads = threads.delete_if{|key, value| !value.alive? }
+      sleep @@options[:sleep]
+    end    
+    
+    threads.each{|t| t.join}
+    RailsCron.trace "RailsCron ended gracefully"
+  end  
+  
+  def self.trace(*args)
+    if @@options[:log]
+      File.open(File.join(File.expand_path(RAILS_ROOT), "log", "rails_cron.log"), "a") do |f| 
+        f.puts "#{Time.now}\t#{args.join "\t"}" 
       end
     end
   end
-	
-	def self.create_singleton(klass, method, options = {})
-	  klass = eval klass.to_s
+  
+  def self.create_singleton(klass, method, options = {})
+    klass = eval klass.to_s
     method = method.to_s
     destroy_singleton klass.to_s, method
     

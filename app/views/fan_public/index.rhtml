@@ -7,8 +7,8 @@
 <%= section "shows_section", map_list_toggle("index") %>
 <br/>
 <% if @params[:show_map] == "true" %>
-	<a name="map_top"/>
-	<div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+  <a name="map_top"/>
+  <div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
 
 <%= show_results @shows, params[:show_map] == "true", true, @fan %>
@@ -16,20 +16,20 @@
     <%= link_to "See more shows...", :action => :shows %>
     <br/>
 <% elsif @logged_in_as_fan and @fan.shows.find(:all).empty? %>
-	<%= start_profile_info_box %>
-	    <strong>You haven't added any shows yet.</strong>
-	    <br/><br/>
-	    To find shows,
-	    <%= link_to 'search for a band', :controller => 'find', :action => 'band' %>
-	    and look at their upcoming shows, or just
-	    <%= link_to 'search for a show directly', :controller => 'find', :action => 'show' %>.
-	    <br/><br/>
-	    Once you find a show you're interested in, click <strong>"Attend Show"</strong> if you want to get email 
-	    and SMS reminders about the show so you won't miss it.
-	    <br/><br/>
-	    If you're not sure you're going yet, click <strong>"Watch Show"</strong>. The show will end up in this list but
-	    you won't get any SMS reminders about it.
-	<%= end_profile_info_box %>
+  <%= start_profile_info_box %>
+      <strong>You haven't added any shows yet.</strong>
+      <br/><br/>
+      To find shows,
+      <%= link_to 'search for a band', :controller => 'find', :action => 'band' %>
+      and look at their upcoming shows, or just
+      <%= link_to 'search for a show directly', :controller => 'find', :action => 'show' %>.
+      <br/><br/>
+      Once you find a show you're interested in, click <strong>"Attend Show"</strong> if you want to get email 
+      and SMS reminders about the show so you won't miss it.
+      <br/><br/>
+      If you're not sure you're going yet, click <strong>"Watch Show"</strong>. The show will end up in this list but
+      you won't get any SMS reminders about it.
+  <%= end_profile_info_box %>
 <% elsif @logged_in_as_fan and @shows.empty? %>
     <%= start_profile_info_box %>
         <strong>You don't have any recent shows or shows in the next few days.</strong>
@@ -50,9 +50,9 @@
 <%= section "favorite_bands_section" %>
 <br/>
 <% if not @bands.empty? %>
-	<%= band_results(@bands) %>
-	<br/>
-	<%= link_to "See more favorite bands...", :action => :favorite_bands %>
+  <%= band_results(@bands) %>
+  <br/>
+  <%= link_to "See more favorite bands...", :action => :favorite_bands %>
 <% elsif @logged_in_as_fan %>
     <%= start_profile_info_box %>
         <strong>You don't have any favorite bands!</strong>
@@ -69,15 +69,15 @@
 <br/>
 
 <%= render(
-	:partial => "shared/photo_preview", 
-	:locals => 
-		{
-		:photos => @fan.photos,
-		:type => Photo.FromFan,
-		:id => @fan.id,
-		:full => false
-		}) 
-	%>
+  :partial => "shared/photo_preview", 
+  :locals => 
+    {
+    :photos => @fan.photos,
+    :type => Photo.FromFan,
+    :id => @fan.id,
+    :full => false
+    }) 
+  %>
 </div>
 
 <%= render :partial => "profile_sidebar" %>

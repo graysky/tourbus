@@ -2,7 +2,7 @@
 <% @header_title = "Find Upcoming Shows" %>
 
 <% content_for("head") do %>
-	  <%= javascript_include_tag "find.js" %>
+    <%= javascript_include_tag "find.js" %>
 <% end %>
 
 <% type = Show.table_name %>
@@ -15,10 +15,10 @@
 <center>
 
 <div id="browse_links">
-	<%= link_to_unless_current "Search", :action => 'show' %>
-	<%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %>
-	<%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
-	<%= link_to_unless_current "Newest Shows" , :action => 'browse_newest_shows'%>
+  <%= link_to_unless_current "Search", :action => 'show' %>
+  <%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %>
+  <%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
+  <%= link_to_unless_current "Newest Shows" , :action => 'browse_newest_shows'%>
 </div>
 
 
@@ -38,32 +38,32 @@
 <%= end_form_tag %>
 
 <h3>
-	<% if @results and @results.size > 0 %>
-		<%= 
-			case params[:action]
-			when 'browse_popular_shows' then 'Browsing Most Popular Shows'
-			when 'browse_tonights_shows' then 'Browsing Tonight\'s Shows'
-			when 'browse_newest_shows' then 'Browsing Newest Shows'
-			else
-			  'Search Results:'
-			end + search_results_suffix(type)
-		%>
-	<% elsif not (request.get? and params[:query].nil?) %>
-		No results found<%= search_results_suffix(type) %>
-	<% end %>
+  <% if @results and @results.size > 0 %>
+    <%= 
+      case params[:action]
+      when 'browse_popular_shows' then 'Browsing Most Popular Shows'
+      when 'browse_tonights_shows' then 'Browsing Tonight\'s Shows'
+      when 'browse_newest_shows' then 'Browsing Newest Shows'
+      else
+        'Search Results:'
+      end + search_results_suffix(type)
+    %>
+  <% elsif not (request.get? and params[:query].nil?) %>
+    No results found<%= search_results_suffix(type) %>
+  <% end %>
 </h3>
 <br/>
 
 <%
-	if @results
-		index = 0
-		for show in @results
+  if @results
+    index = 0
+    for show in @results
 %>
-	<%= render :partial => "shared/show_search_result", :locals => { :show => show, :index => index, :show_map => false, :show_venue => true, :fan => nil } %>
-<%			
-		  index += 1
-		end
-	end
+  <%= render :partial => "shared/show_search_result", :locals => { :show => show, :index => index, :show_map => false, :show_venue => true, :fan => nil } %>
+<%      
+      index += 1
+    end
+  end
 %>
 
 
@@ -72,6 +72,6 @@
 </div>
 
 <div id="side">
-	<%= render :partial => "location_box", :locals => { :type => type } %>
+  <%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
 

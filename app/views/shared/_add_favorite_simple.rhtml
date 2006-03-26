@@ -3,27 +3,27 @@
 <div id="add_tip_<%= band.id %>" class='fave_tip'>
 <h3>Add a new favorite band</h3>
   <p>
-  	If you click "OK", you will start receiving reminders of
-  	this band's upcoming shows in your area. <br/><br/>
-  	
-  	<strong>Are you sure you want to add a new favorite band?</strong>
-  	
-  	<%= form_remote_tag(
-		:update => "fave_column_#{band.id}",
-		:url => { 
-			:controller => "fan",
-			:action => "add_favorite_band", 
-			:id => band.id,
-			:simple => true
-		}) 
-		%>
-		
-  		<%= submit_tag "OK" %>&nbsp;
-  		<%= link_to "Cancel", "#" %>
-  	<%= end_form_tag %>
+    If you click "OK", you will start receiving reminders of
+    this band's upcoming shows in your area. <br/><br/>
+    
+    <strong>Are you sure you want to add a new favorite band?</strong>
+    
+    <%= form_remote_tag(
+    :update => "fave_column_#{band.id}",
+    :url => { 
+      :controller => "fan",
+      :action => "add_favorite_band", 
+      :id => band.id,
+      :simple => true
+    }) 
+    %>
+    
+      <%= submit_tag "OK" %>&nbsp;
+      <%= link_to "Cancel", "#" %>
+    <%= end_form_tag %>
   </p>
 </div>
 
 <script type="text/javascript">
-	Tooltip.add('add_fave_link_<%= band.id %>', 'add_tip_<%= band.id %>');
+  Tooltip.add('add_fave_link_<%= band.id %>', 'add_tip_<%= band.id %>');
 </script>

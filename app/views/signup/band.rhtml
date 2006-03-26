@@ -2,57 +2,57 @@
 <% @header_title = "Band Signup" %>
 
 <script type="text/javascript">
-	function update_public_page(name_field)
-	{
-		<% # NOTE: Keep this in sync with the implementation in band.rb! %>
-		var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
-		$("band_short_name").value = id.toLowerCase();
-	}
-	
-	function init_focus()
-	{
-		$('band_name').focus()
-	}
+  function update_public_page(name_field)
+  {
+    <% # NOTE: Keep this in sync with the implementation in band.rb! %>
+    var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
+    $("band_short_name").value = id.toLowerCase();
+  }
+  
+  function init_focus()
+  {
+    $('band_name').focus()
+  }
 </script>
 
 <% content_for("onload") do %>
-	init_focus()
+  init_focus()
 <% end %>
 
 <%= start_form_tag %>
 <%= error_messages_for 'band' %>
 <table class="form-table">
-	<tr>
-		<th>Band Name:</th>
-		<td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
-	</tr>
-	<tr>
-		<th>Public Page:</th>
-		<td>http://tourb.us/&nbsp;<%= text_field 'band', 'short_name', :size => 20  %></td>
-	</tr>
-	<tr>
-		<th>Email Address:</th>
-		<td><%= text_field 'band', 'contact_email'  %></td>
-	</tr>
-	<tr>
-		<th>Location:</th>
-		<td><%= text_field 'band',  'city_state_zip' %></td>
-		<td class="info">
-			You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
-			<strong>We highly recommend that that you provide a location.</strong>
-		</td>
-	</tr>
-	<tr>
-		<th>Password:</th>
-		<td><%= password_field 'band', 'password'  %></td>
-	</tr>
-	<tr>
-		<th>Confirm Password:</th>
-		<td><%= password_field 'band', 'password_confirmation'  %></td>
-	</tr>			
-	<tr class="submit">
-		<td></td>
-		<td><%= submit_tag 'Signup' %></td>
-	</tr>
+  <tr>
+    <th>Band Name:</th>
+    <td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
+  </tr>
+  <tr>
+    <th>Public Page:</th>
+    <td>http://tourb.us/&nbsp;<%= text_field 'band', 'short_name', :size => 20  %></td>
+  </tr>
+  <tr>
+    <th>Email Address:</th>
+    <td><%= text_field 'band', 'contact_email'  %></td>
+  </tr>
+  <tr>
+    <th>Location:</th>
+    <td><%= text_field 'band',  'city_state_zip' %></td>
+    <td class="info">
+      You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
+      <strong>We highly recommend that that you provide a location.</strong>
+    </td>
+  </tr>
+  <tr>
+    <th>Password:</th>
+    <td><%= password_field 'band', 'password'  %></td>
+  </tr>
+  <tr>
+    <th>Confirm Password:</th>
+    <td><%= password_field 'band', 'password_confirmation'  %></td>
+  </tr>      
+  <tr class="submit">
+    <td></td>
+    <td><%= submit_tag 'Signup' %></td>
+  </tr>
 </table>
 <%= end_form_tag %>

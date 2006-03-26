@@ -33,11 +33,11 @@ class CommentController < ApplicationController
     
     # Render the new comment
     render(
-		:partial => "shared/comment",
-		:locals =>
-			{
-			:comment => comment,
-			})
+    :partial => "shared/comment",
+    :locals =>
+      {
+      :comment => comment,
+      })
   end
 
   private

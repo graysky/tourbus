@@ -49,7 +49,7 @@ class LoginController < ApplicationController
       # Band login      
       if band = Band.authenticate(login, passwd)
 
-	    # TODO check for unclaimed band
+      # TODO check for unclaimed band
         @session[:band_id] = band.id
         
         if params[:remember_me] == 'true'

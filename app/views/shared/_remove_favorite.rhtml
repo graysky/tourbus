@@ -2,13 +2,13 @@
 
 <% if request.xhr? %>
 <script type="text/javascript">
-	Tooltip.add('remove_fave_link', 'remove_tip');
+  Tooltip.add('remove_fave_link', 'remove_tip');
 </script>
 <% end %>
 
 <script type="text/javascript">
-	function toggleFave(event)
-	{
-		Tooltip.toggle($('remove_fave_link'), event);
-	}
+  function toggleFave(event)
+  {
+    Tooltip.toggle($('remove_fave_link'), event);
+  }
 </script>

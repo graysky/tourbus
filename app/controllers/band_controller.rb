@@ -101,8 +101,8 @@ class BandController < ApplicationController
   end
   
   def save_band_profile(msg, redirect)
-	
-	@band.update_attributes(params[:band])
+  
+  @band.update_attributes(params[:band])
     if @band.save
       flash[:success] = msg
       redirect_to(:action => redirect)

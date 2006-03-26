@@ -9,31 +9,31 @@
     </div>
 <% end %>
 <% for band in @show.bands %>
-	<div class="item">	
-		<table>
-			<tr>
-				<td><img class="photo_img" src="<%= get_band_logo_url(band) %>"/></td>
-			    <td>
-				<div class="col2_narrow">
-					<% # Hack to get link text size bigger %>
-					<%= link_to(band.name, public_band_url(band), :style => "font-size:11pt;") %>
-					<br/>
-					<div class="band_tags">
-					<%
-						# TODO If we keep this it should be factored out
-						str = ""
-						for tag in band.tags[0..2]
-							str = str + " / " if str != ""
-							str += tag.name
-						end
-					%>
-					<%= str %>
-					</div>
-				</div>
-			</td>
-			</tr>
-		</table>
-	</div>
+  <div class="item">  
+    <table>
+      <tr>
+        <td><img class="photo_img" src="<%= get_band_logo_url(band) %>"/></td>
+          <td>
+        <div class="col2_narrow">
+          <% # Hack to get link text size bigger %>
+          <%= link_to(band.name, public_band_url(band), :style => "font-size:11pt;") %>
+          <br/>
+          <div class="band_tags">
+          <%
+            # TODO If we keep this it should be factored out
+            str = ""
+            for tag in band.tags[0..2]
+              str = str + " / " if str != ""
+              str += tag.name
+            end
+          %>
+          <%= str %>
+          </div>
+        </div>
+      </td>
+      </tr>
+    </table>
+  </div>
 <% end %>
 </div>
 
@@ -74,6 +74,6 @@
 </div>
 
 <%= if can_edit_show(@show)
-		link_to "Edit this show", :action => "edit", :id => @show.id 
-	end
+    link_to "Edit this show", :action => "edit", :id => @show.id 
+  end
 %>

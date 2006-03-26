@@ -1,287 +1,287 @@
 <% 
-	  content_for("head") do 
+    content_for("head") do 
 %>
-	  <%= javascript_include_tag "calendar.js" %>
-	  <%= javascript_include_tag "calendar-en.js" %>
-	  <%= javascript_include_tag "calendar-setup.js" %>
-	  <%= stylesheet_link_tag "subModal.css" %>
-  	  <%= javascript_include_tag "subModal" %>
+    <%= javascript_include_tag "calendar.js" %>
+    <%= javascript_include_tag "calendar-en.js" %>
+    <%= javascript_include_tag "calendar-setup.js" %>
+    <%= stylesheet_link_tag "subModal.css" %>
+      <%= javascript_include_tag "subModal" %>
 <%  
-	  end  
+    end  
 %>
 
 <div>
-	
-	<script type="text/javascript">
-		function use_existing_venue(id, name, type)
-		{
-			$("selected_venue_id").value = id;
-			$("selected_venue_name").value = name;
-			
-			new Effect.Fade("venue_search_results");
-			
-			$("selected_venue").innerHTML = name;
-		}
-		
-		function do_venue_appear()
-		{
-			if ($('venue_search_results').style.display == "none") {
-				new Effect.Appear('venue_search_results');
-			}
-		}
-		
-		function do_venue_loading()
-		{
-			$("venue_search_message").innerHTML = "<em>Loading...</em>";
-		}
-		
-	</script>
+  
+  <script type="text/javascript">
+    function use_existing_venue(id, name, type)
+    {
+      $("selected_venue_id").value = id;
+      $("selected_venue_name").value = name;
+      
+      new Effect.Fade("venue_search_results");
+      
+      $("selected_venue").innerHTML = name;
+    }
+    
+    function do_venue_appear()
+    {
+      if ($('venue_search_results').style.display == "none") {
+        new Effect.Appear('venue_search_results');
+      }
+    }
+    
+    function do_venue_loading()
+    {
+      $("venue_search_message").innerHTML = "<em>Loading...</em>";
+    }
+    
+  </script>
 
-	<%
-		controller = params[:controller] if controller.nil?
-		action = "add_show" if action.nil?
-		
-	%>
-	<%= start_form_tag({:controller => controller, :action => action}, :onsubmit => "setBands()") %>
-	<%= error_messages_for 'show' %>
+  <%
+    controller = params[:controller] if controller.nil?
+    action = "add_show" if action.nil?
+    
+  %>
+  <%= start_form_tag({:controller => controller, :action => action}, :onsubmit => "setBands()") %>
+  <%= error_messages_for 'show' %>
 
-	<% if params[:probable_dupe] %>
-	<center>
-	<div class="error-prompt-box" style="width:60%">
-		<h3>Possible Duplicate Show</h3>
-		<p>
-		It looks like the show you are trying to create might already be in the system.
-		Check out <%= link_to "this page", {:controller => "show", :action => "show", :id => params[:probable_dupe].id}, :popup => true %>
-		to see if we're right. If so, you may be able to edit the existing show listing (check the show page).
-		If we're wrong and this is a different show, check the box below and resubmit the form.
-		</p>
-		<table><tr>
-			<td><%= check_box_tag "ignore_duplicate_show", value="true", checked=params["ignore_duplicate_show"] == "true" %></td>
-			<td>This is a new show</td>
-		</tr></table>
-	</div>
-	</center>
-	<% end %>
+  <% if params[:probable_dupe] %>
+  <center>
+  <div class="error-prompt-box" style="width:60%">
+    <h3>Possible Duplicate Show</h3>
+    <p>
+    It looks like the show you are trying to create might already be in the system.
+    Check out <%= link_to "this page", {:controller => "show", :action => "show", :id => params[:probable_dupe].id}, :popup => true %>
+    to see if we're right. If so, you may be able to edit the existing show listing (check the show page).
+    If we're wrong and this is a different show, check the box below and resubmit the form.
+    </p>
+    <table><tr>
+      <td><%= check_box_tag "ignore_duplicate_show", value="true", checked=params["ignore_duplicate_show"] == "true" %></td>
+      <td>This is a new show</td>
+    </tr></table>
+  </div>
+  </center>
+  <% end %>
 
 
-	<input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
-	<input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
-	<table class="form-table">
-		<tr>
-			<th>Date:</th>
-			<td>
-				<%= date_select_with_calendar 'show', 'formatted_date' %>
-			</td>
-			<td class="info">
-				Click the calendar image to select a date
-			</td>
-		</tr>
-		<tr>
-			<th>Venue:</th>
-			<td style="padding-top:16px">
-				<span id="selected_venue">
-					<% if !@params[:selected_venue_name].nil? && @params[:selected_venue_name] != "" %>
-						<%= @params[:selected_venue_name] %>
-					<% else %>
-						<em>Search for an existing venue below</em>
-					<% end %>
-					
-				</span>
-				
-				<div id="venue_search" style="margin-top:8px">
-					<%= text_field_tag 'venue_search_term', '', :autocomplete => "off" %> &nbsp;
-					<%= observe_field 'venue_search_term', :frequency => 0.7,
-										 :with => "'name=' + escape(value)",
-										 :update => "venue_search_results",
-										 :loading => "do_venue_loading()",
-										 :before => "do_venue_appear()", 
-										 :url => { :controller => "shows", :action => :venue_search, :id => 1 }
-					%>
-				</div>
-				
-				<div id="venue_search_results" style="display:none">
-					<%= render(:partial => "shared/venue_results") %>
-				</div>
-			</td>
-			<td class="info">
-				TODO
-			</td>
-		</tr>
-		<!-- TODO Again, this needs to pulled out -->
-		<script type="text/javascript">
-			var bandsPlaying = new Array();
-			
-			function selectBand(id, name)
-			{
-				// Make sure we haven't already selected this band
-				for (var i = 0; i < bandsPlaying.length; i++) {
-					if (id != null && id == bandsPlaying[i][0]) {
-						alert('You already added that band!');
-						return;
-					}
-				}
-				
-				new Effect.Fade('band_search_preview');
-				$('band_to_add').value = '';
-				<%= remote_function(:update => { :success => "bands", :failure => nil },
-									:position => :bottom, 
-									:with => "'id=' + id + '&name=' + escape(name)",
-									:failure => "handleSelectBandError(request.responseText)",
-									:url => { :action => "add_selected_band",
-										      :controller => "band" }) %>
-				bandsPlaying[bandsPlaying.length] = new Array(id, name);
-			}
-			
-			function handleSelectBandError(msg)
-			{
-				// TODO Maybe alert boxes suck and we should show the error
-				// inline on the page...
-				// Show the message and remove the last band we added.
-				alert(msg);
-				bandsPlaying.splice(bandsPlaying.length - 1, 1);
-			}
-			
-			function initBands()
-			{
-				var val = $('bands_playing').value;
-				if (val != null && val != "") {
-					var chunks = val.split(":::");
-					for (var i = 0; i < chunks.length; i++) {
-						if (chunks[i].substring(0, 1) == "*") {
-							var name = chunks[i].substring(1);
-							bandsPlaying[bandsPlaying.length] = new Array(null, unescape(name));
-						}
-						else {
-							bandsPlaying[bandsPlaying.length] = new Array(chunks[i], "");
-						}
-					}
-				}
-			}
-			
-			function setBands()
-			{
-				var elem = $('bands_playing');
-				elem.value = '';
-				for (var i = 0; i < bandsPlaying.length; i++) {
-					if (bandsPlaying[i][0] != null && bandsPlaying[i][0] != "") {
-						// Existing band
-						elem.value += bandsPlaying[i][0];
-					}
-					else {
-						// New band. * will indicate a new record
-						elem.value += '*' + bandsPlaying[i][1];
-					}
-					
-					if (i < bandsPlaying.length - 1) {
-						elem.value += ":::";
-					}
-				}
-			}
-			
-			function removeBand(div)
-			{
-				// Find out which one it is in order
-				var divs = document.getElementsByClassName("band_playing_div");
-				for (var i = 0; i < divs.length; i++) {
-					if (divs[i] == div) {
-						bandsPlaying.splice(i, 1);
-						new Effect.Fade(div);
-					}
-				}
-			}
-			
-			function bandSearchLoading()
-			{
-				$('band_search_preview').style.display = 'block';
-			}
-			
-		</script>
-		<input type="hidden" id="bands_playing" name="bands_playing" value="<%= params['bands_playing']%>"/>
-		<tr class="nobottom">
-			<th>Add a Band:</th>
-			<td>
-				<%= text_field_tag 'band_to_add', '', :autocomplete => "off" %>
-				<br/>
-				<br/>
-				<div id="band_search_preview"></div>
-			</td>
-			<td class="info">
-			</td>
-		</tr>
-		<tr>
-		<%= observe_field 'band_to_add', :frequency => 0.7,
-										 :with => "'name=' + escape(value)",
-										 :update => "band_search_preview",
-										 :loading => "bandSearchLoading()", 
-										 :url => { :action => 'lookup_band_for_show', 
-										   		   :controller => 'band' } %>
-			<th>Bands:</th>
-			<td><div id="bands" class="bands_playing"></div></td>
-			<td class="info">
-				TODO This is broken cause it doesn't grow (studpid ie doesn't support min-height)
-			</td>
-		</tr>
-		<tr>
-			<th>Title:</th>
-			<td><%= text_field 'show', 'title' %></td>
-			<td class="info">
-				This is optional (@@@ How do we show optional vs. required fields?)
-				If you do not specify a title, we will use the names of the bands that are playing.
-			</td>
-		</tr>
-		<tr>
-			<th>Time:</th>
-			<td>
-				<%= time_select 'show', @show.time_hour, @show.time_minute, @show.time_ampm %>
-			</td>
-			<td class="info">
-				Start time for the show
-			</td>
-		</tr>
-		<tr>
-			<th>Cost:</th>
-			<td><%= text_field 'show', 'cost' %></td>
-			<td class="info">
-			</td>
-		</tr>
-		<tr>
-			<th>Website:</th>
-			<td><%= text_field 'show', 'url' %></td>
-			<td class="info">
-				An outside web page with more details about the show
-			</td>
-		</tr>
-		<tr>
-			<th>Description:</th>
-			<td><%= text_area 'show', 'description', "rows" => 4  %></td>
-			<td class="info">
-			</td>
-		</tr>
-		
-		<tr class="submit">
-			<td></td>
-			<% action_text = "Add Show" if action_text.nil? %>
-			<td><%= submit_tag action_text %></td>
-		</tr>
-	</table>
-<%= end_form_tag %>	
+  <input type="hidden" id="selected_venue_name" name="selected_venue_name" value="<%=@params[:selected_venue_name]%>"/>
+  <input type="hidden" id="selected_venue_id" name="selected_venue_id" value="<%=@params[:selected_venue_id]%>"/>
+  <table class="form-table">
+    <tr>
+      <th>Date:</th>
+      <td>
+        <%= date_select_with_calendar 'show', 'formatted_date' %>
+      </td>
+      <td class="info">
+        Click the calendar image to select a date
+      </td>
+    </tr>
+    <tr>
+      <th>Venue:</th>
+      <td style="padding-top:16px">
+        <span id="selected_venue">
+          <% if !@params[:selected_venue_name].nil? && @params[:selected_venue_name] != "" %>
+            <%= @params[:selected_venue_name] %>
+          <% else %>
+            <em>Search for an existing venue below</em>
+          <% end %>
+          
+        </span>
+        
+        <div id="venue_search" style="margin-top:8px">
+          <%= text_field_tag 'venue_search_term', '', :autocomplete => "off" %> &nbsp;
+          <%= observe_field 'venue_search_term', :frequency => 0.7,
+                     :with => "'name=' + escape(value)",
+                     :update => "venue_search_results",
+                     :loading => "do_venue_loading()",
+                     :before => "do_venue_appear()", 
+                     :url => { :controller => "shows", :action => :venue_search, :id => 1 }
+          %>
+        </div>
+        
+        <div id="venue_search_results" style="display:none">
+          <%= render(:partial => "shared/venue_results") %>
+        </div>
+      </td>
+      <td class="info">
+        TODO
+      </td>
+    </tr>
+    <!-- TODO Again, this needs to pulled out -->
+    <script type="text/javascript">
+      var bandsPlaying = new Array();
+      
+      function selectBand(id, name)
+      {
+        // Make sure we haven't already selected this band
+        for (var i = 0; i < bandsPlaying.length; i++) {
+          if (id != null && id == bandsPlaying[i][0]) {
+            alert('You already added that band!');
+            return;
+          }
+        }
+        
+        new Effect.Fade('band_search_preview');
+        $('band_to_add').value = '';
+        <%= remote_function(:update => { :success => "bands", :failure => nil },
+                  :position => :bottom, 
+                  :with => "'id=' + id + '&name=' + escape(name)",
+                  :failure => "handleSelectBandError(request.responseText)",
+                  :url => { :action => "add_selected_band",
+                          :controller => "band" }) %>
+        bandsPlaying[bandsPlaying.length] = new Array(id, name);
+      }
+      
+      function handleSelectBandError(msg)
+      {
+        // TODO Maybe alert boxes suck and we should show the error
+        // inline on the page...
+        // Show the message and remove the last band we added.
+        alert(msg);
+        bandsPlaying.splice(bandsPlaying.length - 1, 1);
+      }
+      
+      function initBands()
+      {
+        var val = $('bands_playing').value;
+        if (val != null && val != "") {
+          var chunks = val.split(":::");
+          for (var i = 0; i < chunks.length; i++) {
+            if (chunks[i].substring(0, 1) == "*") {
+              var name = chunks[i].substring(1);
+              bandsPlaying[bandsPlaying.length] = new Array(null, unescape(name));
+            }
+            else {
+              bandsPlaying[bandsPlaying.length] = new Array(chunks[i], "");
+            }
+          }
+        }
+      }
+      
+      function setBands()
+      {
+        var elem = $('bands_playing');
+        elem.value = '';
+        for (var i = 0; i < bandsPlaying.length; i++) {
+          if (bandsPlaying[i][0] != null && bandsPlaying[i][0] != "") {
+            // Existing band
+            elem.value += bandsPlaying[i][0];
+          }
+          else {
+            // New band. * will indicate a new record
+            elem.value += '*' + bandsPlaying[i][1];
+          }
+          
+          if (i < bandsPlaying.length - 1) {
+            elem.value += ":::";
+          }
+        }
+      }
+      
+      function removeBand(div)
+      {
+        // Find out which one it is in order
+        var divs = document.getElementsByClassName("band_playing_div");
+        for (var i = 0; i < divs.length; i++) {
+          if (divs[i] == div) {
+            bandsPlaying.splice(i, 1);
+            new Effect.Fade(div);
+          }
+        }
+      }
+      
+      function bandSearchLoading()
+      {
+        $('band_search_preview').style.display = 'block';
+      }
+      
+    </script>
+    <input type="hidden" id="bands_playing" name="bands_playing" value="<%= params['bands_playing']%>"/>
+    <tr class="nobottom">
+      <th>Add a Band:</th>
+      <td>
+        <%= text_field_tag 'band_to_add', '', :autocomplete => "off" %>
+        <br/>
+        <br/>
+        <div id="band_search_preview"></div>
+      </td>
+      <td class="info">
+      </td>
+    </tr>
+    <tr>
+    <%= observe_field 'band_to_add', :frequency => 0.7,
+                     :with => "'name=' + escape(value)",
+                     :update => "band_search_preview",
+                     :loading => "bandSearchLoading()", 
+                     :url => { :action => 'lookup_band_for_show', 
+                              :controller => 'band' } %>
+      <th>Bands:</th>
+      <td><div id="bands" class="bands_playing"></div></td>
+      <td class="info">
+        TODO This is broken cause it doesn't grow (studpid ie doesn't support min-height)
+      </td>
+    </tr>
+    <tr>
+      <th>Title:</th>
+      <td><%= text_field 'show', 'title' %></td>
+      <td class="info">
+        This is optional (@@@ How do we show optional vs. required fields?)
+        If you do not specify a title, we will use the names of the bands that are playing.
+      </td>
+    </tr>
+    <tr>
+      <th>Time:</th>
+      <td>
+        <%= time_select 'show', @show.time_hour, @show.time_minute, @show.time_ampm %>
+      </td>
+      <td class="info">
+        Start time for the show
+      </td>
+    </tr>
+    <tr>
+      <th>Cost:</th>
+      <td><%= text_field 'show', 'cost' %></td>
+      <td class="info">
+      </td>
+    </tr>
+    <tr>
+      <th>Website:</th>
+      <td><%= text_field 'show', 'url' %></td>
+      <td class="info">
+        An outside web page with more details about the show
+      </td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td><%= text_area 'show', 'description', "rows" => 4  %></td>
+      <td class="info">
+      </td>
+    </tr>
+    
+    <tr class="submit">
+      <td></td>
+      <% action_text = "Add Show" if action_text.nil? %>
+      <td><%= submit_tag action_text %></td>
+    </tr>
+  </table>
+<%= end_form_tag %>  
 
-	<% if params[:venue_type] == "new" %>	
-		<script type="text/javascript">
-			switch_venue_divs("new");
-		</script>
-	<% end %>
-	
-	<script type="text/javascript">
-		initBands();
-		$('bands').innerHTML = '<%= @bands_playing_content %>';
-	</script>
-	
+  <% if params[:venue_type] == "new" %>  
+    <script type="text/javascript">
+      switch_venue_divs("new");
+    </script>
+  <% end %>
+  
+  <script type="text/javascript">
+    initBands();
+    $('bands').innerHTML = '<%= @bands_playing_content %>';
+  </script>
+  
 
 <% # Needed for the venue popup iframe %>
-	<div id="popupMask">&nbsp;</div>
-	
-	<div id="popupContainer">
+  <div id="popupMask">&nbsp;</div>
+  
+  <div id="popupContainer">
  <div id="popupInner">
   <div id="popupTitleBar">
    <div id="popupTitle"></div>

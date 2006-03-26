@@ -42,7 +42,8 @@ class Band < ActiveRecord::Base
   
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
-  has_and_belongs_to_many :shows, :order => "date ASC"
+  has_many :appearences
+  has_many :shows, :through => :appearences, :order => "date ASC"
   has_and_belongs_to_many :fans
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"

@@ -197,10 +197,8 @@ desc "Start the FCGI processes using spinner"
 task :spawner, :roles => :app do
   # Attempt to spin it every 90 seconds as a daemon starting on port 8000 (must match lighty config)
   # NOTE - this controls how many FCGI procs to start
-  # Rails 1.1 doesn't include spinner, just spawner, but couldn't run it in daemon mode:
-  # #{current_path}/script/process/spawner -p 8000 -i 3 -r 90
   run <<-CMD
-    #{current_path}/script/process/spinner -d -i 90 -c '#{current_path}/script/process/spawner -i 3'
+    #{current_path}/script/process/spawner -p 8000 -i 3 -r 90 &
   CMD
 end
 

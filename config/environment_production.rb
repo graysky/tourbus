@@ -70,8 +70,6 @@ RailsCron.options = {
     :allow_concurrency => false
 }
 
-ActionController::Base.enable_upload_progress
-
 require 'rails_file_column'
 require 'selective_timestamp'
 

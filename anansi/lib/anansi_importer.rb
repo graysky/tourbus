@@ -131,8 +131,7 @@ class AnansiImporter
       if b[:url]
         puts "Creating new Link #{b[:url]}"
         link = Link.new
-        link.name = "Official Website"
-        link.data = b[:url]
+        link.guess_link(b[:url])
         band.links << link
       end
       

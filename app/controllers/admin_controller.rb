@@ -221,8 +221,7 @@ class AdminController < ApplicationController
       
       # Create the new link
       link = Link.new
-      link.name = name
-      link.data = url
+      link.guess_link(url, name)
       
       links << link
     end

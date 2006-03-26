@@ -16,5 +16,37 @@ class Link < ActiveRecord::Base
     # Clean up to be valid link
     return self.data
   end
-
+  
+  # Clean up the URL to be valid 
+  def clean_url(url)
+  
+    # Could check for clean urls with http://    
+    
+    return url
+  end
+  
+  # Set this link's URL to the specified URL
+  # and set the link name to a reasonable guess if not specified
+  def guess_link(url, name = nil)
+  
+    # Set the URL
+    self.data = clean_url(url)
+    
+    if !name.nil? and !name.empty?
+      self.name = name
+    else
+      # Attempt to guess the name.
+      guess = "Official Website"
+      
+      # Make better guesses
+      if self.data =~ /myspace.com/
+        guess = "MySpace Profile"
+      elsif self.data =~ /purevolume.com/
+        guess = "PureVolume Profile"
+      end
+      
+      self.name = guess
+    end
+  end
+  
 end

@@ -75,8 +75,6 @@ ActionMailer::Base.server_settings = {
   :authentication=>:login
 } 
 
-ActionController::Base.enable_upload_progress
-
 # Options to control how RailsCron behaves, intervals in seconds.
 # Increase the frequency of db-checking in dev mode
 RailsCron.options = {

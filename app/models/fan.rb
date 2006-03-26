@@ -55,6 +55,7 @@ class Fan < ActiveRecord::Base
   has_one :upload_addr
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
+  has_many :comments, :order => "created_on ASC"
  
   validates_uniqueness_of :uuid # just in case
   

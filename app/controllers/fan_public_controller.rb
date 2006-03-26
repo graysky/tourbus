@@ -10,6 +10,7 @@ class FanPublicController < ApplicationController
   helper :tag
   helper :photo
   helper :feed
+  helper :comment
   #model :favorites_mailer
   upload_status_for :change_logo
   session :off, :only => :rss

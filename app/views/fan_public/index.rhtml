@@ -78,6 +78,17 @@
     :full => false
     }) 
   %>
+<br/>
+
+<%= render(
+    :partial => "shared/comments",
+    :locals =>
+    {
+      :comments => @fan.comments,
+      :type => Comment.Fan,
+      :id => @fan.id,
+    })
+  %>
 </div>
 
 <%= render :partial => "profile_sidebar" %>

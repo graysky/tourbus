@@ -139,8 +139,8 @@ class AnansiImporter
       
       @new_band_count += 1
     end
-    
-    band.play_show(show)
+   
+    band.play_show(show, show.bands.size, b[:extra])
   end
   
   # Prepare a show hash for import
@@ -266,12 +266,17 @@ class AnansiImporter
     short_name = Venue.name_to_short_name(name)
     conditions = get_venue_conditions(short_name, city, state)
     venue = Venue.find(:first, :conditions => conditions)
-   
+    if venue and venue.id == 1
+        puts conditions
+      end
     if venue.nil?
       # Try with/without 'the'
       short_name = short_name.starts_with?('the') ? short_name[3..short_name.length] : 'the' + short_name
       conditions = get_venue_conditions(short_name, city, state)
       venue = Venue.find(:first, :conditions => conditions)
+      if venue and venue.id == 1
+        puts conditions
+      end
     end
       
     return venue
@@ -282,6 +287,7 @@ class AnansiImporter
     query << " and city = ?" if city
     conditions = [query, name, state]
     conditions << city if city
+    conditions
   end 
   
   def duplicate_show?(s = @show)

@@ -87,6 +87,13 @@ module ShowCreator
     return bands
   end
  
+  def add_bands
+    @show.bands.clear
+    @bands_playing.each_with_index do |band, index|
+      band.play_show(@show, index)
+    end
+  end
+ 
   def create_bands_playing_content(bands = nil)
     bands = calculate_bands if bands.nil?
     @bands_playing_content = render_to_string :partial => "shared/band_playing", 

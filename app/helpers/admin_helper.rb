@@ -20,7 +20,7 @@ module AdminHelper
     show[:bands].each do |band|
       bands += "<u>#{band[:name]}</u>"
       bands += ", <a href='#{band[:url]}'>#{band[:url]}</a>" if band[:url]
-      bands += ", (#{band[:preamble]})" if band[:preamble]
+      bands += ", (#{band[:extra]})" if band[:extra]
       bands += "<br/>"
     end
     out << row("Bands", bands)

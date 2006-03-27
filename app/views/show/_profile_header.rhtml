@@ -17,6 +17,9 @@
         <div class="col2_narrow">
           <% # Hack to get link text size bigger %>
           <%= link_to(band.name, public_band_url(band), :style => "font-size:11pt;") %>
+          <% if band.extra_info and band.extra_info != "" %>
+           <%= band.extra_info %>
+          <% end %>
           <br/>
           <div class="band_tags">
           <%

@@ -29,8 +29,7 @@ class Show < ActiveRecord::Base
   include Ferret
   
   include Tagging
-  has_many :appearences
-  has_many :bands, :through => :appearences
+  has_and_belongs_to_many :bands, :order => "bands_shows.set_order"
   has_and_belongs_to_many :fans
   belongs_to :venue
   acts_as_searchable

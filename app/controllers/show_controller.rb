@@ -121,7 +121,7 @@ class ShowController < ApplicationController
       return false
     end
     
-    @show.bands = @bands_playing  
+    
     begin
       Band.transaction(*@bands_playing) do
         Show.transaction(@show) do
@@ -131,6 +131,8 @@ class ShowController < ApplicationController
             @show.created_by_fan = logged_in_fan if logged_in_fan
           end
           
+          add_bands 
+         
           # FIXME Clean this stuff up. Temp for debugging
           if !@show.save
             logger.warn(@show.inspect)

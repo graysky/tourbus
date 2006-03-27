@@ -88,7 +88,7 @@ class Venue < ActiveRecord::Base
   # The short name is name with whitespace and punctuation stripped out, all lowercase
   def self.name_to_short_name(name)
     # Remove anything that's not a letter, number or selected punctuation
-    name.gsub(/[^\w|\d|_|.|-]/, '').downcase
+    name.gsub(/[^\w|\d]/, '').downcase
   end
   
   protected

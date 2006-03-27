@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 23) do
+ActiveRecord::Schema.define(:version => 24) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -13,16 +13,6 @@ ActiveRecord::Schema.define(:version => 23) do
     t.column "created_at", :datetime
     t.column "expire_at", :datetime, :null => false
   end
-
-  create_table "appearences", :id => false, :force => true do |t|
-    t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
-    t.column "show_id", :integer, :limit => 10, :default => 0, :null => false
-    t.column "can_edit", :boolean, :default => false, :null => false
-    t.column "extra_info", :string
-    t.column "set_order", :integer
-  end
-
-  add_index "appearences", ["show_id"], :name => "fk_bs_show"
 
   create_table "band_services", :force => true do |t|
     t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
@@ -66,6 +56,16 @@ ActiveRecord::Schema.define(:version => 23) do
   end
 
   add_index "bands_fans", ["fan_id"], :name => "FK_fave_fan_id"
+
+  create_table "bands_shows", :id => false, :force => true do |t|
+    t.column "band_id", :integer, :limit => 10, :default => 0, :null => false
+    t.column "show_id", :integer, :limit => 10, :default => 0, :null => false
+    t.column "can_edit", :boolean, :default => false, :null => false
+    t.column "extra_info", :string
+    t.column "set_order", :integer
+  end
+
+  add_index "bands_shows", ["show_id"], :name => "fk_bs_show"
 
   create_table "comments", :force => true do |t|
     t.column "body", :text

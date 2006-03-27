@@ -42,8 +42,7 @@ class Band < ActiveRecord::Base
   
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
-  has_many :appearences
-  has_many :shows, :through => :appearences, :order => "date ASC"
+  has_and_belongs_to_many :shows, :order => "date ASC"
   has_and_belongs_to_many :fans
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
@@ -76,8 +75,8 @@ class Band < ActiveRecord::Base
     end
   end
   
-  def play_show(show, can_edit = true)
-    show.bands << self
+  def play_show(show, order = 0, extra_info = nil)
+    show.bands.push_with_attributes(self, :set_order => order, :extra_info => nil)
   end
 
   def validate_unique_email?

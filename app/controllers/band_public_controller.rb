@@ -156,7 +156,9 @@ class BandPublicController < ApplicationController
       begin
         Band.transaction(*@bands_playing) do
           Show.transaction(@show) do
-            @show.bands = @bands_playing
+          
+            add_bands
+            
             @show.save!
             
             @bands_playing.each do |band| 

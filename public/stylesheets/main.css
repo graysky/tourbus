@@ -1352,33 +1352,46 @@ table.photo_table td span a {
 	font-size:13px;
 }
 
+/* Used to include span */
 table.comments_table td {
-	vertical-align: top;
-	padding: 8px 8px 4px 4px;
+	padding: 4px 2px 4px 0px;
 	text-align:left;
-	border-bottom:1px solid #ddd;
-}
-
-table.comments_table td span {
-	font-size:10px;
+    font-size:10px;
 	color:black;
-}
-
-table.comments_table a {
-	color: #0F628B;
 }
 
 .comments_table {
 	width:95%;
 }
 
-.comment_from {
-	vertical-align: top;
+table.comments_table .bottom-row {
+	border-bottom:1px solid #ddd;
+}
+
+table.comments_table a {
+	color: #0F628B;
+	font-size: 10px;
+}
+
+table.comments_table .img-col {
+    width: 1%;
+}
+
+/* Mini-img of comment poster */
+.comment_from img {
+	margin: 0 0 0 0;
+}
+
+/*.comment_from*/ 
+.byline {
+    margin-left: 0px;
+	font-size: 12px;
 }
 
 .comment_body {
+    vertical-align: top;
 	text-align:left;
-	margin-top: 6px;
+	margin-top: 4px;
 	margin-left: 12px;
 }
 

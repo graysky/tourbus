@@ -12,6 +12,7 @@ class BandPublicController < ApplicationController
   helper :comment
   helper :photo
   helper :feed
+  helper :portlet
   
   layout "public", :except => [:rss, :add_link ] 
   upload_status_for :change_logo

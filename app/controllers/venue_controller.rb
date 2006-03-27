@@ -7,6 +7,7 @@ class VenueController < ApplicationController
   helper :comment
   helper :photo
   helper :feed
+  helper :portlet
 
   session :off, :only => :rss
   layout "public", :except => [:rss ] 

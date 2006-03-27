@@ -63,6 +63,12 @@ class FavoritesMailer < BaseMailer
       new_shows = faves.new_shows
       next if new_shows.empty?
       
+      # The user is watching each show
+      new_shows.each do |show|
+        fan.watch_show(show)
+        show.save
+      end
+      
       FavoritesMailer.deliver_favorites_update(fan, new_shows, nil)
       fan.last_favorites_email = Time.now
       fan.save

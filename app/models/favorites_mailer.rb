@@ -65,8 +65,10 @@ class FavoritesMailer < BaseMailer
       
       # The user is watching each show
       new_shows.each do |show|
-        fan.watch_show(show)
-        show.save
+        if !fan.attending?(show) and !fan.watching?(show)
+          fan.watch_show(show)
+          show.save
+        end
       end
       
       FavoritesMailer.deliver_favorites_update(fan, new_shows, nil)

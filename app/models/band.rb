@@ -76,7 +76,7 @@ class Band < ActiveRecord::Base
   end
   
   def play_show(show, order = 0, extra_info = nil)
-    show.bands.push_with_attributes(self, :set_order => order, :extra_info => nil)
+    show.bands.push_with_attributes(self, :set_order => order, :extra_info => extra_info)
   end
 
   def validate_unique_email?

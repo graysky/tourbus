@@ -123,6 +123,7 @@ class ShowParser < MetaSite
     return nil if down.include?("nd annual")
     return nil if down.include?("th annual")
     return nil if down.include?("st annual")
+    return nil if down.include?("in concert")
     return nil if down.include?("+")
     return nil if down.include?("*")
     return nil if down.include?("music festival")
@@ -130,7 +131,10 @@ class ShowParser < MetaSite
     return nil if down.count("_") > 2
     return nil if down.count("-") > 2
     
-    # in concert, benefit, karoeke, no cover, .com, prom
+    # benefit, karoeke, no cover, .com, prom
+    
+    replacements = [/cd release/i, /cdrelease/i]
+    replacements.each { |pattern| name.gsub!(pattern, '') }
     
     band = {}
     band[:name] = name.gsub(/\s+/, ' ')

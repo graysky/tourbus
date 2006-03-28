@@ -175,7 +175,9 @@ class AnansiImporter
     else
       set_status(:ok)
     end
-      
+    
+    preamble = show[:bands].first[:preamble]
+    show[:preamble] = preamble if preamble and preamble != ''
   end
 
   # Save all show data out to a yaml file

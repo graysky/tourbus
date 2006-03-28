@@ -14,9 +14,6 @@
     <br/>
     <% if @band.claimed? %>
       <a href="javascript:alert('coming soon')">Contact this band</a>
-    <% else %>
-      <strong>Is this your band?</strong><br/>
-      <a href="javascript:alert('coming soon')">Create a tourb.us account</a>
     <% end %>
     
     <%= list_links(@band.links) %>

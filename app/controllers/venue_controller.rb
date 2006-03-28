@@ -23,7 +23,7 @@ class VenueController < ApplicationController
     end
     
     @venue = Venue.new(params[:venue])
-    
+    @venue.short_name = Venue.name_to_short_name(@venue.name)
     result = Geocoder.yahoo(@venue.address_one_line)
     
     if result && result[:precision] == "address"

@@ -109,6 +109,7 @@ class AdminController < ApplicationController
     end
     
     @venue = Venue.new(params[:venue])
+    @venue.short_name = Venue.name_to_short_name(@venue.name)
     save_venue
   end
   

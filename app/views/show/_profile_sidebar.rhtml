@@ -74,8 +74,8 @@
               )  
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleWatching(event);"%>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
+              <%= submit_tag "OK", :onclick => "toggleAttending(event);"%>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
             <%= end_form_tag %>
           </p>
       </div>
@@ -161,8 +161,8 @@
               ) 
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleAttending(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
+              <%= submit_tag "OK", :onclick => "toggleWatching(event);" %>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
             <%= end_form_tag %>
           </p>
       </div>

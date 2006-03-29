@@ -1,0 +1,15 @@
+<%
+# Display the list of external links for a band, Assumes
+# links => the links to show
+# can_edit => whether to show the edit controls
+%>
+<div class='links_list'><ul id='list_of_links'>
+
+<% for link in links 
+  puts "Links are #{links}"
+  @link = link # Need this to get default values working correctly
+%>
+  
+  <%= render(:partial => "single_link", :locals => { :link => @link, :can_edit => can_edit } ) %>
+<% end %>  
+</ul></div>

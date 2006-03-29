@@ -6,10 +6,10 @@
 <table class="compact-form-table">
   <tr>
     <th>Name:</th>
-    <td><%= text_field('link', 'name', {:size => 32} ) %></td>
+    <td><%= text_field("link[]", 'name', {:size => 32} ) %></td>
   </tr>
   <tr>
     <th>URL:</th>
-    <td><%= text_field('link', 'data', {:size => 32} ) %></td>
+    <td><%= text_field("link[]", 'data', {:size => 32} ) %></td>
   </tr>
 </table>

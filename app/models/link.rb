@@ -11,6 +11,8 @@
 # Links that a Band can have to other services like MySpace, iTunes, their own homepage, etc.
 class Link < ActiveRecord::Base
 
+  belongs_to :band
+
   # Form the URL for this link
   def url
     # Clean up to be valid link

@@ -1,4 +1,5 @@
 require_dependency 'show_creator'
+require 'pp'
 
 # Controller for the public page of a band.
 class BandPublicController < ApplicationController
@@ -14,7 +15,7 @@ class BandPublicController < ApplicationController
   helper :feed
   helper :portlet
   
-  layout "public", :except => [:rss, :add_link ] 
+  layout "public", :except => [:rss, :add_link, :edit_link, :delete_link ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -85,14 +86,34 @@ class BandPublicController < ApplicationController
     return if @request.get?
 
     link = Link.new(params[:link])
-    
     @band.links << link
     
     if not @band.save
       flash.now[:error] = "Trouble saving the link"
     end
     
-    render(:partial => "single_link", :locals => { :link => link })
+    render(:partial => "single_link", :locals => { :link => link, :can_edit => true })
+  end
+  
+  # Edit link to external site
+  def edit_link
+    return if @request.get?
+
+    id = params[:link][:id]
+
+    name = params[:link][id][:name]
+    url = params[:link][id][:data]
+
+    link = Link.find(id)
+
+    link.name = name
+    link.data = url
+    
+    if not link.save
+      flash.now[:error] = "Trouble saving the link"
+    end
+    
+    render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
   end
   
   def photo

@@ -1,5 +1,39 @@
 <%
-# Display a single link in the list - assumes "link" in local scope
-puts "Rendering single_link.rhtml with #{link.name}"
+# Display a single link in the list. Params:
+# link => The link to display
+# can_edit => Whether the link can be edited
 %>
-<li><a href="<%=link.url%>"><%=h(link.name)%></a></li>
+<li><a href="<%=link.url%>"><%=h(link.name)%></a>
+
+<% if can_edit
+  # Unique ID to the tooltip div for editing
+  edit_control_id = "edit_external_link_#{link.id}" 
+  edit_tip_id = "edit_external_tip_#{link.id}"
+%>
+
+<a href="#" id="<%=edit_control_id%>">edit</a>
+
+<div id="<%=edit_tip_id%>" class='fave_tip'>
+  <h3>Edit link</h3>
+  <p>Edit link to external site<br/><br/>
+  
+  <%= form_remote_tag(
+      :update => "list_of_links",
+      :url => { 
+        :action => "edit_link", 
+        }) %>
+        
+        <%= render :partial => "link_form", :locals => { :link => link } %><br/>
+        <%= hidden_field("link", "id") %>
+        
+    <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('#{edit_control_id}'), event);" %>&nbsp;
+    <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('#{edit_control_id}'), event);" %>
+  <%= end_form_tag %>
+  </p>
+</div>
+<script type="text/javascript">
+  Tooltip.autoHideClick = false;
+  Tooltip.add('<%=edit_control_id%>', '<%=edit_tip_id%>');
+</script>
+<% end %>
+</li>

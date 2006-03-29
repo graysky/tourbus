@@ -13,13 +13,25 @@
         :action => "add_link", 
         }) %>
         
-        <%= render :partial => "link_form" %><br/>
+        <% # Lame hack around issue with sharing form because of link[] usage %>
+        <table class="compact-form-table">
+        <tr>
+          <th>Name:</th>
+          <td><%= text_field("link", 'name', {:size => 32, :value => ""} ) %></td>
+        </tr>
+        <tr>
+          <th>URL:</th>
+          <td><%= text_field("link", 'data', {:size => 32, :value => ""} ) %></td>
+        </tr>
+        </table>
+        
+        <br/>
         <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('add_external_link'), event);" %>&nbsp;
       <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('add_external_link'), event)" %>
   <%= end_form_tag %>
   </p>
 </div>
 <script type="text/javascript">
-    Tooltip.autoHideClick = false;
+  Tooltip.autoHideClick = false;
   Tooltip.add('add_external_link', 'add_external_tip');
 </script>

@@ -16,10 +16,14 @@
       <a href="javascript:alert('coming soon')">Contact this band</a>
     <% end %>
     
-    <%= list_links(@band.links) %>
-    
-    <% if logged_in_band %>
+    <% 
+        # TODO Need better rules for who can edit
+        if logged_in_band 
+    %>
+      <%= render :partial => "list_links", :locals => { :links => @band.links, :can_edit => true } %>
       <%= render :partial => "add_link" %>
+    <% else %>
+      <%= render :partial => "list_links", :locals => { :links => @band.links, :can_edit => false } %>
     <% end %>
   </p>
 </div>

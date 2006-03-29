@@ -92,7 +92,7 @@ class BandPublicController < ApplicationController
       flash.now[:error] = "Trouble saving the link"
     end
     
-    render(:partial => "single_link", :locals => { :link => link, :can_edit => true })
+    render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
   end
   
   # Edit link to external site
@@ -112,6 +112,16 @@ class BandPublicController < ApplicationController
     if not link.save
       flash.now[:error] = "Trouble saving the link"
     end
+    
+    render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
+  end
+  
+  # Delete link to external site
+  def delete_link
+    return if @request.get?
+  
+    id = params[:link][:id]
+    Link.find(id).destroy
     
     render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
   end

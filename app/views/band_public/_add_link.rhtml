@@ -2,36 +2,39 @@
 <td><a href="#" id="add_external_link">Add Link</a></td></tr></table>
 
 <div id="add_external_tip" class='fave_tip'>
-    <h3>Add a new link</h3>
-  
+  <h3>Add a new link</h3>
   <p>Add a link to external site<br/><br/>
-
   <%= form_remote_tag(
-          :update => "list_of_links",
-      :position => :bottom,
-      :url => { 
-        :action => "add_link", 
+        :update => "list_of_links",
+        :complete => "clearAddLinkFields()", 
+        :url => { 
+          :action => "add_link"
         }) %>
         
         <% # Lame hack around issue with sharing form because of link[] usage %>
         <table class="compact-form-table">
         <tr>
           <th>Name:</th>
-          <td><%= text_field("link", 'name', {:size => 32, :value => ""} ) %></td>
+          <td><%= text_field("link", 'name', {:size => 32, :value => "", :id => "add_link_name" } ) %></td>
         </tr>
         <tr>
           <th>URL:</th>
-          <td><%= text_field("link", 'data', {:size => 32, :value => ""} ) %></td>
+          <td><%= text_field("link", 'data', {:size => 32, :value => "", :id => "add_link_data" } ) %></td>
         </tr>
         </table>
-        
         <br/>
         <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('add_external_link'), event);" %>&nbsp;
-      <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('add_external_link'), event)" %>
+      <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('add_external_link'), event);" %>
   <%= end_form_tag %>
   </p>
 </div>
 <script type="text/javascript">
   Tooltip.autoHideClick = false;
   Tooltip.add('add_external_link', 'add_external_tip');
+  // After submit, clear the fields
+  function clearAddLinkFields()
+  {
+    $('add_link_name').value = "";
+    $('add_link_data').value = "";
+  }
 </script>

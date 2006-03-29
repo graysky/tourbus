@@ -6,17 +6,17 @@
 <li><a href="<%=link.url%>"><%=h(link.name)%></a>
 
 <% if can_edit
-  # Unique ID to the tooltip div for editing
+  # Unique IDs for the tooltip divs for editing and deleting
   edit_control_id = "edit_external_link_#{link.id}" 
   edit_tip_id = "edit_external_tip_#{link.id}"
+  
+  delete_control_id = "delete_external_link_#{link.id}" 
+  delete_tip_id = "delete_external_tip_#{link.id}"
 %>
-
 <a href="#" id="<%=edit_control_id%>">edit</a>
-
 <div id="<%=edit_tip_id%>" class='fave_tip'>
   <h3>Edit link</h3>
   <p>Edit link to external site<br/><br/>
-  
   <%= form_remote_tag(
       :update => "list_of_links",
       :url => { 
@@ -29,11 +29,30 @@
     <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('#{edit_control_id}'), event);" %>&nbsp;
     <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('#{edit_control_id}'), event);" %>
   <%= end_form_tag %>
-  </p>
-</div>
+  </p></div>
 <script type="text/javascript">
   Tooltip.autoHideClick = false;
   Tooltip.add('<%=edit_control_id%>', '<%=edit_tip_id%>');
+</script>
+
+<a href="#" id="<%=delete_control_id%>">delete</a>
+<div id="<%=delete_tip_id%>" class='fave_tip'>
+  <h3>Delete link</h3>
+  <p>Delete the link <a href="<%=link.url%>"><%=h(link.name)%></a>?<br/><br/>
+  <%= form_remote_tag(
+      :update => "list_of_links",
+      :url => { 
+        :action => "delete_link", 
+        }) %>
+        
+    <%= hidden_field("link", "id") %>
+    <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('#{delete_control_id}'), event);" %>&nbsp;
+    <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('#{delete_control_id}'), event);" %>
+  <%= end_form_tag %>
+  </p></div>
+<script type="text/javascript">
+  Tooltip.autoHideClick = false;
+  Tooltip.add('<%=delete_control_id%>', '<%=delete_tip_id%>');
 </script>
 <% end %>
 </li>

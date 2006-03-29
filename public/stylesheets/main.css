@@ -1338,6 +1338,13 @@ table.photo_table td span a {
     margin: 0 0 6px 0;
 }
 
+.profile_section_no_content {
+	font-size:11px;
+	font-weight:bold;
+	color: #4C5C5C;
+	margin:8px 0 0 8px;
+}
+
 /* Comments */
 .comments_box
 {

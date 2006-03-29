@@ -17,13 +17,7 @@
 <%= section "comments_section",  action %>
 
 <% if comments.nil? || comments.empty? %>
-    <br/>
-  <%= start_profile_info_box %>
-      <strong>
-         There are no comments yet.
-         <% if not logged_in? %>If you were logged in you could add some!<% end %>
-      </strong>
-    <%= end_profile_info_box %>
+    <div class="profile_section_no_content">There are no comments yet.</div>
 <% end %>
 
 <div class="comments_box">

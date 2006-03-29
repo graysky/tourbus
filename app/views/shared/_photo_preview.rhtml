@@ -14,6 +14,9 @@
    end
    
    options = { :action => "photos", :id => id }
+   if not full and type == Photo.FromFan
+     options[:controller] = "fan/" + @fan.name
+   end 
 %>
 
 
@@ -85,7 +88,44 @@
   }
 </script>
 
-<% # TODO AAGH... how do we make these styles common? The other right now is results_box... %>
+<%
+  if photos.nil? or photos.empty?
+%>
+   <% if type == Photo.FromFan and @logged_in_as_fan %>
+      <br/>
+      <%= start_profile_info_box %>
+          <strong>You haven't uploaded any photos!</strong>
+          <br/><br/>
+          If you have any photos of a show, band or venue you can go its profile
+          and click 'Upload Photo' to contribute it to the site. It's also really easy
+          to upload a photo you took with your cameraphone from your cell phone. You can
+          learn more about that here (TODO)
+        <%= end_profile_info_box %>
+   <% elsif type == Photo.FromFan %>    
+        
+          <div class="profile_section_no_content"><%= @fan.name %> hasn't uploaded any photos!</div>
+        
+   <% elsif type == Photo.Band %>    
+          <div class="profile_section_no_content">There are no photos of this band.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </div>
+       
+   <% elsif type == Photo.Venue %>    
+       
+          <div class="profile_section_no_content">There are no photos of this venue.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </div>
+      
+   <% elsif type == Photo.Show %>    
+       
+          <div class="profile_section_no_content">There are no photos of this show.
+          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          </div>
+        
+   <% end %>
+
+<% end %>
+
 <div class="photo_box">
   <% if not showing_creator %>
   <div id="add_photo" style="display:none">
@@ -122,55 +162,8 @@
    <% end %>
    
    <%= photo_preview_table photos, rows, cols, showing_creator %>
-   <span id="no_photos_msg">
-  <br/>
     <% if photos and !photos.empty? and not full %>
+      <br/>
      <%= link_to "See more photos...", options %>
     <% end %>
 </div>
-
-<%
-  if photos.nil? or photos.empty?
-%>
-   <% if type == Photo.FromFan and @logged_in_as_fan %>
-      <%= start_profile_info_box %>
-          <strong>You haven't uploaded any photos!</strong>
-          <br/><br/>
-          If you have any photos of a show, band or venue you can go its profile
-          and click 'Upload Photo' to contribute it to the site. It's also really easy
-          to upload a photo you took with your cameraphone from your cell phone. You can
-          learn more about that here (TODO)
-        <%= end_profile_info_box %>
-   <% elsif type == Photo.FromFan %>    
-        <%= start_profile_info_box %>
-          <strong><%= @fan.name %> hasn't uploaded any photos!</strong>
-        <%= end_profile_info_box %>
-   <% elsif type == Photo.Band %>    
-        <%= start_profile_info_box %>
-          <strong>There are no photos of this band.
-          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          </strong>
-        <%= end_profile_info_box %>
-   <% elsif type == Photo.Venue %>    
-        <%= start_profile_info_box %>
-          <strong>There are no photos of this venue.
-          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          </strong>
-        <%= end_profile_info_box %>
-   <% elsif type == Photo.Show %>    
-        <%= start_profile_info_box %>
-          <strong>There are no photos of this show.
-          <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          </strong>
-        <%= end_profile_info_box %>
-   <% end %>
-</span>
-<% elsif not full %>
-<% 
-  if not full
-    if type == Photo.FromFan
-      options[:controller] = "fan/" + @fan.name
-    end
-  end 
-%>
-<% end %>

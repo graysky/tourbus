@@ -48,12 +48,14 @@
 <br/>
 
 <%= section "favorite_bands_section" %>
-<br/>
+
 <% if not @bands.empty? %>
+  <br/>
   <%= band_results(@bands) %>
   <br/>
   <%= link_to "See more favorite bands...", :action => :favorite_bands %>
 <% elsif @logged_in_as_fan %>
+    <br/>
     <%= start_profile_info_box %>
         <strong>You don't have any favorite bands!</strong>
         <br/><br/>
@@ -62,9 +64,7 @@
         email reminders anytime one of your favorite bands is coming to town.
     <%= end_profile_info_box %>
 <% else %>
-    <%= start_profile_info_box %>
-        <strong><%= @fan.name %> doesn't have any favorite bands!</strong>
-    <%= end_profile_info_box %>
+    <div class="profile_section_no_content"><%= @fan.name %> doesn't have any favorite bands!</div>
 <% end %>
 <br/>
 

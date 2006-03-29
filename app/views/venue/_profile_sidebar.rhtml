@@ -2,6 +2,7 @@
 
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
+  <div class="actions-box-rows">
   <% if logged_in_fan and logged_in_fan.superuser? %>
     <b><%= link_to "Edit This Venue", :controller => "admin", :action => "edit_venue", :id => @venue.id %></b>
     <br/>
@@ -14,6 +15,10 @@
     <td><img src="/images/feed.png"/></td>
     <td><a style="font-size:11px" href="<%= public_venue_rss_url(@venue) %>" id="rss_link">Subscribe to News</a></td>
     </tr>
+    </table>
+  </p>
+  <p>
+    <table>
     <%= 
       render :partial => "shared/report_problem",
            :locals => { :id => @venue.id, :type => "venue",
@@ -21,8 +26,8 @@
                    }
     %>
     </table>
-    
   </p>  
+</div>
 </div>
 
 <br/>

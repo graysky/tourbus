@@ -2,7 +2,7 @@
 
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
-  
+    <div class="actions-box-rows">
     <p>
     <span id="attend_control">
       <%= 
@@ -185,6 +185,10 @@
     <td><img src="/images/feed.png"/></td>
     <td><a style="font-size:11px" href="<%= public_show_rss_url(@show) %>" id="rss_link">Subscribe to News</a></td>
     </tr>
+    </table>
+ </p>
+ <p>
+    <table>
     <%= 
       render :partial => "shared/report_problem",
            :locals => { :id => @show.id, :type => "show",
@@ -195,7 +199,8 @@
     %>
     </table>
     
-  </p>  
+  </p>
+  </div>  
 </div>
 
 <br/>

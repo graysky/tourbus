@@ -17,7 +17,7 @@
   <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
     
-      
+    <div class="actions-box-rows">  
     <p>
     <!-- TODO Pull in partial -->
     <table>
@@ -27,6 +27,10 @@
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
     <% end %>
+    </table>
+    </p>
+    <p>
+    <table>
     <tr>
       <td><img src="/images/feed.png"/></td>
       <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
@@ -34,7 +38,7 @@
     </table>
     
     </p>
-  
+  </div>
   </div>
 </div>
 <script>

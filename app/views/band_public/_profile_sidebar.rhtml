@@ -12,7 +12,7 @@
     
     <br/>
     <br/>
-    <% if @band.claimed? %>
+    <% if @band.claimed? and false %>
       <a href="javascript:alert('coming soon')">Contact this band</a>
     <% end %>
     
@@ -28,12 +28,14 @@
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
   
+  <div class="actions-box-rows">
   <p>
     <% if logged_in_fan and logged_in_fan.superuser? %>
       <b><%= link_to "Edit This Band", :controller => "admin", :action => "edit_band", :id => @band.id %></b>
       <br/>
     <% end %>
-    
+   </p>
+   <p>
     <span id="favorite_control">
       <%= 
         if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
@@ -117,6 +119,10 @@
     <td><img src="/images/feed.png"/></td>
     <td><a style="font-size:11px" href="<%= public_band_rss_url %>" id="rss_link">Subscribe to News</a></td>
     </tr>
+    </table>
+  </p>
+  <p>
+    <table>
     <% if !@band.confirmed? %>
       <%= 
         render :partial => "shared/report_problem",
@@ -128,7 +134,7 @@
     </table>
     
   </p>
-  
+  </div>
   
 </div>
 <br/>

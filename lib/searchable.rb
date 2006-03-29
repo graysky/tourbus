@@ -93,7 +93,7 @@ module FerretMixin
             options[:filter] = location_filter
           end
           
-          logger.debug("Search by date and location: #{query.to_s}")
+          logger.debug("Search by date and location: #{query.to_s}, #{options[:sort]}")
           ids = []
           count = ferret_index.search_each(query, options) do |doc, score|
             ids << ferret_index[doc]["id"]

@@ -51,8 +51,11 @@ class Band < ActiveRecord::Base
   has_one :upload_addr
   acts_as_searchable
   
+  
   validates_uniqueness_of :uuid # just in case
   validates_presence_of :name
+  validate_not_reserved :short_name, :words => ActionController::Routing::Routes.known_controllers, 
+                        :message => "Sorry, you have chosen a reserved name. Choose a new public page name."
   validates_uniqueness_of :short_name, 
                           :message => "Sorry, that band public page has already been taken."
                           

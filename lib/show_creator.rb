@@ -91,6 +91,8 @@ module ShowCreator
     @show.bands.clear
     @bands_playing.each_with_index do |band, index|
       band.play_show(@show, index)
+      band.save!
+      band.ferret_save
     end
   end
  

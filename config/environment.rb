@@ -86,6 +86,7 @@ RailsCron.options = {
 require 'rails_file_column'
 require 'selective_timestamp'
 require 'validations'
+require 'upcoming_shows'
 
 # For UTF-8 handling
 $KCODE = 'u'

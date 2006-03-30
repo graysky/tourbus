@@ -189,15 +189,7 @@ class BandPublicController < ApplicationController
           Show.transaction(@show) do
           
             add_bands
-            
             @show.save!
-            
-            @bands_playing.each do |band| 
-              if band.id.nil?
-                band.save!
-                band.ferret_save
-              end
-            end
           end
         end
       rescue Exception => ex

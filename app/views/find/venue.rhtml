@@ -71,7 +71,7 @@
         </td>
         <td class="col3">
           <nobr>
-          <strong>upcoming shows:</strong> 1<br/>
+          <strong>upcoming shows:</strong> <%= venue.num_upcoming_shows %><br/>
           <% if logged_in_fan and logged_in_fan.superuser? %>
               &nbsp;
               <b><%= link_to "Delete", :controller => "admin", :action => "delete_venue", :id => venue.id %></b>

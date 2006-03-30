@@ -48,6 +48,7 @@ class Fan < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
   include Address::ActsAsLocation
   include MobileAddress
+  include UpcomingShows
   
   acts_as_password_protected
   file_column :logo, :magick => { :geometry => "200x300>" }

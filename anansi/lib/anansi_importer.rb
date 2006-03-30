@@ -135,12 +135,11 @@ class AnansiImporter
         band.links << link
       end
       
-      band.save!
-      
       @new_band_count += 1
     end
    
     band.play_show(show, show.bands.size, b[:extra])
+    band.save!
   end
   
   # Prepare a show hash for import

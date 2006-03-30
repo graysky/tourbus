@@ -39,6 +39,7 @@ class Band < ActiveRecord::Base
   include Address::ActsAsLocation
   include Tagging
   include Ferret
+  include UpcomingShows
   
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'

@@ -139,17 +139,6 @@ class ShowController < ApplicationController
             create_bands_playing_content
             return
           end
-          
-          @bands_playing.each do |band| 
-            if band.id.nil?
-              if !band.save
-                create_bands_playing_content
-                return true
-              end
-            end
-            
-            band.ferret_save
-          end
         end
       end
     rescue Exception => ex

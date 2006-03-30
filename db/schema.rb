@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 26) do
+ActiveRecord::Schema.define(:version => 27) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 26) do
     t.column "num_fans", :integer, :default => 0
     t.column "latitude", :string, :limit => 30
     t.column "longitude", :string, :limit => 30
+    t.column "num_upcoming_shows", :integer, :default => 0
   end
 
   add_index "bands", ["name"], :name => "name_key"
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(:version => 26) do
     t.column "show_watching_reminder", :integer, :limit => 10, :default => 4320, :null => false
     t.column "latitude", :string, :limit => 30
     t.column "longitude", :string, :limit => 30
+    t.column "num_upcoming_shows", :integer, :default => 0
   end
 
   add_index "fans", ["name"], :name => "name_key"
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(:version => 26) do
     t.column "page_views", :integer, :limit => 10, :default => 0
     t.column "last_updated", :datetime
     t.column "short_name", :string
+    t.column "num_upcoming_shows", :integer, :default => 0
   end
 
   create_table "zip_codes", :force => true do |t|

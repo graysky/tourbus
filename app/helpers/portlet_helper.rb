@@ -40,11 +40,23 @@ module PortletHelper
   
     logo_url = nil
     if !fan.logo.nil?
-
-    # Resize for an 25x25 thumbnail
-    logo_url = url_for_image_column(fan, "logo", :size => "25x25!", :crop => "1:1", :name => "tiny_thumb")
-  else
-    logo_url = '/images/unknown_tiny_thumb.jpg'
+      # Resize for an 25x25 thumbnail
+      logo_url = url_for_image_column(fan, "logo", :size => "25x25!", :crop => "1:1", :name => "tiny_thumb")
+    else
+      logo_url = '/images/unknown_tiny_thumb.jpg'
+    end
+    
+    return logo_url
+  end
+  
+  def get_tiny_band_logo_url(band)
+  
+    logo_url = nil
+    if !band.logo.nil?
+      # Resize for an 25x25 thumbnail
+      logo_url = url_for_image_column(band, "logo", :size => "25x25!", :crop => "1:1", :name => "tiny_thumb")
+    else
+      logo_url = '/images/unknown_tiny_thumb.jpg'
     end
     
     return logo_url

@@ -162,9 +162,10 @@ td, p
 /* Center the Navigation options */
 #nav-options
 {
-	width: 600px;
+	/* The width/margin can causing wrapping - tread carefully */
+	width: 580px; 
+	margin-left: 100px;
 	text-align:center;
-	margin-left: 120px;
 }
 
 .nav-option

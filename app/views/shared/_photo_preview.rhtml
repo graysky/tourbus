@@ -79,7 +79,9 @@
   {
     $("photo_file").value = '';
     $("photo_description").value = '';
-    $("no_photos_msg").innerHTML = '';
+    if ($("no_photos_msg")) {
+        $("no_photos_msg").innerHTML = '';
+    }
     
     new Effect.Fade('add_photo');
     
@@ -93,6 +95,7 @@
 %>
    <% if type == Photo.FromFan and @logged_in_as_fan %>
       <br/>
+      <span id='no_photos_msg'>
       <%= start_profile_info_box %>
           <strong>You haven't uploaded any photos!</strong>
           <br/><br/>
@@ -101,24 +104,25 @@
           to upload a photo you took with your cameraphone from your cell phone. You can
           learn more about that here (TODO)
         <%= end_profile_info_box %>
+        </span>
    <% elsif type == Photo.FromFan %>    
         
-          <div class="profile_section_no_content"><%= @fan.name %> hasn't uploaded any photos!</div>
+          <div id='no_photos_msg' class="profile_section_no_content"><%= @fan.name %> hasn't uploaded any photos!</div>
         
    <% elsif type == Photo.Band %>    
-          <div class="profile_section_no_content">There are no photos of this band.
+          <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this band.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
           </div>
        
    <% elsif type == Photo.Venue %>    
        
-          <div class="profile_section_no_content">There are no photos of this venue.
+          <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this venue.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
           </div>
       
    <% elsif type == Photo.Show %>    
        
-          <div class="profile_section_no_content">There are no photos of this show.
+          <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this show.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
           </div>
         

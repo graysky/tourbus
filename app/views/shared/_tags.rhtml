@@ -23,8 +23,8 @@
     }
     
     // Add the new tag section at the bottom
-    new Insertion.Bottom(
-      "tag-list-<%= type %>",
+    new Insertion.After(
+      "next-tag-marker",
       tag_partial);
   }
   // Called when a tag has been removed
@@ -46,7 +46,7 @@
 
 <h2 id="tags-title"><span class="title"><%= title %></span></h2>
 
-<table class="tags-list" id="tag-list-<%= type %>" border="0">
+<div id="tag-list" border="0">
 <% 
     # How should we set rules on who can delete tags?
     show_delete = logged_in?
@@ -63,7 +63,8 @@
     }) 
   %>
 <% end %>
-</table>
+<div id='next-tag-marker'></div>
+</div>
 
 <%
   if logged_in?

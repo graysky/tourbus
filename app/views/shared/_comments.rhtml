@@ -10,6 +10,10 @@
   function finish_comment_submit()
   {
     $("comment_body").value = '';
+    if ($('no_comments_msg')) {
+        $('no_comments_msg').innerHTML = '';
+    }
+    
   }
 </script>
 
@@ -17,7 +21,7 @@
 <%= section "comments_section",  150, 23, action %>
 
 <% if comments.nil? || comments.empty? %>
-    <div class="profile_section_no_content">There are no comments yet.</div>
+    <div id='no_comments_msg' class="profile_section_no_content">There are no comments yet.</div>
 <% end %>
 
 <div class="comments_box">

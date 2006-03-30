@@ -1,34 +1,43 @@
 <% @page_title = "Sign Up" %>
 <% @header_title = "Sign Up" %>
 
-<table border="0" width="99%" cellspacing="0">
-<tr>
-<td>
+<table border="0" width="95%" cellspacing="0">
+<tr><td>
 
 <div class="signup_box">
 <h3>Music Fan?</h3>
 
-<ul>
+  <table class="signup_table" border="0">
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td><span class="highlight">Discover</span> New, Independent Music</td>
+  </tr>
   
-  <li><span class="highlight">Discover</span> New, Independent Music</li>
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td>Get <span class="highlight">Reminded</span> Before Shows</td>
+  </tr>
 
-  <li>Track Your <span class="highlight">Favorite Bands</a></li>
-  
-  <li><span class="highlight">Share</span> Reviews &amp; Photos of Shows</li>
-  
-  <li>And it's <span class="highlight">Free</span><li>
-  
-</ul>
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td><span class="highlight">Share</span> Reviews &amp; Photos of Shows</td>
+  </tr>
 
-<br/>
-<center>
-<%= link_to("Sign Up Now", :controller => "signup", :action => "fan") %>
-</center>
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td>And it's <span class="highlight">Free!</span></td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td style="padding-left:15px; padding-top:30px;"><%= link_to("Sign Up Now", :controller => "signup", :action => "fan") %></td>
+  </tr>
+  </table>
 </div>
 
 </td>
 
-<td width="20%">
+<td width="10%">
 &nbsp;
 </td>
 
@@ -40,23 +49,32 @@
 
 <!-- ToYour Promising Local Band to: -->
 
-<ul>
-  <li><span class="highlight">Spread</span> the Word About Your Shows</li>
-  
-  <li>Gain New <span class="highlight">Fans</a></li>
-  
-  <li>Find Other Bands in <span class="highlight">Your Scene</span></li>
-  
-  <li>And it's <span class="highlight">Free</span><li>
-  
-</ul>
+  <table class="signup_table" border="0">
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td><span class="highlight">Spread</span> the Word About Your Shows</td>
+  </tr>
 
-<br/>
-<center>
-<%= link_to("Sign Up Now", :controller => "signup", :action => "band") %>
-</center>
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td>Gain New <span class="highlight">Fans</a></td>
+  </tr>
+
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td>Find Other Bands in <span class="highlight">Your Scene</span></td>
+  </tr>
+  
+  <tr>
+    <td><%= image_tag("check.gif", :size => "24x24", :border => 0)%></td>
+    <td>And it's <span class="highlight">Free!</span></td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td style="padding-left:15px; padding-top:30px;"><%= link_to("Sign Up Now", :controller => "signup", :action => "band") %></td>
+  </tr>
+  </table>
 </div>
 
-</td>
-</tr>
-</table>
+</td></tr></table>

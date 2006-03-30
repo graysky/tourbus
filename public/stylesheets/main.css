@@ -263,22 +263,17 @@ td, p
 	margin-bottom:20px;
 }
 
-.signup_box ul
+.signup_table
 {
-	margin-left: -35px;	
+    margin-left: 10px;
+    width: 95%;    
 }
 
-.signup_box li
+.signup_table td
 {
-	font-size: 18px;
-
-	background: url(/images/bullet.gif) no-repeat;
-	background-position: center left;
-	list-style-type: none;
-	padding: 0px 0px 0px 5px;
-	margin-bottom: 20px;
-	/* Push the text off the image */
-	text-indent: 8px;
+    padding-top: 10px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 12pt;
 }
 
 .signup_box a

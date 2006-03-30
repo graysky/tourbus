@@ -329,12 +329,11 @@ td, p
 	font-family: "Lucida Grande", Arial, Verdana, Helvetica, sans-serif;
 }
 
-
 .results_box a {
 	color: #0F628B;
 }
 
-	/* Search Results */
+/* Search Results */
 .results_box
 {
 	width:200px;
@@ -344,7 +343,6 @@ td, p
 	line-height: 140%;
 }
 
-
 .results_box div
 {
 	padding-bottom:8px;
@@ -353,20 +351,20 @@ td, p
 }
 
 /*-----------------------------------------------------*/
-/* Portlets - used on front and section pages */
+/* Portlets - used on front page */
 /*-----------------------------------------------------*/
 
 /* Portlet boxes that hold the half and full width portlets */
 .portlet_box
 {
-	/* width:360px; */
-	/* height:380px; */
-	
 	color:#4C5C5C;	
 	text-align:left;
 	
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+
+	margin-left:0px;
+	margin-right:0px;
 
 	margin-top:16px;
 	margin-bottom:16px;
@@ -377,55 +375,101 @@ td, p
 	color:#599057;
 	border-bottom: 2px solid #599057;
 	text-align:center;
-	font-size:20px;
+	font-size:22px;
 	margin-bottom:20px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
-/* Holds thumbnail image */
-.portlet_box .thumb
-{
-	margin-right:10px;
-	margin-bottom:10px;
+/* Front page portlets */
+
+/* Shared dimensions for welcome/getting started boxes*/
+.front_boxes {
+    height: 150px;
+    width: 380px;
 }
 
-/* The band name */
-.portlet_box .band
-{
-	font-size:14px;
+.getting_started {
+    
+    background-color: #EBEBEB;
+	/* Hack around IE z-order problem with the title */
+	border: 1px solid #FFFFFF; /* Color matches background */
+	font-size: 13px;
 }
 
-.portlet_box .info
+/* Rounded background for title */
+.getting_started h2
 {
+	margin-top:0px;
+	padding-bottom:2px;
+	/* Gray */
+	background-color: #CCCCCC;
+}
+
+/* Side bar title text */
+.getting_started .title
+{
+    padding-left: 12px;
+    font-size: 14px;
+    color: #0F628B; 
+    font-weight:bold;
+}
+
+.getting_started .info 
+{
+    margin-left: 12px;
+    padding-left: 12px;
+    font-size: 14px;
+}
+
+.welcome_msg {
+    
+}
+
+/* List of bands and shows - narrow version */
+.narrow_list {
+	font-size:12px;
+}
+
+.narrow_list a {
+	color: #2B95B6;
+	font-size:12px;	
+}
+
+.narrow_list .col2 {
+	width:350px;
+}
+
+.narrow_list .result_even {
+	min-height:60px;
+	background-color:#eee;
+	padding:4px 0 0px 4px;
+	width:350px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+.narrow_list .result_odd {
+	min-height:60px;
+	padding:4px 0 0px 4px;
+	background-color:#FAFAFA;
+	width:350px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+
+.narrow_list .first_result {
+	border-top:1px solid #ddd;
+}
+
+.narrow_list .address {
+	line-height: 140%;
+}
+
+.narrow_list .result_tags {
+	padding-top:4px;
 	font-size:11px;
 	color: #555;
-}
-
-/* Half-width portlet */
-.portlet_half 
-{
-	width:360px;
-}
-
-/* Full-width portlet */
-.portlet_full 
-{
-	width:760px;
-	
-	color:#4C5C5C;	
-	text-align:left;
-	font-size:18px;
-	
-	padding-bottom: 20px;
-	margin-top:16px;
-	margin-bottom:16px;
-}
-
-.portlet_full h3 {
-	color:#599057;
-	border-bottom: 2px solid #599057;
-	text-align:center;
-	font-size:20px;
-	margin-bottom:20px;
+	font-weight:bold;
 }
 
 /* News page */

@@ -1,0 +1,29 @@
+<%
+# Parameters:
+# band => the band to show
+# index => index of this result
+%>
+<div class="<%= index % 2 == 0 ? 'result_even' : 'result_odd' %> <%= 'first_result' if index == 0 %>">
+  <table>
+    <tr>
+      <td><img class="photo_img" src="<%= get_band_logo_url(band) %>"/></td>
+      <td>
+        <div class="col2">
+          <%= public_band_link band.name, band %>
+          <br/>
+          <div class="result_tags">
+          <%
+            # TODO If we keep this it should be factored out
+            str = ""
+            for tag in band.tags[0..2]
+              str = str + " / " if str != ""
+              str += tag.name
+            end
+          %>
+          <%= str %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

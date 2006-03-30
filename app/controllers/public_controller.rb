@@ -8,6 +8,8 @@ class PublicController < ApplicationController
   def front_page
     
     get_popular_bands
+    
+    get_popular_shows
   end
   
   # The beta page to ask for invitation code
@@ -50,6 +52,17 @@ class PublicController < ApplicationController
   
   private
   
+    
+  def get_popular_shows
+  
+    # Get the 10 most popular shows
+    @shows = Show.find(:all,
+                       :order => "num_watchers DESC",
+                       :limit => 10
+                      ) 
+  end 
+  
+  # TODO Change to use index and cache this
   def get_popular_bands
   
     # Get the 10 most popular bands

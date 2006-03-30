@@ -1,15 +1,22 @@
+<%
+  # Parameters:
+  # logged_in => if a user is logged in
+%>
+<div class="welcome_msg">
 
-<div class="portlet_full">
+<% if logged_in? 
+  user = logged_in
+%>
 
-<h3>Welcome!</h3>
+Help Make Tourbus better, <%= user.name %>!
+<br/><%= link_to("Sign Up", :controller=> "signup")  %>
 
-<!-- TODO Right Real Text -->
+<% else %>
 
+You should join New User!
+<br/><%= link_to("Sign Up", :controller=> "signup")  %>
 
-
-Tourbus is an <b>awesome</b> new way to do stuff to your friends! Tourbus is an <b>awesome</b> new way to do stuff to your friends!
-Tourbus is an awesome new way to do stuff to your friends! Tourbus is an awesome new way to do stuff to your friends! You should 
-<%= link_to("Sign Up", :controller=> "signup")  %>
+<% end %>
 
 </div>
 

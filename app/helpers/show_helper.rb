@@ -54,9 +54,9 @@ module ShowHelper
   
   def map_list_toggle(action)
     if (params[:show_map] == nil || params[:show_map] == "false")
-      link_to(image_tag("show_map"), :action => action, :show_map => "true", :show_display => params[:show_display])
+      link_to(image_tag("show_map.gif", :size => '65x13'), :action => action, :show_map => "true", :show_display => params[:show_display])
     else
-      link_to(image_tag("show_list"), :action => action, :show_map => "false", :show_display => params[:show_display])
+      link_to(image_tag("show_list.gif", :size => '65x13'), :action => action, :show_map => "false", :show_display => params[:show_display])
     end
   end
     

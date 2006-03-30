@@ -3,7 +3,7 @@
 <div id="main">
   <%= render :partial => "profile_header", :locals => { :front_page => false } %>
   
-  <%= section("fans_section") %>
+  <%= section("fans_section", 68, 23) %>
   <br/>
   <%= fan_results(@show.fans_attending_first, true) %>
 </div>

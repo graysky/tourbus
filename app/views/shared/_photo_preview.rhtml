@@ -10,7 +10,7 @@
    showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
    action = nil
    if logged_in? and not showing_creator
-     action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo')}</a>"
+     action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo.gif', :size => '85x13')}</a>"
    end
    
    options = { :action => "photos", :id => id }
@@ -20,7 +20,7 @@
 %>
 
 
-<%= section "photos_section", action %>
+<%= section "photos_section", 100, 23, action %>
 
 <% # TODO Pull out into js file %>
 <script type="text/javascript">

@@ -23,7 +23,7 @@
     <table>
     <% if @logged_in_as_fan %>
       <tr>
-        <td><img src="/images/add.png"/></td>
+        <td><img src="/images/add.png" height="16" width="16"/></td>
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
     <% end %>
@@ -32,7 +32,7 @@
     <p>
     <table>
     <tr>
-      <td><img src="/images/feed.png"/></td>
+      <td><img src="/images/feed.png" height="16" width="16"/></td>
       <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
     </tr>
     </table>

@@ -106,9 +106,9 @@ END_JS
     "<table><tr><td valign='top'><img width='16px' height='16px' src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
   end
   
-  def section(title_img, action = nil)
+  def section(title_img, width, height, action = nil)
     out = "<div class='panel_header'><table><tr>"
-    out << "<td width='580px'>#{image_tag(title_img)}</td>"
+    out << "<td width='580px'>#{image_tag(title_img, :height => height, :width => width)}</td>"
   if action
    out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
   end

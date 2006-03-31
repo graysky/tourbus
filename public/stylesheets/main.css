@@ -1,5 +1,5 @@
 /*-----------------------------------------------------*/
-/* tourb.us CSS - The Green Theme.                     */
+/* tourb.us CSS - "The Green Monster".                 */
 /*-----------------------------------------------------*/
 
 /*-----------------------------------------------------*/
@@ -384,13 +384,53 @@ td, p
 
 /* Shared dimensions for welcome/getting started boxes*/
 .front_boxes {
-    height: 150px;
-    width: 380px;
+    width: 360px;
+}
+
+.welcome_msg {
+    background-color: #EBEBEB;
+    xbackground-color: #EFF4F6; /* Light blue */
+	/* Hack around IE z-order problem with the title */
+	border: 1px solid #FFFFFF; /* Color matches background */
+	font-size: 13px;
+}
+
+/* Rounded background for title */
+.welcome_msg h2
+{
+	margin-top:0px;
+	padding-bottom:2px;
+	/* Match the normal background */
+	background-color: #EBEBEB;
+    xbackground-color: #EFF4F6; /* Light blue */
+	xbackground-color: #CCCCCC;
+}
+
+/* Box title text */
+.welcome_msg .title
+{
+    padding-left: 14px;
+    font-size: 18px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    color: #0F628B; 
+    font-weight:bold;
+}
+
+.welcome_msg .info 
+{
+    margin-top: 10px;
+    margin-bottom: 5px;  
+    margin-left: 14px;
+    margin-right: 12px;
+    
+    font-size: 17px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    xborder: 1px solid green; 
 }
 
 .getting_started {
-    
-    background-color: #EBEBEB;
+    xbackground-color: #EBEBEB;
+    background-color: #EFF4F6; /* Light blue */
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
 	font-size: 13px;
@@ -401,29 +441,47 @@ td, p
 {
 	margin-top:0px;
 	padding-bottom:2px;
-	/* Gray */
-	background-color: #CCCCCC;
+	/* Match the normal background */
+	xbackground-color: #EBEBEB;
+    background-color: #EFF4F6; /* Light blue */
+	xbackground-color: #CCCCCC;
 }
 
-/* Side bar title text */
+/* Box title text */
 .getting_started .title
 {
-    padding-left: 12px;
-    font-size: 14px;
+    padding-left: 14px;
+    font-size: 18px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
 }
 
 .getting_started .info 
 {
-    margin-left: 12px;
-    padding-left: 12px;
-    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 5px;  
+    margin-left: 14px;
+    margin-right: 12px;
+    
+    font-size: 17px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    xborder: 1px solid green; 
 }
 
-.welcome_msg {
+.getting_started .number 
+{
+    padding-left: 6px;
+    padding-right: 6px;
     
+    font-size: 20px;
+    /*background-color: black;*/
+    color: white;
+    background-color: #0F628B; /* Dark Blue */
+    xbackground-color: #94C28A; /* Greenish */
+    xbackground-color: #599057; /* Greenish */
 }
+
 
 /* List of bands and shows - narrow version */
 .narrow_list {

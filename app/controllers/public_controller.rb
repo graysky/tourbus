@@ -51,12 +51,12 @@ class PublicController < ApplicationController
   end
   
   private
-  
     
   def get_popular_shows
   
     # Get the 10 most popular shows
     @shows = Show.find(:all,
+                       :conditions => ["date > ?", Time.now - 1.days],
                        :order => "num_watchers DESC",
                        :limit => 10
                       ) 
@@ -71,6 +71,4 @@ class PublicController < ApplicationController
                        :limit => 10
                       ) 
   end  
-  
-  
 end

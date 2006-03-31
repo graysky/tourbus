@@ -1,23 +1,22 @@
 <div id="getting-started-box" class="getting_started">
 
-  <h2 id="getting-started-title"><span class="title">Start Rocking</span></h2>
+  <h2 id="getting-started-title"><span class="title">For Those About To Rock</span></h2>
 
 <div class="info">
+  <span class="number">1</span> 
+  Find <%= link_to("shows", :controller => "find", :action => "show") %>
+  with your favorite <%= link_to("bands", :controller => "find", :action => "band") %>
+  
 
-  <br/>1. Find bands/shows
+  <br/><br/><span class="number">2</span> See a show nearby
 
-  <br/>2. Get notified
-
-  <br/>3. Go to a Show
+  <br/><br/><span class="number">3</span> There is no step three!
 </div>
 
 </div>
 <script type="text/javascript">
   var white = '#FFFFFF';
-
-    Rico.Corner.round( $('getting-started-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('getting-started-title'), {corners:'top', bgColor : white} );
-    //Rico.Corner.round( $('getting-started-box'), {corners:'bottom', bgColor : white} );
-    //Rico.Corner.round( $('getting-started-title'), {corners:'top', bgColor : white} );
+  Rico.Corner.round( $('getting-started-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('getting-started-title'), {corners:'top', bgColor : white} );
 </script>
 

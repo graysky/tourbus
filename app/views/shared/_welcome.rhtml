@@ -1,22 +1,45 @@
-<%
-  # Parameters:
-  # logged_in => if a user is logged in
-%>
-<div class="welcome_msg">
+<div id="welcome-msg-box" class="welcome_msg">
 
-<% if logged_in? 
-  user = logged_in
-%>
+<% if fan = logged_in_fan %>
 
-Help Make Tourbus better, <%= user.name %>!
-<br/><%= link_to("Sign Up", :controller=> "signup")  %>
+<h2 id="welcome-msg-title">
+<span class="title">For Those About To Rock</span></h2>
+<div class="info">
+  Help Make Tourbus better, <%= fan.name %>!
+  <br/><%= link_to("Sign Up", :controller=> "signup")  %>
+</div>
+
+<% elsif band = logged_in_band %>
+
+<h2 id="welcome-msg-title">
+  <span class="title">For Those About To Rock</span>
+</h2>
+
+<div class="info">
+  List shows for you promisng local band!
+  <br/><%= link_to("Sign Up", :controller=> "signup")  %>
+</div>
 
 <% else %>
 
-You should join New User!
-<br/><%= link_to("Sign Up", :controller=> "signup")  %>
+<h2 id="welcome-msg-title">
+  <span class="title">Get On The Bus - Join Us!</span>
+</h2>
 
-<% end %>
-
+<div class="info">
+  Life is better for fans:
+  <br/>
+  <br/>Track your favorite bands (via email / RSS)
+  <br/>Post reviews and photos from shows
+  <br/>Reminders before concerts
+  <br/><%= link_to("Sign Up", :controller=> "signup", :action=> "fan")  %>
 </div>
 
+<% end %>
+</div>
+
+<script type="text/javascript">
+  var white = '#FFFFFF';
+  Rico.Corner.round( $('welcome-msg-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('welcome-msg-title'), {corners:'top', bgColor : white} );
+</script>

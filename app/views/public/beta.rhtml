@@ -1,22 +1,6 @@
 <% @page_title = "Welcome" %>
 <% @header_title = "Welcome" %>
 
-<% content_for("onload") do %>
-<% end %>
-
-<!---
-  init_focus()
--->
-
-<script type="text/javascript">
-  function init_focus()
-  {
-    //$('code').focus()
-  }
-</script>
-
-<%= start_form_tag %>
-
 <center>
 <table class="form-table">
   <tr>
@@ -27,14 +11,17 @@
     </p>
     </td>
   </tr>
+<%= start_form_tag( {:controller => "public", :action => "beta"}, 
+                    :onsubmit => "javascript:alert('Submitted the form')") %>
   <tr>
     <th>Invitation Code:</th>
     <td><%= text_field_tag('code', nil, :size => 30) %></td>
     <td class="info">
-    <%= submit_tag 'Submit' %>
+    <%= submit_tag 'Submit', :onclick => "javascript:alert('Clicked the form!')"  %>
+<%= end_form_tag %>
+
     </td>
   </tr>
 </table>
 </center>
 
-<%= end_form_tag %>

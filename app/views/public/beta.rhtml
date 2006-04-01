@@ -11,14 +11,19 @@
     </p>
     </td>
   </tr>
-<%= start_form_tag( {:controller => "public", :action => "beta"}, 
-                    :onsubmit => "javascript:alert('Submitted the form')") %>
+
   <tr>
     <th>Invitation Code:</th>
-    <td><%= text_field_tag('code', nil, :size => 30) %></td>
-    <td class="info">
+    <td>
+<%= start_form_tag( {:controller => "public", :action => "beta"}, 
+                     :onsubmit => "javascript:alert('Submitted the form')") %>
+                    
+    <%= text_field_tag('code', nil, :size => 30) %>
     <%= submit_tag 'Submit', :onclick => "javascript:alert('Clicked the form!')"  %>
-<%= end_form_tag %>
+<%= end_form_tag %>    
+    </td>
+    <td class="info">
+
 
     </td>
   </tr>

@@ -16,10 +16,10 @@
     <th>Invitation Code:</th>
     <td>
 <%= start_form_tag( {:controller => "public", :action => "beta"}, 
-                     :onsubmit => "javascript:alert('Submitted the form')") %>
+                     {:onsubmit => "javascript:alert('Submitted the form')", :name => "beta_form"}) %>
                     
     <%= text_field_tag('code', nil, :size => 30) %>
-    <%= submit_tag 'Submit', :onclick => "javascript:alert('Clicked the form!')"  %>
+    <%= submit_tag 'Send', :onclick => "javascript:alert('Clicked the form!')"  %>
 <%= end_form_tag %>    
     </td>
     <td class="info">

@@ -9,7 +9,11 @@
 <% for band in bands %>
 <tr>
 <td><a href="#" onclick="selectBand('<%=band.id%>')"><%= band.name %></a></td>
-<td>(location here)</td>
+<td>
+    <% if band.city and band.city != '' %>
+        <%= band.city + ", " + band.state %>
+    <% end %>
+</td>
 </tr>
 <% end %>
 </table>

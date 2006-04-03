@@ -162,8 +162,7 @@ class RemindersMailer < BaseMailer
       end
       
       if save_fan
-        # TODO Use logger instead
-        puts "Updating fan at #{now}"
+        logger.info "Updating fan at #{now}"
         fan.last_show_reminder = now
         fan.save
       end

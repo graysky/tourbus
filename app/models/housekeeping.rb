@@ -8,6 +8,11 @@ class Housekeeping
     save_chunks(Fan)
   end
   
+  # Check all wishlists for bands that have been created today.
+  def self.check_wish_lists
+  
+  end
+  
   protected
   
   # Save in chunks just to avoid huge AR memory usage
@@ -15,7 +20,7 @@ class Housekeeping
     offset = 0
     count = klass.count
     
-    puts "Saving #{count} #{klass} objects..."
+    log.info "Saving #{count} #{klass} objects..."
     klass.transaction do
       while offset < count
         klass.find(:all, :offset => offset, :limit => chunk_size).each do |obj|

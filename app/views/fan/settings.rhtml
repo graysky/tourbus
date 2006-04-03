@@ -53,6 +53,13 @@
       </td>
     </tr>
     <tr>
+      <th>Radius (miles):</th>
+      <td><%= text_field 'fan', 'default_radius', :size => 5  %></td>
+      <td class="info">
+        tourb.us will look for shows and venues within this many miles of your location.
+      </td>
+    </tr>
+    <tr>
       <th>Public Name:</th>
       <td><%= text_field 'fan', 'real_name' %></td>
       <td class="info">
@@ -89,7 +96,7 @@
     // Gather the params
     num = $("fan_mobile_number").value
     type = $("fan_carrier_type").value
-    
+       
     // Form param string
     params = 'num=' + num + '&type=' + type;
   }
@@ -106,7 +113,6 @@
         
         <br/><br/>
         <div style="margin-left:20px">
-          
           <% # Hack around limit on nesting forms -- uses JS to gather number and carrier %>
           <button id="sms_test" onclick="update_sms_button_pressed(); new Ajax.Request('/fans/send_test_sms', {asynchronous:true, evalScripts:true, onComplete:function(request){update_sms_button(request)}, parameters:params}); return false;">          
         Send Test Message

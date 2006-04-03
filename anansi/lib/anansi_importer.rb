@@ -164,6 +164,8 @@ class AnansiImporter
     
     if show[:date].nil?
       set_status(:skipped, "No date")
+    elsif show[:bands].nil? or show[:bands].empty?
+      set_status(:skipped, "No bands")
     elsif show[:date] < Time.new
       set_status(:skipped, "In the past")
     elsif !resolve_venue
@@ -175,8 +177,10 @@ class AnansiImporter
       set_status(:ok)
     end
     
-    preamble = show[:bands].first[:preamble]
-    show[:preamble] = preamble if preamble and preamble != ''
+    if show[:bands]
+      preamble = show[:bands].first[:preamble]
+      show[:preamble] = preamble if preamble and preamble != ''
+    end
   end
 
   # Save all show data out to a yaml file

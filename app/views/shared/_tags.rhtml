@@ -80,7 +80,7 @@
 
   <%= hidden_field_tag( 'type', "", :value => type ) %>
   <%= hidden_field_tag( 'show_delete', "", :value => show_delete ) %>
-
+    <br/>
   <%= tag_field_with_auto_complete type,
     { :size => 18, :value => "Add #{title}", :onfocus => "this.value = ''" }, 
     :skip_style => true %>

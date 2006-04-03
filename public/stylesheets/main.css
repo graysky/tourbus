@@ -719,9 +719,7 @@ td, p
 /* The delete tag action */
 .tag-delete
 {
-    margin-left: 5px;
-    margin-top: 0px;
-	margin-bottom: 2px;
+	margin: 0 5px 2px 5px;
     padding:0 0 0 0;
 }
 
@@ -1030,11 +1028,7 @@ table.compact-form-table td input, table.compact-form-table td select {
 }
 
 .bands_playing {
-	min-height:100px;
-	/* TODO: Will need a workaround for ie */
 	width:300px;
-	border:1px solid #ddd;
-	background:#eee;
 }
 
 .bands_playing h3 {
@@ -1460,7 +1454,7 @@ table.photo_table td span a {
 	text-align: right;
 	vertical-align: top;
 	border-bottom: 1px solid #ddd;
-	font-size:13px;
+	font-size:12px;
 }
 
 /* Used to include span */
@@ -1504,6 +1498,10 @@ table.comments_table .img-col {
 	text-align:left;
 	margin-top: 4px;
 	margin-left: 12px;
+}
+
+.comment_body p {
+    font-size:12px;
 }
 
 .comment_post {

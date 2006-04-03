@@ -38,9 +38,9 @@ module CommentHelper
     # Format the body of the comment
     html << "<div class='comment_body'>"
     html << simple_format( sanitize(comment.body) )
-    html << "</div>\n"
+    html << "</div>\n" 
     
-    permalink = "( <a href='#comment#{comment.id}'>permalink</a> )" 
+    permalink = "( <a href='#comment#{comment.id}' style='font-size:11px'>permalink</a> )" 
     html << "<div class='comment_post'>posted #{posted_at} ago #{permalink}</div>"
     html << "\n</td></tr>"
   end

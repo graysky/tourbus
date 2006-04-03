@@ -102,10 +102,14 @@ class BandController < ApplicationController
   
   def save_band_profile(msg, redirect)
   
-  @band.update_attributes(params[:band])
-    if @band.save
-      flash[:success] = msg
-      redirect_to(:action => redirect)
+    begin
+      @band.update_attributes(params[:band])
+      if @band.save
+        flash[:success] = msg
+        redirect_to(:action => redirect)
+      end
+    rescue Exception => e
+      flash[:error] = e.to_s
     end
   end
   

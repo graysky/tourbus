@@ -15,6 +15,7 @@ class FindController < ApplicationController
     return if request.get? and params[:query].nil?
     
     query, radius, lat, long = prepare_query(Band.table_name)
+    return if query.nil?
     
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
@@ -24,6 +25,7 @@ class FindController < ApplicationController
     return if request.get? and params[:query].nil?
     
     query, radius, lat, long = prepare_query(Show.table_name)
+    return if query.nil?
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, default_search_options)
     paginate_search_results(count)
@@ -33,6 +35,7 @@ class FindController < ApplicationController
     return if request.get? and params[:query].nil?
     
     query, radius, lat, long = prepare_query(Venue.table_name)
+    return if query.nil?
     
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
@@ -41,6 +44,7 @@ class FindController < ApplicationController
   # Browse
   def browse_popular_bands
     query, radius, lat, long = prepare_query(Band.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:sort] = popularity_sort_field
@@ -53,6 +57,7 @@ class FindController < ApplicationController
   
   def browse_newest_bands
     query, radius, lat, long = prepare_query(Band.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:sort] = created_on_sort_field
@@ -65,6 +70,7 @@ class FindController < ApplicationController
   
   def browse_tonights_shows
     query, radius, lat, long = prepare_query(Show.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:exact_date] = true
@@ -76,6 +82,7 @@ class FindController < ApplicationController
   
   def browse_popular_shows
     query, radius, lat, long = prepare_query(Show.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:sort] = popularity_sort_field
@@ -87,6 +94,7 @@ class FindController < ApplicationController
   
   def browse_newest_shows
     query, radius, lat, long = prepare_query(Show.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:sort] = created_on_sort_field
@@ -98,6 +106,7 @@ class FindController < ApplicationController
   
   def browse_popular_venues
     query, radius, lat, long = prepare_query(Venue.table_name)
+    return if query.nil?
     
     options = default_search_options
     options[:sort] = popularity_sort_field
@@ -151,20 +160,22 @@ class FindController < ApplicationController
     
     return query, nil, nil, nil if @session[only_local_session_key(type)] == 'false'
     
-    # For now, expect a zip code
-    # This stuff will be updated
     radius = @session[:radius]
     if radius != "" and radius.to_f <= 0
       flash[:error] = "The search radius must be a positive number"
-      # FIXME deal with error
-      raise "bad radius"
+      return nil
     end
     
     lat = long = nil
     loc = @session[:location]
     if not loc.nil? and loc != ""
       # FIXME handle exception
-      zip = Address::parse_city_state_zip(loc.strip)
+      begin 
+        zip = Address::parse_city_state_zip(loc.strip)
+      rescue Exception => e
+        flash[:error] = e.to_s
+        return nil
+      end
       
       lat = zip.latitude
       long = zip.longitude

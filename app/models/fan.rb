@@ -57,6 +57,7 @@ class Fan < ActiveRecord::Base
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
   has_many :comments, :order => "created_on ASC"
+  has_many :wish_list_bands
  
   validates_uniqueness_of :uuid # just in case
   
@@ -74,6 +75,10 @@ class Fan < ActiveRecord::Base
   validates_length_of :password, :minimum => 4, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
   
+  def self.admin_user
+    self.find_by_name('admin')
+  end
+  
   # Return if the band is among the fan's favorites
   def favorite?(band)
     self.bands.detect { |fav| fav == band }
@@ -82,6 +87,14 @@ class Fan < ActiveRecord::Base
   def attend_show(show)
     self.shows.push_with_attributes(show, { :attending => true, :watching => false })
     show.num_attendees += 1
+  end
+  
+  def add_wish_list_bands(*bands)
+    bands.each { |band| self.wish_list_bands << WishListBand.new(:name => band) }
+  end
+  
+  def find_wish_list_band(name)
+    self.wish_list_bands.find_by_name(name) || self.wish_list_bands.find_by_short_name(Band.name_to_id(name))
   end
   
   def stop_attending_show(show)

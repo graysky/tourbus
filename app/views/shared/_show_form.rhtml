@@ -5,7 +5,7 @@
     <%= javascript_include_tag "calendar-en.js" %>
     <%= javascript_include_tag "calendar-setup.js" %>
     <%= stylesheet_link_tag "subModal.css" %>
-      <%= javascript_include_tag "subModal" %>
+    <%= javascript_include_tag "subModal" %>
 <%  
     end  
 %>
@@ -21,6 +21,8 @@
       new Effect.Fade("venue_search_results");
       
       $("selected_venue").innerHTML = name;
+      $("venue_search").hide();
+      $("venue_search_toggle").show();
     }
     
     function do_venue_appear()
@@ -87,9 +89,16 @@
           <% end %>
           
         </span>
+        <span id="venue_search_toggle" style="display:none;">
+            &nbsp;( <a href="#" style="font-size:11px" 
+                  onclick="$('venue_search').show();return false">Search again</a> )
+        </span>     
         
         <div id="venue_search" style="margin-top:8px">
-          <%= text_field_tag 'venue_search_term', '', :autocomplete => "off" %> &nbsp;
+          <%= text_field_tag 'venue_search_term', '', :autocomplete => "off"%><br/><br/> 
+          within <%= text_field_tag 'radius', @session[:radius], :size => 2 %> miles of
+          <%= text_field_tag 'location', "#{@session[:location]}", :size => 15 %>
+          
           <%= observe_field 'venue_search_term', :frequency => 0.7,
                      :with => "'name=' + escape(value)",
                      :update => "venue_search_results",
@@ -113,6 +122,11 @@
       
       function selectBand(id, name)
       {
+        if (id == null && name == "") {
+            alert('Please type in the name of the band you wish to add');
+            return;
+        }
+        
         // Make sure we haven't already selected this band
         for (var i = 0; i < bandsPlaying.length; i++) {
           if (id != null && id == bandsPlaying[i][0]) {
@@ -121,8 +135,8 @@
           }
         }
         
-        new Effect.Fade('band_search_preview');
         $('band_to_add').value = '';
+        $('band_search_preview').hide();
         <%= remote_function(:update => { :success => "bands", :failure => nil },
                   :position => :bottom, 
                   :with => "'id=' + id + '&name=' + escape(name)",
@@ -130,12 +144,11 @@
                   :url => { :action => "add_selected_band",
                           :controller => "band" }) %>
         bandsPlaying[bandsPlaying.length] = new Array(id, name);
+        $('band_search_preview').hide();
       }
       
       function handleSelectBandError(msg)
       {
-        // TODO Maybe alert boxes suck and we should show the error
-        // inline on the page...
         // Show the message and remove the last band we added.
         alert(msg);
         bandsPlaying.splice(bandsPlaying.length - 1, 1);
@@ -192,7 +205,7 @@
       
       function bandSearchLoading()
       {
-        $('band_search_preview').style.display = 'block';
+        $('band_search_preview').style.display = 'block';  
       }
       
     </script>

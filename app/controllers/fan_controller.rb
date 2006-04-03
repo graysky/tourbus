@@ -24,11 +24,15 @@ class FanController < ApplicationController
     # Reload the fan first, in case changes were made by other procs
     @fan.reload
      
-    @fan.update_attributes(params[:fan])
-    if @fan.save
-      flash.now[:success] = "Settings updated"
-    else
-      flash[:error] = "There was an error updating your settings. Please try again."
+    begin
+      @fan.update_attributes(params[:fan])
+      if @fan.save
+        flash.now[:success] = "Settings updated"
+      else
+        flash[:error] = "There was an error updating your settings. Please try again."
+      end
+    rescue Exception => e
+      flash[:error] = e.to_s
     end
     
   end

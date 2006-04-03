@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 27) do
+ActiveRecord::Schema.define(:version => 28) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 27) do
     t.column "security_token", :string, :limit => 40
     t.column "token_expiry", :datetime
     t.column "show_reminder_first", :integer, :limit => 10, :default => 4320
-    t.column "show_reminder_second", :integer, :limit => 10
+    t.column "show_reminder_second", :integer, :limit => 10, :default => 360
     t.column "wants_email_reminder", :boolean, :default => true
     t.column "wants_mobile_reminder", :boolean, :default => false
     t.column "last_show_reminder", :datetime
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 27) do
     t.column "superuser", :boolean, :default => false
     t.column "mobile_number", :string, :limit => 20
     t.column "carrier_type", :integer, :limit => 10, :default => -1
-    t.column "show_watching_reminder", :integer, :limit => 10, :default => 4320, :null => false
+    t.column "show_watching_reminder", :integer, :limit => 10, :default => 4320
     t.column "latitude", :string, :limit => 30
     t.column "longitude", :string, :limit => 30
     t.column "num_upcoming_shows", :integer, :default => 0
@@ -272,6 +272,15 @@ ActiveRecord::Schema.define(:version => 27) do
     t.column "short_name", :string
     t.column "num_upcoming_shows", :integer, :default => 0
   end
+
+  create_table "wish_list_bands", :force => true do |t|
+    t.column "name", :string
+    t.column "short_name", :string
+    t.column "created_at", :datetime
+    t.column "fan_id", :integer
+  end
+
+  add_index "wish_list_bands", ["fan_id"], :name => "FK_wish_list_fan_id"
 
   create_table "zip_codes", :force => true do |t|
     t.column "zip", :string, :limit => 16, :default => "0", :null => false

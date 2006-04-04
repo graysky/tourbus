@@ -16,20 +16,10 @@ class Housekeeping
   protected
   
   # Save in chunks just to avoid huge AR memory usage
-  def self.save_chunks(klass, chunk_size = 500)
-    offset = 0
-    count = klass.count
-    
-    log.info "Saving #{count} #{klass} objects..."
-    klass.transaction do
-      while offset < count
-        klass.find(:all, :offset => offset, :limit => chunk_size).each do |obj|
-          obj.no_update
-          obj.save!
-        end
-        
-        offset += chunk_size
-      end
+  def self.save_chunks(klass)
+    klass.each_by_chunk do |obj|
+      obj.no_update
+      obj.save!
     end
   end
   

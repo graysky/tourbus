@@ -134,14 +134,51 @@ td, p
 	padding-bottom: 10px;
 }
 
+#header_container
+{
+    padding-left:16px;
+	background-color: #484A4C;
+}
+
 #main_logo
 {
-	padding-left:16px;
-	text-align:left;
-	font-size:60px;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	background-color: #484A4C;
-	/* Light green color 94c28a */
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	float: left;
+}
+
+#logo_img
+{
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+#header
+{
+	float:right;
+    margin-top: 32px;
+    margin-right: 22px;
+
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: right;
+	color:#CCCCCC;
+}
+
+#header a { 
+	color:#CCCCCC; 
+}
+
+#header a:link {  
+	color:#CCCCCC; 
+}
+
+#header a:visited {  
+	color:#CCCCCC; 
+}
+
+#header strong {
+	margin-left:8px;
 }
 
 #navbar {
@@ -175,32 +212,6 @@ td, p
 	margin-left:20px;
 }
 
-#header
-{
-	font-size: 11px;
-	position: relative;
-	right: 30px;
-	text-align: right;
-	bottom: 20px;
-	float:right;
-	color:#CCCCCC;
-}
-
-#header a { 
-	color:#CCCCCC; 
-}
-
-#header a:link {  
-	color:#CCCCCC; 
-}
-
-#header a:visited {  
-	color:#CCCCCC; 
-}
-
-#header strong {
-	margin-left:8px;
-}
 
 #content {
 	margin:16px;

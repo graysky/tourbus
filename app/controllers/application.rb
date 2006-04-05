@@ -1,11 +1,13 @@
 require 'cgi'
 require_dependency 'emails'
 require_dependency 'string_helper'
+require_dependency 'metafragment'
 
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
+  include MetaFragment
   
   model :band
   model :fan

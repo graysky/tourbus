@@ -9,35 +9,35 @@
 
 <div style="clear:both"></div>
 
+<% cache(:action => 'front_page', :part => 'popular_bands') do %>
 <div class="portlet_box" style="float:left; /*border: 1px solid black;*/">
-
   <h3>Popular Bands</h3>    
   <div class="narrow_list">
     
   <% index = 0 
      for band in @bands %>
-    
     <%= render(:partial => "shared/popular_band",
                :locals => { :band => band, :index => index, }) %>
     <% index += 1
       end %>
   </div>
 </div>
+<% end %>
 
+<% cache(:action => 'front_page', :part => 'upcoming_shows') do %>
 <div class="portlet_box" style="float:right; /*border: 1px solid black;*/ ">
 
   <h3>Upcoming Shows</h3>
-
   <div class="narrow_list">
     
   <% index = 0 
      for show in @shows %>
-    
     <%= render(:partial => "shared/popular_show",
                :locals => { :show => show, :index => index, :show_venue => true }) %>
     <% index += 1
       end %>
   </div>
 </div>
+<% end %>
 
 <div style="clear:both"></div>

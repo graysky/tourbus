@@ -7,9 +7,19 @@ class PublicController < ApplicationController
   # The front page of the app
   def front_page
     
-    get_popular_bands
+    # Note: this needs to match the view exactly
+    bands_key = {:action => 'front_page', :part => 'popular_bands'}
+    shows_key = {:action => 'front_page', :part => 'upcoming_shows'}
     
-    get_popular_shows
+    when_not_cached(bands_key, 6.hours.from_now) do
+      # Fetch and cache the list of bands
+      get_popular_bands
+    end
+    
+    when_not_cached(shows_key, 6.hours.from_now) do
+      # Fetch and cache the list of shows
+      get_popular_shows
+    end
   end
   
   # The beta page to ask for invitation code
@@ -53,7 +63,6 @@ class PublicController < ApplicationController
   private
     
   def get_popular_shows
-  
     # Get the 10 most popular shows
     @shows = Show.find(:all,
                        :conditions => ["date > ?", Time.now - 1.days],
@@ -62,9 +71,7 @@ class PublicController < ApplicationController
                       ) 
   end 
   
-  # TODO Change to use index and cache this
-  def get_popular_bands
-  
+  def get_popular_bands  
     # Get the 10 most popular bands
     @bands = Band.find(:all,
                        :order => "page_views DESC",

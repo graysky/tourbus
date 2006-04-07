@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
         fan.last_login = Time.now
         logger.info "Fan #{fan.name} logged in from a cookie"
         
-        @logged_in_as_downtree = logged_in_as_downtree?
+        @session[:logged_in_as_downtree] = logged_in_as_downtree?
       else
         logger.error("Invalid cookie type: #{cookies['type']}")
       end
@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
   # Assumes that "object.page_views" and "object.save" work
   def inc_page_views(object)
   
-    return if object.nil? or @logged_in_as_downtree
+    return if object.nil? or @session[:logged_in_as_downtree]
              
     object.page_views += 1
     object.no_update

@@ -14,6 +14,7 @@ class FanController < ApplicationController
   
   def logout
     session[:fan_id] = nil
+    session[:logged_in_as_downtree] = false
     cookies.delete :login
     redirect_to(:controller => "public", :action => "front_page")
   end

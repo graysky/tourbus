@@ -39,7 +39,7 @@ class LoginController < ApplicationController
         fan.last_login = Time.now
         logger.info "Fan #{fan.name} logged in"
         
-        @logged_in_as_downtree = logged_in_as_downtree?
+        @session[:logged_in_as_downtree] = logged_in_as_downtree?
         
         # Send to their profile page
         redirect_back_or_default( public_fan_url )

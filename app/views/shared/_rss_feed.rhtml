@@ -10,9 +10,9 @@
 <% cache(key) do %>
 <rss version="2.0">
 <channel>
-<title><%=feed_title(obj.name)%></title>
+<title><%=feed_title(h(obj.name))%></title>
 <link><%= base_url %></link>
-<description><%=feed_description(obj.name)%></description>
+<description><%=feed_description(h(obj.name))%></description>
 
 <% items.each do |i| %>
 <item>

@@ -70,15 +70,15 @@ module PhotoHelper
       
       html = "<a href='#{full_photo_link}'><img src='" + photo.relative_path(version) + "'/></a>"
       if showing_creator
-        # Show the subject of the picture
-        from = truncate(photo.subject.name, 16)
-        from_url = public_url_for_subject(photo)
-        html << "<br/><span><a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
-      else
         # Show the creator
         from = truncate(photo.created_by_name, 16)
         from_url = public_url_for_creator(photo)
         html << "<br/><span>From <a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
+      else
+         # Show the subject of the picture
+        from = truncate(photo.subject.name, 16)
+        from_url = public_url_for_subject(photo)
+        html << "<br/><span><a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
       end
   end
   
@@ -100,6 +100,8 @@ module PhotoHelper
       photo.band.short_name
     elsif photo.venue
       "venue"
+    elsif photo.show
+      "show"
     else
       params[:controller]
     end

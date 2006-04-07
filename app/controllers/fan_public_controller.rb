@@ -2,7 +2,7 @@ require_dependency 'favorites_calculator'
 
 # The public page for a Fan
 class FanPublicController < ApplicationController
-  before_filter :find_fan
+  before_filter :find_fan, :except => :no_such_fan
   helper :show
   helper :portlet
   helper :band
@@ -113,10 +113,16 @@ class FanPublicController < ApplicationController
     end
   end
   
+  def no_such_fan
+  end
+  
+  private
+  
   def find_fan
     @fan = Fan.find_by_name(params[:fan_name])
     if @fan.nil?
-      raise "No such fan. Put up an error screen"
+      render :action => 'no_such_fan'
+      return false
     end
     
    if logged_in_fan

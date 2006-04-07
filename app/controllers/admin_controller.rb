@@ -67,6 +67,7 @@ class AdminController < ApplicationController
     @band.claimed = false
     @band.uuid = UUID.random_create.to_s
     if @band.save
+      logger.info "Admin created a band: #(@band.name}"
       flash[:success] = "Band created"
       redirect_to :action => 'create_band'
     end
@@ -97,6 +98,7 @@ class AdminController < ApplicationController
     links.each { |link| @band.links << link }
   
     if @band.save
+      logger.info "Admin edited a band: #{@band.name}"
       flash[:success] = "Band saved"
       redirect_to public_band_url(@band)
     end
@@ -128,6 +130,7 @@ class AdminController < ApplicationController
     @venue = Venue.find(params[:id])
     if @venue.shows.empty?
       Venue.delete(params[:id])
+      logger.info "Admin deleted venue #{@venue.name}"
       flash.now[:success] = "It's gone"
     else
       flash.now[:error] = "That venue has shows"
@@ -277,6 +280,7 @@ class AdminController < ApplicationController
     end
     
     if @venue.save
+      logger.info "Admin saved a venue: #{@venue.id}"
       @venue.ferret_save
       flash[:success] = "Venue saved"
       redirect_to public_venue_url(@venue)

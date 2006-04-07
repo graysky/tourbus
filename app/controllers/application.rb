@@ -80,6 +80,8 @@ class ApplicationController < ActionController::Base
         end
         
         session[:band_id] = band.id
+        band.last_login = Time.now
+        logger.info "Band #{band.name} logged in from a cookie"
         
       elsif cookies[:type] == 'fan'
         fan = Fan.find_by_uuid(cookies[:login])
@@ -89,6 +91,10 @@ class ApplicationController < ActionController::Base
         end
         
         session[:fan_id] = fan.id
+        fan.last_login = Time.now
+        logger.info "Fan #{fan.name} logged in from a cookie"
+        
+        @logged_in_as_downtree = logged_in_as_downtree?
       else
         logger.error("Invalid cookie type: #{cookies['type']}")
       end
@@ -99,11 +105,8 @@ class ApplicationController < ActionController::Base
   # Assumes that "object.page_views" and "object.save" work
   def inc_page_views(object)
   
-    if object.nil?
-      return
-    end
-  
-    # TODO Don't count page views from users G & M
+    return if object.nil? or @logged_in_as_downtree
+             
     object.page_views += 1
     object.no_update
     object.save
@@ -164,10 +167,8 @@ class ApplicationController < ActionController::Base
   
   # Whether there is a band or fan logged in
   def logged_in?
-  
-    if logged_in_fan
-      return true
-    elsif logged_in_band
+    
+    if logged_in_fan or logged_in_band
       return true
     else
       return false
@@ -204,6 +205,7 @@ class ApplicationController < ActionController::Base
         @cached_band = band # Cache for rest of the request
       rescue ActiveRecord::RecordNotFound
         # In case it was deleted somehow (or during testing)
+        logger.error "Could not find cached band with id #{id}"
         flash.now[:error] = "Could not find Band with ID #{id}"
         session[:band_id] = nil # Clear it out
       end
@@ -228,12 +230,17 @@ class ApplicationController < ActionController::Base
         @cached_fan = fan # Cache for rest of the request
       rescue ActiveRecord::RecordNotFound
         # In case it was deleted somehow (or during testing)
+        logger.error "Could not find cached Fan with ID #{id}"
         flash.now[:error] = "Could not find Fan with ID #{id}"
         session[:fan_id] = nil # Clear it out
       end
     end
     
     return fan
+  end
+  
+  def logged_in_as_downtree?
+    [Fan.mike, Fan.gary, Fan.admin].include?(logged_in_fan)
   end
   
   protected
@@ -263,6 +270,12 @@ class ApplicationController < ActionController::Base
     end
     
     return options
+  end
+  
+  # Log an error msg and put the message into flash.now
+  def error_log_flashnow(msg)
+    logger.error(msg)
+    flash.now[:error] = msg
   end
   
   def sanitize_text_for_display(text)

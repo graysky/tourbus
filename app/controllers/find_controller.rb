@@ -169,7 +169,6 @@ class FindController < ApplicationController
     lat = long = nil
     loc = @session[:location]
     if not loc.nil? and loc != ""
-      # FIXME handle exception
       begin 
         zip = Address::parse_city_state_zip(loc.strip)
       rescue Exception => e

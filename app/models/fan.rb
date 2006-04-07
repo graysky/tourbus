@@ -75,8 +75,19 @@ class Fan < ActiveRecord::Base
   validates_length_of :password, :minimum => 4, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
   
-  def self.admin_user
+  # Returns the admin user
+  def self.admin
     self.find_by_name('admin')
+  end
+  
+  # Return's Gary's user
+  def self.gary
+    self.find_by_name('gary')
+  end
+  
+  # Returns mike's user
+  def self.mike
+    self.find_by_name('mike')
   end
   
   # Return if the band is among the fan's favorites

@@ -5,7 +5,7 @@ class BandPublicController < ApplicationController
   include ShowCreator
   
   session :off, :only => :rss
-  before_filter :find_band
+  before_filter :find_band, :except => :no_such_band
   helper :show
   helper :map
   helper :tag
@@ -88,7 +88,7 @@ class BandPublicController < ApplicationController
     @band.links << link
     
     if not @band.save
-      flash.now[:error] = "Trouble saving the link"
+      error_log_flashnow("Trouble saving the link")
     end
     
     render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
@@ -109,7 +109,7 @@ class BandPublicController < ApplicationController
     link.data = url
     
     if not link.save
-      flash.now[:error] = "Trouble saving the link"
+      error_log_flashnow("Trouble saving the link")
     end
     
     render(:partial => "list_links", :locals => { :links => @band.links, :can_edit => true })
@@ -183,6 +183,11 @@ class BandPublicController < ApplicationController
     end
   end
   
+  def no_such_band
+  end
+  
+  private
+  
   def create_edit_show(new)
     begin
         create_new_show_and_venue(new)
@@ -193,9 +198,7 @@ class BandPublicController < ApplicationController
       end
       
       # Make sure the current band is in the list of band playing the show
-      if @bands_playing.find { |band| band.id == @band.id }.nil?
-        @bands_playing << @band
-      end
+      @bands_playing << @band unless @bands_playing.include?(@band)
       
       @show.created_by_band = @band if new
       
@@ -224,7 +227,8 @@ class BandPublicController < ApplicationController
     @band = Band.find_by_short_name(params[:short_name])
     
     if @band.nil?
-      raise "No such band. Put up an error screen"
+      render :action => 'no_such_band'
+      return false
     end
     
    if logged_in_band

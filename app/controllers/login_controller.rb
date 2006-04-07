@@ -36,6 +36,11 @@ class LoginController < ApplicationController
         
         set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
         
+        fan.last_login = Time.now
+        logger.info "Fan #{fan.name} logged in"
+        
+        @logged_in_as_downtree = logged_in_as_downtree?
+        
         # Send to their profile page
         redirect_back_or_default( public_fan_url )
       
@@ -59,6 +64,9 @@ class LoginController < ApplicationController
           cookies.delete :login
         end
           
+        band.last_login = Time.now
+        logger.info "Band #{band.name} logged in"
+        
         # Send to their profile page
         redirect_back_or_default( public_band_url )
 

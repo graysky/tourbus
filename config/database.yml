@@ -20,7 +20,7 @@ production:
   adapter: mysql
   database: tourbus_production
   host: 127.0.0.1
-  username: root
+  username: tourbus_root
   password: bighit
 
 # tourbus.figureten.com staging production environment

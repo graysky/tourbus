@@ -62,13 +62,16 @@
     <table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; width:100%">
     <tr valign="top"><td>
   <span class="nav-option">
-  <%= link_to(image_tag("nav_shows.png", :alt => "Find Shows", :size => "130x30", :border => 0), :controller => "find", :action => "show") %>
+  <%= link_to(
+  "<img alt='Find Shows' border='0' src='/images/nav_shows.png' width='130' height='30'/>", :controller => "find", :action => "show") %>
   </span>
   <span class="nav-option">
-  <%= link_to(image_tag("nav_bands.png", :alt => "Find Bands", :size => "130x30", :border => 0), :controller => "find", :action => "band") %>
+  <%= link_to(
+  "<img alt='Find Bands' border='0' src='/images/nav_bands.png' width='130' height='30'/>", :controller => "find", :action => "band") %>
   </span>
   <span class="nav-option">
-  <%= link_to(image_tag("nav_venues.png", :alt => "Find Venues", :size => "130x30", :border => 0), :controller => "find", :action => "venue") %>
+  <%= link_to(
+  "<img alt='Find Venues' border='0' src='/images/nav_venues.png' width='130' height='30'/>", :controller => "find", :action => "venue") %>
   </span>
   </td></tr></table>  
   </div>

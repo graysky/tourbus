@@ -1,7 +1,10 @@
 require 'active_support'
 
+# Whether to use sudo or not for cron
 def sudo(cmd)
-  ENV['RAILSCRON_SUDO'].blank? ? cmd : "sudo -u #{ENV['RAILSCRON_SUDO']} #{cmd}"
+  # We don't use sudo, so don't require setting ENV
+  # ENV['RAILSCRON_SUDO'].blank? ? cmd : "sudo -u #{ENV['RAILSCRON_SUDO']} #{cmd}"
+  cmd
 end
 
 desc "Stars RailsCron on Windows in foreground. Stop with Ctrl-C"
@@ -17,8 +20,7 @@ end
 
 desc "Starts RailsCron as a daemon"
 task :cron_start do
-  # We don't use sudo - used to be: `#{sudo "ps x | grep RailsCron | grep -v grep"}`
-  if `#{"ps x | grep RailsCron | grep -v grep"}`.strip.blank?
+  if `#{sudo "ps x | grep RailsCron | grep -v grep"}`.strip.blank?
     mode = ENV['RAILS_ENV'] || "development"
     puts `#{sudo "nohup ruby script/runner -e #{mode} \"RailsCron.start\" &> /dev/null &"}`
   else
@@ -52,7 +54,7 @@ end
 
 desc "Status of RailsCron"
 task :cron_status do
-  puts `#{"ps x | grep RailsCron | grep -v grep"}`
+  puts `#{sudo "ps x | grep RailsCron | grep -v grep"}`
 end
 
 task :wait_till_none do 

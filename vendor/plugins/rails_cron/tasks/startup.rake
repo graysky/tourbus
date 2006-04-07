@@ -17,7 +17,8 @@ end
 
 desc "Starts RailsCron as a daemon"
 task :cron_start do
-  if `#{sudo "ps x | grep RailsCron | grep -v grep"}`.strip.blank?
+  # We don't use sudo - used to be: `#{sudo "ps x | grep RailsCron | grep -v grep"}`
+  if `#{ps x | grep RailsCron | grep -v grep}`.strip.blank?
     mode = ENV['RAILS_ENV'] || "development"
     puts `#{sudo "nohup ruby script/runner -e #{mode} \"RailsCron.start\" &> /dev/null &"}`
   else
@@ -51,7 +52,7 @@ end
 
 desc "Status of RailsCron"
 task :cron_status do
-  puts `#{sudo "ps x | grep RailsCron | grep -v grep"}`
+  puts `#{ps x | grep RailsCron | grep -v grep}`
 end
 
 task :wait_till_none do 

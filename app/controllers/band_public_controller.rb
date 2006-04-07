@@ -1,5 +1,4 @@
 require_dependency 'show_creator'
-require 'pp'
 
 # Controller for the public page of a band.
 class BandPublicController < ApplicationController
@@ -141,6 +140,25 @@ class BandPublicController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 
+    key = {:action => 'rss', :part => 'band_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the RSS items
+      get_rss_items
+    end
+    
+    # The external URL to this band
+    base_url = public_band_url(@band)
+    
+    render(:partial => "shared/rss_feed", :locals => 
+      { :obj => @band, :base_url => base_url, :key => key, :items => @items })
+  end
+  
+  private
+
+  # Make the DB queries to get the items for RSS feed
+  def get_rss_items
+  
     shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
     
     comments = @band.comments.find(:all,
@@ -163,10 +181,7 @@ class BandPublicController < ApplicationController
       # Right now, we just assume it
       y.created_on <=> x.created_on
     end
-    
   end
-  
-  private
   
   def create_edit_show(new)
     begin

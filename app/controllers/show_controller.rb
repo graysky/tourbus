@@ -76,6 +76,27 @@ class ShowController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 
+    key = {:action => 'rss', :part => 'show_feed'}
+
+    when_not_cached(key, 15.minutes.from_now) do
+      # Fetch and cache the RSS items
+      get_rss_items
+    end
+
+    # The external URL to this venue
+    base_url = public_show_url(@show)
+    
+    render(:partial => "shared/rss_feed", 
+      :locals => { :obj => @show, :base_url => base_url, :key => key, :items => @items })
+  end
+  
+  def fans
+  end
+  
+  private
+  
+  # Make queries to get the items for RSS feed
+  def get_rss_items
     comments = @show.comments.find(:all,
                                    :order => "created_on DESC",
                                    :limit => 20
@@ -102,14 +123,7 @@ class ShowController < ApplicationController
       # Right now, we just assume it
       y.created_on <=> x.created_on
     end
-    
   end
-  
-  def fans
-  
-  end
-  
-  private
   
   def create_edit_show(new)
     begin

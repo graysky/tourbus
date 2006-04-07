@@ -70,11 +70,7 @@ class Show < ActiveRecord::Base
   
   # Alias name to title to make Show more uniform with other objs
   def name
-    if self.title.nil?
-      return ""
-    else
-      return self.title
-    end
+    formatted_title
   end
   
   def formatted_date

@@ -1,0 +1,24 @@
+<%
+## RSS 2.0 feed for any generic object
+## Assumes that:
+## obj => the obj for the feed (should respond_to name)
+## base_url => the base url for the object
+## items => the ordered list of items for the feed
+## key => the fragment key
+%>
+
+<% cache(key) do %>
+<rss version="2.0">
+<channel>
+<title><%=feed_title(obj.name)%></title>
+<link><%= base_url %></link>
+<description><%=feed_description(obj.name)%></description>
+
+<% items.each do |i| %>
+<item>
+<%= xml_for_item2(i, base_url) %>
+</item>
+<% end %> 
+</channel>
+</rss>
+<% end %>

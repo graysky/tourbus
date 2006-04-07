@@ -73,6 +73,24 @@ class FanPublicController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
     
+    key = {:action => 'rss', :part => 'fan_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the RSS items
+      get_rss_items
+    end
+    
+    # The external URL to this fan
+    base_url = public_fan_url(@fan)
+    
+    render(:partial => "shared/rss_feed", 
+      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
+  end
+  
+  private
+  
+  # Make queries to get the items for RSS feed
+  def get_rss_items
     # Include upcoming shows they are attending
     shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
     
@@ -93,10 +111,8 @@ class FanPublicController < ApplicationController
       # Right now, we just assume it
       y.created_on <=> x.created_on
     end
-  
   end
   
-  private
   def find_fan
     @fan = Fan.find_by_name(params[:fan_name])
     if @fan.nil?

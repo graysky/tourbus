@@ -87,6 +87,24 @@ class VenueController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 
+    key = {:action => 'rss', :part => 'venue_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the RSS items
+      get_rss_items
+    end
+
+    # The external URL to this venue
+    base_url = public_venue_url(@venue)
+    
+    render(:partial => "shared/rss_feed", 
+      :locals => { :obj => @venue, :base_url => base_url, :key => key, :items => @items })
+  end
+  
+  private
+  
+  # Make queries to get the items for RSS feed
+  def get_rss_items
     shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now])
   
     comments = @venue.comments.find(:all,
@@ -113,10 +131,7 @@ class VenueController < ApplicationController
       # Right now, we just assume it
       y.created_on <=> x.created_on
     end
-    
   end
-  
-  private
   
   # Find the venue from the ID param
   def find_venue

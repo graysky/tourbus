@@ -3,6 +3,7 @@ class PublicController < ApplicationController
   
   helper :portlet
   before_filter :announcement, :only => :front_page
+  layout "public", :except => [:beta] 
   
   # The front page of the app
   def front_page
@@ -24,7 +25,10 @@ class PublicController < ApplicationController
   
   # The beta page to ask for invitation code
   def beta
-    return if @request.get?
+    if @request.get?
+      #render :layout => "landing"
+      return
+    end
     
     # Check the form
     invite_code = params['code']

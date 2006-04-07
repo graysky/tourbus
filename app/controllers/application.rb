@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :login_from_cookie
   # Check for beta invite cookie in the public controller
-  before_filter :beta_cookie, :except => :beta
+  before_filter :beta_cookie, :except => [:beta, :rss]
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
   # Get the URL to the RSS feed for this fan
   def public_fan_rss_url(fan = nil)
     fan = @fan if fan.nil?  
-    url_for(:controller => "fan_public", :action => "rss", :id => fan.id)
+    url_for(:controller => "fan_public", :action => "rss")
   end
   
   # Get the URL to the RSS feed for this show

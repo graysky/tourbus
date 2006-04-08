@@ -1,0 +1,114 @@
+/*-----------------------------------------------------*/
+/* Landing page CSS */
+/*-----------------------------------------------------*/
+
+body 
+{
+	margin:10px 0px; 
+	padding:0px;
+	text-align:center;
+	background-color: #484A4C;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+img
+{
+	border: 0;
+}
+
+a 
+{
+	text-decoration:none;
+	color: #94C28A;
+}
+
+#content 
+{
+	width:660px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+	color:#CCCCCC;	
+}
+
+#border
+{
+	border:1px solid #94C28A;
+}
+
+#logo
+{
+	padding-top:10px;
+	text-align:center;
+}
+
+#msg
+{
+	width:620px;
+	color:#CCCCCC;
+	font-size:16px;
+	padding-right:20px;
+	padding-left:20px;
+	padding-top:20px;
+	padding-bottom:0px;
+}
+
+#signup
+{	
+	width:620px;
+	text-align:center;
+	border: 0px solid #94C28A;
+	padding:20px;
+	font-size:16px;
+}
+
+/* For email prompt text */
+#signup td
+{
+	padding-top:10px;
+	color: #CCCCCC;
+	font-size:16px;
+	vertical-align: bottom;
+}
+
+#email
+{
+	color: #555;
+	background: #eee;
+	width: 400px;
+	font-size: 1.1em;
+	vertical-align: bottom;
+	margin-right:10px;
+}
+
+#code
+{
+	color: #555;
+	background: #eee;
+	width: 400px;
+	font-size: 1.1em;
+	vertical-align: bottom;
+	margin-right:10px;
+}
+
+#submit
+{
+	width: 130px;
+	color: black;
+	font-size:16px;
+	background: #eee;
+	border: 1px solid #bbb;
+	margin-right:10px;
+	margin-bottom:10px;		
+}
+
+#submit-invite
+{
+	width: 130px;
+	color: black;
+	font-size:16px;
+	background: #eee;
+	border: 1px solid #bbb;
+	margin-right:10px;
+	margin-bottom:10px;		
+}

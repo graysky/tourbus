@@ -1,32 +1,118 @@
-<% @page_title = "Welcome" %>
-<% @header_title = "Welcome" %>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<link href="/stylesheets/landing.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="shortcut icon" href="/images/favicon.ico">
+<!--[if lt IE 7.]>
+<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+<![endif]-->
+<title>tourb.us | Find Local, Live Music</title>
+</head>
 
-<center>
-<table class="form-table">
-  <tr>
-    <td colspan="3" class="info">
-    <center><h1>tourb.us beta</h1></center>
-    <p>If you have an invitation code enter it below.
-    <br/>If not, please <a href="http://tourb.us/">signup to find out</a> when we're launching.
-    </p>
-    </td>
-  </tr>
+<body onload="document.signup.email.focus();">
 
-  <tr>
-    <th>Invitation Code:</th>
-    <td>
-<%= start_form_tag( {:controller => "public", :action => "beta"}, 
-                     {:onsubmit => "javascript:alert('Submitted the form')", :name => "beta_form"}) %>
-                    
-    <%= text_field_tag('code', nil, :size => 30) %>
-    <%= submit_tag 'Send', :onclick => "javascript:alert('Clicked the form!')"  %>
-<%= end_form_tag %>    
-    </td>
-    <td class="info">
+<div id="content">
+	<div id="logo">
+		<img src="/images/logo.gif" title="tourbus">
+	</div>
+	
+<div id="border">
 
+	<div id="msg">
+	
+	Currently tourb.us is in beta while we gather feedback and stomp bugs.
+	Soon we're going to be launching a site to help you find live music.
+	
+	<p>We're concentrating on aggregating shows for the Boston and San Francisco areas 
+	at first, but we also need contributions from you. If you're a show promoter, club owner, 
+	musician, or just someone who wants to improve their local music scene
+	<a href="maito:info@tourb.us">please get in touch.</a>
 
-    </td>
-  </tr>
-</table>
-</center>
+	<p>If you're interested, you can follow our 
+        progress on our <a href="http://blog.tourb.us">development blog.</a>
+		
+	<p>If you'd like to be notified when tourbus is ready,
+	please add your email below.	
+        Have more questions? 
+        Email us at <a href="mailto:info@tourb.us">info@tourb.us</a>
+	</div>
 
+	<div id="signup">
+
+	<form name="signup" action="http://formmail.dreamhost.com/cgi-bin/formmail.cgi" method="POST">
+
+	<input type=hidden name="recipient" value="signup@mytourb.us">
+	<input type=hidden name="subject" value="[tourbus] Launch Signup">
+
+	<input type=hidden name="redirect" value="http://tourb.us/success.html">
+
+	<table width="100%" border="0">
+	<tr>
+	<td>
+	Your email address*:
+	</td>
+	
+	<td align="right">
+	<input type=text id="email" name="email">
+	</td>
+	
+	<tr>
+	<td>
+		&nbsp;
+	</td>
+	<td align="right">
+		<input type=submit id="submit" value="Submit">
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2">
+	<small>*Don't worry, we'll only use your email to let you know when tourbus is ready for testing</small>
+	</td>
+	</tr>
+	</table>
+	</form>
+	
+	</div>
+	
+	<div id="msg">
+      If you've received an invitation to join the beta, please enter the code below. And
+      thanks for helping us get the site ready!
+	</div>
+	<div id="signup">
+	 <% if flash[:error] %>
+      <div class="error">
+        <center><%= img_label_table "exclamation.png", flash[:error] %></center>
+      </div>
+      <% end %>
+      
+      <%= start_form_tag( {:controller => "public", :action => "beta"}) %>
+
+	<table width="100%" border="0">
+	<tr>
+	<td>
+	Invitation code:
+	</td>
+	
+	<td align="right">
+	 <%= text_field_tag('code', nil, :size => 30) %>
+	</td>
+	
+	<tr>
+	<td>
+		&nbsp;
+	</td>
+	<td align="right">
+	   <input type=submit id="submit-invite" value="Submit">
+	</td>
+	</tr>
+	</table>
+	<%= end_form_tag %>    
+	</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -14,7 +14,7 @@
 
 <div id="content">
 	<div id="logo">
-		<img src="/images/logo.gif" title="tourbus">
+		<a href="/"><img src="/images/logo.gif" title="tourbus"></a>
 	</div>
 	
 <div id="border">
@@ -40,12 +40,7 @@
 
 	<div id="signup">
 
-	<form name="signup" action="http://formmail.dreamhost.com/cgi-bin/formmail.cgi" method="POST">
-
-	<input type=hidden name="recipient" value="signup@mytourb.us">
-	<input type=hidden name="subject" value="[tourbus] Launch Signup">
-
-	<input type=hidden name="redirect" value="http://tourb.us/success.html">
+    <%= start_form_tag( {:controller => "public", :action => "beta_signup"}) %>
 
 	<table width="100%" border="0">
 	<tr>
@@ -54,7 +49,7 @@
 	</td>
 	
 	<td align="right">
-	<input type=text id="email" name="email">
+	<%= text_field_tag('email', nil, :size => 30) %>
 	</td>
 	
 	<tr>

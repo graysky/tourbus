@@ -64,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'faq/', :controller => 'public', :action => 'faq'
   map.connect 'news/', :controller => 'public', :action => 'news'
   map.connect 'beta/', :controller => 'public', :action => 'beta'
-  
+  map.connect 'beta_signup/', :controller => 'public', :action => 'beta_signup'
   
   # Admin section
   map.connect 'admin/:action/:id', :controller => 'admin'

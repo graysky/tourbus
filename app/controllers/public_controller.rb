@@ -3,7 +3,7 @@ class PublicController < ApplicationController
   
   helper :portlet
   before_filter :announcement, :only => :front_page
-  layout "public", :except => [:beta] 
+  layout "public", :except => [:beta, :beta_signup] 
   
   # The front page of the app
   def front_page
@@ -25,10 +25,7 @@ class PublicController < ApplicationController
   
   # The beta page to ask for invitation code
   def beta
-    if @request.get?
-      #render :layout => "landing"
-      return
-    end
+    return if @request.get?
     
     # Check the form
     invite_code = params['code']
@@ -45,9 +42,18 @@ class PublicController < ApplicationController
       redirect_to("/")
     else
       flash.now[:error] = "Invalid invitation code -- please try again"
-      
     end
     
+  end
+  
+  # Form to sign up for the beta
+  def beta_signup
+    return if @request.get?  
+  
+    email_addr = params['email']
+    
+    # Send us mail about the signup
+    BetaMailer.deliver_signup(email_addr)
   end
   
   # The News page

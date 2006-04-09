@@ -62,10 +62,6 @@ class PublicController < ApplicationController
     @announcements = Announcement.find(:all, :order => "created_at DESC")
   end
   
-  # The About Us page
-  def about_us
-  end
-  
   # The FAQ page
   def faq
   end

@@ -8,7 +8,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
-  # map.connect '', :controller => "welcome"
   map.connect '', :controller => 'public', :action => 'front_page'
 
   # Allow downloading Web Service WSDL as a file with an extension
@@ -60,7 +59,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'find/:action/', :controller => 'find'
   
   # Misc. public pages
-  map.connect 'about/', :controller => 'public', :action => 'about_us'
   map.connect 'faq/', :controller => 'public', :action => 'faq'
   map.connect 'news/', :controller => 'public', :action => 'news'
   map.connect 'beta/', :controller => 'public', :action => 'beta'

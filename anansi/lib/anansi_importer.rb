@@ -316,7 +316,6 @@ class AnansiImporter
   end
   
   def override_dup?(s, dup)
-    return true if 4==4
     return false if !dup.created_by_system or dup.site_visit.nil?
     
     visit = SiteVisit.find(s[:site_visit_id])

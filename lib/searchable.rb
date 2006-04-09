@@ -115,7 +115,7 @@ module FerretMixin
                                                      :create_if_missing => true)                                 
         end
         
-        IGNORED_STRINGS = [',']
+        IGNORED_STRINGS = [','] unless const_defined?('IGNORED_STRINGS')
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})

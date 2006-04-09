@@ -11,7 +11,8 @@ class ShowParser < MetaSite
   BAND_NAME_EXCLUSIONS = ['tba', 't.b.a', 'special guest', 'many more', 'performing_songs', 'perform_songs',
                           'performing works', 'fashion show', 'fashions by', 'art show', 'crafts fair',
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
-                          'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza']
+                          'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
+                          'last show', 'final show']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)

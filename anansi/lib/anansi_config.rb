@@ -142,7 +142,7 @@ class AnansiConfig
       
       # Check interval to see if it needs revisiting
       # Don't check during testing.
-      elsif !@testing and Time.now - s.interval.hours < visit.updated_at
+      elsif !@testing and Time.now - s.interval.hours < visit.last_updated
         # Skip it, we hit it within the defined interval
         p "Skipping site: #{s.name} because of time rule"
         next

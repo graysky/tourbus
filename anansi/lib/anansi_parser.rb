@@ -46,6 +46,8 @@ class AnansiParser
       # If only_site is set, skip all others
       next if not @only_site.nil? and site.name != @only_site
       
+      update_site_visit(site)
+      
       # Parser each file for this site      
       site.crawled_files.each do |file|
         
@@ -89,5 +91,17 @@ class AnansiParser
         yml_file.write(all_shows.to_yaml)
       end
     end
+  end
+  
+  protected
+  
+  # Update the site visit object based on the site variables
+  def update_site_visit(site)
+    visit = SiteVisit.find_by_name(site.name)
+    
+    visit.quality = site[:quality] if site[:quality]
+    
+    visit.no_update
+    visit.save
   end
 end

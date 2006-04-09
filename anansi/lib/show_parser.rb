@@ -8,6 +8,11 @@ class ShowParser < MetaSite
   attr_reader :shows
   attr_reader :show
   
+  BAND_NAME_EXCLUSIONS = ['tba', 't.b.a', 'special guest', 'many more', 'performing_songs', 'perform_songs',
+                          'performing works', 'fashion show', 'fashions by', 'art show', 'crafts fair',
+                          'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
+                          'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza']
+                  
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
   
@@ -105,29 +110,11 @@ class ShowParser < MetaSite
     
     down = name.downcase
     
+    BAND_NAME_EXCLUSIONS.each { |s| return nil if down.include?(s) }
+    
     return nil if down.ends_with?(":")
-    return nil if down.include?("tba") or down.include?("t.b.a") # Too restrictive? Not many words with tba.
     return nil if down.split(" ").size > 8 # more like a paragraph than a band name
     return nil if down.ends_with?("and more...") or down.ends_with?("and more") or down.ends_with?("more...")
-    return nil if down.include?("special guest")
-    return nil if down.include?("many more")
-    return nil if down.include?("performing songs")
-    return nil if down.include?("perform songs")
-    return nil if down.include?("performing works")
-    return nil if down.include?("fashion show")
-    return nil if down.include?("fashions by")
-    return nil if down.include?("art show")
-    return nil if down.include?("crafts fair")
-    return nil if down.include?("anniversary party")
-    return nil if down.include?("birthday party")
-    return nil if down.include?("nd annual")
-    return nil if down.include?("th annual")
-    return nil if down.include?("st annual")
-    return nil if down.include?("in concert")
-    return nil if down.include?("+")
-    return nil if down.include?("*")
-    return nil if down.include?("music festival")
-    return nil if down.include?("emergenza")
     return nil if down.count("_") > 2
     return nil if down.count("-") > 2
     

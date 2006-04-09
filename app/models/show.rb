@@ -32,6 +32,7 @@ class Show < ActiveRecord::Base
   has_and_belongs_to_many :bands, :order => "bands_shows.set_order"
   has_and_belongs_to_many :fans
   belongs_to :venue
+  belongs_to :site_visit
   acts_as_searchable
  
   has_many :photos, :order => "created_on DESC"
@@ -104,6 +105,10 @@ class Show < ActiveRecord::Base
     else
       return "AM"
     end
+  end
+  
+  def from_site
+    self.site_visit
   end
   
   # Add Show tags

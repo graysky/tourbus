@@ -119,6 +119,7 @@
     <!-- TODO Again, this needs to pulled out -->
     <script type="text/javascript">
       var bandsPlaying = new Array();
+      var dont_show_band_preview = false;
       
       function selectBand(id, name)
       {
@@ -144,6 +145,7 @@
                   :url => { :action => "add_selected_band",
                           :controller => "band" }) %>
         bandsPlaying[bandsPlaying.length] = new Array(id, name);
+        dont_show_band_preview = true;
         $('band_search_preview').hide();
       }
       
@@ -205,7 +207,11 @@
       
       function bandSearchLoading()
       {
-        $('band_search_preview').style.display = 'block';  
+        if (!dont_show_band_preview) {
+            $('band_search_preview').style.display = 'block';  
+        }
+        
+        dont_show_band_preview = false;
       }
       
     </script>
@@ -231,7 +237,8 @@
       <th>Bands:</th>
       <td><div id="bands" class="bands_playing"></div></td>
       <td class="info">
-        TODO This is broken cause it doesn't grow (studpid ie doesn't support min-height)
+        Search for each band that is playing the show and click the name to add it. If you don't find
+        the band you're looking for you can click "add it to tourb.us" to add a new band to the system.
       </td>
     </tr>
     <tr>

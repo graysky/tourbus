@@ -43,7 +43,9 @@ class AnansiImporter
       
       # If only_site is set, skip all others
       next if not @only_site.nil? and site.name != @only_site
-    
+      
+      visit = SiteVisit.find_by_name(site.name)
+      
       @site = site
       site.crawled_files.each do |file|
         path = File.join(site.parse_dir, File.basename(file, ".xml") + ".yml")
@@ -52,6 +54,8 @@ class AnansiImporter
           for show in shows
             @show = show
             show[:site] = site.name
+            show[:site_visit_id] = visit.id
+            
             prepare_show(show)
           end
         end
@@ -88,18 +92,27 @@ class AnansiImporter
   
   def import_show(s)
     # Double check that this is not a duplicate.
-    if duplicate_show?(s) and not s[:override_duplicate]
+    dup = duplicate_show(s)
+    if dup and not s[:override_duplicate]
       puts "Skipping duplicate show: #{s[:date]} @ #{s[:venue][:name]}"
       return nil
     end
   
     puts "Importing show on #{s[:date]} @ #{s[:venue][:name]}"
-    show = Show.new
+    if dup
+      show = dup
+      show.bands.clear
+    else
+      show = Show.new
+    end
     
+    show.created_by_system = true
     show.date = s[:date]
     show.cost = s[:cost]
     show.description = s[:description] || ''
     show.preamble = s[:preamble]
+    
+    show.site_visit = SiteVisit.find(s[:site_visit_id])
     
     show.venue = Venue.find(s[:venue][:id])
     raise "Missing venue #{s[:venue][:id]}" if show.venue.nil?
@@ -170,9 +183,13 @@ class AnansiImporter
       set_status(:skipped, "In the past")
     elsif !resolve_venue
       set_status(:review, "Unknown venue")
-    elsif duplicate_show?
-      # TODO Update show information?
-      set_status(:skipped, "Duplicate")
+    elsif (dup = duplicate_show)
+      if override_dup?(show, dup)
+        set_status(:ok)
+        show[:override_duplicate] = true
+      else
+        set_status(:skipped, "Duplicate") 
+      end
     else
       set_status(:ok)
     end
@@ -271,17 +288,12 @@ class AnansiImporter
     short_name = Venue.name_to_short_name(name)
     conditions = get_venue_conditions(short_name, city, state)
     venue = Venue.find(:first, :conditions => conditions)
-    if venue and venue.id == 1
-        puts conditions
-      end
+    
     if venue.nil?
       # Try with/without 'the'
       short_name = short_name.starts_with?('the') ? short_name[3..short_name.length] : 'the' + short_name
       conditions = get_venue_conditions(short_name, city, state)
       venue = Venue.find(:first, :conditions => conditions)
-      if venue and venue.id == 1
-        puts conditions
-      end
     end
       
     return venue
@@ -295,12 +307,19 @@ class AnansiImporter
     conditions
   end 
   
-  def duplicate_show?(s = @show)
+  def duplicate_show(s = @show)
     # Assume we already have a venue id
     min = s[:date].hour * 60 + s[:date].min
     max = 24 * 60 - min
-    existing_show = Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
-                                       s[:venue][:id], s[:date] - min.minutes, s[:date] + max.minutes])
-    return existing_show ? true : false
+    Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
+                       s[:venue][:id], s[:date] - min.minutes, s[:date] + max.minutes])
+  end
+  
+  def override_dup?(s, dup)
+    return true if 4==4
+    return false if !dup.created_by_system or dup.site_visit.nil?
+    
+    visit = SiteVisit.find(s[:site_visit_id])
+    return visit.quality > dup.site_visit.quality
   end
 end

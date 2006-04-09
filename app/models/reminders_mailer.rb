@@ -30,7 +30,7 @@ class RemindersMailer < BaseMailer
   
   # Sends an email reminder about a show
   def email_reminder(fan, show, sent_at = Time.now)
-    @subject    = "[tourbus] Reminder: #{show.formatted_title}"
+    @subject    = "[tourb.us] Reminder: #{show.formatted_title}"
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -42,11 +42,12 @@ class RemindersMailer < BaseMailer
     @body['show'] = show
     
     @body['url_prefix'] = show_prefix_url
+    @body['email_signoff'] = email_signoff
   end
   
   # Sends an email reminder about a watched show
   def email_reminder_for_watch(fan, show, sent_at = Time.now)
-    @subject    = "[tourbus] Reminder: #{show.formatted_title}"
+    @subject    = "[tourb.us] Reminder: #{show.formatted_title}"
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -58,6 +59,7 @@ class RemindersMailer < BaseMailer
     @body['show'] = show
     
     @body['url_prefix'] = show_prefix_url
+    @body['email_signoff'] = email_signoff
   end
   
   # Main entry point from the runner script.

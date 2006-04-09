@@ -2,7 +2,7 @@
 <body>
   <p>
     Hi, <%= @fan.name %>. Here's a list of upcoming shows we think you'll be interested in.
-    To make these emails more useful to you in the future, tell tourbus about more of your favorite bands.
+    To make these emails more useful to you in the future, tell tourb.us about more of your favorite bands.
   </p>
   
   <% for show in @new_shows %>
@@ -21,12 +21,11 @@
   
   <hr/>
   <p>
-    If you'd like to stop receiving these emails from tourbus, log in to your account 
+    If you'd like to stop receiving these emails from tourb.us, log in to your account 
     <a href="http://tourb.us">here</a> and modify the "Receive Email Updates" setting.
   </p>
-  <p>
-    Thanks,<br/>
-    the tourbus team.
-  </p>
+
+<%= @email_signoff %>
+
 </body>
 </html>

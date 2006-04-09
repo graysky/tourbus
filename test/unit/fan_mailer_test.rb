@@ -24,14 +24,6 @@ class FanMailerTest < Test::Unit::TestCase
     assert_equal @expected.encoded, FanMailer.create_signup(@expected.date).encoded
   end
 
-  def test_confirmation
-    @expected.subject = 'FanMailer#confirmation'
-    @expected.body    = read_fixture('confirmation')
-    @expected.date    = Time.now
-
-    assert_equal @expected.encoded, FanMailer.create_confirmation(@expected.date).encoded
-  end
-
   private
     def read_fixture(action)
       IO.readlines("#{FIXTURES_PATH}/fan_mailer/#{action}")

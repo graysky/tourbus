@@ -3,25 +3,17 @@
 
 <p>
 A new comment was posted <%= time_ago_in_words( @comment.created_on ) %> ago, <%= @comment.created_by_name %> wrote:
-
 </p>
 
 <p>
 <blockquote>
-
-<%= simple_format(@comment.body) %>
-
+  <%= simple_format(@comment.body) %>
 </blockquote>
 </p>
 
-<p>
+<p>We thought you'd like to know!
 
-We thought you'd like to know!
-
-<p>
-thanks,<br/>
-the tourb.us team
-</p>
+<%= @email_signoff %>
 
 </body>
 </html>

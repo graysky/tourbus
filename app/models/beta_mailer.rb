@@ -3,7 +3,7 @@ class BetaMailer < BaseMailer
 
   # User signed up for the beta
   def signup(email_addr, sent_at = Time.now)
-    @subject    = '[tourbus] Launch Signup'
+    @subject    = '[tourb.us] Launch Signup'
     @recipients = Emails.feedback
     @from       = Emails.from
     @sent_on    = sent_at

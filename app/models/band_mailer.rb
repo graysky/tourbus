@@ -2,7 +2,7 @@
 class BandMailer < BaseMailer
 
   def notify_signup(band, confirm_url, public_url, sent_at = Time.now)
-    @subject    = '[tourbus] Account Confirmation'
+    @subject    = '[tourb.us] Account Confirmation'
     @recipients = band.contact_email
     @from       = Emails.from
     @sent_on    = sent_at
@@ -12,10 +12,11 @@ class BandMailer < BaseMailer
     @body["band"] = band
     @body["confirm_url"] = confirm_url
     @body["public_url"] = public_url
+    @body['email_signoff'] = email_signoff
   end
 
   def forgot_password(band, url, sent_at = Time.now)
-    @subject    = '[tourbus] Reset Your Password'
+    @subject    = '[tourb.us] Reset Your Password'
     @recipients = band.contact_email
     @from       = Emails.from
     @sent_on    = sent_at
@@ -24,6 +25,7 @@ class BandMailer < BaseMailer
     
     @body["band"] = band
     @body["url"] = url
+    @body['email_signoff'] = email_signoff
   end
 
   def notify_confirmed(sent_at = Time.now)

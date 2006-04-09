@@ -4,7 +4,7 @@ class FeedbackMailer < BaseMailer
   # For when a user submits feedback about the site
   def notify_feedback(feedback, user, email, sent_at = Time.now)
 
-    @subject    = "[tourbus] New Feedback"
+    @subject    = "[tourb.us] New Feedback"
     @recipients = Emails.feedback
     @from       = Emails.from
     @sent_on    = sent_at
@@ -19,7 +19,7 @@ class FeedbackMailer < BaseMailer
 
   # For when a user reports a problem with the site
   def problem_report(type, id, reason, notes, fan, sent_at = Time.now)
-    @subject    = "[tourbus] Problem Report"
+    @subject    = "[tourb.us] Problem Report"
     @recipients = Emails.feedback
     @from       = Emails.from
     @sent_on    = sent_at

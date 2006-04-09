@@ -3,6 +3,25 @@
 
 <div id="main">
 
+<% if @announcements.empty? %>
+
+<div id="blank-news-item" class="news_item_outer">
+
+<div class="news_item">
+  <div class="datestamp"><%= long_date(Time.now) %></div>
+  <div class="title">No News is Good News</div>
+
+  <div class="body">There are no news item at the moment. Situation normal.</div>
+</div>
+</div>
+<script type="text/javascript">
+    var white = '#FFFFFF';
+    var id = "blank-news-item"
+    Rico.Corner.round( $(id), {bgColor : white} );
+</script>
+  
+<% end %>
+
 <% for item in @announcements %>
 <div id="news-item-<%=item.id%>" class="news_item_outer">
 

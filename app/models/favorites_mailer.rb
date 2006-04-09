@@ -4,7 +4,7 @@ require_dependency 'favorites_calculator'
 class FavoritesMailer < BaseMailer
   
   def favorites_update(fan, new_shows, updated_shows, sent_at = Time.now)
-    @subject    = '[tourbus] Your List of Upcoming Shows'
+    @subject    = '[tourb.us] Your List of Upcoming Shows'
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -17,10 +17,11 @@ class FavoritesMailer < BaseMailer
     @body['updated_shows'] = updated_shows
     
     @body['url_prefix'] = show_prefix_url
+    @body['email_signoff'] = email_signoff
   end
   
   def no_location(fan, sent_at = Time.now)
-    @subject    = '[tourbus] Problem sending upcoming show emails'
+    @subject    = '[tourb.us] Problem sending upcoming show emails'
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -29,6 +30,7 @@ class FavoritesMailer < BaseMailer
     @content_type = "text/html"
     
     @body['fan'] = fan
+    @body['email_signoff'] = email_signoff
   end
   
   # Main entry point from the runner script.

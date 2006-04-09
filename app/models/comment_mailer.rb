@@ -5,7 +5,7 @@ class CommentMailer < BaseMailer
   # comment => The new comment
   # recipients => string or array of recipients
   def notify_comment(comment, recipients, sent_at = Time.now)
-    @subject    = '[tourbus] New Comment Posted'
+    @subject    = '[tourb.us] New Comment Posted'
     @recipients = recipients
     @from       = Emails.from
     @sent_on    = sent_at
@@ -13,6 +13,7 @@ class CommentMailer < BaseMailer
     content_type "text/html"
     
     @body["comment"] = comment
+    @body['email_signoff'] = email_signoff
   end
   
 end

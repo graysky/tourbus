@@ -773,9 +773,6 @@ div.auto_complete ul strong.highlight
 .tag_hit_list {
 }
 
-.tag_hit_item {
-}
-
 fieldset
 {
 	border: 1px solid #bbbbbb;
@@ -1722,6 +1719,15 @@ table.tooltip_table td {
 	color:#484A4C;
 }
 
+/* FAQ page */
+.faq {
+    width:700px;
+    margin-left: 10px;
+}
 
-
-
+.faq h2 {
+    color: #80B674;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
+}

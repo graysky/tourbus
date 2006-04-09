@@ -115,10 +115,14 @@ module FerretMixin
                                                      :create_if_missing => true)                                 
         end
         
+        IGNORED_STRINGS = [',']
+        
         # Set up a basic query
         def basic_ferret_query(q, options = {})
           q = q.strip.downcase
           q = "*" if q.nil? or q == ""
+          
+          IGNORED_STRINGS.each { |str| q.gsub!(str, ' ') }
           
           query = Search::BooleanQuery.new
           if q != "*"

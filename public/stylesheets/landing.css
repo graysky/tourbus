@@ -53,6 +53,13 @@ a
 	padding-bottom:0px;
 }
 
+#msg .title
+{
+    color: #94C28A;
+    font-size:18px;
+    font-weight: bold;
+}
+
 #signup
 {	
 	width:620px;

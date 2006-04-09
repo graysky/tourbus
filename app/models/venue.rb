@@ -124,6 +124,8 @@ class Venue < ActiveRecord::Base
       end
     end
     
+    contents << " " + self.city
+    
     contents
   end
   

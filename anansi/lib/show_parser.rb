@@ -12,7 +12,7 @@ class ShowParser < MetaSite
                           'performing works', 'fashion show', 'fashions by', 'art show', 'crafts fair',
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
-                          'last show', 'final show']
+                          'last show', 'final show', 'poetry slam']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)

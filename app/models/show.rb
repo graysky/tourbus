@@ -170,6 +170,8 @@ class Show < ActiveRecord::Base
       contents << " " + band.name
       contents << " " + band.tags.join(" ")
     end
+   
+    contents << " " + self.venue.city
     
     contents
   end

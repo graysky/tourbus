@@ -7,6 +7,7 @@
 desc "Bundle up the crawl, parse, and prepare import"
 task :anansi_all => [:anansi_crawl, :anansi_parse, :anansi_prepare_import ]
 
+# Each step can be put into testing mode by passing "true" to cstor
 desc "Runs the 1st stage of the crawler"
 task :anansi_crawl do
 
@@ -15,9 +16,8 @@ task :anansi_crawl do
   # where foo is the *only* site to crawl
   site = ENV['site']
 
-  # TODO Remove "true" which indicates testing
   cmd = <<END
-  c = AnansiConfig.new(true) 
+  c = AnansiConfig.new() 
   c.only_site = "#{site}"
   c.start
   c.crawl
@@ -34,9 +34,8 @@ task :anansi_parse do
   # where foo is the *only* site to parse
   site = ENV['site']
   
-  # TODO Remove "true" which indicates testing
   cmd = <<END
-  p = AnansiParser.new(true)
+  p = AnansiParser.new()
   p.only_site = "#{site}"
   p.start
   p.parse
@@ -53,9 +52,8 @@ task :anansi_prepare_import do
   # where foo is the *only* site to parse
   site = ENV['site']
   
-  # TODO Remove "true" which indicates testing
   cmd = <<END
-  p = AnansiImporter.new(true)
+  p = AnansiImporter.new()
   p.only_site = "#{site}"
   p.start
   p.prepare

@@ -1,14 +1,10 @@
 <div id="side">
   <div id="about-box" class="sidebar-box">
-  <h2 id="about-title"><span class="title">About This User</span></h2>
+  <h2 id="about-title"><span class="title">About This Fan</span></h2>
   
   <p>
     <strong>Member Since:</strong> <%= simple_date @fan.created_on %>
     <strong>Profile Views:</strong> <%= @fan.page_views %>
-    
-    <br/>
-    <br/>
-    <a href="javascript:alert('coming soon')">Contact this user</a>
   </p>
   </div>
   
@@ -33,7 +29,7 @@
     <table>
     <tr>
       <td><img src="/images/feed.png" height="16" width="16"/></td>
-      <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe to News</a></td>
+      <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe via RSS</a></td>
     </tr>
     </table>
     

@@ -254,7 +254,7 @@ class Site < MetaSite
         rule = s.sub(/disallow:\s*/, '')
 
         # See if the rule appears in our request path
-        if uri_path.index(rule)
+        if uri_path.index(rule) and !rule.empty?
           # This rule blocks us
           debug "**** robots.txt blocking rule: #{s}"
           return false

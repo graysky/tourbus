@@ -61,6 +61,7 @@ class ShowParserTest < Test::Unit::TestCase
                  @parser.prepare_band_name("crisis bureau [ex-endgame]"))
     assert_equal(["crisis bureau", "- one night only!"], 
                  @parser.prepare_band_name("crisis bureau - one night only!"))
+    assert_equal(["uber", nil], @parser.prepare_band_name("\"uber\""))
   end
   
   def test_process_first_band

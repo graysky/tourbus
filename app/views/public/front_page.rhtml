@@ -11,7 +11,9 @@
 
 <% cache(:action => 'front_page', :part => 'popular_bands') do %>
 <div class="portlet_box" style="float:left; /*border: 1px solid black;*/">
-  <h3>Popular Bands</h3>    
+
+  <!-- <h3>Popular Bands</h3> -->
+  <center><%= image_tag "popular_bands.jpg" %></center>
   <div class="narrow_list">
     
   <% index = 0 
@@ -27,7 +29,8 @@
 <% cache(:action => 'front_page', :part => 'upcoming_shows') do %>
 <div class="portlet_box" style="float:right; /*border: 1px solid black;*/ ">
 
-  <h3>Upcoming Shows</h3>
+  <!--<h3>Upcoming Shows</h3>-->
+  <center><%= image_tag "upcoming_shows.jpg" %></center>
   <div class="narrow_list">
     
   <% index = 0 

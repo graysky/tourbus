@@ -400,7 +400,6 @@ td, p
 
 .welcome_msg {
     background-color: #EBEBEB;
-    xbackground-color: #EFF4F6; /* Light blue */
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
 	font-size: 13px;
@@ -413,8 +412,6 @@ td, p
 	padding-bottom:2px;
 	/* Match the normal background */
 	background-color: #EBEBEB;
-    xbackground-color: #EFF4F6; /* Light blue */
-	xbackground-color: #CCCCCC;
 }
 
 /* Box title text */
@@ -436,11 +433,9 @@ td, p
     
     font-size: 17px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
-    xborder: 1px solid green; 
 }
 
 .getting_started {
-    xbackground-color: #EBEBEB;
     background-color: #EFF4F6; /* Light blue */
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
@@ -453,9 +448,7 @@ td, p
 	margin-top:0px;
 	padding-bottom:2px;
 	/* Match the normal background */
-	xbackground-color: #EBEBEB;
-    background-color: #EFF4F6; /* Light blue */
-	xbackground-color: #CCCCCC;
+    background-color: #EFF4F6;
 }
 
 /* Box title text */
@@ -489,14 +482,13 @@ td, p
     /*background-color: black;*/
     color: white;
     background-color: #0F628B; /* Dark Blue */
-    xbackground-color: #94C28A; /* Greenish */
-    xbackground-color: #599057; /* Greenish */
 }
 
 
 /* List of bands and shows - narrow version */
 .narrow_list {
 	font-size:12px;
+	margin-top: 4px;
 }
 
 .narrow_list a {

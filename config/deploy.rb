@@ -206,7 +206,7 @@ desc "Reload the rails_cron tasks and restart rails_cron"
 task :restart_cron, :roles => :app do
   # Load the new tasks and restart cron
   run <<-CMD
-    cd #{release_path} && rake create_cron_tasks && rake cron_restart
+    cd #{current_path} && rake RAILS_ENV=production create_cron_tasks cron_restart
   CMD
 end
 

@@ -1,11 +1,23 @@
 # Periodic housekeeping actions
-class Housekeeping
+class Housekeeping < ActiveRecord::Base
 
   # Resave any objects that need periodic updating of statistics or other attributes
   def self.resave_objects
     save_chunks(Venue)
     save_chunks(Band)
     save_chunks(Fan)
+  end
+
+  # Run the long running tasks nightly
+  def self.nightly_tasks
+    start = Time.now.asctime
+    logger.info "Started nightly tasks at #{start}"
+  
+    logger.info "Sending favorites emails..."
+    FavoritesMailer.do_favorites_updates
+  
+    finish = Time.now.asctime
+    logger.info "Finish nightly tasks at #{finish}"
   end
   
   # Check all wishlists for bands that have been created today.

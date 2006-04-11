@@ -24,6 +24,21 @@
     adjust_bio_height(true);
   }
   
+  var logoSelectShown = false;
+  
+  function toggle_logo_select()
+  {
+    if (logoSelectShown) {
+        new Effect.Fade('fan_logo_select');
+    }
+    else {
+        new Effect.Appear('fan_logo_select');
+    }
+    
+    logoSelectShown = !logoSelectShown;
+    
+  }
+  
 </script>
 
 
@@ -62,7 +77,7 @@
 <table>
   <% if @logged_in_as_fan %>
     <tr><td>
-      <a href="#" id="change_logo" onclick="new Effect.Appear('fan_logo_select')">Change Logo</a>
+      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
        <div id="fan_logo_select" style="display:none">
          <%= form_tag_with_upload_progress({ :action => 'change_logo' },
                            {  :begin => "Element.show('logo_indicator')",

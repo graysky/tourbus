@@ -28,6 +28,22 @@
       <%= center_and_zoom_to_shows(@shows) %>
       <%= write_show_map_points @shows %>
     }
+    
+      var logoSelectShown = false;
+  
+	  function toggle_logo_select()
+	  {
+	    if (logoSelectShown) {
+	        new Effect.Fade('band_logo_select');
+	    }
+	    else {
+	        new Effect.Appear('band_logo_select');
+	    }
+	    
+	    logoSelectShown = !logoSelectShown;
+	    
+	  }
+    
     </script>
 <%        
   end 
@@ -40,7 +56,7 @@
 <table width="95%">
   <% if @logged_in_as_band %>
     <tr><td>
-      <a href="#" id="change_logo" onclick="new Effect.Appear('band_logo_select')">Change Logo</a>
+      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
        <div id="band_logo_select" style="display:none">
          <%= form_tag_with_upload_progress({ :action => 'change_logo' },
                            {  :begin => "Element.show('logo_indicator')",

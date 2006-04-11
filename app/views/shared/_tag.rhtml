@@ -41,13 +41,17 @@
         <%= hidden_field_tag( 'type', "", :value => type ) %>
         <%= hidden_field_tag( 'tag_id', "", :value => tag.id ) %>
 
-       <%= submit_tag "Remove" %>&nbsp;<%= link_to "Cancel", "#" %>
+       <%= submit_tag "Remove" %>&nbsp;<%= link_to "Cancel", "#", :onclick => 'toggleTip(event)' %>
     <%= end_form_tag %>
   </p>
 </div>
 
 <script type="text/javascript">
   Tooltip.add('remove_tag_link-<%= t_id %>', 'remove_tag_tip-<%= t_id %>');
+  
+  function toggleTip(event) {
+    Tooltip.toggle($('remove_tag_link-<%= t_id %>'), event);
+  }
 </script>
 
 <% else %>

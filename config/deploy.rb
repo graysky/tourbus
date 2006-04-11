@@ -109,7 +109,9 @@ task :deploy do
     migrate
   end
 
-  restart
+  restart # Restart FCGI procs
+  
+  restart_cron # Restart rails cron
 end
 
 desc "Setup task that to run before the first deployment for TB-specific setup"
@@ -150,19 +152,9 @@ task :after_update_current do
   
   # Restart FCGI procs
   restart
-end
-
-desc "Freeze the other gems using rake. - NEEDED??"
-task :freeze_other_gems do
-
-    # Execute rake command to freeze Ferret gem. 
-    # Need to source bash_profile to set up correct GEM_PATH. 
-    # Assumes the bash_profile does that, like this:
-    # export GEM_HOME=$HOME/gems
-    # export GEM_PATH=/usr/lib/ruby/gems/1.8:$GEM_HOME
-    run <<-CMD
-      cd #{release_path} && source ~/.bash_profile && rake freeze_other_gems
-    CMD
+  
+  # Restart rails cron
+  restart_cron
 end
 
 desc "Push the right version of databse.yml."
@@ -208,6 +200,27 @@ task :reaper, :roles => :app do
   run <<-CMD
     #{current_path}/script/process/reaper -a kill
   CMD
+end
+
+desc "Reload the rails_cron tasks and restart rails_cron"
+task :restart_cron, :roles => :app do
+  # Load the new tasks and restart cron
+  run <<-CMD
+    cd #{release_path} && rake create_cron_tasks && rake cron_restart
+  CMD
+end
+
+desc "Freeze the other gems using rake. - NEEDED??"
+task :freeze_other_gems do
+
+    # Execute rake command to freeze Ferret gem. 
+    # Need to source bash_profile to set up correct GEM_PATH. 
+    # Assumes the bash_profile does that, like this:
+    # export GEM_HOME=$HOME/gems
+    # export GEM_PATH=/usr/lib/ruby/gems/1.8:$GEM_HOME
+    run <<-CMD
+      cd #{release_path} && source ~/.bash_profile && rake freeze_other_gems
+    CMD
 end
 
 #desc <<DESC

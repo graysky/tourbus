@@ -3,10 +3,10 @@
 <% end %>
 
 <% 
-  title = @show.formatted_title
+  title = date_venue_title(@show)
   
   @page_title = title
-  @header_title = simple_date(@show.date) + " : " + truncate(title, 32)
+  @header_title = truncate(title, 42)
 %>
 
 <div id="main">

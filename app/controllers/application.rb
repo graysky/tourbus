@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   helper :debug
   helper :fan
   helper :portlet
+  helper :show
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :public_band_rss_url

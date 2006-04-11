@@ -65,7 +65,7 @@ class FanPublicController < ApplicationController
     render_component :controller => "photo", :action => "show_one", 
                      :params => {"photo_id" => params[:photo_id], 
                                  "name" => @fan.name, 
-                                 "showing_creator" => true}
+                                 "showing_creator" => false}
   end
   
   # RSS feed for the fan

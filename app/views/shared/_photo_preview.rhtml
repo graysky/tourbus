@@ -7,7 +7,7 @@
      cols = 4
    end
    
-   showing_creator = (type == Photo.FromBand or type == Photo.FromFan)
+   showing_creator = type != Photo.FromFan
    action = nil
    if logged_in? and not showing_creator
      action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo.gif', :size => '85x13')}</a>"

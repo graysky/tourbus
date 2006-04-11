@@ -92,18 +92,6 @@ class FindController < ApplicationController
     render :action => 'show'
   end
   
-  def browse_newest_shows
-    query, radius, lat, long = prepare_query(Show.table_name)
-    return if query.nil?
-    
-    options = default_search_options
-    options[:sort] = created_on_sort_field
-    
-    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
-    paginate_search_results(count)
-    render :action => 'show'
-  end
-  
   def browse_popular_venues
     query, radius, lat, long = prepare_query(Venue.table_name)
     return if query.nil?

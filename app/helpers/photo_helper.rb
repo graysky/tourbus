@@ -75,8 +75,9 @@ module PhotoHelper
         from_url = public_url_for_creator(photo)
         html << "<br/><span>From <a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
       else
-         # Show the subject of the picture
-        from = truncate(photo.subject.name, 16)
+        # Show the subject of the picture
+        name = photo.show ? date_venue_title(photo.subject) : photo.subject.name
+        from = truncate(name, 16)
         from_url = public_url_for_subject(photo)
         html << "<br/><span><a href='#{from_url}' style='font-size:10px'>#{from}</a></span>"
       end

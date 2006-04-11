@@ -12,6 +12,10 @@ module ShowHelper
     out << "</div>"
   end
   
+  def date_venue_title(show)
+    "#{friendly_date(show.date)} @ #{show.venue.name}"
+  end
+  
   def write_show_map_points(shows_by_date)
     # Form hash of arrays by venue
     shows_by_venue = {}

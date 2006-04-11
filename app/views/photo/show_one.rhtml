@@ -38,11 +38,18 @@
 </div>
 
 <div id="side">
-  <div class="sidebar-box">
-    <h2>Navigation</h2>
+  <div id="actions-box" class="sidebar-box">
+  <h2 id="actions-title"><span class="title">Navigation</span></h2>
     <center>
     <%= photo_navigation_table @photo, @showing_creator %>
     </center>
   </div>
 </div>
+
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+</script>
 

@@ -156,8 +156,13 @@
        <tr class="submit">
         <td align="right"></td>
         <td>
-          <%= submit_tag 'Upload' %><br/><br/>
+          <%= submit_tag 'Upload' %>&nbsp;&nbsp;<%= button_to_function "Cancel", "new Effect.Fade('add_photo')" %>
+          <br/><br/>
           <%= upload_status_tag %>
+          
+        </td>
+        <td>
+            
         </td>
       </tr>
      </table>                       

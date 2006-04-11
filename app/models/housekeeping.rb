@@ -1,5 +1,5 @@
 # Periodic housekeeping actions
-class Housekeeping < ActiveRecord::Base
+class Housekeeping 
 
   # Resave any objects that need periodic updating of statistics or other attributes
   def self.resave_objects
@@ -11,6 +11,7 @@ class Housekeeping < ActiveRecord::Base
   # Run the long running tasks nightly
   def self.nightly_tasks
     start = Time.now.asctime
+    logger = RAILS_DEFAULT_LOGGER
     logger.info "Started nightly tasks at #{start}"
   
     logger.info "Sending favorites emails..."

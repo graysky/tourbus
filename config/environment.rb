@@ -7,8 +7,6 @@
 # (Use only when you can't set environment variables through your web/app server)
 # ENV['RAILS_ENV'] = 'production'
 
-# Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.1.1'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')

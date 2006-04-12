@@ -67,8 +67,7 @@ class FanController < ApplicationController
     # If it's already a favorite then something went wrong, maybe someone just typed in the URL
     return if @fan.favorite?(band)
     
-    @fan.bands << band
-    band.num_fans += 1
+    @fan.add_favorite(band)
     
     Fan.transaction(@fan) do
       Band.transaction(band) do
@@ -90,8 +89,7 @@ class FanController < ApplicationController
   def remove_favorite_band
     band = Band.find(params[:id])
     if @fan.bands.include?(band)
-      @fan.bands.delete(band)
-      band.num_fans -= 1
+      @fan.remove_favorite(band)
       
       Fan.transaction(@fan) do
         Band.transaction(band) do
@@ -205,6 +203,45 @@ class FanController < ApplicationController
     end
   end
   
+  def bulk_import
+    return if request.get?
+    
+    names = params[:bulk_names].to_s.gsub(/\r/, '').split(/\n/)
+    @wishlist, @bands = WishListBand.segment_wishlist_bands(names)
+    
+    render :action => 'import_favorites_step_2'
+  end
+  
+  def import
+    return if request.get?
+    
+    begin
+      Fan.transaction(@fan) do
+        # Add favorites
+        keys = params.keys.grep(/band_/)
+        keys.each do |band_key|
+          band = Band.find(params[band_key].to_i)
+          @fan.add_favorite(band)
+          
+          # Save but don't reindex the band... we will recalculate popularity overnight
+          band.save!
+        end
+        
+        # Add wishlist
+        keys = params.keys.grep(/wishlist_/)
+        wishlist = keys.collect { |wishlist_key| params[wishlist_key] }
+        @fan.add_wish_list_bands(*wishlist)
+        
+        @fan.save!
+      end
+    rescue Exception => e
+      error_log_flashnow(e.to_s)
+      return
+    end
+    
+    flash[:success] = 'Favorites and Wishlist imported successfully'
+    redirect_to public_fan_url
+  end
   
   #########
   # Private

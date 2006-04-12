@@ -1,0 +1,69 @@
+<% @page_title = "Account Settings" %>
+<% @header_title = @fan.name + "/Import Favorite Bands Step 2" %>
+
+<div id='main'>
+    <%= start_form_tag :action => 'import' %>
+    
+    <h2>New Favorites</h2>
+    <p>
+    <strong>
+            The following bands were found in our database. Any checked bands
+            will be added to your list of favorite bands once you click 'Import'
+            at the bottom of the page.
+    </strong>
+    </p>
+    
+    <table>
+    <% @bands.each do |band| %>
+        <tr>
+            <td>
+                <% if !@fan.favorite?(band) %>
+                    <%= check_box_tag "band_#{band.id}", value=band.id, checked=true %>
+                <% end %>
+            </td>    
+            <td>
+                <%= link_to band.name, public_band_url(band) %>
+                <% if @fan.favorite?(band) %>
+                    <em>(already a favorite)</em>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+    </table>
+    
+    <h2>Wishlist</h2>
+    <p>
+    <strong>
+            The following bands were not found in our database. Any checked bands
+            will be added to your wishlist, and as soon as tourb.us finds a show
+            for them they will be added as favorites.
+    </strong>
+    </p>
+    
+    <table>
+    <% @wishlist.each_with_index do |name, index| %>
+        <tr>
+            <td>
+                <% if !@fan.wishlist?(name) %>
+                    <%= check_box_tag "wishlist_#{index}", value=name, checked=true %>
+                <% end %>
+            </td>    
+            <td>
+                <%= name %>
+                <% if @fan.wishlist?(name) %>
+                    <em>(already on wishlist)</em>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+    </table>
+    
+    <br/>
+    <%= submit_tag 'Import' %>
+    
+    <%= end_form_tag %>
+</div>
+
+<div id='side'>
+
+</div>

@@ -33,8 +33,8 @@
 #  mobile_number       :string(20)    
 #  carrier_type        :integer(10)   default(-1)
 #  show_watching_remind:integer(10)   default(4320)
-#  latitude            :string(30)    
 #  longitude           :string(30)    
+#  latitude            :string(30)    
 #
 
 require_dependency "password_protected"
@@ -95,13 +95,29 @@ class Fan < ActiveRecord::Base
     self.bands.detect { |fav| fav == band }
   end
   
+  def add_favorite(band)
+    return if self.favorite?(band)
+    
+    self.bands << band
+    band.num_fans += 1
+  end
+  
+  def remove_favorite(band)
+    self.bands.delete(band)
+    band.num_fans -= 1
+  end 
+  
   def attend_show(show)
     self.shows.push_with_attributes(show, { :attending => true, :watching => false })
     show.num_attendees += 1
   end
   
+  def wishlist?(band)
+    self.wish_list_bands.detect { |ws_band| ws_band.short_name == Band.name_to_id(band) }
+  end
+  
   def add_wish_list_bands(*bands)
-    bands.each { |band| self.wish_list_bands << WishListBand.new(:name => band) }
+    bands.each { |band| self.wish_list_bands << WishListBand.new(:name => band) if !self.wishlist?(band) }
   end
   
   def find_wish_list_band(name)

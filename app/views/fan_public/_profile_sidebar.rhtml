@@ -23,6 +23,12 @@
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
     <% end %>
+    <% if @logged_in_as_fan %>
+      <tr>
+        <td><img src="/images/add.png" height="16" width="16"/></td>
+        <td><%= link_to "Import Favorites", :controller => "fan", :action => "import_favorites" %></td>
+      </tr>
+    <% end %>
     </table>
     </p>
     <p>

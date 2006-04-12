@@ -1,0 +1,18 @@
+<% @page_title = "Account Settings" %>
+<% @header_title = @fan.name + "/Import Favorite Bands" %>
+
+<div id='main'>
+    <%= start_form_tag :action => 'bulk_import' %>
+    
+    <h2>Import Favorite Bands By Name</h2>
+    <p>Enter the names of the bands you'd like to add as favorites, one per line.</p>
+    
+    <%= text_area 'bulk_names', '', :rows => 16, :cols => 24  %><br/>
+    <%= submit_tag 'Submit' %>
+    
+    <%= end_form_tag %>
+</div>
+
+<div id='side'>
+
+</div>

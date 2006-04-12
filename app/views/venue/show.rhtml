@@ -14,18 +14,18 @@
 
 <%= section "shows_section", 94, 23 %>
 
-<br/>
+
 <%= show_results @shows, false, false %>
 <% if @shows.size > 0 %>
 <br/>
+<br/>
 <%= link_to "See more shows...", :action => :shows %>
 <% else %>
-<%= start_profile_info_box %>
-    <strong>This venue does not have any shows in the next few days.</strong>
-    <br/><br/>
-    <%= link_to 'Recent and upcoming shows', :action => 'shows' %><br/>
-    <%= link_to 'All Shows', :action => 'all_shows' %>
-<%= end_profile_info_box %>
+    <div class="profile_section_no_content">
+        <%= @venue.name %> does not have any upcoming shows.
+         <br/><br/>
+         <%= link_to 'All Shows', :action => 'all_shows' %>
+    </div>
 <% end %>
 
   <%= render(

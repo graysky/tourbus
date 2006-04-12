@@ -19,18 +19,18 @@
   <div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
 <% end %>
 
-<br/>
 <%= show_results @shows, params[:show_map] == "true" %>
 <% if @shows.size > 0 %>
 <br/>
+<br/>
 <%= link_to "See more shows...", :action => :shows %>
 <% else %>
-<%= start_profile_info_box %>
-    <strong><%= @band.name %> does not have any shows in the next few days.</strong>
-    <br/><br/>
-    <%= link_to 'Recent and upcoming shows', :action => 'shows' %><br/>
-    <%= link_to 'All Shows', :action => 'all_shows' %>
-<%= end_profile_info_box %>
+
+    <div class="profile_section_no_content">
+        <%= @band.name %> does not have any upcoming shows.
+         <br/><br/>
+         <%= link_to 'All Shows', :action => 'all_shows' %>
+    </div>
 <% end %>
 
 

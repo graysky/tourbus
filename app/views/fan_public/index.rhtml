@@ -32,7 +32,7 @@
   <%= end_profile_info_box %>
 <% elsif @logged_in_as_fan and @shows.empty? %>
     <%= start_profile_info_box %>
-        <strong>You don't have any recent shows or shows in the next few days.</strong>
+        <strong>You don't have any recent shows or upcoming shows.</strong>
         <br/><br/>
         <%= link_to 'Recent and upcoming shows', :action => 'shows' %><br/>
         <%= link_to 'All Shows', :action => 'all_shows' %>.

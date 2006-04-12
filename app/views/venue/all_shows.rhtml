@@ -5,7 +5,7 @@
 <%= render :partial => "profile_header", :locals => { :front_page => false } %>
 
 <%= section "all_shows_section", 141, 25 %>
-<br/>
+
 <%= show_results @shows, false, false %>
 <br/>
 <%= link_to "See just recent and upcoming shows...", :action => :shows %>

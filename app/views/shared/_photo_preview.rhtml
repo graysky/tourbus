@@ -9,7 +9,7 @@
    
    showing_creator = type != Photo.FromFan
    action = nil
-   if logged_in? and not showing_creator
+   if logged_in? and showing_creator
      action = "<a href='#' onclick='new Effect.Appear(\"add_photo\");return false;'>#{image_tag('upload_photo.gif', :size => '85x13')}</a>"
    end
    
@@ -112,18 +112,21 @@
    <% elsif type == Photo.Band %>    
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this band.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
        
    <% elsif type == Photo.Venue %>    
        
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this venue.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
       
    <% elsif type == Photo.Show %>    
        
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this show.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
+          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
         
    <% end %>
@@ -131,7 +134,7 @@
 <% end %>
 
 <div class="photo_box">
-  <% if not showing_creator %>
+  <% if showing_creator %>
   <div id="add_photo" style="display:none">
      <%= form_tag_with_upload_progress({ :action => "upload_photo",
                        :controller => "photo",

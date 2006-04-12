@@ -2,7 +2,7 @@ module ShowHelper
   def show_results(shows, show_map, show_venue = true, fan = nil)
     return if shows == nil || shows.empty?
      
-    out = "<div class='search_results'>"
+    out = "<br/><div class='search_results'>"
     index = 0
     for show in shows
       out << render(:partial => "shared/show_search_result", 

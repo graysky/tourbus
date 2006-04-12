@@ -85,14 +85,26 @@ module Address
     
     raise "Invalid address: Missing city or zipcode" if city == "" and zip.nil?
     raise "Invalid address: Missing state" if state.nil? and zip.nil?
-    
+ 
     # If we have a zip code look it up and use it. Otherwise, try to use the city and state
-    if not zip.nil?
-      zipcode = ZipCode.find_by_zip(zip)
-      raise "Invalid address: Unknown zipcode: #{zip}" if zipcode.nil?
-    else
-      zipcode = ZipCode.find_by_city_and_state(city.capitalize, state.upcase)
-      raise "Invalid address: Unknown city and state: #{city}, #{state}" if zipcode.nil?
+    begin
+      if not zip.nil?
+        zipcode = ZipCode.find_by_zip(zip)
+        raise "Invalid address: Unknown zipcode: #{zip}" if zipcode.nil?
+      else
+        zipcode = ZipCode.find_by_city_and_state(city.capitalize, state.upcase)
+        raise "Invalid address: Unknown city and state: #{city}, #{state}" if zipcode.nil?
+      end
+    rescue Exception => e
+      # Second chance: Try to geocode the address
+      result = Geocoder.yahoo(str)
+      
+      if result and result[:city] != '' and result[:state] != ''
+        city, state = result[:city], result[:state]
+        zipcode = ZipCode.find_by_city_and_state(city.capitalize, state.upcase)
+      end
+      
+      throw e unless zipcode
     end
     
     zipcode

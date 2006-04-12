@@ -12,10 +12,9 @@ class Geocoder
   
     def self.yahoo(addr)
       return nil if addr.nil? || addr.strip == ""
-      p ":#{addr}:"
-      url = @@base_url + CGI.escape(addr)
-      p url
       
+      url = @@base_url + CGI.escape(addr)
+    
       response = open(url)
       doc = Document.new(response.read)
 

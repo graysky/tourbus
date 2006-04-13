@@ -13,6 +13,17 @@ class WishListBand < ActiveRecord::Base
     
     names.each do |name|
       band = Band.find_by_short_name(Band.name_to_id(name))
+      
+      if band.nil? and name.downcase.starts_with?('the ')
+        # Try without 'the'
+        band = Band.find_by_short_name(Band.name_to_id(name[4..-1]))
+      end
+      
+      if band.nil?
+        # Try with 'the
+        band = Band.find_by_short_name(Band.name_to_id('the' + name))
+      end
+      
       bands << band if band
       wishlist << name unless band
     end

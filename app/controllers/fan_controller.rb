@@ -212,6 +212,30 @@ class FanController < ApplicationController
     render :action => 'import_favorites_step_2'
   end
   
+  def import_last_fm
+    return if request.get?
+    
+    username = params[:last_fm_username]
+    
+    if username == ""
+      flash[:error] = "Invalid last.fm username"
+      render :action => 'import_favorites'
+      return
+    end
+    
+    bands = LastFm.top_50_bands(username)
+    
+    if bands.empty?
+      flash[:error] = "No bands found for username \"#{username}\""
+      render :action => 'import_favorites'
+      return
+    end
+    
+    @wishlist, @bands = WishListBand.segment_wishlist_bands(bands)
+    
+    render :action => 'import_favorites_step_2'
+  end
+  
   def import
     return if request.get?
     
@@ -242,6 +266,7 @@ class FanController < ApplicationController
     flash[:success] = 'Favorites and Wishlist imported successfully'
     redirect_to public_fan_url
   end
+  
   
   #########
   # Private

@@ -24,6 +24,16 @@ class WishListBand < ActiveRecord::Base
         band = Band.find_by_short_name(Band.name_to_id('the' + name))
       end
       
+      if band.nil? and name.include?('&')
+        # Replace ampersand with 'and'
+        band = Band.find_by_short_name(Band.name_to_id(name.gsub(/&/, 'and')))
+      end
+        
+      if band.nil? and name.include?(' and ')
+        # Replace 'and' with &
+        band = Band.find_by_short_name(Band.name_to_id(name.gsub(/ and /, ' & ')))
+      end
+      
       bands << band if band
       wishlist << name unless band
     end

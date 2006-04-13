@@ -70,7 +70,7 @@ module FeedHelper
     desc << "<p><b>Description:</b> #{simple_format( h(sanitize(show.description)) )}</p>"
     desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a></p>"
     
-    xml << "<description>#{strip_tags(desc)}</description>"
+    xml << "<description>#{desc}</description>"
     return xml
   end
   
@@ -79,7 +79,7 @@ module FeedHelper
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
     xml << "<pubDate>#{format_time(comment.created_on)}</pubDate>"
-    xml << "<description>#{strip_tags(simple_format( h(sanitize(comment.body)) ))}</description>"
+    xml << "<description>#{simple_format( h(sanitize(comment.body)) )}</description>"
     return xml
   end
   

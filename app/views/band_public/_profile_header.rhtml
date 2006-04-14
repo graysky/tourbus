@@ -29,25 +29,27 @@
       <%= write_show_map_points @shows %>
     }
     
-      var logoSelectShown = false;
-  
-	  function toggle_logo_select()
-	  {
-	    if (logoSelectShown) {
-	        new Effect.Fade('band_logo_select');
-	    }
-	    else {
-	        new Effect.Appear('band_logo_select');
-	    }
-	    
-	    logoSelectShown = !logoSelectShown;
-	    
-	  }
-    
     </script>
 <%        
   end 
 %>
+
+<script type="text/javascript">
+    var logoSelectShown = false;
+  
+  function toggle_logo_select()
+  {
+    if (logoSelectShown) {
+        new Effect.Fade('band_logo_select');
+    }
+    else {
+        new Effect.Appear('band_logo_select');
+    }
+    
+    logoSelectShown = !logoSelectShown;
+    
+  }
+</script>
 
 <% if not front_page %>
 <div class='go_back_link'><%= public_band_link "Back to profile", @band %></div>

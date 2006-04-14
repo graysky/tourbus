@@ -16,6 +16,7 @@
     <%= link_to "See more shows...", :action => :shows %>
     <br/>
 <% elsif @logged_in_as_fan and @fan.shows.find(:all).empty? %>
+    <br/>
   <%= start_profile_info_box %>
       <strong>You haven't added any shows yet.</strong>
       <br/><br/>
@@ -57,11 +58,13 @@
 <% elsif @logged_in_as_fan %>
     <br/>
     <%= start_profile_info_box %>
-        <strong>You don't have any favorite bands!</strong>
+        <strong>You don't have any favorite bands yet!</strong>
         <br/><br/>
-        <%= link_to 'Search or browse for bands you like', :controller => 'find', :action => 'band' %>,
-        and then make them a favorite by clicking the green star or "Add to Favorites" link. You can get
-        email reminders anytime one of your favorite bands is coming to town.
+        You can <%= link_to 'import', :action => :import_favorites %> your favorite bands from
+        iTunes, your <%= link_to 'Last.fm', 'http://last.fm' %> account, or a list that you type in.<br/><br/>
+        You can also <%= link_to 'Search or browse for bands you like', :controller => 'find', :action => 'band' %>,
+        and then make them a favorite by clicking the green star or "Add to Favorites" link.
+        You can get email reminders anytime one of your favorite bands is coming to town.
     <%= end_profile_info_box %>
 <% else %>
     <div class="profile_section_no_content"><%= @fan.name %> doesn't have any favorite bands!</div>

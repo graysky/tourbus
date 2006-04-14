@@ -105,8 +105,11 @@ class ApplicationController < ActionController::Base
   # Increments the objects page count and saves it
   # Assumes that "object.page_views" and "object.save" work
   def inc_page_views(object)
-  
+
+    # Don't count the hit if it came from downtree  
     return if object.nil? or @session[:logged_in_as_downtree]
+    # or a profile hit from the fan/band that's it about
+    return if logged_in? and object.id == logged_in.id
              
     object.page_views += 1
     object.no_update

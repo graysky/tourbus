@@ -236,6 +236,29 @@ class FanController < ApplicationController
     render :action => 'import_favorites_step_2'
   end
   
+  def import_itunes
+    file = params[:file]
+    filename = File.basename(file.original_filename.gsub('\\', '/')).gsub(/[^\w\.\-]/,'_')
+      
+    begin
+      if file.respond_to?(:read)
+        bands = Itunes.get_bands_from_playlist(file.read)
+        @wishlist, @bands = WishListBand.segment_wishlist_bands(bands)
+        
+        render :action => 'import_favorites_step_2'
+      else
+        flash[:error] = "Error while loading iTunes file"
+        render :action => 'import_favorites'
+      end 
+    rescue Exception => e
+      logger.error(e.to_s)
+      
+      flash[:error] = "Error while loading iTunes file"
+      render :action => 'import_favorites'
+    end
+    
+  end
+  
   def import
     return if request.get?
     

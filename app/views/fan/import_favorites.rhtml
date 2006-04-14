@@ -2,12 +2,14 @@
 <% @header_title = @fan.name + "/Import Favorite Bands" %>
 
 <div id='main'>
-    <%= start_form_tag :action => 'bulk_import' %>
     
-    <h2>Import Favorite Bands By Name</h2>
-    <p>Enter the names of the bands you'd like to add as favorites, one per line.</p>
+    <%= start_form_tag({ :action => 'import_itunes' }, :multipart => true) %>
+                                     
+    <h2>Import From iTunes (instructions coming)</h2>
+    <p>TODO</p>
     
-    <%= text_area 'bulk_names', '', :rows => 16, :cols => 24  %><br/>
+    <%= file_field_tag "file" %>&nbsp;<%= upload_status_tag %>
+    <br/>
     <%= submit_tag 'Submit' %>
     
     <%= end_form_tag %>
@@ -22,6 +24,18 @@
     <%= submit_tag 'Submit' %>
     
     <%= end_form_tag %>
+    
+    <br/>
+    <%= start_form_tag :action => 'bulk_import' %>
+    
+    <h2>Import Favorite Bands By Name</h2>
+    <p>Enter the names of the bands you'd like to add as favorites, one per line.</p>
+    
+    <%= text_area 'bulk_names', '', :rows => 16, :cols => 24  %><br/>
+    <%= submit_tag 'Submit' %>
+    
+    <%= end_form_tag %>
+    
 </div>
 
 <div id='side'>

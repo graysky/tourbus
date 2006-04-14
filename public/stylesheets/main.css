@@ -1723,3 +1723,24 @@ table.tooltip_table td {
     font-weight:bold;
     margin-bottom:8px;
 }
+
+/* Feedback page */
+.feedback_msg {
+    background-color: #EFF4F6; /* Light blue */
+	/* Hack around IE z-order problem with the title */
+	border: 1px solid #FFFFFF; /* Color matches background */
+	width: 580px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.feedback_msg .info 
+{
+    margin-top: 10px;
+    margin-bottom: 10px;  
+    margin-left: 14px;
+    margin-right: 12px;
+    
+    font-size: 14px;
+    font-family: Verdana, Ariel, Helvetica, sans-serif;
+}

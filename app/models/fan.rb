@@ -85,9 +85,10 @@ class Fan < ActiveRecord::Base
     self.find_by_name('gary')
   end
   
-  # Returns mike's user
+  # Returns Mike's user
   def self.mike
-    self.find_by_name('mike')
+    return if self.find_by_name('mike') 
+    self.find_by_name('bushido')
   end
   
   # Return if the band is among the fan's favorites

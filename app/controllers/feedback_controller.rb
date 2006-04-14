@@ -3,7 +3,6 @@ class FeedbackController < ApplicationController
   layout "public"
 
   def index
-
     # The user is requesting the form  
     if request.get?
       return
@@ -13,6 +12,7 @@ class FeedbackController < ApplicationController
     user = params[:user]
     email = params[:email]
     feedback = params[:feedback]
+    type = params[:type]
     
     if user.nil? or user.empty?
       user = "Anonymous"
@@ -22,7 +22,7 @@ class FeedbackController < ApplicationController
       email = "No email provided"
     end
     
-    FeedbackMailer.deliver_notify_feedback(feedback, user, email)
+    FeedbackMailer.deliver_notify_feedback(type, feedback, user, email)
     
     # Tell them the message was sent
     render :action => 'feedback_success'

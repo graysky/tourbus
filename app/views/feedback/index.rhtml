@@ -12,6 +12,16 @@
   }
 </script>
 
+<div id="feedback_box" class="feedback_msg">
+
+  <div class="info">
+  We always strive to improve the site, so all feedback is greatly appreciated. There is also a 
+  <a href="http://forum.tourb.us">discussion forum</a> available to post questions, bugs
+  or feature requests. And we read every email sent to <a href="mailto:feedback@tourb.us">feedback@tourb.us</a>
+  </div>
+
+</div>
+
 <%= start_form_tag %>
 <table class="form-table">
   
@@ -24,7 +34,18 @@
       email_addr = logged_in.contact_email
       name = logged_in.name
     end
+    
+    type_options = ['General Feedback', 'Problem Report', 'Feature Request', 'Spam Sighting']
     %>
+  
+  <!--
+  <tr>
+    <th></th>
+    <td class="info" colspan="2">
+    We read every piece of feedback and strive to make the site better. 
+    </td>
+  </tr>
+  -->
   
   <tr>
     <th>Name:</th>
@@ -35,10 +56,16 @@
   
   <tr>
     <th>Email:</th>
-    
     <td><%= text_field_tag('email', email_addr, :size => "35") %></td>
     <td class="info">
       Only used to reply to your feedback
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Type:</th>
+    <td><%= select_tag('type', options_for_select(type_options)) %></td>
+    <td class="info">
     </td>
   </tr>
 
@@ -53,3 +80,9 @@
   </tr>
 </table>
 <%= end_form_tag %>
+
+<script type="text/javascript">
+  var white = '#FFFFFF';
+  Rico.Corner.round( $('feedback_box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('feedback_box'), {corners:'top', bgColor : white} );
+</script>

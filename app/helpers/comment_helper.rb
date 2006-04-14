@@ -37,7 +37,7 @@ module CommentHelper
     html << "\n<tr><td class='bottom-row' colspan='2'>"
     # Format the body of the comment
     html << "<div class='comment_body'>"
-    html << simple_format( sanitize(comment.body) )
+    html << auto_link(simple_format(sanitize(comment.body)), :urls)
     html << "</div>\n" 
     
     permalink = "( <a href='#comment#{comment.id}' style='font-size:11px'>permalink</a> )" 

@@ -2,7 +2,7 @@
 class FeedbackMailer < BaseMailer
 
   # For when a user submits feedback about the site
-  def notify_feedback(feedback, user, email, sent_at = Time.now)
+  def notify_feedback(type, feedback, user, email, sent_at = Time.now)
 
     @subject    = "[tourb.us] New Feedback"
     @recipients = Emails.feedback
@@ -11,10 +11,11 @@ class FeedbackMailer < BaseMailer
     @headers    = {}
     content_type "text/html"
     
-    @body["sent"] = "#{sent_at}"
+    @body["sent"] = "#{sent_at.asctime}"
     @body["user"] = user
     @body["email"] = email
     @body["feedback"] = feedback
+    @body["type"] = type    
   end
 
   # For when a user reports a problem with the site

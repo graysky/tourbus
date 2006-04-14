@@ -41,7 +41,14 @@ class FavoritesCalculator
       @fan.bands.each do |band|
         shows = band.shows.find(:all, 
                                 :conditions => ["date >= ? and last_updated > ?", 
-        Time.now, @updated_since])
+                                Time.now, @updated_since],
+                                :readonly => false)
+                                
+        if shows.size > 0
+          # Reselect so the records aren't R/O                        
+          sql = 'id in (' + shows.map { |show| show.id }.join(',') + ')'
+          shows = Show.find(:all, :conditions => sql)
+        end
         
         # Only find shows in range
         shows = shows.find_all do |show|

@@ -4,7 +4,7 @@ require_dependency 'show_creator'
 class BandPublicController < ApplicationController
   include ShowCreator
   
-  session :off, :only => :rss
+  session :off, :only => [:rss, :ical]
   before_filter :find_band, :except => :no_such_band
   helper :show
   helper :map
@@ -14,7 +14,7 @@ class BandPublicController < ApplicationController
   helper :feed
   helper :portlet
   
-  layout "public", :except => [:rss, :add_link, :edit_link, :delete_link ] 
+  layout "public", :except => [:rss, :ical, :add_link, :edit_link, :delete_link ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -154,11 +154,30 @@ class BandPublicController < ApplicationController
       { :obj => @band, :base_url => base_url, :key => key, :items => @items })
   end
   
+  def ical
+    # Set the right content type
+    @headers["Content-Type"] = "text/calendar;"
+    
+    key = {:action => 'ical', :part => 'band_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the iCal items
+      get_ical_items
+    end
+    
+    render(:partial => "shared/ical_feed", 
+      :locals => { :key => key, :shows => @shows })
+  end
+  
   private
 
-  # Make the DB queries to get the items for RSS feed
+  def get_ical_items
+    # Include all upcoming shows 
+    @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
+  end
+
   def get_rss_items
-  
+    # Make the DB queries to get the items for RSS feed
     shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
     
     comments = @band.comments.find(:all,

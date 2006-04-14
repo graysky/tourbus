@@ -9,8 +9,8 @@ class VenueController < ApplicationController
   helper :feed
   helper :portlet
 
-  session :off, :only => :rss
-  layout "public", :except => [:rss ] 
+  session :off, :only => [:rss, :ical]
+  layout "public", :except => [:rss, :ical ] 
   
   def add_dialog
     if @request.get?
@@ -101,7 +101,28 @@ class VenueController < ApplicationController
       :locals => { :obj => @venue, :base_url => base_url, :key => key, :items => @items })
   end
   
+  # iCal feed for this venue
+  def ical
+    # Set the right content type
+    @headers["Content-Type"] = "text/calendar;"
+    
+    key = {:action => 'ical', :part => 'venue_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the iCal items
+      get_ical_items
+    end
+    
+    render(:partial => "shared/ical_feed", 
+      :locals => { :key => key, :shows => @shows })
+  end
+  
   private
+  
+  def get_ical_items
+    # Include all upcoming shows 
+    @shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now])
+  end
   
   # Make queries to get the items for RSS feed
   def get_rss_items

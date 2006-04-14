@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   helper :show
   helper_method :public_band_url
   helper_method :public_fan_url
+  helper_method :public_fan_ical_url
+  helper_method :public_band_ical_url
+  helper_method :public_venue_ical_url
   helper_method :public_band_rss_url
   helper_method :public_fan_rss_url
   helper_method :public_show_rss_url
@@ -167,6 +170,24 @@ class ApplicationController < ActionController::Base
   # Get the full URL to the photo
   def public_photo_url(photo, version)
     url_for(:controller => '').chop! + photo.relative_path(version)
+  end
+  
+  # Get the URL to the iCal feed for this fan
+  def public_fan_ical_url(fan = nil)
+    fan = @fan if fan.nil?  
+    url_for(:controller => "fan_public", :action => "ical")
+  end
+  
+  # Get the URL to the iCal feed for this band
+  def public_band_ical_url(band = nil)
+    band = @band if band.nil?  
+    url_for(:controller => '') + band.short_name + "/ical"
+  end
+  
+    # Get the URL to the iCal feed for this venue
+  def public_venue_ical_url(venue = nil)
+    venue = @venue if venue.nil?  
+    url_for(:controller => "venue", :action => "ical", :id => venue.id)
   end
   
   # Whether there is a band or fan logged in

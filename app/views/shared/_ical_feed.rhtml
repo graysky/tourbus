@@ -1,0 +1,28 @@
+<%
+## An iCal feed. Some helpful docs:
+## http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference
+## http://en.wikipedia.org/wiki/ICalendar
+##
+## Assumes that:
+## shows => the ordered list of shows
+## key => the fragment key
+%>
+<% cache(key) do %>
+BEGIN:VCALENDAR
+PRODID:-//tourb.us//tourb.us calendar//EN
+VERSION:2.0
+METHOD:PUBLISH
+<% shows.each do |s| -%>
+BEGIN:VEVENT
+DTSTART:<%= ical_format_time(s.date) %>
+DTEND:<%= ical_format_time(s.date + s.bands.size.hours) %>
+CLASS:PUBLIC
+SUMMARY:<%= s.name %>
+LOCATION:<%= ical_address(s.venue) %>
+<% if !s.description.empty? -%>
+DESCRIPTION:<%= ical_format_text(s.description) %>
+<% end -%>
+END:VEVENT
+<% end -%>
+END:VCALENDAR
+<% end -%>

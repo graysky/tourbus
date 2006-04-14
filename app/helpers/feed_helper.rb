@@ -49,7 +49,41 @@ module FeedHelper
 
   private
   
-  def format_time(time)
+  # Format text according to iCal rules
+  # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference#Text
+  def ical_format_text(text)
+    # Note that the order of rules is important
+    text.gsub!(/"/, 'DQUOTE')
+    text.gsub!(/:/, '":"')
+    text.gsub!(/\\/, '\\\\\\\\') # Convert \ => \\
+    text.gsub!(/,/, '\,') 
+    text.gsub!(/;/, '\;') 
+    text.gsub!(/(\r\n|\n|\r)/, "\\n")
+    text.gsub!(/\\n\\n+/, "\\n") # zap dupes
+    text
+  end
+  
+  # Format an address for a venue
+  def ical_address(venue)
+    s = ""
+    s << venue.name + ", "
+    s << venue.address + ", "
+    s << venue.city + ", " + venue.state
+    
+    ical_format_text(s)
+  end
+  
+  # Return a string that corresponds to a valid iCal Date-time
+  # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference#Date-time
+  def ical_format_time(time)
+    # Format 1 (local time) YYYYMMDDTHHMMSS
+    # Format 2 (UTC time) YYYYMMDDTHHMMSSZ
+    
+    # We store dates in local time, so using format 1
+    time.strftime("%Y%m%dT%H%M%S")
+  end
+  
+  def rss_format_time(time)
     # This is what is used for pubDates
     time.rfc822()
   end
@@ -58,7 +92,7 @@ module FeedHelper
   def xml_for_show2(show)
     xml = ""
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
-    xml << "<pubDate>#{format_time(show.created_on)}</pubDate>"
+    xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
     # TODO Make this cleaner - push into show?
     bands = show.bands.map { |band| band.name }.join(" / ")
@@ -78,7 +112,7 @@ module FeedHelper
   def xml_for_comment2(comment)
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
-    xml << "<pubDate>#{format_time(comment.created_on)}</pubDate>"
+    xml << "<pubDate>#{rss_format_time(comment.created_on)}</pubDate>"
     xml << "<description>#{simple_format( h(sanitize(comment.body)) )}</description>"
     return xml
   end
@@ -87,7 +121,7 @@ module FeedHelper
   def xml_for_photo2(photo)
     xml = ""
     xml << "<title>Photo from #{photo.created_by_name}</title>"
-    xml << "<pubDate>#{format_time(photo.created_on)}</pubDate>"
+    xml << "<pubDate>#{rss_format_time(photo.created_on)}</pubDate>"
 
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     s << "<br/>#{simple_format(h(sanitize(photo.description)))}"
@@ -102,7 +136,7 @@ module FeedHelper
     title = get_show_title(show)
      
     xml.title("Show: #{title}")
-    xml.pubDate( format_time(show.created_on) ) 
+    xml.pubDate( rss_format_time(show.created_on) ) 
     
     desc = ""
     
@@ -121,7 +155,7 @@ module FeedHelper
   def xml_for_comment(xml, comment)
   
     xml.title("Comment from #{comment.created_by_name}")
-    xml.pubDate( format_time(comment.created_on) )
+    xml.pubDate( rss_format_time(comment.created_on) )
     xml.description( simple_format( sanitize(comment.body) ) )
   end
   
@@ -129,7 +163,7 @@ module FeedHelper
   def xml_for_photo(xml, photo)
 
     xml.title("Photo from #{photo.created_by_name}")
-    xml.pubDate( format_time(photo.created_on) )
+    xml.pubDate( rss_format_time(photo.created_on) )
 
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     

@@ -11,11 +11,9 @@ class FanPublicController < ApplicationController
   helper :photo
   helper :feed
   helper :comment
-  #model :favorites_mailer
   upload_status_for :change_logo
-  session :off, :only => :rss
-  layout "public", :except => [:rss ] 
-  
+  session :off, :only => [:rss, :ical]
+  layout "public", :except => [:rss, :ical ] 
   
   # Show the main fan page
   def index
@@ -87,11 +85,32 @@ class FanPublicController < ApplicationController
       :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
   end
   
+  def ical
+    # Set the right content type
+    @headers["Content-Type"] = "text/calendar;"
+    
+    key = {:action => 'ical', :part => 'fan_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the iCal items
+      get_ical_items
+    end
+    
+    render(:partial => "shared/ical_feed", 
+      :locals => { :shows => @shows, :key => key })
+  end
+  
   private
+  
+  # Make queries to get the items for iCal feed
+  def get_ical_items
+    # Include upcoming shows they are attending and watching
+    @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
+  end
   
   # Make queries to get the items for RSS feed
   def get_rss_items
-    # Include upcoming shows they are attending
+    # Include upcoming shows they are attending and watching
     shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
     
     # Include favories that have 

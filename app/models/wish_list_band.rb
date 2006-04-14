@@ -1,4 +1,6 @@
 class WishListBand < ActiveRecord::Base
+  belongs_to :fan
+  
   def before_save
     super
     self.short_name = Band.name_to_id(self.name)
@@ -39,5 +41,44 @@ class WishListBand < ActiveRecord::Base
     end
     
     return wishlist.uniq, bands.uniq
+  end
+  
+  # Check all wishlists for bands that have been created in the last few days.
+  def self.make_wishes_come_true
+    new_bands = Band.find_created_since(Time.now - 30.days)
+    return if new_bands.empty?
+    
+    in_clause = 'short_name in (' + new_bands.map { |band| "'" + band.short_name + "'" }.join(',') + ')'
+    matches = self.find(:all, :conditions => [in_clause])
+    
+    # Build a hash from short_name -> band
+    band_lookup = {}
+    new_bands.each { |band| band_lookup[band.short_name] = band }
+    
+    fans_bands = {}
+    bands = []
+    matches.each do |match|
+      fan = match.fan
+      band = band_lookup[match.short_name]
+      
+      # Add a fave and delete the wishlist band
+      logger.info "Add fave #{band.name} for #{fan.name}"
+      fan.add_favorite(band)
+      WishListBand.delete(match.id)
+      
+      unless fans_bands[fan]
+        fans_bands[fan] ||= []
+        fans_bands[fan] << band
+      end
+      bands << band unless bands.include?(band)
+    end
+    
+    # Save everything
+    bands.each { |band| band.save! }
+    fans_bands.each_key { |fan| fan.save! }
+  
+    # Notify fans
+    fans_bands.each { |fan, bands| FanMailer.deliver_wishlist_to_favorites(fan, bands) }
+   
   end
 end

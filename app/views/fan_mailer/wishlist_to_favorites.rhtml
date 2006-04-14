@@ -1,0 +1,21 @@
+<html>
+<body>
+  <p>
+    Hi, <%= @fan.name %>. We thought you'd like to know that we now have some of the bands on your
+    wishlist in your database, so we added them as your favorites. When they play a show in your
+    area you'll get an email about it.
+  </p>
+  
+  <p>
+    <b>New Favorites:</b>
+    <br/><br/>
+    <% for band in @bands %>
+        <%= link_to band.name, "http://tourb.us/#{band.short_name}" %><br/>
+    <% end %>
+  </p>  
+  
+  <hr/>
+<%= @email_signoff %>
+
+</body>
+</html>

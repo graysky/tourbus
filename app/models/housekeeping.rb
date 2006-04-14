@@ -14,16 +14,17 @@ class Housekeeping
     logger = RAILS_DEFAULT_LOGGER
     logger.info "Started nightly tasks at #{start}"
   
+    logger.info "Starting wish list..."
+    WishListBand.make_wishes_come_true
+  
     logger.info "Sending favorites emails..."
     FavoritesMailer.do_favorites_updates
+    
+    logger.info "Resaving objects..."
+    self.resave_objects
   
     finish = Time.now.asctime
     logger.info "Finish nightly tasks at #{finish}"
-  end
-  
-  # Check all wishlists for bands that have been created today.
-  def self.check_wish_lists
-  
   end
   
   protected

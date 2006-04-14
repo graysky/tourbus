@@ -126,6 +126,11 @@ class Band < ActiveRecord::Base
     return upload_addr.address + "@" + UploadAddr.Domain
   end
   
+  # Find bands created since the given date
+  def self.find_created_since(date)
+    self.find(:all, :conditions => ['created_on > ?', date])
+  end
+  
   # The popularity is currently a somewhat arbitrary number.
   def popularity
     self.num_fans

@@ -8,11 +8,11 @@
 ## key => the fragment key
 ## Do we need this?
 ## METHOD:PUBLISH
-%>
-<% cache(key) do %>
+-%>
+<% cache(key) do -%>
 BEGIN:VCALENDAR
 PRODID:-//tourb.us//tourb.us calendar//EN
-VERSION:2.0
+VERSION:2.0 
 <% shows.each do |s| -%>
 BEGIN:VEVENT
 DTSTART:<%= ical_format_time(s.date) %>
@@ -21,9 +21,7 @@ DTSTAMP:<%= ical_format_time(Time.now) %>
 CLASS:PUBLIC
 SUMMARY:<%= s.name %>
 LOCATION:<%= ical_address(s.venue) %>
-<% if !s.description.empty? -%>
-DESCRIPTION:<%= ical_format_text(s.description) %>
-<% end -%>
+<% if !s.description.empty? -%>DESCRIPTION:<%= ical_format_text(s.description) %><% end -%>
 END:VEVENT
 <% end -%>
 END:VCALENDAR

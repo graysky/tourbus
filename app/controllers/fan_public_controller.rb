@@ -87,7 +87,7 @@ class FanPublicController < ApplicationController
   
   def ical
     # Set the right content type
-    @headers["Content-Type"] = "text/calendar;"
+    @headers["Content-Type"] = "text/calendar; method=PUBLISH"
     
     key = {:action => 'ical', :part => 'fan_feed'}
 

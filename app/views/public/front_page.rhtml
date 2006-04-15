@@ -1,4 +1,6 @@
 
+<div id="intro-box" class="intro_box">
+
 <div class="portlet_box front_boxes" style="float: left; /*border: 1px solid black;*/">
         <%= render(:partial => "shared/getting_started", :locals => {}) %>
 </div>
@@ -8,6 +10,24 @@
 </div>
 
 <div style="clear:both"></div>
+
+<div class="search_box">
+Search box: 
+</div>
+
+</div>
+
+
+
+<!--
+
+-->
+
+<script type="text/javascript">
+  var white = '#FFFFFF';
+  Rico.Corner.round( $('intro-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('intro-box'), {corners:'top', bgColor : white} );
+</script>
 
 <% cache(:action => 'front_page', :part => 'popular_bands') do %>
 <div class="portlet_box" style="float:left; /*border: 1px solid black;*/">

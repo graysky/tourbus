@@ -180,7 +180,7 @@ class ShowController < ApplicationController
     end
     
     # Not logged in... TODO handle this better
-    redirect_to :controller => ""
+    redirect_to :controller => "login"
     return false
   end
   

@@ -364,8 +364,7 @@ td, p
 /*-----------------------------------------------------*/
 /* Portlets - used on front page */
 /*-----------------------------------------------------*/
-
-/* Portlet boxes that hold the half and full width portlets */
+/* Portlet boxes */
 .portlet_box
 {
 	color:#4C5C5C;	
@@ -391,7 +390,26 @@ td, p
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
-/* Front page portlets */
+.intro_box 
+{
+    width: 780px;
+    background-color: #EFF4F6; /* Light blue */
+	/* Hack around IE z-order problem with the title */
+	border: 1px solid #FFFFFF; /* Color matches background */
+	
+	margin-left: 20px;
+}
+
+/* Front page search box */
+.search_box {
+    margin-left: 200px;
+    margin-top: 10px;
+    width: 350px;
+    
+    font-size: 17px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    border: 1px solid #FFFFFF;
+}
 
 /* Shared dimensions for welcome/getting started boxes*/
 .front_boxes {
@@ -399,10 +417,10 @@ td, p
 }
 
 .welcome_msg {
-    background-color: #EBEBEB;
+    xbackground-color: #EBEBEB;
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
-	font-size: 13px;
+	xfont-size: 13px;
 }
 
 /* Rounded background for title */
@@ -411,7 +429,7 @@ td, p
 	margin-top:0px;
 	padding-bottom:2px;
 	/* Match the normal background */
-	background-color: #EBEBEB;
+	xbackground-color: #EBEBEB;
 }
 
 /* Box title text */
@@ -436,10 +454,10 @@ td, p
 }
 
 .getting_started {
-    background-color: #EFF4F6; /* Light blue */
+    xbackground-color: #EFF4F6; /* Light blue */
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
-	font-size: 13px;
+	xfont-size: 13px;
 }
 
 /* Rounded background for title */
@@ -448,7 +466,7 @@ td, p
 	margin-top:0px;
 	padding-bottom:2px;
 	/* Match the normal background */
-    background-color: #EFF4F6;
+    xbackground-color: #EFF4F6;
 }
 
 /* Box title text */
@@ -475,8 +493,8 @@ td, p
 
 .getting_started .number 
 {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
     
     font-size: 20px;
     /*background-color: black;*/

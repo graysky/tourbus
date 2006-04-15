@@ -6,16 +6,18 @@
 ## Assumes that:
 ## shows => the ordered list of shows
 ## key => the fragment key
+## Do we need this?
+## METHOD:PUBLISH
 %>
 <% cache(key) do %>
 BEGIN:VCALENDAR
 PRODID:-//tourb.us//tourb.us calendar//EN
 VERSION:2.0
-METHOD:PUBLISH
 <% shows.each do |s| -%>
 BEGIN:VEVENT
 DTSTART:<%= ical_format_time(s.date) %>
 DTEND:<%= ical_format_time(s.date + s.bands.size.hours) %>
+DTSTAMP:<%= ical_format_time(Time.now) %>
 CLASS:PUBLIC
 SUMMARY:<%= s.name %>
 LOCATION:<%= ical_address(s.venue) %>

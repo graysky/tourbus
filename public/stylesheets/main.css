@@ -393,10 +393,11 @@ td, p
 .intro_box 
 {
     width: 780px;
-    background-color: #EFF4F6; /* Light blue */
+    background-color: #dcdbdc;
 	/* Hack around IE z-order problem with the title */
 	border: 1px solid #FFFFFF; /* Color matches background */
-	
+	background-repeat:repeat-x;
+	background-image: url(/images/intro_bg.gif);
 	margin-left: 20px;
 }
 

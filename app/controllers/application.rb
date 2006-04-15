@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :login_from_cookie
   # Check for beta invite cookie in the public controller
-  before_filter :beta_cookie, :except => [:beta, :beta_signup, :rss]
+  before_filter :beta_cookie, :except => [:beta, :beta_signup, :rss, :ical]
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings

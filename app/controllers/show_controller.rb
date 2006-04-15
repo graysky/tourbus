@@ -3,6 +3,7 @@ require_dependency "show_creator"
 # Handles create/edit/viewing Shows
 class ShowController < ApplicationController
   include ShowCreator
+  include Geosearch
     
   helper :map
   helper :tag
@@ -14,6 +15,7 @@ class ShowController < ApplicationController
   session :off, :only => :rss
   before_filter :find_show, :except => [ :venue_search ]
   before_filter :some_login_required, :only => [:add]
+  
   layout "public", :except => [:rss ] 
   
   # Show a specific show. (Perhaps this is a bad name for this action?)
@@ -59,14 +61,21 @@ class ShowController < ApplicationController
     name = params[:venue_search_term]
     name = params[:name] if name.nil? or name == ""
     name.strip!
-    
+ 
     if name && name != ""
-      @results, count = Venue.ferret_search(name + "*", default_search_options)
+      params[:query] = name
+      query, radius, lat, long = prepare_query(Venue.table_name, params[:location], params[:radius], true)
+      if query.nil?
+        @results = []
+        count = 0
+      else
+        @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+        paginate_search_results(count)
+      end
     else
       @results = []
+      count = 0
     end
-    
-    paginate_search_results(count)
     
     render(:partial => "shared/venue_results")
   end

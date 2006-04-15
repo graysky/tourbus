@@ -100,7 +100,7 @@
           <%= text_field_tag 'location', "#{@session[:location]}", :size => 15 %>
           
           <%= observe_field 'venue_search_term', :frequency => 0.7,
-                     :with => "'name=' + escape(value)",
+                     :with => "'name=' + escape(value) + '&radius=' + escape($('radius').value) + '&location=' + escape($('location').value)",
                      :update => "venue_search_results",
                      :loading => "do_venue_loading()",
                      :before => "do_venue_appear()", 

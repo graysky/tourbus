@@ -130,6 +130,7 @@ class AdminController < ApplicationController
     @venue = Venue.find(params[:id])
     if @venue.shows.empty?
       Venue.delete(params[:id])
+      @venue.ferret_destroy
       logger.info "Admin deleted venue #{@venue.name}"
       flash.now[:success] = "It's gone"
     else

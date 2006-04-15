@@ -33,7 +33,7 @@ class Housekeeping
   def self.save_chunks(klass)
     klass.each_by_chunk do |obj|
       obj.no_update
-      obj.save!
+      obj.save_without_validation!
     end
   end
   

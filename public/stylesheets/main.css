@@ -394,43 +394,16 @@ td, p
 {
     width: 780px;
     background-color: #dcdbdc;
-	/* Hack around IE z-order problem with the title */
-	border: 1px solid #FFFFFF; /* Color matches background */
 	background-repeat:repeat-x;
 	background-image: url(/images/intro_bg.gif);
-	margin-left: 20px;
+	margin-left: 15px;
 }
 
-/* Front page search box */
-.search_box {
-    margin-left: 200px;
-    margin-top: 10px;
-    width: 350px;
-    
-    font-size: 17px;
-    font-family: Arial, Verdana, Helvetica, sans-serif;
-    border: 1px solid #FFFFFF;
-}
-
-/* Shared dimensions for welcome/getting started boxes*/
-.front_boxes {
-    width: 360px;
-}
-
-.welcome_msg {
-    xbackground-color: #EBEBEB;
-	/* Hack around IE z-order problem with the title */
-	border: 1px solid #FFFFFF; /* Color matches background */
-	xfont-size: 13px;
-}
-
-/* Rounded background for title */
-.welcome_msg h2
+/* Welcome message box */
+.welcome_msg 
 {
-	margin-top:0px;
-	padding-bottom:2px;
-	/* Match the normal background */
-	xbackground-color: #EBEBEB;
+	width: 400px;
+	margin-top:10px;
 }
 
 /* Box title text */
@@ -450,19 +423,42 @@ td, p
     margin-left: 14px;
     margin-right: 12px;
     
-    font-size: 17px;
+    font-size: 16px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+.welcome_msg .info img
+{
+    margin-bottom: 2px;
+}
+
+.welcome_msg .info ul
+{
+      padding: 0 0 0 0;
+      margin-left: 0px;
+      margin-bottom: 3px;  
+}
+
+.welcome_msg .info li
+{
+    margin-bottom: 6px;
+    list-style: none;
+    background: url(/images/bullet.gif) no-repeat;
+    list-style-type: none;
+    text-indent: 12px;
+    background-position: center left;
 }
 
 .getting_started {
     xbackground-color: #EFF4F6; /* Light blue */
 	/* Hack around IE z-order problem with the title */
-	border: 1px solid #FFFFFF; /* Color matches background */
-	xfont-size: 13px;
+	border: 1px solid black; /* Color matches background */
+	
+	width: 320px;
 }
 
 /* Rounded background for title */
-.getting_started h2
+.front_search h2
 {
 	margin-top:0px;
 	padding-bottom:2px;
@@ -471,16 +467,16 @@ td, p
 }
 
 /* Box title text */
-.getting_started .title
+.front_search .title
 {
     padding-left: 14px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
 }
 
-.getting_started .info 
+.front_search .info 
 {
     margin-top: 10px;
     margin-bottom: 5px;  
@@ -491,18 +487,6 @@ td, p
     font-family: Arial, Verdana, Helvetica, sans-serif;
     xborder: 1px solid green; 
 }
-
-.getting_started .number 
-{
-    padding-left: 5px;
-    padding-right: 5px;
-    
-    font-size: 20px;
-    /*background-color: black;*/
-    color: white;
-    background-color: #0F628B; /* Dark Blue */
-}
-
 
 /* List of bands and shows - narrow version */
 .narrow_list {

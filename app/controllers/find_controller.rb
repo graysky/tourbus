@@ -25,7 +25,7 @@ class FindController < ApplicationController
   def show
     return if request.get? and params[:query].nil?
     
-    if params[:radius] and params[:location]
+    if params[:radius] and params[:location] and !params[:location].blank?
       # Search came from the front page
       set_location_radius
       toggle_only_local(true)

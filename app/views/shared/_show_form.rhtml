@@ -113,10 +113,10 @@
         </div>
       </td>
       <td class="info">
-        TODO
+        Search for a venue. Select an existing venue by clicking on the name or add a new venue.
       </td>
     </tr>
-    <!-- TODO Again, this needs to pulled out -->
+    
     <script type="text/javascript">
       var bandsPlaying = new Array();
       var dont_show_band_preview = false;
@@ -225,6 +225,8 @@
         <div id="band_search_preview"></div>
       </td>
       <td class="info">
+        Search for each band that is playing the show and click the name to add it. If you don't find
+        the band you're looking for you can click "add to tourb.us" to add a new band to the system.
       </td>
     </tr>
     <tr>
@@ -235,17 +237,13 @@
                      :url => { :action => 'lookup_band_for_show', 
                               :controller => 'band' } %>
       <th>Bands:</th>
-      <td><div id="bands" class="bands_playing"></div></td>
-      <td class="info">
-        Search for each band that is playing the show and click the name to add it. If you don't find
-        the band you're looking for you can click "add it to tourb.us" to add a new band to the system.
-      </td>
+      <td><div id="bands" class="bands_playing"></div><br/></td>
+      <td class="info"></td>
     </tr>
     <tr>
       <th>Title:</th>
       <td><%= text_field 'show', 'title' %></td>
       <td class="info">
-        This is optional (@@@ How do we show optional vs. required fields?)
         If you do not specify a title, we will use the names of the bands that are playing.
       </td>
     </tr>
@@ -262,6 +260,7 @@
       <th>Cost:</th>
       <td><%= text_field 'show', 'cost' %></td>
       <td class="info">
+        $$$
       </td>
     </tr>
     <tr>
@@ -275,6 +274,7 @@
       <th>Description:</th>
       <td><%= text_area 'show', 'description', "rows" => 4  %></td>
       <td class="info">
+        More details about the show
       </td>
     </tr>
     

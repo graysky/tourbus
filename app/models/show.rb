@@ -168,7 +168,7 @@ class Show < ActiveRecord::Base
     contents = ""
     self.bands.each do |band| 
       contents << " " + band.name
-      contents << " " + band.tags.join(" ")
+      contents << " " + band.tag_names.join(" ")
     end
    
     contents << " " + self.venue.name + " " + self.venue.city

@@ -78,7 +78,12 @@ class AnansiParser
         parser.site = site
       
         # Parse the REXML doc
-        parser.parse
+	begin
+          parser.parse
+	rescue Exception => e
+	  puts "Error parsing site: #{site.name}, :#{e.to_s}"
+	  next
+	end
 
         all_shows = []
         # Gather all the shows as YAML

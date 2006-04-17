@@ -41,5 +41,5 @@ end
 
 # All shows for this site are at the same venue
 method :get_venue do
-  { :name => "Somerville Theater", :city => "Somerville", :state => "MA" } 
+  { :id => 145 }
 end

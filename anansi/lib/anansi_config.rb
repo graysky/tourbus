@@ -143,8 +143,8 @@ class AnansiConfig
       # Check interval to see if it needs revisiting
       elsif !@testing and Time.now - s.interval.hours < visit.updated_at
         # Skip it, we hit it within the defined interval
-        puts "Skipping site: #{s.name} because recently visited [#{visit.updated_at.asctime}]"
-        next
+        #puts "Skipping site: #{s.name} because recently visited [#{visit.updated_at.asctime}]"
+        #next
       end
       
       # Crawl the site

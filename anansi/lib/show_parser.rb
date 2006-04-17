@@ -12,7 +12,8 @@ class ShowParser < MetaSite
                           'performing works', 'fashion show', 'fashions by', 'art show', 'crafts fair',
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
-                          'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006']
+                          'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
+			  'invited guests']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -122,7 +123,7 @@ class ShowParser < MetaSite
     
     # benefit, karoeke, no cover, .com, prom
     
-    replacements = [/cd release/i, /cdrelease/i]
+    replacements = [/cd release/i, /cdrelease/i, /cd rel/i]
     replacements.each { |pattern| name.gsub!(pattern, '') }
     
     band = {}

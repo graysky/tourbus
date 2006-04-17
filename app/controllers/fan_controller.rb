@@ -290,6 +290,14 @@ class FanController < ApplicationController
     redirect_to public_fan_url
   end
   
+  def wishlist
+    @wishlist = @fan.wish_list_bands
+  end
+  
+  def remove_wishlist_band
+    @fan.wish_list_bands.delete(WishListBand.find(params[:id]))
+    render :text => 'Success'
+  end
   
   #########
   # Private

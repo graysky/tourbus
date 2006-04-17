@@ -1,0 +1,38 @@
+<% @page_title = "Account Settings" %>
+<% @header_title = @fan.name + "/Wishlist" %>
+
+<div>
+    <p class='wishlist_p'>
+    You have <strong><%= @wishlist.size %></strong> bands on your Wishlist. tourb.us doesn't have any of these bands
+    in its database yet, but as soon as it gets any they will automatically be added on to your
+    list of favorite bands. You will then start getting emails whenever they play a show near you.
+    <br/><br/>
+    You can change how you want to be notified about your favorite bands on your
+    <%= link_to 'settings', :action => 'settings' %> page.
+    <br/><br/>
+    <%= link_to 'Add more bands to your favorites list and wishlist', :action => 'import_favorites' %>
+    </p>
+    
+    <br/>    
+    
+    <% if @wishlist.size > 0 %>
+    <table class='wishlist-table'>
+    <tr><th>Band</th><th>Date Added</th><th>Remove</th></tr>
+    <% for band in @wishlist %>
+        <tr id="row-<%= band.id %>">
+            <td><%= band.name %></td>
+            <td><%= friendly_date(band.created_at) %></td>
+            <td><center>
+                <%= 
+                    link_to_remote image_tag('delete'),
+                                   :url => { :action => 'remove_wishlist_band', :id => band.id },
+                                   :success => "new Effect.Fade('row-#{band.id}')",
+                                   :failure => "alert('There was a problem removing this band from your wishlist')"
+                 %>
+                 </center>
+            </td>
+        </tr>
+    <% end %>
+    </table>
+    <% end %>
+</div>

@@ -29,11 +29,11 @@
         <td><img src="/images/add.png" height="16" width="16"/></td>
         <td><%= link_to "Import Favorites", :controller => "fan", :action => "import_favorites" %></td>
       </tr>
+      <tr>
+        <td><img src="/images/table.png" height="16" width="16"/></td>
+        <td><%= link_to "View Your Wishlist", :controller => "fan", :action => "wishlist" %></td>
+      </tr>
     <% end %>
-    </table>
-    </p>
-    <p>
-    <table>
     <tr>    
       <td><img src="/images/feed.png" height="16" width="16"/></td>
       <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe via RSS</a></td>

@@ -15,9 +15,9 @@ task :anansi_crawl do
   # rake site=foo anansi_crawl
   # where foo is the *only* site to crawl
   site = ENV['site']
-
+  testing = ENV['testing'] || false
   cmd = <<END
-  c = AnansiConfig.new() 
+  c = AnansiConfig.new(#{testing}) 
   c.only_site = "#{site}"
   c.start
   c.crawl

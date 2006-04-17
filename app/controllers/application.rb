@@ -61,8 +61,8 @@ class ApplicationController < ActionController::Base
   end
   
   def beta_cookie
-    # TODO Change the secret -- must match public_controller
-    secret = "rock"
+    # Secret invite code must match public_controller
+    secret = "backstage"
   
     # Check for the secret cookie
     unless cookies[:invite] == secret

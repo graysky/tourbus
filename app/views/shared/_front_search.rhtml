@@ -1,17 +1,32 @@
 <div id="front-search-box" class="front_search">
 
-<!---
-  <h2 id="front-search-title"><span class="title">A Better Way to Find Live Music</span></h2>
--->
-
 <div class="info">
+<%= start_form_tag({:controller => 'find', :action => "show"}) %>
+<h2>
+  <span class="title">Find Shows</span>
+</h2>
 
-<%= start_form_tag %>
+<table class="front-search-table">
+<tr><th>keywords</th><th>location</th>
+<tr>
+<td><%= text_field_tag 'query', "", :size => 22 %></td>
+<td><%= text_field_tag 'location', "", :size => 22 %></td>
+<td class="submit" align="right"><%= submit_tag 'Search' %></td>
 
-Search: <%= text_field_tag 'query'%>
+<tr>
+<td><span class="field_info">bands, genres, clubs</span> 
+<td><span class="city_info"><a href="#" onclick="setlocation('Boston, MA');">Boston</a>, <a href="#" onclick="setlocation('San Francisco, CA');">San Francisco</a></span> 
+</table>
+
+<%= hidden_field_tag('type', Show.table_name) %>
+<%= hidden_field_tag('radius', '50') %>
 
 <%= end_form_tag %>
-
 </div>
-
 </div>
+<script type="text/javascript">
+  function setlocation(text)
+  {
+    $("location").value = text;
+  }
+</script>

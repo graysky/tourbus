@@ -391,28 +391,37 @@ td, p
 
 .intro_box 
 {
-    width: 780px;
+    width: 790px;
     background-color: #dcdbdc;
 	background-repeat:repeat-x;
 	background-image: url(/images/intro_bg.gif);
-	margin-left: 15px;
+	margin-left: 10px;
+	xborder: 1px solid blue; 
 }
 
 /* Welcome message box */
 .welcome_msg 
 {
-	width: 400px;
-	margin-top:10px;
+	width: 370px;
+	xborder: 1px solid green; 
+}
+
+.welcome_msg h2
+{
+	margin-top:0px;
+	padding-bottom:0px;
 }
 
 /* Box title text */
 .welcome_msg .title
 {
-    padding-left: 14px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
+
+    padding-left: 14px;
+    margin-top: 0px;
 }
 
 .welcome_msg .info 
@@ -433,9 +442,9 @@ td, p
 
 .welcome_msg .info ul
 {
-      padding: 0 0 0 0;
-      margin-left: 0px;
-      margin-bottom: 3px;  
+    padding: 0 0 0 0;
+    margin-left: 0px;
+    margin-bottom: 3px;  
 }
 
 .welcome_msg .info li
@@ -448,43 +457,59 @@ td, p
     background-position: center left;
 }
 
-.getting_started {
-    xbackground-color: #EFF4F6; /* Light blue */
-	/* Hack around IE z-order problem with the title */
-	border: 1px solid black; /* Color matches background */
-	
-	width: 320px;
-}
-
-/* Rounded background for title */
-.front_search h2
+/* Search box on front page */
+.front_search 
 {
-	margin-top:0px;
-	padding-bottom:2px;
-	/* Match the normal background */
-    xbackground-color: #EFF4F6;
+	width: 400px;
+	margin-top: 10px;
+	xborder: 1px solid green;
 }
 
-/* Box title text */
 .front_search .title
 {
-    padding-left: 14px;
-    font-size: 20px;
+    font-size: 16px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
+
+    padding-left: 2px;
+    margin-top: 0px;
 }
 
 .front_search .info 
 {
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 5px;  
-    margin-left: 14px;
-    margin-right: 12px;
+    margin-left: 0px;
+    margin-right: 6px;
     
     font-size: 17px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
-    xborder: 1px solid green; 
+    text-align: top;
+    xborder: 1px solid yellow; 
+}
+
+.front_search .field_info {
+	font-size:12px;
+	font-style:italic;
+}
+
+.front_search .city_info {
+	font-size:12px;
+}
+
+table.front-search-table {
+	xborder-collapse: collapse;
+}
+	
+table.front-search-table th {
+	xborder: 1px solid #ddd;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight:bold;
+}
+
+table.front-search-table td.submit input {
 }
 
 /* List of bands and shows - narrow version */

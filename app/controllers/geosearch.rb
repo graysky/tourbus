@@ -8,8 +8,8 @@ module Geosearch
     @session[:radius] = params[:radius].strip
   end
   
-  def toggle_only_local
-    @session[only_local_session_key(params[:type])] = params[:checked]
+  def toggle_only_local(only_local = nil)
+    @session[only_local_session_key(params[:type])] = only_local.nil? ? params[:checked] : only_local
   end
   
   protected

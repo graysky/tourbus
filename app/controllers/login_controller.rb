@@ -36,7 +36,10 @@ class LoginController < ApplicationController
         
         set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
         
+        @session[:first_login] = fan.last_login.nil?
+        
         fan.last_login = Time.now
+        fan.save
         logger.info "Fan #{fan.name} logged in"
         
         @session[:logged_in_as_downtree] = logged_in_as_downtree?
@@ -65,6 +68,7 @@ class LoginController < ApplicationController
         end
           
         band.last_login = Time.now
+        band.save
         logger.info "Band #{band.name} logged in"
         
         # Send to their profile page

@@ -1444,6 +1444,10 @@ table.photo_table td span a {
 	padding-bottom:0px;
 }
 
+.actions-box-rows p table td {
+	padding-bottom:6px;
+}
+
 /* Sidebar Links for Bands */
 .links_list ul
 {

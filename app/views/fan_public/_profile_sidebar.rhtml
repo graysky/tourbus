@@ -49,6 +49,32 @@
     </p>
   </div>
   </div>
+  
+  <% if @logged_in_as_fan %>
+  <br/>
+  <div id="scene-box" class="sidebar-box">
+  <h2 id="scene-title"><span class="title">Your Scene</span></h2>
+    
+    <p><strong>
+    <% if @session[:location] != '' %>
+        <%= @session[:location] %>
+    <% else %>
+        <%= link_to 'Tell us where you live!', :action => :settings %>
+    <% end %>
+    </strong></p>
+    
+    <% if @session[:location] != '' %>
+    <div class="actions-box-rows">
+        <p><table>
+        <tr><td><%= link_to "Tonight's Shows", :controller => 'find', :action => :browse_tonights_shows %></td></tr>
+        <tr><td><%= link_to 'Popular Shows', :controller => 'find', :action => :browse_popular_shows %></td></tr>
+        <tr><td><%= link_to 'Popular Venues', :controller => 'find', :action => :browse_popular_venues %></td></tr>
+        </table></p>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+  
 </div>
 <script>
   adjust_bio_height();
@@ -59,4 +85,6 @@
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('scene-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('scene-title'), {corners:'top', bgColor : white} );
 </script>

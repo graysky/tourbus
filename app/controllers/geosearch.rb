@@ -35,6 +35,10 @@ module Geosearch
     SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
   end
   
+  def name_sort_field
+    SortField.new("sort_name", {:sort_type => SortField::SortType::STRING, :reverse => false})
+  end
+  
   def prepare_query(type, location = nil, radius = nil, always_local = false)
     query = params[:query].nil? ? "" : params[:query].strip
     

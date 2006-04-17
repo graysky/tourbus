@@ -67,6 +67,7 @@ module FerretMixin
         # num_docs:  The number of results returned. Default is 10
         # sort:  An array of SortFields describing how to sort the results.
         # exact_date: Only results on the given date.
+        # conditions: A hash of conditions: 'popularity' => '> 0'
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
           
@@ -133,6 +134,14 @@ module FerretMixin
             query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
           end
           
+           # Add extra conditions
+          if options[:conditions]
+            options[:conditions].each do |term, condition|
+              query_parser = QueryParser.new([term], options)
+              query << Search::BooleanClause.new(query_parser.parse(condition), Search::BooleanClause::Occur::MUST)
+            end
+          end
+            
           # Restrict the query to items of this class
           query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
           return query
@@ -189,6 +198,12 @@ module FerretMixin
                                                Document::Field::TermVector::NO,
                                                false,
                                                2.0)
+            
+            # Untokenized short name for sorting                                   
+            doc << Ferret::Document::Field.new("sort_name", 
+                                               self.short_name, 
+                                               Document::Field::Store::NO, 
+                                               Document::Field::Index::UNTOKENIZED)
           end
           
           if respond_to?(:created_on)

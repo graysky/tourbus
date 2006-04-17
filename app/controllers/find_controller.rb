@@ -1,4 +1,5 @@
 require_dependency 'location_filter'
+require_dependency 'searchable'
 
 class FindController < ApplicationController
   include Geosearch
@@ -97,7 +98,8 @@ class FindController < ApplicationController
     return if query.nil?
     
     options = default_search_options
-    options[:sort] = popularity_sort_field
+    options[:sort] = name_sort_field
+    options[:conditions] = { 'popularity' => '> 0'}
     
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)

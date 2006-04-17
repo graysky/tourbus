@@ -74,10 +74,7 @@ class Venue < ActiveRecord::Base
   end
   
   def popularity
-    return 0 if shows.size == 0 # Prevent divide by 0 error
-    
-    # Average popularitiy of all upcoming and recent shows at this venue
-    recent_upcoming_shows.inject(0) { |sum, show| sum + show.popularity } / shows.size
+    return self.num_upcoming_shows
   end
   
   # All recent and upcoming shows at the venue

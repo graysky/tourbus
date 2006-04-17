@@ -77,7 +77,7 @@
 <table>
   <% if @logged_in_as_fan %>
     <tr><td>
-      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
+      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Picture</a>
        <div id="fan_logo_select" style="display:none">
          <%= form_tag_with_upload_progress({ :action => 'change_logo' },
                            {  :begin => "Element.show('logo_indicator')",

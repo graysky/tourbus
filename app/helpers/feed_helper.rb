@@ -94,8 +94,9 @@ module FeedHelper
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
-    # TODO Make this cleaner - push into show?
-    bands = show.bands.map { |band| band.name }.join(" / ")
+    bands = show.bands.map { |band| 
+      "<a href='"+ public_band_url(band)+ "'>"+band.name+"</a>"
+    }.join(" / ")
 
     desc = ""    
     desc << "<p><b>Who:</b> #{h(bands)}</p>" 

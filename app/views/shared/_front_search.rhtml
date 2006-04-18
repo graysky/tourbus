@@ -1,5 +1,11 @@
 <div id="front-search-box" class="front_search">
 
+<%
+# Use the set location/radius or defaults
+location = @session[:location] != "" ? @session[:location] : ""
+radius = @session[:radius] != "" ? @session[:radius] : '50'
+%>
+
 <div class="info">
 <%= start_form_tag({:controller => 'find', :action => "show"}) %>
 <h2>
@@ -10,7 +16,7 @@
 <tr><th>keywords</th><th>location</th>
 <tr>
 <td><%= text_field_tag 'query', "", :size => 22 %></td>
-<td><%= text_field_tag 'location', "", :size => 22 %></td>
+<td><%= text_field_tag 'location', location, :size => 22 %></td>
 <td class="submit" align="right"><%= submit_tag 'Search' %></td>
 
 <tr>
@@ -19,7 +25,7 @@
 </table>
 
 <%= hidden_field_tag('type', Show.table_name) %>
-<%= hidden_field_tag('radius', '50') %>
+<%= hidden_field_tag('radius', radius) %>
 
 <%= end_form_tag %>
 </div>

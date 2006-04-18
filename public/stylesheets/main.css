@@ -1239,7 +1239,9 @@ table.compact-form-table td input, table.compact-form-table td select {
 }
 
 .search_results .col4 {
-	padding-left:24px;
+	padding-left:16px;
+	width:70px;
+	font-size:9px;
 }
 
 .search_results .show_search_result_content {

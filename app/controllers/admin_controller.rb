@@ -204,10 +204,12 @@ class AdminController < ApplicationController
     
       name_var = "name_link#{num}"
       url_var = "url_link#{num}"
+      id_var = "id_link#{num}"
     
       # Hack to set "@name_link1" so that the form will make editing easy
       self.instance_variable_set( "@#{name_var}", link.name)
       self.instance_variable_set( "@#{url_var}", link.data)
+      self.instance_variable_set( "@#{id_var}", link.id)
       
       num = num + 1
     end
@@ -217,28 +219,35 @@ class AdminController < ApplicationController
   # return an array of Links
   def extract_links(params, band = nil)
   
-    links = []
+    new_links = []
     
     # Try to find all the links in the param
     (1..8).each do |num|
       
       name_key = "name_link" + num.to_s
       url_key = "url_link" + num.to_s
+      id_key = "id_link" + num.to_s
       
       name = params[name_key.to_sym]
       url = params[url_key.to_sym]
+      id = params[id_key.to_sym]
       
       # Don't add it's empty
-      break if name.empty? or url.empty?
+      next if name.nil? or name.empty? or name.nil? or url.empty?
       
-      # Create the new link
-      link = Link.new
-      link.guess_link(url, name)
-      
-      links << link
+      if !id.nil? and !id.empty?
+        link = Link.find(id)
+        link.guess_link(url, name)
+      else
+        # Create a new link
+        link = Link.new
+        link.guess_link(url, name)
+      end
+
+      new_links << link
     end
     
-    return links
+    return new_links
   end
   
   def import_show(show)

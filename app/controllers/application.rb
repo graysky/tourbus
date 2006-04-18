@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in_fan
   helper_method :logged_in_band
   helper_method :logged_in
+  helper_method :logged_in_admin
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
@@ -262,6 +263,14 @@ class ApplicationController < ActionController::Base
     end
     
     return fan
+  end
+  
+  # Check if there is an admin logged in
+  def logged_in_admin
+    fan = logged_in_fan
+    return nil if fan.nil?
+    
+    return fan if fan.confirmed? and fan.superuser?
   end
   
   def logged_in_as_downtree?

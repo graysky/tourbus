@@ -21,7 +21,7 @@ class FanPublicController < ApplicationController
     @shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
     @bands = @fan.bands.find(:all, :limit => 5)
     
-    if @logged_in_as_fan and @session[:first_login]
+    if @logged_in_as_fan and @session[:first_login] and @fan.last_login > 8.hours.ago
       flash.now[:info] = render_to_string :action => 'intro_msg', :layout => false
     end
     

@@ -6,7 +6,7 @@ class ItunesListener
   include StreamListener
   
   attr_reader :bands
-  
+ 
   def initialize
     @bands = []
   end
@@ -24,12 +24,16 @@ end
 
 class Itunes
   include REXML
+   
+  MAX_SIZE = 2 * 1024 * 1024 # 2MB
+  MAX_SONGS = 1000
   
   def self.get_bands_from_playlist(xml)
     listener = ItunesListener.new
     parser = Parsers::StreamParser.new(xml, listener)
     parser.parse
     
+    raise "There are more than #{MAX_SONGS} songs in the file" if listener.bands.size > MAX_SONGS
     return listener.bands.uniq
   end
   

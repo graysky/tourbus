@@ -242,18 +242,20 @@ class FanController < ApplicationController
       
     begin
       if file.respond_to?(:read)
+        raise "The file is larger than 2mb" if file.size > Itunes::MAX_SIZE
+        
         bands = Itunes.get_bands_from_playlist(file.read)
         @wishlist, @bands = WishListBand.segment_wishlist_bands(bands)
         
         render :action => 'import_favorites_step_2'
       else
-        flash[:error] = "Error while loading iTunes file"
+        flash.now[:error] = "Error while loading iTunes file"
         render :action => 'import_favorites'
       end 
-    rescue Exception => e
+    rescue => e
       logger.error(e.to_s)
       
-      flash[:error] = "Error while loading iTunes file"
+      flash.now[:error] = "Error while loading iTunes file: #{e.to_s}"
       render :action => 'import_favorites'
     end
     

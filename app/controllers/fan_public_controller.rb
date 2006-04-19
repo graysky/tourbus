@@ -89,6 +89,9 @@ class FanPublicController < ApplicationController
       :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
   end
   
+  # An iCal feed
+  # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference
+  # http://en.wikipedia.org/wiki/ICalendar
   def ical
     # Set the right content type
     @headers["Content-Type"] = "text/calendar;"

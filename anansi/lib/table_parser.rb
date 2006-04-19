@@ -13,6 +13,7 @@ class TableParser < ShowParser
   attr_accessor :marker_text
   attr_accessor :nested
   attr_accessor :band_separator
+  attr_accessor :use_raw_bands_text
   attr_accessor :root
   
   def initialize(xml, url = nil)
@@ -21,6 +22,7 @@ class TableParser < ShowParser
     # Initialize default attributes that the user can override
     @marker_text = DEFAULT_MARKER_TEXT
     @nested = nil
+    @use_raw_bands_text = false
   end
   
   # Parse out the shows  
@@ -146,7 +148,7 @@ class TableParser < ShowParser
       end
     end
     
-    text = cell.recursive_text
+    text = @use_raw_bands_text ? raw : cell.recursive_text
     if separator == "<br>"
       # Convert to something easier to deal with
       text = HTML::strip_all_tags(raw.gsub(/<br(\/)?(\s)*>/i, "|"))
@@ -154,18 +156,13 @@ class TableParser < ShowParser
     end
     
     text = preprocess_bands_text(text)
+    
     cell_index = 0
     # Ignore the separator if it's in parens.
     text.gsub!(Regexp.new("(\\(.*)#{separator}(.*\\))"), "\\1 \\2")
     text.split(separator, limit).each do |chunk|
-      # TODO Lots of times parens contain the band someone is in.
-      # This is useful for searches, but we don't want to create a
-      # new band record... what do we do? Add to description? title?
-      # TODO What about encoded chars like &amp;?
-      # TODO mailto links and their content should be stripped out
-      # TODO What about a band name like Damage, Inc.?
       band = probable_band(chunk, cell_index, cell)
-      # TODO RIGHT WAY - add separator argu
+      
       if band
         bands << band
       else

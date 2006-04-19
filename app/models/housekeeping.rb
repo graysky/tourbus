@@ -39,7 +39,7 @@ class Housekeeping
     puts "Total fans: #{fans.size}"
 
     recent_fans = Fan.find(:all, :conditions => ["created_on > ?", Time.now - 1.days])
-    puts "Recent fan signups: #{recent_fans.size}"
+    puts "Recent fan signups (24hrs): #{recent_fans.size}"
     puts "[" + recent_fans.map {|f| f.name }.join(", ") + "]"
 
     recent_logins = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days])

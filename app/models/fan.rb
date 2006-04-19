@@ -53,11 +53,11 @@ class Fan < ActiveRecord::Base
   acts_as_password_protected
   file_column :logo, :magick => { :geometry => "200x300>" }
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
-  has_one :upload_addr
+  has_one :upload_addr, :dependent => true
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC"
   has_many :comments, :order => "created_on ASC"
-  has_many :wish_list_bands, :order => "name ASC"
+  has_many :wish_list_bands, :dependent => true, :order => "name ASC"
  
   validates_uniqueness_of :uuid # just in case
   

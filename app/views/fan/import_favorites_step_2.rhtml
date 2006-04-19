@@ -1,8 +1,8 @@
-<% @page_title = "Account Settings" %>
+<% @page_title = "Import Favorite Bands" %>
 <% @header_title = @fan.name + "/Import Favorite Bands Step 2" %>
 
 <div id='main'>
-    <%= start_form_tag :action => 'import' %>
+    <%= start_form_tag( {:action => 'import'}, {:name => 'faves'}) %>
     
     <h2>New Favorites</h2>
     <p>
@@ -18,7 +18,7 @@
         <tr>
             <td>
                 <% if !@fan.favorite?(band) %>
-                    <%= check_box_tag "band_#{band.id}", value=band.id, checked=true %>
+                    <%= check_box_tag("band_#{band.id}", value=band.id, checked=true, {:name => 'bands'})%>
                 <% end %>
             </td>    
             <td>
@@ -29,6 +29,12 @@
             </td>
         </tr>
     <% end %>
+    <tr>
+      <td colspan="2">
+      <br/>
+      <a href="javascript:void(0);" onclick="checkAll(document.faves.bands);">Check All</a>&nbsp;
+      <a href="javascript:void(0);" onclick="uncheckAll(document.faves.bands);">Uncheck All</a>
+    </tr>
     </table>
     
     <h2>Wishlist</h2>
@@ -45,7 +51,7 @@
         <tr>
             <td>
                 <% if !@fan.wishlist?(name) %>
-                    <%= check_box_tag "wishlist_#{index}", value=name, checked=true %>
+                    <%= check_box_tag "wishlist_#{index}", value=name, checked=true, {:name => 'wishs'} %>
                 <% end %>
             </td>    
             <td>
@@ -56,6 +62,12 @@
             </td>
         </tr>
     <% end %>
+    <tr>
+      <td colspan="2">
+      <br/>
+      <a href="javascript:void(0);" onclick="checkAll(document.faves.wishs);">Check All</a>&nbsp;
+      <a href="javascript:void(0);" onclick="uncheckAll(document.faves.wishs);">Uncheck All</a>
+    </tr>
     </table>
     
     <br/>
@@ -64,6 +76,18 @@
     <%= end_form_tag %>
 </div>
 
-<div id='side'>
+<script type="text/javascript">
+function checkAll(field)
+{
+    for (i = 0; i < field.length; i++)
+	   field[i].checked = true ;
+}
 
-</div>
+function uncheckAll(field)
+{
+    for (i = 0; i < field.length; i++)
+	   field[i].checked = false ;
+}
+</script>
+
+<div id='side'></div>

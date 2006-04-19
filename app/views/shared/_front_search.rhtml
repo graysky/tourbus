@@ -21,7 +21,7 @@ radius = @session[:radius] != "" ? @session[:radius] : '50'
 
 <tr>
 <td><span class="field_info">bands, genres, clubs</span> 
-<td><span class="city_info"><a href="#" onclick="setlocation('Boston, MA');">Boston</a>, <a href="#" onclick="setlocation('San Francisco, CA');">San Francisco</a></span> 
+<td><span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Boston, MA');">Boston</a>, <a href="javascript:void(0);" onclick="setlocation('San Francisco, CA');">San Francisco</a></span> 
 </table>
 
 <%= hidden_field_tag('type', Show.table_name) %>

@@ -60,7 +60,7 @@
     <%= start_profile_info_box %>
         <strong>You don't have any favorite bands yet!</strong>
         <br/><br/>
-        You can <%= link_to 'import', :action => :import_favorites %> your favorite bands from
+        You can <%= link_to 'import', :controller => "fan", :action => :import_favorites %> your favorite bands from
         iTunes, your <%= link_to 'Last.fm', 'http://last.fm' %> account, or a list that you type in.<br/><br/>
         You can also <%= link_to 'Search or browse for bands you like', :controller => 'find', :action => 'band' %>,
         and then make them a favorite by clicking the green star or "Add to Favorites" link.

@@ -1,4 +1,4 @@
-<% @page_title = "Account Settings" %>
+<% @page_title = "Import Favorite Bands" %>
 <% @header_title = @fan.name + "/Import Favorite Bands Step 1" %>
 
 <div id='main'>
@@ -27,9 +27,9 @@
     <%= section "import_lastfm.gif", 300, 28 %>
     <%= start_form_tag :action => 'import_last_fm' %>
     
-    <p>Enter your Last.fm username and we will add your 50 most-played bands.</p>
+    <p>Enter your <a href="http://last.fm">Last.fm</a> username and we will add your 50 most-played bands.</p>
     
-    <%= text_field_tag 'last_fm_username', ''  %><br/><br/>
+    <%= text_field_tag 'last_fm_username', '', :size => 25 %><br/><br/>
     <%= submit_tag 'Submit' %>
     
     <%= end_form_tag %>
@@ -40,7 +40,7 @@
     
     <p>Enter the names of the bands you'd like to add as favorites, one per line.</p>
     
-    <%= text_area 'bulk_names', '', :rows => 16, :cols => 24  %><br/><br/>
+    <%= text_area 'bulk_names', '', :rows => 15, :cols => 26  %><br/><br/>
     <%= submit_tag 'Submit' %>
     
     <%= end_form_tag %>

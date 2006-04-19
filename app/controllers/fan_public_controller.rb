@@ -95,10 +95,10 @@ class FanPublicController < ApplicationController
     
     key = {:action => 'ical', :part => 'fan_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    #when_not_cached(key, 30.minutes.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
-    end
+    #end
     
     render(:partial => "shared/ical_feed", 
       :locals => { :shows => @shows, :key => key })
@@ -110,10 +110,10 @@ class FanPublicController < ApplicationController
     
     key = {:action => 'ical', :part => 'fan_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    #when_not_cached(key, 30.minutes.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
-    end
+    #end
     
     render(:partial => "shared/ical_feed", 
       :locals => { :shows => @shows, :key => key })

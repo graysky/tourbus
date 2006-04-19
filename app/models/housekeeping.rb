@@ -19,7 +19,10 @@ class Housekeeping
   
     logger.info "Sending favorites emails..."
     FavoritesMailer.do_favorites_updates
-    
+
+    logger.info "Reporting stats..."
+    self.report_stats    
+
     logger.info "Resaving objects..."
     self.resave_objects
   
@@ -28,6 +31,34 @@ class Housekeeping
   end
   
   protected
+
+  # Print out some stats about tourbus
+  def self.report_stats
+  
+    fans = Fan.find(:all)
+    puts "Total fans: #{fans.size}"
+
+    recent_fans = Fan.find(:all, :conditions => ["created_on > ?", Time.now - 1.days])
+    puts "Recent fan signups: #{recent_fans.size}"
+    puts "[" + recent_fans.map {|f| f.name }.join(", ") + "]"
+
+    recent_logins = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days])
+    puts "Recent logins (48hrs): #{recent_logins.size}"
+    puts "[" + recent_logins.map {|f| f.name }.join(", ") + "]"
+
+    bands = Band.find(:all)
+    puts "Total bands: #{bands.size}"
+
+    venues = Venue.find(:all)
+    puts "Total venues: #{venues.size}"
+
+    shows = Show.find(:all)
+    puts "Total shows: #{shows.size}"
+    upcoming_shows = Show.find(:all, :conditions => ["date > ?", Time.now - 1.days])
+    puts "Upcoming shows: #{upcoming_shows.size}"
+
+    ""
+  end 
   
   # Save in chunks just to avoid huge AR memory usage
   def self.save_chunks(klass)

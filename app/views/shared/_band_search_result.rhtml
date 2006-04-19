@@ -27,7 +27,6 @@
         </nobr>
       </td>
       <td class="col4" id="fave_column_<%= band.id %>">
-        <center>
         <% if logged_in_fan %>
           <% if logged_in_fan.favorite?(band) %>
             <%= render(
@@ -49,7 +48,6 @@
         <% else %>
           
         <% end %>
-        </center>
       </td>
     </tr>
   </table>

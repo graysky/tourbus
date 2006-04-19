@@ -33,7 +33,6 @@ class FavoritesCalculator
   
   # All upcoming shows within range for all favorites bands
   # Includes shows that have been created since the last email
-  # and shows that have been updated since.
   def upcoming_shows
     if @upcoming_shows.nil?
       @upcoming_shows = []
@@ -55,8 +54,8 @@ class FavoritesCalculator
           Address::is_within_range(show.venue.latitude.to_f, show.venue.longitude.to_f, @lat.to_f, @long.to_f, @fan.default_radius)
         end
         
-        # Remove any dupes
-        @upcoming_shows = @upcoming_shows | shows
+        # Remove any dupes and shows the user is already going to
+        @upcoming_shows = shows.uniq - @fan.upcoming_shows
       end
       
       # Sort the combined list by date

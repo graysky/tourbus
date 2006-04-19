@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :public_fan_ical_url
+  helper_method :public_fan_webcal_url
   helper_method :public_band_ical_url
   helper_method :public_venue_ical_url
   helper_method :public_band_rss_url
@@ -177,6 +178,14 @@ class ApplicationController < ActionController::Base
   def public_fan_ical_url(fan = nil)
     fan = @fan if fan.nil?  
     url_for(:controller => "fan_public", :action => "ical")
+  end
+  
+  # Get the webcal:// URL to the iCal feed for this fan
+  def public_fan_webcal_url(fan = nil)
+    fan = @fan if fan.nil?  
+    url = url_for(:controller => "fan_public", :action => "webcal")
+    url.gsub!(/http/, 'webcal')
+    return url
   end
   
   # Get the URL to the iCal feed for this band

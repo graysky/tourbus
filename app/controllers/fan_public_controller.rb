@@ -12,8 +12,8 @@ class FanPublicController < ApplicationController
   helper :feed
   helper :comment
   upload_status_for :change_logo
-  session :off, :only => [:rss, :ical]
-  layout "public", :except => [:rss, :ical ] 
+  session :off, :only => [:rss, :ical, :webcal ]
+  layout "public", :except => [:rss, :ical, :webcal ] 
   
   # Show the main fan page
   def index
@@ -90,6 +90,21 @@ class FanPublicController < ApplicationController
   end
   
   def ical
+    # Set the right content type
+    @headers["Content-Type"] = "text/calendar;"
+    
+    key = {:action => 'ical', :part => 'fan_feed'}
+
+    when_not_cached(key, 30.minutes.from_now) do
+      # Fetch and cache the iCal items
+      get_ical_items
+    end
+    
+    render(:partial => "shared/ical_feed", 
+      :locals => { :shows => @shows, :key => key })
+  end
+  
+  def webcal
     # Set the right content type
     @headers["Content-Type"] = "text/calendar;"
     

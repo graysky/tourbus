@@ -9,6 +9,7 @@ DTEND:<%= ical_format_time(s.date + s.bands.size.hours) %>
 DTSTAMP:<%= ical_format_time(Time.now) %>
 CLASS:PUBLIC
 SUMMARY:<%= s.name %>
-LOCATION:<%= ical_address(s.venue) %><% if !s.description.empty? %>DESCRIPTION:<%= ical_format_text(s.description) %><% end -%>
+LOCATION:<%= ical_address(s.venue) %>
+DESCRIPTION:<%= ical_format_text(s.description)%>
 END:VEVENT
 <% end -%>END:VCALENDAR

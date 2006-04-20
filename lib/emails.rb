@@ -20,6 +20,11 @@ class Emails
   def self.help
     return "help@" + domain
   end
+
+  # G&M alias
+  def self.gm
+    return "gm@" + domain
+  end
   
   # Feedback address
   def self.feedback
@@ -28,7 +33,6 @@ class Emails
   
   # "From" address for sending emails like reminders
   def self.from
-    # TODO Could also use "noreply", "hi" or "yo" instead - set an auto-responder too
     return "tourb.us robot <robot@" + domain + ">"
   end
 

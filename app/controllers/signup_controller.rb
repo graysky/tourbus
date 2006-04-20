@@ -123,6 +123,7 @@ class SignupController < ApplicationController
       else
         # It's now confirmed
         @fan.confirmed = true
+        FanMailer.deliver_gm_of_new_fan(@fan)
         if (!@fan.save)
           flash.now[:error] = "Error saving confirmation status"
           @fan.confirmed = false

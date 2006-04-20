@@ -31,7 +31,7 @@ class ThreeGirlsParser < ShowParser
           @show[:bands] = []
           @show[:date] = date
           
-          text = elem.text.gsub('*', '').gsub('{', '(').gsub('}', ')').gsub('/', ',')
+          text = elem.text.gsub('*', '').gsub('{', '(').gsub('}', ')').gsub('/', ',').gsub('?', ',')
           chunks = text.split(',')
           chunks.each_with_index do |chunk, index|
             if chunk == chunks.last

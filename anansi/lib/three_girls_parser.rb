@@ -15,7 +15,7 @@ class ThreeGirlsParser < ShowParser
       date = parse_as_date(date_str, false)
       next if date.nil?
       
-      elem = start
+      elem = start.parent
       brs = 0
       while !elem.nil?
         elem = elem.next_sibling
@@ -23,13 +23,14 @@ class ThreeGirlsParser < ShowParser
         next if elem.is_a?(Text)
         
         elem.name == 'br' ? brs += 1 : brs = 0
+        p elem.name + ", " + brs.to_s
         break if brs == 2
         
         if elem.name == 'li'
           @show = {}
           @show[:bands] = []
           @show[:date] = date
-      
+          
           text = elem.text.gsub('*', '').gsub('{', '(').gsub('}', ')').gsub('/', ',')
           chunks = text.split(',')
           chunks.each_with_index do |chunk, index|

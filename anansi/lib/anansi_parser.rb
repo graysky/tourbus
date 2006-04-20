@@ -70,8 +70,16 @@ class AnansiParser
           when :pas then
             parser = PAsParser.new(xml)
           else
-            puts "**** Error: Parser type not found!"
-            next
+            # Try to dynamically load the parse
+            file = site.parser_type.to_s + '_parser'
+            begin
+              require 'anansi/lib/' + file
+              
+              parser = eval(file.camelize).new(xml)
+            rescue => e
+              puts "Count not load parser #{file}: #{e.to_s}"
+              next
+            end
         end
         
         # Apply the site's methods to the parser

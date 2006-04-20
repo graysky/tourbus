@@ -13,7 +13,7 @@ class ShowParser < MetaSite
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
-			  'invited guests']
+			              'invited guests', '...', 'free tickets', 'music poll']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -82,6 +82,7 @@ class ShowParser < MetaSite
     return nil if down.ends_with?("featuring")
     return nil if down.ends_with?("special guest")
     return nil if down.ends_with?(":")
+    return nil if down.ends_with?("tour")
     
     keywords = [":", "featuring", "presents", "present", "presenting", "special guest", 
                 "welcomes", "evening with"]
@@ -120,10 +121,11 @@ class ShowParser < MetaSite
     return nil if down.ends_with?("and more...") or down.ends_with?("and more") or down.ends_with?("more...")
     return nil if down.count("_") > 2
     return nil if down.count("-") > 2
+    return nil if down.strip == ''
     
     # benefit, karoeke, no cover, .com, prom
     
-    replacements = [/cd release/i, /cdrelease/i, /cd rel/i]
+    replacements = [/cd release/i, /cdrelease/i, /cd rel/i, /cancelled/i, /sold out/i]
     replacements.each { |pattern| name.gsub!(pattern, '') }
     
     band = {}

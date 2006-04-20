@@ -174,6 +174,9 @@ class Site < MetaSite
       
       html.gsub!(/&nbsp;/, ' ') unless @leave_nbsps # TODO Needed?
       
+      # Delete comments, including misformatted ones
+      html.gsub!(/<!(.*)->/, '')
+      
       parser = HTMLTree::XMLParser.new(false, false)
       parser.feed(html)
       

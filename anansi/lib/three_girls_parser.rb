@@ -22,9 +22,9 @@ class ThreeGirlsParser < ShowParser
         break if elem.nil?
         next if elem.is_a?(Text)
         
-        elem.name == 'br' ? brs += 1 : brs = 0
-        p elem.name + ", " + brs.to_s
-        break if brs == 2
+        brs = 0
+        elem.elements.each { |e| brs += 1 if e.name == 'br' }
+        break if brs > 1
         
         if elem.name == 'li'
           @show = {}

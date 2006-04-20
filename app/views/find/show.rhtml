@@ -1,16 +1,33 @@
-<% 
-    if params[:query] and params[:query] != ""
-        @page_title = "Search results for \"#{params[:query]}\"" 
-    else
-        @page_title = "Find Shows"
-    end
+<%
+# Set the page title correctly
+case params[:action]
+when 'browse_popular_shows' then title = 'Most Popular Shows'
+when 'browse_tonights_shows' then title = 'Tonight\'s Shows'
+else
+  title = "Find Shows"
+end 
+
+if params[:query] and params[:query] != ""
+  @page_title = "Search results for \"#{params[:query]}\"" 
+else
+  @page_title = title
+end
+
+@header_title = @page_title
 %>
-        
-<% @header_title = "Find Upcoming Shows" %>
 
 <% content_for("head") do %>
     <%= javascript_include_tag "find.js" %>
 <% end %>
+<% content_for("onload") do %>
+  init_focus()
+<% end %>
+
+<script type="text/javascript">
+  function init_focus() {
+    $('query').focus();
+  }
+</script>
 
 <% type = Show.table_name %>
 
@@ -26,7 +43,6 @@
   <%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %>
   <%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
 </div>
-
 
 <% if params[:action] == 'show' %>
 <table>
@@ -71,7 +87,6 @@
   end
 %>
 
-
 <%= render :partial => "paging" %>
 </div>
 </div>
@@ -79,4 +94,3 @@
 <div id="side">
   <%= render :partial => "location_box", :locals => { :type => type } %>
 </div>
-

@@ -1,11 +1,31 @@
+<%
+# Set the page title correctly
+case params[:action]
+when 'browse_popular_venues' then title = 'Most Popular Venues'
+else
+  title = "Find Venues"
+end 
 
+if params[:query] and params[:query] != ""
+  @page_title = "Search results for \"#{params[:query]}\"" 
+else
+  @page_title = title
+end
 
-<% @page_title = "Search results for \"#{params[:query]}\"" %>
-<% @header_title = "Find Venues" %>
+@header_title = @page_title
+%>
 
 <% content_for("head") do %>
     <%= javascript_include_tag "find.js" %>
 <% end %>
+<% content_for("onload") do %>
+  init_focus()
+<% end %>
+<script type="text/javascript">
+  function init_focus() {
+    $('query').focus();
+  }
+</script>
 
 <% type = Venue.table_name %>
 <div id="main">

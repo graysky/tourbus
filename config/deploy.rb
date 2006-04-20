@@ -212,6 +212,14 @@ task :reaper, :roles => :app do
   CMD
 end
 
+desc "Start RailsCron using spinner"
+task :cron_spinner, :roles => :app do
+  # Attempt to spin it every 10 minutes as a daemon
+  run <<-CMD
+    #{current_path}/script/process/spinner -d -i 600 -c 'cd #{current_path} && rake RAILS_ENV=production cron_start'
+  CMD
+end
+
 desc "Reload the rails_cron tasks and restart rails_cron"
 task :restart_cron, :roles => :app do
   # Load the new tasks and restart cron

@@ -1,11 +1,33 @@
+<%
+# Set the page title correctly
+case params[:action]
+when 'browse_popular_bands' then title = 'Most Popular Bands'
+when 'browse_newest_bands' then title = 'Newest Bands'
+else
+  title = "Find Bands"
+end 
 
+if params[:query] and params[:query] != ""
+  @page_title = "Search results for \"#{params[:query]}\"" 
+else
+  @page_title = title
+end
 
-<% @page_title = "Search results for \"#{params[:query]}\"" %>
-<% @header_title = "Find Bands" %>
+@header_title = @page_title
+%>
 
 <% content_for("head") do %>
     <%= javascript_include_tag "find.js" %>
 <% end %>
+<% content_for("onload") do %>
+  init_focus()
+<% end %>
+
+<script type="text/javascript">
+  function init_focus() {
+    $('query').focus();
+  }
+</script>
 
 <% type = Band.table_name %>
 
@@ -17,8 +39,6 @@
   <%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %>
   <%= link_to_unless_current "Newest Bands" , :action => 'browse_newest_bands'%>
 </div>
-
-
 
 <%= start_form_tag :action => :band %>
 
@@ -56,7 +76,4 @@
 <%= band_results(@results) if @results %>
 
 <%= render :partial => "paging" %>
-
 </div>
-
-

@@ -1,3 +1,12 @@
+<% content_for("onload") do %>
+  init_focus()
+<% end %>
+<script type="text/javascript">
+  function init_focus() {
+    $('query').focus();
+  }
+</script>
+
 <div id="intro-box" class="intro_box">
 <div style="float: left;">
         <%= render(:partial => "shared/welcome", :locals => {}) %>

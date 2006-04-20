@@ -55,7 +55,6 @@ class ThreeGirlsParser < ShowParser
       
     end
    
-    @shows.each { |s| puts s[:venue][:name] }
     @shows
   end
   

@@ -396,14 +396,12 @@ td, p
 	background-repeat:repeat-x;
 	background-image: url(/images/intro_bg.gif);
 	margin-left: 10px;
-	xborder: 1px solid blue; 
 }
 
 /* Welcome message box */
 .welcome_msg 
 {
 	width: 370px;
-	xborder: 1px solid green; 
 }
 
 .welcome_msg h2
@@ -419,7 +417,6 @@ td, p
     font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
-
     padding-left: 14px;
     margin-top: 0px;
 }
@@ -462,7 +459,6 @@ td, p
 {
 	width: 400px;
 	margin-top: 10px;
-	xborder: 1px solid green;
 }
 
 .front_search .title
@@ -471,7 +467,6 @@ td, p
     font-family: Arial, Verdana, Helvetica, sans-serif;
     color: #0F628B; 
     font-weight:bold;
-
     padding-left: 2px;
     margin-top: 0px;
 }
@@ -482,11 +477,9 @@ td, p
     margin-bottom: 5px;  
     margin-left: 0px;
     margin-right: 6px;
-    
     font-size: 17px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
     text-align: top;
-    xborder: 1px solid yellow; 
 }
 
 .front_search .field_info {
@@ -499,11 +492,9 @@ td, p
 }
 
 table.front-search-table {
-	xborder-collapse: collapse;
 }
 	
 table.front-search-table th {
-	xborder: 1px solid #ddd;
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	font-size: 14px;
 	font-weight:bold;
@@ -1817,4 +1808,23 @@ table.form-table td a {
 
 .wishlist_p {
     margin:0 80px 0 20px;
+}
+
+.number
+{
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 20px;
+  color: white;
+  background-color: #0F628B; /* Dark Blue */
+}
+
+.itunes_title
+{
+    font-size: 20px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    color: #0F628B; 
+    font-weight:bold;
+    padding-left: 8px;
+    margin-top: 0px;
 }

@@ -236,6 +236,10 @@ class FanController < ApplicationController
     render :action => 'import_favorites_step_2'
   end
   
+  def itunes_help
+    # Do nothing
+  end
+  
   def import_itunes
     file = params[:file]
     filename = File.basename(file.original_filename.gsub('\\', '/')).gsub(/[^\w\.\-]/,'_')

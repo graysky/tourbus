@@ -71,11 +71,11 @@ class AnansiParser
             parser = PAsParser.new(xml)
           else
             # Try to dynamically load the parse
-            file = site.parser_type.to_s + '_parser'
+            name = site.parser_type.to_s + '_parser'
             begin
-              require 'anansi/lib/' + file
+              require 'anansi/lib/' + name
               
-              parser = eval(file.camelize).new(xml)
+              parser = eval(name.camelize).new(xml)
             rescue => e
               puts "Count not load parser #{file}: #{e.to_s}"
               next
@@ -86,12 +86,12 @@ class AnansiParser
         parser.site = site
       
         # Parse the REXML doc
-	begin
+    	begin
           parser.parse
-	rescue Exception => e
-	  puts "Error parsing site: #{site.name}, :#{e.to_s}"
-	  next
-	end
+    	rescue Exception => e
+    	  puts "Error parsing site: #{site.name}, :#{e.to_s}"
+    	  next
+    	end
 
         all_shows = []
         # Gather all the shows as YAML

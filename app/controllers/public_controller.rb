@@ -4,15 +4,6 @@ class PublicController < ApplicationController
   before_filter :announcement, :only => :front_page
   layout "public", :except => [:beta, :beta_signup] 
 
-  # Temp code REMOVE ME
-  def local_request?
-    false
-  end
-  
-  def boom
-    raise "boom!"
-  end
-  
   # The front page of the app
   def front_page
     # Note: this needs to match the view exactly

@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
   include MetaFragment
   include ExceptionNotifiable
-  local_addresses.clear # TODO Remove me
   
   model :band
   model :fan

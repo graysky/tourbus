@@ -907,12 +907,10 @@ table.form-table tr.submit td {
 }
 
 table.form-table tr.submit input {
-		
-		/* Experiment w/ offwhite on green */
-		background:#005422;
-		color:#EEEEEE;
-		cursor:pointer;
-	}
+	background:#484A4C;
+	color:#eee;
+	cursor:pointer;
+}
 
 table.form-table table.venue_result_table {
 	border:2px solid red;

@@ -25,7 +25,9 @@ end
 
 <script type="text/javascript">
   function init_focus() {
-    $('query').focus();
+    elem = $('query')
+    if (elem != undefined)
+      elem.focus();
   }
 </script>
 

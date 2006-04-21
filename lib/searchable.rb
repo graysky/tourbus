@@ -117,6 +117,7 @@ module FerretMixin
         end
         
         IGNORED_STRINGS = [','] unless const_defined?('IGNORED_STRINGS')
+        INVALID_CHARS = ['!'] unless const_defined?('INVALID_CHARS')
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
@@ -124,6 +125,7 @@ module FerretMixin
           q = "*" if q.nil? or q == ""
           
           IGNORED_STRINGS.each { |str| q.gsub!(str, ' ') }
+          INVALID_CHARS.each { |str| q.gsub!(str, '') }
           
           query = Search::BooleanQuery.new
           if q != "*"

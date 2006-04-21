@@ -5,20 +5,15 @@
   <link rel="shortcut icon" href="/images/favicon.ico">
   <%= stylesheet_link_tag "main" %>
   <%= stylesheet_link_tag "calendar-system.css" %>
+  <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "effects" %>
   <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "Tooltip" %>
   <%= javascript_include_tag "rounder" %>
   <%= javascript_include_tag "debug.js" %>
-  <%
-  #<!--[if lt IE 7.]>
-  #<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
-  #<![endif]-->
-  %>
   <%= @content_for_head %>
 </head>
-
 <body onload="<%= @content_for_onload %>">
 
 <div id="container">
@@ -40,22 +35,21 @@
     <%= public_fan_link "Profile", fan %> |
     <%= link_to("Settings", :controller => "fan", :action => "settings") %> |
     <%= link_to("Feedback", :controller => "feedback") %> |
-      <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
+    <%= link_to("Log Out", :controller => "fan", :action => "logout") %>
   
   <% elsif is_band %>
     <%= band.name %>:
     <%= public_band_link "Profile", band %> |
     <%= link_to("Settings", :controller => "band", :action => "settings") %> |
     <%= link_to("Feedback", :controller => "feedback") %> |
-      <%= link_to("Log Out", :controller => "band", :action => "logout") %>
+    <%= link_to("Log Out", :controller => "band", :action => "logout") %>
   
   <% elsif !is_fan and !is_band %>
     <%= link_to("Login", :controller => "login") %> |
     <%= link_to("Feedback", :controller => "feedback") %> |
-      <%= link_to("Sign Up", :controller => "signup") %>
+    <%= link_to("Sign Up", :controller => "signup") %>
   <% end %>
   </div>
-  
   <div style="clear:both"></div> 
 </div>
 
@@ -65,15 +59,15 @@
     <tr valign="top"><td>
   <span class="nav-option">
   <%= link_to(
-  "<img alt='Find Shows' border='0' src='/images/nav_shows.png' width='130' height='30'/>", :controller => "find", :action => "show") %>
+  "<img alt='Find Shows' border='0' src='/images/nav_shows.png' width='130' height='30' onload='fixPNG(this)'/>", :controller => "find", :action => "show") %>
   </span>
   <span class="nav-option">
   <%= link_to(
-  "<img alt='Find Bands' border='0' src='/images/nav_bands.png' width='130' height='30'/>", :controller => "find", :action => "band") %>
+  "<img alt='Find Bands' border='0' src='/images/nav_bands.png' width='130' height='30' onload='fixPNG(this)'/>", :controller => "find", :action => "band") %>
   </span>
   <span class="nav-option">
   <%= link_to(
-  "<img alt='Find Venues' border='0' src='/images/nav_venues.png' width='130' height='30'/>", :controller => "find", :action => "venue") %>
+  "<img alt='Find Venues' border='0' src='/images/nav_venues.png' width='130' height='30' onload='fixPNG(this)'/>", :controller => "find", :action => "venue") %>
   </span>
   </td></tr></table>  
   </div>
@@ -120,12 +114,8 @@
 
 </div>
 
-<!--[if lt IE 7.]>
-<script type="text/javascript" src="/javascripts/pngfix.js"></script>
-<![endif]-->
 <script type="text/javascript">
 <%= @content_for_bottom_script %>
 </script>
-
 </body>
 </html>

@@ -18,7 +18,7 @@
 </script>
 
 <% action = logged_in? ? "<a href='#add_comment'>#{image_tag('add_comment.gif', :size => '90x11')}</a>" : nil %>
-<%= section "comments_section",  150, 23, action %>
+<%= section "comments_section.png",  150, 23, action %>
 
 <% if comments.nil? || comments.empty? %>
     <div id='no_comments_msg' class="profile_section_no_content">There are no comments yet.</div>

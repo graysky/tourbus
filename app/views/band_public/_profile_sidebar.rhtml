@@ -41,7 +41,7 @@
     <% if @logged_in_as_band %>
       <table>
       <tr>
-        <td><img src="/images/add.png" height="16" width="16"/></td>
+        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
       </table>

@@ -103,15 +103,23 @@ END_JS
   
   # Notification image table for error/info/success
   def img_label_table(img, label)
-    "<table><tr><td valign='top'><img width='16px' height='16px' src=\"/images/#{img}\"/></td><td>#{label}</td></tr></table>"
+    "<table><tr><td valign='top'><img width='16px' height='16px' src=\"/images/#{img}\" onload='fixPNG(this)'/></td><td>#{label}</td></tr></table>"
   end
   
+  # Creates a section with an image title
+  # title_img MUST specify the file extension like PNG
   def section(title_img, width, height, action = nil)
     out = "<div class='panel_header'><table><tr>"
-    out << "<td width='580px'>#{image_tag(title_img, :height => height, :width => width)}</td>"
-  if action
-   out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
-  end
+    # Apply PNG fix if needed
+    if title_img =~ /.png/
+      out << "<td width='580px'>#{image_tag(title_img, :height => height, :width => width, :onload => 'fixPNG(this)')}</td>"
+    else
+      out << "<td width='580px'>#{image_tag(title_img, :height => height, :width => width)}</td>"
+    end  
+    
+    if action
+      out << "<td valign='bottom' style='padding-right:12px'>#{action}</td>"
+    end
     out << '</tr></table></div>'
   end
   

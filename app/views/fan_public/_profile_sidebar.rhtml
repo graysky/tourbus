@@ -20,17 +20,17 @@
     <table>
     <% if @logged_in_as_fan %>
       <tr>
-        <td><img src="/images/add.png" height="16" width="16"/></td>
+        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
     <% end %>
     <% if @logged_in_as_fan %>
       <tr>
-        <td><img src="/images/add.png" height="16" width="16"/></td>
+        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "Import Favorites", :controller => "fan", :action => "import_favorites" %></td>
       </tr>
       <tr>
-        <td><img src="/images/table.png" height="16" width="16"/></td>
+        <td><img src="/images/table.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "View Your Wishlist", :controller => "fan", :action => "wishlist" %></td>
       </tr>
     <% end %>
@@ -44,11 +44,6 @@
       <td><img src="/images/ical.gif" height="14" width="36"/></td>
       <td><a href="<%= public_fan_ical_url %>" id="rss_link">Subscribe via iCal</a></td>
     </tr>
-    <tr>    
-      <td><img src="/images/ical.gif" height="14" width="36"/></td>
-      <td><a href="<%= public_fan_webcal_url %>" id="rss_link">Subscribe via WebCal</a></td>
-    </tr>
-    
     </table>
     
     </p>

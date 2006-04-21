@@ -4,7 +4,7 @@
 
 <%= render :partial => "profile_header", :locals => { :front_page => true } %>
 
-<%= section "shows_section", 94, 23, map_list_toggle("index") %>
+<%= section "shows_section.png", 94, 23, map_list_toggle("index") %>
 
 <% if @params[:show_map] == "true" %>
   <a name="map_top"/>
@@ -48,7 +48,7 @@
 <% end %>
 <br/>
 
-<%= section "favorite_bands_section", 213, 25 %>
+<%= section "favorite_bands_section.png", 213, 25 %>
 
 <% if not @bands.empty? %>
   <br/>

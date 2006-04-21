@@ -1,13 +1,20 @@
 # Shows the basic public pages of the site
 class PublicController < ApplicationController
-  
   helper :portlet
   before_filter :announcement, :only => :front_page
   layout "public", :except => [:beta, :beta_signup] 
+
+  # Temp code REMOVE ME
+  def local_request?
+    false
+  end
+  
+  def boom
+    raise "boom!"
+  end
   
   # The front page of the app
   def front_page
-    
     # Note: this needs to match the view exactly
     bands_key = {:action => 'front_page', :part => 'popular_bands'}
     shows_key = {:action => 'front_page', :part => 'upcoming_shows'}

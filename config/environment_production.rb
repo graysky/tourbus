@@ -71,6 +71,11 @@ RailsCron.options = {
     :allow_concurrency => false
 }
 
+# Email notification on exception
+ExceptionNotifier.exception_recipients = %w(feedback@tourb.us)
+ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us.com>)
+ExceptionNotifier.email_prefix = "[tourb.us]"
+
 require 'rails_file_column'
 require 'selective_timestamp'
 require 'validations'

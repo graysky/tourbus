@@ -246,7 +246,8 @@ class BandPublicController < ApplicationController
     @band = Band.find_by_short_name(params[:short_name])
     
     if @band.nil?
-      render :nothing => true, :status => 404
+      # Could not find the band
+      render :file => "#{RAILS_ROOT}/public/404.html", :status => "404 Not Found"
       return false
     end
     

@@ -432,6 +432,20 @@ td, p
     font-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
+.welcome_msg .signup
+{
+    xmargin-left: 5px;
+    xfont-size: 16px;
+    xfont-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+.welcome_msg .signup a
+{
+    margin-left: 11px;
+    font-size: 20px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
 .welcome_msg .info img
 {
     margin-bottom: 2px;

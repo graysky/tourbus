@@ -85,7 +85,7 @@ RailsCron.options = {
 }
 
 ExceptionNotifier.exception_recipients = %w(feedback@tourb.us)
-ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us.com>)
+ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us>)
 ExceptionNotifier.email_prefix = "[tourb.us]"
 
 require 'rails_file_column'

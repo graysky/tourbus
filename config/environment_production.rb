@@ -81,6 +81,7 @@ require 'selective_timestamp'
 require 'validations'
 require 'upcoming_shows'
 require 'chunkable'
+require 'array'
 
 # For UTF-8 handling
 $KCODE = 'u'

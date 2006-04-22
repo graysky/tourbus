@@ -178,7 +178,7 @@
       <strong>This band has no fans</strong>
     </p>
   <% else%>
-    <%= tiny_fan_results(@band.fans[0..4]) %>
+    <%= tiny_fan_results(@band.fans.random(4)) %>
     <p>
       <%= link_to "Show more fans...", :action => "fans" %>
     </p>

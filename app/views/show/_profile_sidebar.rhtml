@@ -225,7 +225,7 @@
   </p>
   
   <% if show_fans %>
-  <%= tiny_fan_results(@show.fans_attending_first[0..4]) %>
+  <%= tiny_fan_results(@show.fans_attending_first.random(4)) %>
     <% if @show.num_watchers + @show.num_attendees > 0 %>
       <p>
         <%= link_to "Show more fans...", :action => "fans" %>

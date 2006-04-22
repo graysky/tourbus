@@ -4,7 +4,7 @@
     <% if @show.title != "" %>
       <strong><%= @show.title %></strong><br/>
     <% end %>
-        <strong><%= @show.bands.map { |band| "<a href='"+ @band_prefix_url + band.name + "'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
+        <strong><%= @show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
         <% if @show.description != "" %>

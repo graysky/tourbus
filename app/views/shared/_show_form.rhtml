@@ -10,6 +10,8 @@
     end  
 %>
 
+<% editing = action == "edit" %>
+
 <div>
   
   <script type="text/javascript">
@@ -34,7 +36,7 @@
     
     function do_venue_loading()
     {
-      $("venue_search_message").innerHTML = "<em>Loading...</em>";
+      $("venue_search_message").innerHTML = "<em>Searching...</em>";
     }
     
   </script>
@@ -89,12 +91,12 @@
           <% end %>
           
         </span>
-        <span id="venue_search_toggle" style="display:none;">
+        <span id="venue_search_toggle" style="<%= editing ? '' : 'display:none' %>">
             &nbsp;( <a href="#" style="font-size:11px" 
-                  onclick="$('venue_search').show();return false">Search again</a> )
+                  onclick="$('venue_search').show();return false"><%= editing ? 'Search for a new venue' : 'Search again'%></a> )
         </span>     
         
-        <div id="venue_search" style="margin-top:8px">
+        <div id="venue_search" style="margin-top:8px;<%= editing ? 'display:none' : '' %>">
           <%= text_field_tag 'venue_search_term', '', :autocomplete => "off"%><br/><br/> 
           within <%= text_field_tag 'radius', @session[:radius], :size => 2 %> miles of
           <%= text_field_tag 'location', "#{@session[:location]}", :size => 15 %>
@@ -281,7 +283,10 @@
     <tr class="submit">
       <td></td>
       <% action_text = "Add Show" if action_text.nil? %>
-      <td><%= submit_tag action_text %></td>
+      <td>
+        <%= submit_tag action_text %>&nbsp;
+        <input type='button' onclick='history.go(-1);' name="cancel" value="Cancel" /> 
+      </td>
     </tr>
   </table>
 <%= end_form_tag %>  

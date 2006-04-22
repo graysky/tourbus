@@ -110,11 +110,11 @@ task :create_cron_tasks do
   cmd = <<END
     RailsCron.destroy_all
     
-    RailsCron.create(:command => "MailReader.check_email", :start => 5.minutes.from_now, :every => 5.minutes, :concurrent => false)
+    RailsCron.create(:command => "MailReader.check_email", :start => 3.minutes.from_now, :every => 10.minutes, :concurrent => false)
 
-    RailsCron.create(:command => "RemindersMailer.do_show_reminders", :start => 5.minutes.from_now, :every => 30.minutes, :concurrent => false)
+    RailsCron.create(:command => "RemindersMailer.do_show_reminders", :start => 3.minutes.from_now, :every => 30.minutes, :concurrent => false)
 
-    RailsCron.create(:command => "DbHelper.delete_old_sessions", :start => 5.minutes.from_now, :every => 12.hours, :concurrent => false)
+    RailsCron.create(:command => "DbHelper.delete_old_sessions", :start => 10.minutes.from_now, :every => 12.hours, :concurrent => false)
 END
 
   system "ruby ./script/runner '#{cmd}'"

@@ -6,6 +6,12 @@
   <p>
     <strong>Member Since:</strong> <%= simple_date @fan.created_on %>
     <strong>Profile Views:</strong> <%= @fan.page_views %>
+    
+    <br/><br/>
+    <% if !@fan.website.nil? and !@fan.website.empty? %>
+      <a href="<%=@fan.website%>"><%=h(@fan.website)%></a>
+    <% end %>
+    
   </p>
   </div>
   

@@ -39,7 +39,7 @@
       <td><%= text_field 'fan', 'contact_email' %></td>
       <td class="info">
         <strong>Required</strong>&nbsp;
-        The email address that show reminders and administrative emails will be sent to.
+        The email address that show reminders and administrative emails will be sent to. Never spammed, of course.
       </td>
     </tr>
     <tr>
@@ -56,14 +56,7 @@
       <th>Radius (miles):</th>
       <td><%= text_field 'fan', 'default_radius', :size => 5  %></td>
       <td class="info">
-        tourb.us will look for shows and venues within this many miles of your location.
-      </td>
-    </tr>
-    <tr>
-      <th>Public Name:</th>
-      <td><%= text_field 'fan', 'real_name' %></td>
-      <td class="info">
-        If you want a name other than your username to appear on your public profile.
+        The number of miles around your location to look for shows and venues.
       </td>
     </tr>
     <tr>

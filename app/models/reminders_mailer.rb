@@ -41,7 +41,8 @@ class RemindersMailer < BaseMailer
     @body['fan'] = fan
     @body['show'] = show
     
-    @body['url_prefix'] = show_prefix_url
+    @body['band_prefix_url'] = band_prefix_url
+    @body['show_prefix_url'] = show_prefix_url
     @body['email_signoff'] = email_signoff
   end
   
@@ -67,6 +68,9 @@ class RemindersMailer < BaseMailer
   # show reminders that need to be sent
   # NOTE: Possible that a user changing setting will miss a reminder
   def self.do_show_reminders
+    
+    logger.info "Sending show reminders at #{Time.now.asctime}"
+    p "Sending show reminders at #{Time.now.asctime}"
     
     fans = Fan.find(:all)
     for fan in fans

@@ -115,6 +115,7 @@ class MailReader < ActionMailer::Base
     photo.file = image
     
     # TODO Clean up the body of the message. Pull out "Cingular" sig and crap.
+    # Pull out: "Attachment: cat_gun.jpg"
     photo.description = body
     
     # Determine who the comment is from    
@@ -209,8 +210,8 @@ class MailReader < ActionMailer::Base
     Net::POP3.start("mail.tourb.us", nil, "incoming+tourb.us", "bighit") do |pop|
       
       if pop.mails.empty?
-        logger.info "No Mail at #{Time.now}"
-        p "No Mail at #{Time.now}"
+        logger.info "No Mail at #{Time.now.asctime}"
+        p "No Mail at #{Time.now.asctime}"
       else
         pop.mails.each do |email|
           

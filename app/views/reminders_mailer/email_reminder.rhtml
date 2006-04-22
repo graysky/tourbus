@@ -2,16 +2,16 @@
 <body>
   <p>
     <% if @show.title != "" %>
-      <strong><%= @show.title  %></strong><br/>
+      <strong><%= @show.title %></strong><br/>
     <% end %>
-        <strong><%= @show.bands.map { |band| band.name }.join("/") %></strong><br/>
+        <strong><%= @show.bands.map { |band| "<a href='"+ @band_prefix_url + band.name + "'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
         <% if @show.description != "" %>
            <%= @show.description %>
            <br/><br/>
          <% end %>
-         <a href="<%= @url_prefix + @show.id.to_s %>">More Details</a>
+         <a href="<%= @show_prefix_url + @show.id.to_s %>">More Details</a>
   </p>  
   
   <hr/>

@@ -164,7 +164,7 @@ class VenueController < ApplicationController
     
     if @venue.nil?
       # Could not find the venue
-      render :action => 'no_such_venue'
+      render :action => 'no_such_venue', :status => "404 Not Found"
       return false
     end
   end

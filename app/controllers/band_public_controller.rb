@@ -246,7 +246,7 @@ class BandPublicController < ApplicationController
     
     if @band.nil?
       # Could not find the band
-      render :action => 'no_such_band'
+      render :action => 'no_such_band', :status => "404 Not Found"
       return false
     end
     

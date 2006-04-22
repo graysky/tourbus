@@ -162,7 +162,7 @@ class FanPublicController < ApplicationController
   def find_fan
     @fan = Fan.find_by_name(params[:fan_name])
     if @fan.nil?
-      render :action => 'no_such_fan'
+      render :action => 'no_such_fan', :status => "404 Not Found"
       return false
     end
     

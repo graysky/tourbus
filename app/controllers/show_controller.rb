@@ -185,7 +185,7 @@ class ShowController < ApplicationController
     
     if @show.nil?
       # Could not find the show
-      render :action => 'no_such_show'
+      render :action => 'no_such_show', :status => "404 Not Found"
       return false
     end
   end

@@ -154,11 +154,19 @@ class VenueController < ApplicationController
     end
   end
   
+  def no_such_venue
+  end
+  
   # Find the venue from the ID param
   def find_venue
     # Look up the venue
     @venue = Venue.find_by_id(params[:id])
     
+    if @venue.nil?
+      # Could not find the venue
+      render :action => 'no_such_venue'
+      return false
+    end
   end
   
 end

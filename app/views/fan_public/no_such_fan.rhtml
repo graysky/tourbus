@@ -1,1 +1,8 @@
-no such fan <%= params[:fan_name] %>
+<%
+title = "Could not find a fan with name \"#{params[:fan_name]}\""
+
+msg = "The fan or page you were looking for doesn't exist."
+%>
+
+<%= render(:partial => "shared/not_found", 
+       :locals => { :title => title, :msg => msg }) %>

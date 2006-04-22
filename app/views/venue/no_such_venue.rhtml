@@ -1,0 +1,8 @@
+<%
+title = "Could not find a venue with id \"#{params[:id]}\""
+
+msg = "The venue or page you were looking for doesn't exist."
+%>
+
+<%= render(:partial => "shared/not_found", 
+       :locals => { :title => title, :msg => msg }) %>

@@ -175,10 +175,19 @@ class ShowController < ApplicationController
     return true
   end
   
+  def no_such_show
+  end
+  
   # Find the show from the ID param
   def find_show
     # Look up the show
     @show = Show.find_by_id(params[:id])
+    
+    if @show.nil?
+      # Could not find the show
+      render :action => 'no_such_show'
+      return false
+    end
   end
   
   def some_login_required

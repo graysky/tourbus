@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in_band
   helper_method :logged_in
   helper_method :logged_in_admin
+  helper_method :display_404
+  helper_method :display_500
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
@@ -55,10 +57,6 @@ class ApplicationController < ActionController::Base
       current = Announcement.find(:first, :conditions => ["expire_at > ?", t])
       
       return if current.nil?
-      
-      # TODO Need to check for all / fan / band
-      
-      # TODO Need to check cookie to let them dismiss it
       
       flash.now[:info] = "#{current.teaser}<br/><a href='/news'>Read more...</a>"
   end
@@ -106,6 +104,16 @@ class ApplicationController < ActionController::Base
         logger.error("Invalid cookie type: #{cookies['type']}")
       end
     end 
+  end
+  
+  # Display the 404 page with same status
+  def display_404
+    render :file => "#{RAILS_ROOT}/public/404.html", :status => "404 Not Found"
+  end
+
+  # Display the 500 page with same status  
+  def display_500
+    render :file => "#{RAILS_ROOT}/public/500.html", :status => "500 Error"
   end
   
   # Increments the objects page count and saves it

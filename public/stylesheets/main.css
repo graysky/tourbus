@@ -434,9 +434,6 @@ td, p
 
 .welcome_msg .signup
 {
-    xmargin-left: 5px;
-    xfont-size: 16px;
-    xfont-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
 .welcome_msg .signup a
@@ -1838,4 +1835,43 @@ table.form-table td a {
     font-weight:bold;
     padding-left: 8px;
     margin-top: 0px;
+}
+
+/* Not found message box */
+.not_found 
+{
+	width: 600px;
+	background-color: #EFF4F6; /* Light blue */
+	/* Hack around IE z-order problem with the title */
+	border: 1px solid #FFFFFF; /* Color matches background */	
+	margin-left: 100px;
+	margin-top: 30px;
+}
+
+.not_found h2
+{
+	margin-top:0px;
+	padding-bottom:0px;
+}
+
+/* Box title text */
+.not_found .title
+{
+    font-size: 20px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    color: #0F628B; 
+    font-weight:bold;
+    padding-left: 14px;
+    margin-top: 0px;
+}
+
+.not_found .info 
+{
+    margin-top: 10px;
+    margin-bottom: 5px;  
+    margin-left: 14px;
+    margin-right: 12px;
+    
+    font-size: 16px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
 }

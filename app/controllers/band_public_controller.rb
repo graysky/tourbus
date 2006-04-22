@@ -241,13 +241,12 @@ class BandPublicController < ApplicationController
   end
   
   def find_band
-    
     # See if we are logged in as the band. If not, just use the URL.
     @band = Band.find_by_short_name(params[:short_name])
     
     if @band.nil?
       # Could not find the band
-      render :file => "#{RAILS_ROOT}/public/404.html", :status => "404 Not Found"
+      render :action => 'no_such_band'
       return false
     end
     

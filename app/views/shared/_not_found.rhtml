@@ -1,0 +1,24 @@
+<%
+# Some object was not found. Takes parameters:
+# title => The title for the box
+# msg => The message to display
+%>
+<div id="not-found-msg-box" class="not_found">
+<h2 id="not-found-title">
+  <span class="title"><%= title %></span>
+</h2>
+
+<div class="info">
+<%= msg %>
+
+<br/><br/>Do you think we messed up?
+Send us <a href="/feedback">feedback</a> or email us at <a href="mailto:help@tourb.us">help@tourb.us</a>
+and let us know what happened.
+</div>
+</div>
+
+<script type="text/javascript">
+  var white = '#FFFFFF';
+  Rico.Corner.round( $('not-found-msg-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('not-found-msg-box'), {corners:'top', bgColor : white} );
+</script>

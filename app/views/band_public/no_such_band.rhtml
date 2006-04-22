@@ -1,3 +1,8 @@
-no such band with an id of <%= params[:short_name] %>
+<%
+title = "Could not find a band with name \"#{params[:short_name]}\""
 
-TODO search box... monkey?
+msg = "The band or page you were looking for doesn't exist."
+%>
+
+<%= render(:partial => "shared/not_found", 
+       :locals => { :title => title, :msg => msg }) %>

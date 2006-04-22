@@ -1,5 +1,7 @@
 # Shows the basic public pages of the site
 class PublicController < ApplicationController
+  include Geosearch
+  
   helper :portlet
   before_filter :announcement, :only => :front_page
   layout "public", :except => [:beta, :beta_signup] 
@@ -65,21 +67,25 @@ class PublicController < ApplicationController
   end
   
   private
+  
+  def page_size
+    10
+  end
     
   def get_popular_shows
-    # Get the 10 most popular shows
-    @shows = Show.find(:all,
-                       :conditions => ["date > ?", Time.now - 1.days],
-                       :order => "num_watchers DESC",
-                       :limit => 10
-                      ) 
+    # Get the 10 most popular shows, then sort by date
+    options = default_search_options
+    options[:sort] = popularity_sort_field
+    
+    @shows, count = Show.ferret_search_date_location('*', nil, nil, nil, nil, options)
+    @shows.sort! { |x,y| x.date <=> y.date }
   end 
   
-  def get_popular_bands  
-    # Get the 10 most popular bands
-    @bands = Band.find(:all,
-                       :order => "page_views DESC",
-                       :limit => 10
-                      ) 
+  def get_popular_bands
+    # The 10 most popular bands
+    options = default_search_options
+    options[:sort] = popularity_sort_field
+    
+    @bands, count = Band.ferret_search_date_location('*', nil, nil, nil, nil, options)
   end  
 end

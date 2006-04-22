@@ -68,6 +68,7 @@ class ApplicationController < ActionController::Base
     # Check for the secret cookie
     unless cookies[:invite] == secret
       redirect_to("/beta")
+      return false
     end
   end
   

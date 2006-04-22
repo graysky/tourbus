@@ -9,10 +9,15 @@ module Geosearch
   end
   
   def toggle_only_local(only_local = nil)
-    @session[only_local_session_key(params[:type])] = only_local.nil? ? params[:checked] : only_local
+    do_toggle_only_local(only_local)
+    render :nothing => true
   end
   
   protected
+  
+  def do_toggle_only_local(only_local = nil)
+    @session[only_local_session_key(params[:type])] = only_local.nil? ? params[:checked] : only_local
+  end
   
   # Set some default location params if we are not logged in
   def check_location_defaults

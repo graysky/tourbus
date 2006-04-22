@@ -116,14 +116,15 @@ end
 
 desc "Setup task that to run before the first deployment for TB-specific setup"
 task :after_setup do
-  # Make directories that are shared between releases for images
-  # and the ferret index
+  # Make directories that are shared between releases for images,
+  # ferret index and anansi data
   run <<-CMD
-    mkdir -p -m 777 #{shared_path}/tb.index #{shared_path}/public &&
+    mkdir -p -m 777 #{shared_path}/tb.index #{shared_path}/public #{shared_path}/anansi &&
     mkdir -p -m 777 #{shared_path}/tb.index/band #{shared_path}/tb.index/venue &&
     mkdir -p -m 777 #{shared_path}/tb.index/show #{shared_path}/tb.index/fan &&
     mkdir -p -m 777 #{shared_path}/public/band #{shared_path}/public/venue &&
-    mkdir -p -m 777 #{shared_path}/public/show #{shared_path}/public/fan
+    mkdir -p -m 777 #{shared_path}/public/show #{shared_path}/public/fan &&
+    mkdir -p -m 777 #{shared_path}/anansi/data
   CMD
 end
 
@@ -140,7 +141,8 @@ task :after_symlink do
     ln -nfs #{shared_path}/tb.index/band #{release_path}/db/tb.index/band &&
     ln -nfs #{shared_path}/tb.index/show #{release_path}/db/tb.index/show &&
     ln -nfs #{shared_path}/tb.index/venue #{release_path}/db/tb.index/venue &&
-    ln -nfs #{shared_path}/tb.index/fan #{release_path}/db/tb.index/fan
+    ln -nfs #{shared_path}/tb.index/fan #{release_path}/db/tb.index/fan &&
+    ln -nfs #{shared_path}/anansi/data #{release_path}/anansi/data
     CMD
 end
 

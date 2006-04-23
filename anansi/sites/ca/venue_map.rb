@@ -7,5 +7,7 @@
   'grant & green' => 382,
   'bourbon st.' => 750,
   'pound' => 516,
-  'colonial theater' => 745
+  'colonial theater' => 745,
+  /gaslighter/ => 789,
+  "blake's" => 249
 }

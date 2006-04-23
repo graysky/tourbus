@@ -3,6 +3,8 @@ class PublicController < ApplicationController
   include Geosearch
   
   helper :portlet
+  helper_method :local_popular_shows?
+  
   before_filter :announcement, :only => :front_page
   layout "public", :except => [:beta, :beta_signup] 
 
@@ -17,10 +19,16 @@ class PublicController < ApplicationController
       get_popular_bands
     end
     
-    when_not_cached(shows_key, 2.hours.from_now) do
-      # Fetch and cache the list of shows
+    if local_popular_shows?
+      # don't cache
       get_popular_shows
+    else
+      when_not_cached(shows_key, 2.hours.from_now) do
+        # Fetch and cache the list of shows
+        get_popular_shows
+      end
     end
+    
   end
   
   # The beta page to ask for invitation code
@@ -71,13 +79,27 @@ class PublicController < ApplicationController
   def page_size
     10
   end
+  
+  def local_popular_shows?
+    @session[:location] and @session[:location] != ''
+  end
     
   def get_popular_shows
     # Get the 10 most popular shows, then sort by date
     options = default_search_options
     options[:sort] = popularity_sort_field
     
-    @shows, count = Show.ferret_search_date_location('*', nil, nil, nil, nil, options)
+    if local_popular_shows?
+      begin
+        zip = Address::parse_city_state_zip(session[:location])
+        lat = zip.latitude
+        long = zip.longitude
+      rescue
+        lat = long = nil
+      end
+    end
+    
+    @shows, count = Show.ferret_search_date_location('*', Time.now, lat, long, @session[:radius] || 50, options)
     @shows.sort! { |x,y| x.date <=> y.date }
   end 
   

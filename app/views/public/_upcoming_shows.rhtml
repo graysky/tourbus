@@ -1,0 +1,13 @@
+<div class="portlet_box" style="float:right;">
+
+  <center><%= image_tag "upcoming_shows.jpg" %></center>
+  <div class="narrow_list">
+    
+  <% index = 0 
+     for show in @shows %>
+    <%= render(:partial => "shared/popular_show",
+               :locals => { :show => show, :index => index, :show_venue => true }) %>
+    <% index += 1
+      end %>
+  </div>
+</div>

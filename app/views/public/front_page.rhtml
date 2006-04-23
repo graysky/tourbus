@@ -50,20 +50,12 @@
 </div>
 <% end %>
 
-<% cache(:action => 'front_page', :part => 'upcoming_shows') do %>
-<div class="portlet_box" style="float:right;">
-
-  <center><%= image_tag "upcoming_shows.jpg" %></center>
-  <div class="narrow_list">
-    
-  <% index = 0 
-     for show in @shows %>
-    <%= render(:partial => "shared/popular_show",
-               :locals => { :show => show, :index => index, :show_venue => true }) %>
-    <% index += 1
-      end %>
-  </div>
-</div>
+<% if local_popular_shows? %>
+    <%= render :partial => 'upcoming_shows' %>
+<% else %>
+	<% cache(:action => 'front_page', :part => 'upcoming_shows') do %>
+	    <%= render :partial => 'upcoming_shows' %>
+	<% end %>
 <% end %>
 
 <div style="clear:both"></div>

@@ -9,5 +9,13 @@
   'pound' => 516,
   'colonial theater' => 745,
   /gaslighter/ => 789,
-  "blake's" => 249
+  "blake's" => 249,
+  /civic auditorium/ => 241,
+  /shoreline/ => 638,
+  'underground cafe' => 743,
+  'metro' => 488,
+  'red devil lounge' => 603,
+  "johnny v's" => 793,
+  '222 club' => 186,
+  "bender's bar" => 236
 }

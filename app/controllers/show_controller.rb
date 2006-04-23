@@ -42,6 +42,8 @@ class ShowController < ApplicationController
       create_bands_playing_content(@show.bands)
       params[:selected_venue_name] = @show.venue.name
       params[:selected_venue_id] = @show.venue.id
+      flash.now[:info] = "Thanks for helping us make this listing more accurate. If you can't fix the problem" +
+                         " using this form please click the \"Report a Problem\" link on the previous page."
     else
       return if not create_edit_show(false)
       flash[:success] = 'Show edited'

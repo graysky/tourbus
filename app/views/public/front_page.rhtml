@@ -50,12 +50,8 @@
 </div>
 <% end %>
 
-<% if local_popular_shows? %>
-    <%= render :partial => 'upcoming_shows' %>
-<% else %>
-	<% cache(:action => 'front_page', :part => 'upcoming_shows') do %>
-	    <%= render :partial => 'upcoming_shows' %>
-	<% end %>
+<% cache(:action => 'front_page', :part => get_popular_shows_cache_key) do %>
+  <%= render :partial => 'upcoming_shows' %>
 <% end %>
 
 <div style="clear:both"></div>

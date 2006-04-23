@@ -110,7 +110,7 @@ task :create_cron_tasks do
   cmd = <<END
     RailsCron.destroy_all
     
-    RailsCron.create(:command => "MailReader.check_email", :start => 3.minutes.from_now, :every => 10.minutes, :concurrent => false)
+    RailsCron.create(:command => "MailReader.check_email", :start => 3.minutes.from_now, :every => 30.minutes, :concurrent => false)
 
     RailsCron.create(:command => "RemindersMailer.do_show_reminders", :start => 3.minutes.from_now, :every => 30.minutes, :concurrent => false)
 

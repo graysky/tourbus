@@ -2,8 +2,15 @@
 
 <%
 # Use the set location/radius or defaults
-location = @session[:location] != "" ? @session[:location] : ""
-radius = @session[:radius] != "" ? @session[:radius] : '50'
+location = ""
+if @session[:location] and @session[:location] != ''
+  location = @session[:location]
+end
+
+radius = '50'
+if @session[:radius] and @session[:radius] != ''
+  radius = @session[:radius]
+end
 %>
 
 <div class="info">

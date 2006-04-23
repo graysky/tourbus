@@ -4,16 +4,20 @@ module Geosearch
   
   # To be called via ajax so the session state is always up to date
   def set_location_radius
-    @session[:location] = params[:location].strip
-    @session[:radius] = params[:radius].strip
+    do_set_location_radius
   end
-  
+   
   def toggle_only_local(only_local = nil)
     do_toggle_only_local(only_local)
     render :nothing => true
   end
   
   protected
+  
+  def do_set_location_radius
+    @session[:location] = params[:location].strip
+    @session[:radius] = params[:radius].strip
+  end
   
   def do_toggle_only_local(only_local = nil)
     @session[only_local_session_key(params[:type])] = only_local.nil? ? params[:checked] : only_local
@@ -62,7 +66,7 @@ module Geosearch
       begin 
         zip = Address::parse_city_state_zip(loc.strip)
       rescue Exception => e
-        flash[:error] = e.to_s
+        flash[:error] = "Sorry, we couldn't find your location."
         return nil
       end
       

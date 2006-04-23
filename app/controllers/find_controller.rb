@@ -27,7 +27,7 @@ class FindController < ApplicationController
     
     if params[:radius] and params[:location] and !params[:location].blank?
       # Search came from the front page
-      set_location_radius
+      do_set_location_radius
       do_toggle_only_local(true)
     end
     

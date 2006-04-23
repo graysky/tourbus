@@ -5,6 +5,7 @@ module Geosearch
   # To be called via ajax so the session state is always up to date
   def set_location_radius
     do_set_location_radius
+    render :nothing => true
   end
    
   def toggle_only_local(only_local = nil)

@@ -87,7 +87,7 @@ class PublicController < ApplicationController
       loc.downcase!
       
       # Will be like: 'boston_ma_50'
-      key = loc + "_" + @session[:radius]
+      key = loc + "_" + @session[:radius].to_s
     else
       # Default key for national searching    
       key = "natl_upcoming_shows"

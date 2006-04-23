@@ -107,7 +107,13 @@ class FindController < ApplicationController
     options[:sort] = name_sort_field
     options[:conditions] = { 'popularity' => '> 0'}
     
+    # XXX This is a very ugly workaround for ferret bugs(?) around paging
+    # and sorting by strings
+    options[:num_docs] = 200
+   
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
+    @results = @results[0...20]
+    
     paginate_search_results(count)
     render :action => 'venue'
   end

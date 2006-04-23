@@ -32,6 +32,7 @@ class FeedbackController < ApplicationController
     return if request.get?
     
     FeedbackMailer.deliver_problem_report(params[:type], params[:id], params[:reason], params[:notes], logged_in_fan)
+    render :nothing => true
   end
 
 end

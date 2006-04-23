@@ -17,5 +17,9 @@
   'red devil lounge' => 603,
   "johnny v's" => 793,
   '222 club' => 186,
-  "bender's bar" => 236
+  "bender's bar" => 236,
+  'benders' => 236,
+  'Balazo 18' => 226,
+  'shark tank' => 398,
+  'paramount' => 501
 }

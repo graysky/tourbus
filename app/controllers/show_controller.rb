@@ -13,7 +13,7 @@ class ShowController < ApplicationController
   helper :portlet
   
   session :off, :only => :rss
-  before_filter :find_show, :except => [ :venue_search ]
+  before_filter :find_show, :except => [ :venue_search, :add ]
   before_filter :some_login_required, :only => [:add]
   
   layout "public", :except => [:rss ] 

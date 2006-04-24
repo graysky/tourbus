@@ -25,7 +25,7 @@ class LocationFilter < Ferret::Search::Filter
       
       next if lat == 0 and long == 0
       
-      bits.set(term_docs.doc) if Address::is_within_range(lat, long, @center_lat, @center_long, @radius)
+      bits.set(term_docs.doc) if Address::within_range?(lat, long, @center_lat, @center_long, @radius)
     end 
     
     return bits

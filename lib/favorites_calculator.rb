@@ -51,14 +51,15 @@ class FavoritesCalculator
         
         # Only find shows in range
         shows = shows.find_all do |show|
-          Address::is_within_range(show.venue.latitude.to_f, show.venue.longitude.to_f, @lat.to_f, @long.to_f, @fan.default_radius)
+          Address::within_range?(show.venue.latitude.to_f, show.venue.longitude.to_f, @lat.to_f, @long.to_f, @fan.default_radius)
         end
         
         # Remove any dupes and shows the user is already going to
-        @upcoming_shows = shows.uniq - @fan.upcoming_shows
+        @upcoming_shows += (shows - @fan.upcoming_shows)
       end
       
       # Sort the combined list by date
+      @upcoming_shows.uniq!
       @upcoming_shows.sort! { |x,y| x.date <=> y.date }
     end
     

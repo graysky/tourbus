@@ -122,7 +122,7 @@ module Address
   
   # Returns true if the first point is within radius miles from the center point.
   # All angles should be measured in degrees.
-  def self.is_within_range(lat, long, center_lat, center_long, radius)
+  def self.within_range?(lat, long, center_lat, center_long, radius)
     # Convert to radians
     lat = lat * (Math::PI / 180)
     long = long * (Math::PI / 180)

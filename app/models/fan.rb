@@ -109,6 +109,7 @@ class Fan < ActiveRecord::Base
   end 
   
   def attend_show(show)
+    return if self.attending?(show)
     self.shows.push_with_attributes(show, { :attending => true, :watching => false })
     show.num_attendees += 1
   end
@@ -133,6 +134,7 @@ class Fan < ActiveRecord::Base
   end
   
   def watch_show(show)
+    return if self.watching?(show)
     self.shows.push_with_attributes(show, { :attending => false, :watching => true })
     show.num_watchers += 1
   end
@@ -143,7 +145,7 @@ class Fan < ActiveRecord::Base
       show.num_watchers -= 1
     end
   end
-  
+    
   def watching_shows
     self.shows.find(:all, :conditions => "watching = 1")
   end
@@ -154,12 +156,12 @@ class Fan < ActiveRecord::Base
   
   # Return if the show is one the fan is attending
   def attending?(show)
-    self.attending_shows.detect { |x| x == show  }
+    self.attending_shows.include?(show)
   end
   
   # Return if the show is one the fan is watching
   def watching?(show)
-    self.watching_shows.detect { |x| x == show  }
+    self.watching_shows.include?(show)
   end
                           
   # Creates and sets the confirmation code. DOES NOT save the record.

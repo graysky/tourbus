@@ -6,13 +6,14 @@
 <div class="info">
 <ul>
   <li>Track your favorite bands <small>(via email/RSS/iCal)</small>
+  <li>Get reminders before concerts
+  <li>Find tonight's shows in your city
+  <li>Import favorites bands from iTunes & Last.fm
   <li>Post reviews and photos of shows
-  <li>Reminders before concerts
-  <li>Import favorites bands from iTunes & last.fm
-  <li>Take a tour of the site</li>
 </ul>
 
-  <span class="signup"><%= link_to("Sign Up Now", :controller=> "signup", :action=> "fan")  %></span>
+  <span class="signup"><%= link_to("Sign Up Now", :controller => "signup", :action=> "fan")%></span> 
+  or <%= link_to("take a tour", :controller => "public", :action=> "tour") %>
 </div>
 
 </div>

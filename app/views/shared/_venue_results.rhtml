@@ -13,8 +13,7 @@
   <% for venue in @results %>
     <tr>
       <td>
-        <!-- FIXME: This trouble with apostrophes in the name! -->
-        <a href="#" onclick='use_existing_venue("<%= venue.id %>", "<%= h(venue.name) %>", "search")'>
+        <a href="#" onclick='use_existing_venue("<%= venue.id %>", "<%= venue.name.gsub(/'/, '&apos;') %>", "search")'>
         <%= venue.name %></a>
       </td>
       <td><%= venue.city %>, <%= venue.state %></td>

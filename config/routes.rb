@@ -59,6 +59,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'find/:action/', :controller => 'find'
   
   # Misc. public pages
+  map.connect 'tour/', :controller => 'public', :action => 'tour'
+
   map.connect 'faq/', :controller => 'public', :action => 'faq'
   map.connect 'news/', :controller => 'public', :action => 'news'
   map.connect 'beta/', :controller => 'public', :action => 'beta'

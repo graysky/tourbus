@@ -60,6 +60,9 @@ class PublicController < ApplicationController
     BetaMailer.deliver_signup(email_addr)
   end
   
+  def tour
+  end
+  
   # The News page
   def news
     # TODO Need to paginate

@@ -63,6 +63,7 @@ class Fan < ActiveRecord::Base
   
   # TODO No spaces in name
   validates_presence_of :name, :contact_email
+  validates_numericality_of :default_radius, :allow_nil => true, :if => Proc.new { |fan| fan.default_radius != '' }
   validates_uniqueness_of :name, 
                           :message => "Sorry, that name has already been taken."
   

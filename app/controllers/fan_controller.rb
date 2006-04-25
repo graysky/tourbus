@@ -29,12 +29,10 @@ class FanController < ApplicationController
       @fan.update_attributes(params[:fan])
       if @fan.save
         flash.now[:success] = "Settings updated"
-      else
-        flash[:error] = "There was an error updating your settings. Please try again."
       end
     rescue Exception => e
       logger.error "Error saving fan settings (id=#{@fan.id}):#{e.to_s}"
-      flash[:error] = e.to_s
+      flash.now[:error] = e.to_s
     end
     
   end

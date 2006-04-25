@@ -82,10 +82,9 @@ class SignupController < ApplicationController
       return
     end
     
-    @fan = Fan.new(params[:fan])
-    
     # Create the fan object and send the confirmation email in a transaction
     begin
+      @fan = Fan.new(params[:fan])
       Fan.transaction(@fan) do
         code = @fan.create_confirmation_code
         
@@ -108,6 +107,7 @@ class SignupController < ApplicationController
         end
       end
     rescue Exception => ex
+      @fan = Fan.new if @fan.nil?
       flash[:error] = "Error registering your account: #{ex.message}"
       logger.error(ex)
     end

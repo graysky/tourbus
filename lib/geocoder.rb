@@ -14,9 +14,14 @@ class Geocoder
       return nil if addr.nil? || addr.strip == ""
       
       url = @@base_url + CGI.escape(addr)
-    
-      response = open(url)
-      doc = Document.new(response.read)
+      
+      begin
+        response = open(url)
+        doc = Document.new(response.read)
+      rescue => e
+        RAILS_DEFAULT_LOGGER.error("Error getting geocoding: #{url}, #{e.to_s}")
+        raise "Invalid address: #{addr}"
+      end
 
       
       return nil if doc.root.elements.size != 1

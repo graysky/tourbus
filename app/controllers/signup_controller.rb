@@ -44,7 +44,7 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       @band = Band.new if @band.nil?
-      flash[:error] = "Error signing up your band: #{ex.message}"
+      flash.now[:error] = "Error signing up your band: #{ex.message}"
     end
   end
   

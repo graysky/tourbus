@@ -1,28 +1,97 @@
 <% @page_title = "Tour" %>
 <% @header_title = "Tour" %>
 
+<div>
 
-<div id='main'>
+<p><span class="generic_title">Track Your Favorite Bands via Email / RSS / iCal</span>
 
-<!--
+<table border="0" cellspacing="5px" width="95%" style="margin-top: 10px;">
 
-<%= image_tag "bloglines_small.png" %>
+<tr>
+<td colspan="2">
+<p>Ever find out the <em>day after</em> one of your favorite bands played a show you didn't know about?
+We've had that happen too often and we <em>hate</em> it. 
+Now you can find out ahead of time so you'll be laughing at your friends who find out the show is sold out.
+
+<p>When you <%= link_to("sign up", :controller => "signup", :action=> "fan")%> you'll get
+an email anytime one of your favorite bands is playing nearby. And email and SMS reminders before
+the shows you're attending.
+
+<p>
+<tr>
+<td width="40%">
+<%= image_tag "tour_rss.png" %> 
+</td>
+<td>Every fan gets their own custom RSS feed for all the shows they're watching or attending.
+
+<p>And every band and venue has their own feed, for all you groupies out there.
+
+<tr>
+<td><%= image_tag "tour_gcal.png" %>
+<td>Using a calendar program that supports <a href="http://en.wikipedia.org/wiki/ICalendar">iCalendar</a>,
+like <a href="http://calendar.google.com">Google Calendar</a>, you can keep up to date with what shows
+you're interested in. Or see what's happening at your favorite club or any band.
+</table>
+
+<br/><p><span class="generic_title">Tonight's Shows</span>
+
+<table border="0" cellspacing="5px" width="95%" style="margin-top: 10px;">
+<tr>
+<td colspan="2">
+<p>Bored on a Thursday night? Let tourb.us help you find something to do. In addition
+to <%= link_to("searching for shows", :controller => "find", :action=> "show")%> there easy
+ways to browse what's happening tonight and what upcoming shows are most anticipated. 
+
+<p>
+<tr>
+<td width="40%">
+<%= image_tag "tour_scene.png" %> 
+</td>
+<td>Fan's profile always shows them what's going on in their neighborhood.
+
+</table>
+
+<br/><p><span class="generic_title">Import from iTunes & Last.fm</span>
+
+<table border="0" cellspacing="5px" width="95%" style="margin-top: 10px;">
+<tr>
+<td colspan="2">
+<p>Have all your music in <a href="http://www.apple.com/itunes">iTunes</a> or use
+<a href="http://last.fm">Last.fm</a> to get music recommendations? Of course you do, and you're mighty proud
+of your white earbuds. 
+
+<p>In under 5 minutes you can import all your favorite bands from either service so that when 
+they come to town you'll know. (Disclaimer: tourb.us cannot make bands reunite for another tour.)
+
+<p>
+<tr>
+<td width="40%">
+<%= image_tag "itunes_file_menu.png" %> 
+</td>
+<td>Create an iTunes playlist that captures the music you're into, and we'll let you know when
+they play a show nearby. And we've got steps that walk you through how to create a new playlist.
+
+</table>
 
 
-<%= image_tag "tonights_shows.png" %>
---->
+<br/><p><span class="generic_title">Helping Bands Promote Their Shows</span>
 
-<p><span class="generic_title">Notifications</span>
+<table border="0" cellspacing="5px" width="95%" style="margin-top: 10px;">
+<tr>
+<td colspan="2">
+<p>Are you in a promising local band? If you <%= link_to("sign up your band", :controller => "signup", :action=> "band")%>
+tourb.us can help promote your shows to people who like your type of music. And you can help us build the 
+best source for shows on the interwebs.
 
+<p>
+<tr>
+<td width="40%">
+<%= image_tag "tour_map.png" %> 
+</td>
+<td>Act now and we'll throw in a mashup with <a href="http://maps.google.com">Google Maps</a> that lists
+where your shows are. Paste in 3 lines and it will be on your website, showing fans where your next tour
+is heading.
 
-<p><span class="generic_title">Tonight's Shows</span>
-
-
-<p><span class="generic_title">Import from iTunes & Last.fm</span>
-
-
-</div>
-
-<div id='side'>
+</table>
 
 </div>

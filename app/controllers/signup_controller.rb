@@ -16,10 +16,9 @@ class SignupController < ApplicationController
       return
     end
     
-    @band = Band.new(params[:band])
-    
     # Create the band object and send the confirmation email in a transaction
     begin
+      @band = Band.new(params[:band])
       Band.transaction(@band) do
         code = @band.create_confirmation_code
         
@@ -44,6 +43,7 @@ class SignupController < ApplicationController
         end
       end
     rescue Exception => ex
+      @band = Band.new if @band.nil?
       flash[:error] = "Error signing up your band: #{ex.message}"
     end
   end

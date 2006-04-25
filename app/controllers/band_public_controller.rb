@@ -54,32 +54,7 @@ class BandPublicController < ApplicationController
     @band.save
     render :text => @band.bio
   end
-  
-  def add_show
-    if @request.get?
-      prepare_new_show
-    else
-      result = create_edit_show(true)
-      return if !result
-      
-      flash[:success] = 'Show added'
-      redirect_to_band_home
-    end 
-  end
-  
-  def edit_show
-    if @request.get?
-      @show = Show.find(params[:id])
-      create_bands_playing_content(@show.bands)
-      params[:selected_venue_name] = @show.venue.name
-      params[:selected_venue_id] = @show.venue.id
-    else
-      create_edit_show(false)
-      flash[:success] = 'Show edited'
-      redirect_to_band_home
-    end 
-  end
-  
+    
   # Add link to external site
   def add_link
     return if @request.get?
@@ -206,40 +181,7 @@ class BandPublicController < ApplicationController
   end
   
   private
-  
-  def create_edit_show(new)
-    begin
-        create_new_show_and_venue(new)
-      rescue Exception => e
-        create_bands_playing_content
-        params[:error] = e.to_s
-        return false
-      end
-      
-      # Make sure the current band is in the list of band playing the show
-      @bands_playing << @band unless @bands_playing.include?(@band)
-      
-      @show.created_by_band = @band if new
-      
-      begin
-        Band.transaction(*@bands_playing) do
-          Show.transaction(@show) do
-          
-            add_bands
-            @show.save!
-          end
-        end
-      rescue Exception => ex
-        logger.error(ex.to_s)
-        params[:error] = ex.to_s
-        create_bands_playing_content
-        return false
-      end
-      
-      @show.ferret_save
-      return true
-  end
-  
+
   def find_band
     # See if we are logged in as the band. If not, just use the URL.
     @band = Band.find_by_short_name(params[:short_name])

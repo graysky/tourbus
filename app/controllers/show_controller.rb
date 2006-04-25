@@ -26,6 +26,7 @@ class ShowController < ApplicationController
   
   def add
     # TODO Among other things error handling
+    
     if @request.get?
       prepare_new_show
     else
@@ -193,11 +194,7 @@ class ShowController < ApplicationController
   end
   
   def some_login_required
-    return true if logged_in_fan
-    if logged_in_band
-      redirect_to :controller => logged_in_band.short_name, :action => "add_show"
-      return false
-    end
+    return true if logged_in?
     
     # Not logged in... TODO handle this better
     redirect_to :controller => "login"

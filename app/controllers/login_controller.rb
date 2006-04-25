@@ -67,12 +67,14 @@ class LoginController < ApplicationController
           cookies.delete :login
         end
           
+        set_location_defaults(band.location, 50, 'false', 'true', 'true')   
+          
         band.last_login = Time.now
         band.save
         logger.info "Band #{band.name} logged in"
         
         # Send to their profile page
-        redirect_back_or_default( public_band_url )
+        redirect_to public_band_url
 
       else
         flash.now[:error] = error_msg

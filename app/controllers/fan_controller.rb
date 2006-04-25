@@ -267,7 +267,7 @@ class FanController < ApplicationController
   
   def import
     return if request.get?
-    
+   
     begin
       Fan.transaction(@fan) do
         # Add favorites
@@ -276,7 +276,9 @@ class FanController < ApplicationController
           band = Band.find(params[band_key].to_i)
           @fan.add_favorite(band)
           
-          # Save but don't reindex the band... we will recalculate popularity overnight
+          # Watch all the band's upcoming shows in the area
+          @fan.watch_upcoming([band])
+          
           band.save!
         end
         
@@ -289,10 +291,12 @@ class FanController < ApplicationController
       end
     rescue Exception => e
       error_log_flashnow(e.to_s)
+      render :action => 'import_favorites'
       return
     end
     
-    flash[:success] = 'Favorites and Wishlist imported successfully'
+    flash[:success] = 'Favorites and Wishlist imported successfully.<br/><br/>Your Shows list below now contains all of the' +
+                      ' upcoming shows in your area with your new favorite bands.'
     redirect_to public_fan_url
   end
   

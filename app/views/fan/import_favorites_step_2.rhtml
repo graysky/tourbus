@@ -18,7 +18,7 @@
         <tr>
             <td>
                 <% if !@fan.favorite?(band) %>
-                    <%= check_box_tag("band_#{band.id}", value=band.id, checked=true, {:name => 'bands'})%>
+                    <%= check_box_tag("band_#{band.id}", value=band.id, checked=true, {:checkbox_type => 'band'})%>
                 <% end %>
             </td>    
             <td>
@@ -32,8 +32,8 @@
     <tr>
       <td colspan="2">
       <br/>
-      <a href="javascript:void(0);" onclick="checkAll(document.faves.bands);">Check All</a>&nbsp;
-      <a href="javascript:void(0);" onclick="uncheckAll(document.faves.bands);">Uncheck All</a>
+      <a href="javascript:void(0);" onclick="checkAll('band');">Check All</a>&nbsp;
+      <a href="javascript:void(0);" onclick="uncheckAll('band');">Uncheck All</a>
     </tr>
     </table>
     
@@ -51,7 +51,7 @@
         <tr>
             <td>
                 <% if !@fan.wishlist?(name) %>
-                    <%= check_box_tag "wishlist_#{index}", value=name, checked=true, {:name => 'wishs'} %>
+                    <%= check_box_tag "wishlist_#{index}", value=name, checked=true, {:checkbox_type => 'wish'} %>
                 <% end %>
             </td>    
             <td>
@@ -65,8 +65,8 @@
     <tr>
       <td colspan="2">
       <br/>
-      <a href="javascript:void(0);" onclick="checkAll(document.faves.wishs);">Check All</a>&nbsp;
-      <a href="javascript:void(0);" onclick="uncheckAll(document.faves.wishs);">Uncheck All</a>
+      <a href="javascript:void(0);" onclick="checkAll('wish');">Check All</a>&nbsp;
+      <a href="javascript:void(0);" onclick="uncheckAll('wish');">Uncheck All</a>
     </tr>
     </table>
     
@@ -77,16 +77,23 @@
 </div>
 
 <script type="text/javascript">
-function checkAll(field)
+function checkAll(type)
 {
-    for (i = 0; i < field.length; i++)
-	   field[i].checked = true ;
+    for (i = 0; i < document.faves.elements.length; i++) {
+        var elem = document.faves.elements[i];
+        if (elem.getAttribute('checkbox_type') == type)
+            elem.checked = true;
+    }
+	 
 }
 
-function uncheckAll(field)
+function uncheckAll(type)
 {
-    for (i = 0; i < field.length; i++)
-	   field[i].checked = false ;
+    for (i = 0; i < document.faves.elements.length; i++) {
+        var elem = document.faves.elements[i];
+        if (elem.getAttribute('checkbox_type') == type)
+            elem.checked = false;
+    }
 }
 </script>
 

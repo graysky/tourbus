@@ -49,11 +49,8 @@ class FavoritesCalculator
           shows = Show.find(:all, :conditions => sql)
         end
         
-        # Only find shows in range
-        shows = shows.find_all do |show|
-          Address::within_range?(show.venue.latitude.to_f, show.venue.longitude.to_f, @lat.to_f, @long.to_f, @fan.default_radius)
-        end
-        
+        shows = Show.within_range(shows, @lat.to_f, @long.to_f, @fan.default_radius)
+           
         # Remove any dupes and shows the user is already going to
         @upcoming_shows += (shows - @fan.upcoming_shows)
       end

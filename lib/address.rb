@@ -124,10 +124,10 @@ module Address
   # All angles should be measured in degrees.
   def self.within_range?(lat, long, center_lat, center_long, radius)
     # Convert to radians
-    lat = lat * (Math::PI / 180)
-    long = long * (Math::PI / 180)
-    center_lat = center_lat * (Math::PI / 180)
-    center_long = center_long * (Math::PI / 180)
+    lat = lat.to_f * (Math::PI / 180)
+    long = long.to_f * (Math::PI / 180)
+    center_lat = center_lat.to_f * (Math::PI / 180)
+    center_long = center_long.to_f * (Math::PI / 180)
     
     # This is the spherical law of cosines
     x = (Math.sin(lat) * Math.sin(center_lat)) + (Math.cos(lat) * Math.cos(center_lat) * Math.cos(long - center_long))

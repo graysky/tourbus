@@ -145,7 +145,31 @@ class Fan < ActiveRecord::Base
       show.num_watchers -= 1
     end
   end
+  
+  # Watch all upcoming shows for the given band in the fan's area
+  def watch_upcoming(bands)
+    a = [self.latitude, self.longitude, self.default_radius]
+    return if a.include?(nil) or a.include?('')
     
+    bands.each do |band|
+      shows = band.upcoming_shows
+      
+      if shows.size > 0
+        # Reselect so the records aren't R/O                        
+        # TODO Factor this out
+        sql = 'id in (' + shows.map { |show| show.id }.join(',') + ')'
+        shows = Show.find(:all, :conditions => sql)
+      end
+      
+      shows.each do |show|
+        if Address::within_range?(show.venue.latitude, show.venue.longitude, self.latitude, self.longitude, self.default_radius)
+          self.watch_show(show)
+          show.save!
+        end
+      end
+    end
+  end
+  
   def watching_shows
     self.shows.find(:all, :conditions => "watching = 1")
   end

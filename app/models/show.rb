@@ -125,6 +125,14 @@ class Show < ActiveRecord::Base
     self.fans.find(:all, :order => "attending DESC")
   end
   
+  # Return the subset of shows that are within the given range
+  def self.within_range(shows, lat, long, radius)
+    shows = shows.find_all do |show|
+      Address::within_range?(show.venue.latitude.to_f, show.venue.longitude.to_f, 
+                             lat.to_f, long.to_f, radius.to_f)
+    end
+  end
+   
   # Returns a list of shows that are probably identical to the given show,
   # or nil if there are none
   def self.find_probable_dups(other)

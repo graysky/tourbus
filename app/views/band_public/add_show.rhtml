@@ -3,6 +3,7 @@
 <%= render(:partial => "shared/show_form",
        :locals => 
       {
-      :controller => "/" + @band.short_name, 
+      :controller => "/" + @band.short_name,
+      :action => "add"  
       })  
 %>

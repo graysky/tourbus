@@ -1827,7 +1827,7 @@ table.form-table td a {
   background-color: #0F628B; /* Dark Blue */
 }
 
-.itunes_title
+.generic_title
 {
     font-size: 20px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
@@ -1837,7 +1837,7 @@ table.form-table td a {
     margin-top: 0px;
 }
 
-/* Not found message box */
+/* Band/Venue/Show Not found message box */
 .not_found 
 {
 	width: 600px;

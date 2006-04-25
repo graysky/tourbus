@@ -15,12 +15,12 @@ class PublicController < ApplicationController
     bands_key = {:action => 'front_page', :part => 'popular_bands'}
     shows_key = {:action => 'front_page', :part => get_popular_shows_cache_key}
     
-    when_not_cached(bands_key, 3.hours.from_now) do
+    when_not_cached(bands_key, 5.hours.from_now) do
       # Fetch and cache the list of bands
       get_popular_bands
     end
     
-    when_not_cached(shows_key, 3.hours.from_now) do
+    when_not_cached(shows_key, 4.hours.from_now) do
       # Fetch and cache the list of shows
       get_popular_shows
     end

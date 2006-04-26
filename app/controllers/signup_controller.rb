@@ -37,6 +37,7 @@ class SignupController < ApplicationController
           @band.upload_addr.address = UploadAddr.generate_address
           @band.upload_addr.save!
           
+          logger.info("Signing up a new band: #{@band}, #{@band.name}")
           BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
           @name = @band.name
           render :action => 'signup_success'
@@ -100,7 +101,7 @@ class SignupController < ApplicationController
           @fan.upload_addr = @fan.create_upload_addr
           @fan.upload_addr.address = UploadAddr.generate_address
           @fan.upload_addr.save!
-          
+          logger.info("Signing up a new fan: #{@fan}, #{@fan.name}")
           FanMailer.deliver_notify_signup(@fan, confirm_url)
           @name = @fan.name
           render :action => 'signup_success'

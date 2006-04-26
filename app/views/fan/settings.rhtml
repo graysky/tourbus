@@ -158,13 +158,16 @@
   <div id="actions-box" class="sidebar-box">
     <h2 id="actions-title"><span class="title">Actions</span></h2>
     <p>
-      <%= link_to "Change Password", :action => "change_password" %>
-    </p>  
+    <table>
+      <tr>
+        <td><img src="/images/icon_key.gif" height="16" width="16"/></td>
+        <td><%= link_to "Change Password", :action => "change_password" %></td>
+      </tr>
+    </table>
   </div>
 </div>
 <script type="text/javascript">
     var white = '#FFFFFF';
-
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
 </script>

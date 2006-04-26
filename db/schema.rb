@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 30) do
+ActiveRecord::Schema.define(:version => 31) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(:version => 30) do
     t.column "admin", :boolean, :default => false, :null => false
     t.column "security_token", :string, :limit => 40
     t.column "token_expiry", :datetime
-    t.column "show_reminder_first", :integer, :limit => 10, :default => 4320
-    t.column "show_reminder_second", :integer, :limit => 10, :default => 360
+    t.column "show_reminder_first", :integer, :limit => 10, :default => 10080
+    t.column "show_reminder_second", :integer, :limit => 10, :default => 4320
     t.column "wants_email_reminder", :boolean, :default => true
     t.column "wants_mobile_reminder", :boolean, :default => false
     t.column "last_show_reminder", :datetime
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 30) do
     t.column "superuser", :boolean, :default => false
     t.column "mobile_number", :string, :limit => 20
     t.column "carrier_type", :integer, :limit => 10, :default => -1
-    t.column "show_watching_reminder", :integer, :limit => 10, :default => 4320
+    t.column "show_watching_reminder", :integer, :limit => 10, :default => 10080
     t.column "latitude", :string, :limit => 30
     t.column "longitude", :string, :limit => 30
     t.column "num_upcoming_shows", :integer, :default => 0

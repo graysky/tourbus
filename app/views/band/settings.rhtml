@@ -51,10 +51,17 @@
   <br/>
   <div id="actions-box" class="sidebar-box">
     <h2 id="actions-title"><span class="title">Actions</span></h2>
-    <p>
-      <%= link_to "Add a Show", band_public_action("add_show") %>
-      <br/>
-      <%= link_to "Change Password", :action => "change_password" %>
+    <br/>
+    <table>
+      <tr>
+        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
+        <td><%= link_to "Add a Show", band_public_action("add_show") %></td>
+      </tr>
+      <tr>
+        <td><img src="/images/icon_key.gif" height="16" width="16"/></td>
+        <td><%= link_to "Change Password", :action => "change_password" %></td>
+      </tr>
+    </table>
     </p>  
   </div>
 </div>

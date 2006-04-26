@@ -210,8 +210,8 @@ class MailReader < ActionMailer::Base
     Net::POP3.start("mail.tourb.us", nil, "incoming+tourb.us", "bighit") do |pop|
       
       if pop.mails.empty?
-        logger.info "No Mail at #{Time.now.asctime}"
-        p "No Mail at #{Time.now.asctime}"
+        logger.info "****No Mail at #{Time.now.asctime}"
+        p "****No Mail at #{Time.now.asctime}"
       else
         pop.mails.each do |email|
           

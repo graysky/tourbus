@@ -69,8 +69,8 @@ class RemindersMailer < BaseMailer
   # NOTE: Possible that a user changing setting will miss a reminder
   def self.do_show_reminders
     
-    logger.info "Sending show reminders at #{Time.now.asctime}"
-    p "Sending show reminders at #{Time.now.asctime}"
+    logger.info "****Sending show reminders at #{Time.now.asctime}"
+    p "****Sending show reminders at #{Time.now.asctime}"
     
     fans = Fan.find(:all)
     for fan in fans

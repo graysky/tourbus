@@ -8,6 +8,7 @@
   {
     var checked = cb.checked;
     new Ajax.Request('/find/toggle_only_local?checked=' + checked + '&type=<%= type %>', {asynchronous:true, evalScripts:true})
+    document.forms[0].submit();
   }
 </script>
 

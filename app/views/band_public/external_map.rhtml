@@ -1,11 +1,4 @@
 <%= gmaps_header %>
-<% 
-    content_for("bottom_script") do 
-%>
-    init_map()
-<%  
-    end  
-%>
 
 <script type="text/javascript">
   
@@ -20,7 +13,6 @@
 </script>
 
 <%
-  p params
   width = params[:width]
   width = "500px" if width == "" or width.nil?
   
@@ -30,3 +22,7 @@
 
 
 <div style="width:<%=width%>; height:<%=height%>;" id="map"></div>
+
+<script type="text/javascript">
+    init_map();
+</script>

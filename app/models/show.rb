@@ -132,6 +132,10 @@ class Show < ActiveRecord::Base
                              lat.to_f, long.to_f, radius.to_f)
     end
   end
+ 
+  def remove_band(band)
+    self.bands.delete(band)
+  end
    
   # Returns a list of shows that are probably identical to the given show,
   # or nil if there are none

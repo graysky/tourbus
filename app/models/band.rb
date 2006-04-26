@@ -126,6 +126,27 @@ class Band < ActiveRecord::Base
     get_tags(Tag.Band)
   end
   
+  # For admin use
+  def incorporate_dupe(other)
+    # Transfer fans
+    other.fans.each do |fan|
+      fan.add_favorite(self)
+      fan.remove_favorite(other)
+      fan.save!
+    end
+    
+    # Transfer shows
+    other.shows.each do |show|
+      other_set = show.bands.find(other.id)
+      set_order = other_set.nil? ? show.bands.size - 1 : other_set.set_order
+      show.remove_band(other)
+      self.play_show(show, set_order)
+    end
+       
+    Band.destroy(other.id)
+    self.save!
+  end
+  
   # The upload email address, fully qualified like "down42tree@tourb.us"
   def upload_email_addr()
     return upload_addr.address + "@" + UploadAddr.Domain

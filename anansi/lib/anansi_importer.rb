@@ -132,6 +132,9 @@ class AnansiImporter
     short_name = Band.name_to_id(b[:name])
     band = Band.find_by_short_name(short_name)
     
+    band = Band.find_by_short_name('the' + short_name) if band.nil?
+    band = Band.find_by_short_name(short_name[3..-1]) if band.nil? and short_name.starts_with?('the')
+    
     if band.nil?
       puts "Creating a new band: #{b[:name]}"
       band =  Band.new

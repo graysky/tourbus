@@ -16,8 +16,18 @@ module Geosearch
   protected
   
   def do_set_location_radius
-    @session[:location] = params[:location].strip
-    @session[:radius] = params[:radius].strip
+    if params[:location].nil?
+      @session[:location] = ''
+    else
+      @session[:location] = params[:location].strip
+    end
+    
+    if params[:radius].nil?
+      # Set default if they didn't enter a radius
+      @session[:radius] = '50'
+    else
+      @session[:radius] = params[:radius].strip
+    end
   end
   
   def do_toggle_only_local(only_local = nil)

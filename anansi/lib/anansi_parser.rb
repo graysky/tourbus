@@ -111,6 +111,10 @@ class AnansiParser
   # Update the site visit object based on the site variables
   def update_site_visit(site)
     visit = SiteVisit.find_by_name(site.name)
+    if visit.nil?
+      puts "Could not find site visit for: #{site.name}"
+      return
+    end
     
     visit.quality = site[:quality] if site[:quality]
     

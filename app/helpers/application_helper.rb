@@ -34,22 +34,28 @@ module ApplicationHelper
   end
 
   def friendly_date(date)
+    return "" if date.nil?
     date.strftime("%a %m/%d")
   end
   
   def friendly_time(date)
+    return "" if date.nil?
     s = date.strftime("%I:%M%p")
     # Strip off any leading "0" padding
     s.sub!(/^0/, '')
+    return s
   end
   
   def simple_date(date)
+    return "" if date.nil?
     s = date.strftime("%m.%d.%y")
     # Strip off any leading "0" padding
     s.sub!(/^0/, '')
+    return s
   end
   
   def slash_date(date)
+    return "" if date.nil?
     date.strftime("%m/%d/%y")
   end
   

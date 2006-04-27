@@ -89,7 +89,7 @@ class VenueController < ApplicationController
 
     key = {:action => 'rss', :part => 'venue_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    when_not_cached(key, 120.minutes.from_now) do
       # Fetch and cache the RSS items
       get_rss_items
     end

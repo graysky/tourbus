@@ -14,6 +14,10 @@ class AdminController < ApplicationController
     @announcements = Announcement.find(:all)
   end
   
+  def list_fans
+    @fans = Fan.find(:all)
+  end
+  
   def destroy_announcement
     Announcement.find(params[:id]).destroy
     flash[:success] = "Announcement deleted"

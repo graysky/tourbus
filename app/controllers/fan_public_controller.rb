@@ -77,7 +77,7 @@ class FanPublicController < ApplicationController
     
     key = {:action => 'rss', :part => 'fan_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    when_not_cached(key, 90.minutes.from_now) do
       # Fetch and cache the RSS items
       get_rss_items
     end
@@ -98,6 +98,7 @@ class FanPublicController < ApplicationController
     
     key = {:action => 'ical', :part => 'fan_feed'}
 
+    # TODO Implement caching for ical
     #when_not_cached(key, 30.minutes.from_now) do
       # Fetch and cache the iCal items
       get_ical_items

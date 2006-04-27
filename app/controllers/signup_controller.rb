@@ -109,7 +109,7 @@ class SignupController < ApplicationController
       end
     rescue Exception => ex
       @fan = Fan.new if @fan.nil?
-      flash[:error] = "Error registering your account: #{ex.message}"
+      flash.now[:error] = "Error registering your account: #{ex.message}"
       logger.error(ex)
     end
   end

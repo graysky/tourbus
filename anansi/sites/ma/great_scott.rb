@@ -28,9 +28,6 @@ set :table_columns, { 0 => :date, 1 => :ignore, 2 => :bands, 3 => :time_age_cost
 # Comma separates bands
 set :band_separator, '<br>'
 
-
-# TODO Need way to indicate each show is happening at the same venue
-
 # =============================================================================
 # DEFINE METHODS
 # =============================================================================

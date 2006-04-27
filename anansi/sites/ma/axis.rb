@@ -31,8 +31,6 @@ set :band_separator, TeapartyHelper.band_separator
 # Text to mark the shows table
 set :marker_text, TeapartyHelper.marker_text
 
-# TODO Need way to indicate each show is happening at the same venue
-
 # =============================================================================
 # DEFINE METHODS
 # =============================================================================

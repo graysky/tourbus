@@ -12,9 +12,9 @@ class TeapartyHelper
   def self.preprocess_bands_text(text)
     # Change "Endgame with Crisis Bureau" to "Endgame, Crisis Bureau"
     # to make it standard
-    text.sub!(/with/, ',')
+    text.gsub!(/with/, ',')
     # And sometimes bands are special guests
-    text.sub!(/special guests/, '')
+    text.gsub!(/special guests/, '')
     text
   end
   

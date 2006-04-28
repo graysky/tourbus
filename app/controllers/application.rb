@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
         session[:band_id] = band.id
         band.last_login = Time.now
         logger.info "Band #{band.name} logged in from a cookie"
-        
+        band.save
       elsif cookies[:type] == 'fan'
         fan = Fan.find_by_uuid(cookies[:login])
         if not fan
@@ -99,6 +99,9 @@ class ApplicationController < ActionController::Base
         session[:fan_id] = fan.id
         fan.last_login = Time.now
         logger.info "Fan #{fan.name} logged in from a cookie"
+        
+        set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
+        fan.save
         
         @session[:logged_in_as_downtree] = logged_in_as_downtree?
       else

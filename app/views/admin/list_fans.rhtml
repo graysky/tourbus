@@ -21,7 +21,11 @@
   <tr>
     <td><%= fan.id %>
     <td><a href="<%= public_fan_url(fan) %>"><%= fan.name %></a></td>
-    <td><%= "#{slash_date(fan.last_login)} #{friendly_time(fan.last_login)}" %></a></td>
+    <% if fan.last_login.nil? or fan.last_login + 1.day < Time.now %>
+      <td><%= "#{slash_date(fan.last_login)} #{friendly_time(fan.last_login)}" %></td>
+    <% else %>
+      <td><b><%= "#{slash_date(fan.last_login)} #{friendly_time(fan.last_login)}" %></b></td>    
+    <% end %>
   </tr>
 <% end %>
 

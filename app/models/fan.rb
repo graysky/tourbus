@@ -61,7 +61,6 @@ class Fan < ActiveRecord::Base
  
   validates_uniqueness_of :uuid # just in case
   
-  # TODO No spaces in name
   validates_presence_of :name, :contact_email
   validates_numericality_of :default_radius, :allow_nil => true, :if => Proc.new { |fan| fan.default_radius != '' }
   validates_uniqueness_of :name, 
@@ -75,6 +74,12 @@ class Fan < ActiveRecord::Base
   validates_presence_of :password, :if => :validate_password?
   validates_length_of :password, :minimum => 4, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
+  
+  def validate
+    if self.name =~ /[^\w|\d]/
+      errors.add_to_base("Sorry, your username can only contain letters and numbers")
+    end
+  end
   
   # Returns the admin user
   def self.admin

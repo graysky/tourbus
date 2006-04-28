@@ -51,57 +51,71 @@ class FindController < ApplicationController
   # Browse
   def browse_popular_bands
     query, radius, lat, long = prepare_query(Band.table_name)
-    return if query.nil?
+    if query.nil?
+      render_band
+      return
+    end
     
     options = default_search_options
     options[:sort] = popularity_sort_field
     
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)
-    render :action => 'band'
+    render_band
 
   end
   
   def browse_newest_bands
     query, radius, lat, long = prepare_query(Band.table_name)
-    return if query.nil?
+    if query.nil?
+      render_band
+      return
+    end
     
     options = default_search_options
     options[:sort] = created_on_sort_field
     
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)
-    render :action => 'band'
-
+    render_band
   end
   
   def browse_tonights_shows
     query, radius, lat, long = prepare_query(Show.table_name)
-    return if query.nil?
+    if query.nil?
+      render_show
+      return
+    end
     
     options = default_search_options
     options[:exact_date] = true
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
-    render :action => 'show'
+    render_show
   end
   
   def browse_popular_shows
     query, radius, lat, long = prepare_query(Show.table_name)
-    return if query.nil?
+    if query.nil?
+      render_show
+      return
+    end
     
     options = default_search_options
     options[:sort] = popularity_sort_field
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
-    render :action => 'show'
+    render_show
   end
   
   def browse_popular_venues
     query, radius, lat, long = prepare_query(Venue.table_name)
-    return if query.nil?
+    if query.nil?
+      render_venue
+      return
+    end
     
     options = default_search_options
     options[:sort] = name_sort_field
@@ -110,6 +124,20 @@ class FindController < ApplicationController
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
      
     paginate_search_results(count)
+    render_venue
+  end
+  
+  protected
+  
+  def render_band
+    render :action => 'band'
+  end
+  
+  def render_show
+    render :action => 'show'
+  end
+  
+  def render_venue
     render :action => 'venue'
   end
   

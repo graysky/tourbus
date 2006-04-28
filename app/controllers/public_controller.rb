@@ -118,7 +118,7 @@ class PublicController < ApplicationController
       end
     end
     
-    @shows, count = Show.ferret_search_date_location('*', Time.now, lat, long, @session[:radius] || 50, options)
+    @shows, count = Show.ferret_search_date_location('*', Time.now, lat, long, @session[:radius] || Address::DEFAULT_RADIUS, options)
     @shows.sort! { |x,y| x.date <=> y.date }
     
     if @shows.size == 0 and local_popular_shows? and !force_national

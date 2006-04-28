@@ -24,7 +24,7 @@ module Geosearch
     
     if params[:radius].nil?
       # Set default if they didn't enter a radius
-      @session[:radius] = '50'
+      @session[:radius] = Address::DEFAULT_RADIUS
     else
       @session[:radius] = params[:radius].strip
     end
@@ -64,9 +64,10 @@ module Geosearch
     
     return query, nil, nil, nil if @session[only_local_session_key(type)] == 'false' and !always_local
     
-    radius = radius || @session[:radius]
+    radius = radius || @session[:radius] || Address::DEFAULT_RADIUS
     if radius != "" and radius.to_f <= 0
       flash[:error] = "The search radius must be a positive number"
+      logger.error = "Bad search radius: #{radius}"
       return nil
     end
     

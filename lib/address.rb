@@ -57,6 +57,8 @@ module Address
     "wyoming" => "WY"
   } unless const_defined?("STATES")
   
+  DEFAULT_RADIUS = 50 unless const_defined?("DEFAULT_RADIUS")
+  
   def self.state_abbrev(name_or_abbrev)
     val = STATE_ABBREVS.find { |abbrev| abbrev == name_or_abbrev.upcase }
     return val if val

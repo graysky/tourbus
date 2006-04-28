@@ -67,7 +67,7 @@ class LoginController < ApplicationController
           cookies.delete :login
         end
           
-        set_location_defaults(band.location, 50, 'false', 'true', 'true')   
+        set_location_defaults(band.location, Address::DEFAULT_RADIUS, 'false', 'true', 'true')   
           
         band.last_login = Time.now
         band.save

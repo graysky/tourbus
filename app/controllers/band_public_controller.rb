@@ -4,7 +4,7 @@ require_dependency 'show_creator'
 class BandPublicController < ApplicationController
   include ShowCreator
   
-  session :off, :only => [:rss, :ical]
+  session :off, :only => [:rss, :ical, :external_map]
   before_filter :find_band, :except => :no_such_band
   helper :show
   helper :map

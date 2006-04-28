@@ -17,7 +17,6 @@ following account information:
 
 <p>
 Username: <%=@band.short_name%><br/>
-
 </p>
 
 <p>
@@ -25,19 +24,12 @@ Once your account is confirmed, your public page will become active at:
 </p>
 
 <p>
-  <a href="<%=@public_url%>"><%=@public_url%></a>
+<a href="<%=@public_url%>"><%=@public_url%></a>
 </p>
 
 <p>
-Comments and photos sent to this email address will be automatically added:
-</p>
-
-<p>
-  <a href="mailto:<%=@band.upload_email_addr%>"><%=@band.upload_email_addr%></a>
-</p>
-
 <%= @email_signoff %>
-
+</p>
 </body>
 </html>
   

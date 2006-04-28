@@ -89,6 +89,7 @@ class ApplicationController < ActionController::Base
         band.last_login = Time.now
         logger.info "Band #{band.name} logged in from a cookie"
         band.save
+        return true
       elsif cookies[:type] == 'fan'
         fan = Fan.find_by_uuid(cookies[:login])
         if not fan
@@ -104,6 +105,7 @@ class ApplicationController < ActionController::Base
         fan.save
         
         @session[:logged_in_as_downtree] = logged_in_as_downtree?
+        return true
       else
         logger.error("Invalid cookie type: #{cookies['type']}")
       end

@@ -15,14 +15,15 @@
       <a href="javascript:alert('coming soon')">Contact this band</a>
     <% end %>
     
+    <div id='band_links'>
     <% 
-        if @logged_in_as_band or logged_in_admin
+        if @logged_in_as_band
     %>
-      <%= render :partial => "list_links", :locals => { :links => @band.links, :can_edit => true } %>
-      <%= render :partial => "add_link" %>
+      <%= render :partial => 'profile_link_editing' %>
     <% else %>
-      <%= render :partial => "list_links", :locals => { :links => @band.links, :can_edit => false } %>
+      <%= render :partial => 'profile_links' %>
     <% end %>
+    </div>
   </p>
 </div>
 <br/>
@@ -31,12 +32,6 @@
   <h2 id="actions-title"><span class="title">Actions</span></h2>
   
   <div class="actions-box-rows">
-  <p>
-    <% if logged_in_fan and logged_in_fan.superuser? %>
-      <b><%= link_to "Edit This Band", :controller => "admin", :action => "edit_band", :id => @band.id %></b>
-      <br/>
-    <% end %>
-   </p>
    <p>
     <% if @logged_in_as_band %>
       <table>
@@ -140,6 +135,14 @@
   </p>
   <p>
     <table>
+    
+    <% if logged_in_fan and !@logged_in_as_fan and !@band.confirmed? %>
+        <tr>
+            <td><img src="/images/edit.png" height="16" width="16"/></td>
+            <td id='edit_profile_link'><%= enable_editing_link %></td>
+        </tr>
+    <% end %>
+    
     <% if !@band.confirmed? %>
       <%= 
         render :partial => "shared/report_problem",

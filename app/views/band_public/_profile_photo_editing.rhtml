@@ -1,0 +1,25 @@
+<td>
+  <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
+   <div id="band_logo_select" style="display:none">
+     <%= form_tag_with_upload_progress({ :action => 'change_logo' },
+                       {  :begin => "Element.show('logo_indicator')",
+                         :finish => "finish_image_upload(arguments[0])" })
+                       %>
+     <%= file_column_field "band", "logo" %>
+     
+       <br/>
+       <table><tr>
+         <td><%= submit_tag "OK" %></td>
+         <td><img id="logo_indicator" src="/images/indicator.gif" style="display:none"/></td>
+         <td><%= upload_status_tag %></td>
+       </tr></table>
+       <%= end_form_tag %>
+   </div>
+</td>
+<td style="padding-left:24px">
+  <% if @logged_in_as_band %>
+    <a id="edit_band_bio" href="#">Edit Your Bio</a>
+  <% else %>
+    <a id="edit_band_bio" href="#">Edit This Bio</a>
+  <% end %>
+</td>

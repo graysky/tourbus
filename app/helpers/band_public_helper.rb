@@ -12,4 +12,12 @@ module BandPublicHelper
       "<div id='band_bio'></div>"
     end
   end
+  
+  def enable_editing_link
+    link_to_remote "Edit This Profile", :url => { :action => :enable_editing }
+  end
+  
+  def disable_editing_link
+    link_to_remote "Stop Editing", :url => { :action => :disable_editing }
+  end
 end

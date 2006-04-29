@@ -49,39 +49,33 @@
     logoSelectShown = !logoSelectShown;
     
   }
+ 
+  var bio_editer;
+  function show_bio_editing()
+  {
+    bio_editor = new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio", okText:"Ok", cancelText:"Cancel"})
+  }
+  
+  function disable_bio_editing()
+  {
+    bio_editor.dispose();
+  }
+  
 </script>
+
 
 <% if not front_page %>
 <div class='go_back_link'><%= public_band_link "Back to profile", @band %></div>
 <% end %>
 
 <table width="95%">
-  <% if @logged_in_as_band %>
-    <tr><td>
-      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
-       <div id="band_logo_select" style="display:none">
-         <%= form_tag_with_upload_progress({ :action => 'change_logo' },
-                           {  :begin => "Element.show('logo_indicator')",
-                             :finish => "finish_image_upload(arguments[0])" })
-                           %>
-         <%= file_column_field "band", "logo" %>
-         
-           <br/>
-           <table><tr>
-             <td><%= submit_tag "OK" %></td>
-             <td><img id="logo_indicator" src="/images/indicator.gif" style="display:none"/></td>
-             <td><%= upload_status_tag %></td>
-           </tr></table>
-           <%= end_form_tag %>
-       </div>
-    </td>
-    <td style="padding-left:24px">
-      <% if @logged_in_as_band %>
-        <a id="edit_band_bio" href="#">Edit Your Bio</a>
-      <% end %>
-    </td>
-    </tr>
-  <% end %>
+
+  <tr id='photo_editing_row'>
+    <% if @logged_in_as_band %>
+        <%= render :partial => 'profile_photo_editing' %>
+    <% end %>
+  </tr>
+
   <tr>
     <td valign="top">
       <div id="logo_container">
@@ -99,10 +93,11 @@
 </table>
 
 <% if @logged_in_as_band %>
-<script type="text/javascript">
-  new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio", okText:"Ok", cancelText:"Cancel"})
-</script>
+    <script type="text/javascript">
+        show_bio_editing();
+    </script>
 <% end %>
+
 <script>
   adjust_bio_height();
 </script>

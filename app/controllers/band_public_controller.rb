@@ -37,6 +37,15 @@ class BandPublicController < ApplicationController
   
   end
   
+  
+  def enable_editing
+    @headers["Content-Type"] = "text/javascript"
+  end
+  
+  def disable_editing
+    @headers["Content-Type"] = "text/javascript"
+  end
+  
   def change_logo
     begin
       @band.update_attributes(params[:band])

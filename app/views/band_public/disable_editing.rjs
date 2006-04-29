@@ -1,0 +1,4 @@
+page.replace_html 'photo_editing_row', ''
+page.replace_html 'band_links', :partial => 'profile_links'
+page.replace_html 'edit_profile_link', enable_editing_link
+page.call('disable_bio_editing')

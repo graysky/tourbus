@@ -63,8 +63,13 @@ class Housekeeping
   # Save in chunks just to avoid huge AR memory usage
   def self.save_chunks(klass)
     klass.each_by_chunk do |obj|
-      obj.no_update
-      obj.save_without_validation!
+      begin
+        obj.no_update
+        obj.save_without_validation!
+      rescue ActiveRecord::RecordNotSaved => e
+        puts "Trouble saving: #{obj}"
+        logger.error "Error saving #{obj}: #{e.to_s}"
+      end
     end
   end
   

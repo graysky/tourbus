@@ -35,5 +35,10 @@ class Emails
   def self.from
     return "tourb.us robot <robot@" + domain + ">"
   end
+  
+  # A spam address for testing
+  def self.spam
+    return "spam@" + domain
+  end
 
 end

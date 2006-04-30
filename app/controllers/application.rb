@@ -298,7 +298,7 @@ class ApplicationController < ActionController::Base
   end
   
   def logged_in_as_downtree?
-    [Fan.mike, Fan.gary, Fan.admin].include?(logged_in_fan)
+    [Fan.mike, Fan.gary, Fan.admin, Fan.bushido].include?(logged_in_fan)
   end
   
   protected

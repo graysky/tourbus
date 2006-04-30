@@ -3,6 +3,11 @@ require_dependency 'emails'
 # Base class for all our ActionMailers
 class BaseMailer < ActionMailer::Base
 
+  # Check to see if this email should not be sent
+  def email_testing?(addr)
+    return Emails.spam.eql(addr)
+  end
+
   ## This is lame - better to share across with ActiveController helpers
   
   # Return the URL prefix *before* a band name

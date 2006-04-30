@@ -117,7 +117,7 @@ module FerretMixin
         end
         
         IGNORED_STRINGS = [','] unless const_defined?('IGNORED_STRINGS')
-        INVALID_CHARS = ['!'] unless const_defined?('INVALID_CHARS')
+        INVALID_CHARS = ['!', '+'] unless const_defined?('INVALID_CHARS')
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
@@ -126,6 +126,10 @@ module FerretMixin
           
           IGNORED_STRINGS.each { |str| q.gsub!(str, ' ') }
           INVALID_CHARS.each { |str| q.gsub!(str, '') }
+          
+          # Can't end in
+          q = q[0...(q.size - 1)] if q.ends_with?('-')
+          q.gsub!('-', '') if q.ends_with?('-*')
           
           query = Search::BooleanQuery.new
           if q != "*"

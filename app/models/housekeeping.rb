@@ -62,6 +62,7 @@ class Housekeeping
   
   # Save in chunks just to avoid huge AR memory usage
   def self.save_chunks(klass)
+    logger = RAILS_DEFAULT_LOGGER
     klass.each_by_chunk do |obj|
       begin
         obj.no_update

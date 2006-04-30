@@ -1,6 +1,6 @@
 # Handles create/edit/viewing Venues
 class VenueController < ApplicationController
-  before_filter :find_venue
+  before_filter :find_venue, :except => :add_dialog
   helper :show
   helper :map
   helper :tag

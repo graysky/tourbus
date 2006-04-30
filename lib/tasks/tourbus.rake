@@ -120,6 +120,22 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Backup all *.log files in log/ and truncate them to zero bytes"
+task :backup_logs do
+  today = Time.now.strftime("%Y%m%d")
+  FileList["log/*.log"].each do |log_path|
+      # Copy the log files to archive dir
+      log_file = File.split(log_path)[1]
+      FileUtils.mkpath('log/archive')
+      dest = File.join('log', 'archive', "#{today}_" + log_file)
+      FileUtils.copy_file(log_path, dest)
+
+      # Truncate the file
+      f = File.open(log_path, "w")
+      f.close
+  end
+end
+
 ### Helpful tasks during development
 
 desc "Check for email sent to post comments and photos"

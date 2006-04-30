@@ -68,8 +68,8 @@ class Housekeeping
         obj.no_update
         obj.save_without_validation!
       rescue ActiveRecord::RecordNotSaved => e
-        puts "Trouble saving: #{obj}"
-        logger.error "Error saving #{obj}: #{e.to_s}"
+        puts "Trouble saving: #{klass} with id: #{obj.id}"
+        logger.error "Error saving #{klass} with id: #{obj.id}: #{e.to_s}"
       end
     end
   end

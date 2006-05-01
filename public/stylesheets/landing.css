@@ -4,7 +4,7 @@
 
 body 
 {
-	margin:10px 0px; 
+	margin:0px 0px; 
 	padding:0px;
 	text-align:center;
 	background-color: #484A4C;
@@ -38,7 +38,7 @@ a
 
 #logo
 {
-	padding-top:10px;
+	padding-top:0px;
 	text-align:center;
 }
 
@@ -49,7 +49,7 @@ a
 	font-size:16px;
 	padding-right:20px;
 	padding-left:20px;
-	padding-top:20px;
+	padding-top:10px;
 	padding-bottom:0px;
 }
 
@@ -65,14 +65,14 @@ a
 	width:620px;
 	text-align:center;
 	border: 0px solid #94C28A;
-	padding:20px;
+	padding: 4px 20px 20px 20px;
 	font-size:16px;
 }
 
 /* For email prompt text */
 #signup td
 {
-	padding-top:10px;
+	padding-top:3px;
 	color: #CCCCCC;
 	font-size:16px;
 	vertical-align: bottom;
@@ -106,7 +106,7 @@ a
 	background: #eee;
 	border: 1px solid #bbb;
 	margin-right:10px;
-	margin-bottom:10px;		
+	margin-bottom:5px;		
 }
 
 #submit-invite
@@ -117,5 +117,5 @@ a
 	background: #eee;
 	border: 1px solid #bbb;
 	margin-right:10px;
-	margin-bottom:10px;		
+	margin-bottom:0px;		
 }

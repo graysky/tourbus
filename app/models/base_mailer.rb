@@ -29,7 +29,7 @@ class BaseMailer < ActionMailer::Base
   # used in many emails.
   def email_signoff
     str = ""
-    str << "<p>thanks,<br/>"
+    str << "<p>rock on,<br/>"
     str << "the <a href='http://tourb.us'>tourb.us</a> team</p>"
     return str
   end

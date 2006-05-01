@@ -1,6 +1,5 @@
 <html>
 <body>
-  <p>
     <% if @show.title != "" %>
       <strong><%= @show.title  %></strong><br/>
     <% end %>
@@ -11,8 +10,7 @@
            <%= @show.description %>
            <br/><br/>
          <% end %>
-         <a href="<%= @url_prefix + @show.id.to_s %>">More Details</a>
-  </p>  
+         <a href="<%= @url_prefix + @show.id.to_s %>">Full Details</a>
   
   <p>
     You are currently watching this show. If you are going to attend, click
@@ -22,12 +20,11 @@
   
   <hr/>
   <p>
-    If you'd like to stop receiving these reminder emails, log in to your account 
-    <a href="http://tourb.us">here</a> and modify the "Show Reminders" setting 
+    If you'd like to stop receiving these reminders, log in to 
+    <a href="http://tourb.us">your account</a> and modify the "Show Reminders" setting 
     for watched shows.
   </p>
 
 <%= @email_signoff %>
-
 </body>
 </html>

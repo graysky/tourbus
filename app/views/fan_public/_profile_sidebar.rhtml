@@ -9,7 +9,7 @@
     
     <br/><br/>
     <% if !@fan.website.nil? and !@fan.website.empty? %>
-      <a href="<%=@fan.website%>"><%=h(@fan.website)%></a>
+      <a href="<%=@fan.website%>"><%=h(format_website(@fan.website))%></a>
     <% end %>
     
   </p>

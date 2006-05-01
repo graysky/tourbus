@@ -9,6 +9,7 @@
 <table border="1" cellpadding="2" width="80%">
 
 <tr>
+<th>#</th>
 <th>ID</th>
 <th>Fan name</th>
 <th>Last Login</th>
@@ -16,9 +17,12 @@
 </tr>
 
 <% 
+  i = 0
   for fan in @fans
+  i = i + 1
 %>
   <tr>
+    <td><%= i %>
     <td><%= fan.id %>
     <td><a href="<%= public_fan_url(fan) %>"><%= fan.name %></a></td>
     <% if fan.last_login.nil? or fan.last_login + 1.day < Time.now %>

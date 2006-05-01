@@ -59,6 +59,7 @@ class RemindersMailer < BaseMailer
     @body['fan'] = fan
     @body['show'] = show
     
+    @body['band_prefix_url'] = band_prefix_url
     @body['url_prefix'] = show_prefix_url
     @body['email_signoff'] = email_signoff
   end

@@ -66,7 +66,7 @@ class ShowController < ApplicationController
     name.strip!
  
     if name && name != ""
-      params[:query] = name
+      params[:query] = name + '*'
       query, radius, lat, long = prepare_query(Venue.table_name, params[:location], params[:radius], true)
       if query.nil?
         @results = []

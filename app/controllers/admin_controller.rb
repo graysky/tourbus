@@ -17,6 +17,13 @@ class AdminController < ApplicationController
   def list_fans
     @fans = Fan.find(:all)
   end
+
+  # Track recently added shows by fans and bands  
+  def list_added_shows
+    go_back = 7.days # How many days to go back
+    @fan_shows = Show.find(:all, :conditions => ["created_by_fan_id is not null AND created_on > ?", Time.now - go_back], :order => "created_on ASC")
+    @band_shows = Show.find(:all, :conditions => ["created_by_band_id is not null AND created_on > ?", Time.now - go_back], :order => "created_on ASC")
+  end
   
   def destroy_announcement
     Announcement.find(params[:id]).destroy

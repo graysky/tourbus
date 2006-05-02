@@ -1,0 +1,63 @@
+<div id="main">
+<% @page_title = "List Added Shows" %>
+<% @header_title = "List Added Shows" %>
+
+<h2>Shows Added by Fans</h2>
+<p>shows added by fans within the last 7 days</p>
+<p>
+
+<table border="1" cellpadding="2" width="100%">
+
+<tr>
+<th>Date Added</th>
+<th>Show Date</th>
+<th>Title</th>
+<th>Submitter</th>
+</tr>
+
+<% for show in @fan_shows %>
+  <tr>
+    <td><%= "#{slash_date(show.created_on)}" %></td>
+    <td><%= show.formatted_date %>
+    <td><a href="<%= public_show_url(show) %>"><%= show.formatted_title %></a></td>
+    <%
+      # Terrible, terrible hack to get fan URL
+      fan = Fan.find(show.created_by_fan_id) 
+    %>
+    <td><a href="<%= public_fan_url(fan) %>"><%= fan.name %></a></td>
+  </tr>
+<% end %>
+
+</table>
+</p>
+
+<h2>Shows Added by Bands</h2>
+<p>shows added by bands within the last 7 days</p>
+<p>
+
+<table border="1" cellpadding="2" width="100%">
+
+<tr>
+<th>Date Added</th>
+<th>Show Date</th>
+<th>Title</th>
+<th>Submitter</th>
+</tr>
+
+<% for show in @band_shows %>
+  <tr>
+    <td><%= "#{slash_date(show.created_on)}" %></td>
+    <td><%= show.formatted_date %>
+    <td><a href="<%= public_show_url(show) %>"><%= show.formatted_title %></a></td>
+    <%
+      # Terrible, terrible hack to get fan URL
+      band = Band.find(show.created_by_band_id) 
+    %>
+    <td><a href="<%= public_band_url(band) %>"><%= band.name %></a></td>
+  </tr>
+<% end %>
+
+</table>
+</p>
+
+</div>

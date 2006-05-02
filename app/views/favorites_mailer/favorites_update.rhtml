@@ -1,20 +1,20 @@
 <html>
 <body>
-  <p>
-    Hi, <%= @fan.name %>. Here's a list of upcoming shows we think you'll be interested in.
-    To make these emails more useful to you in the future, tell tourb.us about more of your favorite bands.
+  <p>Hey <%= @fan.name %>,
+  </p>
+  <p>Here's a list of upcoming shows we think you'll be interested in.<br/>
+    To make these emails even better, tell tourb.us more of your favorite bands.
   </p>
   
   <% for show in @new_shows %>
   <p>
-        <strong><%= show.bands.map { |band| band.name }.join("/") %></strong><br/>
-        <%= show.date.strftime("%a %m/%d") %>, <%= show.date.strftime("%I:%M%p") %><br/>
-        @ <%= show.venue.name %> in <%= show.venue.city %>, <%= show.venue.state %><br/>
-        <% if show.description != "" %>
-           <%= show.description %>
-           <br/><br/>
-         <% end %>
-         <a href="<%= @url_prefix + show.id.to_s %>">More Details</a> 
+  <strong><%= show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ")%></strong><br/>
+  <%= show.date.strftime("%a %m/%d") %>, <%= show.date.strftime("%I:%M%p") %><br/>
+  @ <%= show.venue.name %> in <%= show.venue.city %>, <%= show.venue.state %><br/>
+  <% if show.description != "" %>
+    <br/><%= show.description %><br/><br/>
+  <% end %>
+  <a href="<%= @url_prefix + show.id.to_s %>">Full Details</a> 
          
   </p>  
   <% end %>

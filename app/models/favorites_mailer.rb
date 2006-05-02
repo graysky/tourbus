@@ -4,7 +4,7 @@ require_dependency 'favorites_calculator'
 class FavoritesMailer < BaseMailer
   
   def favorites_update(fan, new_shows, updated_shows, sent_at = Time.now)
-    @subject    = '[tourb.us] Your List of Upcoming Shows'
+    @subject    = '[tourb.us] Your Upcoming Shows'
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -17,6 +17,7 @@ class FavoritesMailer < BaseMailer
     @body['updated_shows'] = updated_shows
     
     @body['url_prefix'] = show_prefix_url
+    @body['band_prefix_url'] = band_prefix_url
     @body['email_signoff'] = email_signoff
   end
   

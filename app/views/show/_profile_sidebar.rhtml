@@ -1,5 +1,9 @@
 <div id="side">
 
+<% content_for("head") do  %>
+<%= javascript_include_tag 'tips' %>
+<% end %>
+
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
     <div class="actions-box-rows">
@@ -20,7 +24,7 @@
           <p>
             You must be logged in as a fan to say you're attending!<br/><br/>
             
-            <%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
+            <%= link_to "Cancel", "#", :onclick => "addAttending(event);" %>
           </p>
           </div>
     <% else %>
@@ -40,8 +44,8 @@
           }) 
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleAttending(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
+              <%= submit_tag "OK", :onclick => "removeAttending(event);" %>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "removeAttending(event);" %>
             <%= end_form_tag %>
           </p>
           </div>
@@ -74,8 +78,8 @@
               )  
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleAttending(event);"%>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleAttending(event);" %>
+              <%= submit_tag "OK", :onclick => "addAttending(event);"%>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "addAttending(event);" %>
             <%= end_form_tag %>
           </p>
       </div>
@@ -107,7 +111,7 @@
           <p>
             You must be logged in as a fan to watch a show!<br/><br/>
             
-            <%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
+            <%= link_to "Cancel", "#", :onclick => "addWatching(event);" %>
           </p>
           </div>
     <% else %>
@@ -127,8 +131,8 @@
           }) 
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleWatching(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
+              <%= submit_tag "OK", :onclick => "removeWatching(event);" %>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "removeWatching(event);" %>
             <%= end_form_tag %>
           </p>
           </div>
@@ -161,8 +165,8 @@
               ) 
           %>
           
-              <%= submit_tag "OK", :onclick => "toggleWatching(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "toggleWatching(event);" %>
+              <%= submit_tag "OK", :onclick => "addWatching(event);" %>&nbsp;
+              <%= link_to "Cancel", "#", :onclick => "addWatching(event);" %>
             <%= end_form_tag %>
           </p>
       </div>

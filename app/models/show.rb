@@ -147,16 +147,9 @@ class Show < ActiveRecord::Base
   
   # The popularity is currently a somewhat arbitrary number.
   def popularity
-    # The popularity of a show is determined by the number of watchers and attendees,
-    # as well as the popularity of all bands playing the show.
+    # The popularity of a show is determined by the number of watchers and attendees
     # An attendee is worth twice as much as a watcher.
-    popularity = self.num_watchers + (2 * self.num_attendees)
-    
-    fans = self.bands.inject(0) { |sum, band| sum + band.num_fans }
-    
-    # For now, increase popularity by the percentage of all fans that are
-    # fans of a band playing the show.
-    popularity + ((fans.to_f / Fan.count.to_f) * 100).to_i
+    self.num_watchers + (2 * self.num_attendees)
   end
   
   protected

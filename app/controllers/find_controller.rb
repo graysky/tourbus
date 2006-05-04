@@ -103,7 +103,8 @@ class FindController < ApplicationController
     end
     
     options = default_search_options
-    options[:sort] = popularity_sort_field
+    options[:sort] = date_sort_field
+    options[:conditions] = { 'popularity' => '> 0'}
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)

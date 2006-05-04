@@ -111,21 +111,18 @@
    <% elsif type == Photo.Band %>    
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this band.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
        
    <% elsif type == Photo.Venue %>    
        
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this venue.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
       
    <% elsif type == Photo.Show %>    
        
           <div id='no_photos_msg' class="profile_section_no_content">There are no photos of this show.
           <% if not logged_in? %>If you were logged in you could upload some!<% end %>
-          <% if logged_in? %>Why not <%= link_to_function 'upload', "new Effect.Appear('add_photo')"%> one?<% end %>
           </div>
         
    <% end %>

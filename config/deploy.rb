@@ -50,7 +50,7 @@ set :application, "tourbus"
 # - Deploys only what is in your local SVN working copy (not HEAD)
 # - Assumes anon. read access.
 # - Requires that the local copy has "svn" in the path.
-set :repository, "svn://graysky.dyndns.org/svn/tourbus/trunk/tourbus"
+set :repository, "svn://graysky.dyndns.org/svn/tourbus/branches/tourbus-production"
 
 # Don't use sudo for tourb.us
 set :use_sudo, false

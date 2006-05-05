@@ -25,6 +25,13 @@ class BaseMailer < ActionMailer::Base
     return Emails.url + "/"
   end
   
+  def email_signoff_plain
+    str = ""
+    str << "rock on,\n"
+    str << "the tourb.us team"
+    return str
+  end
+  
   # The closing part of emails we send that is
   # used in many emails.
   def email_signoff

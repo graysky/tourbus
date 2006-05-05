@@ -3,6 +3,7 @@ require_dependency 'favorites_calculator'
 # Sends out email about favorites
 class FavoritesMailer < BaseMailer
   
+  # NOTE: This sends multipart emails for HTML and plaintext
   def favorites_update(fan, new_shows, updated_shows, sent_at = Time.now)
     @subject    = '[tourb.us] Your Upcoming Shows'
     @body       = {}
@@ -10,7 +11,6 @@ class FavoritesMailer < BaseMailer
     @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
-    @content_type = "text/html"
     
     @body['fan'] = fan
     @body['new_shows'] = new_shows
@@ -19,6 +19,7 @@ class FavoritesMailer < BaseMailer
     @body['url_prefix'] = show_prefix_url
     @body['band_prefix_url'] = band_prefix_url
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
   end
   
   def no_location(fan, sent_at = Time.now)

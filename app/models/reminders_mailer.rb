@@ -28,7 +28,8 @@ class RemindersMailer < BaseMailer
     @body['url_prefix'] = show_prefix_url
   end
   
-  # Sends an email reminder about a show
+  # Sends an email reminder about a show 
+  # NOTE: This sends multipart emails for HTML and plaintext
   def email_reminder(fan, show, sent_at = Time.now)
     @subject    = "[tourb.us] Reminder: #{show.formatted_title}"
     @body       = {}
@@ -36,7 +37,6 @@ class RemindersMailer < BaseMailer
     @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
-    @content_type = "text/html"
     
     @body['fan'] = fan
     @body['show'] = show
@@ -44,9 +44,11 @@ class RemindersMailer < BaseMailer
     @body['band_prefix_url'] = band_prefix_url
     @body['show_prefix_url'] = show_prefix_url
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
   end
   
   # Sends an email reminder about a watched show
+  # NOTE: This sends multipart emails for HTML and plaintext
   def email_reminder_for_watch(fan, show, sent_at = Time.now)
     @subject    = "[tourb.us] Reminder: #{show.formatted_title}"
     @body       = {}
@@ -54,7 +56,6 @@ class RemindersMailer < BaseMailer
     @from       = Emails.from
     @sent_on    = sent_at
     @headers    = {}
-    @content_type = "text/html"
     
     @body['fan'] = fan
     @body['show'] = show
@@ -62,6 +63,7 @@ class RemindersMailer < BaseMailer
     @body['band_prefix_url'] = band_prefix_url
     @body['url_prefix'] = show_prefix_url
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
   end
   
   # Main entry point from the runner script.

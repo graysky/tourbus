@@ -1,0 +1,15 @@
+Hey <%= @fan.name %>,
+
+Here's a list of upcoming shows we think you'll be interested in.
+To make these emails even better, tell tourb.us more of your favorite bands.
+  
+<% for show in @new_shows %>
+<%= show.bands.map { |band| "#{band.name}" }.join(" / ") %>
+<%= show.date.strftime("%a %m/%d") %>, <%= show.date.strftime("%I:%M%p") %>
+@ <%= show.venue.name %> in <%= show.venue.city %>, <%= show.venue.state %>
+<% if show.description != "" %>
+<%= show.description %>
+<% end -%>
+<% end -%>
+
+<%= @email_signoff_plain %>

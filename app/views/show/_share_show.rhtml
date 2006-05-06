@@ -1,0 +1,48 @@
+<tr>
+<td><img src="/images/email.png" height="16" width="16" onload='fixPNG(this)'/></td>
+<td>
+  <a href="#" id="share_show_link">Share This Show</a>
+  <div id="share_show_tip" class='fave_tip'>
+    <h3>Share This Show</h3>
+      <p>Invite a friend to check out this show.</p>
+          <%= form_remote_tag(
+        :url => { 
+          :controller => "show",
+          :action => "share", 
+          :id => id,
+        }) 
+        %>
+        
+        <% 
+        if !logged_in_fan.nil?
+          initial_from = logged_in_fan.name
+        elsif !logged_in_band.nil?
+          initial_from = logged_in_band.name
+        else
+          initial_from = ''
+        end
+        %>
+        
+        <p>Your Name:</p>
+        <%= text_field_tag 'from', initial_from, :size => '38' %>
+        
+        <p>Friends Email:</p>
+        <%= text_field_tag 'emails', '', :size => '38' %>
+        <br/><small>separate multiple addresses with comma</small>
+        
+        <p>Message:</p>
+        <%= text_area_tag 'msg', '', :size => '25x3' %>
+
+      
+        <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('share_show_link'), event);$('share_show_link').innerHTML = 'Message Sent!'" %>&nbsp;
+        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('share_show_link'), event)" %>
+        <%= end_form_tag %>
+      </p>
+    </div>
+    
+    <script type="text/javascript">
+      Tooltip.autoHideClick = false;
+      Tooltip.add('share_show_link', 'share_show_tip');
+    </script>
+</td>
+</tr>

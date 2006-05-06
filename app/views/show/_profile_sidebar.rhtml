@@ -216,6 +216,12 @@
     <% end %>
 	
     <%= 
+      render :partial => "share_show",
+           :locals => { :id => @show.id,
+                   }
+    %>
+	
+    <%= 
       render :partial => "shared/report_problem",
            :locals => { :id => @show.id, :type => "show",
                    :reasons => ["Inaccurate Information", 

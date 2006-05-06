@@ -1,13 +1,20 @@
-<% if @show.title != "" %>
+Your friend <%= @from_name %> invites you to check out this show:
+<% if @show.title != "" -%>
 <%= @show.title %>
-<% end %>
+<% end -%>
 <%= @show.bands.map { |band| "#{band.name}" }.join(" / ") %>
 <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %>
 @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %>
-<% if @show.description != "" %>
+<% if @show.description != "" -%>
 <%= @show.description %>
-<% end %>
+<% end -%>
 <% the_url = @show_prefix_url.to_s + @show.id.to_s %>
 More details: <%= the_url %>
+
+<% if !@msg.nil? and !@msg.empty? -%>
+<%= @from_name %> wrote:
+
+<%= @msg %>
+<% end -%>
 
 <%= @email_signoff_plain %>

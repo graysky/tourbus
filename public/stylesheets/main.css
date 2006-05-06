@@ -1605,7 +1605,7 @@ table.show_table td {
 	font-weight:bold;
 }
 
-#add_fave_link, #remove_fave_link, #report_problem_link {
+#add_fave_link, #remove_fave_link, #report_problem_link, #share_show_link {
 	font-size:11px;
 	text-decoration:underline;
 }

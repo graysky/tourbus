@@ -7,6 +7,9 @@
 <% if @show.description != "" %>
 <%= @show.description %>
 <% end %>
+<% the_url = @show_prefix_url.to_s + @show.id.to_s %>
+More details: <%= the_url %>
+
 You are currently watching this show. 
 
 If you'd like to stop receiving these reminders, log in to your account and modify 

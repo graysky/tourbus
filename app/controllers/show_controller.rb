@@ -105,6 +105,25 @@ class ShowController < ApplicationController
   def fans
   end
   
+  # Share this show with a friend
+  def share
+    return if @request.get?
+    
+    emails = params[:emails]
+    
+    emails.chomp!(" ")
+    
+    # Try to format emails correctly
+    to_addrs = emails.split(' ')
+    
+    from_name = params[:from]
+    msg = params[:msg]
+      
+    # Send the email
+    ShareMailer.deliver_share_show(to_addrs, from_name, @show, msg)
+    render :nothing => true
+  end
+  
   private
   
   # Make queries to get the items for RSS feed

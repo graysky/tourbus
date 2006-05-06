@@ -10,7 +10,8 @@
            <%= @show.description %>
            <br/><br/>
          <% end %>
-         <a href="<%= @url_prefix + @show.id.to_s %>">Full Details</a>
+         <% the_url = @show_prefix_url.to_s + @show.id.to_s %>
+         More details: <a href="<%= the_url %>"><%= the_url %></a>
   
   <p>
     You are currently watching this show. If you are going to attend, click

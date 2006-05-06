@@ -1,0 +1,32 @@
+<html>
+<body>
+Your friend <%= @from_name %> invites you to check out this show:
+
+<p>
+<% if @show.title != "" %>
+<strong><%= @show.title %></strong><br/>
+<% end %>
+<strong><%= @show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
+<%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
+@ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
+<% if @show.description != "" %>
+<%= @show.description %>
+<br/><br/>
+<% end %>
+<% the_url = @show_prefix_url.to_s + @show.id.to_s %>
+More details: <a href="<%= the_url %>"><%= the_url %></a>
+</p>
+
+<% if !@msg.nil? and !@msg.empty? %>
+
+<p><%= @from_name %> wrote:
+
+<blockquote>
+<%= @msg %>
+</blockquote>
+<% end %>
+</p>
+
+<%= @email_signoff %>
+</body>
+</html>

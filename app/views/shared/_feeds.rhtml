@@ -1,0 +1,18 @@
+<% # Partial to show links to RSS and iCal feed links. Expects:
+   # rss_url => the RSS url
+   # ical_url => the iCal url
+-%>
+<p>
+<table border="0" cellpadding="0" cellspacing="0" class="feeds_table">
+<tr><td><a href="<%= rss_url %>"><img src="/images/feed.png" height="16" width="16"/></a></td>
+<td><a style="font-size:11px" href="<%= rss_url %>" id="rss_link">Subscribe via RSS</a></td>
+</tr></table>
+<% if not ical_url.nil?%>
+<table border="0" cellpadding="0" cellspacing="0" class="feeds_table">
+<tr><td>
+<a href="<%= ical_url %>" id="rss_link"><img src="/images/ical.gif" height="14" width="36"/></a>
+</td>
+<td><a href="<%= ical_url %>" id="rss_link">Subscribe via iCal</a></td>
+</tr></table>
+<% end %>
+</p>

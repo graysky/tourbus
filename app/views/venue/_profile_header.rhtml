@@ -74,6 +74,7 @@ init_map()
         </td>
       </tr>
       
+      <% if !@venue.url.nil? and !@venue.url.blank? %>
       <tr>
         <td>
         <b>Web Page:</b>
@@ -84,7 +85,9 @@ init_map()
               <%= venue_url %>
         </td>
       </tr>
+      <% end %>
       
+      <% if !@venue.description.nil? and !@venue.description.blank? %>
       <tr>
         <td>
         <b>Description:</b>
@@ -95,6 +98,7 @@ init_map()
           <%= venue_desc %>
         </td>
       </tr>
+      <% end %>
       
     </table>
       

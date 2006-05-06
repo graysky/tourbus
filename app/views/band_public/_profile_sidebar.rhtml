@@ -29,6 +29,16 @@
     <% end %>
     </div>
   </p>
+  
+  <%= render(
+    :partial => "shared/feeds",
+    :locals =>
+      {
+      :rss_url => public_band_rss_url,
+      :ical_url => public_band_ical_url,
+      })
+  %>
+  
 </div>
 <br/>
 
@@ -123,21 +133,6 @@
 	  </p>
      <% end %>
   <p>
-    <!-- TODO Pull in partial -->
-    <table>
-    <tr>
-    <td><img src="/images/feed.png" height="16" width="16"/></td>
-    <td><a style="font-size:11px" href="<%= public_band_rss_url %>" id="rss_link">Subscribe via RSS</a></td>
-    </tr>
-    </table>
-    <table>
-    <tr>    
-      <td><img src="/images/ical.gif" height="14" width="36"/></td>
-      <td><a href="<%= public_band_ical_url %>" id="rss_link">Subscribe via iCal</a></td>
-    </tr>
-    </table>
-  </p>
-  <p>
     <table>
     
     <% if logged_in_fan and !@logged_in_as_fan and !@band.confirmed? %>
@@ -182,7 +177,7 @@
   
   <% if @band.fans.empty? %>
     <p>
-      <strong>This band has no fans</strong>
+      <strong>This band has no fans yet</strong>
     </p>
   <% else%>
     <%= tiny_fan_results(@band.fans.random(4)) %>

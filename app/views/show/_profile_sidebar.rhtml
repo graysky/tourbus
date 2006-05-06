@@ -4,6 +4,27 @@
 <%= javascript_include_tag 'tips' %>
 <% end %>
 
+<div id="about-box" class="sidebar-box">
+  <h2 id="about-title"><span class="title">About This Show</span></h2>
+  
+  <p>
+  <strong>Date Added:</strong> <%= slash_date(@show.created_on) %><br/>
+  <strong>Profile Views:</strong> <%= @show.page_views %><br/>
+  </p>
+  
+    <%= render(
+    :partial => "shared/feeds",
+    :locals =>
+      {
+      :rss_url => public_show_rss_url(@show),
+      :ical_url => nil,
+      })
+  %>
+  
+</div>
+
+<br/>
+
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
     <div class="actions-box-rows">
@@ -181,16 +202,6 @@
     </script>
   </p>
   
-  
-  <p>
-    <!-- TODO Pull in partial -->
-    <table>
-    <tr>
-    <td><img src="/images/feed.png" height="16" width="16"/></td>
-    <td><a style="font-size:11px" href="<%= public_show_rss_url(@show) %>" id="rss_link">Subscribe via RSS</a></td>
-    </tr>
-    </table>
- </p>
  <p>
     <table>
     <% if can_edit_show(@show) %>
@@ -240,7 +251,6 @@
 
 <br/>
 
-
   <%= render(
   :partial => "shared/tags", 
   :locals => 
@@ -257,6 +267,8 @@
 <script type="text/javascript">
     var white = '#FFFFFF';
 
+    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );

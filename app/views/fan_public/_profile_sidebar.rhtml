@@ -13,24 +13,31 @@
     <% end %>
     
   </p>
+  
+  <%= render(
+    :partial => "shared/feeds",
+    :locals =>
+      {
+      :rss_url => public_fan_rss_url,
+      :ical_url => public_fan_ical_url,
+      })
+  %>
   </div>
   
   <br/>
   
+  <% # Only show the box if there are actions %>
+  <% if @logged_in_as_fan %>
   <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
     
     <div class="actions-box-rows">  
     <p>
-    <!-- TODO Pull in partial -->
     <table>
-    <% if @logged_in_as_fan %>
       <tr>
         <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
       </tr>
-    <% end %>
-    <% if @logged_in_as_fan %>
       <tr>
         <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "Import Favorites", :controller => "fan", :action => "import_favorites" %></td>
@@ -39,22 +46,13 @@
         <td><img src="/images/table.png" height="16" width="16" onload='fixPNG(this)'/></td>
         <td><%= link_to "View Your Wishlist", :controller => "fan", :action => "wishlist" %></td>
       </tr>
-    <% end %>
-    <tr>    
-      <td><img src="/images/feed.png" height="16" width="16"/></td>
-      <td><a href="<%= public_fan_rss_url %>" id="rss_link">Subscribe via RSS</a></td>
-    </tr>
-    </table>
-    <table>
-    <tr>    
-      <td><img src="/images/ical.gif" height="14" width="36"/></td>
-      <td><a href="<%= public_fan_ical_url %>" id="rss_link">Subscribe via iCal</a></td>
-    </tr>
     </table>
     
     </p>
   </div>
   </div>
+  <% end %>
+
   
   <% if @logged_in_as_fan %>
   <br/>
@@ -86,12 +84,13 @@
   adjust_bio_height();
   
   var white = '#FFFFFF';
+  Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
 
+  <% if @logged_in_as_fan %>
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
-    Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
-    <% if @logged_in_as_fan %>
+    
     Rico.Corner.round( $('scene-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('scene-title'), {corners:'top', bgColor : white} );
     <% end %>

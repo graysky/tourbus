@@ -18,6 +18,6 @@ module BandPublicHelper
   end
   
   def disable_editing_link
-    link_to_remote "Stop Editing", :url => { :action => :disable_editing }
+    link_to_remote "Finished Editing", :url => { :action => :disable_editing }
   end
 end

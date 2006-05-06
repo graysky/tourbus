@@ -236,7 +236,7 @@ class Fan < ActiveRecord::Base
     ops = [
             ["---", 0], ["1 hour", 60], 
             ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
-            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
+            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320], ["5 days", 7200],
             ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]
   end
@@ -245,7 +245,7 @@ class Fan < ActiveRecord::Base
   def self.watching_reminder_options
     ops = [
             ["Never", 0],
-            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320],
+            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320], ["5 days", 7200],
             ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]
   end

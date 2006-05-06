@@ -74,7 +74,7 @@ var Tooltip = {
      * till X has passed. This is to allow the user to move a little off the element -
      * which is especially useful when it's an inline element such as a link.
      */
-    autoHideTimeout: 40,
+    autoHideTimeout: 1000,
 	
 	/**
 	 * @var boolean Allow user to click anywhere to hide current tooltip

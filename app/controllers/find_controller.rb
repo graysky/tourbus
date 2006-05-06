@@ -88,6 +88,7 @@ class FindController < ApplicationController
     end
     
     options = default_search_options
+    options[:sort] = popularity_sort_field
     options[:exact_date] = true
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)

@@ -37,8 +37,8 @@ end
 
 <center>
 <div id="browse_links">
-  <%= link_to_unless_current "Search", :action => 'band' %>
-  <%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %>
+  <%= link_to_unless_current "Search", :action => 'band' %> <span class="normal">|</span>
+  <%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %> <span class="normal">|</span>
   <%= link_to_unless_current "Newest Bands" , :action => 'browse_newest_bands'%>
 </div>
 

@@ -41,8 +41,8 @@ end
 <center>
 
 <div id="browse_links">
-  <%= link_to_unless_current "Search", :action => 'show' %>
-  <%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %>
+  <%= link_to_unless_current "Search", :action => 'show' %> <span class="normal">|</span>
+  <%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %> <span class="normal">|</span>
   <%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
 </div>
 

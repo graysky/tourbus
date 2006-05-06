@@ -1323,8 +1323,17 @@ table.compact-form-table td input, table.compact-form-table td select {
 	font-weight:bold;
 }
 
+#browse_links .normal {
+    margin-left: 7px;
+    margin-right: 7px;
+    padding: 0 0 0 0;
+    font-weight:normal;
+    font-size:12px;
+    color: black;
+}
+
 #browse_links a {
-	margin:0 8px 0 8px;
+	margin:0 0 0 0;
 	font-weight:normal;
 }
 
@@ -1874,4 +1883,17 @@ table.form-table td a {
     
     font-size: 16px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+.feeds_table
+{
+    margin-top: 8px;
+    padding: 0 0 0 0;
+    xborder: 1px solid black;
+}
+
+.feeds_table td
+{
+    padding-right: 4px;
+    xborder: 1px solid black;
 }

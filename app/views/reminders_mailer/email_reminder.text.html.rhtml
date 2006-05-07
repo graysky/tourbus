@@ -1,8 +1,8 @@
 <html>
 <body>
-    <% if @show.title != "" %>
+    <% if !@show.title.nil? and @show.title != "" %>
       <strong><%= @show.title %></strong><br/>
-    <% end %>
+    <% end -%>
         <strong><%= @show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
@@ -12,7 +12,8 @@
          <% end %>
          <% the_url = @show_prefix_url.to_s + @show.id.to_s %>
          More details: <a href="<%= the_url %>"><%= the_url %></a>
-  <hr/>
+
+<br/>
   <p>
     If you'd like to stop receiving these reminders, log in to 
     <a href="http://tourb.us">your account</a> and modify the "Show Reminders" setting.

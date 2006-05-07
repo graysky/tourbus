@@ -1,8 +1,8 @@
 <html>
 <body>
-    <% if @show.title != "" %>
-      <strong><%= @show.title  %></strong><br/>
-    <% end %>
+    <% if !@show.title.nil? and @show.title != "" %>
+      <strong><%= @show.title %></strong><br/>
+    <% end -%>
         <strong><%= @show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
@@ -19,7 +19,6 @@
     You can then get email and SMS reminders closer to the date of the show.
   </p>
   
-  <hr/>
   <p>
     If you'd like to stop receiving these reminders, log in to 
     <a href="http://tourb.us">your account</a> and modify the "Show Reminders" setting 

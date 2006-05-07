@@ -11,11 +11,10 @@
     <b>New Favorites:</b>
     <br/><br/>
     <% for band in @bands %>
-        <%= link_to band.name, "#{@band_prefix_url}#{band.short_name}" %><br/>
+        <%= link_to band.name, "#{@band_prefix_url}#{band.short_name}" %><br/><br/>
     <% end %>
   </p>  
   
-  <hr/>
 <%= @email_signoff %>
 </body>
 </html>

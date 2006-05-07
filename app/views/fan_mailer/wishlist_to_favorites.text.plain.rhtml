@@ -1,0 +1,13 @@
+Hey <%= @fan.name %>,
+  
+We thought you'd like to know that we now have more of the bands on your
+wishlist in our database, so we added them as your new favorites. Now when they play a show in your
+area you'll get an email about it.
+
+New Favorites:
+<% for band in @bands %>
+<%= band.name %> 
+<%= "#{@band_prefix_url}#{band.short_name}" %>
+<% end %>
+
+<%= @email_signoff_plain %>

@@ -7,7 +7,7 @@
 <% if @show.description != "" %>
 <%= @show.description %>
 <% end %>
-<% the_url = @show_prefix_url.to_s + @show.id.to_s %>
+<% the_url = @show_prefix_url.to_s + @show.id.to_s -%>
 More details: <%= the_url %>
 
 <%= @email_signoff_plain %>

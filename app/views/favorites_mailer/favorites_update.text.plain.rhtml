@@ -10,6 +10,8 @@ To make these emails even better, tell tourb.us more of your favorite bands.
 <% if show.description != "" %>
 <%= show.description %>
 <% end -%>
+<% the_url = @show_prefix_url.to_s + show.id.to_s %>
+More details: <%= the_url %>
 <% end -%>
 
 <%= @email_signoff_plain %>

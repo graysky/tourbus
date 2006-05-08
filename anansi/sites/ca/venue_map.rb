@@ -21,5 +21,6 @@
   'benders' => 236,
   'Balazo 18' => 226,
   'shark tank' => 398,
-  'paramount' => 501
+  'paramount' => 501,
+  /greek thea/ => 811
 }

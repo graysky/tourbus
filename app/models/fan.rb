@@ -55,7 +55,7 @@ class Fan < ActiveRecord::Base
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr, :dependent => true
   has_and_belongs_to_many :bands
-  has_and_belongs_to_many :shows, :order => "date ASC", :include => [:venue, :bands]
+  has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
   has_many :comments, :order => "created_on ASC"
   has_many :wish_list_bands, :dependent => true, :order => "name ASC"
  

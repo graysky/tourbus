@@ -28,7 +28,7 @@ class Venue < ActiveRecord::Base
   include Tagging
   include UpcomingShows
   
-  has_many :shows, :order => "date ASC",  :include => [:bands]
+  has_many :shows, :order => "date ASC" #,  :include => [:bands]
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
   acts_as_taggable :join_class_name => 'TagVenue'

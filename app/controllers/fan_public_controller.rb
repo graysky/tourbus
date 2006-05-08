@@ -1,7 +1,9 @@
 require_dependency 'favorites_calculator'
+require_dependency 'badge'
 
 # The public page for a Fan
 class FanPublicController < ApplicationController
+  include Badge
   before_filter :find_fan, :except => :no_such_fan
   helper :show
   helper :portlet
@@ -12,8 +14,8 @@ class FanPublicController < ApplicationController
   helper :feed
   helper :comment
   upload_status_for :change_logo
-  session :off, :only => [:rss, :ical, :webcal ]
-  layout "public", :except => [:rss, :ical, :webcal ] 
+  session :off, :only => [:rss, :ical, :webcal, :badge ]
+  layout "public", :except => [:rss, :ical, :webcal, :badge ] 
   
   # Show the main fan page
   def index
@@ -68,6 +70,14 @@ class FanPublicController < ApplicationController
                      :params => {"photo_id" => params[:photo_id], 
                                  "name" => @fan.name, 
                                  "showing_creator" => false}
+  end
+  
+  # Create a badge image for the fan to put on MySpace/blog/etc.
+  def badge
+    shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 3)
+  
+    # TODO Need to cache this!
+    create_badge(shows)  
   end
   
   # RSS feed for the fan

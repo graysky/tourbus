@@ -106,76 +106,29 @@ class FanController < ApplicationController
     end
   end
 
-  # This fan will attend the show
-  def add_attending_show
-    show = Show.find(params[:id])
+  def set_going
+    @show = Show.find(params[:id])
     
-    # If they are already attending, maybe someone just typed in the URL
-    return if @fan.attending?(show)
+    case params[:going]
+      when 'yes'
+        @fan.attend_show(@show)
+      when 'maybe'
+        @fan.watch_show(@show)
+      when 'no'
+        @fan.stop_attending_show(@show)
+        @fan.stop_watching_show(@show)
+    end
     
-    @fan.attend_show(show)
     Fan.transaction(@fan) do
-      Show.transaction(show) do
+      Show.transaction(@show) do
         # FIXME how do we handle errors here?
         @fan.save!
-        show.save!
-        show.ferret_save
+        @show.save!
+        @show.ferret_save
       end
     end
     
-    render :partial => "shared/remove_attending"
-  end
-  
-  # This fan will NOT attend the show
-  def remove_attending_show
-    show = Show.find(params[:id])
-    @fan.stop_attending_show(show)
-    Fan.transaction(@fan) do
-      Show.transaction(show) do
-        # FIXME how do we handle errors here?
-        @fan.save!
-        show.save!
-        show.ferret_save
-      end
-    end
-    
-    render :partial => "shared/add_attending"
-  end
-  
-  # This fan will watch the show
-  def add_watching_show
-    show = Show.find(params[:id])
-    
-    # If they are already watching maybe someone just typed in the URL
-    return if @fan.watching?(show)
-    
-    @fan.watch_show(show)
-    Fan.transaction(@fan) do
-      Show.transaction(show) do
-        # FIXME how do we handle errors here?
-        @fan.save!
-        show.save!
-        show.ferret_save
-      end
-    end
-    
-    render :partial => "shared/remove_watching"
-  end
-  
-  # This fan will NOT watch the show
-  def remove_watching_show
-    show = Show.find(params[:id])
-    @fan.stop_watching_show(show)
-    Fan.transaction(@fan) do
-      Show.transaction(show) do
-        # FIXME how do we handle errors here?
-        @fan.save!
-        show.save!
-        show.ferret_save
-      end
-    end
-    
-    render :partial => "shared/add_watching"
+    @headers["Content-Type"] = "text/javascript"
   end
   
   def change_password

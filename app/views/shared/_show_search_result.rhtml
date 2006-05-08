@@ -17,8 +17,7 @@
       </td>
       <td class="col3">
         <nobr>
-        <strong>attending:</strong> <%= show.num_attendees %><br/>
-        <strong>watching:</strong> <%= show.num_watchers %><br/>
+        <strong>attending:</strong> <%= show.num_attendees + show.num_watchers %><br/>
         <%= fan_status(show, fan) if fan %>
         </nobr>
       </td>

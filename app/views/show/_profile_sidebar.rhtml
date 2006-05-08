@@ -25,183 +25,18 @@
 
 <br/>
 
+<div id="going-box" class="sidebar-box">
+  <h2 id="going-title"><span class="title">Are You Going?</span></h2>
+    <div id='going_content'>
+        <%= render :partial => "shared/are_you_going", :locals => { :show => @show } %>
+    </div>
+</div>
+
+<br/>
+
 <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Actions</span></h2>
     <div class="actions-box-rows">
-    <p>
-    <span id="attend_control">
-      <%= 
-        if not logged_in_fan.nil? and logged_in_fan.attending?(@show)
-          render :partial => "shared/remove_attending"
-        else
-          render :partial => "shared/add_attending"
-        end
-      %>  
-    </span>
-    
-    <% if logged_in_fan.nil? %>
-      <div id='add_tip' class='attending_tip'>
-      <h3>Attend the Show</h3>
-          <p>
-            You must be logged in as a fan to say you're attending!<br/><br/>
-            
-            <%= link_to "Cancel", "#", :onclick => "addAttending(event);" %>
-          </p>
-          </div>
-    <% else %>
-      <div id="remove_tip" class='attending_tip'>
-      <h3>Can't Attend the Show?</h3>
-          <p>
-          Clicking "OK" will remove this show from your calendar.<br/><br/>
-            
-            <strong>Are you sure you want to remove this show from your calendar?</strong>
-            
-            <%= form_remote_tag(
-          :update => "attend_control",
-          :url => { 
-            :controller => "fan",
-            :action => "remove_attending_show", 
-            :id => @show.id
-          }) 
-          %>
-          
-              <%= submit_tag "OK", :onclick => "removeAttending(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "removeAttending(event);" %>
-            <%= end_form_tag %>
-          </p>
-          </div>
-    
-      <div id="add_tip" class='attending_tip'>
-      <h3>Attend the show</h3>
-          <p>
-            If you click "OK", this show will be added to your calendar. <br/><br/>
-            
-            <% if logged_in_fan.watching?(@show) %>
-              You will no longer be watching the show.<br/><br/>
-            <% end %>
-            
-            <strong>Are you sure you want to add this show?</strong>
-            
-            <%= form_remote_tag(
-          :update => "attend_control",
-          :url => { 
-            :controller => "fan",
-            :action => "add_attending_show", 
-            :id => @show.id
-          },
-          :success => remote_function(
-              :update => "watch_control",
-              :url => { 
-                :controller => "fan",
-                :action => "remove_watching_show", 
-                :id => @show.id
-              })
-              )  
-          %>
-          
-              <%= submit_tag "OK", :onclick => "addAttending(event);"%>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "addAttending(event);" %>
-            <%= end_form_tag %>
-          </p>
-      </div>
-    <% end %>
-    
-    <script type="text/javascript">
-      <% if not logged_in_fan.nil? and logged_in_fan.attending?(@show) %>
-        Tooltip.add('remove_attending_link', 'remove_tip');
-      <% else %>
-        Tooltip.add('add_attending_link', 'add_tip');
-      <% end %>
-    </script>
-  </p>
-  
-  <p>
-    <span id="watch_control">
-      <%= 
-        if not logged_in_fan.nil? and logged_in_fan.watching?(@show)
-          render :partial => "shared/remove_watching"
-        else
-          render :partial => "shared/add_watching"
-        end
-      %>  
-    </span>
-    
-    <% if logged_in_fan.nil? %>
-      <div id='add_watch_tip' class='attending_tip'>
-      <h3>Watch the Show</h3>
-          <p>
-            You must be logged in as a fan to watch a show!<br/><br/>
-            
-            <%= link_to "Cancel", "#", :onclick => "addWatching(event);" %>
-          </p>
-          </div>
-    <% else %>
-      <div id="remove_watch_tip" class='attending_tip'>
-      <h3>Stop Watching</h3>
-          <p>
-          Clicking "OK" will remove you from the watchlist.<br/><br/>
-            
-            <strong>Are you sure you want to stop watching this show?</strong>
-            
-            <%= form_remote_tag(
-          :update => "watch_control",
-          :url => { 
-            :controller => "fan",
-            :action => "remove_watching_show", 
-            :id => @show.id
-          }) 
-          %>
-          
-              <%= submit_tag "OK", :onclick => "removeWatching(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "removeWatching(event);" %>
-            <%= end_form_tag %>
-          </p>
-          </div>
-    
-      <div id="add_watch_tip" class='attending_tip'>
-      <h3>Watch the show</h3>
-          <p>
-            If you click "OK", this show will be added to your watchlist. <br/><br/>
-            
-            <% if logged_in_fan.attending?(@show) %>
-              If you start watching this show you will no longer be attending it.<br/><br/>
-            <% end %>
-            
-            <strong>Are you sure you want to watch this show?</strong>
-            
-            <%= form_remote_tag(
-          :update => "watch_control",
-          :url => { 
-            :controller => "fan",
-            :action => "add_watching_show", 
-            :id => @show.id
-          },
-          :success => remote_function(
-              :update => "attend_control",
-              :url => { 
-                :controller => "fan",
-                :action => "remove_attending_show", 
-                :id => @show.id
-              })
-              ) 
-          %>
-          
-              <%= submit_tag "OK", :onclick => "addWatching(event);" %>&nbsp;
-              <%= link_to "Cancel", "#", :onclick => "addWatching(event);" %>
-            <%= end_form_tag %>
-          </p>
-      </div>
-    <% end %>
-    
-    <script type="text/javascript">
-      <% if not logged_in_fan.nil? and logged_in_fan.watching?(@show) %>
-        Tooltip.add('remove_watching_link', 'remove_watch_tip');
-      <% else %>
-        Tooltip.add('add_watching_link', 'add_watch_tip');
-      <% end %>
-    </script>
-  </p>
-  
  <p>
     <table>
     <% if can_edit_show(@show) %>
@@ -237,22 +72,11 @@
 
 <br/>
 
-<div id="fans-box" class="sidebar-box">
+<div id="fans-box" class="sidebar-box" <%= show_fans ? "" : '"style=display:none"' %>>
   <h2 id="fans-title"><span class="title">Fans</span></h2>
-  
-  <p>
-  <strong>Attending:</strong> <%= @show.num_attendees %><br/>
-  <strong>Watching:</strong> <%= @show.num_watchers %>
-  </p>
-  
-  <% if show_fans %>
-  <%= tiny_fan_results(@show.fans_attending_first.random(4)) %>
-    <% if @show.num_watchers + @show.num_attendees > 0 %>
-      <p>
-        <%= link_to "Show more fans...", :action => "fans" %>
-      </p>
-    <% end %>
-  <% end %>
+  <div id="fans_box_list">
+    <%= render :partial => 'fans_box' %>
+  </div>
 </div>
 
 <br/>
@@ -275,6 +99,8 @@
 
     Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('going-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('going-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );

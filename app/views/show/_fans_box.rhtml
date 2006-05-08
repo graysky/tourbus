@@ -1,0 +1,12 @@
+  
+  <p>
+  <strong>Yes:</strong> <%= @show.num_attendees %>, <strong>Maybe:</strong> <%= @show.num_watchers %>
+  
+  </p>
+  
+  <%= tiny_fan_results(@show.fans_attending_first.random(4)) %>
+	<% if @show.num_all_attendees > 4 %>
+	  <p>
+	    <%= link_to "Show more fans...", :action => "fans" %>
+	  </p>
+	<% end %>

@@ -134,17 +134,6 @@
         Where to send show reminders
       </td>  
     </tr>
-    <tr>
-      <th>Reminder For Watched Shows (email only):</th>
-      <td>
-        <%= select('fan', 'show_watching_reminder', Fan.watching_reminder_options ) %>
-      </td>
-      <td class="info">
-        How far in advance to send a reminder <strong>before</strong> shows
-        that you have added to your watchlist. <br/>We only send reminders for watched
-        shows to your email address.
-      </td>
-    </tr>
     <tr class="submit">
       <td></td>
       <td><%= submit_tag 'Edit Settings' %></td>

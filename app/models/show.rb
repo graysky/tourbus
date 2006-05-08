@@ -145,6 +145,10 @@ class Show < ActiveRecord::Base
     Show.find_by_venue_id_and_date(other.venue.id, other.date)
   end
   
+  def num_all_attendees
+    self.num_watchers + self.num_attendees
+  end
+  
   # The popularity is currently a somewhat arbitrary number.
   def popularity
     # The popularity of a show is determined by the number of watchers and attendees

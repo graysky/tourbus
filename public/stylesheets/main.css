@@ -686,6 +686,11 @@ table.front-search-table td.submit input {
 	margin-left: 8px;
 }
 
+.sidebar-box table td
+{
+	font-size:11px;
+}
+
 .sidebar-box table td a
 {
 	font-size:11px;
@@ -1605,7 +1610,7 @@ table.show_table td {
 	font-weight:bold;
 }
 
-#add_fave_link, #remove_fave_link, #report_problem_link, #share_show_link {
+#add_fave_link, #remove_fave_link, #report_problem_link, #share_show_link, #going_link {
 	font-size:11px;
 	text-decoration:underline;
 }
@@ -1613,7 +1618,6 @@ table.show_table td {
 #report_problem_link {
 	color:#f83a2d;
 }
-
 
 .fave_tip {
 	visibility:hidden;

@@ -47,25 +47,6 @@ class RemindersMailer < BaseMailer
     @body['email_signoff_plain'] = email_signoff_plain
   end
   
-  # Sends an email reminder about a watched show
-  # NOTE: This sends multipart emails for HTML and plaintext
-  def email_reminder_for_watch(fan, show, sent_at = Time.now)
-    @subject    = "[tourb.us] Reminder: #{show.formatted_title}"
-    @body       = {}
-    @recipients = fan.contact_email
-    @from       = Emails.from
-    @sent_on    = sent_at
-    @headers    = {}
-    
-    @body['fan'] = fan
-    @body['show'] = show
-    
-    @body['band_prefix_url'] = band_prefix_url
-    @body['show_url_prefix'] = show_prefix_url
-    @body['email_signoff'] = email_signoff
-    @body['email_signoff_plain'] = email_signoff_plain
-  end
-  
   # Main entry point from the runner script.
   # Calculates what emails need to be sent to fans that have specified
   # show reminders that need to be sent
@@ -82,11 +63,10 @@ class RemindersMailer < BaseMailer
       
       reminders = RemindersCalculator.new(fan)
       
-      upcoming_shows = reminders.upcoming_shows
-      watching_shows = fan.shows.find(:all, :conditions => ["date > ? and watching = 1", Time.now])
+      upcoming_shows = reminders.shows
       
       # Skip this fan if they don't have any upcoming shows
-      next if (upcoming_shows.nil? or upcoming_shows.empty?) and watching_shows.empty?
+      next if (upcoming_shows.nil? or upcoming_shows.empty?)
       
       now = Time.now
       
@@ -145,30 +125,6 @@ class RemindersMailer < BaseMailer
         end      
           
       end # shows loop
-      
-      # TODO Factor all this logic out. Use cool ruby features to do so.
-      # Write unit tests to verify.
-      #
-      # Now check shows the fan is watching
-      if watching_shows.size > 0
-        for show in watching_shows
-        
-          if fan.show_watching_reminder > 0
-           
-            if now + (60 * fan.show_watching_reminder) >= show.date
-              
-              # A reminder needs to be sent. Was it already sent?
-              if fan.last_show_reminder.nil? or
-                (fan.last_show_reminder + (60 * fan.show_watching_reminder) < show.date)
-                
-                RemindersMailer.deliver_email_reminder_for_watch(fan, show)
-                save_fan = true
-              end
-            end
-          end
-          
-        end
-      end
       
       if save_fan
         logger.info "Updating fan at #{now}"

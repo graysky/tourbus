@@ -75,7 +75,7 @@ module ShowHelper
   
   def fan_status(show, fan)
     label = "status"
-    value = fan.attending?(show) ? :"ATTENDING" : "WATCHING"
+    value = fan.attending?(show) ? :"ATTENDING" : "MAYBE"
     "<strong>#{label}:</strong> #{value}"
   end
   

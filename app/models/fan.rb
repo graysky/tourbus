@@ -120,6 +120,8 @@ class Fan < ActiveRecord::Base
   
   def attend_show(show)
     return if self.attending?(show)
+    
+    self.stop_watching_show(show)
     self.shows.push_with_attributes(show, { :attending => true, :watching => false })
     show.num_attendees += 1
   end
@@ -145,6 +147,8 @@ class Fan < ActiveRecord::Base
   
   def watch_show(show)
     return if self.watching?(show)
+    
+    self.stop_attending_show(show)
     self.shows.push_with_attributes(show, { :attending => false, :watching => true })
     show.num_watchers += 1
   end
@@ -197,6 +201,10 @@ class Fan < ActiveRecord::Base
   def watching?(show)
     self.watching_shows.include?(show)
   end
+  
+  def attending_or_watching?(show)
+    self.watching?(show) or self.attending?(show)
+  end
                           
   # Creates and sets the confirmation code. DOES NOT save the record.
   # Requires that that object already be populated with required fields
@@ -236,15 +244,6 @@ class Fan < ActiveRecord::Base
     ops = [
             ["---", 0], ["1 hour", 60], 
             ["2 hours", 120], ["3 hours", 180], ["6 hours", 360], ["12 hours", 720],
-            ["1 day", 1440], ["2 days", 2880], ["3 days", 4320], ["5 days", 7200],
-            ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
-          ]
-  end
-  
-  # Returns an array of reminder options in minutes for watching shows
-  def self.watching_reminder_options
-    ops = [
-            ["Never", 0],
             ["1 day", 1440], ["2 days", 2880], ["3 days", 4320], ["5 days", 7200],
             ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]

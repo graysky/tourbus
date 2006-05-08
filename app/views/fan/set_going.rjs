@@ -1,0 +1,2 @@
+page.replace_html 'going_content', :partial => 'shared/are_you_going', :locals => { :show => @show }
+page.replace_html 'fans_box_list', :partial => 'show/fans_box'

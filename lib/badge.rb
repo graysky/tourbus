@@ -80,8 +80,10 @@ module Badge
       # Draw the date heading
       # draw.annotate(img, width, height, x, y, text)
       draw.annotate(canvas, 0, 0, show_x, y_coord, the_date) do
-        self.font_family = 'courier'
-        self.font_style = Magick::NormalStyle
+        #self.font_family = 'courier'
+        self.font = 'ArialB'
+        #self.font_family = 'CourierNewBI'
+        #self.font_style = Magick::NormalStyle
         self.pointsize = 13
         self.gravity = Magick::NorthWestGravity
         self.font_weight = 700
@@ -95,7 +97,8 @@ module Badge
             
       # Draw the band names
       Magick::Draw.new.annotate(canvas, 0, 0, band_x, y_coord, band_names) do
-        self.font_family = 'courier'
+        #self.font_family = 'courier'
+        self.font = 'Arial'
         self.pointsize = 12
         self.gravity = Magick::NorthWestGravity
         self.font_weight = Magick::NormalWeight
@@ -108,6 +111,7 @@ module Badge
       # Draw the venue names
       Magick::Draw.new.annotate(canvas, 0, 0, venue_x, y_coord, venue_name) do
         self.font_family = 'courier'
+        #self.font_family = 'verdana'
         self.pointsize = 11
         self.gravity = Magick::NorthWestGravity
         self.font_weight = Magick::NormalWeight

@@ -11,24 +11,45 @@ module Badge
   
   protected
   
-  # Create a new badge image and stream it back.
-  # shows => the shows to put in the badge
-  def create_badge(shows)
-    # Generate the badge
-    f = create_small_badge(shows)
+  # Get the badge for the supplied author, either fan or band
+  def get_badge(author)
     
-    # TODO We'll need to cache these images
-    #f.write( file_name )
-    #m = ImageList.new( file_name )
-    #send_data(m.to_blob, :filename => "file_name", :type => 'image/jpeg')
+    f = ImageList.new( get_badge_location(author) )
+    return f
+  end
+  
+  # Calculate the location of the badge for this author
+  def get_badge_location(author)
+    return nil if author.nil?
     
-    blob = f.to_blob { self.format = 'JPG' }
-
+    location = "#{RAILS_ROOT}/tmp/cache/badges/"
+    
+    FileUtils.mkpath(location)    
+    location << "badge_#{author.class.to_s.downcase}_#{author.id}.jpg"
+    
+    return location
+  end
+  
+  # Send the image down the pipe
+  def send_badge(img)
+  
+    blob = img.to_blob { self.format = 'JPG' }
+  
     # Set the right content type
     @headers["Content-Type"] = "image/jpeg"
     
     # Look at gruff's base methods for this & other pieces of help
     send_data(blob, :filename => "badge.jpg", :type => 'image/jpeg')
+  end
+  
+  # Create a new badge image and stream it back.
+  # shows => the shows to put on the badge
+  def create_badge(author, shows)
+    # Generate the badge
+    f = create_small_badge(shows)
+    
+    # Write out the new badge
+    f.write( get_badge_location(author) )
   end
   
   private
@@ -80,11 +101,9 @@ module Badge
       # Draw the date heading
       # draw.annotate(img, width, height, x, y, text)
       draw.annotate(canvas, 0, 0, show_x, y_coord, the_date) do
-        #self.font_family = 'courier'
         self.font = 'ArialB'
-        #self.font_family = 'CourierNewBI'
         #self.font_style = Magick::NormalStyle
-        self.pointsize = 13
+        self.pointsize = 12
         self.gravity = Magick::NorthWestGravity
         self.font_weight = 700
         self.fill = blackish
@@ -97,7 +116,6 @@ module Badge
             
       # Draw the band names
       Magick::Draw.new.annotate(canvas, 0, 0, band_x, y_coord, band_names) do
-        #self.font_family = 'courier'
         self.font = 'Arial'
         self.pointsize = 12
         self.gravity = Magick::NorthWestGravity
@@ -111,7 +129,6 @@ module Badge
       # Draw the venue names
       Magick::Draw.new.annotate(canvas, 0, 0, venue_x, y_coord, venue_name) do
         self.font_family = 'courier'
-        #self.font_family = 'verdana'
         self.pointsize = 11
         self.gravity = Magick::NorthWestGravity
         self.font_weight = Magick::NormalWeight

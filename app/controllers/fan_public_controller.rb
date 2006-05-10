@@ -74,10 +74,19 @@ class FanPublicController < ApplicationController
   
   # Create a badge image for the fan to put on MySpace/blog/etc.
   def badge
-    shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 3)
+    
+    key = {:action => 'badge', :part => 'fan_badge'}
   
-    # TODO Need to cache this!
-    create_badge(shows)  
+    when_not_cached(key, 20.hours.from_now) do
+      # Cache the creation of a new badge
+      shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 3)
+      create_badge(@fan, shows)
+      
+      # This is a hack to write to the fragment
+      write_fragment(key, "fake-content")  
+    end
+
+    send_badge(get_badge(@fan))
   end
   
   # RSS feed for the fan

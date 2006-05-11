@@ -1,0 +1,9 @@
+<center>
+<div id="profile_links">
+  <%= link_to_unless_current "Profile", :action => 'index' %></b> <span class="normal">|</span>
+  <%= link_to_unless_action "Shows", ['all_shows'], :action => 'shows' %> <span class="normal">|</span>
+  <%= link_to_unless_current "Favorite Bands", :action => 'favorite_bands' %> <span class="normal">|</span>
+  <%= link_to_unless_current "Photos", :action => 'photos' %>
+</div>
+</center>
+<br/>

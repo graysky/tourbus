@@ -1,6 +1,10 @@
 <script type="text/javascript">
   function adjust_bio_height(force)
   {
+    if (!$('logo')) {
+        return;
+    }
+    
     var logo_height = parseInt(Element.getHeight('logo'));
     var bio_height = parseInt($('fan_bio').offsetHeight);
     if ((force || logo_height > bio_height) && logo_height > 140) {
@@ -70,14 +74,13 @@
   end 
 %>
 
-<% if not front_page %>
-<div class='go_back_link'><%= public_fan_link "Back to profile", @fan %></div>
-<% end %>
+
+<% if front_page %>
 
 <table>
   <% if @logged_in_as_fan %>
     <tr><td>
-      <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Picture</a>
+      <a href="#" id="change_logo" onclick="toggle_logo_select()" class='small_link'>Change Picture</a>
        <div id="fan_logo_select" style="display:none">
          <%= form_tag_with_upload_progress({ :action => 'change_logo' },
                            {  :begin => "Element.show('logo_indicator')",
@@ -96,7 +99,7 @@
     </td>
     <td style="padding-left:24px">
       <% if @logged_in_as_fan %>
-        <a id="edit_fan_bio" href="#">Edit Your Bio</a>
+        <a id="edit_fan_bio" href="#" class='small_link'>Edit Your Bio</a>
       <% end %>
     </td>
     </tr>
@@ -122,3 +125,6 @@
   new Ajax.InPlaceEditor('fan_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_fan_bio", okText:"Ok", cancelText:"Cancel"})
 </script>
 <% end %>
+
+<% end %>
+

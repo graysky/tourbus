@@ -65,6 +65,11 @@ module Geosearch
   
   def prepare_query(type, location = nil, radius = nil, always_local = false)
     query = params[:query].nil? ? "" : params[:query].strip
+   
+    if params[:only_local] and params[:only_local].strip != ''
+      params[:type] = type
+      do_toggle_only_local(params[:only_local])
+    end
     
     return query, nil, nil, nil if @session[only_local_session_key(type)] == 'false' and !always_local
     

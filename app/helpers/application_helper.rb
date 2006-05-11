@@ -152,4 +152,9 @@ END_JS
     end
   end
   
+  # link to unless its the current page or one of the actions given
+  def link_to_unless_action(name, actions = [], options = {}, html_options = {}, *parameters_for_method_reference, &block)
+    current = current_page?(options) || actions.include?(params[:action])
+    link_to_unless current, name, options, html_options, *parameters_for_method_reference, &block
+  end
 end

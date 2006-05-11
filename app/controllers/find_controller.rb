@@ -1,5 +1,6 @@
 require_dependency 'location_filter'
 require_dependency 'searchable'
+require_dependency 'geosearch'
 
 class FindController < ApplicationController
   include Geosearch

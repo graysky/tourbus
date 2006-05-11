@@ -28,19 +28,15 @@
   
   <% # Only show the box if there are actions %>
   <% if @logged_in_as_fan %>
-  <div id="actions-box" class="sidebar-box">
-  <h2 id="actions-title"><span class="title">Actions</span></h2>
+  <div id="favorites-box" class="sidebar-box">
+  <h2 id="favorites-title"><span class="title">Favorites</span></h2>
     
     <div class="actions-box-rows">  
     <p>
     <table>
       <tr>
         <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
-        <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
-      </tr>
-      <tr>
-        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
-        <td><%= link_to "Import Favorites", :controller => "fan", :action => "import_favorites" %></td>
+        <td><%= link_to "Import Favorite Bands", :controller => "fan", :action => "import_favorites" %></td>
       </tr>
       <tr>
         <td><img src="/images/table.png" height="16" width="16" onload='fixPNG(this)'/></td>
@@ -51,11 +47,10 @@
     </p>
   </div>
   </div>
-  <% end %>
-
   
-  <% if @logged_in_as_fan %>
   <br/>
+  
+
   <div id="scene-box" class="sidebar-box">
   <h2 id="scene-title"><span class="title">Your Scene</span></h2>
     
@@ -77,6 +72,25 @@
     </div>
     <% end %>
   </div>
+  
+  <br/>
+  
+  <div id="actions-box" class="sidebar-box">
+  <h2 id="actions-title"><span class="title">Help Us Improve</span></h2>
+    
+    <div class="actions-box-rows">  
+    <p>
+    <table>
+      <tr>
+        <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
+        <td><%= link_to "Add a Show", :controller => "shows", :action => "add" %></td>
+      </tr>
+    </table>
+    
+    </p>
+  </div>
+  </div>
+    
   <% end %>
   
 </div>
@@ -90,7 +104,8 @@
   <% if @logged_in_as_fan %>
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
-    
+    Rico.Corner.round( $('favorites-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('favorites-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('scene-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('scene-title'), {corners:'top', bgColor : white} );
     <% end %>

@@ -1,6 +1,8 @@
+<%= render :partial => 'links' %>
+
 <div id="main">
-<% @page_title = @fan.name %>
-<% @header_title = @fan.name %>
+<% @page_title = @fan.name + " / Profile" %>
+<% @header_title = @fan.name + " / Profile" %>
 
 <%= render :partial => "profile_header", :locals => { :front_page => true } %>
 

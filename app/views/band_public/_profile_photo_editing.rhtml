@@ -1,5 +1,5 @@
 <td>
-  <a href="#" id="change_logo" onclick="toggle_logo_select()">Change Logo</a>
+  <a href="#" id="change_logo" onclick="toggle_logo_select()" class='small_link'>Change Logo</a>
    <div id="band_logo_select" style="display:none">
      <%= form_tag_with_upload_progress({ :action => 'change_logo' },
                        {  :begin => "Element.show('logo_indicator')",
@@ -18,7 +18,7 @@
 </td>
 <td style="padding-left:24px">
   <% if @logged_in_as_band %>
-    <a id="edit_band_bio" href="#">Edit Your Bio</a>
+    <a id="edit_band_bio" href="#" class='small_link'>Edit Your Bio</a>
   <% else %>
     <a id="edit_band_bio" href="#">Edit This Bio</a>
   <% end %>

@@ -8,6 +8,7 @@ require 'anansi/lib/multi_table_parser'
 require 'anansi/lib/mideast_parser'
 require 'anansi/lib/tts_parser'
 require 'anansi/lib/pas_parser'
+require 'anansi/lib/jambase_parser'
 require 'yaml'
 
 # Runs stage 2 of the anansi system. 

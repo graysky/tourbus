@@ -16,7 +16,7 @@ class FavoritesMailer < BaseMailer
     @body['new_shows'] = new_shows
     @body['updated_shows'] = updated_shows
     
-    @body['url_prefix'] = show_prefix_url
+    @body['show_prefix_url'] = show_prefix_url
     @body['band_prefix_url'] = band_prefix_url
     @body['email_signoff'] = email_signoff
     @body['email_signoff_plain'] = email_signoff_plain

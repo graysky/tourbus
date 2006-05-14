@@ -12,7 +12,11 @@
   <li>Post reviews and photos of shows
 </ul>
 
-  <span class="signup"><%= link_to("Sign Up Now", :controller => "signup", :action=> "fan")%></span> 
+  <% if logged_in_fan %>
+    <span class="signup"><%= public_fan_link "Go To Your Profile", logged_in_fan %></span>
+  <% else %>
+    <span class="signup"><%= link_to("Sign Up Now", :controller => "signup", :action=> "fan")%></span>
+  <% end %>
   or <%= link_to("take a tour", :controller => "public", :action=> "tour") %>
 </div>
 

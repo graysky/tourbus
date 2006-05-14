@@ -24,8 +24,11 @@
 	%>
 	
 	<table>
-	    <tr><td><%= radio_button_tag 'going', 'yes', yes , :onclick => "set_going('yes')" %></td><td><%= yes_str %></td></tr>
-	    <tr><td><%= radio_button_tag 'going', 'maybe', maybe, :onclick => "set_going('maybe')" %></td><td><%= maybe_str %></td></tr>
-	    <tr><td><%= radio_button_tag 'going', 'no', no, :onclick => "set_going('no')" %></td><td><%= no_str %></td></tr>
+	    <tr><td><%= radio_button_tag 'going', 'yes', yes , :onclick => "set_going('yes')", :id => "going_yes" %></td>
+	    <td><label for="going_yes"><%= yes_str %></label></td></tr>
+	    <tr><td><%= radio_button_tag 'going', 'maybe', maybe, :onclick => "set_going('maybe')", :id => "going_maybe" %></td>
+	    <td><label for="going_maybe"><%= maybe_str %></label></td></tr>
+	    <tr><td><%= radio_button_tag 'going', 'no', no, :onclick => "set_going('no')", :id => "going_no" %></td>
+	    <td><label for="going_no"><%= no_str %></label></td></tr>
 	</table>
 <% end %>

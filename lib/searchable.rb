@@ -117,7 +117,7 @@ module FerretMixin
         end
         
         IGNORED_STRINGS = [','] unless const_defined?('IGNORED_STRINGS')
-        INVALID_CHARS = ['!', '+'] unless const_defined?('INVALID_CHARS')
+        INVALID_CHARS = ['!', '+', '(', ')', '{', '}', '-', '='] unless const_defined?('INVALID_CHARS')
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})

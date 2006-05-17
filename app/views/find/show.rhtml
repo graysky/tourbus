@@ -3,6 +3,7 @@
 case params[:action]
 when 'browse_popular_shows' then title = 'Most Popular Shows'
 when 'browse_tonights_shows' then title = 'Tonight\'s Shows'
+when 'browse_upcoming_shows' then title = 'All Upcoming Shows'
 else
   title = "Find Shows"
 end 
@@ -43,7 +44,8 @@ end
 <div id="browse_links">
   <%= link_to_unless_current "Search", :action => 'show' %> <span class="normal">|</span>
   <%= link_to_unless_current "Most Popular Shows", :action => 'browse_popular_shows' %> <span class="normal">|</span>
-  <%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %>
+  <%= link_to_unless_current "Tonight's Shows", :action => 'browse_tonights_shows' %> <span class="normal">|</span>
+  <%= link_to_unless_current "All Upcoming Shows", :action => 'browse_upcoming_shows' %>
 </div>
 
 <% if params[:action] == 'show' %>

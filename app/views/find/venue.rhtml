@@ -2,6 +2,7 @@
 # Set the page title correctly
 case params[:action]
 when 'browse_popular_venues' then title = 'Most Popular Venues'
+when 'browse_all_venues' then title = 'All Venues'
 else
   title = "Find Venues"
 end 
@@ -37,7 +38,8 @@ end
 <center>
 <div id="browse_links">
   <%= link_to_unless_current "Search", :action => 'venue' %> <span class="normal">|</span>
-  <%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%>
+  <%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%> <span class="normal">|</span>
+  <%= link_to_unless_current "All Venues" , :action => 'browse_all_venues'%>
 </div>
 
 <%= start_form_tag :action => params[:action] %>

@@ -81,6 +81,21 @@ class FindController < ApplicationController
     render_band
   end
   
+  def browse_all_bands
+    query, radius, lat, long = prepare_query(Band.table_name)
+    if query.nil?
+      render_band
+      return
+    end
+    
+    options = default_search_options
+    options[:sort] = name_sort_field
+    
+    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
+    paginate_search_results(count)
+    render_band
+  end
+  
   def browse_tonights_shows
     query, radius, lat, long = prepare_query(Show.table_name)
     if query.nil?
@@ -113,6 +128,21 @@ class FindController < ApplicationController
     render_show
   end
   
+  def browse_upcoming_shows
+    query, radius, lat, long = prepare_query(Show.table_name)
+    if query.nil?
+      render_show
+      return
+    end
+    
+    options = default_search_options
+    options[:sort] = date_sort_field
+    
+    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+    paginate_search_results(count)
+    render_show
+  end
+  
   def browse_popular_venues
     query, radius, lat, long = prepare_query(Venue.table_name)
     if query.nil?
@@ -123,6 +153,22 @@ class FindController < ApplicationController
     options = default_search_options
     options[:sort] = name_sort_field
     options[:conditions] = { 'popularity' => '> 0'}
+  
+    @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
+     
+    paginate_search_results(count)
+    render_venue
+  end
+  
+  def browse_all_venues
+    query, radius, lat, long = prepare_query(Venue.table_name)
+    if query.nil?
+      render_venue
+      return
+    end
+    
+    options = default_search_options
+    options[:sort] = name_sort_field
   
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
      

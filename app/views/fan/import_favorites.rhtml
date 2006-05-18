@@ -28,7 +28,8 @@
     <%= section "import_lastfm.gif", 300, 28 %>
     <%= start_form_tag :action => 'import_last_fm' %>
     
-    <p>Enter your <a href="http://last.fm">Last.fm</a> username and we will add your 50 most-played bands.</p>
+    <p>Enter your <a href="http://last.fm">Last.fm</a> username and we will add your 50 most-played bands.
+    <a href="http://last.fm"><img src="http://static.last.fm/media/minipowered_red.gif"/></a></p>
     
     <%= text_field_tag 'last_fm_username', '', :size => 25 %><br/><br/>
     <%= submit_tag 'Submit' %>

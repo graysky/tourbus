@@ -181,6 +181,7 @@ class Show < ActiveRecord::Base
     end
    
     contents << " " + self.venue.name + " " + self.venue.city
+    contents << self.description
     
     contents
   end

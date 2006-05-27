@@ -692,7 +692,6 @@ table.front-search-table td.submit input {
     margin-left: 8px;
 }
 
-<
 .sidebar-box table td
 {
     font-size:11px;
@@ -1936,8 +1935,7 @@ table.form-table td a {
     margin-top: 10px;
     margin-bottom: 5px;  
     margin-left: 14px;
-    margin-right: 12px;
-    
+    margin-right: 12px;    
     font-size: 16px;
     font-family: Arial, Verdana, Helvetica, sans-serif;
 }
@@ -1946,11 +1944,9 @@ table.form-table td a {
 {
     margin-top: 8px;
     padding: 0 0 0 0;
-    xborder: 1px solid black;
 }
 
 .feeds_table td
 {
     padding-right: 4px;
-    xborder: 1px solid black;
 }

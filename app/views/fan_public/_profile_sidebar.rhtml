@@ -1,4 +1,18 @@
 <div id="side">
+  <script type="text/javascript">
+    var sent_request = false;
+    function send_request(event) {
+        Tooltip.toggle($('friend_request_link'), event);
+        if (sent_request) {
+            alert('You have already sent a friend request to this fan');
+            return false;
+        }
+        
+        $('friend_request_link').innerHTML = 'Sending request...';
+        sent_request = true;
+    }
+  </script>
+  
   <div id="about-box" class="sidebar-box">
   <% title = @logged_in_as_fan ? 'About You' : 'About This Fan' %>
   <h2 id="about-title"><span class="title"><%= title %></span></h2>
@@ -7,10 +21,74 @@
     <strong>Member Since:</strong> <%= simple_date @fan.created_on %>
     <strong>Profile Views:</strong> <%= @fan.page_views %>
     
-    <br/><br/>
-    <% if !@fan.website.nil? and !@fan.website.empty? %>
-      <a href="<%=@fan.website%>"><%=h(format_website(@fan.website))%></a>
+  </p>
+ 
+  <% if !@fan.website.nil? and !@fan.website.empty? %>
+    <p><a href="<%=@fan.website%>"><%=h(format_website(@fan.website))%></a></p>
+  <% end %>
+ 
+  <p>
+    <% show_friend_tip = false %>
+    <% if not @logged_in_as_fan %>
+	    <table>
+	    <% if logged_in_fan.nil? or !@fan.friends_with?(logged_in_fan) 
+	       show_friend_tip = true
+	    %>
+	    <tr><td><img src="/images/group_add.png" height="16" width="16" onload='fixPNG(this)'/></td>
+	        <td>
+	    <a href="#" id="friend_request_link">Add to Friends</a>
+	    </td></tr>
+	    <% else %>
+	    <tr><td><img src="/images/group.png" height="16" width="16" onload='fixPNG(this)'/></td>
+	        <td>
+	    <span><strong>You are friends</strong></span>
+	    </td></tr>
+	    <% end %>
+	    </table>
     <% end %>
+       
+    <div id="friend_request_tip" class='fave_tip'>
+        <h3>Add <%= @fan.name %> to Friends</h3>
+        
+        <% if logged_in_fan.nil? %>
+            <p><strong>You have to be logged in as a fan to add friends</strong><br/>
+            <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %></p>
+        <% elsif logged_in_fan.outstanding_friend_request?(@fan) %>
+            <p><strong>You have already sent a friend request to this fan</strong><br/>
+            <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %></p>
+        <% else %>
+        
+        <%= form_remote_tag(
+	        :url => { 
+	          :controller => "fans",
+	          :action => :send_friend_request, 
+	          :friend => @fan.id
+	        },
+	        :success => "$('friend_request_link').innerHTML = 'Friend request sent'",
+	        :failure => "alert('There was an error sending the request! Please try again.');$('friend_request_link').innerHTML = 'There was an error'") 
+        %>
+        
+        <p>
+            <p>Message:</p>
+            <%= text_area_tag 'message', '', :size => '24' %>
+      
+	        <%= submit_tag "Submit", :onclick => "send_request(event)" %>&nbsp;
+	        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %>
+	        <%= end_form_tag %>
+        </p>
+        
+        <% end %>
+        
+        <% # Only enable friend request is enabled above 
+          if show_friend_tip %>
+        
+          <script type="text/javascript">
+            Tooltip.autoHideClick = false;
+	        Tooltip.add('friend_request_link', 'friend_request_tip');
+          </script>
+	    <% end %>
+	    
+    </div>
     
   </p>
   
@@ -23,11 +101,10 @@
       })
   %>
   </div>
-  
-  <br/>
-  
+
   <% # Only show the box if there are actions %>
   <% if @logged_in_as_fan %>
+    <br/>
   <div id="favorites-box" class="sidebar-box">
   <h2 id="favorites-title"><span class="title">Favorites</span></h2>
     
@@ -47,7 +124,23 @@
     </p>
   </div>
   </div>
+  <% end %>
+
   
+   <br/>
+  <div id="friends-box" class="sidebar-box">
+	  <h2 id="friends-title"><span class="title">Friends (<%= @fan.friends.size %>)</span></h2>
+	  
+	  <% if @fan.friends.empty? %>
+	   <p><strong><%= @fan.name %> has no friends</strong></p>
+	  <% else %>
+	   <%= tiny_fan_results(@fan.friends.random(5)) %>
+	   <p><%= link_to 'Show all friends', :action => :friends %></p>
+	  <% end %>
+  </div>
+  
+  
+  <% if @logged_in_as_fan %>
   <br/>
   
 
@@ -58,7 +151,7 @@
     <% if @session[:location] != '' %>
         <%= @session[:location] %>
     <% else %>
-        <%= link_to 'Tell us where you live!', :action => :settings %>
+        <%= link_to 'Tell us where you live!', :controller => 'fans', :action => :settings %>
     <% end %>
     </strong></p>
     
@@ -104,6 +197,12 @@
   <% if @logged_in_as_fan %>
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
+    Rico.Corner.round( $('favorites-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('favorites-title'), {corners:'top', bgColor : white} );
+   <% end %>
+    Rico.Corner.round( $('friends-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('friends-title'), {corners:'top', bgColor : white} );
+    <% if @logged_in_as_fan %>
     Rico.Corner.round( $('favorites-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('favorites-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('scene-box'), {corners:'bottom', bgColor : white} );

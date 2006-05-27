@@ -8,12 +8,13 @@
   <li>Track your favorite bands <small>(via email/RSS/iCal)</small>
   <li>Get reminders before concerts
   <li>Find tonight's shows in your city
+  <li>Meet friends for shows
   <li>Import favorites bands from iTunes & Last.fm
   <li>Post reviews and photos of shows
 </ul>
 
   <% if logged_in_fan %>
-    <span class="signup"><%= public_fan_link "Go To Your Profile", logged_in_fan %></span>
+    <span class="signup"><%= public_fan_link "View Your Profile", logged_in_fan %></span>
   <% else %>
     <span class="signup"><%= link_to("Sign Up Now", :controller => "signup", :action=> "fan")%></span>
   <% end %>

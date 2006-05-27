@@ -14,8 +14,8 @@ class FanPublicController < ApplicationController
   helper :feed
   helper :comment
   upload_status_for :change_logo
-  session :off, :only => [:rss, :ical, :webcal, :badge ]
-  layout "public", :except => [:rss, :ical, :webcal, :badge ] 
+  session :off, :only => [:rss, :friends_rss, :ical, :webcal, :badge ]
+  layout "public", :except => [:rss, :friends_rss, :ical, :webcal, :badge ] 
   
   # Show the main fan page
   def index
@@ -142,6 +142,24 @@ class FanPublicController < ApplicationController
       :locals => { :shows => @shows, :key => key })
   end
   
+  def friends_shows_rss
+    # Set the right content type
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+    
+    key = {:action => 'rss', :part => 'fan_friends_feed'}
+
+    when_not_cached(key, 90.minutes.from_now) do
+      # Fetch and cache the RSS items
+      @items = @fan.friends_shows
+    end
+    
+    # The external URL to this fan
+    base_url = public_fan_url(@fan)
+    
+    render(:partial => "shared/rss_feed", 
+      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
+  end
+  
   private
   
   # Make queries to get the items for iCal feed
@@ -176,9 +194,7 @@ class FanPublicController < ApplicationController
   
   def no_such_fan
   end
-  
-  private
-  
+
   def find_fan
     @fan = Fan.find_by_name(params[:fan_name])
     if @fan.nil?

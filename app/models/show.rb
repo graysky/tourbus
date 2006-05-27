@@ -125,9 +125,24 @@ class Show < ActiveRecord::Base
     self.fans.find(:all, :order => "attending DESC")
   end
   
+  # Fans with the given fans friends first
+  def fans_friends_first(fan, random = false)
+    fans = random ? self.fans.random : self.fans
+    fans.sort do |x, y|
+      if fan.friends_with?(x)
+        -1  
+      elsif fan.friends_with?(y)
+        1
+      else 
+        0
+      end
+    end
+  end
+  
   # Return the subset of shows that are within the given range
   def self.within_range(shows, lat, long, radius)
     shows = shows.find_all do |show|
+      next unless !show.nil? && show.kind_of?(Show)
       Address::within_range?(show.venue.latitude.to_f, show.venue.longitude.to_f, 
                              lat.to_f, long.to_f, radius.to_f)
     end

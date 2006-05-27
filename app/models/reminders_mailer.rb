@@ -46,7 +46,7 @@ class RemindersMailer < BaseMailer
     @body['email_signoff'] = email_signoff
     @body['email_signoff_plain'] = email_signoff_plain
   end
-  
+
   # Main entry point from the runner script.
   # Calculates what emails need to be sent to fans that have specified
   # show reminders that need to be sent

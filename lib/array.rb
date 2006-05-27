@@ -2,7 +2,7 @@
 class Array
   
   # Get num random elements from the array
-  def random(num)
+  def random(num = self.size)
     rands = []
     while rands.size < num and rands.size < self.size
       n = rand(self.size)

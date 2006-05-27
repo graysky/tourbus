@@ -1,0 +1,28 @@
+<%= render :partial => 'links' %>
+
+<div id="main">
+
+<% @header_title = @page_title = @fan.name + " / Friends' Shows" %>
+
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+
+<%= section "friends_shows.png", 210, 22 %>
+
+<% if @params[:show_map] == "true" %>
+  <a name="map_top"/>
+  <br/>
+  <div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+<% end %>
+
+<br/>
+<div class="profile_sublinks">
+<%= link_to "Back to Friends List", :action => :friends %>
+</div>
+
+
+<%= show_results @fan.friends_shows, params[:show_map] == "true", true, @fan %>
+</div>
+
+<%= render :partial => "profile_sidebar" %>

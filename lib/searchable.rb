@@ -68,6 +68,7 @@ module FerretMixin
         # sort:  An array of SortFields describing how to sort the results.
         # exact_date: Only results on the given date.
         # conditions: A hash of conditions: 'popularity' => '> 0'
+        # include: The include argument to ActiveRecord's find methods.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
           
@@ -100,7 +101,7 @@ module FerretMixin
             ids << ferret_index[doc]["id"]
           end
           
-           return get_results(ids), count
+           return get_results(ids, options[:include]), count
         end
         
         def ferret_index
@@ -163,14 +164,14 @@ module FerretMixin
         
         protected
         
-        def get_results(ids)
+        # Use AR get the actual objects from the DB
+        def get_results(ids, include)
           return [] if ids.empty?
           
-          where = "where id in (#{ids.join(',')})"
-          order = "order by field(id, " + ids.map { |id| "'#{id}'" }.join(',') + ")"
-          sql = "select * from #{self.table_name} #{where} #{order}"
+          conditions = "#{self.table_name}.id in (#{ids.join(',')})"
+          order = "field(#{self.table_name}.id, " + ids.map { |id| "'#{id}'" }.join(',') + ")"
           
-          self.find_by_sql(sql)
+          self.find(:all, :conditions => conditions, :order => order, :include => include)
         end
       end
     

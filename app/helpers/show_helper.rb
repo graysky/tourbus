@@ -16,6 +16,18 @@ module ShowHelper
     "#{friendly_date(show.date)} @ #{show.venue.name}"
   end
   
+  def friends_attending(show)
+    return if !logged_in_fan
+    
+    friends = show.fans & logged_in_fan.friends
+    if friends.size > 0
+      names = friends.map { |f| f.name }.join(', ')
+      
+      str = "#{friends.size} #{friends.size == 1 ? 'friend is' : 'friends are'} attending: #{names}"
+      "<strong>friends:</strong> #{friends.size} <img src='/images/group_small.png' height='12' width='12' title='#{str}' onload='fixPNG(this)'/><br/>"
+    end
+  end
+  
   def write_show_map_points(shows_by_date)
     # Form hash of arrays by venue
     shows_by_venue = {}

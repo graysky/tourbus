@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 31) do
+ActiveRecord::Schema.define(:version => 34) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -12,6 +12,13 @@ ActiveRecord::Schema.define(:version => 31) do
     t.column "updated_at", :datetime
     t.column "created_at", :datetime
     t.column "expire_at", :datetime, :null => false
+  end
+
+  create_table "band_relations", :force => true do |t|
+    t.column "band1_id", :integer, :default => 0, :null => false
+    t.column "band2_id", :integer, :default => 0, :null => false
+    t.column "strength", :float, :default => 0.0
+    t.column "created_on", :datetime
   end
 
   create_table "band_services", :force => true do |t|
@@ -137,6 +144,25 @@ ActiveRecord::Schema.define(:version => 31) do
   end
 
   add_index "fans_shows", ["fan_id"], :name => "FK_attending_fan_id"
+
+  create_table "friend_requests", :force => true do |t|
+    t.column "requester_id", :integer
+    t.column "requestee_id", :integer
+    t.column "message", :string
+    t.column "created_on", :datetime
+    t.column "uuid", :string, :limit => 40
+    t.column "approved", :boolean, :default => false
+    t.column "denied", :boolean, :default => false
+  end
+
+  add_index "friend_requests", ["requester_id"], :name => "FK_fr_req_requester_id"
+  add_index "friend_requests", ["requestee_id"], :name => "FK_fr_req_requestee_id"
+
+  create_table "friendships", :force => true do |t|
+    t.column "fan_id", :integer, :default => 0, :null => false
+    t.column "friend_id", :integer, :default => 0, :null => false
+    t.column "created_on", :datetime
+  end
 
   create_table "index_statistics", :force => true do |t|
     t.column "last_indexed_on", :datetime

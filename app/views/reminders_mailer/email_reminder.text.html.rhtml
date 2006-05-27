@@ -6,10 +6,29 @@
         <strong><%= @show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ") %></strong><br/>
         <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %><br/>
         @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %><br/><br/>
+        
+        <%
+        attending = @fan.friends_going(@show)
+
+        attending_friends = attending.map { |f| 
+          "<a href='#{@band_prefix_url}fan/#{f.name}'>"+f.name+"</a>"
+        }.join(" / ")
+      
+        attending_line = ""
+      
+        if attending_friends.size > 0
+          attending_line = "<p>Friends Attending: #{attending_friends}</p>"
+        end
+        -%>
+        
+        <% if !attending_line.empty? %>
+          <%= attending_line %>
+        <% end %>
+        
         <% if @show.description != "" %>
            <%= @show.description %>
            <br/><br/>
-         <% end %>
+        <% end %>
          <% the_url = @show_prefix_url.to_s + @show.id.to_s %>
          More details: <a href="<%= the_url %>"><%= the_url %></a>
 
@@ -22,3 +41,4 @@
 <%= @email_signoff %>
 </body>
 </html>
+

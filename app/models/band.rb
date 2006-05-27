@@ -29,6 +29,7 @@ require_dependency "hash"
 require_dependency "password_protected"
 require_dependency "searchable"
 require 'ferret'
+require 'uuidtools'
 require_dependency "taggable"
 require_dependency "tagging"
 require_dependency "address"
@@ -45,6 +46,8 @@ class Band < ActiveRecord::Base
   acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
   has_and_belongs_to_many :fans
+  has_many :band_relations, :foreign_key => 'band1_id', :dependent => :destroy
+  has_many :related_bands, :class_name => 'Band', :through => :band_relations, :source => :band2
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
   has_many :links
@@ -126,6 +129,13 @@ class Band < ActiveRecord::Base
     get_tags(Tag.Band)
   end
   
+  def add_related_band(other)
+    Band.transaction do
+      self.related_bands << other
+      other.related_bands << self
+    end
+  end
+  
   # For admin use
   def incorporate_dupe(other)
     # Transfer fans
@@ -160,6 +170,35 @@ class Band < ActiveRecord::Base
   # The popularity is currently a somewhat arbitrary number.
   def popularity
     self.num_fans
+  end
+  
+  def related?(other)
+    self.related_bands.include?(other)
+  end
+  
+  def add_related_band(other)
+    return if self.related?(other)
+    
+    BandRelation.transaction do
+      BandRelation.new(:band1 => self, :band2 => other).save!
+      BandRelation.new(:band2 => self, :band1 => other).save!
+      
+      # NOTE: With has_many :through relations, adding the relation directly like we 
+      # do here does not automatically add the related item, so we have to re-fetch
+      # the related bands
+      self.related_bands(true)
+      other.related_bands(true)
+    end
+  end
+  
+  # Create a new unclaimed band
+  def self.new_band(name)
+    band = Band.new
+    band.claimed = false
+    band.name = name
+    band.short_name = Band.name_to_id(name)
+    band.uuid = UUID.random_create.to_s
+    band
   end
   
   protected

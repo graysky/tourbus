@@ -4,7 +4,14 @@
   
   </p>
   
-  <%= tiny_fan_results(@show.fans_attending_first.random(4)) %>
+  <% 
+    if logged_in_fan
+        fans = @show.fans_friends_first(logged_in_fan, true)[0..3]
+    else
+        fans = @show.fans.random(4)
+    end
+  %>
+  <%= tiny_fan_results(fans) %>
 	<% if @show.num_all_attendees > 4 %>
 	  <p>
 	    <%= link_to "Show more fans...", :action => "fans" %>

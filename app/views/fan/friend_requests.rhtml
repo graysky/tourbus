@@ -1,0 +1,15 @@
+<div id="main">
+
+<% @header_title = @page_title = @fan.name + " / Friend Requests" %>
+
+
+<%= section("friend_requests_section.png", 240, 26) %>
+<br/>
+<div class="profile_sublinks">
+<%= link_to "Show Friends List", :controller => "fan/" + @fan.name, :action => :friends %>
+</div>
+<br/>
+
+<%= outstanding_friend_requests %>
+  
+</div>

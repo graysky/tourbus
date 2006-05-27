@@ -260,10 +260,90 @@ class FanController < ApplicationController
     render :text => 'Success'
   end
   
+  def send_friend_request
+    friend = Fan.find(params[:friend])
+    
+    if not @fan.outstanding_friend_request?(friend)
+      FriendRequest.transaction do
+        req = FriendRequest.new(:message => params[:message], :requester => @fan, :requestee => friend)
+        req.save!
+        
+        param = "?req=#{req.uuid}"
+        confirm_url = url_for(:action => :confirm_friend_request) + param
+        deny_url = url_for(:action => :deny_friend_request) + param
+        FanMailer.deliver_friend_request(req, confirm_url, deny_url)
+      end
+    end
+    
+    render :nothing => true
+  end
+  
+  def confirm_friend_request
+    req = get_friend_request
+    return if req.nil?
+    
+    if req.requestee == @fan
+      Fan.transaction do
+        req.requestee.add_friend(req.requester)
+        req.approved = true
+        req.save!
+      end
+      
+      FanMailer.deliver_friend_request_confirmed(req.requester, req.requestee)
+      flash[:success] = 'The friendship request was confirmed.'
+    else
+      flash[:error] = 'That friendship request was not meant for you! Do you have two accounts?'
+    end
+    
+    redirect_to :controller => "fans", :action => :friend_requests
+  end
+  
+  def deny_friend_request
+    req = get_friend_request
+    return if req.nil?
+    
+    if req.requestee == @fan
+      req.denied = true
+      req.save!
+      
+      FanMailer.deliver_friend_request_denied(req.requester, req.requestee)
+      flash[:success] = 'The friendship request was denied.'
+    else
+      flash[:error] = 'That friendship request was not meant for you! Do you have two accounts?'
+    end
+    
+    redirect_to :controller => "fans", :action => :friend_requests
+  end 
+  
   #########
   # Private
   #########
   private
+  
+  def get_friend_request
+    req = FriendRequest.find_by_uuid(params[:req])
+    if req.nil?
+      flash.now[:error] = 'Invalid friend request'
+      return nil
+    end
+    
+    if req.requestee != @fan and req.requester != @fan
+      flash.now[:error] = "Invalid friend request for #{@fan.name}"
+      return nil
+    end
+    
+    if req.denied? or req.approved?
+      flash.now[:error] = 'This friend request has already been responded to'
+      return nil
+    end
+    
+    if @fan.friends_with?(req.requestee)
+      flash.now[:error] = 'You are already friends with ' + req.requestee.name
+      return nil
+    end
+    
+    return req
+  end
   
   def find_fan
     fan = logged_in_fan

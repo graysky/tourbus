@@ -5,7 +5,14 @@
   
   <%= section("fans_section.png", 68, 23) %>
   <br/>
-  <%= fan_results(@show.fans_attending_first, true) %>
+  <% 
+    if logged_in_fan
+        fans = @show.fans_friends_first(logged_in_fan, true)
+    else
+        fans = @show.fans
+    end
+  %>
+  <%= fan_results(fans, true) %>
 </div>
 
 <%= render :partial => "profile_sidebar", :locals => { :show_fans => false } %>

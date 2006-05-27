@@ -9,35 +9,20 @@ module FeedHelper
     "tourb.us | #{str}"
   end
 
-  def xml_for_item2(item, base_url)
+  # Parameters:
+  # obj - The primary object of the feed
+  # item - A single item for the feed
+  # base_url - The base url of the site
+  def xml_for_item(obj, item, base_url)
     # Dispatch to the correct type of helper
     if item.nil?
       # Do nothing
-    elsif item.kind_of?(Comment)
-      xml_for_comment2(item)
-      
     elsif item.kind_of?(Show)
-      xml_for_show2(item)
-      
-    elsif item.kind_of?(Photo)
-      xml_for_photo2(item)
-    end
-  end
-
-  # Format an individual RSS 2.0 item for an item in the feed
-  def xml_for_item(xml, item, base_url)
-  
-    # Dispatch to the correct type of helper
-    if item.nil?
-      # Do nothing
+      xml_for_show(obj, item)
     elsif item.kind_of?(Comment)
-      xml_for_comment(xml, item)
-      
-    elsif item.kind_of?(Show)
-      xml_for_show(xml, item)
-      
+      xml_for_comment(item)
     elsif item.kind_of?(Photo)
-      xml_for_photo(xml, item)
+      xml_for_photo(item)
     end
   end
 
@@ -89,7 +74,12 @@ module FeedHelper
   end
   
   # Format a Show
-  def xml_for_show2(show)
+  def xml_for_show(obj, show)
+  
+    # For fans, we show info on their friends
+    fan = nil
+    fan = obj if obj.kind_of?(Fan)
+      
     xml = ""
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
@@ -102,7 +92,25 @@ module FeedHelper
     desc << "<p><b>Who:</b> #{h(bands)}</p>" 
     desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}</p>"
     desc << "<p><b>Where:</b> <a href=\"#{public_venue_url(show.venue)}\">#{h(show.venue.name)}</a></p>"
-    desc << "<p><b>Description:</b> #{simple_format( h(sanitize(show.description)) )}</p>"
+    
+    if !show.description.empty?
+      desc << "<p><b>Description:</b> #{simple_format( h(sanitize(show.description)) )}</p>"
+    end
+    
+    # Add the list of their friends attending
+    if !fan.nil? and fan.friends.size > 0
+    
+      attending = fan.friends_going(show)
+    
+      attending_friends = attending.map { |fan| 
+      "<a href='"+ public_fan_url(fan)+ "'>"+fan.name+"</a>"
+        }.join(" / ")
+      
+      if attending_friends.size > 0
+        desc << "<p><b>Friends Attending:</b> #{h(attending_friends)}</p>"
+      end
+    end
+    
     desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a></p>"
     
     xml << "<description>#{desc}</description>"
@@ -110,7 +118,7 @@ module FeedHelper
   end
   
   # Format a Comment
-  def xml_for_comment2(comment)
+  def xml_for_comment(comment)
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
     xml << "<pubDate>#{rss_format_time(comment.created_on)}</pubDate>"
@@ -119,7 +127,7 @@ module FeedHelper
   end
   
   # Format a Photo
-  def xml_for_photo2(photo)
+  def xml_for_photo(photo)
     xml = ""
     xml << "<title>Photo from #{photo.created_by_name}</title>"
     xml << "<pubDate>#{rss_format_time(photo.created_on)}</pubDate>"
@@ -129,48 +137,5 @@ module FeedHelper
 
     xml << "<description>#{s}</description>"
     return xml
-  end
-  
-  # Format a Show
-  def xml_for_show(xml, show)
-     
-    title = get_show_title(show)
-     
-    xml.title("Show: #{title}")
-    xml.pubDate( rss_format_time(show.created_on) ) 
-    
-    desc = ""
-    
-    bands = show.bands.map { |band| band.name }.join(" / ")
-    
-    desc << "<p><b>Who:</b> #{bands}" 
-    desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}"
-    desc << "<p><b>Where:</b> <a href=\"#{public_venue_url(show.venue)}\">#{show.venue.name}</a>"
-    desc << "<p><b>Description:</b> #{simple_format( sanitize(show.description) )}"
-    desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a>"
-    
-    xml.description( desc )
-  end
-  
-  # Format a Comment
-  def xml_for_comment(xml, comment)
-  
-    xml.title("Comment from #{comment.created_by_name}")
-    xml.pubDate( rss_format_time(comment.created_on) )
-    xml.description( simple_format( sanitize(comment.body) ) )
-  end
-  
-  # Format a Photo
-  def xml_for_photo(xml, photo)
-
-    xml.title("Photo from #{photo.created_by_name}")
-    xml.pubDate( rss_format_time(photo.created_on) )
-
-    s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
-    
-    s << "<br/>#{simple_format(sanitize(photo.description))}"
-
-    xml.description( s )
-  end
-
+  end  
 end

@@ -41,6 +41,7 @@ require_dependency "password_protected"
 require_dependency "searchable"
 require_dependency "address"
 require_dependency "mobile_address"
+require 'uuidtools'
 
 # Model that describes a music fan
 class Fan < ActiveRecord::Base
@@ -58,6 +59,12 @@ class Fan < ActiveRecord::Base
   has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
   has_many :comments, :order => "created_on ASC"
   has_many :wish_list_bands, :dependent => true, :order => "name ASC"
+  has_many :incoming_friend_requests, :class_name => 'FriendRequest', 
+                                      :foreign_key => 'requestee_id', :order => 'created_on DESC'
+  has_many :outgoing_friend_requests, :class_name => 'FriendRequest', 
+                                      :foreign_key => 'requester_id', :order => 'created_on DESC'
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships, :source => :friend
  
   validates_uniqueness_of :uuid # just in case
   
@@ -111,11 +118,13 @@ class Fan < ActiveRecord::Base
     
     self.bands << band
     band.num_fans += 1
+    band.save!
   end
   
   def remove_favorite(band)
     self.bands.delete(band)
     band.num_fans -= 1
+    band.save!
   end 
   
   def attend_show(show)
@@ -237,6 +246,66 @@ class Fan < ActiveRecord::Base
 
     return MobileAddress::get_mobile_email(mobile_number, carrier_type)
   end  
+  
+  def add_friend(friend)
+    return if self.friends_with?(friend)
+    Friendship.transaction do                                         
+      f1 = Friendship.new(:fan => self, :friend => friend)
+      f1.save!
+      f2 = Friendship.new(:fan => friend, :friend => self)
+      f2.save!
+    end
+  end
+  
+  def friends_with?(fan)
+    self.friends.include?(fan)
+  end
+  
+  def outstanding_friend_request?(fan)
+    not self.outgoing_friend_requests.find_by_requestee_id(fan.id).nil?
+  end
+  
+  # Order is :asc or :desc
+  def friends_shows(order = :asc)
+    # TODO Test scalability. Does it scale to 100 friends each with 100 shows? Probably not.
+    shows = self.friends.find(:all, :include => :shows).map { |f| f.shows }.flatten.uniq
+    return [] if shows.empty?
+    
+    ids = shows.map { |s| s.id }.join(',')
+    conditions = ["#{Show.table_name}.id in (#{ids}) and date > ?", Time.now]
+    
+    # Fetch the fans so it is easier for the caller to determine which friends are attending each show
+    Show.find(:all, :conditions => conditions, :order => "date #{order.to_s}", :include => [:fans, :bands, :venue])
+  end
+  
+  # Find the friends of attending the specified show
+  def friends_going(show = nil)
+    attending = []
+    
+    return attending if show.nil?  
+    
+    self.friends.each do |f| 
+      if show.fans.include?(f)
+        attending << f
+      end
+    end
+    
+    return attending
+  end
+  
+  def self.create_test_fan(name)
+    fan = Fan.new
+    fan.name = name
+    fan.contact_email = "gm@tourb.us"
+    fan.confirmed = true
+    fan.superuser = false
+    fan.salt = "eaae1f87fbab40ffc2a9181fb2b05afc2e37639c"
+    # Remember that bit MM used to do?
+    fan.salted_password = "67f5767a8e29b5e70800ea602809cc0c24d97b35"
+    fan.confirmation_code = "35c9c08c79571afc41b54053a58728ccc6f9d92a"
+    fan.uuid = UUID.random_create.to_s
+    fan
+  end
   
   # Returns an array of reminder options in minutes
   def self.reminder_options

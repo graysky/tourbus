@@ -1,0 +1,26 @@
+<%= render :partial => 'links' %>
+
+<div id="main">
+
+<% @header_title = @page_title = @fan.name + " / Friends" %>
+
+
+<%= render :partial => "profile_header", :locals => { :front_page => false } %>
+
+
+<%= section("friends_section.png", 112, 23) %>
+<br/>
+
+<div class="profile_sublinks">
+<%= link_to "Friends' Shows", :action => :friends_shows %> <span>(<%= link_to "RSS", :action => :friends_shows_rss %>)</span>
+<% if @logged_in_as_fan %>
+    <span class="normal">|</span>
+	<%= link_to "Respond To Friend Requests", :controller => 'fan', :action => :friend_requests %>
+<% end %>
+</div>
+<br/>
+
+<%= fan_results(@fan.friends) %>
+  
+</div>
+<%= render :partial => "profile_sidebar" %>

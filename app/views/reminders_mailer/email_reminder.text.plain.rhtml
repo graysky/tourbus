@@ -4,6 +4,19 @@
 <%= @show.bands.map { |band| "#{band.name}" }.join(" / ") %>
 <%= @show.date.strftime("%a %m/%d") %>, <%= @show.date.strftime("%I:%M%p") %>
 @ <%= @show.venue.name %> in <%= @show.venue.city %>, <%= @show.venue.state %>
+<% 
+  attending = @fan.friends_going(@show)
+  attending_friends = attending.map { |f| "#{f.name}" }.join(" / ")
+      
+  attending_line = ""
+      
+  if attending_friends.size > 0
+    attending_line = "Friends Attending: #{attending_friends}"
+  end
+-%>        
+<% if !attending_line.empty? %>
+<%= attending_line %>
+<% end %>
 <% if @show.description != "" %>
 <%= @show.description %>
 <% end %>

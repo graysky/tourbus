@@ -42,6 +42,48 @@ class FanMailer < BaseMailer
     @body['email_signoff_plain'] = email_signoff_plain
   end
   
+  def friend_request(request, confirm_url, deny_url, sent_at = Time.now)
+    @subject    = "[tourb.us] #{request.requester.name} wants to be your friend"
+    @recipients = request.requestee.contact_email
+    @from       = Emails.from
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["request"] = request
+    @body['email_signoff'] = email_signoff
+    @body['confirm_url'] = confirm_url
+    @body['deny_url'] = deny_url
+    @body['friend_requests_url'] = fan_private_prefix_url(request.requestee) + 'friend_requests'
+  end
+  
+  def friend_request_confirmed(fan, friend, sent_at = Time.now)
+    @subject    = "[tourb.us] #{friend.name} has confirmed your friend request"
+    @recipients = fan.contact_email
+    @from       = Emails.from
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body['email_signoff'] = email_signoff
+    @body['friend'] = friend
+    @body['fan'] = fan
+  end
+  
+  def friend_request_denied(fan, friend, sent_at = Time.now)
+    @subject    = "[tourb.us] #{friend.name} has denied your friend request"
+    @recipients = fan.contact_email
+    @from       = Emails.from
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/html"
+    
+    @body['email_signoff'] = email_signoff
+    @body['friend'] = friend
+    @body['fan'] = fan
+  end
+  
+  
   # New fan signup - tell Gary and Mike!
   def gm_of_new_fan(fan)
     @subject    = '[tourb.us] New Fan Signup!'

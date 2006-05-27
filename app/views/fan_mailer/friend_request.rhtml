@@ -1,0 +1,34 @@
+<html>
+<body>
+
+<p>
+<%= @request.requester.name %> wants to add you as a friend. 
+</p>
+
+<% if @request.message and @request.message != '' %>
+<p>"<%= @request.message %>"</p>
+<% end %>
+
+<p>
+Having friends in tourb.us makes it easy to
+track what shows your friends are going to and are a great way to
+find out about shows you might enjoy. 
+</p>
+
+<p>
+To <strong>accept</strong> this request click <a href="<%= @confirm_url %>">here</a>.<br/>
+To <strong>deny</strong> this request click <a href="<%= @deny_url %>">here</a>.<br/><br/>
+You may need to log in before confirming or denying the request.
+
+</p>
+
+<p>
+You can manage all of your outstanding friend requests <a href="<%= @friend_requests_url %>">here</a>.
+</p>
+
+<p>
+<%= @email_signoff %>
+</p>
+</body>
+</html>
+  

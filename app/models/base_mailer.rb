@@ -25,6 +25,11 @@ class BaseMailer < ActionMailer::Base
     return Emails.url + "/"
   end
   
+  # URL prefix for fan private
+  def fan_private_prefix_url(fan)
+    Emails.url + "/fans/"
+  end
+  
   def email_signoff_plain
     str = ""
     str << "rock on,\n"

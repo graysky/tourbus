@@ -32,10 +32,13 @@ class FindController < ApplicationController
       do_toggle_only_local(true)
     end
     
+    options = default_search_options
+    options[:include] = [:bands, :venue, :fans]
+    
     query, radius, lat, long = prepare_query(Show.table_name)
     return if query.nil?
     
-    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, default_search_options)
+    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
   end
   
@@ -106,6 +109,7 @@ class FindController < ApplicationController
     options = default_search_options
     options[:sort] = popularity_sort_field
     options[:exact_date] = true
+    options[:include] = :bands
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)

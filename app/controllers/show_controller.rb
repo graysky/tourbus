@@ -99,7 +99,7 @@ class ShowController < ApplicationController
     base_url = public_show_url(@show)
     
     render(:partial => "shared/rss_feed", 
-      :locals => { :obj => @show, :base_url => base_url, :key => key, :items => @items })
+      :locals => { :obj => @show, :base_url => base_url, :key => key, :items => @items, :title => "#{@show.name}"  })
   end
   
   def fans

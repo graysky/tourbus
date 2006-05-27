@@ -6,7 +6,7 @@ module FeedHelper
   end
   
   def feed_description(str)
-    "tourb.us | #{str}"
+    "tourb.us generated feed for #{str}"
   end
 
   # Parameters:

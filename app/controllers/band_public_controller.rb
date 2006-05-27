@@ -135,7 +135,7 @@ class BandPublicController < ApplicationController
     base_url = public_band_url(@band)
     
     render(:partial => "shared/rss_feed", :locals => 
-      { :obj => @band, :base_url => base_url, :key => key, :items => @items })
+      { :obj => @band, :base_url => base_url, :key => key, :items => @items, :title => "#{@band.name}" })
   end
   
   def ical

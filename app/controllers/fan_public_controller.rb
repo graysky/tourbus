@@ -105,7 +105,7 @@ class FanPublicController < ApplicationController
     base_url = public_fan_url(@fan)
     
     render(:partial => "shared/rss_feed", 
-      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
+      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items, :title => "#{@fan.name}" })
   end
   
   # An iCal feed
@@ -157,7 +157,7 @@ class FanPublicController < ApplicationController
     base_url = public_fan_url(@fan)
     
     render(:partial => "shared/rss_feed", 
-      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items })
+      :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items, :title => "#{@fan.name}'s Friends' Shows" })
   end
   
   private

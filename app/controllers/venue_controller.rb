@@ -98,7 +98,7 @@ class VenueController < ApplicationController
     base_url = public_venue_url(@venue)
     
     render(:partial => "shared/rss_feed", 
-      :locals => { :obj => @venue, :base_url => base_url, :key => key, :items => @items })
+      :locals => { :obj => @venue, :base_url => base_url, :key => key, :items => @items, :title => "#{@venue.name}"  })
   end
   
   # iCal feed for this venue

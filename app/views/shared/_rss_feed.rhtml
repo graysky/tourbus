@@ -5,13 +5,14 @@
 ## base_url => the base url for the object
 ## items => the ordered list of items for the feed
 ## key => the fragment key
+## title => title for the feed
 %>
 <% cache(key) do %>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
-<title><%=feed_title(h(obj.name))%></title>
+<title><%=feed_title(h(title))%></title>
 <link><%= base_url %></link>
-<description><%=feed_description(h(obj.name))%></description>
+<description><%=feed_description(h(title))%></description>
 
 <% items.each do |i| %>
 <item>

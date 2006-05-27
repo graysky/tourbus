@@ -193,19 +193,14 @@
   var white = '#FFFFFF';
   Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
   Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
-
+  Rico.Corner.round( $('friends-box'), {corners:'bottom', bgColor : white} );
+  Rico.Corner.round( $('friends-title'), {corners:'top', bgColor : white} );
   <% if @logged_in_as_fan %>
     Rico.Corner.round( $('actions-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('favorites-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('favorites-title'), {corners:'top', bgColor : white} );
-   <% end %>
-    Rico.Corner.round( $('friends-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('friends-title'), {corners:'top', bgColor : white} );
-    <% if @logged_in_as_fan %>
-    Rico.Corner.round( $('favorites-box'), {corners:'bottom', bgColor : white} );
-    Rico.Corner.round( $('favorites-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('scene-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('scene-title'), {corners:'top', bgColor : white} );
-    <% end %>
+  <% end %>
 </script>

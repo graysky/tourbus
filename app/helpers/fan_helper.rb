@@ -16,7 +16,12 @@ module FanHelper
       out << render(:partial => "shared/fan_search_result", 
                     :locals => { :fan => fan, :index => index, :show_status => show_status })
       index += 1
-    end  
+    end
+    
+    if fans.size == 0
+      out << "<div class='profile_section_no_content'>No friends yet, but no worries.</div>"
+    end
+      
     out << "</div>"
   end
   

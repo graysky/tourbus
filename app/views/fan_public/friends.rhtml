@@ -21,6 +21,20 @@
 <br/>
 
 <%= fan_results(@fan.friends) %>
+
+<% if @logged_in_as_fan and @fan.friends.size == 0 %>
+
+<%= start_profile_info_box %>
+<strong>You don't have any friends yet, but no worries.</strong>
+<br/><br/>
+As you make friends, this section will list them and help you track what shows
+they're interested in.
+
+<br/><br/>Also, when you find shows you like, you can invite your real life friends
+to check it by clicking 'Share This Show'. 
+<%= end_profile_info_box %>
+
+<% end %>
   
 </div>
 <%= render :partial => "profile_sidebar" %>

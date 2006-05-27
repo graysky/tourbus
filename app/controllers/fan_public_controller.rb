@@ -14,8 +14,8 @@ class FanPublicController < ApplicationController
   helper :feed
   helper :comment
   upload_status_for :change_logo
-  session :off, :only => [:rss, :friends_rss, :ical, :webcal, :badge ]
-  layout "public", :except => [:rss, :friends_rss, :ical, :webcal, :badge ] 
+  session :off, :only => [:rss, :friends_shows_rss, :ical, :webcal, :badge ]
+  layout "public", :except => [:rss, :friends_shows_rss, :ical, :webcal, :badge ] 
   
   # Show the main fan page
   def index

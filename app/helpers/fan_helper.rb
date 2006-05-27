@@ -18,10 +18,6 @@ module FanHelper
       index += 1
     end
     
-    if fans.size == 0
-      out << "<div class='profile_section_no_content'>No friends yet, but no worries.</div>"
-    end
-      
     out << "</div>"
   end
   

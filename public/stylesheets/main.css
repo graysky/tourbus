@@ -1141,7 +1141,7 @@ table.compact-form-table td input, table.compact-form-table td select {
 /* Venue listing on Show page */
 .venue_for_show {
     float:right;
-    width: 300px;
+    width: 280px; /* Delicate setting to get IE happy */
     margin-top: 10px;
     margin-right: 30px;
     

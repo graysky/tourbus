@@ -132,6 +132,12 @@ module FerretMixin
           q = q[0...(q.size - 1)] if q.ends_with?('-')
           q.gsub!('-', '') if q.ends_with?('-*')
           
+          # A big ole hack for wildcards and quotes. Working around ferret bug.
+          if q.ends_with?('*')
+            q.gsub!("'", "")
+            q.gsub!('"', "")
+          end
+          
           query = Search::BooleanQuery.new
           if q != "*"
             options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new

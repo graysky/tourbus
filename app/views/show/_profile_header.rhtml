@@ -56,7 +56,7 @@
 <td class="venue_info">Time:</td>
 <td><%= friendly_time(@show.date) %></td>
 
-<% if @show.cost != "" %>
+<% if !@show.cost.nil? and @show.cost != "" %>
   <tr>
   <td class="venue_info">Cost:</td>
   <td><%= @show.cost %></td>

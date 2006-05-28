@@ -165,7 +165,7 @@ module FerretMixin
         protected
         
         # Use AR get the actual objects from the DB
-        def get_results(ids, include)
+        def get_results(ids, include = nil)
           return [] if ids.empty?
           
           conditions = "#{self.table_name}.id in (#{ids.join(',')})"

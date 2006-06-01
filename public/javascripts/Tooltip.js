@@ -116,6 +116,7 @@ var Tooltip = {
             }
 			
 			if (Tooltip.autoHideClick) {
+				// This was breaking Safari form submission before enabling fix for stopPropogation
 				Tooltip._attachEvent(document.getElementsByTagName("body").item(0), "clickanywhere");
 			}
 			
@@ -302,7 +303,16 @@ var Tooltip = {
 		}
 		event.cancelBubble = true;
 		try {
-			event.stopPropagation();
+						
+			if (/Konqueror|Safari|KHTML/.test(navigator.userAgent))
+			{
+				// Use prototype to test browser type
+				// Stopping the event propagation was breaking Safari form submission
+			}
+			else
+			{
+				event.stopPropagation();
+			}
 		}
 		catch (e) { }
 	},

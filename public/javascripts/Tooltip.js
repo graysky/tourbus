@@ -78,8 +78,9 @@ var Tooltip = {
 	
 	/**
 	 * @var boolean Allow user to click anywhere to hide current tooltip
+	 * This option was causing problems on Safari.
 	 */
-	autoHideClick: true,
+	autoHideClick: false,
 	
 	/**
 	 * @var boolean If set to true, the Tooltip will be displayed (static) at the current Mouse Cursor location.

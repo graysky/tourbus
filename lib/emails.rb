@@ -33,7 +33,7 @@ class Emails
   
   # "From" address for sending emails like reminders
   def self.from
-    return "tourb.us robot <robot@" + domain + ">"
+    return "robot@" + domain
   end
   
   # A spam address for testing

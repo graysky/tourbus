@@ -20,6 +20,8 @@ class LoginController < ApplicationController
                 "Please check your username and password, " +
                 "and that your account has been confirmed."
     
+    # We only support fans right now.
+    type = "fan"
     if type == "fan"
     
       # Fan login

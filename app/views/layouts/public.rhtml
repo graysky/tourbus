@@ -44,7 +44,7 @@
   <% elsif !is_fan and !is_band %>
     <%= link_to("Login", :controller => "login") %> |
     <%= link_to("Feedback", :controller => "feedback") %> |
-    <%= link_to("Sign Up", :controller => "signup") %>
+    <%= link_to("Sign Up", :controller => "signup", :action => "fan") %>
   <% end %>
   </div>
   <div style="clear:both"></div> 

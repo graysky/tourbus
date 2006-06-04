@@ -20,9 +20,9 @@ end
 desc "Re-index only parts of the database - uses the current RAILS_ENV for which DB to index."
 task :dev_reindex do
   cmd = <<END
-    b = 100
-    v = 100
-    s = 50
+    b = 200
+    v = 200
+    s = 200
     puts "Re-indexing some bands..."
     Band.find(:all).each { |band| b = b - 1; band.ferret_save if b > 0 }
     puts "Re-indexing some venues..."

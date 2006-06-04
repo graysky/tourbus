@@ -15,7 +15,7 @@ class PublicController < ApplicationController
     bands_key = {:action => 'front_page', :part => 'popular_bands'}
     shows_key = {:action => 'front_page', :part => get_popular_shows_cache_key}
     
-    when_not_cached(bands_key, 3.hours.from_now) do
+    when_not_cached(bands_key, 14.hours.from_now) do
       # Fetch and cache the list of bands
       get_popular_bands
     end
@@ -127,12 +127,43 @@ class PublicController < ApplicationController
       return get_popular_shows(true)
     end
   end 
-  
+
+  # The 10 most popular bands that have > 0 upcoming show
   def get_popular_bands
-    # The 10 most popular bands
+    
+    # Use brute force to make sure we get 10 bands with upcoming
+    # shows. We cache this value so it being inefficent shouldn't 
+    # be a perf. problem.
+    num_bands = 10
+    
+    # Query most 200 popular bands first
+    bands_with_shows = get_bands(num_bands, 200)
+    
+    if bands_with_shows.size < num_bands
+      # We didn't get enough bands, try again with more bands
+      bands_with_shows = get_bands(num_bands, 400)
+    end
+    
+    @bands = bands_with_shows
+  end
+  
+  # Attempt to get the most popular bands from ferret with >= 1 upcoming show
+  # num_docs => how many to fetch from ferret
+  def get_bands(num_bands, num_docs)  
     options = default_search_options
     options[:sort] = popularity_sort_field
     
-    @bands, count = Band.ferret_search_date_location('*', nil, nil, nil, nil, options)
-  end  
+    options[:num_docs] = num_docs
+    
+    bands_with_shows = []
+    pop_bands, count = Band.ferret_search_date_location('*', nil, nil, nil, nil, options)
+    
+    # Only store bands with > 0 upcoming shows
+    pop_bands.each do |b|
+      bands_with_shows << b if b.num_upcoming_shows > 0      
+      break if bands_with_shows.size >= num_bands
+    end
+    
+    return bands_with_shows 
+  end
 end

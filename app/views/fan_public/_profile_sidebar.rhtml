@@ -19,7 +19,14 @@
   
   <p>
     <strong>Member Since:</strong> <%= simple_date @fan.created_on %>
-    <strong>Profile Views:</strong> <%= @fan.page_views %>
+    <strong>Profile Views:</strong> <%= @fan.page_views %><br/>
+    <%
+    location = "<i>unknown</i>"
+    if !@fan.city.empty? && !@fan.state.empty?
+        location = "#{@fan.city}, #{@fan.state}"    
+    end
+    %>
+    <strong>Location:</strong> <%= location %>
     
   </p>
  

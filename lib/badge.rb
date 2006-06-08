@@ -158,7 +158,7 @@ module Badge
     for band in bands
     
       #puts "Examining: #{band.name} (#{band.name.length})"
-      name = band.name[0...(text_limit - 2)]
+      name = band.name[0...(text_limit - 1)]
       if band_names.length + name.length < text_limit
         
         band_names << " / " if !first # Add divider if needed

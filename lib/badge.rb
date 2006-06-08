@@ -110,12 +110,15 @@ module Badge
       end
       
       # Get the band string, with hand-calculated max length
-      band_names = band_string(show.bands, 27)
+      title = band_string(show.bands, 27)
+      if title == ''
+        title = show.title[0..27]
+      end
 
       y_coord = y_coord + band_offset
             
       # Draw the band names
-      Magick::Draw.new.annotate(canvas, 0, 0, band_x, y_coord, band_names) do
+      Magick::Draw.new.annotate(canvas, 0, 0, band_x, y_coord, title) do
         self.font = 'Arial'
         self.pointsize = 12
         self.gravity = Magick::NorthWestGravity

@@ -14,7 +14,7 @@ month = 1 if month == 13
 year = month == 1 ? now.year + 1 : now.year
 
 set :url, "http://ttthebears.com/public/calendar.php?month=#{month}&year=#{year}"
-
+set :display_name, "TT The Bear's"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

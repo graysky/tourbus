@@ -50,14 +50,18 @@ class AnansiImporter
       site.crawled_files.each do |file|
         path = File.join(site.parse_dir, File.basename(file, ".xml") + ".yml")
         
-        YAML::load_documents(File.open(path)) do |shows|
-          for show in shows
-            @show = show
-            show[:site] = site.name
-            show[:site_visit_id] = visit.id
-            
-            prepare_show(show)
+        begin
+          YAML::load_documents(File.open(path)) do |shows|
+            for show in shows
+              @show = show
+              show[:site] = site.name
+              show[:site_visit_id] = visit.id
+              
+              prepare_show(show)
+            end
           end
+        rescue Exception => e
+          puts "Skipping site #{site.name}, #{e}"
         end
         
       end
@@ -74,17 +78,17 @@ class AnansiImporter
     @shows = latest_prepared_shows
     
     begin
-      Show.transaction do
+      #Show.transaction do
           @shows.each do |show|
           if show[:status] == :ok
             result = import_show(show)
             show[:status] = :imported if result
           end
         end
-      end
+      #end
     ensure
       puts "Savings shows to YAML..."
-      save_shows
+      #save_shows
     end
     
     puts "Imported #{@imported_show_count} shows and created #{@new_band_count} new bands"
@@ -114,6 +118,10 @@ class AnansiImporter
     
     show.site_visit = SiteVisit.find(s[:site_visit_id])
     
+    site = site_by_name(s[:site])
+    show.source_name = site.display_name
+    show.source_link = s[:source_link] || site.display_url
+    
     show.venue = Venue.find(s[:venue][:id])
     raise "Missing venue #{s[:venue][:id]}" if show.venue.nil?
     
@@ -125,6 +133,10 @@ class AnansiImporter
     
     @imported_show_count += 1
     return show
+  end
+  
+  def site_by_name(name)
+    @sites.detect { |site| site.name == name }
   end
   
   def add_band(show, b)

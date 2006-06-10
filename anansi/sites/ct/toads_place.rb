@@ -9,6 +9,7 @@
 # Can be single url:
 set :url, "http://www.toadsplace.com/calendar.htm"
 #
+set :display_name, "Toad's Place"
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72

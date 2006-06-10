@@ -8,6 +8,8 @@
 # Can be single url:
 set :url, "http://ae.mercurynews.com/entertainment/ui/mercurynews/venue.html?id=3011"
 
+set :display_name, "The Mercury News"
+
 set :quality, 2
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)

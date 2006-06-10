@@ -10,7 +10,7 @@
 # Can be single url:
 set :url, "http://www.teapartyconcerts.com/venues.html?venueID=832"
 #
-
+set :display_name, TeapartyHelper::DISPLAY_NAME
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

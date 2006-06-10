@@ -69,6 +69,12 @@
   </tr>
 <% end %>
 
+<% if @show.created_by_system && @show.source_link %>
+  <tr>
+    <td colspan="2">More info at <%= link_to @show.source_name, @show.source_link %></td>
+  </tr>
+<% end %>
+
 </table>
 </div>
 

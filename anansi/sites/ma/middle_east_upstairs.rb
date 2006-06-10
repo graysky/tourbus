@@ -10,7 +10,7 @@
 # Can be single url:
 set :url, "http://mideastclub.com/up-schedule.html"
 #
-
+set :display_name, "The Middle East"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

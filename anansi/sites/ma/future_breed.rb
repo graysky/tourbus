@@ -10,7 +10,7 @@
 # Can be single url:
 set :url, "http://futurebreed.50webs.com/shows.htm"
 #
-
+set :display_name, "Future Breed"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

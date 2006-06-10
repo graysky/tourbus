@@ -13,7 +13,7 @@ month = now.month + 1
 month = 1 if month == 13
 year = month == 1 ? now.year + 1 : now.year
 set :url, "http://paslounge.com/pas_cal.cgi?cvm=#{month}&cvy=#{year}"
-
+set :display_name, "PA's Lounge"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
  

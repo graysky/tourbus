@@ -12,7 +12,7 @@ now = Time.now
 month = now.month
 year = now.year
 set :url, "http://paslounge.com/pas_cal.cgi?cvm=#{month}&cvy=#{year}"
-
+set :display_name, "PA's Lounge"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
  

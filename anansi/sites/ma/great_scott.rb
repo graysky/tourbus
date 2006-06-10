@@ -10,7 +10,7 @@
 # Can be single url:
 set :url, "http://www.greatscottboston.com/main.cgi"
 #
-
+set :display_name, "Great Scott"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

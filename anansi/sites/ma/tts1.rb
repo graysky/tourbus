@@ -12,7 +12,7 @@ now = Time.now
 month = now.month
 year = now.year
 set :url, "http://ttthebears.com/public/calendar.php?month=#{month}&year=#{year}"
-
+set :display_name, "TT The Bear's"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

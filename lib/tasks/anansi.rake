@@ -68,6 +68,7 @@ task :anansi_import do
   # TODO Remove "true" which indicates testing
   cmd = <<END
   p = AnansiImporter.new(true)
+  p.start
   p.import
 END
 

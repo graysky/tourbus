@@ -7,6 +7,12 @@ class MetaSite
   # The name of the site (automatically gleamed from the config filename)
   # It must be unique
   attr_reader :name
+  
+  # Visible name exposed in the UI... not necessarily unique
+  attr_reader :display_name
+  
+  # The url to link to for attribution
+  attr_reader :display_url
 
   # The URL of the site - can be a String or an Array
   attr_reader :url
@@ -100,6 +106,14 @@ class MetaSite
   def metaclass
     class << self; self; end
   end
+
+  def display_name
+    @display_name || @name
+  end
+  
+  def display_url
+    @display_url || @url
+  end 
 
   protected
   

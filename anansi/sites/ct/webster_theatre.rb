@@ -9,7 +9,7 @@
 # Can be single url:
 set :url, "http://www.webstertheater.com/EVENTS_theater.htm"
 #
-
+set :display_name, "The Webster Theatre"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

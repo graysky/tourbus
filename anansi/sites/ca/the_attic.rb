@@ -9,7 +9,7 @@
 # The URL for this site - mandatory
 # Can be single url:
 set :url, "http://ae.mercurynews.com/entertainment/ui/mercurynews/venue.html?id=16581"
-
+set :display_name, "The Mercury News"
 set :quality, 2
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)

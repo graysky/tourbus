@@ -95,6 +95,7 @@ class LoginController < ApplicationController
     
     # This duplication sucks between fans and bands... should be cleaned up
     # at some point. Would need one mailer...
+    type = "fan"
     if type == "fan"
       fan = Fan.find_by_contact_email(email)
       if fan.nil?

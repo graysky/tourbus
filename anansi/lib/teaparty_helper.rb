@@ -1,7 +1,8 @@
 # Class to help with parsing Teaparty show listings
 class TeapartyHelper
 
-
+  DISPLAY_NAME = "Teaparty Concerts"
+  
   # The table cols for the teaparty show listings
   def self.table_columns
     { 0 => [:date, :time], 1 => :bands}

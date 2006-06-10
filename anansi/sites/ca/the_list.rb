@@ -10,7 +10,8 @@
 # Can be single url:
 set :url, "http://jmarshall.com/events/findevents.cgi"
 #
-
+set :display_name, "The List"
+set :display_url, "http://www.calweb.com/~skoepke/"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

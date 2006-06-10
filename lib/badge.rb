@@ -157,6 +157,7 @@ module Badge
     first = true
     for band in bands
     
+      escape_string(band.name)
       #puts "Examining: #{band.name} (#{band.name.length})"
       name = band.name[0...(text_limit - 1)]
       if band_names.length + name.length < text_limit
@@ -173,11 +174,16 @@ module Badge
   end
   
   def venue_string(venue, text_limit)
-  
     venue_name = "@ "
-    venue_name << venue.name
-  
+    venue_name << escape_string(venue.name)
     return venue_name
+  end
+  
+    
+  # Escape strings
+  def escape_string(s)
+    s.gsub!('&#8217;','\'') # Single appos
+    return s
   end
   
 end

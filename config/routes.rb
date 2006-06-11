@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   map.connect '', :controller => 'public', :action => 'front_page'
+  
+  map.connect 'metro/:metro/', :controller => 'public', :action => 'metro'
 
   # Forwarding from "www.tourb.us" needs this to work correctly
   map.connect 'dispatch.fcgi', :controller => 'public', :action => 'front_page'

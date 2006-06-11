@@ -24,28 +24,52 @@ class PublicController < ApplicationController
       # Fetch and cache the list of shows
       get_popular_shows
     end
-    
   end
   
-  # Shortcuts for Metros
+  def dispatch_fcgi
+    redirect_to :action => "front_page"
+  end
+  
+  # Allow pre-defined shortcuts
+  def metro
+    metro = params['metro'] || ""
+    metro.downcase!
+    
+    case metro
+    # New metros need to be added here and in routes for subdomain
+    when "boston" then set_metro("Boston, MA")
+    when "austin" then set_metro("Austin, TX")   
+    when "seattle" then set_metro("Seattle, WA")
+    when "chicago" then set_metro("Chicago, IL")
+    when "sanfran" then set_metro("San Francisco, CA")
+    else
+      # Invalid metro set    
+    end
+    
+    # Show the normal front page with location set
+    front_page
+    render :action => "front_page"
+  end
+  
+  # Sub-domain shortcuts for metros, ex. "boston.tourb.us"
   def boston
-    set_metro("Boston, MA")
+    metro_redirect("boston")
   end
   
   def austin
-    set_metro("Austin, TX")
+    metro_redirect("austin")
   end
   
   def seattle
-    set_metro("Seattle, WA")
+    metro_redirect("seattle")
   end
   
   def chicago
-    set_metro("Chicago, IL")
+    metro_redirect("chicago")
   end
   
   def sanfran
-    set_metro("San Francisco, CA")
+    metro_redirect("sanfran")
   end
   
   # The beta page to ask for invitation code
@@ -120,10 +144,14 @@ class PublicController < ApplicationController
     return key
   end
   
+  # Need to specify full URL to clear the subdomain on redirect
+  def metro_redirect(metro)
+    redirect_to "http://tourb.us/metro/#{metro}"
+  end
+  
   # Set a default location + radius for this metro IF there isn't one already set.
   # Assumes caller sets a valid location, like "Boston, MA"
   def set_metro(location)
-    
     default_radius = 50
     
     if !@session[:location] or @session[:location] == ''
@@ -133,9 +161,6 @@ class PublicController < ApplicationController
     if !@session[:radius] or @session[:radius] == ''
       @session[:radius] = default_radius
     end
-    
-    # Redirect to normal front page with location set
-    redirect_to "http://tourb.us"
   end
   
   def local_popular_shows?

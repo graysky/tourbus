@@ -123,6 +123,7 @@ class PublicController < ApplicationController
   # Set a default location + radius for this metro IF there isn't one already set.
   # Assumes caller sets a valid location, like "Boston, MA"
   def set_metro(location)
+    
     default_radius = 50
     
     if !@session[:location] or @session[:location] == ''
@@ -133,7 +134,8 @@ class PublicController < ApplicationController
       @session[:radius] = default_radius
     end
     
-    redirect_to :action => "front_page"
+    # Redirect to normal front page with location set
+    redirect_to "http://tourb.us"
   end
   
   def local_popular_shows?

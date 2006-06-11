@@ -1,4 +1,4 @@
-# Helper for publishing RSS feeds.
+# Helper for publishing RSS and iCalendar feeds.
 module FeedHelper
 
   def feed_title(str)

@@ -153,15 +153,8 @@ class PublicController < ApplicationController
   # Set a default location + radius for this metro IF there isn't one already set.
   # Assumes caller sets a valid location, like "Boston, MA"
   def set_metro(location)
-    default_radius = 50
-    
-    if !@session[:location] or @session[:location] == ''
-      @session[:location] = location
-    end
-
-    if !@session[:radius] or @session[:radius] == ''
-      @session[:radius] = default_radius
-    end
+    @session[:location] = location
+    @session[:radius] = 50
   end
   
   def local_popular_shows?

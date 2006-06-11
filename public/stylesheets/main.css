@@ -391,7 +391,7 @@ td, p
 
 .intro_box 
 {
-    width: 790px;
+    width: 796px;
     background-color: #dcdbdc;
     background-repeat:repeat-x;
     background-image: url(/images/intro_bg.gif);
@@ -472,6 +472,7 @@ td, p
 {
     width: 400px;
     margin-top: 10px;
+    margin-right: 4px;
 }
 
 .front_search .title
@@ -513,7 +514,7 @@ table.front-search-table th {
     font-weight:bold;
 }
 
-table.front-search-table td.submit input {
+table.front-search-table td.submit {
 }
 
 /* List of bands and shows - narrow version */

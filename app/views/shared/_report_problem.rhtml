@@ -30,7 +30,7 @@
         <%= text_area_tag 'notes', '', :size => '20' %>
 
       
-        <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!'" %>&nbsp;
+        <br/><%= submit_tag "Submit", :onclick => "Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!'" %>&nbsp;
         <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('report_problem_link'), event)" %>
         <%= end_form_tag %>
       </p>

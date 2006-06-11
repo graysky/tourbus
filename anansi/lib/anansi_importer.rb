@@ -118,7 +118,7 @@ class AnansiImporter
     
     show.site_visit = SiteVisit.find(s[:site_visit_id])
     
-    site = site_by_name(s[:site])
+    site = @config.site_by_name(s[:site])
     show.source_name = site.display_name
     show.source_link = s[:source_link] || site.display_url
     
@@ -133,10 +133,6 @@ class AnansiImporter
     
     @imported_show_count += 1
     return show
-  end
-  
-  def site_by_name(name)
-    @sites.detect { |site| site.name == name }
   end
   
   def add_band(show, b)

@@ -162,6 +162,10 @@ class AnansiConfig
     end
   end
   
+  def site_by_name(name)
+    @sites.detect { |site| site.name == name }
+  end
+  
   private
   
   # Check if this seems like a valid directory

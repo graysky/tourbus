@@ -10,6 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   map.connect '', :controller => 'public', :action => 'front_page'
 
+  # Forwarding from "www.tourb.us" needs this to work correctly
+  map.connect 'dispatch.fcgi', :controller => 'public', :action => 'front_page'
+
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
@@ -68,6 +71,17 @@ ActionController::Routing::Routes.draw do |map|
   
   # Admin section
   map.connect 'admin/:action/:id', :controller => 'admin'
+  
+  # Metro shortcuts
+  map.connect '', :controller => 'public', :action => 'boston', :requirements => { :subdomain => 'boston' }
+  map.connect '', :controller => 'public', :action => 'austin', :requirements => { :subdomain => 'austin' }
+  map.connect '', :controller => 'public', :action => 'seattle', :requirements => { :subdomain => 'seattle' }
+  map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sanfran' }
+  map.connect '', :controller => 'public', :action => 'chicago', :requirements => { :subdomain => 'chicago' }
+  
+  
+  # TODO Replace this with real code for subdomains -- just for testing
+  # map.connect 'boston/', :controller => 'public', :action => 'boston'
   
   # Public band pages (must be last)
   map.connect ':short_name/:action/:id', :controller => 'band_public'

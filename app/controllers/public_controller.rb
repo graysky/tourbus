@@ -27,6 +27,27 @@ class PublicController < ApplicationController
     
   end
   
+  # Shortcuts for Metros
+  def boston
+    set_metro("Boston, MA")
+  end
+  
+  def austin
+    set_metro("Austin, TX")
+  end
+  
+  def seattle
+    set_metro("Seattle, WA")
+  end
+  
+  def chicago
+    set_metro("Chicago, IL")
+  end
+  
+  def sanfran
+    set_metro("San Francisco, CA")
+  end
+  
   # The beta page to ask for invitation code
   def beta
     return if @request.get?
@@ -97,6 +118,22 @@ class PublicController < ApplicationController
     end
     
     return key
+  end
+  
+  # Set a default location + radius for this metro IF there isn't one already set.
+  # Assumes caller sets a valid location, like "Boston, MA"
+  def set_metro(location)
+    default_radius = 50
+    
+    if !@session[:location] or @session[:location] == ''
+      @session[:location] = location
+    end
+
+    if !@session[:radius] or @session[:radius] == ''
+      @session[:radius] = default_radius
+    end
+    
+    redirect_to :action => "front_page"
   end
   
   def local_popular_shows?

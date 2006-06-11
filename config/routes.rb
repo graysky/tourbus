@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '', :controller => 'public', :action => 'austin', :requirements => { :subdomain => 'austin' }
   map.connect '', :controller => 'public', :action => 'seattle', :requirements => { :subdomain => 'seattle' }
   map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sanfran' }
+  map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sf' }
   map.connect '', :controller => 'public', :action => 'chicago', :requirements => { :subdomain => 'chicago' }
   # Testing code for subdomains
   # map.connect 'boston/', :controller => 'public', :action => 'boston'

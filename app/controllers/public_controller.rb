@@ -42,6 +42,7 @@ class PublicController < ApplicationController
     when "seattle" then set_metro("Seattle, WA")
     when "chicago" then set_metro("Chicago, IL")
     when "sanfran" then set_metro("San Francisco, CA")
+    when "sf" then set_metro("San Francisco, CA")
     else
       # Invalid metro set    
     end

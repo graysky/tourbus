@@ -10,7 +10,7 @@
 # Can be single url:
 set :url, "http://www.jambase.com/search.asp?city=Seattle&stateID=47&dispall=1"
 #
-
+set :display_name, "Jambase"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 

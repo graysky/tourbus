@@ -9,6 +9,7 @@
 # Can be single url:
 set :url, "http://www.showlistaustin.com/"
 #
+set :display_name, "Showlist Austin"
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72

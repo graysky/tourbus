@@ -11,8 +11,7 @@
     <% if @band.claimed? %>
       <strong>Member Since:</strong> <%= simple_date @band.created_on %>
     <% end %>
-    <strong>Profile Views:</strong> <%= @band.page_views %><br/>
-    <strong>Fans:</strong> <%= @band.fans.size %>
+    <strong>Profile Views:</strong> <%= @band.page_views %>
     
     <br/>
     <% if @band.claimed? and false %>
@@ -173,7 +172,7 @@
 
 <% if show_fans %>  
 <div id="fans-box" class="sidebar-box">
-  <h2 id="fans-title"><span class="title">Fans</span></h2>
+  <h2 id="fans-title"><span class="title">Fans (<%= @band.fans.size %>)</span></h2>
   
   <% if @band.fans.empty? %>
     <p>

@@ -1,9 +1,11 @@
 require_dependency 'favorites_calculator'
 require_dependency 'badge'
+require_dependency 'ical'
 
 # The public page for a Fan
 class FanPublicController < ApplicationController
   include Badge
+  include Ical
   before_filter :find_fan, :except => :no_such_fan
   helper :show
   helper :portlet
@@ -14,8 +16,8 @@ class FanPublicController < ApplicationController
   helper :feed
   helper :comment
   upload_status_for :change_logo
-  session :off, :only => [:rss, :friends_shows_rss, :ical, :webcal, :badge ]
-  layout "public", :except => [:rss, :friends_shows_rss, :ical, :webcal, :badge ] 
+  session :off, :only => [:rss, :friends_shows_rss, :ical, :badge ]
+  layout "public", :except => [:rss, :friends_shows_rss, :ical, :badge ] 
   
   # Show the main fan page
   def index
@@ -117,29 +119,15 @@ class FanPublicController < ApplicationController
     
     key = {:action => 'ical', :part => 'fan_feed'}
 
-    # TODO Implement caching for ical
-    #when_not_cached(key, 30.minutes.from_now) do
+    when_not_cached(key, 3.hours.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
-    #end
+      cal_string = get_ical(@shows)
+      write_fragment(key, cal_string)  
+    end
     
-    render(:partial => "shared/ical_feed", 
-      :locals => { :shows => @shows, :key => key })
-  end
-  
-  def webcal
-    # Set the right content type
-    @headers["Content-Type"] = "text/calendar;"
-    
-    key = {:action => 'ical', :part => 'fan_feed'}
-
-    #when_not_cached(key, 30.minutes.from_now) do
-      # Fetch and cache the iCal items
-      get_ical_items
-    #end
-    
-    render(:partial => "shared/ical_feed", 
-      :locals => { :shows => @shows, :key => key })
+    ical_feed = read_fragment(key)
+    render :text => ical_feed
   end
   
   def friends_shows_rss

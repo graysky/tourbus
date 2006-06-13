@@ -1,8 +1,10 @@
 require_dependency 'show_creator'
+require_dependency 'ical'
 
 # Controller for the public page of a band.
 class BandPublicController < ApplicationController
   include ShowCreator
+  include Ical
   
   session :off, :only => [:rss, :ical, :external_map]
   before_filter :find_band, :except => :no_such_band
@@ -144,13 +146,15 @@ class BandPublicController < ApplicationController
     
     key = {:action => 'ical', :part => 'band_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    when_not_cached(key, 4.hours.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
+      cal_string = get_ical(@shows)
+      write_fragment(key, cal_string)  
     end
     
-    render(:partial => "shared/ical_feed", 
-      :locals => { :key => key, :shows => @shows })
+    ical_feed = read_fragment(key)
+    render :text => ical_feed
   end
   
   private

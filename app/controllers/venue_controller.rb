@@ -1,5 +1,8 @@
+require_dependency 'ical'
+
 # Handles create/edit/viewing Venues
 class VenueController < ApplicationController
+  include Ical
   before_filter :find_venue, :except => :add_dialog
   helper :show
   helper :map
@@ -108,13 +111,15 @@ class VenueController < ApplicationController
     
     key = {:action => 'ical', :part => 'venue_feed'}
 
-    when_not_cached(key, 30.minutes.from_now) do
+    when_not_cached(key, 4.hours.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
+      cal_string = get_ical(@shows)
+      write_fragment(key, cal_string)  
     end
     
-    render(:partial => "shared/ical_feed", 
-      :locals => { :key => key, :shows => @shows })
+    ical_feed = read_fragment(key)
+    render :text => ical_feed
   end
   
   private

@@ -155,6 +155,10 @@ class BandPublicController < ApplicationController
     end
     
     ical_feed = read_fragment(key) || cal_string
+    #puts "ical_feed length: #{ical_feed.size}"
+    #
+    @headers["Content-Length"] = "#{ical_feed.size}"
+    
     render :text => ical_feed
   end
   

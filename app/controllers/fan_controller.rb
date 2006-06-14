@@ -107,28 +107,13 @@ class FanController < ApplicationController
   end
 
   def set_going
-    @show = Show.find(params[:id])
-    
-    case params[:going]
-      when 'yes'
-        @fan.attend_show(@show)
-      when 'maybe'
-        @fan.watch_show(@show)
-      when 'no'
-        @fan.stop_attending_show(@show)
-        @fan.stop_watching_show(@show)
-    end
-    
-    Fan.transaction(@fan) do
-      Show.transaction(@show) do
-        # FIXME how do we handle errors here?
-        @fan.save!
-        @show.save!
-        @show.ferret_save
-      end
-    end
-    
-    @headers["Content-Type"] = "text/javascript"
+    handle_set_going
+  end
+  
+  def set_going_simple
+    show = Show.find(params[:id])
+    params[:going] = params["going_#{show.id}"]
+    handle_set_going
   end
   
   def change_password
@@ -343,6 +328,31 @@ class FanController < ApplicationController
     end
     
     return req
+  end
+  
+  def handle_set_going
+    @show = Show.find(params[:id])
+    
+    case params[:going]
+      when 'yes'
+        @fan.attend_show(@show)
+      when 'maybe'
+        @fan.watch_show(@show)
+      when 'no'
+        @fan.stop_attending_show(@show)
+        @fan.stop_watching_show(@show)
+    end
+    
+    Fan.transaction(@fan) do
+      Show.transaction(@show) do
+        # FIXME how do we handle errors here?
+        @fan.save!
+        @show.save!
+        @show.ferret_save
+      end
+    end
+    
+    @headers["Content-Type"] = "text/javascript"
   end
   
   def find_fan

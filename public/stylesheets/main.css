@@ -808,6 +808,7 @@ div.auto_complete ul strong.highlight
 
 .small_link {
     font-size:11px !important;
+    text-decoration:underline;
 }
 
 fieldset

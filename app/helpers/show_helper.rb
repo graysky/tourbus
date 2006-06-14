@@ -86,9 +86,18 @@ module ShowHelper
   end
   
   def fan_status(show, fan)
-    label = "status"
-    value = fan.attending?(show) ? :"ATTENDING" : "MAYBE"
-    "<strong>#{label}:</strong> #{value}"
+    render :partial => 'shared/attend_show_simple',
+           :locals => {
+             :show => show,
+             :fan => fan
+           }
+  end
+  
+  def attending_text(show, fan)
+    attending = 'no'
+    attending = '<strong>yes</strong>' if fan.attending?(show)
+    attending = '<strong>maybe</strong>' if fan.watching?(show)
+    attending
   end
   
   #########

@@ -19,7 +19,7 @@
         <nobr>
 		<strong>attending:</strong> <%= show.num_attendees + show.num_watchers %> <br/>
         <%= friends_attending(show) %>
-        <%= fan_status(show, fan) if fan %>
+        <%= fan_status(show, logged_in_fan) if logged_in_fan %>
         </nobr>
       </td>
     </tr>

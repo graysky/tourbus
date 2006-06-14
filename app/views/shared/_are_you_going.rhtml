@@ -13,22 +13,5 @@
 <% if logged_in_fan.nil? %>
     <p><strong>You need to be logged in to add shows to your list.</strong></p>
 <% else %>
-	<%
-	    yes = logged_in_fan.attending?(show)
-	    maybe = logged_in_fan.watching?(show)
-	    no = !logged_in_fan.attending_or_watching?(show)
-	    
-	    yes_str = yes ? "<strong>Yes</strong>" : "Yes"
-	    maybe_str = maybe ? "<strong>Maybe</strong>" : "Maybe"
-	    no_str = no ? "<strong>No</strong>" : "No"
-	%>
-	
-	<table>
-	    <tr><td><%= radio_button_tag 'going', 'yes', yes , :onclick => "set_going('yes')", :id => "going_yes" %></td>
-	    <td><label for="going_yes"><%= yes_str %></label></td></tr>
-	    <tr><td><%= radio_button_tag 'going', 'maybe', maybe, :onclick => "set_going('maybe')", :id => "going_maybe" %></td>
-	    <td><label for="going_maybe"><%= maybe_str %></label></td></tr>
-	    <tr><td><%= radio_button_tag 'going', 'no', no, :onclick => "set_going('no')", :id => "going_no" %></td>
-	    <td><label for="going_no"><%= no_str %></label></td></tr>
-	</table>
+	<%= render :partial => 'shared/attending_radios', :locals => { :show => show, :handle_click => true } %>
 <% end %>

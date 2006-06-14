@@ -1,0 +1,18 @@
+<%
+	    yes = logged_in_fan.attending?(show)
+	    maybe = logged_in_fan.watching?(show)
+	    no = !logged_in_fan.attending_or_watching?(show)
+	    
+	    yes_str = yes ? "<strong>Yes</strong>" : "Yes"
+	    maybe_str = maybe ? "<strong>Maybe</strong>" : "Maybe"
+	    no_str = no ? "<strong>No</strong>" : "No"
+	%>
+	
+<table>
+    <tr><td><%= radio_button_tag "going_#{show.id}", 'yes', yes , :onclick => handle_click ? "set_going('yes')" : "", :id => "going_yes_#{show.id}" %></td>
+    <td><label for="going_yes"><%= yes_str %></label></td></tr>
+    <tr><td><%= radio_button_tag "going_#{show.id}", 'maybe', maybe, :onclick => handle_click ? "set_going('maybe')" : "", :id => "going_maybe_#{show.id}" %></td>
+    <td><label for="going_maybe"><%= maybe_str %></label></td></tr>
+    <tr><td><%= radio_button_tag "going_#{show.id}", 'no', no, :onclick => handle_click ? "set_going('no')" : "", :id => "going_no_#{show.id}" %></td>
+    <td><label for="going_no"><%= no_str %></label></td></tr>
+</table>

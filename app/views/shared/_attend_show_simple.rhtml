@@ -1,0 +1,30 @@
+
+<%
+attending = attending_text(show, fan)
+%>
+
+<a class='small_link' href='#' id="attend_link_<%= show.id %>">Are you going?</a>&nbsp;
+<span id='attending_text_<%= show.id%>'><%= attending %></span>
+
+<div id="attend_tip_<%= show.id %>" class='fave_tip'>
+<h3>Are you going?</h3>
+  <p>
+    <%= form_remote_tag(
+    :url => { 
+      :controller => "fan",
+      :action => "set_going_simple", 
+      :id => show.id
+    }) 
+    %>
+      <%= render :partial => 'shared/attending_radios', :locals => { :show => show, :handle_click => false } %>
+         
+      &nbsp;&nbsp;
+      <%= submit_tag "OK", :onclick => "Tooltip.toggle($('attend_link_#{show.id}'), event);" %>&nbsp;
+      <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('attend_link_#{show.id}'), event);" %>
+    <%= end_form_tag %>
+  </p>
+</div>
+
+<script type="text/javascript">
+  Tooltip.add('attend_link_<%= show.id %>', 'attend_tip_<%= show.id %>');
+</script>

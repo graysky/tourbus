@@ -154,11 +154,12 @@ class BandPublicController < ApplicationController
       write_fragment(key, cal_string)  
     end
     
-    ical_feed = read_fragment(key) || cal_string
-    #puts "ical_feed length: #{ical_feed.size}"
-    #
-    @headers["Content-Length"] = "#{ical_feed.size}"
-    
+    # Note: Thought I needed this to work around difference between
+    # lighty sending chunked content type and webrick which set the length
+    # but it doesn't seem to matter. Note for the future...
+    # @headers["Content-Length"] = "#{ical_feed.size}"
+
+    ical_feed = read_fragment(key) || cal_string    
     render :text => ical_feed
   end
   

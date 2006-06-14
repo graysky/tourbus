@@ -123,7 +123,7 @@ class FanPublicController < ApplicationController
     when_not_cached(key, 3.hours.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
-      cal_string = get_ical(@shows)
+      cal_string = get_ical(@shows, @fan.name)
       write_fragment(key, cal_string)  
     end
     

@@ -4,9 +4,11 @@ require 'icalendar'
 module Ical
   
   # Return the icalendar contents as a string
-  def get_ical(shows)  
+  def get_ical(shows, name)  
     cal = Icalendar::Calendar.new
     cal.prodid = "tourb.us iCalendar feed"
+    # Set the calendar name
+    cal.custom_property("X-WR-CALNAME", "tourb.us|#{name}")
     
     shows.each do |show|
       event = Icalendar::Event.new

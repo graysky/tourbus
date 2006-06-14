@@ -118,6 +118,7 @@ class FanPublicController < ApplicationController
     @headers["Content-Type"] = "text/calendar;"
     
     key = {:action => 'ical', :part => 'fan_feed'}
+    cal_string = ""
 
     when_not_cached(key, 3.hours.from_now) do
       # Fetch and cache the iCal items
@@ -126,7 +127,7 @@ class FanPublicController < ApplicationController
       write_fragment(key, cal_string)  
     end
     
-    ical_feed = read_fragment(key)
+    ical_feed = read_fragment(key) || cal_string
     render :text => ical_feed
   end
   

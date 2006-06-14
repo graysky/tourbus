@@ -96,7 +96,7 @@ module ShowHelper
   def attending_text(show, fan)
     attending = 'no'
     attending = '<strong>yes</strong>' if fan.attending?(show)
-    attending = '<strong>maybe</strong>' if fan.watching?(show)
+    attending = 'maybe' if fan.watching?(show)
     attending
   end
   

@@ -1,2 +1,2 @@
-attending = attending_text(@show, @fan)
-page.replace_html "attending_text_#{@show.id}", attending
+page.replace_html "attending_control_#{@show.id}", 
+                  :partial => 'shared/attend_show_simple', :locals => { :show => @show, :fan => @fan }

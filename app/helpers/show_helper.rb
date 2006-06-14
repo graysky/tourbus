@@ -86,11 +86,13 @@ module ShowHelper
   end
   
   def fan_status(show, fan)
-    render :partial => 'shared/attend_show_simple',
-           :locals => {
-             :show => show,
-             :fan => fan
-           }
+    str = "<div id='attending_control_#{show.id}'>"
+    str += render :partial => 'shared/attend_show_simple',
+             :locals => {
+               :show => show,
+               :fan => fan
+             }
+    str += "</div>"
   end
   
   def attending_text(show, fan)

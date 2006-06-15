@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :login_from_cookie
   # Check for beta invite cookie in the public controller
-  before_filter :beta_cookie, :except => [:beta, :beta_signup, :rss, :friends_shows_rss, :ical, :ical2, :external_map, :badge]
+  before_filter :beta_cookie, :except => [:beta, :beta_signup, :rss, :friends_shows_rss, :ical, :external_map, :badge]
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
@@ -198,7 +198,7 @@ class ApplicationController < ActionController::Base
   # Get the webcal:// URL to the iCal feed for this fan
   def public_fan_webcal_url(fan = nil)
     fan = @fan if fan.nil?  
-    url = url_for(:controller => "fan_public", :action => "webcal")
+    url = url_for(:controller => "fan_public", :action => "ical")
     url.gsub!(/http/, 'webcal')
     return url
   end

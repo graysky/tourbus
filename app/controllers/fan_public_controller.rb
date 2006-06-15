@@ -114,9 +114,6 @@ class FanPublicController < ApplicationController
   # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference
   # http://en.wikipedia.org/wiki/ICalendar
   def ical
-    # Set the right content type
-    #@headers["Content-Type"] = "text/calendar;"
-    
     key = {:action => 'ical', :part => 'fan_feed'}
     cal_string = ""
 

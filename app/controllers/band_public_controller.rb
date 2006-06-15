@@ -6,7 +6,7 @@ class BandPublicController < ApplicationController
   include ShowCreator
   include Ical
   
-  session :off, :only => [:rss, :ical, :ical2, :external_map]
+  session :off, :only => [:rss, :ical, :external_map]
   before_filter :find_band, :except => :no_such_band
   helper :show
   helper :map
@@ -16,7 +16,7 @@ class BandPublicController < ApplicationController
   helper :feed
   helper :portlet
   
-  layout "public", :except => [:rss, :ical, :ical2, :add_link, :edit_link, :delete_link ] 
+  layout "public", :except => [:rss, :ical, :add_link, :edit_link, :delete_link ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -141,47 +141,16 @@ class BandPublicController < ApplicationController
   end
   
   def ical
-    # Set the right content type
-    #@headers["Content-Type"] = "text/calendar;"
-    
     key = {:action => 'ical', :part => 'band_feed'}
     cal_string = ""
     
-    when_not_cached(key, 10.seconds.from_now) do
+    when_not_cached(key, 4.hours.from_now) do
       # Fetch and cache the iCal items
       get_ical_items
       cal_string = get_ical(@shows, @band.name)
       write_fragment(key, cal_string)  
     end
     
-    # Note: Thought I needed this to work around difference between
-    # lighty sending chunked content type and webrick which set the length
-    # but it doesn't seem to matter. Note for the future...
-    # @headers["Content-Length"] = "#{ical_feed.size}"
-
-    ical_feed = read_fragment(key) || cal_string    
-    render :text => ical_feed
-  end
-  
-  def ical2
-    # Set the right content type
-    #@headers["Content-Type"] = "text/calendar;"
-    
-    key = {:action => 'ical2', :part => 'band_feed'}
-    cal_string = ""
-    
-    when_not_cached(key, 10.seconds.from_now) do
-      # Fetch and cache the iCal items
-      get_ical_items
-      cal_string = get_ical(@shows, @band.name)
-      write_fragment(key, cal_string)  
-    end
-    
-    # Note: Thought I needed this to work around difference between
-    # lighty sending chunked content type and webrick which set the length
-    # but it doesn't seem to matter. Note for the future...
-    # @headers["Content-Length"] = "#{ical_feed.size}"
-
     ical_feed = read_fragment(key) || cal_string    
     render :text => ical_feed
   end

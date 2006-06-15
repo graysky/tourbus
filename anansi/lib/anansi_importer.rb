@@ -78,17 +78,17 @@ class AnansiImporter
     @shows = latest_prepared_shows
     
     begin
-      #Show.transaction do
+      Show.transaction do
           @shows.each do |show|
           if show[:status] == :ok
             result = import_show(show)
             show[:status] = :imported if result
           end
         end
-      #end
+      end
     ensure
       puts "Savings shows to YAML..."
-      #save_shows
+      save_shows
     end
     
     puts "Imported #{@imported_show_count} shows and created #{@new_band_count} new bands"

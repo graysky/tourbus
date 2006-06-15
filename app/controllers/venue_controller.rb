@@ -107,7 +107,7 @@ class VenueController < ApplicationController
   # iCal feed for this venue
   def ical
     # Set the right content type
-    @headers["Content-Type"] = "text/calendar;"
+    #@headers["Content-Type"] = "text/calendar;"
     
     key = {:action => 'ical', :part => 'venue_feed'}
     cal_string = ""

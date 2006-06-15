@@ -21,7 +21,10 @@ class ApplicationController < ActionController::Base
   helper_method :public_fan_ical_url
   helper_method :public_fan_webcal_url
   helper_method :public_band_ical_url
+  helper_method :public_band_webcal_url
   helper_method :public_venue_ical_url
+  helper_method :public_venue_webcal_url
+  helper_method :public_show_webcal_url
   helper_method :public_band_rss_url
   helper_method :public_fan_rss_url
   helper_method :public_show_rss_url
@@ -209,10 +212,34 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '') + band.short_name + "/ical"
   end
   
-    # Get the URL to the iCal feed for this venue
+  # Get the webcal:// URL to the iCal feed for this band
+  def public_band_webcal_url(band = nil)
+    band = @band if band.nil?  
+    url = url_for(:controller => '') + band.short_name + "/ical"
+    url.gsub!(/http/, 'webcal')
+    return url
+  end
+  
+  # Get the URL to the iCal feed for this venue
   def public_venue_ical_url(venue = nil)
     venue = @venue if venue.nil?  
     url_for(:controller => "venue", :action => "ical", :id => venue.id)
+  end
+  
+  # Get the webcal:// URL to the iCal feed for this venue
+  def public_venue_webcal_url(venue = nil)
+    venue = @venue if venue.nil?  
+    url = url_for(:controller => "venue", :action => "ical", :id => venue.id)
+    url.gsub!(/http/, 'webcal')
+    return url
+  end
+  
+  # Get the webcal:// URL to the iCal feed for this show
+  def public_show_webcal_url(show = nil)
+    show = @show if show.nil?  
+    url = url_for(:controller => "show", :action => "ical", :id => show.id)
+    url.gsub!(/http/, 'webcal')
+    return url
   end
   
   # Whether there is a band or fan logged in

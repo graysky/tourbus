@@ -1,10 +1,11 @@
 require_dependency "show_creator"
+require_dependency 'ical'
 
 # Handles create/edit/viewing Shows
 class ShowController < ApplicationController
   include ShowCreator
   include Geosearch
-    
+  include Ical   
   helper :map
   helper :tag
   helper :comment
@@ -12,11 +13,11 @@ class ShowController < ApplicationController
   helper :feed
   helper :portlet
   
-  session :off, :only => :rss
+  session :off, :only => [:rss, :ical]
   before_filter :find_show, :except => [ :venue_search, :add ]
   before_filter :some_login_required, :only => [:add]
   
-  layout "public", :except => [:rss ] 
+  layout "public", :except => [:rss, :ical ] 
   
   # Show a specific show. (Perhaps this is a bad name for this action?)
   def show
@@ -122,6 +123,24 @@ class ShowController < ApplicationController
     # Send the email
     ShareMailer.deliver_share_show(to_addrs, from_name, @show, msg)
     render :nothing => true
+  end
+  
+  # An iCal feed
+  # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference
+  # http://en.wikipedia.org/wiki/ICalendar
+  def ical
+    key = {:action => 'ical', :part => 'show_feed'}
+    cal_string = ""
+
+    when_not_cached(key, 5.hours.from_now) do
+      # Fetch and cache the iCal items
+      shows = [@show]
+      cal_string = get_ical(shows, @show.name)
+      write_fragment(key, cal_string)  
+    end
+    
+    ical_feed = read_fragment(key) || cal_string
+    render :text => ical_feed
   end
   
   private

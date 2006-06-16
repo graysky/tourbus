@@ -6,7 +6,7 @@ class PublicController < ApplicationController
   helper_method :local_popular_shows?
   helper_method :get_popular_shows_cache_key
   
-  before_filter :announcement, :only => :front_page
+  before_filter :announcement, :only => [:front_page, :metro]
   layout "public", :except => [:beta, :beta_signup] 
 
   # The front page of the app
@@ -44,7 +44,8 @@ class PublicController < ApplicationController
     when "sanfran" then set_metro("San Francisco, CA")
     when "sf" then set_metro("San Francisco, CA")
     else
-      # Invalid metro set    
+      # Invalid metro set
+      flash.now[:error] = "Unknown metro: #{metro}"    
     end
     
     # Show the normal front page with location set

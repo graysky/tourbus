@@ -5,8 +5,15 @@
 /*-----------------------------------------------------*/
 /* Error Messages */
 /*-----------------------------------------------------*/
-#band_bio, #fan_bio {
+#fan_bio {
     height:140px;
+    width: 320px;
+    font-size:12px;
+    overflow:auto; 
+}
+
+#band_bio {
+    height:40px;
     width: 320px;
     font-size:12px;
     overflow:auto; 
@@ -14,6 +21,12 @@
 
 #edit_band_bio, #edit_fan_bio, #change_logo {
     font-size:12px;
+}
+
+.profile_help {
+	color: #009900;
+	font-size:14px;
+	font-weight:bold;
 }
 
 .fieldWithErrors {

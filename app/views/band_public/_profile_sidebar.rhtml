@@ -134,13 +134,6 @@
   <p>
     <table>
     
-    <% if logged_in_fan and !@logged_in_as_fan and !@band.confirmed? %>
-        <tr>
-            <td><img src="/images/edit.png" height="16" width="16"/></td>
-            <td id='edit_profile_link'><%= enable_editing_link %></td>
-        </tr>
-    <% end %>
-    
     <% if !@band.confirmed? %>
       <%= 
         render :partial => "shared/report_problem",
@@ -157,18 +150,25 @@
 </div>
 <br/>
 
-  <%= render(
-  :partial => "shared/tags", 
-  :locals => 
-    {
-    :tags => @band.band_tag_names, 
-    :type => Tag.Band,
-    :title => "Tags",
-    :id => @band.id
-    }) 
-  %>
-  
-  <br/>
+<% show_help_us = false %>
+<% if logged_in_fan and !@band.confirmed? %>
+    <% show_help_us = true %>
+    <div id="improve-box" class="sidebar-box">
+	  <h2 id="improve-title"><span class="title">Help Us Improve</span></h2>
+	    
+	    <div class="actions-box-rows">
+	       <p>  
+	        <table>
+	        <tr>
+	            <td><img src="/images/edit.png" height="16" width="16"/></td>
+	            <td id='edit_profile_link'><%= enable_editing_link %></td>
+	        </tr>
+	        </table>
+	        </p>
+	    </div>
+	</div>
+    <br/>
+<% end %>
 
 <% if show_fans %>  
 <div id="fans-box" class="sidebar-box">
@@ -187,6 +187,20 @@
   
 </div>
 <% end %>
+
+<br/>
+ <%= render(
+  :partial => "shared/tags", 
+  :locals => 
+    {
+    :tags => @band.band_tag_names, 
+    :type => Tag.Band,
+    :title => "Tags",
+    :id => @band.id
+    }) 
+  %>
+  
+  <br/>
   
 </div>
 
@@ -197,6 +211,10 @@
     Rico.Corner.round( $('actions-title'), {corners:'top', bgColor : white} );
     Rico.Corner.round( $('about-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('about-title'), {corners:'top', bgColor : white} );
+    <% if show_help_us %>
+    Rico.Corner.round( $('improve-box'), {corners:'bottom', bgColor : white} );
+    Rico.Corner.round( $('improve-title'), {corners:'top', bgColor : white} );
+    <% end %>
     Rico.Corner.round( $('tags-box'), {corners:'bottom', bgColor : white} );
     Rico.Corner.round( $('tags-title'), {corners:'top', bgColor : white} );
     <% if show_fans %>

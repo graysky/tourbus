@@ -53,6 +53,9 @@
   var bio_editer;
   function show_bio_editing()
   {
+    var bio_height = parseInt($('band_bio').offsetHeight);
+    $('band_bio').style.height = Math.max(bio_height, 140);
+    $('plea_for_help').innerHTML = '';
     bio_editor = new Ajax.InPlaceEditor('band_bio', '<%= url_for(:action => "set_bio") %>', {rows:5, externalControl:"edit_band_bio", okText:"Ok", cancelText:"Cancel"})
   }
   
@@ -87,6 +90,13 @@
        </div>
     </td>
     <td valign="top" style="padding-left:24px">
+        <div id='plea_for_help'>
+        <% if logged_in_fan && !@band.claimed && @band.bio.blank? %>
+            <span class="profile_help">Are you a fan of <%= @band.name%>?</span><br/>
+            Help us improve by clicking "Edit This Profile".
+        <% end %>
+        </div>
+        
       <%= band_bio_for_editing %>
     </td>
   </tr>
@@ -99,5 +109,5 @@
 <% end %>
 
 <script>
-  adjust_bio_height();
+  adjust_bio_height(<%= @band.bio.blank? ? 'false' : 'true' %>);
 </script>

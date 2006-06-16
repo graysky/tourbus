@@ -13,8 +13,8 @@ module BandPublicHelper
     end
   end
   
-  def enable_editing_link
-    link_to_remote "Edit This Profile", :url => { :action => :enable_editing }
+  def enable_editing_link(msg = 'Edit This Profile')
+    link_to_remote msg, :url => { :action => :enable_editing }
   end
   
   def disable_editing_link

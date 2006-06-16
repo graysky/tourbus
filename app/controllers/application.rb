@@ -42,8 +42,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
-  # Check for beta invite cookie in the public controller
-  before_filter :beta_cookie, :except => [:beta, :beta_signup, :rss, :friends_shows_rss, :ical, :external_map, :badge, :faq]
 
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
@@ -62,17 +60,6 @@ class ApplicationController < ActionController::Base
       return if current.nil?
       
       flash.now[:info] = "#{current.teaser}<br/><a href='/news'>Read more...</a>"
-  end
-  
-  def beta_cookie
-    # Secret invite code must match public_controller
-    secret = "backstage"
-  
-    # Check for the secret cookie
-    unless cookies[:invite] == secret
-      redirect_to("/beta")
-      return false
-    end
   end
   
   # See if we can log the user in from a cookie

@@ -1,4 +1,5 @@
-page.replace_html 'photo_editing_row', :partial => 'profile_photo_editing'
+page.replace_html 'logo_upload', :partial => 'logo_upload'
+page.replace_html 'bio_edit', :partial => 'bio_edit'
 page.replace_html 'band_links', :partial => 'profile_link_editing'
 page.replace_html 'edit_profile_link', disable_editing_link
 page.call 'show_bio_editing'

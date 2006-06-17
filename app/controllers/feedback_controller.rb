@@ -14,6 +14,10 @@ class FeedbackController < ApplicationController
     feedback = params[:feedback]
     type = params[:type]
     
+    if feedback.nil? or feedback.empty?
+      feedback = "No feedback provided"
+    end
+    
     if user.nil? or user.empty?
       user = "Anonymous"
     end

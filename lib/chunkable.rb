@@ -9,14 +9,12 @@ module ActiveRecord
       offset = 0
       count = self.count
       
-      self.transaction do
-        while offset < count
-          self.find(:all, :offset => offset, :limit => chunk_size).each do |obj|
-            yield obj
-          end
-          
-          offset += chunk_size
+      while offset < count
+        self.find(:all, :offset => offset, :limit => chunk_size).each do |obj|
+          yield obj
         end
+        
+        offset += chunk_size
       end
     end
     

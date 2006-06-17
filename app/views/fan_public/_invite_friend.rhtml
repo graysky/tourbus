@@ -1,0 +1,38 @@
+<tr>
+<td><img src="/images/email.png" height="16" width="16" onload='fixPNG(this)'/></td>
+<td>
+  <a href="#" id="invite_friend_link">Invite Friend to Join</a>
+  <div id="invite_friend_tip" class='fave_tip'>
+    <h3>Invite a Friend</h3>
+      <p>Invite a friend to join tourb.us</p>
+          <%= form_remote_tag(
+        :url => { 
+          :action => "invite", 
+        }) 
+        %>
+        
+        <p>Your Name:</p>
+        <%= text_field_tag 'from', @fan.name, :size => '25' %>
+        
+        <p>Friends Email:</p>
+        <%= text_field_tag 'emails', '', :size => '25' %>
+        <br/><small>separate multiple addresses with comma</small>
+        
+        <% 
+            default_msg = "tourb.us is an easy way to track bands and find live music"
+        %>
+        
+        <p>Message:</p>
+        <%= text_area_tag 'msg', default_msg, :size => '25x3' %>
+      
+        <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('invite_friend_link'), event);$('invite_friend_link').innerHTML = 'Invite Sent!'" %>&nbsp;
+        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('invite_friend_link'), event)" %>
+        <%= end_form_tag %>
+      </p>
+    </div>
+    
+    <script type="text/javascript">
+      Tooltip.add('invite_friend_link', 'invite_friend_tip');
+    </script>
+</td>
+</tr>

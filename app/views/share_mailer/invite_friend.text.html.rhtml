@@ -1,0 +1,22 @@
+<html>
+<body>
+Your friend <%= @from_name %> invites you to check out <a href="http://tourb.us">tourb.us</a>, a new way to find live music.
+
+<% if !@msg.nil? and !@msg.empty? %>
+
+<p><%= @from_name %> wrote:
+
+<blockquote>
+<%= @msg %>
+</blockquote>
+<% end %>
+</p>
+
+<p>You can view your friend's profile at:
+
+<% the_url = @fan_prefix_url.to_s + @fan.name %>
+<a href="<%= the_url %>"><%= the_url %></a>
+
+<%= @email_signoff %>
+</body>
+</html>

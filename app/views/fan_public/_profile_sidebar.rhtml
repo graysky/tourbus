@@ -90,7 +90,6 @@
           if show_friend_tip %>
         
           <script type="text/javascript">
-            Tooltip.autoHideClick = false;
 	        Tooltip.add('friend_request_link', 'friend_request_tip');
           </script>
 	    <% end %>
@@ -133,7 +132,6 @@
   </div>
   <% end %>
 
-  
    <br/>
   <div id="friends-box" class="sidebar-box">
 	  <h2 id="friends-title"><span class="title">Friends (<%= @fan.friends.size %>)</span></h2>
@@ -144,6 +142,19 @@
 	   <%= tiny_fan_results(@fan.friends.random(5)) %>
 	   <p><%= link_to 'Show all friends', :action => :friends %></p>
 	  <% end %>
+	  
+	  <% if @logged_in_as_fan %>
+	  <div class="actions-box-rows">  
+	  <p>
+	  <table>
+        <%= 
+            render :partial => "invite_friend",
+           :locals => { :id => @fan, }
+        %>
+       </table>
+       </div>
+      </p>
+      <% end %>
   </div>
   
   

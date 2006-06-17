@@ -20,6 +20,11 @@ class BaseMailer < ActionMailer::Base
     return Emails.url + "/show/"
   end
   
+  # Get the prefix url for shows
+  def fan_prefix_url
+    return Emails.url + "/fan/"
+  end
+  
   # Return the URL prefix *before* a band name
   def photo_prefix_url
     return Emails.url + "/"

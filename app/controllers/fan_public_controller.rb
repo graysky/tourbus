@@ -91,6 +91,25 @@ class FanPublicController < ApplicationController
     send_badge(get_badge(@fan))
   end
   
+  def invite
+    return if @request.get?
+    return if @fan.nil?
+    
+    emails = params[:emails]
+    emails.chomp!(" ")
+    
+    # Try to format emails correctly
+    to_addrs = emails.split(' ')
+    
+    from_name = params[:from]
+    msg = params[:msg]
+      
+    # Send the email
+    ShareMailer.deliver_invite_friend(to_addrs, from_name, @fan, msg)
+    
+    render :nothing => true
+  end
+  
   # RSS feed for the fan
   def rss
     # Set the right content type

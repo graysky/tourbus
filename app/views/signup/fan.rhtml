@@ -18,19 +18,24 @@
   <tr>
     <th>Username:</th>
     <td><%= text_field 'fan', 'name' %></td>
+    <td class="info">The name others will see. Choose wisely, it's permanent.
+    </td>
   </tr>
   <tr>
     <th>Email Address:</th>
     <td><%= text_field 'fan', 'contact_email'  %></td>
+    <td class="info">Address where a confirmation email will be sent. If you don't see it immediately, 
+    <strong>please check your "Bulk" or "Spam" folder</strong>. 
+    </td>
   </tr>
   <tr>
     <th>Location:</th>
     <td><%= text_field 'fan',  'city_state_zip' %></td>
     <td class="info">
-      You can enter a <em>city,state</em> or a <em>zip code</em>. Your location is used
-      to find shows, bands and venues in your area. Providing a zip code will allow us
-      to be more accurate.
-      <strong>We highly recommend that that you provide a location.</strong>
+      You can enter a <em>city,state</em> or a <em>zip code</em>. Locations are <strong>USA-only</strong>.
+      <br/><br/>
+      <strong>We highly recommend that you provide a location to see shows in your area.</strong>
+      
     </td>
   </tr>    
   

@@ -24,6 +24,14 @@ class FanController < ApplicationController
     
     # Reload the fan first, in case changes were made by other procs
     @fan.reload
+
+    # Qualify website URL if needed    
+    website = params[:fan][:website]
+    if !website.nil? and !website.empty? and website !~ /http/
+      # Need to prepend "http://"
+      website = "http://" + website
+      params[:fan][:website] = website
+    end
      
     begin
       @fan.update_attributes(params[:fan])

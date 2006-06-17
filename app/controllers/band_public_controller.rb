@@ -71,6 +71,7 @@ class BandPublicController < ApplicationController
     return if @request.get?
 
     link = Link.new(params[:link])
+    link.data = link.clean_url(link.data)
     @band.links << link
     
     if not @band.save
@@ -92,7 +93,7 @@ class BandPublicController < ApplicationController
     link = Link.find(id)
 
     link.name = name
-    link.data = url
+    link.data = link.clean_url(url)
     
     if not link.save
       error_log_flashnow("Trouble saving the link")

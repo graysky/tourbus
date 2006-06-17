@@ -19,12 +19,16 @@ class Link < ActiveRecord::Base
     return self.data
   end
   
-  # Clean up the URL to be valid 
+  # Return a qualified URL with http:// on the front if it doesn't already have it
   def clean_url(url)
-  
-    # Could check for clean urls with http://    
+    return url if url.nil? or url.empty?
+      
+    # Qualify website URL if needed
+    if url !~ /http/
+      url = "http://" + url
+    end
     
-    return url
+    return url  
   end
   
   # Set this link's URL to the specified URL

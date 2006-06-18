@@ -52,6 +52,7 @@ class FanMailer < BaseMailer
     
     @body["request"] = request
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
     @body['confirm_url'] = confirm_url
     @body['deny_url'] = deny_url
     @body['friend_requests_url'] = fan_private_prefix_url(request.requestee) + 'friend_requests'
@@ -66,6 +67,7 @@ class FanMailer < BaseMailer
     content_type "text/html"
     
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
     @body['friend'] = friend
     @body['fan'] = fan
   end
@@ -79,6 +81,7 @@ class FanMailer < BaseMailer
     content_type "text/html"
     
     @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
     @body['friend'] = friend
     @body['fan'] = fan
   end

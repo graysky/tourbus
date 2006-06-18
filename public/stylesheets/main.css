@@ -1858,6 +1858,15 @@ table.tooltip_table td {
     font-family: Verdana, Ariel, Helvetica, sans-serif;
 }
 
+.no_results_details {
+    background-color: #EFF4F6; /* Light blue */
+    /* Hack around IE z-order problem with the title */
+    border: 1px solid #FFFFFF; /* Color matches background */
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding:8px;
+}
+
 /* wishlist */
 table.wishlist-table {
     border-collapse: collapse;

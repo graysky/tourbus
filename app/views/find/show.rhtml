@@ -64,8 +64,8 @@ end
 <%= render :partial => "hidden_form", :type => type %>
 <%= end_form_tag %>
 
-<h3>
   <% if @results and @results.size > 0 %>
+    <h3>
     <%= 
       case params[:action]
       when 'browse_popular_shows' then 'Browsing Most Popular Shows'
@@ -74,10 +74,26 @@ end
         'Search Results:'
       end + search_results_suffix(type)
     %>
+    </h3>
   <% elsif not (request.get? and params[:query].nil?) %>
-    No results found<%= search_results_suffix(type) %>
+    <h3>No results found<%= search_results_suffix(type) %></h3>
+    
+    <br/><br/>
+    <div class="no_results_details" id="no_results_details">
+    Sorry we couldn't find the shows you're looking for.
+    <% if logged_in? %>
+        Please consider helping us improve the site and <%= link_to "add some shows", :controller => "shows", :action => "add" %>.
+    <% else %>
+        Please consider <%= link_to "signing up for an account", :controller => "signup", :action => "fan" %>
+        and adding some shows to the system.
+    <% end %>
+    <br/><br/>
+    If we haven't started indexing your city yet, <%= link_to "let us know", :controller => "feedback" %>
+    and we will get to it as soon as possible.
+    </div>
+    
   <% end %>
-</h3>
+
 <br/>
 
 <%

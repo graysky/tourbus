@@ -65,7 +65,7 @@ class BandPublicController < ApplicationController
       @band.bio = sanitize_text_for_display(params[:value])
       @band.save
     end
-    render :text => @band.bio
+    render :text => @band.bio || ''
   end
     
   # Add link to external site

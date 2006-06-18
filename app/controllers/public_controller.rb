@@ -15,7 +15,7 @@ class PublicController < ApplicationController
     bands_key = {:action => 'front_page', :part => 'popular_bands'}
     shows_key = {:action => 'front_page', :part => get_popular_shows_cache_key}
     
-    when_not_cached(bands_key, 14.hours.from_now) do
+    when_not_cached(bands_key, 3.hours.from_now) do
       # Fetch and cache the list of bands
       get_popular_bands
     end
@@ -43,6 +43,10 @@ class PublicController < ApplicationController
     when "chicago" then set_metro("Chicago, IL")
     when "sanfran" then set_metro("San Francisco, CA")
     when "sf" then set_metro("San Francisco, CA")
+    when "la" then set_metro("Los Angeles, CA")
+    when "losangeles" then set_metro("Los Angeles, CA")
+    when "nyc" then set_metro("New York, NY")
+    when "newyork" then set_metro("New York, NY")
     else
       # Invalid metro set
       flash.now[:error] = "Unknown metro: #{metro}"    

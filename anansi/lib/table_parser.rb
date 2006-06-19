@@ -211,5 +211,8 @@ class TableParser < ShowParser
     @show[:cost] = parse_as_cost(contents)
   end
   
+  def parse_description(cell, contents)
+    @show[:description] = contents
+  end
   
 end

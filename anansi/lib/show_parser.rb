@@ -13,7 +13,7 @@ class ShowParser < MetaSite
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
-			              'invited guests', '...', 'free tickets', 'music poll']
+			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -85,7 +85,7 @@ class ShowParser < MetaSite
     return nil if down.ends_with?("tour")
     
     keywords = [":", "featuring", "presents", "present", "presenting", "special guest", 
-                "welcomes", "evening with"]
+                "welcomes", "evening with", "recording artist", 'starring', 'free concert with']
     index = first_index_in(keywords, down)
     if index
       new_preamble = name[0..index].strip
@@ -127,6 +127,8 @@ class ShowParser < MetaSite
     
     replacements = [/cd release/i, /cdrelease/i, /cd rel/i, /cancelled/i, /sold out/i]
     replacements.each { |pattern| name.gsub!(pattern, '') }
+    
+    naem.chop! if name.ends_with?(',')
     
     band = {}
     band[:name] = name.gsub(/\s+/, ' ')

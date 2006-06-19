@@ -144,7 +144,7 @@ class AnansiImporter
     band = Band.find_by_short_name(short_name[3..-1]) if band.nil? and short_name.starts_with?('the')
     
     if band.nil?
-      band_name = self.fix_capitalization(b[:name])
+      band_name = fix_capitalization(b[:name])
       puts "Creating a new band: #{band_name}"
       band =  Band.new
       band.claimed = false
@@ -234,7 +234,7 @@ class AnansiImporter
   # Converts names like:
   # "AWESOME BAND" => "Awesome Band"
   # "my band" => "my band"
-  def self.fix_capitalization(name)
+  def fix_capitalization(name)
     # Only convert if it is all upcase
     return name if name.nil?
     return name if !name.eql?(name.upcase)

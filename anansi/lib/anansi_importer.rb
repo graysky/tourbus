@@ -144,7 +144,7 @@ class AnansiImporter
     band = Band.find_by_short_name(short_name[3..-1]) if band.nil? and short_name.starts_with?('the')
     
     if band.nil?
-      band_name = fix_capitalization(b[:name])
+      band_name = self.fix_capitalization(b[:name])
       puts "Creating a new band: #{band_name}"
       band =  Band.new
       band.claimed = false

@@ -170,6 +170,12 @@ class FanController < ApplicationController
     
     bands = LastFm.top_50_bands(username)
     
+    if bands.nil?
+      flash[:error] = "Trouble getting favorite bands for username \"#{username}\". <br>Please check your Last.fm username."
+      render :action => 'import_favorites'
+      return
+    end
+    
     if bands.empty?
       flash[:error] = "No bands found for username \"#{username}\""
       render :action => 'import_favorites'

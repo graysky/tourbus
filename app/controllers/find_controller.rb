@@ -66,6 +66,9 @@ class FindController < ApplicationController
     options = default_search_options
     options[:sort] = popularity_sort_field
     
+    # Always search nationally for bands
+    radius = lat = long = nil
+    
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)
     render_band
@@ -82,6 +85,9 @@ class FindController < ApplicationController
     options = default_search_options
     options[:sort] = created_on_sort_field
     
+    # Always search nationally for bands
+    radius = lat = long = nil
+    
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)
     render_band
@@ -96,6 +102,9 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:sort] = name_sort_field
+    
+    # Always search nationally for bands
+    radius = lat = long = nil
     
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
     paginate_search_results(count)

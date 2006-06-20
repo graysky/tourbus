@@ -71,16 +71,17 @@ class FanController < ApplicationController
     band = Band.find(params[:id])
     
     # If it's already a favorite then something went wrong, maybe someone just typed in the URL
-    return if @fan.favorite?(band)
-    
-    @fan.add_favorite(band)
-    
-    Fan.transaction(@fan) do
-      Band.transaction(band) do
-        # FIXME how do we handle errors here?
-        @fan.save!
-        band.save!
-        band.ferret_save
+    # or used the back button (stupid ajax!)
+    if !@fan.favorite?(band)
+      @fan.add_favorite(band)
+      
+      Fan.transaction(@fan) do
+        Band.transaction(band) do
+          # FIXME how do we handle errors here?
+          @fan.save!
+          band.save!
+          band.ferret_save
+        end
       end
     end
     

@@ -19,6 +19,9 @@ class FindController < ApplicationController
     query, radius, lat, long = prepare_query(Band.table_name)
     return if query.nil?
     
+    # Always search nationally for bands
+    radius = lat = long = nil
+    
     @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
     paginate_search_results(count)
   end

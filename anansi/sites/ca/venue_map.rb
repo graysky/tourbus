@@ -25,5 +25,6 @@
   /greek thea/ => 811,
   /amnesia/ => 209,
   /mountain winery/ => 792,
-  /harlow/ => 796
+  /harlow/ => 796,
+  /hotal utah/ => 395
 }

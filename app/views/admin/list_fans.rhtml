@@ -13,6 +13,7 @@
 <th>ID</th>
 <th>Fan name</th>
 <th>Last Login</th>
+<th>Confirmed?</th>
 
 </tr>
 
@@ -30,6 +31,7 @@
     <% else %>
       <td><b><%= "#{slash_date(fan.last_login)} #{friendly_time(fan.last_login)}" %></b></td>    
     <% end %>
+    <td><%= fan.confirmed? %>
   </tr>
 <% end %>
 

@@ -22,5 +22,7 @@
   'Balazo 18' => 226,
   'shark tank' => 398,
   'paramount' => 501,
-  /greek thea/ => 811
+  /greek thea/ => 811,
+  /amnesia/ => 209,
+  /mountain winery/ => 792
 }

@@ -63,6 +63,13 @@
   </tr>
 <% end %>
 
+<% if !@show.url.nil? and !@show.url.empty? %>
+  <tr>
+  <td class="venue_info">URL:</td>
+  <td><a href="<%=@show.url%>">Additional Info</a></td>
+  </tr>
+<% end %>
+
 <% if @show.description != "" %>
   <tr>
   <td colspan="2"><%= @show.description %></td>

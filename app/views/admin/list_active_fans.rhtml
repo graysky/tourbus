@@ -1,0 +1,40 @@
+<div id="main">
+
+<% @page_title = "List Active Fans" %>
+<% @header_title = "List Active Fans" %>
+
+<h2><%= @fans.size %> in Last 2 Days</h2>
+<p>
+
+<table border="1" cellpadding="2" width="80%">
+
+<tr>
+<th>#</th>
+<th>ID</th>
+<th>Fan name</th>
+<th>Last Login</th>
+
+</tr>
+
+<% 
+  i = 0
+  for fan in @fans
+  i = i + 1
+%>
+  <tr>
+    <td><%= i %>
+    <td><%= fan.id %>
+    <td><a href="<%= public_fan_url(fan) %>"><%= fan.name %></a></td>
+    <td><%= "#{slash_date(fan.last_login)} #{friendly_time(fan.last_login)}" %></td>
+  </tr>
+<% end %>
+
+</table>
+
+</p>
+
+</div>
+
+<div id="side">
+
+</div>

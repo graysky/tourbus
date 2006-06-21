@@ -14,6 +14,11 @@ class AdminController < ApplicationController
     @announcements = Announcement.find(:all)
   end
   
+  def list_active_fans
+    # Show last 2 days of fan logins
+    @fans = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days], :order => "last_login DESC")
+  end
+  
   def list_fans
     @fans = Fan.find(:all)
   end

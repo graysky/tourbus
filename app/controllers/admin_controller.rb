@@ -11,7 +11,7 @@ class AdminController < ApplicationController
   end
   
   def list_announcements
-    @announcements = Announcement.find(:all)
+    @announcements = Announcement.find(:all, :conditions => ["updated_at > ?", Time.now - 6.months], :order => "updated_at DESC")
   end
   
   def list_active_fans

@@ -158,7 +158,11 @@ class FanController < ApplicationController
   end
   
   def import_last_fm
-    return if request.get?
+    if request.get?
+      # Be defensive
+      render :nothing => true
+      return
+    end
     
     username = params[:last_fm_username]
     

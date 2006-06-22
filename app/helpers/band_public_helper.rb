@@ -20,4 +20,12 @@ module BandPublicHelper
   def disable_editing_link
     link_to_remote "Finished Editing", :url => { :action => :disable_editing }
   end
+  
+  def help_us_improve_text
+    if @logged_in_as_band
+      "Edit Your Profile"
+    else
+      "Help Us Improve"
+    end
+  end
 end

@@ -40,7 +40,7 @@ class SignupController < ApplicationController
           logger.info("Signing up a new band: #{@band}, #{@band.name}")
           BandMailer.deliver_notify_signup(@band, confirm_url, public_url)
           @name = @band.name
-          render :action => 'signup_success'
+          render :action => 'band_signup_success'
         end
       end
     rescue Exception => ex

@@ -1,0 +1,13 @@
+<% @page_title = "Signup Successful" %>
+<% @header_title = "Signup Successful" %>
+
+<h2>Thanks for signing up, <%= @name %>!</h2> 
+
+<p>We've sent an email that has instructions on how to confirm your account before you 
+<%= link_to "login", :controller => "login", :action => "band" %>.</p>
+
+<p><font color="red"><b>Important:</b></font> If you use spam filters, please look out for
+the confirmation email being filtered<br/> 
+to your "Spam" or "Bulk" folder. (We won't spam you, honest.)
+
+<br/><br/>The mail will be from <b>robot@tourb.us</b></p>

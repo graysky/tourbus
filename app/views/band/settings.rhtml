@@ -55,7 +55,7 @@
     <table>
       <tr>
         <td><img src="/images/add.png" height="16" width="16" onload='fixPNG(this)'/></td>
-        <td><%= link_to "Add a Show", band_public_action("add_show") %></td>
+        <td><%= link_to "Add a Show", :controller => "show", :action => "add" %></td>
       </tr>
       <tr>
         <td><img src="/images/icon_key.gif" height="16" width="16"/></td>

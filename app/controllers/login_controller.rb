@@ -19,45 +19,54 @@ class LoginController < ApplicationController
     error_msg = "Login unsuccessful<br/>" +
                 "Please check your username and password, " +
                 "and that your account has been confirmed."
-    
-    # We only support fans right now.
-    type = "fan"
-    if type == "fan"
-    
-      # Fan login
-      if fan = Fan.authenticate(login, passwd)
-        
-        @session[:fan_id] = fan.id
-        
-        if params[:remember_me] == 'true'
-          cookies[:type] = { :value => 'fan', :expires => Time.now + 5.years }
-          cookies[:login] = { :value => fan.uuid, :expires => Time.now + 2.weeks }
-        else
-          cookies.delete :login
-        end
-        
-        set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
-        
-        @session[:first_login] = fan.last_login.nil?
-        
-        fan.last_login = Time.now
-        fan.save
-        logger.info "Fan #{fan.name} logged in"
-        
-        @session[:logged_in_as_downtree] = logged_in_as_downtree?
-        
-        # Send to their profile page
-        redirect_back_or_default( public_fan_url )
+                
+    # Fan login
+    if fan = Fan.authenticate(login, passwd)
       
+      @session[:fan_id] = fan.id
+      
+      if params[:remember_me] == 'true'
+        cookies[:type] = { :value => 'fan', :expires => Time.now + 5.years }
+        cookies[:login] = { :value => fan.uuid, :expires => Time.now + 2.weeks }
       else
-        # There was an error
-        flash.now[:error] = error_msg
+        cookies.delete :login
       end
+      
+      set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
+      
+      @session[:first_login] = fan.last_login.nil?
+      
+      fan.last_login = Time.now
+      fan.save
+      logger.info "Fan #{fan.name} logged in"
+      
+      @session[:logged_in_as_downtree] = logged_in_as_downtree?
+      
+      # Send to their profile page
+      redirect_back_or_default( public_fan_url )
     
-    elsif type == "band"
+    else
+      # There was an error
+      flash.now[:error] = error_msg
+    end
+  end
+  
+  def band
+    if @request.get?
+      params[:remember_me] = 'true' if cookies[:login]
+      return
+    end
     
-      # Band login      
-      if band = Band.authenticate(login, passwd)
+    login = params['login']
+    passwd = params['password']
+    type = params['type']
+    
+    # Standard error message
+    error_msg = "Login unsuccessful<br/>" +
+                "Please check your username and password, " +
+                "and that your account has been confirmed."
+                
+    if band = Band.authenticate(login, passwd)
 
       # TODO check for unclaimed band
         @session[:band_id] = band.id
@@ -78,13 +87,11 @@ class LoginController < ApplicationController
         # Send to their profile page
         redirect_to public_band_url
 
-      else
-        flash.now[:error] = error_msg
-      end
-      
+    else
+      flash.now[:error] = error_msg
     end
   end
-  
+    
   def forgot_password
     if request.get?
       return
@@ -95,7 +102,6 @@ class LoginController < ApplicationController
     
     # This duplication sucks between fans and bands... should be cleaned up
     # at some point. Would need one mailer...
-    type = "fan"
     if type == "fan"
       fan = Fan.find_by_contact_email(email)
       if fan.nil?

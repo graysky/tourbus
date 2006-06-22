@@ -151,10 +151,10 @@
 <br/>
 
 <% show_help_us = false %>
-<% if logged_in_fan and !@band.confirmed? %>
+<% if (logged_in_fan and !@band.confirmed?) || @logged_in_as_band %>
     <% show_help_us = true %>
     <div id="improve-box" class="sidebar-box">
-	  <h2 id="improve-title"><span class="title">Help Us Improve</span></h2>
+	  <h2 id="improve-title"><span class="title"><%= help_us_improve_text %></span></h2>
 	    
 	    <div class="actions-box-rows">
 	       <p>  

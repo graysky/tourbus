@@ -105,12 +105,6 @@
   </tr>
 </table>
 
-<% if @logged_in_as_band %>
-    <script type="text/javascript">
-        show_bio_editing();
-    </script>
-<% end %>
-
 <script>
   adjust_bio_height(<%= @band.bio.blank? ? 'false' : 'true' %>);
 </script>

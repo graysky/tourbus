@@ -19,13 +19,7 @@
     <% end %>
     
     <div id='band_links'>
-    <% 
-        if @logged_in_as_band
-    %>
-      <%= render :partial => 'profile_link_editing' %>
-    <% else %>
-      <%= render :partial => 'profile_links' %>
-    <% end %>
+    <%= render :partial => 'profile_links' %>
     </div>
   </p>
   

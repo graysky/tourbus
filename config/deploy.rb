@@ -25,8 +25,11 @@
 # Other useful tasks:
 #
 # rollback - rollback to last deployment
+# 
+# spinner - first start FCGI processes using spawner ("rake remote:exec ACTION=spinner")
+# cron_spinner - first start RailsCron ("rake remote:exec ACTION=cron_spinner")
 # cleanup - deletes >5 deployments (needs "rake remote:exec ACTION=cleanup")
-# spawner - first start FCGI processes using spawner ("rake remote:exec ACTION=spinner")
+# 
 # reaper - kill the FCGI processes using reaper
 #
 # Use this to run any non-rake switchtower tasks (NOT CURRENTLY IN USE):

@@ -77,12 +77,18 @@ module Address
     city_words = []
     city = state = zip = nil
     
-    tokens = str.split(/,/)
-    if tokens.size == 1
-      zip = tokens[0].strip
+    # first check for CITY, STATE ZIP
+    tokens = str.split(' ')
+    if ZipCode.find_by_zip(tokens.last.strip)
+      zip = tokens.last.strip
     else
-      city = tokens[0].strip
-      state = self.state_abbrev(tokens[1].strip)
+      tokens = str.split(/,/)
+      if tokens.size == 1
+        zip = tokens[0].strip
+      else
+        city = tokens[0].strip
+        state = self.state_abbrev(tokens[1].strip)
+      end
     end
     
     raise "Invalid address: Missing city or zipcode" if city == "" and zip.nil?

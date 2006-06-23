@@ -1,5 +1,5 @@
 module Address
-  STATE_ABBREVS = %w{ AK AL AR AZ CA CO CT DE FL GA HI IA ID IL IN KS KY LA MA MD ME
+  STATE_ABBREVS = %w{ AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME
                  MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN
                  TX UT VT VA WA WI WV WY } unless const_defined?("STATE_ABBREVS")
                  
@@ -152,7 +152,7 @@ module Address
   
   module ActsAsLocation
     def city_state_zip=(str)
-      zipcode = Address::parse_city_state_zip(str)
+      zipcode = Address::parse_city_state_zip(str) rescue nil
       if zipcode
         # TODO For now, don't set the zipcode if the user didn't specify.
         # Deal with more than one zip per city.

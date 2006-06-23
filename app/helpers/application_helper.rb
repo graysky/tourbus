@@ -157,4 +157,8 @@ END_JS
     current = current_page?(options) || actions.include?(params[:action])
     link_to_unless current, name, options, html_options, *parameters_for_method_reference, &block
   end
+  
+  def link_to_unless_current_action(name, options = {}, html_options = {}, *parameters_for_method_reference)
+    link_to_unless current_page?(options) || params[:action] == options[:action], name, options, html_options, parameters_for_method_reference
+  end
 end

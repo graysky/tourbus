@@ -68,6 +68,7 @@ module FerretMixin
         # sort:  An array of SortFields describing how to sort the results.
         # exact_date: Only results on the given date.
         # conditions: A hash of conditions: 'popularity' => '> 0'
+        # prefix: A prefix to search on, hash with field => prefix
         # include: The include argument to ActiveRecord's find methods.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
@@ -152,6 +153,14 @@ module FerretMixin
             options[:conditions].each do |term, condition|
               query_parser = QueryParser.new([term], options)
               query << Search::BooleanClause.new(query_parser.parse(condition), Search::BooleanClause::Occur::MUST)
+            end
+          end
+          
+          # Add prefix
+          if options[:prefix]
+            options[:prefix].each do |term, prefix|
+              query << Search::BooleanClause.new(Search::PrefixQuery.new(Index::Term.new(term, prefix)), 
+                                                 Search::BooleanClause::Occur::MUST)
             end
           end
             

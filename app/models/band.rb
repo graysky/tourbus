@@ -116,7 +116,7 @@ class Band < ActiveRecord::Base
   def self.name_to_id(name)
     # Remove anything that's not a letter, number or selected punctuation
     # NOTE: Keep this in sync with the implementation in signup_band.rhtml!
-    id = name.gsub(/[^\w|\d|_|.|-]/, '').downcase
+    id = name.gsub(/&/, 'and').gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
   # Add Band tags

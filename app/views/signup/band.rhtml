@@ -5,7 +5,7 @@
   function update_public_page(name_field)
   {
     <% # NOTE: Keep this in sync with the implementation in band.rb! %>
-    var id = name_field.value.replace(/[^\w|\d|_|.|-]/g, '');
+    var id = name_field.value..replace(/&/, 'and').replace(/[^\w|\d|_|.|-]/g, '');
     $("band_short_name").value = id.toLowerCase();
   }
   

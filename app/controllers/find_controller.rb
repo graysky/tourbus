@@ -94,6 +94,8 @@ class FindController < ApplicationController
   end
   
   def browse_all_bands
+    @supports_prefix_browse = true
+    
     query, radius, lat, long = prepare_query(Band.table_name)
     if query.nil?
       render_band
@@ -102,6 +104,9 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:sort] = name_sort_field
+    if !params[:prefix].blank?
+      options[:prefix] = { 'sort_name' => params[:prefix] }
+    end
     
     # Always search nationally for bands
     radius = lat = long = nil

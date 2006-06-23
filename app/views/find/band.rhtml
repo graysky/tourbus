@@ -38,10 +38,10 @@ end
 
 <center>
 <div id="browse_links">
-  <%= link_to_unless_current "Search", :action => 'band' %> <span class="normal">|</span>
-  <%= link_to_unless_current "Browse All Bands" , :action => 'browse_all_bands'%> <span class="normal">|</span>
-  <%= link_to_unless_current "Most Popular Bands", :action => 'browse_popular_bands' %> <span class="normal">|</span>
-  <%= link_to_unless_current "Newest Bands" , :action => 'browse_newest_bands'%>
+  <%= link_to_unless_current_action "Search", :action => 'band' %> <span class="normal">|</span>
+  <%= link_to_unless_current_action "Browse All Bands" , :action => 'browse_all_bands'%> <span class="normal">|</span>
+  <%= link_to_unless_current_action "Most Popular Bands", :action => 'browse_popular_bands' %> <span class="normal">|</span>
+  <%= link_to_unless_current_action "Newest Bands" , :action => 'browse_newest_bands'%>
   
 </div>
 
@@ -61,6 +61,10 @@ end
 
 <%= render :partial => "hidden_form", :type => type %>
 <%= end_form_tag %>
+
+<% if @supports_prefix_browse %>
+    <%= show_prefix_browse %>
+<% end %>
 
 <h3>
   <% if @results and @results.size > 0 %>

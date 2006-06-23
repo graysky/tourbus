@@ -37,9 +37,9 @@ end
 
 <center>
 <div id="browse_links">
-  <%= link_to_unless_current "Search", :action => 'venue' %> <span class="normal">|</span>
-  <%= link_to_unless_current "Browse All Venues" , :action => 'browse_all_venues'%><span class="normal">|</span>
-  <%= link_to_unless_current "Most Popular Venues" , :action => 'browse_popular_venues'%> 
+  <%= link_to_unless_current_action "Search", :action => 'venue' %> <span class="normal">|</span>
+  <%= link_to_unless_current_action "Browse All Venues" , :action => 'browse_all_venues'%><span class="normal">|</span>
+  <%= link_to_unless_current_action "Most Popular Venues" , :action => 'browse_popular_venues'%> 
 </div>
 
 <%= start_form_tag :action => params[:action] %>

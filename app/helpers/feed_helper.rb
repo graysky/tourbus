@@ -85,11 +85,11 @@ module FeedHelper
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
     bands = show.bands.map { |band| 
-      "<a href='"+ public_band_url(band)+ "'>"+band.name+"</a>"
+      "<a href=\""+ public_band_url(band)+ "\">"+h(band.name)+"</a>"
     }.join(" / ")
 
     desc = ""    
-    desc << "<p><b>Who:</b> #{h(bands)}</p>" 
+    desc << "<p><b>Who:</b> #{bands}</p>" 
     desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}</p>"
     desc << "<p><b>Where:</b> <a href=\"#{public_venue_url(show.venue)}\">#{h(show.venue.name)}</a></p>"
     

@@ -76,7 +76,7 @@ module Geosearch
     radius = radius || @session[:radius] || Address::DEFAULT_RADIUS
     if radius != "" and radius.to_f <= 0
       flash[:error] = "The search radius must be a positive number"
-      logger.error = "Bad search radius: #{radius}"
+      logger.error("Bad search radius: #{radius}")
       return nil
     end
     

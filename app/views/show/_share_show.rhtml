@@ -1,3 +1,16 @@
+<script type="text/javascript">    
+  // Called after show has been shared.
+  function show_shared(request)
+  {
+    // Any errors or warnings
+    msg = request.responseText;
+    if (msg != null && msg.length > 1)
+    {
+        alert( msg );
+    }
+  }
+</script>
+
 <tr>
 <td><img src="/images/email.png" height="16" width="16" onload='fixPNG(this)'/></td>
 <td>
@@ -9,8 +22,9 @@
         :url => { 
           :controller => "show",
           :action => "share", 
-          :id => id,
-        }) 
+          :id => id },
+          :complete => "show_shared(request)"
+        ) 
         %>
         
         <% 
@@ -33,7 +47,7 @@
         <p>Message:</p>
         <%= text_area_tag 'msg', '', :size => '25x3' %>
 
-      
+        <!--  -->
         <%= submit_tag "Submit", :onclick => "Tooltip.toggle($('share_show_link'), event);$('share_show_link').innerHTML = 'Message Sent!'" %>&nbsp;
         <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('share_show_link'), event)" %>
         <%= end_form_tag %>

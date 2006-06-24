@@ -99,15 +99,19 @@ class FanPublicController < ApplicationController
     emails.chomp!(" ")
     
     # Try to format emails correctly
-    to_addrs = emails.split(' ')
+    to_addrs = emails.gsub(/,/,' ').split(' ')
     
     from_name = params[:from]
     msg = params[:msg]
       
     # Send the email
-    ShareMailer.deliver_invite_friend(to_addrs, from_name, @fan, msg)
-    
-    render :nothing => true
+    msg = ShareMailer.do_invite_friend(to_addrs, from_name, @fan, msg)
+    if msg.nil?
+      render :nothing => true
+    elsif
+      # There was an error sending
+      render :text => msg
+    end
   end
   
   # RSS feed for the fan

@@ -8,6 +8,21 @@ class BaseMailer < ActionMailer::Base
     return Emails.spam.eql(addr)
   end
 
+  # Tries to make best guess about whether the email
+  # address is valid
+  def self.valid_email?(addr)
+    puts "Email is #{addr}"
+
+    return false if addr.nil? or addr.empty?
+
+    # Make sure it has @ symbol
+    if addr !~ /@/
+      return false
+    end
+        
+    return true
+  end
+
   ## This is lame - better to share across with ActiveController helpers
   
   # Return the URL prefix *before* a band name

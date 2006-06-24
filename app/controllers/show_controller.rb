@@ -115,14 +115,18 @@ class ShowController < ApplicationController
     emails.chomp!(" ")
     
     # Try to format emails correctly
-    to_addrs = emails.split(' ')
+    to_addrs = emails.gsub(/,/,' ').split(' ')
     
     from_name = params[:from]
     msg = params[:msg]
       
     # Send the email
-    ShareMailer.deliver_share_show(to_addrs, from_name, @show, msg)
-    render :nothing => true
+    msg = ShareMailer.do_share_show(to_addrs, from_name, @show, msg)
+    if msg.nil?
+      render :nothing => true
+    elsif
+      render :text => msg
+    end
   end
   
   # An iCal feed

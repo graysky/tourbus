@@ -1,3 +1,16 @@
+<script type="text/javascript">    
+  // Called after message sent
+  function invite_sent(request)
+  {
+    // Any errors or warnings
+    msg = request.responseText;
+    if (msg != null && msg.length > 1)
+    {
+        alert( msg );
+    }
+  }
+</script>
+
 <tr>
 <td><img src="/images/email.png" height="16" width="16" onload='fixPNG(this)'/></td>
 <td>
@@ -8,7 +21,8 @@
           <%= form_remote_tag(
         :url => { 
           :action => "invite", 
-        }) 
+        },
+        :complete => "invite_sent(request)") 
         %>
         
         <p>Your Name:</p>

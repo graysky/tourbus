@@ -70,6 +70,9 @@ class FavoritesMailer < BaseMailer
       # The user is watching each show
       new_shows.each do |show|
         fan.watch_show(show)
+        
+        # Hack... read only records are returned from the calculator. 
+        show = Show.find(show.id)
         show.save
       end
       

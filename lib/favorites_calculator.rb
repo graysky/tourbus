@@ -41,8 +41,7 @@ class FavoritesCalculator
       @fan.bands.each do |band|
         
         shows = band.shows.collect do |show| 
-          show if show.date > now && show.last_updated > @updated_since
-          nil
+          show.date > now && show.last_updated > @updated_since ? show : nil
         end
         shows = Show.within_range(shows, @lat.to_f, @long.to_f, @fan.default_radius)
            

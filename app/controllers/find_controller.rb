@@ -96,23 +96,8 @@ class FindController < ApplicationController
   def browse_all_bands
     @supports_prefix_browse = true
     
-    query, radius, lat, long = prepare_query(Band.table_name)
-    if query.nil?
-      render_band
-      return
-    end
-    
-    options = default_search_options
-    options[:sort] = name_sort_field
-    if !params[:prefix].blank?
-      options[:prefix] = { 'sort_name' => params[:prefix] }
-    end
-    
-    # Always search nationally for bands
-    radius = lat = long = nil
-    
-    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, options)
-    paginate_search_results(count)
+    conditions = params[:prefix].blank? ? nil : "name like '#{params[:prefix]}%'"
+    @pages, @results = paginate(:bands, :order_by => 'name', :per_page => page_size, :conditions => conditions)
     render_band
   end
   

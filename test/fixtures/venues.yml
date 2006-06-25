@@ -1,0 +1,13 @@
+middle_east:
+  id: 1
+  name: the middle east
+  zipcode: 02140
+  latitude: 42.3933
+  longitude: -71.1284
+  
+ashland_club:
+  id: 2
+  name: ashland club
+  zipcode: 01721
+  latitude: 42.258
+  longitude: -71.4589

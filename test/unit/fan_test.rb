@@ -59,4 +59,35 @@ class FanTest < Test::Unit::TestCase
     assert_equal num_fans - 1, band.num_fans
     assert_equal num_faves - 1, @fan.bands.size
   end
+  
+  def test_attend_show
+    show = Show.new(:date => Time.now)
+    num_shows = @fan.shows.size
+    
+    @fan.attend_show(show)
+    assert @fan.attending?(show)
+    assert_equal num_shows + 1, @fan.shows.size
+    assert_equal 1, show.num_attendees
+    assert_equal 0, show.num_watchers
+    
+    @fan.attend_show(show)
+    assert_equal num_shows + 1, @fan.shows.size
+    assert_equal 1, show.num_attendees
+    
+    @fan.watch_show(show)
+    assert @fan.watching?(show)
+    assert !@fan.attending?(show)
+    assert_equal num_shows + 1, @fan.shows.size
+    assert_equal 0, show.num_attendees
+    assert_equal 1, show.num_watchers
+    
+    @fan.watch_show(show)
+    assert @fan.watching?(show)
+    assert_equal 1, show.num_watchers  
+  end
+  
+  def stop_attending_show
+    show = @fan.shows[0]
+  end
+  
 end

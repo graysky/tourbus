@@ -6,8 +6,8 @@ ashland:
   latitude: 42.258
   longitude: -71.4589
   
-ashland:
-  id: 1
+cambridge:
+  id: 2
   city: Cambridge
   state: MA
   zip: 02140

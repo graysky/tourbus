@@ -16,6 +16,10 @@ class PhotoMailerTest < Test::Unit::TestCase
     @expected.set_content_type "text", "plain", { "charset" => CHARSET }
   end
 
+  def test_truth
+  
+  end
+
   private
     def read_fixture(action)
       IO.readlines("#{FIXTURES_PATH}/photo_mailer/#{action}")

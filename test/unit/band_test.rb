@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 # Test the Band model
 class BandTest < Test::Unit::TestCase
-  fixtures :bands
 
   def setup
     @ga = bands(:green_arrows)

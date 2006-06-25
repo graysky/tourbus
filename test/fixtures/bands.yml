@@ -3,14 +3,20 @@ green_arrows:
   id: 1
   name: Green Arrows
   short_name: greenarrows
+  confirmed: true
   created_on: <%= Time.now %>
   contact_email: <%= Emails.spam %>
   uuid: <%= UUID.random_create.to_s %>
+  latitude: 42.3933
+  longitude: -71.1284
 
 blood_feathers:
   id: 2
   name: Blood Feathers
   short_name: bloodfeathers
+  confirmed: true
   created_on: <%= Time.now %>
   contact_email: <%= Emails.spam %>
   uuid: <%= UUID.random_create.to_s %>
+  latitude: 42.258
+  longitude: -71.4589

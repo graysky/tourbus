@@ -6,3 +6,11 @@ green_arrows:
   created_on: <%= Time.now %>
   contact_email: <%= Emails.spam %>
   uuid: <%= UUID.random_create.to_s %>
+
+blood_feathers:
+  id: 2
+  name: Blood Feathers
+  short_name: bloodfeathers
+  created_on: <%= Time.now %>
+  contact_email: <%= Emails.spam %>
+  uuid: <%= UUID.random_create.to_s %>

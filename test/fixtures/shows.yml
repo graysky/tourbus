@@ -2,4 +2,13 @@ show1:
   id: 1
   date: Time.new
   venue_id: 1
+  num_attendees: 1
+  num_watchers: 1
+  
+show2:
+  id: 2
+  date: Time.new
+  venue_id: 2
+  num_attendees: 1
+  num_watchers: 1
   

@@ -152,6 +152,7 @@ class Fan < ActiveRecord::Base
   def stop_attending_show(show)
     if self.attending?(show)
       self.shows.delete(show)
+      show.fans.delete(self)
       show.num_attendees -= 1
     end
   end
@@ -167,6 +168,7 @@ class Fan < ActiveRecord::Base
   def stop_watching_show(show)
     if self.watching?(show)
       self.shows.delete(show)
+      show.fans.delete(self)
       show.num_watchers -= 1
     end
   end
@@ -256,6 +258,10 @@ class Fan < ActiveRecord::Base
       f1.save!
       f2 = Friendship.new(:fan => friend, :friend => self)
       f2.save!
+      
+      # Reload the friends relations
+      self.friends(true)
+      friend.friends(true)
     end
   end
   

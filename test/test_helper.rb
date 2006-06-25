@@ -16,7 +16,7 @@ Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures/"
 module FixtureLoader
   def self.included(base)
     base.class_eval do
-      fixtures :shows, :bands, :bands_fans, :zip_codes, :venues
+      fixtures :shows, :fans, :fans_shows, :bands, :bands_fans, :zip_codes, :venues
     end
   end
 end
@@ -32,7 +32,10 @@ class Test::Unit::TestCase
     Fixtures.create_fixtures(File.dirname(__FILE__) + "/fixtures", table_names)
   end
 
-  # Add more helper methods to be used by all tests here...
+  # Add more helper methods to be used by ll tests here...
+  def new_fan(name = 'dude')
+    Fan.create_test_fan(name)
+  end
 end
 
 # We just ignore foreigh key checks so that we can delete fixtures without worrying

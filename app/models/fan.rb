@@ -122,6 +122,8 @@ class Fan < ActiveRecord::Base
   end
   
   def remove_favorite(band)
+    return unless self.favorite?(band)
+    
     self.bands.delete(band)
     band.num_fans -= 1
     band.save!

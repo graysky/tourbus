@@ -16,7 +16,7 @@ Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures/"
 module FixtureLoader
   def self.included(base)
     base.class_eval do
-      fixtures :shows, :bands, :zip_codes
+      fixtures :shows, :bands, :bands_fans, :zip_codes
     end
   end
 end

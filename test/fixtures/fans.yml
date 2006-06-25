@@ -1,0 +1,20 @@
+gary:
+  id: 1
+  name: gary
+  zipcode: 01721
+  confirmed: true
+  wants_favorites_emails: true
+  latitude: 42.258
+  longitude: -71.4589
+  
+mike:
+  id: 2
+  name: mike
+  confirmed: true
+  wants_favorites_emails: true
+  zipcode: 02140
+  latitude: 42.3933
+  longitude: -71.1284
+  
+  
+  

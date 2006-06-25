@@ -1,0 +1,15 @@
+ashland:
+  id: 1
+  city: Ashland
+  state: MA
+  zip: 01721
+  latitude: 42.258
+  longitude: -71.4589
+  
+ashland:
+  id: 1
+  city: Cambridge
+  state: MA
+  zip: 02140
+  latitude: 42.3933
+  longitude: -71.1284

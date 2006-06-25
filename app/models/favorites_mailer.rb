@@ -1,5 +1,3 @@
-require_dependency 'favorites_calculator'
-
 # Sends out email about favorites
 class FavoritesMailer < BaseMailer
   

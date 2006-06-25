@@ -29,7 +29,7 @@ class FavoritesCalculator
     upcoming_shows.find_all { |show| show.created_on < @updated_since }
   end
   
-  private
+  protected
   
   # All upcoming shows within range for all favorites bands
   # Includes shows that have been created since the last email

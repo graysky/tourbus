@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+punk:
+  id: 1
+  name: punk
+
+indie:
+  id: 2
+  name: indie
+
+hip_hop:
+  id: 3
+  name: hip hop

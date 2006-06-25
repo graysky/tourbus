@@ -1,20 +1,8 @@
-<% 
-require_dependency "fixture_helper"
-require 'uuidtools'
-fix = FixtureHelper # Shorten typing
-%>
-
-<% 
-  p "Creating #{fix.num_bands} bands..."
-  
-  now = fix.last_week
-  1.upto( fix.num_bands ) do |num|
-%>
-band_<%= num %>:
-  id: <%= num %>
-  name: <%= fix.gen_band_name(num) %>
-  short_name: band<%= num %>
-  created_on: <%= now %>
-  contact_email: band<%= num %>@band.com
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+green_arrows:
+  id: 1
+  name: Green Arrows
+  short_name: greenarrows
+  created_on: <%= Time.now %>
+  contact_email: <%= Emails.spam %>
   uuid: <%= UUID.random_create.to_s %>
-<% end %>

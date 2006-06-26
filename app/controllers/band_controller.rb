@@ -17,7 +17,9 @@ class BandController < ApplicationController
   def lookup_band_for_show
     name = params[:name].strip
     if params[:name] && name != ""
-      bands, count = Band.ferret_search(name + "*", :num_docs => 5)
+      short_name = Band.name_to_id(name)
+      options = { :conditions => { 'sort_name' => "#{short_name}*" }, :num_docs => 5 }
+      bands, count = Band.ferret_search("", options)
     else
       bands = []
     end

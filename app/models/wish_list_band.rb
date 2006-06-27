@@ -60,7 +60,8 @@ class WishListBand < ActiveRecord::Base
     matches.each do |match|
       fan = match.fan
       band = band_lookup[match.short_name]
-      
+      next if band.nil?
+
       # Add a fave and delete the wishlist band
       logger.info "Add fave #{band.name} for #{fan.name}"
       fan.add_favorite(band)

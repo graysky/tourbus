@@ -11,6 +11,15 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
+desc "Create a sitemap file for Google"
+task :sitemap do
+  cmd = <<END
+    Housekeeping.create_sitemap
+END
+
+  system "ruby ./script/runner '#{cmd}'"
+end
+
 desc "Index the database into ferret"
 task :update_index do
   cmd = <<END

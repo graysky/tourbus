@@ -30,6 +30,39 @@ class Housekeeping
     logger.info "Finish nightly tasks at #{finish}"
   end
   
+  def self.create_sitemap
+    start = Time.now.asctime
+    logger = RAILS_DEFAULT_LOGGER
+  
+    sitemap = File.new("#{RAILS_ROOT}/public/sitemap.txt",  "w+")    
+    puts "Creating sitemap at: #{sitemap.path}"
+    
+    bands = Band.find(:all)
+    bands.each do |b|
+      sitemap.puts "http://tourb.us/#{b.short_name}"
+    end
+    puts "Added #{bands.length} bands to sitemap"
+    
+    shows = Show.find(:all)
+    shows.each do |s|
+      sitemap.puts "http://tourb.us/show/#{s.id}"
+    end
+    puts "Added #{shows.length} shows to sitemap"
+    
+    venues = Venue.find(:all)
+    venues.each do |v|
+      sitemap.puts "http://tourb.us/venue/#{v.id}"
+    end
+    puts "Added #{venues.length} veneus to sitemap"
+    
+    fans = Fan.find(:all)
+    fans.each do |f|
+      sitemap.puts "http://tourb.us/fan/#{f.name}"
+    end
+    puts "Added #{fans.length} fans to sitemap"
+    
+  end
+  
   protected
 
   # Print out some stats about tourbus

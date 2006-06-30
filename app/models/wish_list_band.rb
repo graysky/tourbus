@@ -55,13 +55,23 @@ class WishListBand < ActiveRecord::Base
     band_lookup = {}
     new_bands.each { |band| band_lookup[band.short_name] = band }
     
+    # Stats
+    num_fans = 0
+    
     fans_bands = {}
     bands = []
     matches.each do |match|
       fan = match.fan
       band = band_lookup[match.short_name]
-      next if band.nil?
-
+      
+      # TODO Add a warning to the db somehow
+      if band.nil?
+        msg = "Fan: #{fan.name}, Wishlist band: #{match.short_name}"
+        SystemEvent.warning("Could not find a band lookup", SystemEvent::WISHLIST, msg)
+		next
+      end
+      
+      
       # Add a fave and delete the wishlist band
       logger.info "Add fave #{band.name} for #{fan.name}"
       fan.add_favorite(band)
@@ -79,7 +89,12 @@ class WishListBand < ActiveRecord::Base
     fans_bands.each_key { |fan| fan.save! }
   
     # Notify fans
-    fans_bands.each { |fan, bands| FanMailer.deliver_wishlist_to_favorites(fan, bands) }
+    fans_bands.each do |fan, bands|
+      num_fans += 1
+      FanMailer.deliver_wishlist_to_favorites(fan, bands)
+    end
+  
+    SystemEvent.info("Found faves for #{num_fans} fans", SystemEvent::WISHLIST)
    
   end
 end

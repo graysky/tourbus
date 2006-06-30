@@ -23,6 +23,10 @@ class AdminController < ApplicationController
     @fans = Fan.find(:all)
   end
 
+  def list_system_events
+    @events = SystemEvent.find(:all, :order => "created_at DESC")
+  end
+
   # Track recently added shows by fans and bands  
   def list_added_shows
     go_back = 7.days # How many days to go back

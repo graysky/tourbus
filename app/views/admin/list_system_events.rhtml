@@ -1,0 +1,24 @@
+<h2>System Events</h2>
+<p>
+
+<table border="1" cellpadding="2">
+
+<tr>
+<th>Name</th>
+<th>Area</th>
+<th>Level</th>
+<th>Description</th>
+<th>Date</th>
+</tr>
+
+<% for event in @events %>
+<tr>
+    <td><%= event.name %></td>
+    <td><%= event.area %></td>
+    <td><%= event.level %></td>
+    <td><%= event.description %></td>
+    <td><%= event.created_at %></td>
+</tr>
+<% end %>
+
+</table>

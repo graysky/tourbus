@@ -40,6 +40,7 @@ class FavoritesMailer < BaseMailer
   # factor might actually be the time it takes to send mail.
   def self.do_favorites_updates
     fans = Fan.find(:all)
+    num_fans = 0
     for fan in fans
       # Are they are any favorites?
       next if fan.bands.empty?
@@ -77,7 +78,11 @@ class FavoritesMailer < BaseMailer
       FavoritesMailer.deliver_favorites_update(fan, new_shows, nil)
       fan.last_favorites_email = Time.now
       fan.save
+      
+      num_fans += 1
     end
+    
+    SystemEvent.info("Sent #{num_fans} favorites emails", SystemEvent::FAVORITES)
   end
 
 end

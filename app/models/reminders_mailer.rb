@@ -57,6 +57,7 @@ class RemindersMailer < BaseMailer
     p "****Sending show reminders at #{Time.now.asctime}"
     
     fans = Fan.find(:all)
+    num_fans = 0
     for fan in fans
       # Skip this fan if they don't have reminders enabled
       next if not (fan.wants_email_reminder? or fan.wants_mobile_reminder?)
@@ -130,9 +131,13 @@ class RemindersMailer < BaseMailer
         logger.info "Updating fan at #{now}"
         fan.last_show_reminder = now
         fan.save
+        
+        num_fans += 1
       end
       
-    end # fan loop 
+    end # fan loop
+    
+    SystemEvent.info("Sent #{num_fans} reminders", SystemEvent::REMINDERS) 
   end
   
   # Calculate which shows need reminders

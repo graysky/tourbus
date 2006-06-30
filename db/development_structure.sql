@@ -264,6 +264,16 @@ CREATE TABLE `site_visits` (
   KEY `site_visits_name_index` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `system_events` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `area` varchar(255) default NULL,
+  `level` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
@@ -360,4 +370,4 @@ CREATE TABLE `zip_codes` (
   KEY `country` (`country`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO schema_info (version) VALUES (35)
+INSERT INTO schema_info (version) VALUES (36)

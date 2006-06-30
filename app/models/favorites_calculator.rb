@@ -6,17 +6,6 @@ class FavoritesCalculator
   def initialize(fan, updated_since)
     @fan = fan
     @updated_since = updated_since
-    
-    # Assume that if we got here the fan has a location set
-    if fan.zipcode != ""
-      zipcode = ZipCode.find_by_zip(fan.zipcode)
-    else
-      # TODO Deal with multi-zip cities
-      zipcode = ZipCode.find_by_city_and_state(fan.city, fan.state)
-    end
-    
-    @lat = zipcode.latitude
-    @long = zipcode.longitude
   end
   
   # New shows played by the favorites
@@ -36,6 +25,9 @@ class FavoritesCalculator
   def upcoming_shows
     if @upcoming_shows.nil?
       @upcoming_shows = []
+
+      # Defense against no location set
+      return [] if @fan.latitude.nil? or @fan.latitude.empty?
       
       now = Time.now
       @fan.bands.each do |band|
@@ -43,7 +35,7 @@ class FavoritesCalculator
         shows = band.shows.collect do |show| 
           show.date > now && show.last_updated > @updated_since ? show : nil
         end
-        shows = Show.within_range(shows, @lat.to_f, @long.to_f, @fan.default_radius)
+        shows = Show.within_range(shows, @fan.latitude.to_f, @fan.longitude.to_f, @fan.default_radius)
            
         # Remove any dupes and shows the user is already going to
         @upcoming_shows += (shows - @fan.upcoming_shows)

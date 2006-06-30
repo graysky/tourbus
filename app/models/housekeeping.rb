@@ -26,6 +26,9 @@ class Housekeeping
     logger.info "Resaving objects..."
     self.resave_objects
   
+    logger.info "Creating sitemap..."    
+    self.create_sitemap
+  
     finish = Time.now.asctime
     logger.info "Finish nightly tasks at #{finish}"
   end

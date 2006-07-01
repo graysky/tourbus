@@ -176,6 +176,7 @@ class Site < MetaSite
       
       # Delete comments, including misformatted ones
       html.gsub!(/<!(.*)->/, '')
+      html.gsub!(/<!doctype(.*)>/, '')
       
       parser = HTMLTree::XMLParser.new(false, false)
       parser.feed(html)

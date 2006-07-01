@@ -78,6 +78,15 @@ class PublicController < ApplicationController
     metro_redirect("sanfran")
   end
   
+  def la
+    metro_redirect("la")
+  end
+  
+  def nyc
+    metro_redirect("nyc")
+  end
+  
+  
   # The beta page to ask for invitation code
   def beta
     return if @request.get?

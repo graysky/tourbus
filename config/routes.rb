@@ -9,6 +9,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sanfran' }
   map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sf' }
   map.connect '', :controller => 'public', :action => 'chicago', :requirements => { :subdomain => 'chicago' }
+  map.connect '', :controller => 'public', :action => 'la', :requirements => { :subdomain => 'losangeles' }
+  map.connect '', :controller => 'public', :action => 'la', :requirements => { :subdomain => 'la' }
+  map.connect '', :controller => 'public', :action => 'nyc', :requirements => { :subdomain => 'nyc' }
+  map.connect '', :controller => 'public', :action => 'nyc', :requirements => { :subdomain => 'newyork' }
 
   # You can have the root of your site routed by hooking up '' 
   map.connect '', :controller => 'public', :action => 'front_page'

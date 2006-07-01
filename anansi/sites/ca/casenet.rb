@@ -23,10 +23,6 @@ set :parser_type, :table
 set :table_columns, { 0 => :date, 1 => :venue, 2 => :bands }
 
 set :marker_text, ['Sorted by']
-#set :use_raw_bands_text, true
-#set :band_separator, '|'
-#set :band_separator, "<br>"
-#set :band_separator, ","
 
 # =============================================================================
 # DEFINE METHODS
@@ -37,15 +33,5 @@ set :marker_text, ['Sorted by']
 # So let it do that, and then we clean up the commas and replace them too.
 # 
 method :preprocess_bands_text, {:args => 1} do |text|
-  #text = HTML::strip_all_tags(text)
-  #text = HTML::strip_all_tags(text.gsub!(',', '|'))
-  #text.gsub!(',', '<br>')
-  # They like to embed ticket info right next to the band names
-  puts "Text was: [#{text}]"
-  text.gsub!(/(,?) on sale(.*)/, '')
-  text.gsub!(/,(.?)\$\d{2}(.*)/, '')
-  #text.gsub!(/\$\d{2}/, '')
-
-  puts "Text now: [#{text}]"
   text
 end

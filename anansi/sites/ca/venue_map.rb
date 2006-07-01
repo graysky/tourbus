@@ -27,5 +27,6 @@
   /mountain winery/ => 792,
   /harlow/ => 796,
   /hotal utah/ => 395,
-  "HOB" => 986
+  "HOB" => 986,
+  /Knitting Factory/ => 987,
 }

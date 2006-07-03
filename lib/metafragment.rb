@@ -11,6 +11,12 @@
 #
 module MetaFragment
   
+  # Get a valid cache key part string from the given strings
+  def self.cache_key_part(*chunks)
+    part = chunks.join('')
+    part.gsub(/[^a-z0-9]/i, '')
+  end
+  
   # Helper to make the idiom simpler for caching fragments.
   # key => The key for the fragment to check/cache
   # time_to_live => Time that the cached fragment will expire

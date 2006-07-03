@@ -55,6 +55,10 @@ module Geosearch
     SortField.new("date", {:sort_type => SortField::SortType::INTEGER, :reverse => false})
   end
   
+  def reverse_date_sort_field
+    SortField.new("date", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+  end
+  
   def popularity_sort_field
     SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
   end

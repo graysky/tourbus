@@ -46,8 +46,9 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = subscribe_url(:shows_rss, query, params[:location] || session[:location], radius)
-    p @subscribe_url
+    @subscribe_url = subscribe_url(:shows_rss, :query => query, 
+                                               :location => params[:location] || session[:location], 
+                                               :radius => radius)
   end
   
   def venue
@@ -115,7 +116,17 @@ class FindController < ApplicationController
       options[:num_docs] = 500
       options[:sort] = reverse_date_sort_field
       
-      part = MetaFragment.cache_key_part(query, radius, lat, long)
+      popular = params[:popular] || false
+      if popular
+        options[:conditions] = { 'popularity' => '> 0'}
+      end
+      
+      tonight = params[:tonight] || false
+      if tonight
+        options[:exact_date] = true
+      end
+      
+      part = MetaFragment.cache_key_part(query, radius, lat, long, popular)
       render_shows_rss(part, "shows") do
         @items, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
         @items
@@ -137,6 +148,12 @@ class FindController < ApplicationController
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
+    
+    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+                                               :location => params[:location] || session[:location], 
+                                               :radius => radius,
+                                               :tonight => true)
+                                               
     render_show
   end
   
@@ -153,6 +170,11 @@ class FindController < ApplicationController
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
+    
+    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+                                               :location => params[:location] || session[:location], 
+                                               :radius => radius,
+                                               :popular => true)
     render_show
   end
   
@@ -168,6 +190,10 @@ class FindController < ApplicationController
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
+    
+    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+                                               :location => params[:location] || session[:location], 
+                                               :radius => radius)
     render_show
   end
   
@@ -219,7 +245,7 @@ class FindController < ApplicationController
   end
   
   def validate_rss_query(query, radius, lat, long)
-    if query.blank?
+    if query.nil?
       render_shows_rss("query_error", "ERROR! Invalid query")
       return false
     elsif lat.blank? || long.blank? || radius.blank?
@@ -248,16 +274,21 @@ class FindController < ApplicationController
       { :obj => nil, :base_url => base_url, :key => key, :items => @items, :title => title })
   end
   
-  def subscribe_url(action, query, location, radius)
-    if radius.blank? || location.blank?
+  def subscribe_url(action, sparams = {})
+    if sparams[:radius].blank? || sparams[:location].blank?
       "javascript:alert('You must set a valid location and radius to subscribe to this search')"
     else
-      url_for(:action => action) + "?" + subscribe_params(query, location, radius)
+      url_for(:action => action) + "?" + subscribe_params(sparams)
     end
   end
   
-  def subscribe_params(query, location, radius)
-    "query=#{CGI::escape(query)}&location=#{CGI::escape(location)}&radius=#{CGI::escape(radius.to_s)}"
+  def subscribe_params(sparams)
+    str = ""
+    sparams.each do |key, value|
+        str << "&#{key.to_s}=#{CGI::escape(value.to_s)}"
+    end
+    
+    str[1..-1]
   end
   
   def page_size

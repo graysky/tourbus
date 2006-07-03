@@ -66,19 +66,22 @@ end
 
   <% if @results and @results.size > 0 %>
     <h3>
+    <% subscribe_type = 'page' %>
     <%= 
       case params[:action]
       when 'browse_popular_shows' then 'Browsing Most Popular Shows'
       when 'browse_tonights_shows' then 'Browsing Tonight\'s Shows'
       else
+        subscribe_type = 'search'
         'Search Results:'
       end + search_results_suffix(type)
     %>
     </h3>
+    
     <% if @subscribe_url %>
 	    <div class="search_subscribe">
 	        <table><tr><td><a href="<%= @subscribe_url %>"><img src="/images/feed.png" height="16" width="16"/></a></td>
-	                   <td><a href="<%= @subscribe_url %>">Subscribe to this search</a></td>
+	                   <td><a href="<%= @subscribe_url %>">Subscribe to this <%= subscribe_type %></a></td>
 	        </tr></table>
 	    </div>
     <% end %>

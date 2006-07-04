@@ -252,13 +252,13 @@ class FindController < ApplicationController
     options[:num_docs] = 500
     options[:sort] = reverse_date_sort_field
     
-    popular = params[:popular] || false
+    popular = @params[:popular] == "true"
     if popular
       options[:conditions] = { 'popularity' => '> 0'}
       title = "popular " + title
     end
     
-    tonight = params[:tonight] || false
+    tonight = params[:tonight] == "true"
     if tonight
       options[:exact_date] = true
       title = "tonight's " + title

@@ -46,7 +46,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = subscribe_url(:shows_rss, :query => query, 
+    @subscribe_url = show_subscription_url(:shows_rss, :query => query, 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius)
   end
@@ -107,6 +107,7 @@ class FindController < ApplicationController
     render_band
   end
   
+  # Get an RSS feed for a show search or browsing page
   def shows_rss
     query, radius, lat, long = prepare_query(Show.table_name, params[:location], params[:radius], true)
     
@@ -149,7 +150,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :tonight => true)
@@ -171,7 +172,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :popular => true)
@@ -191,7 +192,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = subscribe_url(:shows_rss, :query => "", 
+    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius)
     render_show
@@ -256,7 +257,7 @@ class FindController < ApplicationController
     end
   end
   
-  def render_shows_rss(key_part, title)
+  def render_shows_rss(key_part, title, obj = nil)
     
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
@@ -271,24 +272,7 @@ class FindController < ApplicationController
     base_url = "http://tourb.us/find/shows"
     
     render(:partial => "shared/rss_feed", :locals => 
-      { :obj => nil, :base_url => base_url, :key => key, :items => @items, :title => title })
-  end
-  
-  def subscribe_url(action, sparams = {})
-    if sparams[:radius].blank? || sparams[:location].blank?
-      "javascript:alert('You must set a valid location and radius to subscribe to this search')"
-    else
-      url_for(:action => action) + "?" + subscribe_params(sparams)
-    end
-  end
-  
-  def subscribe_params(sparams)
-    str = ""
-    sparams.each do |key, value|
-        str << "&#{key.to_s}=#{CGI::escape(value.to_s)}"
-    end
-    
-    str[1..-1]
+      { :obj => obj, :base_url => base_url, :key => key, :items => @items, :title => title })
   end
   
   def page_size

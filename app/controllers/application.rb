@@ -328,6 +328,23 @@ class ApplicationController < ActionController::Base
     @session[:only_local_venues] = only_venues
   end
   
+  def show_subscription_url(action, sparams = {})
+    if sparams[:radius].blank? || sparams[:location].blank?
+      "javascript:alert('You must set a valid location and radius to subscribe to this search')"
+    else
+      url_for(:action => action) + "?" + subscribe_params(sparams)
+    end
+  end
+  
+  def subscribe_params(sparams)
+    str = ""
+    sparams.each do |key, value|
+        str << "&#{key.to_s}=#{CGI::escape(value.to_s)}"
+    end
+    
+    str[1..-1]
+  end
+  
   # Returns a rails paginator
   def paginate_search_results(count)
     @pages = Paginator.new(self, count, page_size, @params['page'])

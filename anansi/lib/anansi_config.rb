@@ -175,8 +175,8 @@ class AnansiConfig
       venue_map = {}
       
       obj.each do |hash|
-        cities = hash[:cities]
-        throw "Missing cities for hash" if cities.nil?
+        cities = hash[:regions]
+        throw "Missing regions for hash" if cities.nil?
         
         cities.each { |city| venue_map[city.downcase] = hash }
       end

@@ -35,3 +35,7 @@ set :marker_text, ['Sorted by']
 method :preprocess_bands_text, {:args => 1} do |text|
   text
 end
+
+method :get_venue do
+  { :region => 'la' } 
+end

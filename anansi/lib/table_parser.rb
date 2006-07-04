@@ -187,17 +187,17 @@ class TableParser < ShowParser
   # the site of an individual venue.
   # Can add config options for city/state to look in if we only have a name
   def parse_venue(cell, contents)
-    @show[:venue] ||= {}
+    @show[:venue] ||= get_venue
     @show[:venue][:name] = contents.strip
   end
   
   def parse_venue_name(cell, contents)
-    @show[:venue] ||= {}
+    @show[:venue] ||= get_venue
     @show[:venue][:name] = contents.strip
   end
   
   def parse_venue_location(cell, contents)
-    @show[:venue] ||= {}
+    @show[:venue] ||= get_venue
     chunks = contents.strip.split(',')
     @show[:venue][:city] = chunks[0].strip
     @show[:venue][:state] = chunks[1].strip if chunks.size > 1

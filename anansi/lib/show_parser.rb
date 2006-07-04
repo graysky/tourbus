@@ -197,7 +197,7 @@ class ShowParser < MetaSite
   protected
   
   def get_venue
-    nil
+    {}
   end
   
   private

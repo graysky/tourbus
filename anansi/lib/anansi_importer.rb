@@ -281,7 +281,7 @@ class AnansiImporter
     
     # Assume we at least have the venue name
     # First try a lookup in the venue map
-    @site.venue_map(v[:city]).each do |key, value|
+    @site.venue_map(v[:region]).each do |key, value|
       if (key.is_a?(String) and v[:name].downcase == key.downcase) or
          (key.is_a?(Regexp) and v[:name].downcase =~ key)
         v[:id] = value

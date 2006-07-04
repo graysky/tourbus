@@ -29,3 +29,7 @@ set :parser_type, :jambase
 method :default_time do
   "7pm"
 end
+
+method :get_venue do
+  { :region => 'la' } 
+end

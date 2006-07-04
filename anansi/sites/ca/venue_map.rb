@@ -1,7 +1,6 @@
 [
   {
-    :cities => ['san francisco', 'oakland', 'san jose', 'mountain view', 'saratoga', 'sacramento',
-                'roseville', 'berkeley', 'concord', 'richmond', 'santa cruz', 'fresno'],
+    :regions => ['bay area'],
      
     /gilman/ => 198,
     'imperial' => 740,
@@ -34,10 +33,11 @@
   },
   
   {
-    :cities => ['los angeles', 'west hollywood'],
+    :regions => ['la'],
     
     "HOB" => 986,
-    'Roxy' => 989
+    'Roxy' => 989,
+    /greek the/ => 997
   }
 
 ]

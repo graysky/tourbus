@@ -40,7 +40,12 @@ class JambaseParser < TableParser
           
           next if @show[:bands].empty?
           
-          @show[:venue] = { :name => child.children[1].recursive_text.strip }
+          @show[:venue] = get_venue
+          @show[:venue][:name] = child.children[1].recursive_text.strip
+          loc = child.children[2].recursive_text.split(",")
+          @show[:venue][:city] = loc[0].strip
+          @show[:venue][:state] = loc[1].strip
+          
             
           puts "Show is #{@show.to_yaml}\n\n"
           @shows << @show

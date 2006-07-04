@@ -51,4 +51,5 @@ method :parse_venue, {:args => 2} do |cell, contents|
   end
   
   @show[:state] = 'CA'
+  @show[:region] = 'bay area'
 end

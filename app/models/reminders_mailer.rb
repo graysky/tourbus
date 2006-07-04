@@ -137,7 +137,9 @@ class RemindersMailer < BaseMailer
       
     end # fan loop
     
-    SystemEvent.info("Sent #{num_fans} reminders", SystemEvent::REMINDERS) 
+    if num_fans > 0
+      SystemEvent.info("Sent #{num_fans} reminders", SystemEvent::REMINDERS) 
+    end
   end
   
   # Calculate which shows need reminders

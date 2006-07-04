@@ -3,6 +3,7 @@ class SystemEvent < ActiveRecord::Base
   WISHLIST = "wishlist"
   FAVORITES = "favorites"
   REMINDERS = "reminders"
+  SHARING = "sharing"
   
   INFO = "INFO"
   WARNING = "WARNING"

@@ -124,6 +124,7 @@ class ShowController < ApplicationController
     msg = ShareMailer.do_share_show(to_addrs, from_name, @show, msg)
     if msg.nil?
       render :nothing => true
+      SystemEvent.info("#{from_name} shared show #{@show.id} with friends", SystemEvent::SHARING, to_addrs.join(",")) 
     elsif
       render :text => msg
     end

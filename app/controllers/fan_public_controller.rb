@@ -107,6 +107,7 @@ class FanPublicController < ApplicationController
     # Send the email
     msg = ShareMailer.do_invite_friend(to_addrs, from_name, @fan, msg)
     if msg.nil?
+      SystemEvent.info("#{from_name} (id = #{@fan.id}) invited friends", SystemEvent::SHARING, to_addrs.join(","))
       render :nothing => true
     elsif
       # There was an error sending

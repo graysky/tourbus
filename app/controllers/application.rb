@@ -328,12 +328,12 @@ class ApplicationController < ActionController::Base
     @session[:only_local_venues] = only_venues
   end
   
-  def show_subscription_urls(action, sparams = {})
+  def show_subscription_urls(rss_action, ical_action, sparams = {})
     if sparams[:radius].blank? || sparams[:location].blank?
       rss = ical = "javascript:alert('You must set a valid location and radius to subscribe to this search')"
     else
-      rss = url_for(:action => action) + "?" + subscribe_params(sparams)
-      ical = rss.gsub(/http/, 'webcal')
+      rss = url_for(:action => rss_action) + "?" + subscribe_params(sparams)
+      ical = url_for(:action => ical_action).gsub(/http/, 'webcal') + "?" + subscribe_params(sparams)
     end
     
     return rss,ical

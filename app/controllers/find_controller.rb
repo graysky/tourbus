@@ -47,7 +47,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => query, 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => query, 
                                            :location => params[:location] || session[:location], 
                                            :radius => radius)
   end
@@ -150,7 +150,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :tonight => true)
@@ -172,7 +172,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :popular => true)
@@ -192,7 +192,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius)
     render_show

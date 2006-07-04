@@ -6,5 +6,8 @@
   'icc church' => 79,
   /tweeter/ => 166,
   /orpheum/ => 794,
-  /bank of america/ => 69
+  /bank of america/ => 69,
+  /bill's bar/ => 44,
+  /museum of fine arts/ => 812,
+  /fenway/ => 815
 }

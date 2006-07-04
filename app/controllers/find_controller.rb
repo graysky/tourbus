@@ -264,7 +264,7 @@ class FindController < ApplicationController
       title = "tonight's " + title
     end
   
-    part = MetaFragment.cache_key_part(query, radius, lat, long, popular)
+    part = MetaFragment.cache_key_part(query, radius, lat, long, popular, tonight)
     
     return options, title, part
   end

@@ -8,7 +8,7 @@
 #
 # The URL for this site - mandatory
 # Can be single url:
-set :url, "http://www.jambase.com/search.asp?city=Boston&stateID=21&dispall=1"
+set :url, "http://www.jambase.com/search.asp?city=Boston&stateID=21&dispall=1&beyondCity=1"
 #
 set :display_name, "Jambase"
 set :quality, 4

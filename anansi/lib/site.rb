@@ -108,6 +108,11 @@ class Site < MetaSite
     # TODO Implement to actually move the crawled files to the archives
   end
   
+  def venue_map(city)
+    map = @venue_map[city.nil? ? nil : city.downcase]
+    return map || @venue_map
+  end
+  
   def to_s
     # TODO Make pretty  
       "#{@variables}"

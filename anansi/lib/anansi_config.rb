@@ -87,7 +87,8 @@ class AnansiConfig
       # for every site in this subdir (effectively one per state)
       file = File.join(subdir.path, 'venue_map.rb')
       if File.exist?(file)
-        venue_map = instance_eval(File.read(file))
+        map = instance_eval(File.read(file))
+        venue_map = process_venue_map(map)
       end
       
       subdir.each do |f|
@@ -164,6 +165,26 @@ class AnansiConfig
   
   def site_by_name(name)
     @sites.detect { |site| site.name == name }
+  end
+  
+  def process_venue_map(obj)
+    if obj.is_a?(Hash)
+      return obj
+    elsif obj.is_a?(Array)
+      # An array of hashes
+      venue_map = {}
+      
+      obj.each do |hash|
+        cities = hash[:cities]
+        throw "Missing cities for hash" if cities.nil?
+        
+        cities.each { |city| venue_map[city.downcase] = hash }
+      end
+      
+      return venue_map
+    else
+      throw "Invalid venue map format"  
+    end
   end
   
   private

@@ -34,3 +34,6 @@ set :marker_text, 'Corazon'
 # DEFINE METHODS
 # =============================================================================
 #
+method :default_time do
+  "7pm"
+end

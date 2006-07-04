@@ -11,5 +11,5 @@ module HTML
   
   private
   
-  TAG_REGEXP = %w{ img font tbody }.map { |tag| "#{tag}|\\/#{tag}" }.join("|")
+  TAG_REGEXP = %w{ img font tbody option script }.map { |tag| "#{tag}|\\/#{tag}" }.join("|")
 end

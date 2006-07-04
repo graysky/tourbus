@@ -111,6 +111,7 @@ class FindController < ApplicationController
   def shows_rss
     query, radius, lat, long = prepare_query(Show.table_name, params[:location], params[:radius], true)
     
+    title = "shows near " + params[:location]
     if validate_rss_query(query, radius, lat, long)
       options = {}
       # Set a reasonable limit
@@ -120,15 +121,17 @@ class FindController < ApplicationController
       popular = params[:popular] || false
       if popular
         options[:conditions] = { 'popularity' => '> 0'}
+        title = "popular " + title
       end
       
       tonight = params[:tonight] || false
       if tonight
         options[:exact_date] = true
+        title = "tonight's " + title
       end
       
       part = MetaFragment.cache_key_part(query, radius, lat, long, popular)
-      render_shows_rss(part, "shows") do
+      render_shows_rss(part, title) do
         @items, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
         @items
       end

@@ -59,6 +59,8 @@ module Address
   
   DEFAULT_RADIUS = 50 unless const_defined?("DEFAULT_RADIUS")
   
+  DEG_TO_RADS = (Math::PI / 180) unless const_defined?("DEG_TO_RADS")
+  
   def self.state_abbrev(name_or_abbrev)
     val = STATE_ABBREVS.find { |abbrev| abbrev == name_or_abbrev.upcase }
     return val if val
@@ -132,10 +134,10 @@ module Address
   # All angles should be measured in degrees.
   def self.within_range?(lat, long, center_lat, center_long, radius)
     # Convert to radians
-    lat = lat.to_f * (Math::PI / 180)
-    long = long.to_f * (Math::PI / 180)
-    center_lat = center_lat.to_f * (Math::PI / 180)
-    center_long = center_long.to_f * (Math::PI / 180)
+    lat = lat.to_f * DEG_TO_RADS
+    long = long.to_f * DEG_TO_RADS
+    center_lat = center_lat.to_f * DEG_TO_RADS
+    center_long = center_long.to_f * DEG_TO_RADS
     
     # This is the spherical law of cosines
     x = (Math.sin(lat) * Math.sin(center_lat)) + (Math.cos(lat) * Math.cos(center_lat) * Math.cos(long - center_long))

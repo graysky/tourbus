@@ -4,6 +4,7 @@ require_dependency 'geosearch'
 
 class FindController < ApplicationController
   include Geosearch
+  include Ical
   
   layout "public"
   helper :show
@@ -46,9 +47,9 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = show_subscription_url(:shows_rss, :query => query, 
-                                               :location => params[:location] || session[:location], 
-                                               :radius => radius)
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => query, 
+                                           :location => params[:location] || session[:location], 
+                                           :radius => radius)
   end
   
   def venue
@@ -111,27 +112,23 @@ class FindController < ApplicationController
   def shows_rss
     query, radius, lat, long = prepare_query(Show.table_name, params[:location], params[:radius], true)
     
-    title = "shows near " + params[:location]
     if validate_rss_query(query, radius, lat, long)
-      options = {}
-      # Set a reasonable limit
-      options[:num_docs] = 500
-      options[:sort] = reverse_date_sort_field
-      
-      popular = params[:popular] || false
-      if popular
-        options[:conditions] = { 'popularity' => '> 0'}
-        title = "popular " + title
-      end
-      
-      tonight = params[:tonight] || false
-      if tonight
-        options[:exact_date] = true
-        title = "tonight's " + title
-      end
-      
-      part = MetaFragment.cache_key_part(query, radius, lat, long, popular)
+      options, title, part = prepare_subscription_query(query, radius, lat, long)
+            
       render_shows_rss(part, title) do
+        @items, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+        @items
+      end
+    end
+  end
+  
+  def shows_ical
+    query, radius, lat, long = prepare_query(Show.table_name, params[:location], params[:radius], true)
+    
+    if validate_ical_query(query, radius, lat, long)
+      options, title, part = prepare_subscription_query(query, radius, lat, long)
+            
+      render_shows_ical(part, title) do
         @items, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
         @items
       end
@@ -153,7 +150,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :tonight => true)
@@ -175,7 +172,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius,
                                                :popular => true)
@@ -195,7 +192,7 @@ class FindController < ApplicationController
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
     
-    @subscribe_url = show_subscription_url(:shows_rss, :query => "", 
+    @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :query => "", 
                                                :location => params[:location] || session[:location], 
                                                :radius => radius)
     render_show
@@ -248,6 +245,30 @@ class FindController < ApplicationController
     render :action => 'venue'
   end
   
+  def prepare_subscription_query(query, radius, lat, long)
+    title = "shows near " + params[:location]
+    options = {}
+    # Set a reasonable limit
+    options[:num_docs] = 500
+    options[:sort] = reverse_date_sort_field
+    
+    popular = params[:popular] || false
+    if popular
+      options[:conditions] = { 'popularity' => '> 0'}
+      title = "popular " + title
+    end
+    
+    tonight = params[:tonight] || false
+    if tonight
+      options[:exact_date] = true
+      title = "tonight's " + title
+    end
+  
+    part = MetaFragment.cache_key_part(query, radius, lat, long, popular)
+    
+    return options, title, part
+  end
+  
   def validate_rss_query(query, radius, lat, long)
     if query.nil?
       render_shows_rss("query_error", "ERROR! Invalid query")
@@ -276,6 +297,33 @@ class FindController < ApplicationController
     
     render(:partial => "shared/rss_feed", :locals => 
       { :obj => obj, :base_url => base_url, :key => key, :items => @items, :title => title })
+  end
+  
+  def validate_ical_query(query, radius, lat, long)
+    if query.nil?
+      render_shows_ical("query_error", "ERROR! Invalid query")
+      return false
+    elsif lat.blank? || long.blank? || radius.blank?
+      render_shows_ical("loc error", "ERROR! iCal subscriptions must have a location and radius set")
+      return false
+    else
+      return true
+    end
+  end
+  
+  def render_shows_ical(key_part, title)
+    key = {:action => 'shows_ical', :part => key_part}
+    cal_string = ""
+
+    when_not_cached(key, 3.hours.from_now) do
+      # Fetch and cache the iCal items
+      shows = block_given? ? yield : []
+      cal_string = get_ical(shows, title)
+      write_fragment(key, cal_string)  
+    end
+    
+    ical_feed = read_fragment(key) || cal_string
+    render :text => ical_feed
   end
   
   def page_size

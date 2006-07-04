@@ -5,7 +5,7 @@
 #
 # The URL for this site - mandatory
 # Can be single url:
-set :url, "http://www.jambase.com/search.asp?city=San%20Francisco&stateID=5&dispall=1"
+set :url, "http://www.jambase.com/search.asp?city=San%20Francisco&stateID=5&dispall=1&beyondCity=1"
 #
 set :display_name, "Jambase"
 set :quality, 1

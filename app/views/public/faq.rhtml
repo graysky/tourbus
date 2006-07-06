@@ -17,7 +17,7 @@ is that tourb.us will have the most complete list of the live music around, and 
 
 <h2>But my favorite band / club / city isn't listed!</h2>
 
-<p>Initially we're focusing on the music scenes in Boston, Seattle, Austin and the Bay Area, but will be expanding further
+<p>Initially we're focusing on the music scenes in Boston, Seattle, Austin, Chicago and the Bay Area, but will be expanding further
 soon. If you know of good lists of shows online in your area (like the website of a club or a scene), definitely 
 let us know and we'll get it added post-haste! Unless it is for hippies. Oh ok, them too. 
 
@@ -35,23 +35,31 @@ encourage. We need your help to build a better way to find great music by bands 
 If you'd like to claim it so that you can manage it, please send us mail at 
 <a href="mailto:feedback@tourb.us">feedback@tourb.us</a> and we can get you set up.
 
-<h2>Removing your site from the tourb.us index</h2>
 
-<p>As part of gathering a list of upcoming shows we crawl sites on a semi-frequent basis.
-Like other web crawlers, we follow the <a href="http://www.robotstxt.org/wc/exclusion.html">robots.txt rules</a>
- and our crawler will specifically look for rules that apply to 'tourbusbot'. If you wish to prevent
-your site from being crawled, add a snippet like this to your robots.txt: 
-<br/><br/><code>
-User-agent: tourbusbot<br/>
-Disallow: /
+<h2>Got anything for my blog, website or MySpace page?</h2>
+
+<p>Why yes, we do, thanks for asking. We've got some of these little buttons if you're into that sorta thing.
+Simply download the image (or copy this <a href="http://tourb.us/images/button.png">image link</a>), throw it up on your site with a link to your tourb.us profile.
+
+<p><%= image_tag "button.png" %>
+
+<p>If you'd like a badge with more flare, we have one that lists the next three shows you're planning to attend. 
+It looks just like this:
+
+<p><%= image_tag "example_badge.jpg" %>
+
+<p>To include it on your page, copy and paste the following HTML snippet where you want it to appear, replacing <i>username</i> 
+for your real username. Then sit back and have a cold beverage of your choice. 
+
+<p><code>
+&lt;a href="http://tourb.us/fan/<i>username</i>"&gt; <br/>
+&nbsp; &lt;img src="http://tourb.us/fan/<i>username</i>/badge" border="0"&gt; <br/>
+&lt;/a&gt;
 </code>
-</p>
 
-<h2>Respecting Your Privacy</h2>
+<p>(Would you like more options for badges?
+<a href="mailto:feedback@tourb.us">Please let us know</a> what would make it better for your site.)
 
-<p>We will only use email addresses for password retrieval and sending show reminders which can
-be stopped at any time (from the Settings page). We will never share your email address without
-your prior approval. Any data we collect will never be used to identify you.
 
 <h2>Who is behind this thing?</h2>
 
@@ -63,6 +71,24 @@ Just <a href="http://www.thelonelyisland.com/just2guyz.html">two guys</a> who li
 <p>How could you <em>wear</em> a website? That doesn't even make sense. But we did make up a couple
 <a href="http://www.cafepress.com/tourbus.47282567">t-shirts</a> and <a href="http://www.cafepress.com/tourbus.47355641">stickers</a> over at 
 our <a href="http://www.cafepress.com/tourbus">CafePress store</a>. Check them out.
+
+<h2>Respecting Your Privacy</h2>
+
+<p>We will only use email addresses for password retrieval and sending show reminders which can
+be stopped at any time (from the Settings page). We will never share your email address without
+your prior approval. Any data we collect will never be used to identify you.
+
+<h2>Removing your site from the tourb.us index</h2>
+
+<p>As part of gathering a list of upcoming shows we crawl sites on a semi-frequent basis.
+Like other web crawlers, we follow the <a href="http://www.robotstxt.org/wc/exclusion.html">robots.txt rules</a>
+ and our crawler will specifically look for rules that apply to 'tourbusbot'. If you wish to prevent
+your site from being crawled, add a snippet like this to your robots.txt: 
+<br/><br/><code>
+User-agent: tourbusbot<br/>
+Disallow: /
+</code>
+</p>
 
 <h2>What is tourb.us written in?</h2>
 

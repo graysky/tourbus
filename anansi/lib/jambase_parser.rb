@@ -18,7 +18,7 @@ class JambaseParser < TableParser
       if child.name == 'tr'
         contents = child.children[0].recursive_text
         if contents =~ /.*::(.*)::.*/
-          date = parse_as_date($1.strip, false)
+          date = parse_as_date($1.strip, false) rescue nil
           next if date.nil?
         else
           

@@ -36,4 +36,16 @@ class BandMailer < BaseMailer
     @sent_on    = sent_at
     @headers    = {}
   end
+  
+  # New band signup - tell Gary and Mike!
+  def gm_of_new_band(band)
+    @subject    = '[tourb.us] New Band Signup!'
+    @recipients = Emails.gm
+    @from       = Emails.from
+    @sent_on    = Time.now
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["band"] = band
+  end
 end

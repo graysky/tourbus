@@ -5,7 +5,7 @@
   function update_public_page(name_field)
   {
     <% # NOTE: Keep this in sync with the implementation in band.rb! %>
-    var id = name_field.value..replace(/&/, 'and').replace(/[^\w|\d|_|.|-]/g, '');
+    var id = name_field.value.replace(/&/, 'and').replace(/[^\w|\d|_|.|-]/g, '');
     $("band_short_name").value = id.toLowerCase();
   }
   
@@ -25,21 +25,28 @@
   <tr>
     <th>Band Name:</th>
     <td><%= text_field 'band', 'name', :autocomplete => "off", :onkeyup => "update_public_page(this)"  %></td>
+    <td class="info">The public name of your band.
+    </td>
   </tr>
   <tr>
     <th>Public Page:</th>
     <td>http://tourb.us/&nbsp;<%= text_field 'band', 'short_name', :size => 20  %></td>
+    <td class="info">The permanent URL for your band profile.
+    </td>
   </tr>
   <tr>
     <th>Email Address:</th>
     <td><%= text_field 'band', 'contact_email'  %></td>
+    <td class="info">Address where a confirmation email will be sent.<br/>
+    <strong>Please check your "Bulk" or "Spam" folder</strong>. 
+    </td>
   </tr>
   <tr>
     <th>Location:</th>
     <td><%= text_field 'band',  'city_state_zip' %></td>
     <td class="info">
-      You can enter a <em>city,state</em> or a <em>zip code</em>.<br/>
-      <strong>We highly recommend that that you provide a location.</strong>
+      You can enter a <em>city,state</em> or a <em>zip code</em> for a hometown. 
+      <br/>Locations are <strong>USA-only</strong>.
     </td>
   </tr>
   <tr>
@@ -56,3 +63,7 @@
   </tr>
 </table>
 <%= end_form_tag %>
+
+<p>
+<%= link_to "Signup as a Fan?", :action => "fan" %>
+</p>

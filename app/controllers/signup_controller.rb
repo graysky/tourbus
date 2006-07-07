@@ -63,6 +63,7 @@ class SignupController < ApplicationController
       else
         # It's now confirmed
         @band.confirmed = true
+        BandMailer.deliver_gm_of_new_band(@band)
         if (!@band.save)
           flash.now[:error] = "Error saving confirmation status"
           @band.confirmed = false

@@ -1,0 +1,10 @@
+<div id='main'>
+  <h2>Top venues for review</h2>
+  <p>
+    <table>
+    <% @venues.each do |venue, count| %>
+        <tr><td><%= venue %></td><td><%= count %></td></tr>
+    <% end %>
+    </table>
+  </p>
+</div>

@@ -167,6 +167,27 @@ class AdminController < ApplicationController
     @shows = @shows_by_status[params['status'].to_sym]
   end
   
+  def top_venues_for_review
+    load_shows
+    shows = @shows_by_status[:review]
+    
+    @venues = {}
+    for show in shows
+      venue = show[:venue][:name]
+      next if venue.blank?
+      
+      city = show[:venue][:city] || ""
+      state = show[:venue][:state] || ""
+      
+      str = "<b>#{venue.downcase}</b>" + " in " + city.downcase + ", " + state.downcase
+      count = @venues[str]
+      count = 0 if count.nil?
+      @venues[str] = count + 1
+    end
+    
+    @venues = @venues.sort { |a, b| b[1] <=> a[1] }
+  end
+  
   def edit_import_show
     load_shows
    

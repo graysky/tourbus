@@ -5,7 +5,7 @@
 #
 # The URL for this site - mandatory
 # Can be single url:
-set :url, "http://www.mtv.com/music/tours/results.jhtml?city=Boston&countryID=161"
+set :url, "http://www.mtv.com/music/tours/results.jhtml?city=Boston&countryID=159"
 
 #
 set :display_name, "MTV"

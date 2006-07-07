@@ -9,7 +9,8 @@ set :url, "http://www.losanjealous.com/shows/"
 
 set :display_name, "Losanjealous"
 
-set :quality, 2
+# Site often only has 1 or 2 of the bands playing
+set :quality, 1
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
 # Use custom parser

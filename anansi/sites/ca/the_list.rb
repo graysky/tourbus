@@ -50,6 +50,6 @@ method :parse_venue, {:args => 2} do |cell, contents|
     @show[:venue][:city] = loc.strip
   end
   
-  @show[:state] = 'CA'
-  @show[:region] = 'bay area'
+  @show[:venue][:state] = 'CA'
+  @show[:venue][:region] = 'bay area'
 end

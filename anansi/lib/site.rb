@@ -152,6 +152,7 @@ class Site < MetaSite
     http = Net::HTTP.new(uri.host, uri.port)
     
     # Visit each URL
+    count = 0
     urls.each do |url|
       
       # Parse the URL    
@@ -192,10 +193,11 @@ class Site < MetaSite
       doc = parser.document
       
       # Write the REXML out
-      # TODO Need indiv. name per URL
-      f = File.new(File.join(crawl_dir, name + ".xml"), "w")
+      
+      f = File.new(File.join(crawl_dir, name + count.to_s + ".xml"), "w")
       doc.write(f)
       
+      count = count + 1
       # Uncomment to write the raw HTML
       #raw = File.new(File.join(crawl_dir, name + ".html"), "w")
       #raw.write(resp.body)

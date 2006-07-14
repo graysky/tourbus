@@ -40,6 +40,21 @@ class Housekeeping
     sitemap = File.new("#{RAILS_ROOT}/public/sitemap.txt",  "w+")    
     puts "Creating sitemap at: #{sitemap.path}"
     
+    # Put a few standard links in
+    sitemap.puts "http://tourb.us"
+    sitemap.puts "http://tourb.us/faq"
+    sitemap.puts "http://tourb.us/tour"
+    sitemap.puts "http://tourb.us/signup/fan"
+    sitemap.puts "http://tourb.us/signup/band"
+    sitemap.puts "http://tourb.us/login"
+    # Add metro links
+    sitemap.puts "http://tourb.us/metro/boston"
+    sitemap.puts "http://tourb.us/metro/sanfran"
+    sitemap.puts "http://tourb.us/metro/seattle"
+    sitemap.puts "http://tourb.us/metro/la"
+    sitemap.puts "http://tourb.us/metro/chicago"
+    sitemap.puts "http://tourb.us/metro/austin"
+    
     bands = Band.find(:all)
     bands.each do |b|
       sitemap.puts "http://tourb.us/#{b.short_name}"

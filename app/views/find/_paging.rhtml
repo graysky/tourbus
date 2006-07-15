@@ -2,7 +2,7 @@
 <% if @pages and @pages.item_count > 0 %>
   <span id="search_paging_controls">
   
-      <%= pagination_links @pages, :params => { :prefix => params[:prefix] } %>
+      <%= pagination_links @pages, :params => { :prefix => params[:prefix], :query => params[:query] } %>
   
 	  <span id="search_paging_status">
 	  (Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %>)

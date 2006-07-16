@@ -58,24 +58,30 @@ class Housekeeping
     bands = Band.find(:all)
     bands.each do |b|
       sitemap.puts "http://tourb.us/#{b.short_name}"
+      sitemap.puts "http://tourb.us/#{b.short_name}/fans"
+      sitemap.puts "http://tourb.us/#{b.short_name}/shows"
     end
     puts "Added #{bands.length} bands to sitemap"
     
     shows = Show.find(:all)
     shows.each do |s|
       sitemap.puts "http://tourb.us/show/#{s.id}"
+      sitemap.puts "http://tourb.us/show/#{s.id}/fans"
     end
     puts "Added #{shows.length} shows to sitemap"
     
     venues = Venue.find(:all)
     venues.each do |v|
       sitemap.puts "http://tourb.us/venue/#{v.id}"
+      sitemap.puts "http://tourb.us/venue/#{v.id}/shows"
     end
     puts "Added #{venues.length} veneus to sitemap"
     
     fans = Fan.find(:all)
     fans.each do |f|
       sitemap.puts "http://tourb.us/fan/#{f.name}"
+      sitemap.puts "http://tourb.us/fan/#{f.name}/bands"
+      sitemap.puts "http://tourb.us/fan/#{f.name}/shows"
     end
     puts "Added #{fans.length} fans to sitemap"
     

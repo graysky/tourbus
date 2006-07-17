@@ -34,6 +34,8 @@ class LosanjealousParser < TableParser
       cell_index += 1
     end
     
+    raise "No bands" if bands.empty?
+    
     @show[:bands] = bands
 
     venue_name = chunks[1]

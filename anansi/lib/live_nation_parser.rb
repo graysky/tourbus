@@ -27,6 +27,8 @@ class LiveNationParser < ShowParser
         @show[:bands] << band if band
       end
       
+      next unless @show[:bands] && @show[:bands].size > 0
+      
       @show[:date] = parse_as_date(text[text.index('--'),  text.length])
       next unless @show[:date]
   

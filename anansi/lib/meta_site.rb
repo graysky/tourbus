@@ -38,6 +38,9 @@ class MetaSite
   # If true don't replace nbsp's
   attr_reader :leave_nbsps
   
+  # true if the site contents is already xml, not html
+  attr_reader :xml
+  
   # The map of venue aliases to venue ids
   attr_accessor :venue_map
   
@@ -47,6 +50,7 @@ class MetaSite
     @methods = {}
     @venue_map = {}
     @states = []
+    @xml = false
   end
   
   ##
@@ -114,6 +118,10 @@ class MetaSite
   def display_url
     @display_url || @url
   end 
+
+  def xml?
+    @xml
+  end
 
   protected
   

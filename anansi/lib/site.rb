@@ -175,27 +175,33 @@ class Site < MetaSite
       # <META NAME="ROBOTS" CONTENT="NOINDEX"> or
       # <META NAME="ROBOTS" CONTENT="NOFOLLOW">
       
-      # Convert HTML to XML and strip tags
-      html = HTML::strip_tags(resp.body)
-
-      html.gsub!(/&nbsp;/, ' ') unless @leave_nbsps # TODO Needed?
-      
-      # Delete comments, including misformatted ones
-      html.gsub!(/<!(.*)->/, '')
-      html.gsub!(/<!doctype(.*)>/, '')
-      # Form action URL was breaking loganjealous with str like: action="/?p=subscribe&#038;id=1"
-      html.gsub!(/\#038/, '')
-      
-      parser = HTMLTree::XMLParser.new(false, false)
-      parser.feed(html)
-      
-      # Get REXML doc
-      doc = parser.document
-      
-      # Write the REXML out
-      
       f = File.new(File.join(crawl_dir, name + count.to_s + ".xml"), "w")
-      doc.write(f)
+      if xml?
+        f << resp.body
+      else
+        # Convert HTML to XML and strip tags
+        html = HTML::strip_tags(resp.body)
+  
+        html.gsub!(/&nbsp;/, ' ') unless @leave_nbsps # TODO Needed?
+        
+        # Delete comments, including misformatted ones
+        html.gsub!(/<!(.*)->/, '')
+        html.gsub!(/<!doctype(.*)>/, '')
+        # Form action URL was breaking loganjealous with str like: action="/?p=subscribe&#038;id=1"
+        html.gsub!(/\#038/, '')
+        
+        parser = HTMLTree::XMLParser.new(false, false)
+        parser.feed(html)
+        
+        # Get REXML doc
+        doc = parser.document
+        
+        # Write the REXML out
+         doc.write(f)
+      end
+      
+      
+     
       
       count = count + 1
       # Uncomment to write the raw HTML

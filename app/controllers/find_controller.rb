@@ -249,7 +249,7 @@ class FindController < ApplicationController
     title = "shows near " + params[:location]
     options = {}
     # Set a reasonable limit
-    options[:num_docs] = 500
+    options[:num_docs] = 1000
     options[:sort] = reverse_date_sort_field
     
     popular = @params[:popular] == "true"

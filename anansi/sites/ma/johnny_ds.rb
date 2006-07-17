@@ -5,7 +5,7 @@
 
 #
 # The URL for the site
-set :url, "http://www.livenation.com/feed/venuefeed/venueid/832"
+set :url, "http://www.livenation.com/feed/venuefeed/venueid/11715"
 
 set :display_name, "Live Nation"
 set :parser_type, :live_nation
@@ -14,5 +14,5 @@ set :xml, true
 
 # Define "venue_id" in the site.rb file
 method :get_venue do
-  { :id => 794 } 
+  { :id => 1042 } 
 end

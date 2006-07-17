@@ -71,7 +71,12 @@ class AnansiImporter
   end
   
   def latest_prepared_shows
-    YAML::load_file(latest_data)
+    shows = []
+    YAML::load_documents(File.open(latest_data)) do |show|
+      shows << show
+    end
+    
+    shows
   end
   
   def import
@@ -217,7 +222,14 @@ class AnansiImporter
     dir = File.join(@data_dir, 'latest')
     FileUtils.mkdir_p(dir) if not File.exists?(dir)
     yml_file = File.new(File.join(dir, 'shows.yaml'), "w")
-    yml_file.write(@shows.to_yaml)
+    
+    str = ""
+    for show in @shows
+      str << show.to_yaml
+      str << "\n\n"
+    end
+    
+    yml_file.write(str)
   end
 
   def save_shows_by_status(shows_by_status)

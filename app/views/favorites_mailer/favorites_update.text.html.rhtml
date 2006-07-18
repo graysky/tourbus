@@ -27,10 +27,10 @@
     <%= attending_line %>
   <% end %>
   <% if show.description != "" %>
-    <br/><%= show.description %><br/><br/>
+    <%= show.description %><br/><br/>
   <% end %>
   <% the_url = @show_prefix_url.to_s + show.id.to_s %>
-  <br/>More details: <a href="<%= the_url %>"><%= the_url %></a>
+  More details: <a href="<%= the_url %>"><%= the_url %></a>
   </p>  
   <% end %>
   

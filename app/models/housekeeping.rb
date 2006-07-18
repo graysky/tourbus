@@ -33,6 +33,7 @@ class Housekeeping
     logger.info "Finish nightly tasks at #{finish}"
   end
   
+  # Create sitemap for Google. 
   def self.create_sitemap
     start = Time.now.asctime
     logger = RAILS_DEFAULT_LOGGER
@@ -55,14 +56,6 @@ class Housekeeping
     sitemap.puts "http://tourb.us/metro/chicago"
     sitemap.puts "http://tourb.us/metro/austin"
     
-    bands = Band.find(:all)
-    bands.each do |b|
-      sitemap.puts "http://tourb.us/#{b.short_name}"
-      sitemap.puts "http://tourb.us/#{b.short_name}/fans"
-      sitemap.puts "http://tourb.us/#{b.short_name}/shows"
-    end
-    puts "Added #{bands.length} bands to sitemap"
-    
     shows = Show.find(:all)
     shows.each do |s|
       sitemap.puts "http://tourb.us/show/#{s.id}"
@@ -70,18 +63,30 @@ class Housekeeping
     end
     puts "Added #{shows.length} shows to sitemap"
     
+    # Need to split into 2 files because of 50K limit
+    sitemap2 = File.new("#{RAILS_ROOT}/public/sitemap2.txt",  "w+")    
+    puts "Creating sitemap at: #{sitemap2.path}"
+    
+    bands = Band.find(:all)
+    bands.each do |b|
+      sitemap2.puts "http://tourb.us/#{b.short_name}"
+      sitemap2.puts "http://tourb.us/#{b.short_name}/fans"
+      sitemap2.puts "http://tourb.us/#{b.short_name}/shows"
+    end
+    puts "Added #{bands.length} bands to sitemap"
+    
     venues = Venue.find(:all)
     venues.each do |v|
-      sitemap.puts "http://tourb.us/venue/#{v.id}"
-      sitemap.puts "http://tourb.us/venue/#{v.id}/shows"
+      sitemap2.puts "http://tourb.us/venue/#{v.id}"
+      sitemap2.puts "http://tourb.us/venue/#{v.id}/shows"
     end
     puts "Added #{venues.length} veneus to sitemap"
     
     fans = Fan.find(:all)
     fans.each do |f|
-      sitemap.puts "http://tourb.us/fan/#{f.name}"
-      sitemap.puts "http://tourb.us/fan/#{f.name}/bands"
-      sitemap.puts "http://tourb.us/fan/#{f.name}/shows"
+      sitemap2.puts "http://tourb.us/fan/#{f.name}"
+      sitemap2.puts "http://tourb.us/fan/#{f.name}/bands"
+      sitemap2.puts "http://tourb.us/fan/#{f.name}/shows"
     end
     puts "Added #{fans.length} fans to sitemap"
     

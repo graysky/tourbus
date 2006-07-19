@@ -46,7 +46,7 @@ class BaseMailer < ActionMailer::Base
   end
   
   # URL prefix for fan private
-  def fan_private_prefix_url(fan)
+  def fan_private_prefix_url
     Emails.url + "/fans/"
   end
   

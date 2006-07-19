@@ -9,6 +9,7 @@ class FanMailer < BaseMailer
     
     @body["fan"] = fan
     @body["confirm_url"] = confirm_url
+    @body["import_url"] = fan_private_prefix_url + 'import_favorites'
 
     @body['email_signoff'] = email_signoff
     @body['email_signoff_plain'] = email_signoff_plain
@@ -55,7 +56,7 @@ class FanMailer < BaseMailer
     @body['email_signoff_plain'] = email_signoff_plain
     @body['confirm_url'] = confirm_url
     @body['deny_url'] = deny_url
-    @body['friend_requests_url'] = fan_private_prefix_url(request.requestee) + 'friend_requests'
+    @body['friend_requests_url'] = fan_private_prefix_url + 'friend_requests'
   end
   
   def friend_request_confirmed(fan, friend, sent_at = Time.now)

@@ -73,14 +73,14 @@ class Housekeeping
       sitemap2.puts "http://tourb.us/#{b.short_name}/fans"
       sitemap2.puts "http://tourb.us/#{b.short_name}/shows"
     end
-    puts "Added #{bands.length} bands to sitemap"
+    puts "Added #{bands.length} bands to sitemap2"
     
     venues = Venue.find(:all)
     venues.each do |v|
       sitemap2.puts "http://tourb.us/venue/#{v.id}"
       sitemap2.puts "http://tourb.us/venue/#{v.id}/shows"
     end
-    puts "Added #{venues.length} veneus to sitemap"
+    puts "Added #{venues.length} veneus to sitemap2"
     
     fans = Fan.find(:all)
     fans.each do |f|
@@ -88,7 +88,7 @@ class Housekeeping
       sitemap2.puts "http://tourb.us/fan/#{f.name}/bands"
       sitemap2.puts "http://tourb.us/fan/#{f.name}/shows"
     end
-    puts "Added #{fans.length} fans to sitemap"
+    puts "Added #{fans.length} fans to sitemap2"
     
   end
   

@@ -123,6 +123,11 @@ class MetaSite
     @xml
   end
 
+  # Find more urls to crawl in the given xml documetn
+  def links_to_follow(xml_doc)
+    nil
+  end
+
   protected
   
   # Define a new method on this object

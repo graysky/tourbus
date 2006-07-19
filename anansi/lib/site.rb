@@ -175,9 +175,11 @@ class Site < MetaSite
       # <META NAME="ROBOTS" CONTENT="NOINDEX"> or
       # <META NAME="ROBOTS" CONTENT="NOFOLLOW">
       
+      doc = nil
       f = File.new(File.join(crawl_dir, name + count.to_s + ".xml"), "w")
       if xml?
         f << resp.body
+        doc = Document.new(resp.body)
       else
         # Convert HTML to XML and strip tags
         html = HTML::strip_tags(resp.body)
@@ -200,9 +202,12 @@ class Site < MetaSite
          doc.write(f)
       end
       
-      
+      # Any more urls to follow after this one?
+      more_urls = links_to_follow(doc)
+      if more_urls
+        more_urls.each { |url| urls << url }
+      end
      
-      
       count = count + 1
       # Uncomment to write the raw HTML
       #raw = File.new(File.join(crawl_dir, name + ".html"), "w")

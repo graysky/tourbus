@@ -5,7 +5,7 @@
 
 #
 # The URL for the site
-set :url, "http://www.ticketweb.com/user?region=chicago&query=schedule&venue=beatkitch"
+set :url, "http://www.ticketweb.com/user/?region=chicago&query=schedule&venue=housecafe"
 
 set :display_name, "TicketWeb"
 set :parser_type, :ticket_web
@@ -13,7 +13,11 @@ set :quality, 3
 
 # Define "venue_id" in the site.rb file
 method :get_venue do
-  { :id => 878 } 
+  { :id => 1049 } 
+end
+
+method :preprocess_bands_text, {:args => 1} do |text|
+  text.sub(/featuring/, "/")
 end
 
 method :links_to_follow, {:args => 1} do |xml_doc|

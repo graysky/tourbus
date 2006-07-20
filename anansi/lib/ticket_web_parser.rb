@@ -16,8 +16,9 @@ class TicketWebParser < TableParser
 
   # Special parse_bands to pull out venue from band info
   def parse_bands(cell, contents)
-    text = cell.children[3].to_s
+    text = preprocess_bands_text(cell.children[3].to_s)
     text.sub!(/plus/, "/")
+    text.sub!(/with/, "/")
    
     bands = []
     text.split("/").each_with_index do |chunk, index|
@@ -31,6 +32,16 @@ class TicketWebParser < TableParser
     raise "No bands" if bands.empty?
     
     @show[:bands] = bands
+  end
+  
+  def self.links_to_follow(xml_doc)
+    more = XPath.first(xml_doc, "//img[@src='http://i.ticketweb.com/images/more_events.gif']")
+    if more
+      link = more.parent
+      [link.attributes["href"]]
+    else
+      nil
+    end
   end
   
 end

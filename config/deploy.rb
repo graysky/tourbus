@@ -195,7 +195,7 @@ task :spinner, :roles => :app do
   # Attempt to spin it every 30 seconds as a daemon
   # NOTE - this controls how many FCGI procs to start (must match lighty config)
   run <<-CMD
-    #{current_path}/script/process/spinner -d -i 30 -c '#{current_path}/script/process/spawner -p 8000 -i 4'
+    #{current_path}/script/process/spinner -d -i 30 -c '#{current_path}/script/process/spawner -p 8000 -i 2'
   CMD
 end
 
@@ -205,7 +205,7 @@ task :spawner, :roles => :app do
   # Attempt to spin it every 30 seconds as a daemon starting on port 8000 (must match lighty config)
   # NOTE - this controls how many FCGI procs to start
   run <<-CMD
-    #{current_path}/script/process/spawner -p 8000 -i 3 -r 30 &
+    #{current_path}/script/process/spawner -p 8000 -i 2 -r 30 &
   CMD
 end
 

@@ -17,7 +17,7 @@ task :start_tourbus => [:start_fcgi_spinner, :start_cron_spinner ]
 desc "Start the FCGI procs"
 task :start_fcgi_spinner do
   # Options MUST MATCH what is in deploy.rb
-  system "ruby ./script/process/spinner -d -i 30 -c '/var/www/rails/tourbus/current/script/process/spawner -p 8000 -i 3'"
+  system "ruby ./script/process/spinner -d -i 30 -c '/var/www/rails/tourbus/current/script/process/spawner -p 8000 -i 2'"
 end
 
 desc "Start the cron spinner"

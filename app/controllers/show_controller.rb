@@ -190,7 +190,6 @@ class ShowController < ApplicationController
       return false
     end
     
-    
     begin
       Band.transaction(*@bands_playing) do
         Show.transaction(@show) do
@@ -202,13 +201,14 @@ class ShowController < ApplicationController
           
           add_bands 
          
-          # FIXME Clean this stuff up. Temp for debugging
-          if !@show.save
+          @show.venue.num_upcoming_shows += 1
+          if !@show.save || !@show.venue.save
             logger.warn(@show.inspect)
             create_bands_playing_content
             return
           end
         end
+        
       end
     rescue Exception => ex
       logger.error(ex.to_s)

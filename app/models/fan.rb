@@ -49,7 +49,6 @@ class Fan < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
   include Address::ActsAsLocation
   include MobileAddress
-  include UpcomingShows
   
   acts_as_password_protected
   file_column :logo, :magick => { :geometry => "200x300>" }
@@ -57,6 +56,7 @@ class Fan < ActiveRecord::Base
   has_one :upload_addr, :dependent => true
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
+  has_and_belongs_to_many :upcoming_shows, :class_name => 'Show', :conditions => ["date > ?", Time.now], :order => "date ASC"
   has_many :comments, :order => "created_on ASC"
   has_many :wish_list_bands, :dependent => true, :order => "name ASC"
   has_many :incoming_friend_requests, :class_name => 'FriendRequest', 

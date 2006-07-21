@@ -129,10 +129,11 @@ class AnansiImporter
     
     show.venue = Venue.find(s[:venue][:id])
     raise "Missing venue #{s[:venue][:id]}" if show.venue.nil?
+    show.venue.num_upcoming_shows += 1
     
     s[:bands].each { |band| add_band(show, band) }
-    if !show.save
-      puts "Error saving show"
+    if !show.save || !show.venue.save
+      puts "Error saving show or venue"
       return nil
     end
     

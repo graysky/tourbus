@@ -5,7 +5,6 @@ class Housekeeping
   def self.resave_objects
     save_chunks(Venue)
     save_chunks(Band)
-    save_chunks(Fan)
   end
 
   # Run the long running tasks nightly
@@ -125,7 +124,8 @@ class Housekeeping
   # Save in chunks just to avoid huge AR memory usage
   def self.save_chunks(klass)
     logger = RAILS_DEFAULT_LOGGER
-    klass.each_by_chunk do |obj|
+    
+    klass.each_by_chunk(500, { :include => :upcoming_shows, :conditions => "num_upcoming_shows > 0" }) do |obj|
       begin
         obj.no_update
         obj.save_without_validation!

@@ -5,12 +5,15 @@ module ActiveRecord
   
     # Execute the given block (mandatory) on each item of this class.
     # Selects the records in chunks of the given size.
-    def each_by_chunk(chunk_size = 500)
+    def each_by_chunk(chunk_size = 500, options = {})
       offset = 0
       count = self.count
       
+      options[:offset] = offset
+      options[:limit] = chunk_size
+      
       while offset < count
-        self.find(:all, :offset => offset, :limit => chunk_size).each do |obj|
+        self.find(:all, options).each do |obj|
           yield obj
         end
         

@@ -91,7 +91,6 @@ ExceptionNotifier.email_prefix = "[tourb.us]"
 require 'rails_file_column'
 require 'selective_timestamp'
 require 'validations'
-require 'upcoming_shows'
 require 'chunkable'
 require 'array'
 

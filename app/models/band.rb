@@ -40,11 +40,11 @@ class Band < ActiveRecord::Base
   include Address::ActsAsLocation
   include Tagging
   include Ferret
-  include UpcomingShows
   
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
   has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
+  has_and_belongs_to_many :upcoming_shows, :class_name => 'Show', :conditions => ["date > ?", Time.now], :order => "date ASC"
   has_and_belongs_to_many :fans
   has_many :band_relations, :foreign_key => 'band1_id', :dependent => :destroy
   has_many :related_bands, :class_name => 'Band', :through => :band_relations, :source => :band2
@@ -84,6 +84,7 @@ class Band < ActiveRecord::Base
   
   def play_show(show, order = 0, extra_info = nil)
     show.bands.push_with_attributes(self, :set_order => order, :extra_info => extra_info)
+    self.num_upcoming_shows += 1
   end
 
   def validate_unique_email?

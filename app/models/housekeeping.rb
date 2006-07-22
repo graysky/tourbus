@@ -122,13 +122,21 @@ class Housekeeping
   end 
   
   # Save in chunks just to avoid huge AR memory usage
+  # Must be saving objects with num_upcoming_shows attribute
   def self.save_chunks(klass)
     logger = RAILS_DEFAULT_LOGGER
     
     klass.each_by_chunk(500, { :include => :upcoming_shows, :conditions => "num_upcoming_shows > 0" }) do |obj|
       begin
-        obj.no_update
-        obj.save_without_validation!
+        
+        before = obj.num_upcoming_shows
+        obj.num_upcoming_shows = obj.upcoming_shows.size
+        
+        if before != obj.num_upcoming_shows
+          obj.no_update
+          obj.save_without_validation!
+        end
+        
       rescue ActiveRecord::RecordNotSaved => e
         puts "Error saving #{klass} with id: #{obj.id}: #{e.to_s}"
         logger.error "Error saving #{klass} with id: #{obj.id}: #{e.to_s}"

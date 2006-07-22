@@ -1747,6 +1747,11 @@ table.tooltip_table td {
     color:black;
 }
 
+.contact_tip
+{
+    width:360px;
+}
+
 /* Tooltips and favorites */
 #add_attending_link, #remove_attending_link, #add_watching_link, #remove_watching_link {
     font-size:11px;

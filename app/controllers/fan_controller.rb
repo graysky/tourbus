@@ -319,6 +319,18 @@ class FanController < ApplicationController
     redirect_to :controller => "fans", :action => :friend_requests
   end 
   
+  def contact_fan
+    @other = Fan.find(params[:fan])
+    raise "No other specified" unless @other
+   
+    from_url = public_fan_url(@fan)
+    reveal_email = params[:reveal_email] == "true"
+    
+    FanMailer.deliver_contact_fan(@fan, @other, params[:message], from_url, reveal_email)
+    
+    render :nothing => true
+  end
+  
   #########
   # Private
   #########

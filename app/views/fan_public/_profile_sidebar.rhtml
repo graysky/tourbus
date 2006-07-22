@@ -53,7 +53,11 @@
 	    <% end %>
 	    </table>
     <% end %>
-       
+    
+     <% if not @logged_in_as_fan %>
+		  <%= render :partial => "contact" %>
+	  <% end %>
+    
     <div id="friend_request_tip" class='fave_tip'>
         <h3>Add <%= @fan.name %> to Friends</h3>
         
@@ -81,8 +85,9 @@
       
 	        <%= submit_tag "Submit", :onclick => "send_request(event)" %>&nbsp;
 	        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %>
-	        <%= end_form_tag %>
         </p>
+        
+        <%= end_form_tag %>
         
         <% end %>
         
@@ -96,7 +101,9 @@
 	    
     </div>
     
-  </p>
+   </p>
+       
+  
   
   <%= render(
     :partial => "shared/feeds",

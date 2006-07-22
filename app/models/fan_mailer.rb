@@ -87,6 +87,27 @@ class FanMailer < BaseMailer
     @body['fan'] = fan
   end
   
+  def contact_fan(from, to, message, from_url, reveal_email, sent_at = Time.now)
+    @subject    = "[tourb.us] You have a new message from  #{from.name}"
+    @recipients = to.contact_email
+    
+    if reveal_email
+      @from     = from.contact_email
+    else
+      @from     = Emails.from
+    end
+    
+    @sent_on    = sent_at
+    @headers    = {}
+    content_type "text/plain"
+    
+    @body["from"] = from
+    @body["to"] = to
+    @body["message"] = message
+    @body["from_url"] = from_url
+    @body["reveal_email"] = reveal_email
+    @body['email_signoff_plain'] = email_signoff_plain
+  end
   
   # New fan signup - tell Gary and Mike!
   def gm_of_new_fan(fan)

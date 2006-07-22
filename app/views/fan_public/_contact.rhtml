@@ -1,0 +1,50 @@
+
+<table>
+<tr><td><img src="/images/email.png" height="16" width="16" onload='fixPNG(this)'/></td>
+<td>
+<a href="#" id="contact_link">Contact This Fan</a>
+</td></tr>
+</table>
+
+<div id="contact_tip" class='fave_tip contact_tip'>
+    <h3>Contact <%= @fan.name %></h3>
+    
+    <% if logged_in_fan.nil? %>
+        <p><strong>You have to be logged in as a fan to contact this fan</strong><br/>
+        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('contact_link'), event)" %></p>
+    <% else %>
+    
+    <%= form_remote_tag(
+        :url => { 
+          :controller => "fans",
+          :action => :contact_fan, 
+          :fan => @fan.id
+        },
+        :success => "$('contact_link').innerHTML = 'Your message was sent'",
+        :failure => "alert('There was an error sending the message! Please try again.');$('contact_link').innerHTML = 'There was an error'") 
+    %>
+    
+    <p>
+        <p>Message:</p>
+        <%= text_area_tag 'message', '', :size => '40x6' %>
+        
+        <table><tr>
+        <td>Reveal your email address:</td>
+        <td> <%= check_box_tag "reveal_email", value="true", checked=false %></td>
+        </tr>
+        </table>
+        <br/>
+        <%= submit_tag "Submit", :onclick => "$('contact_link').innerHTML = 'Sending message...';Tooltip.toggle($('contact_link'), event)" %>&nbsp;
+        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('contact_link'), event)" %>
+        <%= end_form_tag %>
+    </p>
+    
+    <% end %>
+    
+</div>
+
+ <script type="text/javascript">
+    Tooltip.add('contact_link', 'contact_tip');
+  </script>
+
+    

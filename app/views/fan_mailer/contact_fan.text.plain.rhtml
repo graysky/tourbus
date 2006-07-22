@@ -1,0 +1,20 @@
+Hi, <%= @to.name %>.
+
+Another tourb.us user, <%= @from.name %>, has sent you a message. You can view this user's profile
+at <%= @from_url %>. 
+<% if @reveal_email %>
+You can respond to this user by clicking "Contact This Fan" on their profile page 
+or simply reply to this email.
+<% else %>
+You can respond to this user by clicking "Contact This Fan" on their profile page.
+<% end %>
+
+Message from <%= @from.name %>:
+
+<%= @message %>
+
+=====================================================
+If you don't want to let any more users contact you, visit your settings page
+and uncheck the "Allow Users to Contact You" box. 
+
+<%= @email_signoff_plain %>

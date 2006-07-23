@@ -74,23 +74,22 @@ class FanPublicController < ApplicationController
                                  "showing_creator" => false}
   end
   
-  # Create a badge image for the fan to put on MySpace/blog/etc.
+  # Create an image badge for the fan to put on MySpace/blog/etc.
   def badge
-    
     key = {:action => 'badge', :part => 'fan_badge'}
   
     when_not_cached(key, 20.hours.from_now) do
       # Cache the creation of a new badge
       shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 3)
-      create_badge(@fan, shows)
+      create_image_badge(@fan, shows)
       
       # This is a hack to write to the fragment
       write_fragment(key, "fake-content")  
     end
 
-    send_badge(get_badge(@fan))
+    send_badge(get_image_badge(@fan))
   end
-  
+    
   def invite
     return if @request.get?
     return if @fan.nil?
@@ -124,7 +123,8 @@ class FanPublicController < ApplicationController
 
     when_not_cached(key, 90.minutes.from_now) do
       # Fetch and cache the RSS items
-      get_rss_items
+      sort_by = params['sort'] || :added
+      get_rss_items(sort_by.to_sym)
     end
     
     # The external URL to this fan
@@ -179,7 +179,15 @@ class FanPublicController < ApplicationController
   end
   
   # Make queries to get the items for RSS feed
-  def get_rss_items
+  # sort_by => :added (default: when show was added)
+  #            :show (order by show dates)
+  def get_rss_items(sort_by)
+    # Default, sort by the date the show was added  
+    sort_by_date_added = true
+    
+    # Optionally sort by show date
+    sort_by_date_added = false if sort_by == :show
+    
     # Include upcoming shows they are attending and watching
     shows = @fan.shows.find(:all, :conditions => ["date > ?", Time.now])
     
@@ -196,10 +204,14 @@ class FanPublicController < ApplicationController
     # Sort the items by when they were created with the most
     # recent item first in the list
     @items.sort! do |x,y| 
-      # Maybe test if x & y respond_to?(created_on)
-      # Right now, we just assume it
-      y.created_on <=> x.created_on
+      # Sort the items using either date added or show date
+      if sort_by_date_added
+        y.created_on <=> x.created_on
+      else
+        x.date <=> y.date
+      end
     end
+    
   end
   
   def no_such_fan

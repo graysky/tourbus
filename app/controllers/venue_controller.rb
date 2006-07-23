@@ -94,7 +94,8 @@ class VenueController < ApplicationController
 
     when_not_cached(key, 120.minutes.from_now) do
       # Fetch and cache the RSS items
-      get_rss_items
+      sort_by = params['sort'] || :added
+      get_rss_items(sort_by.to_sym)
     end
 
     # The external URL to this venue
@@ -128,7 +129,15 @@ class VenueController < ApplicationController
   end
   
   # Make queries to get the items for RSS feed
-  def get_rss_items
+  # sort_by => :added (default: when show was added)
+  #            :show (order by show dates)
+  def get_rss_items(sort_by)
+    # Default, sort by the date the show was added  
+    sort_by_date_added = true
+    
+    # Optionally sort by show date
+    sort_by_date_added = false if sort_by == :show
+    
     shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now])
   
     comments = @venue.comments.find(:all,
@@ -151,9 +160,12 @@ class VenueController < ApplicationController
     # Sort the items by when they were created with the most
     # recent item first in the list
     @items.sort! do |x,y| 
-      # Maybe test if x & y respond_to?(created_on)
-      # Right now, we just assume it
-      y.created_on <=> x.created_on
+      # Sort the items using either date added or show date
+      if sort_by_date_added
+        y.created_on <=> x.created_on
+      else
+        x.date <=> y.date
+      end
     end
   end
   

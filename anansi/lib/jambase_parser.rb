@@ -46,6 +46,9 @@ class JambaseParser < TableParser
           @show[:venue][:city] = loc[0].strip
           @show[:venue][:state] = loc[1].strip
           
+          # Grab the venue url, which can be used by venue importers
+          @show[:venue][:detail_link] = child.children[1].find_node_by_text("a").attributes["href"]
+          
             
           puts "Show is #{@show.to_yaml}\n\n"
           @shows << @show

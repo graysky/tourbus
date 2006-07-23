@@ -67,7 +67,7 @@ class Venue < ActiveRecord::Base
   def set_location_from_hash(result)
     self.latitude = result[:latitude]
     self.longitude = result[:longitude]
-    self.city = result[:city]
+    self.city = result[:city].titlecase
     self.address = result[:address]
     self.state = result[:state]
     self.zipcode = result[:zipcode]

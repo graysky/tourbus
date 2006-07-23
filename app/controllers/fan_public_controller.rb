@@ -122,7 +122,7 @@ class FanPublicController < ApplicationController
     # Check how they want it sorted
     sort_by = params['sort'] || :added
         
-    key = {:action => 'rss', :part => 'fan_feed_#{sort_by.to_s}'}
+    key = {:action => 'rss', :part => "fan_feed_#{sort_by.to_s}"}
 
     when_not_cached(key, 90.minutes.from_now) do
       # Fetch and cache the RSS items

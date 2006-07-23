@@ -1,7 +1,7 @@
 require 'RMagick'
 include Magick
 
-# Helpers to auto-create images of upcoming shows
+# Helpers to auto-create image and html images of upcoming shows
 # Assumes that it is called from an ActionController
 module Badge
   
@@ -11,8 +11,13 @@ module Badge
   
   protected
   
-  # Get the badge for the supplied author, either fan or band
-  def get_badge(author)
+  # Get the HTML badge for the supplied shows
+  def get_html_badge(shows)
+  
+  end
+  
+  # Get the image badge for the supplied author, either fan or band
+  def get_image_badge(author)
     
     f = ImageList.new( get_badge_location(author) )
     return f
@@ -32,7 +37,6 @@ module Badge
   
   # Send the image down the pipe
   def send_badge(img)
-  
     blob = img.to_blob { self.format = 'JPG' }
   
     # Set the right content type
@@ -44,7 +48,7 @@ module Badge
   
   # Create a new badge image and stream it back.
   # shows => the shows to put on the badge
-  def create_badge(author, shows)
+  def create_image_badge(author, shows)
     # Generate the badge
     f = create_small_badge(shows)
     
@@ -53,11 +57,6 @@ module Badge
   end
   
   private
-  
-  # Prove that it works
-  def test_attempt
-    return Image.new(200,250) { self.background_color = "blue" }
-  end
   
   def create_small_badge(shows)
   
@@ -179,7 +178,6 @@ module Badge
     return venue_name
   end
   
-    
   # Escape strings
   def escape_string(s)
     s.gsub!('&#8217;','\'') # Single appos

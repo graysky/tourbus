@@ -129,11 +129,13 @@ class BandPublicController < ApplicationController
     # Set the right content type
     @headers["Content-Type"] = "application/xml; charset=utf-8"
 
-    key = {:action => 'rss', :part => 'band_feed'}
+    # Check how they want it sorted
+    sort_by = params['sort'] || :added
+
+    key = {:action => 'rss', :part => 'band_feed_#{sort_by.to_s}'}
 
     when_not_cached(key, 120.minutes.from_now) do
       # Fetch and cache the RSS items
-      sort_by = params['sort'] || :added
       get_rss_items(sort_by.to_sym)
     end
     

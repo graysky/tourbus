@@ -13,7 +13,7 @@ set :quality, 3
 
 # Define "venue_id" in the site.rb file
 method :get_venue do
-  { :id => 1059 } 
+  { :id => 1075 } 
 end
 
 method :links_to_follow, {:args => 1} do |xml_doc|

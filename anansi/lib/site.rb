@@ -8,7 +8,7 @@ require 'anansi/lib/html'
 if RAILS_ENV == "development"
   Tidy.path = "vendor/tidy/tidy.dll"
 else
-  Tidy.path = "vendor/tidy/tidy.dll"
+  Tidy.path = "vendor/tidy/libtidy.so"
 end
 
 

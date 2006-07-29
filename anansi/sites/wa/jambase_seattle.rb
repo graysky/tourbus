@@ -13,6 +13,7 @@ set :url, "http://www.jambase.com/search.asp?city=Seattle&dispall=1&stateID=47&b
 set :display_name, "Jambase"
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72
+set :use_tidy, true
 
 # Use the table parser 
 set :parser_type, :jambase

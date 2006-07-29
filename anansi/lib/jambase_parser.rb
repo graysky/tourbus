@@ -15,8 +15,8 @@ class JambaseParser < TableParser
     date = nil
     
     table.each do |child|
-      if child.name == 'tr'
-        contents = child.children[0].recursive_text
+      if child.is_a?(Element) && child.name == 'tr'
+        contents = child.children[1].recursive_text
         if contents =~ /.*::(.*)::.*/
           date = parse_as_date($1.strip, false) rescue nil
           next if date.nil?
@@ -27,11 +27,11 @@ class JambaseParser < TableParser
           @show[:date] = date
           @show[:time] = "7pm"     
           
-          ul = child.children[0].find_node_by_text('ul')
+          ul = child.children[1].find_node_by_text('ul')
           next if ul.nil?
           
           i = 0
-          ul.each do |li|
+          ul.each_element do |li|
             band = probable_band(li.recursive_text, i, nil)
             @show[:bands] << band if band
               
@@ -41,13 +41,13 @@ class JambaseParser < TableParser
           next if @show[:bands].empty?
           
           @show[:venue] = get_venue
-          @show[:venue][:name] = child.children[1].recursive_text.strip
-          loc = child.children[2].recursive_text.split(",")
+          @show[:venue][:name] = child.elements[2].recursive_text.strip
+          loc = child.elements[3].recursive_text.split(",")
           @show[:venue][:city] = loc[0].strip
           @show[:venue][:state] = loc[1].strip
           
           # Grab the venue url, which can be used by venue importers
-          @show[:venue][:detail_link] = child.children[1].find_node_by_text("a").attributes["href"]
+          @show[:venue][:detail_link] = child.elements[1].find_node_by_text("a").attributes["href"]
           
             
           puts "Show is #{@show.to_yaml}\n\n"

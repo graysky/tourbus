@@ -44,6 +44,9 @@ class MetaSite
   # The map of venue aliases to venue ids
   attr_accessor :venue_map
   
+  # Use the tidy xml parser, not htmltools
+  attr_accessor :use_tidy
+  
   # Set up the shared variables
   def initialize()
     @variables = {}

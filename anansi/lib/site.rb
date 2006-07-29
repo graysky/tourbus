@@ -2,7 +2,15 @@ require 'net/http'
 require 'uri'
 require 'rexml/document'
 require 'html/xmltree'
+require 'tidy'
 require 'anansi/lib/html'
+
+if RAILS_ENV == "development"
+  Tidy.path = "vendor/tidy/tidy.dll"
+else
+  Tidy.path = "vendor/tidy/tidy.dll"
+end
+
 
 # Represents a specific site to crawl or process.
 class Site < MetaSite
@@ -192,11 +200,22 @@ class Site < MetaSite
         # Form action URL was breaking loganjealous with str like: action="/?p=subscribe&#038;id=1"
         html.gsub!(/\#038/, '')
         
-        parser = HTMLTree::XMLParser.new(false, false)
-        parser.feed(html)
-        
-        # Get REXML doc
-        doc = parser.document
+        if self.use_tidy
+          xml = Tidy.open(:show_warnings => false) do |tidy|
+            tidy.options.output_xml = true
+            xml = tidy.clean(html)
+            xml
+          end
+          
+          # Get REXML doc
+          doc = Document.new(xml)
+        else
+          parser = HTMLTree::XMLParser.new(false, false)
+          parser.feed(html)
+          
+          # Get REXML doc
+          doc = parser.document
+        end
         
         # Write the REXML out
          doc.write(f)

@@ -91,6 +91,7 @@ class AnansiParser
           parser.parse
     	rescue Exception => e
     	  puts "Error parsing site: #{site.name}, :#{e.to_s}"
+    	  puts e.backtrace
     	  next
     	end
 

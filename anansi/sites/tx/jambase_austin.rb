@@ -11,6 +11,7 @@ set :url, "http://www.jambase.com/search.asp?city=Austin&stateID=43&dispall=1&be
 #
 set :display_name, "Jambase"
 set :quality, 4
+set :use_tidy, true
 
 # How often (in hours) to check the site (can set to 0 to force checking everytime)
 set :interval, 72

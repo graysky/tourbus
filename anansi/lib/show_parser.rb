@@ -1,4 +1,4 @@
-require 'rexml/document'
+  require 'rexml/document'
 require 'anansi/lib/html' # temp
 
 # Base class for all show parsers
@@ -13,7 +13,7 @@ class ShowParser < MetaSite
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
-			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix']
+			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)

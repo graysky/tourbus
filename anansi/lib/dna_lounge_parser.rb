@@ -65,6 +65,7 @@ class DnaLoungeParser < ShowParser
       
       if !idx.nil?
         @show2 = @show.clone
+        @show2[:bands] = nil # Clear out bands
         bands = text[idx, text.length]
         # Switch to have bands seperated by commas
         bands = HTML::strip_all_tags(bands.gsub('<BR>', ',')).split(',')

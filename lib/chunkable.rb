@@ -9,10 +9,10 @@ module ActiveRecord
       offset = 0
       count = self.count
       
-      options[:offset] = offset
       options[:limit] = chunk_size
       
       while offset < count
+        options[:offset] = offset
         self.find(:all, options).each do |obj|
           yield obj
         end

@@ -1,0 +1,140 @@
+<% @page_title = "Build a Badge For Your Site" %>
+<% @header_title = "Build a Badge For Your Site" %>
+
+<% content_for("head") do  %>
+    <% @styles.keys.each do |style| %>
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="<%=style%>" href="/badge/style/<%=style%>"/>
+    <% end -%>
+<% end %>
+
+<% content_for("bottom_script") do %>
+    update_snippet()
+<% end  %>
+
+<script type="text/javascript">
+// Enable an alternate style for badge preview
+function enable_style(title) {
+    var i, css;
+    for(i=0; (css=document.getElementsByTagName("link")[i]); i++) {
+        if(css.getAttribute("rel").indexOf("style") != -1 && css.getAttribute("title")) {
+            css.disabled = true;
+            // Enable the style sheet with matching title
+            if(css.getAttribute("title") == title)
+                css.disabled = false;
+        }
+    }
+}
+
+// Get the base URL for this badge
+function get_base_url() {
+    var url = "<%= @base_badge_url %>";
+    return url;
+}
+
+function escapeHTML(text) {
+  var div = document.createElement('div');
+  var text = document.createTextNode(text);
+  div.appendChild(text);
+  return div.innerHTML;
+}
+
+// Get the CSS style named with the given key
+function get_style(key) {
+   var styles = {};
+   // Add all styles here
+   styles.tourbus = "<%= @styles['tourbus'] %>";
+   styles.blackwhite = "<%= @styles['blackwhite'] %>";
+   
+   return styles[key];
+}
+
+// Updates badge preview and code snippet after user selection
+function update_snippet() {
+        n = $('num-shows').value;
+        
+        // Start with base URL
+        url = get_base_url();
+        // Add number of shows
+        url += "?n="+n;
+
+        // Update style to what they picked
+        style_name = $('css-style').value;
+        
+        enable_style(style_name); // Enable the new stylesheet
+        
+        // Update code snippet box
+        css = '<style type="text/css">' + get_style(style_name) + '</style>';
+        js = '<script language="JavaScript" src="' + escapeHTML(url) + '" type="text/javascript"><' + '/script>'
+        
+        snippet = css + '\n' + js;
+        document.getElementById('code-snippet').innerHTML = escapeHTML(snippet);
+            
+        // Fetch the new badge contents
+        new Ajax.Request(url, {method:'get', asynchronous:true, onSuccess: function(t) {
+            s = eval(t.responseText.replace('document.write', ''));
+ 
+            document.getElementById('badge-preview').innerHTML = s;
+            
+            return false;
+        }}); 
+        
+    return false;
+}
+</script>
+
+<div>
+
+  <div style="float: left; width: 55%; margin-top: 5px;">
+
+<p><span class="generic_title">Share Your Upcoming Shows</span>
+
+<p>Share your list of upcoming shows on your site! Just choose how you want it to look,
+then copy and paste the generated code snippet into your site. The list as you add new shows.
+</p>
+
+<%= form_tag( { :action => "fake-action" }, :onsubmit => "update_snippet(); return false") %>
+
+<p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Number of Upcoming Shows</span>
+
+<p><select id="num-shows" style="width:80px;" onchange="update_snippet();">
+  <option value="3">three</option>
+  <option value="5" selected="selected">five</option>
+  <option value="10">ten</option>
+  <option value="100">all</option>
+</select>
+
+<p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Badge Style</span>
+
+<p><select id="css-style" onchange="update_snippet();">
+  <option value="tourbus" selected="selected">tourb.us colors</option>
+  <option value="blackwhite">black and white</option>
+</select>
+
+<p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Get The Code</span>
+
+<p>Just copy and paste the snippet below into your site to get going. And, of course, you can
+customize the badge's look to better fit your style.</p>
+
+<%= end_form_tag %>
+
+<p>
+  <%= form_tag( { :action => "fake-action" } ) %>
+
+    <div id='badge-code'>
+    <textarea cols="42" readonly onclick="this.select();" rows="14" id="code-snippet"></textarea>
+    </div>
+
+  <%= end_form_tag %>
+
+  </div> <!-- float -->
+  
+  <div style="float: right; border: 1px solid black; margin-right: 30px; margin-top:40px;">
+  
+  <h3>Preview</h3>
+  
+  <div id="badge-preview" style="border: 1px solid green; margin-right: 10px;">
+        <!-- Contents updated automatically -->
+  </div>
+  
+  </div>
+</div>

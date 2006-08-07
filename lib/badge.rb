@@ -11,9 +11,39 @@ module Badge
   
   protected
   
-  # Get the HTML badge for the supplied shows
-  def get_html_badge(shows)
+  def get_badge_style(name)
+    css = render_to_string(:partial => name, :layout => false)
+    
+    # Remove new lines
+    css.gsub!(/\n/, '')
+    css.gsub!(/\r\n/, '')
+    return css
+  end
   
+  # Get the HTML badge for the supplied object according
+  # to the defined parameters.
+  # obj => object that responds to :upcoming_shows
+  # params => optional parameters to control display
+  #   Params that can be understood:
+  #   n => number of shows
+  # 
+  def get_html_badge(obj, params)
+    
+    num = params['n'] || 5 # Default to 5 shows
+    
+    # Get the shows to display
+    shows = obj.upcoming_shows.first(num.to_i)
+    
+    # Render the template for the response
+    html = render_to_string(:partial => "badge/html_badge", :layout => false,
+            :locals => { :shows => shows, })
+    
+    # Remove new lines
+    html.gsub!(/\n/, '')
+    html.gsub!(/\r\n/, '')
+    js = "document.write(\"#{html}\")"
+
+    return js
   end
   
   # Get the image badge for the supplied author, either fan or band

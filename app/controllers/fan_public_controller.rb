@@ -89,6 +89,14 @@ class FanPublicController < ApplicationController
 
     send_badge(get_image_badge(@fan))
   end
+  
+  # Javascript for badge
+  def js
+    # Get the contents for the badge
+    badge = get_html_badge(@fan, params)
+            
+    render :text => badge
+  end
     
   def invite
     return if @request.get?

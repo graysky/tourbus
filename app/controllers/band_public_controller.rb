@@ -1,10 +1,13 @@
 require_dependency 'show_creator'
 require_dependency 'ical'
+require_dependency 'badge'
+
 
 # Controller for the public page of a band.
 class BandPublicController < ApplicationController
   include ShowCreator
   include Ical
+  include Badge
   
   session :off, :only => [:rss, :ical, :external_map]
   before_filter :find_band, :except => :no_such_band
@@ -159,6 +162,14 @@ class BandPublicController < ApplicationController
     
     ical_feed = read_fragment(key) || cal_string    
     render :text => ical_feed
+  end
+  
+  # Javascript for badge
+  def js
+    # Get the contents for the badge
+    badge = get_html_badge(@band, params)
+            
+    render :text => badge
   end
   
   private

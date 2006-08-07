@@ -80,6 +80,11 @@ ActionController::Routing::Routes.draw do |map|
   
   # Admin section
   map.connect 'admin/:action/:id', :controller => 'admin'
+  
+  # Badge controller
+  #map.connect 'badge/', :controller => 'badge', :action => 'index'
+  map.connect 'badge/:action/', :controller => 'badge'
+  map.connect 'badge/style/:style', :controller => 'badge', :action => 'style'
     
   # Public band pages (must be last)
   map.connect ':short_name/:action/:id', :controller => 'band_public'

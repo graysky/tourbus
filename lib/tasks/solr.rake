@@ -26,7 +26,7 @@ END
       if ENV["RAILS_ENV"] == "development"
         Dir.chdir("../tourbus_search/server")
       else
-        Dir.chdir("/var/www/rails/tourbus_search")
+        Dir.chdir("/var/www/rails/tourbus_search/server")
       end
       
       java_cmd = "java -Djava.util.logging.config.file=./solr/conf/logging.properties -jar start.jar"
@@ -47,7 +47,7 @@ END
       if ENV["RAILS_ENV"] == "development"
         Dir.chdir("../tourbus_search/server")
       else
-        Dir.chdir("/var/www/rails/tourbus_search")
+        Dir.chdir("/var/www/rails/tourbus_search/server")
       end
       
       system("java -jar stop.jar")

@@ -23,7 +23,11 @@ END
     puts "Starting solr..."
     
     cmd = <<END
-      Dir.chdir("../tourbus_search/server")
+      if ENV["RAILS_ENV"] == "development"
+        Dir.chdir("../tourbus_search/server")
+      else
+        Dir.chdir("../../tourbus_search/server")
+      end
       
       java_cmd = "java -Djava.util.logging.config.file=./solr/conf/logging.properties -jar start.jar"
       if ENV["RAILS_ENV"] == "development"
@@ -40,7 +44,12 @@ END
   task :stop do
     puts "Stopping solr..."
     cmd = <<END
-      Dir.chdir("../tourbus_search/server")
+      if ENV["RAILS_ENV"] == "development"
+        Dir.chdir("../tourbus_search/server")
+      else
+        Dir.chdir("../../tourbus_search/server")
+      end
+      
       system("java -jar stop.jar")
 END
   

@@ -45,7 +45,8 @@ class JambaseParser < TableParser
           @show[:venue] = get_venue
           @show[:venue][:name] = child.elements[2].recursive_text.strip
           loc = child.elements[3].recursive_text.split(",")
-          @show[:venue][:city] = loc[0].strip
+         
+          @show[:venue][:city] = loc[0].gsub(/\n/, ' ').strip
           @show[:venue][:state] = loc[1].strip
           
           # Grab the venue url, which can be used by venue importers

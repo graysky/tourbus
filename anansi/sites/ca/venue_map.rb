@@ -29,7 +29,10 @@
     /amnesia/ => 209,
     /mountain winery/ => 792,
     /harlow/ => 796,
-    /hotal utah/ => 395
+    /hotal utah/ => 395,
+    /oakland arena/ => 911,
+    /the independent/ => 402,
+    /little fox/ => 1005	
   },
   
   {
@@ -37,7 +40,9 @@
     
     "HOB" => 986,
     'Roxy' => 989,
-    /greek the/ => 997
+    /greek the/ => 997,
+    /bowl/ => 975,
+    /staples center/ => 1223
   }
 
 ]

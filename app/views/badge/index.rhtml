@@ -42,8 +42,8 @@ function escapeHTML(text) {
 function get_style(key) {
    var styles = {};
    // Add all styles here
-   styles.tourbus = "<%= @styles['tourbus'] %>";
-   styles.blackwhite = "<%= @styles['blackwhite'] %>";
+   styles.tourbus = "<%= @styles['tourbus'] -%>";
+   styles.blackwhite = "<%= @styles['blackwhite'] -%>";
    
    return styles[key];
 }

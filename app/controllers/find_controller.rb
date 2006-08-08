@@ -1,4 +1,3 @@
-require_dependency 'location_filter'
 require_dependency 'searchable'
 require_dependency 'geosearch'
 
@@ -40,6 +39,7 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:include] = [:bands, :venue, :fans]
+    options[:sort] = score_sort_field
     
     query, radius, lat, long = prepare_query(Show.table_name)
     return if query.nil?
@@ -167,7 +167,7 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:sort] = date_sort_field
-    options[:conditions] = { 'popularity' => '> 0'}
+    options[:conditions] = ['popularity:[1 TO *]']
     
     @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
     paginate_search_results(count)
@@ -207,7 +207,7 @@ class FindController < ApplicationController
     
     options = default_search_options
     options[:sort] = name_sort_field
-    options[:conditions] = { 'popularity' => '> 0'}
+    options[:conditions] = [ 'popularity:[1 TO *]']
   
     @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, options)
      
@@ -254,7 +254,7 @@ class FindController < ApplicationController
     
     popular = @params[:popular] == "true"
     if popular
-      options[:conditions] = { 'popularity' => '> 0'}
+      options[:conditions] = [ 'popularity:[1 TO *]' ]
       title = "popular " + title
     end
     

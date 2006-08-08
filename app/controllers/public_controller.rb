@@ -190,7 +190,7 @@ class PublicController < ApplicationController
       end
     end
     
-    @shows, count = Show.ferret_search_date_location('*', Time.now, lat, long, @session[:radius] || Address::DEFAULT_RADIUS, options)
+    @shows, count = Show.ferret_search_date_location(nil, Time.now, lat, long, @session[:radius] || Address::DEFAULT_RADIUS, options)
     @shows.sort! { |x,y| x.date <=> y.date }
     
     if @shows.size == 0 and local_popular_shows? and !force_national
@@ -228,7 +228,7 @@ class PublicController < ApplicationController
     options[:num_docs] = num_docs
     
     bands_with_shows = []
-    pop_bands, count = Band.ferret_search_date_location('*', nil, nil, nil, nil, options)
+    pop_bands, count = Band.ferret_search_date_location(nil, nil, nil, nil, nil, options)
     
     # Only store bands with > 0 upcoming shows
     pop_bands.each do |b|

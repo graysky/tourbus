@@ -28,7 +28,6 @@
 require_dependency "hash"
 require_dependency "password_protected"
 require_dependency "searchable"
-require 'ferret'
 require 'uuidtools'
 require_dependency "taggable"
 require_dependency "tagging"
@@ -39,7 +38,6 @@ class Band < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
   include Address::ActsAsLocation
   include Tagging
-  include Ferret
   
   acts_as_password_protected
   acts_as_taggable :join_class_name => 'TagBand'
@@ -202,12 +200,17 @@ class Band < ActiveRecord::Base
     band
   end
   
+  def self.index_all
+    super(:include => :tags)
+  end
+  
   protected
   
   # Index band-specific fields
-  def add_searchable_fields
-    fields = []
-    fields << Document::Field.new("latitude", self.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    fields << Document::Field.new("longitude", self.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
+  def add_searchable_fields(xml)
+    if !self.latitude.blank?
+      xml.field(self.latitude, :name => "latitude")
+      xml.field(self.longitude, :name => "longitude")
+    end
   end
 end

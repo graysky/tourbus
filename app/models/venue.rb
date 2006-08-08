@@ -88,6 +88,10 @@ class Venue < ActiveRecord::Base
     name.gsub(/[^\w|\d]/, '').downcase
   end
   
+  def self.index_all
+    super(:include => [:upcoming_shows])
+  end
+  
   protected
   
   # Validate that it is a valid URL starting with http://
@@ -103,12 +107,9 @@ class Venue < ActiveRecord::Base
   end
   
   # Add venue-specific searchable fields for ferret indexing
-  def add_searchable_fields
-    # We need to index our location
-    fields = []
-    fields << Document::Field.new("latitude", self.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    fields << Document::Field.new("longitude", self.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    return fields
+  def add_searchable_fields(xml)
+    xml.field(self.latitude, :name => "latitude")
+    xml.field(self.longitude, :name => "longitude")
   end
   
   # Add venue-specific searchable contents for ferret indexing

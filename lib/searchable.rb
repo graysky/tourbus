@@ -1,27 +1,77 @@
-require 'ferret'
+require 'builder'
+require 'net/http'
+require 'uri'
+require 'open-uri'
 
 module FerretMixin
   module Acts
     module Searchable
-      
-      
+         
       def self.append_features(base)
         super
         base.extend(ClassMethods)  
       end
       
       module ClassMethods
-        include Ferret
-        include Ferret::Search # Odd things get doubly-loaded if you don't include this...
+        
+        def solr_server
+          @@SOLR_SERVER
+        end
+        
+        def solr_port
+          @@SOLR_PORT
+        end
         
         def acts_as_searchable(options = {})
           class_eval do
              include FerretMixin::Acts::Searchable::InstanceMethods
              
              after_destroy :ferret_destroy
-             @@ferret_index = {}
+             
+             @@SOLR_SERVER = "localhost"
+             @@SOLR_PORT = "8983"
           end
         end
+        
+        def index_all(options = {})
+          chunk_size = 500
+          offset = 0
+          count = self.count
+          
+          options[:limit] = chunk_size
+          
+          while offset < count
+            options[:offset] = offset
+             
+            doc = ""
+            xml = Builder::XmlMarkup.new(:target => doc)
+            xml.add do
+              self.find(:all, options).each do |obj|
+                obj.get_doc(xml)
+              end
+            end
+            
+            update_doc(doc)
+            
+            offset += chunk_size
+          end
+          
+          commit(:optimize => true)
+        end
+        
+        def update_doc(doc)
+          Net::HTTP.start(solr_server, solr_port) do |http|
+            http.post("/solr/update", doc)
+          end
+        end
+        
+        def commit(options = {})
+          Net::HTTP.start(solr_server, solr_port) do |http|
+            http.post("/solr/update", "<commit/>")
+            http.post("/solr/update", "<optimize/>") if options[:optimize]
+          end
+        end
+        
         
         # Simplest search method. Returns an array of objects matching the query.
         # query is a string or a ferret Query object.
@@ -37,13 +87,11 @@ module FerretMixin
         def ferret_search(q, options = {})
           query = basic_ferret_query(q, options)
           
-          logger.debug("Search: #{query.to_s}")
-          ids = []
-          count = ferret_index.search_each(query, options) do |doc, score|
-            ids << ferret_index[doc]["id"]
+          if options[:sort]
+            add_sorts(query, options[:sort])
           end
           
-          return get_results(ids), count
+          do_query(query, options)
         end
         
         # Search using the given query but only include results with a date newer than
@@ -68,54 +116,34 @@ module FerretMixin
         # sort:  An array of SortFields describing how to sort the results.
         # exact_date: Only results on the given date.
         # conditions: A hash of conditions: 'popularity' => '> 0'
-        # prefix: A prefix to search on, hash with field => prefix
         # include: The include argument to ActiveRecord's find methods.
         def ferret_search_date_location(q, date, lat, long, radius, options = {})
           query = basic_ferret_query(q, options)
           
           if not date.nil?
             if options[:exact_date]
-              query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("date", indexable_date(date))), Search::BooleanClause::Occur::MUST)
+              query << " AND date:#{indexable_date(date)}"
             else
-              query << Search::BooleanClause.new(Search::RangeQuery.new("date", indexable_date(date), nil, true, false), Search::BooleanClause::Occur::MUST)
+              query << " AND date:[#{indexable_date(date)} TO *]"
             end
             
-            # Sort by date, then relevence
-            date_sort = SortField.new("date", {:sort_type => SortField::SortType::INTEGER})
-            if options[:sort].nil?
-              options[:sort] = [date_sort, SortField::FIELD_SCORE]
-            else
-              options[:sort] = [options[:sort], date_sort, SortField::FIELD_SCORE]
+            if options[:sort]
+              add_sorts(query, options[:sort])
             end
+            
+            add_sorts(query, "date asc, score desc")
+            
           elsif options[:sort]
-            options[:sort] = [options[:sort], SortField::FIELD_SCORE]
+            add_sorts(query, options[:sort])
           end
+     
+          options[:doc_type] = self.class_name.downcase
+          options[:lat] = lat
+          options[:long] = long
+          options[:radius] = radius
           
-          if lat and long and radius
-            location_filter = LocationFilter.new(self.class_name.downcase, lat, long, radius)
-            options[:filter] = location_filter
-          end
-          
-          logger.debug("Search by date and location: #{query.to_s}, #{options[:sort]}")
-          ids = []
-          count = ferret_index.search_each(query, options) do |doc, score|
-            ids << ferret_index[doc]["id"]
-          end
-          
-           return get_results(ids, options[:include]), count
-        end
-        
-        def ferret_index
-          dir = "#{RAILS_ROOT}/db/tb.index/#{self.class_name.downcase}"
-          if @@ferret_index[self.class_name.downcase].nil?
-            Dir.mkdir(dir) unless File.directory?(dir) or File.symlink?(dir)
-          end
-          
-          @@ferret_index[self.class_name.downcase] ||= Ferret::Index::Index.new(
-                                                     :key => ["id"],
-                                                     :path => dir,
-                                                     :auto_flush => true,
-                                                     :create_if_missing => true)                                 
+          logger.debug("Search by date and location: #{query.to_s}, #{options.to_s}")
+          do_query(query, options)
         end
         
         IGNORED_STRINGS = [','] unless const_defined?('IGNORED_STRINGS')
@@ -123,65 +151,89 @@ module FerretMixin
         
         # Set up a basic query
         def basic_ferret_query(q, options = {})
-          q = q.strip.downcase
-          q = "*" if q.nil? or q == ""
-          
-          IGNORED_STRINGS.each { |str| q.gsub!(str, ' ') }
-          INVALID_CHARS.each { |str| q.gsub!(str, '') }
-          
-          # Can't end in
-          q = q[0...(q.size - 1)] if q.ends_with?('-')
-          q.gsub!('-', '') if q.ends_with?('-*')
-          
-          # A big ole hack for wildcards and quotes. Working around ferret bug.
-          if q.ends_with?('*')
-            q.gsub!("'", "")
-            q.gsub!('"', "")
+          if q.nil? || q.strip == '*'
+            q = ''
+          else
+            q = q.strip.downcase
           end
           
-          query = Search::BooleanQuery.new
-          if q != "*"
-            options[:analyzer] = Ferret::Analysis::StandardAnalyzer.new
-            query_parser = QueryParser.new(["name", "contents"], options)
+          query = "ferret_class:#{self.class_name.downcase}"
+          if q != ""
+            IGNORED_STRINGS.each { |str| q.gsub!(str, ' ') }
+            INVALID_CHARS.each { |str| q.gsub!(str, '') }
             
-            # Parse the query provided by the user
-            query << Search::BooleanClause.new(query_parser.parse(q), Search::BooleanClause::Occur::MUST)
+            # Can't end in
+            q = q[0...(q.size - 1)] if q.ends_with?('-')
+            q.gsub!('-', '') if q.ends_with?('-*')
+            
+            # A big ole hack for wildcards and quotes. Working around ferret bug.
+            #if q.ends_with?('*')
+            #  q.gsub!("'", "")
+            #  q.gsub!('"', "")
+            #end
+            
+            query << " AND (id:#{q} OR contents:#{q})"
           end
           
            # Add extra conditions
-          if options[:conditions]
-            options[:conditions].each do |term, condition|
-              query_parser = QueryParser.new([term], options)
-              query << Search::BooleanClause.new(query_parser.parse(condition), Search::BooleanClause::Occur::MUST)
-            end
-          end
+           if options[:conditions]
+             options[:conditions].each do |condition|
+              query << " AND #{condition}"  
+             end
+           end
           
-          # Add prefix
-          if options[:prefix]
-            options[:prefix].each do |term, prefix|
-              query << Search::BooleanClause.new(Search::PrefixQuery.new(Index::Term.new(term, prefix)), 
-                                                 Search::BooleanClause::Occur::MUST)
-            end
-          end
-            
-          # Restrict the query to items of this class
-          query << Search::BooleanClause.new(Search::TermQuery.new(Index::Term.new("ferret_class", self.class_name.downcase)), Search::BooleanClause::Occur::MUST)
           return query
         end
         
         def indexable_date(date)
-          Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::DAY)
-        end
-        
-        def indexable_date_and_time(date)
-          Utils::DateTools.time_to_s(date, Utils::DateTools::Resolution::MINUTE)
+          date.strftime("%Y%m%d")
         end
         
         protected
         
+        def url_options(options)
+          str = ""
+        
+          str << "&rows=#{options[:num_docs]}" if options[:num_docs]
+          str << "&start=#{options[:first_doc]}" if options[:first_doc]
+          str << "&docType=#{options[:doc_type]}" if options[:doc_type]
+          str << "&lat=#{options[:lat]}" if options[:lat]
+          str << "&long=#{options[:long]}" if options[:long]
+          str << "&radius=#{options[:radius]}" if options[:radius]
+          
+          str
+        end
+        
+        def add_sorts(query, sorts)
+          if query.index(";")
+            query << ", " + sorts
+          else
+            query << ";" + sorts
+          end
+          
+          query
+        end
+        
+        def do_query(query, options = {})
+          url = "http://localhost:8983/solr/select?version=2.1&qt=tb&"
+          url << "q=#{CGI.escape(query)}"
+          url << url_options(options)
+          url << "&fl=id&wt=ruby"
+          
+          results = {}
+          open(url) do |f|
+            results = eval(f.read)
+          end
+          
+          logger.debug("solr query time: #{results['header']['qtime']}")
+          return get_results(results['response']['docs']), results['response']['numFound']
+        end
+        
         # Use AR get the actual objects from the DB
-        def get_results(ids, include = nil)
-          return [] if ids.empty?
+        def get_results(docs, include = nil)
+          return [] if docs.empty?
+          
+          ids = docs.collect { |doc| doc['id'] }
           
           conditions = "#{self.table_name}.id in (#{ids.join(',')})"
           order = "field(#{self.table_name}.id, " + ids.map { |id| "'#{id}'" }.join(',') + ")"
@@ -191,7 +243,6 @@ module FerretMixin
       end
     
       module InstanceMethods
-        include Ferret
         
         # Useful for saving the object without reindexing it, which can be expensive
         # Only useful when automatic saving is enabled.
@@ -201,77 +252,79 @@ module FerretMixin
           @skip_indexing = false
         end
         
-        def ferret_save
+        def ferret_save(options = {})
           return if @skip_indexing
-
-          doc = Ferret::Document::Document.new
           
-          # Index common fields
-          doc << Ferret::Document::Field.new("id", self.id, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-          doc << Ferret::Document::Field.new("ferret_class", self.class.name.downcase, 
-                                             Document::Field::Store::YES,
-                                             Document::Field::Index::UNTOKENIZED)
-                                             
-          if respond_to?(:name)                                   
-            doc << Ferret::Document::Field.new("name", 
-                                               self.name, 
-                                               Document::Field::Store::YES, 
-                                               Document::Field::Index::TOKENIZED,
-                                               Document::Field::TermVector::NO,
-                                               false,
-                                               2.0)
+          options[:commit] = options[:commit] || true
+
+          doc = ""
+          xml = Builder::XmlMarkup.new(:target => doc, :indent => 2)
+          xml.add do
+            get_doc(xml)
+          end
+
+          Net::HTTP.start(self.class.solr_server, self.class.solr_port) do |http|
+            http.post("/solr/update", doc)
             
-            if respond_to?(:short_name)   
-              # Untokenized short name for sorting                                   
-              doc << Ferret::Document::Field.new("sort_name", 
-                                               self.short_name, 
-                                               Document::Field::Store::NO, 
-                                               Document::Field::Index::UNTOKENIZED)
+            if options[:commit]
+              http.post("/solr/update", "<commit/>")
             end
           end
-          
-          if respond_to?(:created_on)
-            doc << Ferret::Document::Field.new("created_on", 
-                                               self.class.indexable_date_and_time(self.created_on), 
-                                               Document::Field::Store::YES, 
-                                               Document::Field::Index::UNTOKENIZED)
+        end
+        
+        def get_doc(xml)
+          boost = 1.0
+          if respond_to?(:popularity) && self.popularity > 10
+            boost = 1.5
           end
           
-          if respond_to?(:popularity)
-            popularity = self.popularity
-            doc << Document::Field.new("popularity", 
-                                       popularity, 
-                                       Document::Field::Store::YES, 
-                                       Ferret::Document::Field::Index::UNTOKENIZED)
-                                       
-            # Boost document based on popularity
-            # TODO This is not very good. Think of a better way to do this.
-            # All this really does is make sure that completely unpopular things are further down the scale.
-            doc.boost = 1.3 if popularity > 10
+          xml.doc(:boost => boost) do
+            # Index common fields
+            xml.field(self.class.name.downcase + "-" + self.id.to_s, :name => "key")
+            xml.field(self.id, :name => "id")
+            xml.field(self.class.name.downcase, :name => "ferret_class")
+            
+            if respond_to?(:name)
+              xml.field(self.name, :name => "name", :boost => 2.0)                                  
+            end
+            
+            if respond_to?(:short_name)
+             xml.field(self.short_name, :name => "sort_name") 
+            end
+            
+            if respond_to?(:created_on)
+              xml.field(self.created_on.strftime("%Y%m%d"), :name => "created_on")
+            end
+            
+            if respond_to?(:popularity)
+              xml.field(self.popularity, :name => "popularity")
+            end
+            
+            # Index all commonly searched info as an aggregated content string
+            contents = ""
+            if respond_to?(:name)
+              contents << self.name + " "
+            end
+            
+            if respond_to?(:tag_names)
+              contents << self.tag_names.join(" ")
+            end
+            
+            # Type-specific contents
+            contents << " " + self.add_searchable_contents
+            xml.field(contents, :name => "contents")
+            
+            # Type-specific fields
+            self.add_searchable_fields(xml)
           end
-          
-          # Index all commonly searched info as an aggregated content string
-          contents = ""
-          if respond_to?(:name)
-            contents << self.name + " "
-          end
-          
-          if respond_to?(:tag_names)
-            contents << self.tag_names.join(" ")
-          end
-          
-          # Type-specific contents
-          contents << " " + self.add_searchable_contents
-          doc << Ferret::Document::Field.new("contents", contents.strip, Ferret::Document::Field::Store::YES, Ferret::Document::Field::Index::TOKENIZED)
-          
-          # Type-specific fields
-          [*self.add_searchable_fields].each { |field| doc << field }
-          
-          self.class.ferret_index << doc
         end
         
         def ferret_destroy
-          self.class.ferret_index.query_delete("+id:#{self.id}")
+          Net::HTTP.start(self.class.solr_server, self.class.solr_port) do |http|
+            query = "id:#{self.id} AND ferret_class:#{self.class.name.downcase}"
+            http.post("/solr/update", "<delete><query>#{query}</query></delete>")
+            http.post("/solr/update", "<commit/>")
+          end
         end
         
         protected

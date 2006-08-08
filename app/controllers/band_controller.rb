@@ -22,8 +22,8 @@ class BandController < ApplicationController
       if short_name.length < 3 || short_name == 'the'
         bands = []
       else
-        options = { :conditions => { 'sort_name' => "#{short_name}*" }, :num_docs => 5 }
-        bands, count = Band.ferret_search("", options)
+        options = { :conditions => ["sort_name:#{short_name}*"], :num_docs => 5 }
+        bands, count = Band.ferret_search(nil, options)
       end
     else
       bands = []

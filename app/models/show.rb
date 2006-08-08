@@ -21,12 +21,10 @@
 require_dependency "searchable"
 require_dependency "taggable"
 require_dependency "tagging"
-require 'ferret'
 
 # A specific show that is being played a venue by a list of bands.
 class Show < ActiveRecord::Base
   include FerretMixin::Acts::Searchable
-  include Ferret
   
   include Tagging
   has_and_belongs_to_many :bands, :order => "bands_shows.set_order"
@@ -171,20 +169,21 @@ class Show < ActiveRecord::Base
     self.num_watchers + (2 * self.num_attendees)
   end
   
+  def self.index_all
+    super(:include => [:tags, :bands, :venue])
+  end
+  
   protected
   
   # Add show-specific searchable fields for ferret indexing
-  def add_searchable_fields
-    fields = []
-   
-    fields << Document::Field.new("latitude", self.venue.latitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    fields << Document::Field.new("longitude", self.venue.longitude, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    fields << Document::Field.new("num_watchers", self.num_watchers, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    fields << Document::Field.new("num_attendees", self.num_attendees, Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    
-    # We need to be able to search by the date of the show
-    fields << Document::Field.new("date", Show.indexable_date(self.date), Document::Field::Store::YES, Ferret::Document::Field::Index::UNTOKENIZED)
-    return fields
+  def add_searchable_fields(xml)
+    if !self.venue.latitude.blank?
+      xml.field(self.venue.latitude, :name => "latitude")
+      xml.field(self.venue.longitude, :name => "longitude")
+      xml.field(self.num_watchers, :name => "num_watchers")
+      xml.field(self.num_attendees, :name => "num_attendees")
+      xml.field(Show.indexable_date(self.date), :name => "date")
+    end
   end
   
   # Add show-specific searchable contents for ferret indexing

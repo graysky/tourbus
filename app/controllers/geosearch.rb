@@ -1,7 +1,6 @@
 # To be included by controllers that need to do ferret geo-searches
 module Geosearch
-  include Ferret::Search
-  
+ 
   # To be called via ajax so the session state is always up to date
   def set_location_radius
     do_set_location_radius
@@ -48,23 +47,27 @@ module Geosearch
   end
   
   def created_on_sort_field
-    SortField.new("created_on", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+   "created_on desc"
   end
   
   def date_sort_field
-    SortField.new("date", {:sort_type => SortField::SortType::INTEGER, :reverse => false})
+    "date asc"
   end
   
   def reverse_date_sort_field
-    SortField.new("date", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+    "date desc"
   end
   
   def popularity_sort_field
-    SortField.new("popularity", {:sort_type => SortField::SortType::INTEGER, :reverse => true})
+    "popularity desc"
   end
   
   def name_sort_field
-    SortField.new("sort_name", {:sort_type => SortField::SortType::STRING, :reverse => false})
+    "sort_name asc"
+  end
+  
+  def score_sort_field
+    "score desc"
   end
   
   def prepare_query(type, location = nil, radius = nil, always_local = false)

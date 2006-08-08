@@ -24,8 +24,13 @@ class FindController < ApplicationController
     # Always search nationally for bands
     radius = lat = long = nil
     
-    @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
-    paginate_search_results(count)
+    begin
+      @results, count = Band.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+      paginate_search_results(count)
+    rescue Exception => e
+      handle_search_exception(e)
+      return
+    end
   end
 
   def show
@@ -44,8 +49,13 @@ class FindController < ApplicationController
     query, radius, lat, long = prepare_query(Show.table_name)
     return if query.nil?
     
-    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
-    paginate_search_results(count)
+    begin
+      @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+      paginate_search_results(count)
+    rescue Exception => e
+      handle_search_exception(e)
+      return
+    end
     
     @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => query, 
                                            :location => params[:location] || session[:location], 
@@ -58,8 +68,13 @@ class FindController < ApplicationController
     query, radius, lat, long = prepare_query(Venue.table_name)
     return if query.nil?
     
-    @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
-    paginate_search_results(count)
+    begin
+      @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+      paginate_search_results(count)
+    rescue Exception => e
+      handle_search_exception(e)
+      return
+    end
   end
   
   # Browse
@@ -243,6 +258,15 @@ class FindController < ApplicationController
   
   def render_venue
     render :action => 'venue'
+  end
+  
+  def handle_search_exception(e)
+    logger.error(e)
+    if e.is_a?(Errno::ECONNREFUSED)
+      flash.now[:error] = "Sorry, search is currently disabled on the site. Please try again in a few minutes."
+    else
+      flash.now[:error] = "Sorry, there was an error with your query."
+    end
   end
   
   def prepare_subscription_query(query, radius, lat, long)

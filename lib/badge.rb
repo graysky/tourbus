@@ -11,15 +11,6 @@ module Badge
   
   protected
   
-  def get_badge_style(name)
-    css = render_to_string(:partial => name, :layout => false)
-    
-    # Remove new lines
-    css.gsub!(/\n/, '')
-    css.gsub!(/\r\n/, '')
-    return css
-  end
-  
   # Get the HTML badge for the supplied object according
   # to the defined parameters.
   # obj => object that responds to :upcoming_shows

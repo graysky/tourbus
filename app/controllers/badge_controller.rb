@@ -1,8 +1,5 @@
-require_dependency 'badge'
-
 # Controller to build a badge for inclusion on a band or fan's site.
 class BadgeController < ApplicationController
-  include Badge
   layout "public"
   
   # Default page
@@ -72,6 +69,16 @@ class BadgeController < ApplicationController
   end
   
   protected
+  
+  def get_badge_style(name)
+    css = render_to_string(:partial => name, :layout => false)
+    
+    # Remove new lines
+    css.gsub!(/\n/, '')
+    css.gsub!(/\r\n/, '')
+    logger.info "Badge CSS is: [#{css}]"
+    return css
+  end
   
   # Form the URL that points to the badge
   def badge_url(base_url)

@@ -66,13 +66,11 @@ class BadgeController < ApplicationController
     css = render_to_string(:partial => name, :layout => false)
     
     # Remove new lines
-    puts "BEFORE Badge CSS is: [#{css}]"
-
     css.gsub!(/\n/, '')
     css.gsub!(/\r/, '')
     css.gsub!(/\r\n/, '')
-    logger.warn "Badge CSS is: [#{css}]"
-    puts "AFTER Badge CSS is: [#{css}]"
+    #logger.warn "Badge CSS is: [#{css}]"
+    #puts "AFTER Badge CSS is: [#{css}]"
     return css
   end
   

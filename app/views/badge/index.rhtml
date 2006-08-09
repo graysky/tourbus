@@ -72,7 +72,7 @@ function update_snippet() {
         // Fetch the new badge contents
         new Ajax.Request(url, {method:'get', asynchronous:true, onSuccess: function(t) {
             s = eval(t.responseText.replace('document.write', ''));
- 
+            alert("Updating with: " + s);
             document.getElementById('badge-preview').innerHTML = s;
             
             return false;

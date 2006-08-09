@@ -76,7 +76,7 @@ class BadgeController < ApplicationController
     # Remove new lines
     css.gsub!(/\n/, '')
     css.gsub!(/\r\n/, '')
-    logger.info "Badge CSS is: [#{css}]"
+    logger.warn "Badge CSS is: <#{css}>"
     return css
   end
   

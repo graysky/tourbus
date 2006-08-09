@@ -92,9 +92,6 @@ class FanPublicController < ApplicationController
   
   # Javascript for badge
   def js
-    # Set correct content type
-    @headers["Content-Type"] = "text/javascript"
-    
     # Get the contents for the badge
     badge = get_html_badge(@fan, params)
             

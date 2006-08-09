@@ -30,6 +30,7 @@ module Badge
             :locals => { :shows => shows, })
     
     # Remove new lines
+    html.gsub!(/\r/, '')
     html.gsub!(/\n/, '')
     html.gsub!(/\r\n/, '')
     js = "document.write(\"#{html}\")"

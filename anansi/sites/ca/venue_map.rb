@@ -42,7 +42,9 @@
     'Roxy' => 989,
     /greek the/ => 997,
     /bowl/ => 975,
-    /staples center/ => 1223
+    /staples center/ => 1223,
+    /fonda/ => 1037,
+    /wiltern/ => 996
   }
 
 ]

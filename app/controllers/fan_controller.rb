@@ -379,9 +379,10 @@ class FanController < ApplicationController
         # FIXME how do we handle errors here?
         @fan.save!
         @show.save!
-        @show.ferret_save
       end
     end
+    
+    @show.ferret_save
     
     @headers["Content-Type"] = "text/javascript"
   end

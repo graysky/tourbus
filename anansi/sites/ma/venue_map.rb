@@ -9,5 +9,6 @@
   /bank of america/ => 69,
   /bill's bar/ => 44,
   /museum of fine arts/ => 812,
-  /fenway/ => 815
+  /fenway/ => 815,
+  /webster theatre/ => 172
 }

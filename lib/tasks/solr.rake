@@ -67,7 +67,11 @@ END
     puts "Destroying the solr index..."
     cmd = <<END
       require "fileutils"
-      FileUtils.rm_rf("../tourbus_search/server/solr/data/index")  
+      if ENV["RAILS_ENV"] == "development"
+        FileUtils.rm_rf("../tourbus_search/server/solr/data/index")
+      else
+        FileUtils.rm_rf("/var/www/rails/tourbus_search/server/solr/data/index")
+      end
 END
   
     system "ruby ./script/runner '#{cmd}'"

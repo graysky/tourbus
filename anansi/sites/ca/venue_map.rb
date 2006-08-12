@@ -30,6 +30,7 @@
     /mountain winery/ => 792,
     /harlow/ => 796,
     /hotal utah/ => 395,
+    /hotel utah/ => 395,
     /oakland arena/ => 911,
     /the independent/ => 402,
     /little fox/ => 1005	
@@ -42,6 +43,7 @@
     'Roxy' => 989,
     /greek the/ => 997,
     /bowl/ => 975,
+    /knitting/ => 987,
     /staples center/ => 1223,
     /fonda/ => 1037,
     /wiltern/ => 996

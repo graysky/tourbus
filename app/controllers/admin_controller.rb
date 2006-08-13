@@ -19,6 +19,11 @@ class AdminController < ApplicationController
     @comments = Comment.find(:all, :conditions => ["created_on > ?", Time.now - 7.days], :order => "created_on DESC")
   end
   
+  def list_photos
+    # Last week's worth of photos
+    @photos = Photo.find(:all, :conditions => ["created_on > ?", Time.now - 7.days], :order => "created_on DESC")
+  end
+  
   def list_active_fans
     # Show last 2 days of fan logins
     @fans = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days], :order => "last_login DESC")

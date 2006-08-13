@@ -1,0 +1,53 @@
+<div id="main">
+
+<% @page_title = "List Recent Photos" %>
+<% @header_title = "List Recent Photos" %>
+
+<h2><%= @photos.size %> in Last 7 Days</h2>
+<p>
+
+<table border="1" cellpadding="2" width="95%">
+
+<tr>
+<th>ID</th>
+<th>Date</th>
+<th>Posted By</th>
+<th>Subject</th>
+<th>Photo</th>
+<th>Caption</th>
+
+</tr>
+
+<% 
+  for p in @photos
+
+  # Get poster info
+  poster = p.created_by_fan || p.created_by_band
+  poster_url = public_fan_url(p.created_by_fan) if p.created_by_fan
+  poster_url = public_band_url(p.created_by_band) if p.created_by_band
+  
+  # Get subject info
+  subject = p.band || p.show || p.venue
+  subject_url = public_band_url(subject) if p.band
+  subject_url = public_show_url(subject) if p.show
+  subject_url = public_venue_url(subject) if p.venue
+%>
+  <tr>
+    <td><%= p.id %>
+    <td><%= "#{slash_date(p.created_on)} #{friendly_time(p.created_on)}" %></td>
+    <td><a href="<%= poster_url %>"><%= poster.name %></a></td>
+    <td><a href="<%= subject_url %>"><%= subject.name %></a></td>
+    <td><a href="<%= public_photo_url(p, 'preview') %>"><%= p.name %></a></td>
+    <td><%= truncate(simple_format(p.description), 50) %></td>
+  </tr>
+<% end %>
+
+</table>
+
+</p>
+
+</div>
+
+<div id="side">
+
+</div>

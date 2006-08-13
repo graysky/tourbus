@@ -1,5 +1,7 @@
+require 'searchable'
 class Indexer
- 
+  include FerretMixin::Acts::Searchable
+  
   def self.index_db
     # Find recently updated/created objects and index them
     stats = IndexStatistics.find(:first) || IndexStatistics.new
@@ -13,8 +15,11 @@ class Indexer
     begin
       objects.each do |obj|
         puts "Indexing #{obj.class.name} #{obj.id}"
-        obj.ferret_save
+        obj.ferret_save(:commit => false)
       end
+      
+      puts "Committing and optimizing..."
+      self.commit(:optimize => true)
       
       stats.last_indexed_on = index_time
       stats.save!

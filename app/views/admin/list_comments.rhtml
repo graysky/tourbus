@@ -1,0 +1,54 @@
+<div id="main">
+
+<% @page_title = "List Recent Comments" %>
+<% @header_title = "List Recent Comments" %>
+
+<h2><%= @comments.size %> in Last 2 Days</h2>
+<p>
+
+<table border="1" cellpadding="2" width="95%">
+
+<tr>
+<th>ID</th>
+<th>Date</th>
+<th>Posted By</th>
+<th>Subject</th>
+<th>Comment</th>
+
+</tr>
+
+<% 
+  i = 0
+  for c in @comments
+
+  # Get poster info
+  poster = c.created_by_fan || c.created_by_band
+  poster_url = public_fan_url(c.created_by_fan) if c.created_by_fan
+  poster_url = public_band_url(c.created_by_band) if c.created_by_band
+  
+  # Get subject info
+  subject = c.fan || c.band || c.show || c.venue || c.photo
+  subject_url = public_fan_url(subject) if c.fan
+  subject_url = public_band_url(subject) if c.band
+  subject_url = public_show_url(subject) if c.show
+  subject_url = public_venue_url(subject) if c.venue
+  subject_url = public_photo_url(subject, "preview") if c.photo
+%>
+  <tr>
+    <td><%= c.id %>
+    <td><%= "#{slash_date(c.created_on)} #{friendly_time(c.created_on)}" %></td>
+    <td><a href="<%= poster_url %>"><%= poster.name %></a></td>
+    <td><a href="<%= subject_url %>"><%= subject.name %></a></td>
+    <td><%= truncate(simple_format(c.body), 50) %></td>
+  </tr>
+<% end %>
+
+</table>
+
+</p>
+
+</div>
+
+<div id="side">
+
+</div>

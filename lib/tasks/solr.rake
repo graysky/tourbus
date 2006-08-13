@@ -29,7 +29,7 @@ END
         Dir.chdir("/var/www/rails/tourbus_search/server")
       end
       
-      java_cmd = "java -Xms96m -Xmx96m -Djava.util.logging.config.file=./solr/conf/logging.properties -jar start.jar"
+      java_cmd = "java -Xms72m -Xmx72m -Djava.util.logging.config.file=./solr/conf/logging.properties -jar start.jar"
       if ENV["RAILS_ENV"] == "development"
         system(java_cmd) 
       else

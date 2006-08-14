@@ -33,9 +33,16 @@ module ApplicationHelper
     date.strftime("%A, %B %d, %Y")
   end
 
+  # Output like: "Tues 09/15"
   def friendly_date(date)
     return "" if date.nil?
     date.strftime("%a %m/%d")
+  end
+  
+  # Output like: "Tuesday 09/15"
+  def friendly_date2(date)
+    return "" if date.nil?
+    date.strftime("%A %m/%d")
   end
   
   def friendly_time(date)

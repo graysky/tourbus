@@ -3,13 +3,18 @@
 # NOTE: Careful -- allow double-quotes need to be escaped!
 # Params:
 # shows => array of shows to include
+text_limit = 28
 %>
 <div id='tb_badge'>
+<div id='tb_header'> 
 <p><span id='tb_title'><a href='http://tourb.us'>tourb.us</a> shows</span></p>
+</div>
+<div id='tb_shows'>
 <% shows.each do |show| %>
-<p><span id='tb_date'><%= friendly_date(show.date) %></span><br/>
-<span id='tb_name'><a href='<%= public_show_url(show)%>'><%= show.name %></a></span> @ 
-<span id='tb_venue'><a href='<%= public_venue_url(show.venue)%>'><%= show.venue.name %></a></span>
+<p><span id='tb_date'><%= friendly_date2(show.date) %></span><br/>
+<span id='tb_name'><a href='<%= public_show_url(show)%>'><%= truncate(show.name, text_limit) %></a></span> 
+<span id='tb_venue'>@ <a href='<%= public_venue_url(show.venue)%>'><%= truncate(show.venue.name, text_limit) %></a></span>
 </p>
 <% end -%>
+</div>
 </div>

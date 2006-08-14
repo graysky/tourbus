@@ -63,10 +63,11 @@ function update_snippet() {
         enable_style(style_name); // Enable the new stylesheet
         
         // Update code snippet box
+        comment = '<!-- Start tourb.us badge -->';
         css = '<style type="text/css">' + get_style(style_name) + '</style>';
         js = '<script language="JavaScript" src="' + escapeHTML(url) + '" type="text/javascript"><' + '/script>'
         
-        snippet = css + '\n' + js;
+        snippet = comment + '\n' + css + '\n' + js;
         document.getElementById('code-snippet').innerHTML = escapeHTML(snippet);
             
         // Fetch the new badge contents

@@ -21,6 +21,16 @@ module ApplicationHelper
     link_to(text, public_show_url(show))
   end
 
+  # Get link to the correct metro
+  def public_metro_url(metro)
+    url = url_for(:controller => "public", :action => "metro", :metro => metro)
+    return url
+  end
+
+  def public_metro_link(text, metro)
+    link_to(text, public_metro_url(metro))
+  end
+
   def band_public_action(action)
     public_band_url + (action.nil? ? "" : "/" + action)
   end

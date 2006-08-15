@@ -29,12 +29,13 @@ end
 <tr>
 <td valign="top"><span class="field_info">bands, genres, clubs</span> 
 <td><b>Metros</b><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Boston, MA');">Boston</a></span><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('San Francisco, CA');">San Francisco</a></span><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Seattle, WA');">Seattle</a></span><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Austin, TX');">Austin</a></span><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Chicago, IL');">Chicago</a></span><br/>
-<span class="city_info"><a href="javascript:void(0);" onclick="setlocation('Los Angeles, CA');">Los Angeles</a></span>
+<span class="city_info"><%= public_metro_link("Boston", "boston") %></span><br/>
+<span class="city_info"><%= public_metro_link("San Francisco", "sf") %></span><br/>
+<span class="city_info"><%= public_metro_link("Seattle", "seattle") %></span><br/>
+<span class="city_info"><%= public_metro_link("Austin", "austin") %><span><br/>
+<span class="city_info"><%= public_metro_link("Chicago", "chicago") %></span><br/>
+<span class="city_info"><%= public_metro_link("Los Angeles", "la") %></span><br/>
+<span class="city_info"><%= public_metro_link("New York", "nyc") %></span>
 </table>
 
 <%= hidden_field_tag('type', Show.table_name) %>
@@ -43,9 +44,3 @@ end
 <%= end_form_tag %>
 </div>
 </div>
-<script type="text/javascript">
-  function setlocation(text)
-  {
-    $("location").value = text;
-  }
-</script>

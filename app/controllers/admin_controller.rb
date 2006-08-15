@@ -33,6 +33,10 @@ class AdminController < ApplicationController
     @fans = Fan.find(:all)
   end
 
+  def fan_signups_by_day
+    @fans = Fan.find_by_sql("select DATE(created_on) as date, count(*) as count from fans group by 1")
+  end
+
   def list_system_events
     @events = SystemEvent.find(:all, :order => "created_at DESC")
   end

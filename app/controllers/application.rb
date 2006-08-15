@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   helper :fan
   helper :portlet
   helper :show
+  helper_method :public_url
   helper_method :public_band_url
   helper_method :public_fan_url
   helper_method :public_fan_ical_url
@@ -39,6 +40,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in_admin
   helper_method :display_404
   helper_method :display_500
+  helper_method :public_metro_url
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
@@ -124,6 +126,25 @@ class ApplicationController < ActionController::Base
     object.page_views += 1
     object.no_update
     object.save
+  end
+  
+  # Get link to the correct metro
+  def public_metro_url(metro)
+    url = url_for(:controller => "public", :action => "metro", :metro => metro)
+    return url
+  end
+  
+  # Get the public URL for this object or nil
+  # if not found
+  def public_url(obj)
+    return nil if obj.nil?
+    
+    return public_fan_url(obj) if obj.kind_of?(Fan)
+    return public_band_url(obj) if obj.kind_of?(Band)
+    return public_show_url(obj) if obj.kind_of?(Show)
+    return public_venue_url(obj) if obj.kind_of?(Venue)
+    return public_photo_url(obj, "preview") if obj.kind_of?(Photo)
+    return nil
   end
   
   # Return the URL of the band, which can be passed

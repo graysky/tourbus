@@ -164,14 +164,6 @@ class BandPublicController < ApplicationController
     render :text => ical_feed
   end
   
-  # Javascript for badge
-  def js
-    # Get the contents for the badge
-    badge = get_html_badge(@band, params)
-            
-    render :text => badge
-  end
-  
   private
 
   def get_ical_items

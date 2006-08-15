@@ -90,14 +90,6 @@ class FanPublicController < ApplicationController
     send_badge(get_image_badge(@fan))
   end
   
-  # Javascript for badge
-  def js
-    # Get the contents for the badge
-    badge = get_html_badge(@fan, params)
-            
-    render :text => badge
-  end
-    
   def invite
     return if @request.get?
     return if @fan.nil?
@@ -120,6 +112,22 @@ class FanPublicController < ApplicationController
       # There was an error sending
       render :text => msg
     end
+  end
+  
+  # Javascript for badge
+  def js
+    
+    #key = {:action => 'js', :part => "fan_js_#{params['n']}"}
+
+    #when_not_cached(key, 5.minutes.from_now) do
+      # Fetch and cache the RSS items
+      #get_rss_items(sort_by.to_sym)
+    #end
+  
+    # Get the contents for the badge
+    badge = get_html_badge(@fan, params)
+            
+    render :text => badge
   end
   
   # RSS feed for the fan

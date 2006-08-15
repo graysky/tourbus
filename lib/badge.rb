@@ -27,7 +27,7 @@ module Badge
     
     # Render the template for the response
     html = render_to_string(:partial => "badge/html_badge", :layout => false,
-            :locals => { :shows => shows, })
+            :locals => { :shows => shows, :owner => obj })
     
     # Remove new lines
     html.gsub!(/\r/, '')

@@ -3,6 +3,8 @@
 # NOTE: Careful -- allow double-quotes need to be escaped!
 # Params:
 # shows => array of shows to include
+# owner => the owner of the feed
+# key => they key to cache on
 text_limit = 28
 %>
 <div id='tb_badge'>
@@ -16,5 +18,6 @@ text_limit = 28
 <span id='tb_venue'>@ <a href='<%= public_venue_url(show.venue)%>'><%= truncate(show.venue.name, text_limit) %></a></span>
 </p>
 <% end -%>
+<div id='tb_footer'>more at <a href='<%= public_url(owner) %>'><%= truncate(owner.name, text_limit) %>'s profile</a></div>
 </div>
 </div>

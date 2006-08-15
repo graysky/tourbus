@@ -21,12 +21,6 @@ module ApplicationHelper
     link_to(text, public_show_url(show))
   end
 
-  # Get link to the correct metro
-  def public_metro_url(metro)
-    url = url_for(:controller => "public", :action => "metro", :metro => metro)
-    return url
-  end
-
   def public_metro_link(text, metro)
     link_to(text, public_metro_url(metro))
   end
@@ -49,10 +43,18 @@ module ApplicationHelper
     date.strftime("%a %m/%d")
   end
   
-  # Output like: "Tuesday 09/15"
+  # Output like: "Tuesday 9/12"
   def friendly_date2(date)
     return "" if date.nil?
-    date.strftime("%A %m/%d")
+    day = date.strftime("%A")
+    month = date.strftime("%m")
+    month.sub!(/^0/, '')
+
+    dom = date.strftime("%d")
+    # Strip off any leading "0" padding
+    dom.sub!(/0/, '')
+    s = "#{day} #{month}/#{dom}"
+    return s
   end
   
   def friendly_time(date)

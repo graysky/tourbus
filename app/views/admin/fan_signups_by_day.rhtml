@@ -1,0 +1,33 @@
+<div id="main">
+
+<% @page_title = "Fan Signups By Day" %>
+<% @header_title = "Fan Signups By Day" %>
+
+<p>
+
+<table border="1" cellpadding="2" width="80%">
+
+<tr>
+<th>Date</th>
+<th>Signups</th>
+
+</tr>
+
+<% 
+  for fan in @fans
+%>
+  <tr>
+    <td><%= fan.attributes["date"] %>
+    <td><%= fan.attributes["count"] %>
+  </tr>
+<% end %>
+
+</table>
+
+</p>
+
+</div>
+
+<div id="side">
+
+</div>

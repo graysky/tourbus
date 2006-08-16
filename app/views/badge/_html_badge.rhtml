@@ -9,15 +9,14 @@ text_limit = 28
 %>
 <div id='tb_badge'>
 <div id='tb_header'> 
-<p><span id='tb_title'><a href='http://tourb.us'>tourb.us</a> shows</span></p>
+<a href='http://tourb.us'>tourb.us</a> shows
 </div>
-<div id='tb_shows'>
 <% shows.each do |show| %>
-<p><span id='tb_date'><%= friendly_date2(show.date) %></span><br/>
+<div id='tb_show'>
+<div id='tb_date'><%= friendly_date2(show.date) %></div>
 <span id='tb_name'><a href='<%= public_show_url(show)%>'><%= truncate(show.name, text_limit) %></a></span> 
-<span id='tb_venue'>@ <a href='<%= public_venue_url(show.venue)%>'><%= truncate(show.venue.name, text_limit) %></a></span>
-</p>
+<span id='tb_venue'>@ <a href='<%= public_venue_url(show.venue)%>'><%= truncate(show.venue.name, text_limit) %></a></span><br/>
+</div>
 <% end -%>
 <div id='tb_footer'>more at <a href='<%= public_url(owner) %>'><%= truncate(owner.name, text_limit) %>'s profile</a></div>
-</div>
 </div>

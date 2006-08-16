@@ -52,7 +52,7 @@ module ApplicationHelper
 
     dom = date.strftime("%d")
     # Strip off any leading "0" padding
-    dom.sub!(/0/, '')
+    dom.sub!(/^0/, '')
     s = "#{day} #{month}/#{dom}"
     return s
   end

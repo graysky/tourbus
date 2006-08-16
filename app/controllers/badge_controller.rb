@@ -41,7 +41,7 @@ class BadgeController < ApplicationController
     
     # CSS styles to pick from
     @styles = {}
-    @styles['blackwhite'] = get_badge_style("badge/badge_style_blackwhite")
+    @styles['simple'] = get_badge_style("badge/badge_style_simple")
     @styles['tourbus'] = get_badge_style("badge/badge_style_tourbus")
     
     @shows = obj.upcoming_shows

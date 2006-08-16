@@ -43,7 +43,7 @@ function get_style(key) {
    var styles = {};
    // Add all styles here
    styles.tourbus = "<%= @styles['tourbus'] -%>";
-   styles.blackwhite = "<%= @styles['blackwhite'] -%>";
+   styles.simple = "<%= @styles['simple'] -%>";
    
    return styles[key];
 }
@@ -105,8 +105,8 @@ then copy and paste the generated code snippet into your site. The list as you a
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Badge Style</span>
 
 <p><select id="css-style" onchange="update_snippet();">
-  <option value="blackwhite" selected="selected">black and white</option>
-  <option value="tourbus">tourb.us colors</option>
+  <option value="simple" selected="selected">simple style</option>
+  <option value="tourbus">tourb.us style</option>
 </select>
 
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Get The Code</span>

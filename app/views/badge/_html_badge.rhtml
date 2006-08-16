@@ -7,6 +7,7 @@
 # key => they key to cache on
 text_limit = 28
 %>
+<% cache(key) do %>
 <div id='tb_badge'>
 <div id='tb_header'> 
 <a href='http://tourb.us'>tourb.us</a> shows
@@ -20,3 +21,4 @@ text_limit = 28
 <% end -%>
 <div id='tb_footer'>more at <a href='<%= public_url(owner) %>'><%= truncate(owner.name, text_limit) %>'s profile</a></div>
 </div>
+<% end %>

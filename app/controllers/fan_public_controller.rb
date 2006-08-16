@@ -117,16 +117,17 @@ class FanPublicController < ApplicationController
   # Javascript for badge
   def js
     
-    #key = {:action => 'js', :part => "fan_js_#{params['n']}"}
+    num = params['n'] || 5 # Default to 5 shows
+    
+    key = {:action => 'js', :part => "fan_js_#{num}"}
 
-    #when_not_cached(key, 5.minutes.from_now) do
-      # Fetch and cache the RSS items
-      #get_rss_items(sort_by.to_sym)
-    #end
-  
-    # Get the contents for the badge
-    badge = get_html_badge(@fan, params)
-            
+    when_not_cached(key, 4.hours.from_now) do
+      # Get the shows to display only when cache is cold
+      @shows = @fan.upcoming_shows.first(num.to_i)
+    end
+    
+    # Get the contents for the badge  
+    badge = get_html_badge(@fan, @shows, key)
     render :text => badge
   end
   
@@ -140,7 +141,7 @@ class FanPublicController < ApplicationController
         
     key = {:action => 'rss', :part => "fan_feed_#{sort_by.to_s}"}
 
-    when_not_cached(key, 90.minutes.from_now) do
+    when_not_cached(key, 120.minutes.from_now) do
       # Fetch and cache the RSS items
       get_rss_items(sort_by.to_sym)
     end

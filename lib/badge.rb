@@ -14,20 +14,13 @@ module Badge
   # Get the HTML badge for the supplied object according
   # to the defined parameters.
   # obj => object that responds to :upcoming_shows
-  # params => optional parameters to control display
-  #   Params that can be understood:
-  #   n => number of shows
-  # 
-  def get_html_badge(obj, params)
-    
-    num = params['n'] || 5 # Default to 5 shows
-    
-    # Get the shows to display
-    shows = obj.upcoming_shows.first(num.to_i)
+  # shows => the shows to list
+  # key => the key for the cache
+  def get_html_badge(obj, shows, key)
     
     # Render the template for the response
     html = render_to_string(:partial => "badge/html_badge", :layout => false,
-            :locals => { :shows => shows, :owner => obj })
+            :locals => { :shows => shows, :owner => obj, :key => key })
     
     # Remove new lines
     html.gsub!(/\r/, '')

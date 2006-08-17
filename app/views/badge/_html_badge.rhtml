@@ -12,6 +12,11 @@ text_limit = 28
 <div id='tb_header'> 
 <a href='http://tourb.us'>tourb.us</a> shows
 </div>
+<% if shows.empty? %>
+<div id='tb_show'>
+<div id='tb_date'>No upcoming shows</div>
+</div>
+<% end %>
 <% shows.each do |show| %>
 <div id='tb_show'>
 <div id='tb_date'><%= friendly_date2(show.date) %></div>

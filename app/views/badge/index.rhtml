@@ -44,6 +44,9 @@ function get_style(key) {
    // Add all styles here
    styles.tourbus = "<%= @styles['tourbus'] -%>";
    styles.simple = "<%= @styles['simple'] -%>";
+   styles.blackwhite = "<%= @styles['blackwhite'] -%>";
+   styles.blue = "<%= @styles['blue'] -%>";
+   styles.pink = "<%= @styles['pink'] -%>";
    
    return styles[key];
 }
@@ -88,18 +91,24 @@ function update_snippet() {
 <p><span class="generic_title">Share Your Upcoming Shows</span>
 
 <p>Share your list of upcoming shows on your site! Just choose how you want it to look,
-then copy and paste the generated code snippet into your site. The list as you add new shows.
+then copy and paste the generated code snippet into your site.</p>
+
+<p>Your badge will automatically 
+be updated when you add new shows. (Your badge will slightly lag recent changes you've made to your list
+of upcoming shows. No worries though, it will update soon.)
 </p>
 
 <%= form_tag( { :action => "fake-action" }, :onsubmit => "update_snippet(); return false") %>
 
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Number of Upcoming Shows</span>
 
-<p><select id="num-shows" style="width:80px;" onchange="update_snippet();">
+<p><select id="num-shows" style="width:100px;" onchange="update_snippet();">
   <option value="3">three</option>
+  <option value="4">four</option>
   <option value="5" selected="selected">five</option>
+  <option value="8">eight</option>
   <option value="10">ten</option>
-  <option value="100">all</option>
+  <option value="100">all upcoming</option>
 </select>
 
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Badge Style</span>
@@ -107,6 +116,9 @@ then copy and paste the generated code snippet into your site. The list as you a
 <p><select id="css-style" onchange="update_snippet();">
   <option value="simple" selected="selected">simple style</option>
   <option value="tourbus">tourb.us style</option>
+  <option value="blackwhite">black and white style</option>
+  <option value="pink">pink style</option>
+  <option value="blue">blue style</option>
 </select>
 
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Get The Code</span>

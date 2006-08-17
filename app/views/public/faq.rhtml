@@ -19,8 +19,9 @@ is that tourb.us will have the most complete list of the live music around, and 
 
 <p>Initially we're focusing on the music scenes in <%= link_to("Boston", :controller => "public", :action => "metro", :metro => "boston")%>, 
 <%= link_to("Seattle", :controller => "public", :action => "metro", :metro => "seattle")%>, <%= link_to("Austin", :controller => "public", :action => "metro", :metro => "austin")%>,
-<%= link_to("Chicago", :controller => "public", :action => "metro", :metro => "chicago")%>, <%= link_to("Los Angeles", :controller => "public", :action => "metro", :metro => "la")%> and 
-the <%= link_to("Bay Area", :controller => "public", :action => "metro", :metro => "sf")%>, and are continuing to expand coverage. If you know of good lists of shows online 
+<%= link_to("Chicago", :controller => "public", :action => "metro", :metro => "chicago")%>, <%= link_to("Los Angeles", :controller => "public", :action => "metro", :metro => "la")%>,
+<%= link_to("New York", :controller => "public", :action => "metro", :metro => "nyc")%> and the <%= link_to("Bay Area", :controller => "public", :action => "metro", :metro => "sf")%>, 
+and are continuing to expand coverage. If you know of good lists of shows online 
 in your area (like the website of a club or a scene), definitely let us know and we'll get it added post-haste! Unless it is for hippies. Oh ok, them too. 
 
 <p>Any website that has a good list of shows can be added to our index. We don't require the information to
@@ -35,8 +36,8 @@ encourage. We need your help to build a better way to find great music by bands 
 
 <p>We find lots of bands when we collect shows from the web, and we might have found your band (which we've heard kicks ass).
 If you'd like to claim it so that you can manage it, please send us mail at 
-<a href="mailto:feedback@tourb.us">feedback@tourb.us</a> and we can get you set up.
-
+<a href="mailto:feedback@tourb.us">feedback@tourb.us</a> and we can get you set up. And if you're in a band we haven't
+discovered yet, you can <%= link_to("signup your band", :controller => "signup", :action => "band")%> to list your shows.
 
 <h2>Got anything for my blog, website or MySpace page?</h2>
 
@@ -45,7 +46,15 @@ Simply download the image (or copy this <a href="http://tourb.us/images/button.p
 
 <p><%= image_tag "button.png" %>
 
-<p>If you'd like a badge with more flare, we have one that lists the next three upcoming shows you're interested in attending. 
+<p>If you'd like a badge with more flare, you can <%= link_to("build a badge", :controller => "badge", :action => "index")%>
+that you can include on your site. The badge builder will show a preview of how it will look on your site. Here's how the badge that's on 
+<a href="http://blog.tourb.us">our blog</a> looks like:
+
+<!-- Start tourb.us badge -->
+<style type="text/css">div#tb_badge {width:200px;margin:0;padding: 6px 0 0 0;border:1px solid black; background-color:#484A4C;}div#tb_header {padding:0px 0px 10px 0px; margin:0px 0px 0px 20px;font:bold 16px Verdana, Arial, sans-serif; color: #ccc; }div#tb_header a {font:bold 16px Verdana, Arial, sans-serif; color: #94C28A; text-decoration: none;}div#tb_show {margin:0 0 10px 0; padding:0 3px 0 3px; }div#tb_date {font:bold 10px Verdana, Arial, sans-serif; color:white; }#tb_name a {font:normal 10px Verdana, Arial, sans-serif; color: #94C28A; font-weight:bold }#tb_venue {font:normal 10px Verdana, Arial, sans-serif; color:white; }#tb_venue a {font:normal 10px Verdana, Arial, sans-serif; color: #94C28A; }div#tb_footer {margin:0 0 4px 10px;font:normal 10px Verdana, Arial, sans-serif; color: white}div#tb_footer a {font:normal 10px Verdana, Arial, sans-serif; color: #94C28A }</style>
+<script language="JavaScript" src="http://tourb.us/fan/tourbus/js?n=3" type="text/javascript"></script>
+
+<p>If you'd like a badge that works on MySpace, we have one that lists the next three upcoming shows you're interested in attending. 
 It looks just like this:
 
 <p><%= image_tag "example_badge.jpg" %>
@@ -66,7 +75,7 @@ for your real username. Then sit back and have a cold beverage of your choice.
 <h2>Who is behind this thing?</h2>
 
 <p>This site is developed by <a href="http://tourb.us/fan/mike">Mike Champion</a> and <a href="http://tourb.us/fan/gary">Gary Elliott</a>. 
-Just <a href="http://www.thelonelyisland.com/just2guyz.html">two guys</a> who like music and hacking.
+Just two guys who like music and hacking.
 
 <h2>Can I wear tourb.us?</h2>
 

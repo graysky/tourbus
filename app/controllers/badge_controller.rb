@@ -43,6 +43,9 @@ class BadgeController < ApplicationController
     @styles = {}
     @styles['simple'] = get_badge_style("badge/badge_style_simple")
     @styles['tourbus'] = get_badge_style("badge/badge_style_tourbus")
+    @styles['blackwhite'] = get_badge_style("badge/badge_style_blackwhite")
+    @styles['pink'] = get_badge_style("badge/badge_style_pink")
+    @styles['blue'] = get_badge_style("badge/badge_style_blue")
     
     @shows = obj.upcoming_shows
   end
@@ -69,8 +72,6 @@ class BadgeController < ApplicationController
     css.gsub!(/\n/, '')
     css.gsub!(/\r/, '')
     css.gsub!(/\r\n/, '')
-    #logger.warn "Badge CSS is: [#{css}]"
-    #puts "AFTER Badge CSS is: [#{css}]"
     return css
   end
   

@@ -2,14 +2,13 @@ require_dependency 'show_creator'
 require_dependency 'ical'
 require_dependency 'badge'
 
-
 # Controller for the public page of a band.
 class BandPublicController < ApplicationController
   include ShowCreator
   include Ical
   include Badge
   
-  session :off, :only => [:rss, :ical, :external_map]
+  session :off, :only => [:rss, :ical, :external_map, :js]
   before_filter :find_band, :except => :no_such_band
   helper :show
   helper :map
@@ -19,7 +18,7 @@ class BandPublicController < ApplicationController
   helper :feed
   helper :portlet
   
-  layout "public", :except => [:rss, :ical, :add_link, :edit_link, :delete_link ] 
+  layout "public", :except => [:rss, :ical, :add_link, :edit_link, :delete_link, :js ] 
   upload_status_for :change_logo
   
   # The the band homepage
@@ -125,6 +124,22 @@ class BandPublicController < ApplicationController
   def external_map
     @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now])
     render :layout => "iframe"
+  end
+  
+  # Javascript for badge
+  def js
+    num = params['n'] || 5 # Default to 5 shows
+    
+    key = {:action => 'js', :part => "band_js_#{num}"}
+
+    when_not_cached(key, 4.hours.from_now) do
+      # Get the shows to display only when cache is cold
+      @shows = @band.upcoming_shows.first(num.to_i)
+    end
+    
+    # Get the contents for the badge  
+    badge = get_html_badge(@band, @shows, key)
+    render :text => badge
   end
   
   # RSS feed for the band

@@ -7,13 +7,23 @@
 %>
 
 <script type="text/javascript">
+  function begin_comment_submit()
+  {
+    // Show progress and disable button
+    Element.show('comment_indicator');
+    $("comment-commit").disabled = true;    
+  }
+  
   function finish_comment_submit()
   {
+    // Re-enable comment form
+    Element.hide('comment_indicator');
+    $("comment-commit").disabled = false;
+    
     $("comment_body").value = '';
     if ($('no_comments_msg')) {
         $('no_comments_msg').innerHTML = '';
     }
-    
   }
 </script>
 
@@ -52,9 +62,9 @@
        </td>
      </tr>
      <tr class="submit">
-      <td align="right"></td>
+      <td align="right"><div id="comment_indicator" style="display:none"><img src="/images/indicator.gif"/> Posting...</div></td>
       <td>
-        <%= submit_tag "Post Comment" %>
+      <input id="comment-commit" name="commit" onclick="begin_comment_submit()" type="submit" value="Post Comment" />
       </td>
     </tr>
    </table>  

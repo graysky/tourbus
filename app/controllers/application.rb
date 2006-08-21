@@ -45,6 +45,9 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :login_from_cookie
 
+  # Disable password logging
+  filter_parameter_logging "password"
+
   # Use UTF charsets. From:
   # http://wiki.rubyonrails.org/rails/pages/HowToUseUnicodeStrings
   def configure_charsets

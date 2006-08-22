@@ -33,13 +33,22 @@
   subject_url = public_band_url(subject) if p.band
   subject_url = public_show_url(subject) if p.show
   subject_url = public_venue_url(subject) if p.venue
+
+  if !p.filename.nil?
+    photo_url = public_photo_url(p, 'preview')
+    photo_name = p.filename
+  else
+    photo_url = ""
+    photo_name = "<font color='red'><b>invalid photo</b></font>"
+  end
+
 %>
   <tr>
     <td><%= p.id %>
     <td><%= "#{slash_date(p.created_on)} #{friendly_time(p.created_on)}" %></td>
     <td><a href="<%= poster_url %>"><%= poster.name if !poster.nil? %></a></td>
     <td><a href="<%= subject_url %>"><%= subject.name %></a></td>
-    <td><a href="<%= public_photo_url(p, 'preview') %>"><%= p.name %></a></td>
+    <td><a href="<%= photo_url %>"><%= photo_name %></a></td>
     <td><%= truncate(simple_format(p.description), 50) %></td>
   </tr>
 <% end %>

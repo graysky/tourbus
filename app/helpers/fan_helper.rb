@@ -10,6 +10,8 @@ module FanHelper
   end
   
   def fan_results(fans, show_status = false)
+    return unless fans
+    
     out = "<div class='search_results'>"
     index = 0
     for fan in fans 

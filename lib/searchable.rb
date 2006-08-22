@@ -330,8 +330,8 @@ module FerretMixin
         protected
         
         # Override for type-specific fields
-        def add_searchable_fields
-          []
+        def add_searchable_fields(xml)
+          
         end
         
         # Override for type-specific contents

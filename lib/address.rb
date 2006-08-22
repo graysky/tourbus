@@ -173,5 +173,13 @@ module Address
       return self.city + ", " + self.state if self.city != "" and self.state != ""
       return ""
     end
+    
+    def city_state
+      if self.city != "" and self.state != ""
+        return self.city + ", " + self.state 
+      end
+      
+      return "" 
+    end
   end
 end

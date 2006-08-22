@@ -16,6 +16,9 @@
           <strong>status:</strong> <%= fan.attributes["attending"] == "1" ? "YES" : "MAYBE" %><br/>
           </nobr>
         <% end%>
+      <% if fan.city_state != "" %>
+      <strong>location:</strong> <%= fan.city_state %><br/>
+      <% end %>
       </td>
     </tr>
   </table>

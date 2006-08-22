@@ -16,6 +16,8 @@
 <% if @logged_in_as_fan %>
     <span class="normal">|</span>
 	<%= link_to "Respond To Friend Requests", :controller => 'fan', :action => :friend_requests %>
+	<span class="normal">|</span>
+	<%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
 <% end %>
 </div>
 <br/>

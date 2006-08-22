@@ -51,6 +51,8 @@ class Fan < ActiveRecord::Base
   include MobileAddress
   
   acts_as_password_protected
+  acts_as_searchable
+  
   file_column :logo, :magick => { :geometry => "200x300>" }
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr, :dependent => true
@@ -324,6 +326,15 @@ class Fan < ActiveRecord::Base
             ["1 day", 1440], ["2 days", 2880], ["3 days", 4320], ["5 days", 7200],
             ["7 days", 10080], ["10 days", 14400], ["14 days", 20160]
           ]
+  end
+
+  def add_searchable_contents
+    contents = self.city_state + ' ' + self.zipcode
+  end
+  
+  def add_searchable_fields(xml)
+    xml.field(self.latitude, :name => "latitude")
+    xml.field(self.longitude, :name => "longitude")
   end
 
 end

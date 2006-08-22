@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
         fan.last_login = Time.now
         logger.info "Fan #{fan.name} logged in from a cookie"
         
-        set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true')
+        set_location_defaults(fan.location, fan.default_radius, 'false', 'true', 'true', 'false')
         fan.save
         
         @session[:logged_in_as_downtree] = logged_in_as_downtree?
@@ -344,12 +344,13 @@ class ApplicationController < ActionController::Base
   FAKE_PASSWORD = "******"
   
   # Set the defaults for the user's location for searching and browsing
-  def set_location_defaults(loc, radius, only_bands, only_shows, only_venues)
+  def set_location_defaults(loc, radius, only_bands, only_shows, only_venues, only_fans)
     @session[:location] = loc
     @session[:radius] = radius
     @session[:only_local_bands] = only_bands
     @session[:only_local_shows] = only_shows
     @session[:only_local_venues] = only_venues
+    @session[:only_local_fans] = only_fans
   end
   
   def show_subscription_urls(rss_action, ical_action, sparams = {})

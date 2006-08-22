@@ -38,7 +38,7 @@ module Geosearch
     return if logged_in_fan or @session[:location]
     
     # TODO Could attempt to figure out the users location
-    set_location_defaults('', '', 'false', 'false', 'false')
+    set_location_defaults('', '', 'false', 'false', 'false', 'false')
   end
   
   # A bit of a hack, but create the session key to use with the type name

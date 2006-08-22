@@ -43,6 +43,9 @@ class FanController < ApplicationController
       flash.now[:error] = e.to_s
     end
     
+    # We don't want to fail the action if the indexing fails
+    @fan.ferret_save
+    
   end
   
   # Send a test SMS message

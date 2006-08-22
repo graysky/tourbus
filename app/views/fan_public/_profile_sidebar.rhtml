@@ -147,7 +147,13 @@
 	   <p><strong><%= @fan.name %> has no friends</strong></p>
 	  <% else %>
 	   <%= tiny_fan_results(@fan.friends.random(5)) %>
-	   <p><%= link_to 'Show all friends', :action => :friends %></p>
+	   <p>
+	       <%= link_to 'Show all friends', :action => :friends %>
+	       <% if @logged_in_as_fan %>
+		       <br/>
+		       <%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
+	       <% end %>
+	   </p>
 	  <% end %>
 	  
 	  <% if @logged_in_as_fan %>

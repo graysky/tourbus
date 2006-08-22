@@ -4,6 +4,7 @@ require_dependency 'geosearch'
 class FindController < ApplicationController
   include Geosearch
   include Ical
+  include FanLoginSystem
   
   layout "public"
   helper :show
@@ -12,6 +13,7 @@ class FindController < ApplicationController
   helper :feed
   helper_method :only_local_session_key
   before_filter :check_location_defaults, :except => [:set_location_radius, :toggle_only_local]
+  before_filter :fan_login_required, :only => [:fan]
   session :off, :only => [:shows_rss]
   
   # Search
@@ -70,6 +72,36 @@ class FindController < ApplicationController
     
     begin
       @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+      paginate_search_results(count)
+    rescue Exception => e
+      handle_search_exception(e)
+      return
+    end
+  end
+  
+  def fan
+    return if request.get? and params[:query].nil?
+    
+    query, radius, lat, long = prepare_query(Fan.table_name)
+    return if query.nil?
+    
+    # If we think it's an email address look for an exact match.
+    if query.index('@')
+      fan = Fan.find_by_contact_email(query)
+      if fan
+        redirect_to public_fan_url(fan)
+        return
+      end
+    end
+    
+    begin
+      @results, count = Fan.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+      
+      if @results.empty? && !Address.is_zip?(query)
+        # Try a fuzzy query so we get partial screennames
+        @results, count = Fan.ferret_search_date_location(query + '~', nil, lat, long, radius, default_search_options)
+      end
+      
       paginate_search_results(count)
     rescue Exception => e
       handle_search_exception(e)

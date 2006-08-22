@@ -1,0 +1,74 @@
+<%
+# Set the page title correctly
+title = "Find Fans"
+
+if params[:query] and params[:query] != ""
+  @page_title = "Search results for \"#{params[:query]}\"" 
+else
+  @page_title = title
+end
+
+@header_title = @page_title
+%>
+
+<% content_for("head") do %>
+    <%= javascript_include_tag "find.js" %>
+<% end %>
+<% content_for("onload") do %>
+  init_focus()
+<% end %>
+<script type="text/javascript">
+  function init_focus() {
+    elem = $('query')
+    if (elem != undefined)
+      elem.focus();
+  }
+</script>
+
+<% type = Fan.table_name %>
+<div id="main">
+
+<div class="search_results">
+
+<center>
+
+<%= start_form_tag :action => params[:action] %>
+
+<% if params[:action] == 'fan' %>
+<table>
+<tr><th>Search:</th>
+<td><%= text_field_tag 'query', params[:query], :size => 30 %></td>
+<td class="submit"><%= submit_tag 'Search' %></td>
+</tr>
+<tr><td></td><td colspan="2"><span class="field_info">Email address, location, screenname</span></td></tr>
+</table>
+<% end %>
+
+</center>
+
+<%= render :partial => "hidden_form", :type => type %>
+<%= end_form_tag %>
+
+<h3>
+  <% if @results and @results.size > 0 %>
+    <%= 
+      'Search Results' + search_results_suffix(type)
+    %>
+  <% elsif not (request.get? and params[:query].nil?) %>
+    No results found<%= search_results_suffix(type) %> 
+  <% end %>
+</h3>
+<br/>
+
+<%= fan_results(@results) %>
+
+<%= render :partial => "paging" %>
+
+</div>
+</div>
+
+<div id="side">
+  <%= render :partial => "location_box", :locals => { :type => type } %>
+</div>
+
+

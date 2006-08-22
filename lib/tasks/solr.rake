@@ -13,6 +13,8 @@ namespace :solr do
       Venue.index_all
       puts "Re-indexing shows..."
       Show.index_all
+      puts "Re-indexing fans..."
+      Fan.index_all
 END
     
     system "ruby ./script/runner '#{cmd}'"

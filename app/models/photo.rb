@@ -105,10 +105,12 @@ class Photo < ActiveRecord::Base
   end
  
   def before_destroy
-    File.delete(path_to_file)
+    file_path = path_to_file
+    File.delete(file_path) unless file_path.nil?
     
     VERSIONS.each do |version|
-      File.delete(path_to_version_file(version[:name]))
+      version_path = path_to_version_file(version[:name])
+      File.delete(version_path) unless version_path.nil?
     end
   end
   
@@ -126,6 +128,9 @@ class Photo < ActiveRecord::Base
       raise ArgumentError.new("No suitable type for the photo")
     end
  
+    # Handle invalid case seen in production
+    return nil if file.nil? 
+    
     base + type + "/" + file
   end
   
@@ -144,8 +149,12 @@ class Photo < ActiveRecord::Base
   end
   
   def path_to_version_file(name, include_base = true)
-    filename = name ? name + "-" + self.filename : self.filename
-    path_to_file(filename, include_base)
+    if !self.filename.nil?
+      filename = name ? name + "-" + self.filename : self.filename
+      path_to_file(filename, include_base)
+    else
+      nil
+    end
   end
   
   def sanitize_filename(name)

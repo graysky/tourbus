@@ -27,6 +27,13 @@
   poster_url = public_fan_url(p.created_by_fan) if p.created_by_fan
   poster_url = public_band_url(p.created_by_band) if p.created_by_band
   
+  # The name of the photo poster
+  if !poster.nil?
+    poster_name = poster.name
+  else
+    poster_name = "<font color='red'><b>invalid photo</b></font>"
+  end
+  
   # Get subject info
   subject = p.band || p.show || p.venue
   subject_url = "invalid subject!" if subject.nil?
@@ -46,7 +53,7 @@
   <tr>
     <td><%= p.id %>
     <td><%= "#{slash_date(p.created_on)} #{friendly_time(p.created_on)}" %></td>
-    <td><a href="<%= poster_url %>"><%= poster.name if !poster.nil? %></a></td>
+    <td><a href="<%= poster_url %>"><%= poster_name %></a></td>
     <td><a href="<%= subject_url %>"><%= subject.name %></a></td>
     <td><a href="<%= photo_url %>"><%= photo_name %></a></td>
     <td><%= truncate(simple_format(p.description), 50) %></td>

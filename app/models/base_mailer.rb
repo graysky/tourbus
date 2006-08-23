@@ -62,7 +62,10 @@ class BaseMailer < ActionMailer::Base
   def email_signoff
     str = ""
     str << "<p>rock on,<br/>"
-    str << "the <a href='http://tourb.us'>tourb.us</a> team</p>"
+    str << "the <a href='http://tourb.us'>tourb.us</a> team"
+    # Rotate an ad
+    str << "<br/>----<br/>"
+    str << "have a blog? share your shows! <a href='http://tourb.us/badge'>http://tourb.us/badge</a>"
     return str
   end
   

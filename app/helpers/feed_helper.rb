@@ -103,17 +103,17 @@ module FeedHelper
       attending = fan.friends_going(show)
     
       attending_friends = attending.map { |fan| 
-      "<a href='"+ public_fan_url(fan)+ "'>"+fan.name+"</a>"
+      "<a href=\""+ public_fan_url(fan)+ "\">"+fan.name+"</a>"
         }.join(" / ")
       
       if attending_friends.size > 0
-        desc << "<p><b>Friends Attending:</b> #{h(attending_friends)}</p>"
+        desc << "<p><b>Friends Attending:</b> #{attending_friends}</p>"
       end
     end
     
     desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a></p>"
     
-    xml << "<description>#{desc}</description>"
+    xml << "<description>#{cdata_escape(desc)}</description>"
     return xml
   end
   
@@ -122,7 +122,7 @@ module FeedHelper
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
     xml << "<pubDate>#{rss_format_time(comment.created_on)}</pubDate>"
-    xml << "<description>#{simple_format( h(sanitize(comment.body)) )}</description>"
+    xml << "<description>#{cdata_escape(simple_format( h(sanitize(comment.body))))}</description>"
     return xml
   end
   
@@ -135,7 +135,13 @@ module FeedHelper
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     s << "<br/>#{simple_format(h(sanitize(photo.description)))}"
 
-    xml << "<description>#{s}</description>"
+    xml << "<description>#{cdata_escape(s)}</description>"
     return xml
   end  
+  
+  # Wrap description in CDATA to allow embedding HTML
+  def cdata_escape(str)
+    return "<![CDATA[#{str}]]>"
+  end
+  
 end

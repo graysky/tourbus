@@ -77,6 +77,7 @@ class FanController < ApplicationController
     # or used the back button (stupid ajax!)
     if !@fan.favorite?(band)
       @fan.add_favorite(band)
+      @fan.watch_upcoming([band])
       
       Fan.transaction(@fan) do
         Band.transaction(band) do

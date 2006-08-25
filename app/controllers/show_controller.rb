@@ -63,18 +63,22 @@ class ShowController < ApplicationController
   # Search for a venue as part of adding a show
   def venue_search
     name = params[:venue_search_term]
-    name = params[:name] if name.nil? or name == ""
-    name.strip!
+    name = params[:name] if name.nil? || name == ""
  
     if name && name != ""
-      params[:query] = name + '*'
+      params[:query] = name.strip + '*'
       query, radius, lat, long = prepare_query(Venue.table_name, params[:location], params[:radius], true)
       if query.nil?
         @results = []
         count = 0
       else
-        @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
-        paginate_search_results(count)
+        begin
+          @results, count = Venue.ferret_search_date_location(query, nil, lat, long, radius, default_search_options)
+          paginate_search_results(count)
+        rescue
+          @results = []
+          count = 0
+        end
       end
     else
       @results = []

@@ -29,6 +29,7 @@ class FeedbackMailer < BaseMailer
     
     @body["sent"] = "#{sent_at}"
     @body["fan"] = fan.nil? ? "Anonymous" : fan.name
+    @body["fan_email"] = fan.nil? ? "no email" : fan.contact_email
     @body["type"] = type
     @body["id"] = id
     @body["notes"] = notes

@@ -18,8 +18,6 @@ class FindController < ApplicationController
   
   # Search
   def band
-    return if request.get? and params[:query].nil?
-    
     query, radius, lat, long = prepare_query(Band.table_name)
     return if query.nil?
     
@@ -36,8 +34,6 @@ class FindController < ApplicationController
   end
 
   def show
-    return if request.get? and params[:query].nil?
-    
     if params[:radius] and params[:location] and !params[:location].blank?
       # Search came from the front page
       do_set_location_radius
@@ -65,8 +61,6 @@ class FindController < ApplicationController
   end
   
   def venue
-    return if request.get? and params[:query].nil?
-    
     query, radius, lat, long = prepare_query(Venue.table_name)
     return if query.nil?
     
@@ -79,9 +73,7 @@ class FindController < ApplicationController
     end
   end
   
-  def fan
-    return if request.get? and params[:query].nil?
-    
+  def fan  
     query, radius, lat, long = prepare_query(Fan.table_name)
     return if query.nil?
     

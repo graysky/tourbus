@@ -4,6 +4,7 @@
   'tractor' => 785,
   'gorge amphitheatre' => 773,
   /showbox/ => 775,
-  /neumo/ => 779
+  /neumo/ => 779,
+  /corazon/ => 769
 }
 

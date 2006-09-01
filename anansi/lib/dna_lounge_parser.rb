@@ -5,6 +5,7 @@ require 'anansi/lib/rexml' # TEMP
 require 'anansi/lib/show_parser' # TEMP
 require 'anansi/lib/string' # TEMP
 
+# Parse for the DNA Lounge RSS feed
 class DnaLoungeParser < ShowParser
   include REXML
   
@@ -15,70 +16,57 @@ class DnaLoungeParser < ShowParser
       @show[:venue] = get_venue
       @show[:bands] = []
       
-      # Pull the date from the title, example: "Aug 17 (Thu): SF Drag King Contest"
-      date = item.elements[1].text.split('(')[0]
-      
-      @show[:date] = parse_as_date(date)
-      next unless @show[:date]
-      
-      @show[:source_link] = item.elements[2].recursive_text
-      
-      next if item.elements[3].nil?
-
-      # Text that includes band names      
-      text = item.elements[3].text
-
-      # Try to pull out the time
-      times = text.scan(/[0-9]?:?[0-9]?[0-9]pm/)
-      if !times.empty?
-        #puts "Times are: #{times}"
-        @show[:time] = times[0]
+      # Pull out the date
+      item.each_element("dnalounge:date") do |d|
+        date = d.text.split('(')[0]
+        @show[:date] = parse_as_date(date)
       end
       
-      # Need to handle:
-      # Main Room
-      # Lounge
-      # With DJs:
-      # Performing Live
-      idx = text.index('Main Room')
-      
-      if idx.nil?
-        idx = text.index('Performing Live')
+      # Parse the time
+      item.each_element("dnalounge:time") do |t|
+        #date = d.text.split('(')[0]
+        @show[:time] = parse_as_time(t.text)
       end
       
-      next if idx.nil?
-        
-      bands = text[idx, text.length]
-      # Switch to have bands seperated by commas
-      bands = HTML::strip_all_tags(bands.gsub('<BR>', ',')).split(',')
+      # More info link
+      item.each_element("dnalounge:flyer") do |flyer|
+        @show[:source_link] = flyer.text if !flyer.text.nil?
+      end
       
-      bands.each_with_index do |band, i|
-        band = probable_band(band, i, nil)
-        @show[:bands] << band if band
+      # Show title - should this be preamble?
+      item.each_element("dnalounge:title") do |title|
+        @show[:preamble] = title.text if !title.nil?
+      end
+      
+      # Price
+      item.each_element("dnalounge:price") do |price|
+        @show[:cost] = parse_as_cost(price.text)
+      end
+
+      # Get the bands
+      item.each_element("dnalounge:band") do |artist|
+        url = artist.attribute("href") || nil
+        band = probable_band(artist.text, 0, nil)
+        band[:url] = url.to_s if !url.nil?
+        @show[:bands] << band
+      end
+      
+      item.each_element("dnalounge:dj") do |dj|
+        url = dj.attribute("href") || nil
+        band = probable_band(dj.text, 0, nil)
+        band[:url] = url.to_s if !url.nil?
+        @show[:bands] << band
+      end
+      
+      item.each_element("dnalounge:performer") do |performer|
+        url = performer.attribute("href") || nil
+        band = probable_band(performer.text, 0, nil)
+        band[:url] = url.to_s if !url.nil?
+        @show[:bands] << band
       end
       
       next unless @show[:bands] && @show[:bands].size > 0
       @shows << @show
-      
-      # Try to pick up secondary lounge acts
-      idx = text.index('Lounge:')
-      
-      if !idx.nil?
-        @show2 = @show.clone
-        @show2[:bands] = nil # Clear out bands
-        bands = text[idx, text.length]
-        # Switch to have bands seperated by commas
-        bands = HTML::strip_all_tags(bands.gsub('<BR>', ',')).split(',')
-      
-        bands.each_with_index do |band, i|
-          band = probable_band(band, i, nil)
-          @show2[:bands] << band if band
-        end
-        
-        next unless @show2[:bands] && @show2[:bands].size > 0
-        @shows << @show2
-      end
-
     end
     
     @shows

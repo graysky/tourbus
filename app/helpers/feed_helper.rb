@@ -82,6 +82,7 @@ module FeedHelper
       
     xml = ""
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
+    xml << "<link>#{public_url(show)}</link>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
     bands = show.bands.map { |band| 
@@ -122,6 +123,7 @@ module FeedHelper
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
     xml << "<pubDate>#{rss_format_time(comment.created_on)}</pubDate>"
+    xml << "<link>#{public_url(comment)}</link>"
     xml << "<description>#{cdata_escape(simple_format( h(sanitize(comment.body))))}</description>"
     return xml
   end
@@ -131,7 +133,8 @@ module FeedHelper
     xml = ""
     xml << "<title>Photo from #{photo.created_by_name}</title>"
     xml << "<pubDate>#{rss_format_time(photo.created_on)}</pubDate>"
-
+    xml << "<link>#{public_url(photo)}</link>"
+    
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     s << "<br/>#{simple_format(h(sanitize(photo.description)))}"
 

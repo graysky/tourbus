@@ -158,6 +158,7 @@ class Site < MetaSite
     uri = URI.parse(urls[0])
     
     http = Net::HTTP.new(uri.host, uri.port)
+    set_http_defaults(http)
     
     # Visit each URL
     count = 0
@@ -172,6 +173,8 @@ class Site < MetaSite
       end
       
       http = Net::HTTP.new(uri.host, uri.port)
+      set_http_defaults(http)
+      
       # Visit the page
       
       debug "Crawling #{name} at #{uri.request_uri}"
@@ -307,6 +310,11 @@ class Site < MetaSite
     
     # No rule blocked us
     return true
+  end
+  
+  def set_http_defaults(http)
+    http.open_timeout = 30
+    http.read_timeout = 30
   end
   
   # Print debugging string if testing

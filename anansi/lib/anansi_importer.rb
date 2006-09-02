@@ -148,7 +148,6 @@ class AnansiImporter
   end
   
   def add_band(show, b)
-    # TODO preamble, etc
     short_name = Band.name_to_id(b[:name])
     band = Band.find_by_short_name(short_name)
     
@@ -354,15 +353,34 @@ class AnansiImporter
     # Assume we already have a venue id
     min = s[:date].hour * 60 + s[:date].min
     max = 24 * 60 - min
-    Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
-                       s[:venue][:id], s[:date] - min.minutes, s[:date] + max.minutes])
+    dup = Show.find(:first, :conditions => ["venue_id = ? and date >= ? and date <= ?", 
+                     s[:venue][:id], s[:date] - min.minutes, s[:date] + max.minutes])
+    
+    # Only consider it a dupe if there are overlapping bands
+    # Hopefully this avoids leaving out one of two shows happening the same day at a venue                 
+    if dup && band_overlap(s, dup).size > 0
+      dup
+    else
+      nil
+    end
   end
   
   def override_dup?(s, dup)
-    return false if !dup.created_by_system or dup.site_visit.nil?
+    return false if !dup.created_by_system or dup.edited_by_fan or dup.edited_by_band or dup.site_visit.nil?
     
     visit = SiteVisit.find(s[:site_visit_id])
-    return visit.quality > dup.site_visit.quality
+    return visit.quality > dup.site_visit.quality ||
+           (dup.site_visit_id == s[:site_visit_id] && show_updated?(s, dup))
+  end
+  
+  def band_overlap(s, dup)
+    s[:bands].collect { |b| b[:name] } & dup.bands.collect { |b| b.name }  
+  end
+  
+  def show_updated?(s, dup)
+    s[:bands].size != dup.bands.size ||
+    band_overlap(s, dup).size != dup.bands.size ||
+    s[:cost] != dup.cost
   end
   
 end

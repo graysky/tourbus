@@ -201,6 +201,10 @@ class ShowController < ApplicationController
           if new
             @show.created_by_band = logged_in_band if logged_in_band
             @show.created_by_fan = logged_in_fan if logged_in_fan
+          elsif logged_in_fan
+            @show.edited_by_fan = logged_in_fan
+          elsif logged_in_band
+            @show.edited_by_band = logged_in_band
           end
           
           add_bands 

@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 37) do
+ActiveRecord::Schema.define(:version => 38) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -231,6 +231,8 @@ ActiveRecord::Schema.define(:version => 37) do
     t.column "site_visit_id", :integer
     t.column "source_link", :string
     t.column "source_name", :string
+    t.column "edited_by_fan_id", :integer
+    t.column "edited_by_band_id", :integer
   end
 
   add_index "shows", ["venue_id"], :name => "fk_venue"

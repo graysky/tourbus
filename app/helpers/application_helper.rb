@@ -33,6 +33,12 @@ module ApplicationHelper
     "<div class='panel_header'><span class='title'>#{text}</span></div>"
   end
 
+  # Escape double quotes so:
+  # " becomes \"
+  def escape_quotes(text)
+    text.gsub(/"/, '\"')
+  end
+
   def long_date(date)
     date.strftime("%A, %B %d, %Y")
   end

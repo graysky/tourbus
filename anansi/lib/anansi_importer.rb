@@ -369,8 +369,18 @@ class AnansiImporter
     return false if !dup.created_by_system or dup.edited_by_fan or dup.edited_by_band or dup.site_visit.nil?
     
     visit = SiteVisit.find(s[:site_visit_id])
-    return visit.quality > dup.site_visit.quality ||
+    override = visit.quality > dup.site_visit.quality ||
            (dup.site_visit_id == s[:site_visit_id] && show_updated?(s, dup))
+           
+    if override
+      puts "OVERRIDE: show #{dup.id}, #{dup.site_visit_id} == #{s[:site_visit_id]}"
+      puts "   Quality: #{visit.quality}, #{dup.site_visit.quality}"
+      puts "   Size: #{s[:bands].size} , #{dup.bands.size}}"
+      puts "   Overlap: #{band_overlap(s, dup).size}, #{dup.bands.size}"
+      puts "   Cost: #s[:cost]}, #{dup.cost}"
+    end
+    
+    return override
   end
   
   def band_overlap(s, dup)

@@ -388,6 +388,8 @@ class AnansiImporter
   end
   
   def show_updated?(s, dup)
+    return false
+    
     s[:bands].size != dup.bands.size ||
     band_overlap(s, dup).size != dup.bands.size ||
     s[:cost] != dup.cost

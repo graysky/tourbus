@@ -384,7 +384,7 @@ class AnansiImporter
   end
   
   def band_overlap(s, dup)
-    s[:bands].collect { |b| b[:name] } & dup.bands.collect { |b| b.name }  
+    s[:bands].collect { |b| b[:name].downcase } & dup.bands.collect { |b| b.name.downcase }  
   end
   
   def show_updated?(s, dup)

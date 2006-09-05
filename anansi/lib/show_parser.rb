@@ -13,7 +13,8 @@ class ShowParser < MetaSite
                           'crafts show', 'anniversary party', 'birthday party', 'birthday bash', 'nd annual',
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
-			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary']
+			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary',
+			              'goldenvoice', 'club nme', 'free event', '& more', 'th anniversary', 'nd anniversary']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -84,7 +85,7 @@ class ShowParser < MetaSite
     return nil if down.ends_with?(":")
     return nil if down.ends_with?("tour")
     
-    keywords = [":", "featuring", "presents", "present", "presenting", "special guest", 
+    keywords = [":", "featuring", "presents", "present", "presenting", "special guests", "special guest", 
                 "welcomes", "evening with", "recording artist", 'starring', 'free concert with']
     index = first_index_in(keywords, down)
     if index

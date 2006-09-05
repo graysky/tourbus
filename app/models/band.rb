@@ -82,7 +82,7 @@ class Band < ActiveRecord::Base
   
   def play_show(show, order = 0, extra_info = nil)
     show.bands.push_with_attributes(self, :set_order => order, :extra_info => extra_info)
-    self.num_upcoming_shows += 1
+    self.num_upcoming_shows = self.upcoming_shows(true).size
   end
 
   def validate_unique_email?

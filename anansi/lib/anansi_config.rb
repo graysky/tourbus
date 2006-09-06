@@ -153,13 +153,12 @@ class AnansiConfig
         s.crawl
         # Save the visit
         if not visit.save
-          p "**** Error saving SiteVisit for #{s.name}"
+          puts "**** Error saving SiteVisit for #{s.name}"
         end
-      rescue => e
+      rescue Exception => e
         puts "**** Error crawling site: #{e}"
       end
-      
-     
+       
     end
   end
   

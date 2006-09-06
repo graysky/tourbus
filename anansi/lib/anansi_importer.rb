@@ -358,11 +358,12 @@ class AnansiImporter
     
     # Only consider it a dupe if there are overlapping bands
     # Hopefully this avoids leaving out one of two shows happening the same day at a venue                 
-    if dup && band_overlap(s, dup).size > 0
-      dup
-    else
-      nil
-    end
+    #if dup && band_overlap(s, dup).size > 0
+    #  dup
+    #else
+    #  nil
+    #end
+    dup
   end
   
   def override_dup?(s, dup)

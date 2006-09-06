@@ -7,7 +7,7 @@ class LastFm
   # Return the top 50 bands for this last.fm user
   # If the user name doesn't exist, or last.fm can't be reached, return nil
   def self.top_50_bands(username)
-    url = "http://ws.audioscrobbler.com/1.0/user/#{username}/topartists.xml"
+    url = "http://ws.audioscrobbler.com/1.0/user/#{CGI::escape(username)}/topartists.xml"
     
     begin
       response = open(url)

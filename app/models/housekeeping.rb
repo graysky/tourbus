@@ -20,7 +20,10 @@ class Housekeeping
     FavoritesMailer.do_favorites_updates
 
     logger.info "Reporting stats..."
-    self.report_stats    
+    self.report_stats
+    
+    logger.info "Delete old sessions..."
+    DbHelper.delete_old_sessions    
 
     logger.info "Resaving objects..."
     self.resave_objects

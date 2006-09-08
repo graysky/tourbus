@@ -109,6 +109,16 @@ class FanMailer < BaseMailer
     @body['email_signoff_plain'] = email_signoff_plain
   end
   
+  def presale(fan)
+    @subject    = '[tourb.us] Ticket Presale: Bob Dylan/The Raconteurs'
+    @recipients = fan.contact_email
+    @from       = Emails.from
+    @sent_on    = Time.now
+    @headers    = {}
+    content_type "text/html"
+    @body['email_signoff'] = email_signoff
+  end
+  
   # New fan signup - tell Gary and Mike!
   def gm_of_new_fan(fan)
     @subject    = '[tourb.us] New Fan Signup!'

@@ -31,7 +31,10 @@
     <p>Enter your <a href="http://last.fm">Last.fm</a> username and we will add your 50 most-played bands.
     <a href="http://last.fm"><img src="http://static.last.fm/media/minipowered_red.gif"/></a></p>
     
-    <%= text_field_tag 'last_fm_username', '', :size => 25 %><br/><br/>
+    <%= text_field_tag 'last_fm_username', '', :size => 25 %><br/>
+    <p><table><tr><td>Periodically check this account for new favorites:</td>
+            <td><%= check_box_tag "lastfm_poll", value="1", checked=@fan.fan_services.lastfm_poll? %></td></tr></table>
+    </p>
     <%= submit_tag 'Submit' %>
     
     <%= end_form_tag %>

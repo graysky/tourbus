@@ -35,6 +35,15 @@ class FanController < ApplicationController
      
     begin
       @fan.update_attributes(params[:fan])
+      
+      if params[:lastfm_poll] == "1"
+        @fan.fan_services.lastfm_poll = true
+      else
+        @fan.fan_services.lastfm_poll = false
+      end
+      
+      @fan.fan_services.lastfm_username = params[:lastfm_username]
+    
       if @fan.save
         flash.now[:success] = "Settings updated"
       end
@@ -76,7 +85,7 @@ class FanController < ApplicationController
     # If it's already a favorite then something went wrong, maybe someone just typed in the URL
     # or used the back button (stupid ajax!)
     if !@fan.favorite?(band)
-      @fan.add_favorite(band)
+      @fan.add_favorite(band, FavoriteBandEvent::SOURCE_FAN)
       @fan.watch_upcoming([band])
       
       Fan.transaction(@fan) do
@@ -100,7 +109,7 @@ class FanController < ApplicationController
   def remove_favorite_band
     band = Band.find(params[:id])
     if @fan.bands.include?(band)
-      @fan.remove_favorite(band)
+      @fan.remove_favorite(band, FavoriteBandEvent::SOURCE_FAN)
       
       Fan.transaction(@fan) do
         Band.transaction(band) do
@@ -192,6 +201,15 @@ class FanController < ApplicationController
     
     @wishlist, @bands = WishListBand.segment_wishlist_bands(bands)
     
+    if params[:lastfm_poll] == "1"
+      @fan.fan_services.lastfm_poll = true
+      @fan.fan_services.lastfm_username = username
+    else
+      @fan.fan_services.lastfm_poll = false
+    end
+    
+    @fan.save!
+    
     render :action => 'import_favorites_step_2'
   end
   
@@ -233,7 +251,7 @@ class FanController < ApplicationController
         keys = params.keys.grep(/band_/)
         keys.each do |band_key|
           band = Band.find(params[band_key].to_i)
-          @fan.add_favorite(band)
+          @fan.add_favorite(band, FavoriteBandEvent::SOURCE_IMPORT)
           
           # Watch all the band's upcoming shows in the area
           @fan.watch_upcoming([band])

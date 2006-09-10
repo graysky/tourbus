@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 38) do
+ActiveRecord::Schema.define(:version => 40) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -95,6 +95,12 @@ ActiveRecord::Schema.define(:version => 38) do
   add_index "comments", ["created_by_band_id"], :name => "fk_cp_createdband"
   add_index "comments", ["created_by_fan_id"], :name => "fk_cp_createdfan"
 
+  create_table "fan_services", :force => true do |t|
+    t.column "fan_id", :integer, :default => 0, :null => false
+    t.column "lastfm_username", :string
+    t.column "lastfm_poll", :boolean, :default => false
+  end
+
   create_table "fans", :force => true do |t|
     t.column "name", :string, :limit => 100, :default => "", :null => false
     t.column "real_name", :string, :limit => 100, :default => "", :null => false
@@ -145,6 +151,15 @@ ActiveRecord::Schema.define(:version => 38) do
   end
 
   add_index "fans_shows", ["fan_id"], :name => "FK_attending_fan_id"
+
+  create_table "favorite_band_events", :force => true do |t|
+    t.column "fan_id", :integer, :default => 0, :null => false
+    t.column "band_id", :integer, :default => 0, :null => false
+    t.column "event", :integer, :default => 0, :null => false
+    t.column "source", :integer, :default => 0, :null => false
+    t.column "description", :string
+    t.column "created_at", :datetime
+  end
 
   create_table "friend_requests", :force => true do |t|
     t.column "requester_id", :integer

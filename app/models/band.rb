@@ -139,8 +139,8 @@ class Band < ActiveRecord::Base
   def incorporate_dupe(other)
     # Transfer fans
     other.fans.each do |fan|
-      fan.add_favorite(self)
-      fan.remove_favorite(other)
+      fan.add_favorite(self, FavoriteBandEvent::SOURCE_DUPE)
+      fan.remove_favorite(other, FavoriteBandEvent::SOURCE_DUPE)
       fan.save!
     end
     

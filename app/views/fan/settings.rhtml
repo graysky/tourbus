@@ -13,12 +13,21 @@
 </script>
 
 
+<center>
+<div id="profile_links">
+  <a href="#general">General</a><span class="normal">|</span>
+  <a href="#reminders">Reminders</a><span class="normal">|</span>
+  <a href="#services">Services</a>
+</div>
+</center>
+<br/>
+
 <div id="main">
   <%= start_form_tag :id => @fan %>
   <%= error_messages_for 'fan' %>
 
   <%= simple_separator "General Settings" %>
-  
+  <a name="general"></a>
   <table class="form-table">
     <tr>
       <th>Profile Page:</th>
@@ -97,6 +106,7 @@
 </script>
   
   <%= simple_separator "Reminder Settings" %>
+  <a name="reminders"></a>
   <table class="form-table">
 
        <tr>
@@ -142,11 +152,32 @@
         Where to send show reminders
       </td>  
     </tr>
+  </table>
+  
+    <%= simple_separator "Services Settings" %>
+  <a name="services"></a>
+  <table class="form-table">
+    <tr>
+      <th>Last.fm Username:</th>
+      <td><%= text_field_tag('lastfm_username', @fan.fan_services.lastfm_username, { "size" => 10, "maxlength" => 10 }) %></td>
+      <td class="info">
+        <img src="http://static.last.fm/depth/advertising/lastfm/mini_red.gif"/>
+      </td>
+    </tr>
+    <tr>
+      <th>Check Last.fm For Favorites:</th>
+      <td><%= check_box_tag "lastfm_poll", value="1", checked=@fan.fan_services.lastfm_poll? %></td>
+      <td class="info">
+         tourb.us can periodically check your Last.fm account for new bands that have entered your top 50,
+         and automatically add them as favorites.
+      </td>
+    </tr>
     <tr class="submit">
       <td></td>
       <td><%= submit_tag 'Edit Settings' %></td>
     </tr>
-  </table>
+    </table>
+  
   
   <%= end_form_tag %>
 </div>

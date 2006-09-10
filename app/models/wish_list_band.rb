@@ -74,7 +74,7 @@ class WishListBand < ActiveRecord::Base
       
       # Add a fave and delete the wishlist band
       logger.info "Add fave #{band.name} for #{fan.name}"
-      fan.add_favorite(band)
+      fan.add_favorite(band, FavoriteBandEvent::SOURCE_WISHLIST)
       WishListBand.delete(match.id)
       
       unless fans_bands[fan]

@@ -56,6 +56,8 @@ class Fan < ActiveRecord::Base
   file_column :logo, :magick => { :geometry => "200x300>" }
   has_many :photos, :class_name => "Photo", :foreign_key => "created_by_fan_id", :order => "created_on DESC"
   has_one :upload_addr, :dependent => true
+  has_one :fan_services, :dependent => true
+  has_many :favorite_band_events, :dependent => true
   has_and_belongs_to_many :bands
   has_and_belongs_to_many :shows, :order => "date ASC" #, :include => [:venue, :bands]
   has_and_belongs_to_many :upcoming_shows, :class_name => 'Show', :conditions => ["date > ?", Time.now], :order => "date ASC"
@@ -83,6 +85,12 @@ class Fan < ActiveRecord::Base
   validates_presence_of :password, :if => :validate_password?
   validates_length_of :password, :minimum => 4, :if => :validate_password?
   validates_confirmation_of :password, :if => :validate_password?
+  
+  def initialize(attributes = nil)
+    super
+    
+    self.fan_services = FanServices.new
+  end
   
   def validate
     if self.name =~ /[^\w|\d]/
@@ -115,18 +123,20 @@ class Fan < ActiveRecord::Base
     self.bands.detect { |fav| fav == band }
   end
   
-  def add_favorite(band)
+  def add_favorite(band, source = FavoriteBandEvent::SOURCE_FAN)
     return if self.favorite?(band)
     
     self.bands << band
+    self.add_band_event(band, FavoriteBandEvent::EVENT_ADD, source)
     band.num_fans += 1
     band.save!
   end
   
-  def remove_favorite(band)
+  def remove_favorite(band, source = FavoriteBandEvent::SOURCE_FAN)
     return unless self.favorite?(band)
     
     self.bands.delete(band)
+    self.add_band_event(band, FavoriteBandEvent::EVENT_REMOVE, source)
     band.num_fans -= 1
     band.save!
   end 
@@ -197,6 +207,11 @@ class Fan < ActiveRecord::Base
         end
       end
     end
+  end
+  
+  def removed_favorite?(band)
+    e = FavoriteBandEvent.find(:first, :conditions => ["fan_id=? and band_id=?", self.id, band.id], :order => "created_at desc")
+    e && e.event == FavoriteBandEvent::EVENT_REMOVE
   end
   
   def watching_shows
@@ -302,6 +317,16 @@ class Fan < ActiveRecord::Base
     
     return attending
   end
+  
+  def add_band_event(band, event_id, source, description = nil)
+    e = self.favorite_band_events.build
+    e.band = band
+    e.event = event_id
+    e.source = source
+    e.description = description
+    
+    e.save!
+  end 
   
   def self.create_test_fan(name)
     fan = Fan.new

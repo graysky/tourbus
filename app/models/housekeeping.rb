@@ -15,6 +15,9 @@ class Housekeeping
   
     logger.info "Starting wish list..."
     WishListBand.make_wishes_come_true
+ 
+    logger.info "Poll last.fm for favorites"
+    FanServices.poll_lastfm_faves
   
     logger.info "Sending favorites emails..."
     FavoritesMailer.do_favorites_updates

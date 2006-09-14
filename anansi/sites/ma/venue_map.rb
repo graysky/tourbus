@@ -10,5 +10,6 @@
   /bill's bar/ => 44,
   /museum of fine arts/ => 812,
   /fenway/ => 815,
-  /webster theatre/ => 172
+  /webster theatre/ => 172,
+  /the bear/ => 739
 }

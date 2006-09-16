@@ -15,9 +15,9 @@ def run
   # Remove links to band images for local dev env
   bands.each do |b|
     if !b.logo.nil? and !b.logo.empty?
-      puts "Fixing #{b.name}"
+      puts "Fixing #{b.name} with email #{b.contact_email}"
       b.logo = nil
-      b.contact_email = Emails.spam
+      b.contact_email = Emails.random
       b.save!
     end
   end
@@ -34,7 +34,7 @@ def run
     
     if !fan_downtree?(f)
       puts "Fixing email for #{f.name}"
-      f.contact_email = Emails.spam
+      f.contact_email = Emails.random
       changed = true
     end
     

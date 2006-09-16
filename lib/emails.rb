@@ -40,5 +40,9 @@ class Emails
   def self.spam
     return "spam@" + domain
   end
+  
+  def self.random
+    return "fake" + rand(10000).to_s + rand(10000).to_s + "@" + domain
+  end
 
 end

@@ -116,18 +116,29 @@ class FanPublicController < ApplicationController
   
   # Javascript for badge
   def js
-    
+    # Parse request params -- must match UI page that creates them!
     num = params['n'] || 5 # Default to 5 shows
+    type = params['s'] || :all # Default to all upcoming shows -- options are "yes" or "all"
+    title_link = params['t'] || :true # Default to showing header
+    profile_link = params['p'] || :true # Default to showing header
     
-    key = {:action => 'js', :part => "fan_js_#{num}"}
+    key = {:action => 'js', :part => "fan_js_#{num}_#{type}_#{title_link}_#{profile_link}"}
 
     when_not_cached(key, 4.hours.from_now) do
       # Get the shows to display only when cache is cold
-      @shows = @fan.upcoming_shows.first(num.to_i)
+      shows = @fan.upcoming_shows
+      
+      if type.to_sym == :yes
+        # Filter out any watched shows
+        shows.delete_if {|s| @fan.watching?(s) }
+      end
+      
+      # Only show the number they wanted      
+      @shows = shows.first(num.to_i)
     end
     
     # Get the contents for the badge  
-    badge = get_html_badge(@fan, @shows, key)
+    badge = get_html_badge(@fan, @shows, key, title_link.to_sym == :true, profile_link.to_sym == :true)
     render :text => badge
   end
   

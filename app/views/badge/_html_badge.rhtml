@@ -5,13 +5,15 @@
 # shows => array of shows to include
 # owner => the owner of the feed
 # key => they key to cache on
+# show_header => whether to show the header
+# show_footer => whether to show the footer
 text_limit = 28
 %>
 <% cache(key) do %>
 <div id='tb_badge'>
-<div id='tb_header'> 
-<a href='http://tourb.us'>tourb.us</a> shows
-</div>
+<% if show_header %>
+<div id='tb_header'><a href='http://tourb.us'>tourb.us</a> shows</div>
+<% end %>
 <% if shows.empty? %>
 <div id='tb_show'>
 <div id='tb_date'>No upcoming shows</div>
@@ -24,6 +26,8 @@ text_limit = 28
 <span id='tb_venue'>@ <a href='<%= public_venue_url(show.venue)%>'><%= escape_quotes(truncate(show.venue.name, text_limit)) %></a></span><br/>
 </div>
 <% end -%>
+<% if show_footer %>
 <div id='tb_footer'>more at <a href='<%= public_url(owner) %>'><%= escape_quotes(truncate(owner.name, text_limit)) %>'s profile</a></div>
+<% end %>
 </div>
 <% end %>

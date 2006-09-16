@@ -16,11 +16,13 @@ module Badge
   # obj => object that responds to :upcoming_shows
   # shows => the shows to list
   # key => the key for the cache
-  def get_html_badge(obj, shows, key)
+  # show_header => whether to show the header
+  # show_footer => whether to show the footer
+  def get_html_badge(obj, shows, key, show_header, show_footer)
     
     # Render the template for the response
     html = render_to_string(:partial => "badge/html_badge", :layout => false,
-            :locals => { :shows => shows, :owner => obj, :key => key })
+            :locals => { :shows => shows, :owner => obj, :key => key, :show_header => show_header, :show_footer => show_footer })
     
     # Remove new lines
     html.gsub!(/\r/, '')

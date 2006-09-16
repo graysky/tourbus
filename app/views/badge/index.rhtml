@@ -59,7 +59,18 @@ function update_snippet() {
         // Add number of shows
         n = $('num-shows').value;
         url += "?n="+n;
-
+        // Type of shows to display
+        s = $('show-types').value;
+        url += "&s="+s;
+        // header and footer options
+        if ($('title').checked) t = "true"
+        else t = "false"
+        url += "&t="+t;
+        
+        if ($('profile').checked) p = "true"
+        else p = "false"
+        url += "&p="+p;
+        
         // Update style to what they picked
         style_name = $('css-style').value;
         
@@ -68,7 +79,7 @@ function update_snippet() {
         // Update code snippet box
         comment = '<!-- Start tourb.us badge -->';
         css = '<style type="text/css">' + get_style(style_name) + '</style>';
-        js = '<script language="JavaScript" src="' + escapeHTML(url) + '" type="text/javascript"><' + '/script>'
+        js = '<script language="JavaScript" src="' + url + '" type="text/javascript"><' + '/script>'
         
         snippet = comment + '\n' + css + '\n' + js;
         document.getElementById('code-snippet').innerHTML = escapeHTML(snippet);
@@ -100,6 +111,13 @@ of upcoming shows. No worries though, it will update soon.)
 
 <%= form_tag( { :action => "fake-action" }, :onsubmit => "update_snippet(); return false") %>
 
+<p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Which Shows to Display</span>
+
+<p><select id="show-types" onchange="update_snippet();">
+  <option value="all" selected="selected">all shows (yes + maybe)</option>
+  <option value="yes">confirmed shows (yes only)</option>
+</select>
+
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Number of Upcoming Shows</span>
 
 <p><select id="num-shows" style="width:130px;" onchange="update_snippet();">
@@ -120,6 +138,13 @@ of upcoming shows. No worries though, it will update soon.)
   <option value="pink">pink style</option>
   <option value="blue">blue style</option>
 </select>
+
+<p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Choose Display Options</span>
+
+<br/><br/><input type="checkbox" id="title" value="yes" checked="checked" onclick="update_snippet();"/> Include Badge Title (<em>"tourb.us shows"</em>)
+
+<br/><input type="checkbox" id="profile" value="yes" checked="checked" onclick="update_snippet();"/> Include Link to Profile
+
 
 <p style="margin-top:30px;"><span style="font-weight:bold; font-size: 14px;">Get The Code</span>
 

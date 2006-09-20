@@ -46,7 +46,8 @@
     /knitting/ => 987,
     /staples center/ => 1223,
     /fonda/ => 1037,
-    /wiltern/ => 996
+    /wiltern/ => 996,
+    /echo/ => 942
   }
 
 ]

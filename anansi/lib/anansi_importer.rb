@@ -97,6 +97,8 @@ class AnansiImporter
           end
         end
       end
+    rescue Exception => e
+	p e
     ensure
       puts "Savings shows to YAML..."
       save_shows

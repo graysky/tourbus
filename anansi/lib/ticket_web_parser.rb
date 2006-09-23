@@ -19,6 +19,7 @@ class TicketWebParser < TableParser
     text = preprocess_bands_text(cell.children[3].to_s)
     text.sub!(/plus/, "/")
     text.sub!(/with/, "/")
+    text.sub!(/featuring/, "/")
    
     bands = []
     text.split("/").each_with_index do |chunk, index|

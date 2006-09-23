@@ -8,7 +8,7 @@ require 'anansi/lib/html'
 
 include REXML
 
-file = "anansi/data/jambase_ny/parse/jambase_ny0.yml"
+file = "anansi/data/jambase_philly/parse/jambase_philly0.yml"
 base = "http://www.jambase.com/"
 
 shows = YAML::load(File.open(file))
@@ -18,7 +18,7 @@ venues = {}
 for show in shows
   venue = venues[show[:venue][:name]]
   next if venue
-  
+    
   venue = {}
   venues[show[:venue][:name]] = venue
 
@@ -26,6 +26,7 @@ for show in shows
   uri = URI.parse(url)
   http = Net::HTTP.new(uri.host, uri.port)
   
+  puts uri
   resp = http.get(uri.request_uri)
   
   # Would be nice to factor all of this out... do it once we have more than 2 uses
@@ -39,6 +40,7 @@ for show in shows
   # Form action URL was breaking loganjealous with str like: action="/?p=subscribe&#038;id=1"
   html.gsub!(/\#038/, '')
   
+  puts "Parse..."
   parser = HTMLTree::XMLParser.new(false, false)
   parser.feed(html)
   
@@ -47,9 +49,11 @@ for show in shows
   
   title = XPath.first(doc, "//title")
   content = title.text.split("|")
+  p content[1], content[2]
   next unless content[1] && content[2]
   venue[:name] = content[1].strip
   venue[:city_state] = content[2].strip
+  puts venue[:name]
   
   span = XPath.first(doc, "//span[@class='titleText']")
   if span.nil?
@@ -60,6 +64,7 @@ for show in shows
   content = span.text.split("::")
   if content && content[1]
     venue[:address] = content[1].strip
+    puts venue[:address]
   else
     next
   end

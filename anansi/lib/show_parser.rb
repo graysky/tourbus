@@ -14,7 +14,8 @@ class ShowParser < MetaSite
                           'th annual', 'st annual', 'in concert', '+', '*', 'music festival', 'emergenza',
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
 			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary',
-			              'goldenvoice', 'club nme', 'free event', '& more', 'th anniversary', 'nd anniversary']
+			              'goldenvoice', 'club nme', 'free event', '& more', 'th anniversary', 'nd anniversary',
+			              'dance party', 'beach party', 'square dance', 'music project']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -124,9 +125,10 @@ class ShowParser < MetaSite
     return nil if down.count("-") > 2
     return nil if down.strip == ''
     
-    # benefit, karoeke, no cover, .com, prom
+    # karoeke, no cover, .com, prom
     
-    replacements = [/cd release/i, /cdrelease/i, /cd rel/i, /cancelled/i, /sold out/i]
+    replacements = [/cd release/i, /cdrelease/i, /cd rel/i, /cancelled/i, /sold out/i, /benefit for/i, 
+                    /record release party/i, /co-bill/i]
     replacements.each { |pattern| name.gsub!(pattern, '') }
     
     naem.chop! if name.ends_with?(',')

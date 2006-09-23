@@ -16,10 +16,6 @@ method :get_venue do
   { :id => 1049 } 
 end
 
-method :preprocess_bands_text, {:args => 1} do |text|
-  text.sub(/featuring/, "/")
-end
-
 method :links_to_follow, {:args => 1} do |xml_doc|
   TicketWebParser.links_to_follow(xml_doc)
 end

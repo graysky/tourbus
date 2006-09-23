@@ -174,7 +174,7 @@ class AnansiImporter
       @new_band_count += 1
     end
    
-    return if band.name = "" || band.short_name == ""
+    return if band.name == "" || band.short_name == ""
     
     band.play_show(show, show.bands.size, b[:extra])
     band.save!

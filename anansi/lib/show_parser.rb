@@ -15,7 +15,7 @@ class ShowParser < MetaSite
                           'last show', 'final show', 'poetry slam', 'WBCN', 'WFNX', 'WAAF', '.com', '2006',
 			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary',
 			              'goldenvoice', 'club nme', 'free event', '& more', 'th anniversary', 'nd anniversary',
-			              'dance party', 'beach party', 'square dance', 'music project']
+			              'dance party', 'beach party', 'square dance', 'music project', 'heavy metal breakdown']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)

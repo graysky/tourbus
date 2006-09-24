@@ -60,6 +60,8 @@ class Housekeeping
     sitemap.puts "http://tourb.us/metro/la"
     sitemap.puts "http://tourb.us/metro/chicago"
     sitemap.puts "http://tourb.us/metro/austin"
+    sitemap.puts "http://tourb.us/metro/nyc"
+    sitemap.puts "http://tourb.us/metro/philadelphia"
     
     shows = Show.find(:all)
     shows.each do |s|

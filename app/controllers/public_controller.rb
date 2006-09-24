@@ -47,6 +47,7 @@ class PublicController < ApplicationController
     when "losangeles" then set_metro("Los Angeles, CA")
     when "nyc" then set_metro("New York, NY")
     when "newyork" then set_metro("New York, NY")
+    when "philadelphia" then set_metro("Philadelphia, PA")
     else
       # Invalid metro set
       flash.now[:error] = "Unknown metro: #{metro}"    
@@ -84,6 +85,10 @@ class PublicController < ApplicationController
   
   def nyc
     metro_redirect("nyc")
+  end
+  
+  def philadelphia
+    metro_redirect("philadelphia")
   end
   
   

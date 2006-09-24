@@ -20,7 +20,7 @@ class Geocoder
         doc = Document.new(response.read)
       rescue => e
         RAILS_DEFAULT_LOGGER.error("Error getting geocoding: #{url}, #{e.to_s}")
-        raise "Invalid address: #{addr}"
+        return nil
       end
 
       

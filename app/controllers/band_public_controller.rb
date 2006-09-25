@@ -128,17 +128,23 @@ class BandPublicController < ApplicationController
   
   # Javascript for badge
   def js
+    # Parse request params -- must match UI page that creates them!
     num = params['n'] || 5 # Default to 5 shows
+    title_link = params['t'] || :true # Default to showing header
+    profile_link = params['p'] || :true # Default to showing header
     
-    key = {:action => 'js', :part => "band_js_#{num}"}
-
+    key = {:action => 'js', :part => "band_js_#{num}_#{title_link}_#{profile_link}"}
+    
     when_not_cached(key, 4.hours.from_now) do
       # Get the shows to display only when cache is cold
-      @shows = @band.upcoming_shows.first(num.to_i)
+      shows = @band.upcoming_shows
+      
+      # Only show the number they wanted      
+      @shows = shows.first(num.to_i)
     end
     
     # Get the contents for the badge  
-    badge = get_html_badge(@band, @shows, key)
+    badge = get_html_badge(@band, @shows, key, title_link.to_sym == :true, profile_link.to_sym == :true)
     render :text => badge
   end
   

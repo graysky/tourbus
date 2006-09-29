@@ -119,6 +119,19 @@ class FanMailer < BaseMailer
     @body['email_signoff'] = email_signoff
   end
   
+  def bulk_mail(fan, subject, content)
+    @subject    = subject
+    @recipients = fan
+    @from       = Emails.from
+    @sent_on    = Time.now
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["fan"] = fan
+    @body["content"] = content
+    @body['email_signoff'] = email_signoff
+  end
+  
   # New fan signup - tell Gary and Mike!
   def gm_of_new_fan(fan)
     @subject    = '[tourb.us] New Fan Signup!'

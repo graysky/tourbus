@@ -4,23 +4,19 @@
 <% @header_title = "Administer tourb.us" %>
 
 <h2>Administration Options</h2>
-<p>
-    <%= link_to "View System Events", :action => "list_system_events" %>
-</p>
-<p>
-  <%= link_to "Create a Band", :action => "create_band" %>
-</p>
-<p>
-  <%= link_to "Create a Venue", :action => "create_venue" %>
-</p>
-<p>
-  <%= link_to "List Announcements", :action => "list_announcements" %>
-</p>
+<h3>Anansi</h3>
 <p>
   <%= link_to "List Shows To Import", :action => "list_shows_to_import" %>
 </p>
 <p>
   <%= link_to "List Top Venues to Add", :action => "top_venues_for_review" %>
+</p>
+<h3>Reports</h3>
+<p>
+    <%= link_to "View System Events", :action => "list_system_events" %>
+</p>
+<p>
+  <%= link_to "List Announcements", :action => "list_announcements" %>
 </p>
 <p>
   <%= link_to "Recently Added Shows by Fans and Bands", :action => "list_added_shows" %>
@@ -40,6 +36,16 @@
 
 <p>
   <%= link_to "List All Fans", :action => "list_fans" %>
+</p>
+<h3>Actions</h3>
+<p>
+  <%= link_to "Create a Band", :action => "create_band" %>
+</p>
+<p>
+  <%= link_to "Create a Venue", :action => "create_venue" %>
+</p>
+<p>
+  <%= link_to "Email Fans", :action => "bulk_fan_mailer" %>
 </p>
 
 </div>

@@ -172,6 +172,34 @@ class AdminController < ApplicationController
     end
   end
   
+  def bulk_fan_mailer
+    return if request.get?
+    
+    begin
+      fans = eval(params[:code])
+    
+      fans.each do |fan|
+        if !fan.is_a?(Fan)
+          flash.now[:error] = "NOT A FAN: #{fan}"
+          return
+        end
+      end
+    rescue Exception => e
+      flash.now[:error] = e.to_s
+      return
+    end
+    
+    logger.info("Sending bulk mail to: #{fans.collect { |f| f.contact_email }.join(',')} ")
+    logger.info("Subject: #{params[:subject]}")
+    logger.info("Body: #{params[:body]}")
+    
+    fans.each do |fan|
+      FanMailer.deliver_bulk_mail(fan.contact_email, params[:subject], params[:body])
+    end
+    
+    flash.now[:success] = "mail sent"
+  end
+  
   def list_shows_to_import
     load_shows #if @session[:shows_by_status].nil?
   end

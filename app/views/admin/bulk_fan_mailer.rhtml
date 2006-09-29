@@ -1,0 +1,30 @@
+<% @header_title = "Bulk Mailer" %>
+
+<%= start_form_tag :action => 'bulk_fan_mailer' %>
+
+<table class="form-table">
+  
+  <tr>
+    <th>Send to:</th>
+    <td><%= text_area_tag 'code', params[:code], {:cols => 50, :rows => 3} %></td>
+    <td class="info">Executable ruby code, should return a list of Fans to send the mail to</td>
+  </tr>
+  
+  <tr>
+    <th>Subject:</th>
+    <td><%= text_field_tag 'subject', params[:subject], "size" => 50 %></td>
+    <td class="info">Subject of the email</td>
+  </tr>
+  
+    <tr>
+    <th>Body:</th>
+    <td><%= text_area_tag 'body', params[:body], {:cols => 50, :rows => 12} %></td>
+    <td class="info">Body of the email.</td>
+  </tr>
+  
+</table>
+
+<%= submit_tag "Send" %>
+
+
+<%= end_form_tag %>

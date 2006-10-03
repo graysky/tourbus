@@ -16,7 +16,7 @@ class ApacheLogParser
   end
   
   def parse_line(line)
-    line =~ /(\d+\.\d+\.\d+\.\d+) ([^\s+]+) ([^\s+]+) \[(.*)\] "([^\s+]+) ([^\s+]+) (.*)" (\d+) (\d+) "([^\s+]+)" "(.*)"/
+    line =~ /(\d+\.\d+\.\d+\.\d+) ([^\s]+) ([^\s]+) \[(.*)\] "([^\s]+) ([^\s]+) (.*)" (\d+) (\d+) "([^\s]+)" "(.*)"/
 
     if $1.nil?
       puts "Skipping line: #{line}"

@@ -65,6 +65,15 @@ ActionMailer::Base.server_settings = {
   :authentication=>:login
 } 
 
+# Log entries in a secondary database...
+LogEntry.establish_connection(
+     :adapter  => "mysql",
+     :host     => "127.0.0.1",
+     :username => "root",
+     :password => "bighit",
+     :database => "tourbus_stats"
+   )
+
 # Options to control how RailsCron behaves, intervals in seconds.
 # Make it only rarely check the db, since we load the tasks infrequently
 RailsCron.options = {

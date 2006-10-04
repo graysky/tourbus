@@ -2,24 +2,38 @@
 class ApacheLogParser
   
   attr_accessor :file
+  attr_accessor :skip_old
   
   def initialize(file)
     @file = file
+    @skip_old = true
+    @last_entry = nil
+    @skipped = 0
   end
   
   def parse
+    @skipped = 0
+    
+    if @skip_old
+      @last_entry = LogEntry.find(:first, :order => "date DESC", :limit => 1)
+    end
+    
     File.open(@file) do |file|
       while (line = file.gets)
         parse_line(line)
       end
+    end
+    
+    if @skip_old
+      puts "Skipped: #{@skipped}"
     end 
   end
   
   def parse_line(line)
-    line =~ /(\d+\.\d+\.\d+\.\d+) ([^\s]+) ([^\s]+) \[(.*)\] "([^\s]+) ([^\s]+) (.*)" (\d+) (\d+) "([^\s]+)" "(.*)"/
-
+    line =~ /(\d+\.\d+\.\d+\.\d+) ([^\s]+) ([^\s]+) \[(.*)\] "([^\s]+) ([^\s]+) (.*)" (\d+) (-|\d+) "([^\s]+)" "(.*)"/
+    
     if $1.nil?
-      puts "Skipping line: #{line}"
+      puts "Invalid line: #{line}"
       return
     end
 
@@ -35,6 +49,11 @@ class ApacheLogParser
     e.bytes = $9.to_i
     e.referrer = $10
     e.browser = $11
+    
+    if @skip_old && @last_entry && @last_entry.date >= e.date
+      @skipped += 1
+      return
+    end
     
     e.save!
   end

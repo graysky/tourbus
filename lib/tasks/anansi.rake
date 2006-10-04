@@ -2,8 +2,6 @@
 # A set of rake tasks for anansi crawling
 # =============================================================================
 
-# TODO Should probably use rake namespaces
-
 desc "Bundle up the crawl, parse, and prepare import"
 task :anansi_all => [:anansi_crawl, :anansi_parse, :anansi_prepare_import ]
 

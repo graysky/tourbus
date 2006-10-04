@@ -69,7 +69,7 @@ ActionMailer::Base.server_settings = {
 LogEntry.establish_connection(
      :adapter  => "mysql",
      :host     => "127.0.0.1",
-     :username => "root",
+     :username => "tourbus_root",
      :password => "bighit",
      :database => "tourbus_stats"
    )

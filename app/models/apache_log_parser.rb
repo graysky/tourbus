@@ -4,6 +4,17 @@ class ApacheLogParser
   attr_accessor :file
   attr_accessor :skip_old
   
+  # uncompress, parse and compress the given file
+  def self.parse_archive(f)
+    `gzip -d #{f}.gz`
+    begin
+        p = ApacheLogParser.new(f)
+        p.parse
+    ensure
+        `gzip #{f}`
+    end
+  end
+  
   def initialize(file)
     @file = file
     @skip_old = true

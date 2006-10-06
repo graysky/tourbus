@@ -44,12 +44,6 @@ class AnansiImporter
       # If only_site is set, skip all others
       next if not @only_site.nil? and site.name != @only_site
       
-      # hack to skip livenation until they get their act together
-      if site.url.index('livenation')
-        puts "Skipping livenation site..."
-        next
-      end
-      
       visit = SiteVisit.find_by_name(site.name)
       
       @site = site

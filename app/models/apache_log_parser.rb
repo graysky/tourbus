@@ -10,6 +10,8 @@ class ApacheLogParser
     begin
         p = ApacheLogParser.new(f)
         p.parse
+    rescue Exception => e
+      RAILS_DEFAULT_LOGGER.error(e.to_s)
     ensure
         # Temp for debugging
         #`gzip #{f}`
@@ -24,7 +26,7 @@ class ApacheLogParser
   end
   
   def parse
-    logger.info("Parsing apache logs...")
+    RAILS_DEFAULT_LOGGER.info("Parsing apache logs...")
     
     @skipped = 0
     

@@ -11,7 +11,8 @@ class ApacheLogParser
         p = ApacheLogParser.new(f)
         p.parse
     ensure
-        `gzip #{f}`
+        # Temp for debugging
+        #`gzip #{f}`
     end
   end
   
@@ -23,6 +24,8 @@ class ApacheLogParser
   end
   
   def parse
+    logger.info("Parsing apache logs...")
+    
     @skipped = 0
     
     if @skip_old
@@ -63,6 +66,11 @@ class ApacheLogParser
     
     if @skip_old && @last_entry && @last_entry.date >= e.date
       @skipped += 1
+      return
+    end
+    
+    # filter out thinks we don't care about
+    if e.url =~ /\.png|\.gif|\.js|\.jpg|\.ico|\.css/
       return
     end
     

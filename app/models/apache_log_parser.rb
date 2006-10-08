@@ -13,9 +13,12 @@ class ApacheLogParser
     rescue Exception => e
       RAILS_DEFAULT_LOGGER.error(e.to_s)
     ensure
-        # Temp for debugging
-        #`gzip #{f}`
+        `gzip #{f}`
     end
+  end
+  
+  def self.parse_last_rails_archive
+    self.parse_archive('/var/log/lighttpd/archive/rails_access_log.1')
   end
   
   def initialize(file)

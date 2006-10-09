@@ -91,7 +91,7 @@ class TableParser < ShowParser
   protected
   
   DEFAULT_MARKER_TEXT = ['18+', '21+', 'all ages', 'a/a', '$8', '$5', '$10', 
-                         '$15', '$5', '$7', 'All Ages', 'ALL AGES']
+                         '$15', '$12', '$7', 'All Ages', 'ALL AGES']
   
   # Handle a single cell
   def handle_cell(cell, index)

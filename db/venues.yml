@@ -1,0 +1,467 @@
+--- 
+Wilde Roast Cafe: 
+  :zipcode: "55414"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.989121"
+  :address: 518 E Hennepin Ave
+  :longitude: "-93.252624"
+  :city: Minneapolis
+  :name: Wilde Roast Cafe
+  :state: MN
+Bunkers: 
+  :city_state: "Minneapolis, MN"
+  :name: Bunkers
+Ted Mann Theater: 
+  :city_state: "Minneapolis, MN"
+  :name: Ted Mann Theater
+Bayside Grille: 
+  :zipcode: "55331"
+  :city_state: "Excelsior, MN"
+  :latitude: "44.903037"
+  :address: 687 Excelsior Blvd
+  :longitude: "-93.559613"
+  :url: http://www.bayviewevent.com/grille.html
+  :city: Excelsior
+  :name: Bayside Grille
+  :state: MN
+Guthrie Theater: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.968766"
+  :address: 725 Vineland Pl
+  :longitude: "-93.289125"
+  :url: http://www.guthrietheater.org/
+  :city: Minneapolis
+  :name: Guthrie Theater
+  :state: MN
+Dinkytowner: 
+  :zipcode: "55414"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.980644"
+  :address: 412 1/2 14th Ave Se
+  :longitude: "-93.235461"
+  :url: http://www.dinkytowner.com
+  :city: Minneapolis
+  :name: Dinkytowner
+  :state: MN
+? >-
+  University of Wisconsin/River
+
+  Falls
+
+: 
+  :city_state: "River Falls, WI"
+  :address: Downtown River Falls Wisconsin
+  :name: University of Wisconsin/River Falls
+saint paul college: 
+  :zipcode: "55102"
+  :city_state: "saint Paul, MN"
+  :latitude: "44.948337"
+  :address: 235 Marshall Ave
+  :longitude: "-93.110169"
+  :city: St paul
+  :name: saint paul college
+  :state: MN
+Orchestra Hall: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.972724"
+  :address: 1111 Nicollet Ave
+  :longitude: "-93.275508"
+  :city: Minneapolis
+  :name: Orchestra Hall
+  :state: MN
+Foundation Nightclub: 
+  :zipcode: "55402"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.979539"
+  :address: 10 S 5th St
+  :longitude: "-93.271975"
+  :url: http://www.foundationmpls.com/
+  :city: Minneapolis
+  :name: Foundation Nightclub
+  :state: MN
+Station 4: 
+  :zipcode: "55101"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.948102"
+  :address: 201 4th St E
+  :longitude: "-93.087331"
+  :url: http://www.station-4.com
+  :city: St paul
+  :name: Station 4
+  :state: MN
+First Avenue: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.978501"
+  :address: 701 1st Ave N
+  :longitude: "-93.276007"
+  :url: http://www.first-avenue.com/
+  :city: Minneapolis
+  :name: First Avenue
+  :state: MN
+The Quest: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.980655"
+  :address: 110 N 5th St
+  :longitude: "-93.273778"
+  :url: http://www.thequestnightclub.net
+  :city: Minneapolis
+  :name: The Quest
+  :state: MN
+"Decoy's": 
+  :zipcode: "55343"
+  :city_state: "Hopkins, MN"
+  :latitude: "44.924263"
+  :address: 1022 Mainstreet
+  :longitude: "-93.413097"
+  :city: Hopkins
+  :name: "Decoy's"
+  :state: MN
+Xcel Energy Center: 
+  :city_state: "Saint Paul, MN"
+  :name: Xcel Energy Center
+Fitzgerald Theater: 
+  :zipcode: "55101"
+  :city_state: "Saint Paul, MN"
+  :latitude: "44.949073"
+  :address: 10 Exchange St E
+  :longitude: "-93.097355"
+  :url: http://www.mpr.org/www/fitztheater/
+  :city: St paul
+  :name: Fitzgerald Theater
+  :state: MN
+Mystic Lake Casino: 
+  :zipcode: "55372"
+  :city_state: "Prior Lake, MN"
+  :latitude: "44.726235"
+  :address: 2400 Mystic Lake Blvd Nw
+  :longitude: "-93.475098"
+  :url: http://www.mysticlake.com
+  :city: Prior lake
+  :name: Mystic Lake Casino
+  :state: MN
+Roy Wilkins Auditorium: 
+  :zipcode: "55102"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.944237"
+  :address: 143 4th St W
+  :longitude: "-93.097517"
+  :url: http://www.rivercentre.org
+  :city: St paul
+  :name: Roy Wilkins Auditorium
+  :state: MN
+Orpheum Theatre: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.976357"
+  :address: 910 Hennepin Ave
+  :longitude: "-93.277249"
+  :url: http://www.HennepinTheatreDistrict.com
+  :city: Minneapolis
+  :name: Orpheum Theatre
+  :state: MN
+"Stub &amp; Herb's": {}
+Varsity Theatre: 
+  :city_state: "Minneapolis, MN"
+  :address: 1308 4th St.
+  :url: http://www.varsitytheater.org
+  :name: Varsity Theatre
+7th Street Entry: 
+  :city_state: "Minneapolis, MN"
+  :name: 7th Street Entry
+Myth Nightclub: 
+  :zipcode: "55109"
+  :city_state: "Maplewood, MN"
+  :latitude: "45.035431"
+  :address: 3090 Southlawn Dr
+  :longitude: "-93.025381"
+  :url: http://www.mythnightclub.com
+  :city: Maplewood
+  :name: Myth Nightclub
+  :state: MN
+Surf Ballroom: 
+  :zipcode: "50428"
+  :city_state: "Clear Lake, IA"
+  :latitude: "43.138845"
+  :address: 460 N Shore Dr
+  :longitude: "-93.386506"
+  :url: http://www.surfballroom.com
+  :city: Clear lake
+  :name: Surf Ballroom
+  :state: IA
+Milwaukee Road Depot: 
+  :city_state: "Milwaukee, MN"
+  :address: 225 3rd Ave So
+  :name: Milwaukee Road Depot
+The 720 Loft: 
+  :city_state: "Minneapolis, MN"
+  :address: 720 Central Ave NE
+  :name: The 720 Loft
+First Unitarian Church: 
+  :city_state: "Minneapolis, MN"
+  :name: First Unitarian Church
+"318": 
+  :city_state: "Excelsior, MN"
+  :name: "318"
+? >-
+  Famous Dave's BBQ &amp;
+
+  Blues
+
+: {}
+"Gluek's Bar 'n Grill": 
+  :city_state: "Minneapolis, MN"
+  :name: "Gluek's Bar 'n Grill"
+Ascot Room: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.980655"
+  :address: 110 N 5th St
+  :longitude: "-93.273778"
+  :url: http://www.thequestnightclub.net
+  :city: Minneapolis
+  :name: Ascot Room
+  :state: MN
+Turf Club: 
+  :zipcode: "55104"
+  :city_state: "Saint Paul, MN"
+  :latitude: "44.955902"
+  :address: 1601 University Ave W
+  :longitude: "-93.168031"
+  :city: St paul
+  :name: Turf Club
+  :state: MN
+Town House Bar: 
+  :zipcode: "55104"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.955937"
+  :address: 1415 University Ave W
+  :longitude: "-93.160102"
+  :url: http://www.miadorr.com
+  :city: St paul
+  :name: Town House Bar
+  :state: MN
+Ginkgo Coffeehouse: 
+  :zipcode: "55104"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.963039"
+  :address: 721 Snelling Ave N
+  :longitude: "-93.167293"
+  :url: http://ginkgocoffee.com
+  :city: St paul
+  :name: Ginkgo Coffeehouse
+  :state: MN
+Village Hall: 
+  :zipcode: "55047"
+  :city_state: "St. Croix, MN"
+  :latitude: "45.199166"
+  :address: 1313 Broadway St
+  :longitude: "-92.785311"
+  :url: http://marine.govoffice.com/
+  :city: Marine st crx
+  :name: Village Hall
+  :state: MN
+Champps: 
+  :zipcode: "55337"
+  :city_state: "Burnsville, MN"
+  :latitude: "44.746737"
+  :address: 1200 County Road 42 W
+  :longitude: "-93.294688"
+  :url: http://www.champps.com
+  :city: Burnsville
+  :name: Champps
+  :state: MN
+The Excel Center: 
+  :city_state: "Minneapolis, MN"
+  :name: The Excel Center
+Walker Art Center: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.9682"
+  :address: 1750 Hennepin Ave
+  :longitude: "-93.287993"
+  :url: http://www.walkerart.org/index.wac
+  :city: Minneapolis
+  :name: Walker Art Center
+  :state: MN
+Trocaderos: 
+  :zipcode: "55401"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.985962"
+  :address: 107 3rd Ave N
+  :longitude: "-93.270173"
+  :city: Minneapolis
+  :name: Trocaderos
+  :state: MN
+The Dakota: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.973839"
+  :address: 1010 Nicollet Ave
+  :longitude: "-93.274987"
+  :url: http://www.dakotacooks.com/
+  :city: Minneapolis
+  :name: The Dakota
+  :state: MN
+"O'Shaughnessy Auditorium": 
+  :city_state: "St. Paul, MN"
+  :name: "O'Shaughnessy Auditorium"
+French Press Jazz Cafe: 
+  :zipcode: "55101"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.948235"
+  :address: 213 4th St E
+  :longitude: "-93.087066"
+  :url: http://www.fpjazz.com
+  :city: St paul
+  :name: French Press Jazz Cafe
+  :state: MN
+400 Bar: 
+  :zipcode: "55454"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.969763"
+  :address: 400 Cedar Ave S
+  :longitude: "-93.247493"
+  :url: http://www.400bar.com
+  :city: Minneapolis
+  :name: 400 Bar
+  :state: MN
+Target Center: 
+  :zipcode: "55403"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.979595"
+  :address: 600 1st Ave N
+  :longitude: "-93.275074"
+  :city: Minneapolis
+  :name: Target Center
+  :state: MN
+Terminal Bar: 
+  :zipcode: "55414"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.988717"
+  :address: 409 E Hennepin Ave
+  :longitude: "-93.254802"
+  :url: http://www.terminalbar.com
+  :city: Minneapolis
+  :name: Terminal Bar
+  :state: MN
+Nomad World Pub: 
+  :zipcode: "55454"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.968786"
+  :address: 501 Cedar Ave S
+  :longitude: "-93.247105"
+  :city: Minneapolis
+  :name: Nomad World Pub
+  :state: MN
+State Theatre: 
+  :zipcode: "55402"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.976975"
+  :address: 805 Hennepin Ave
+  :longitude: "-93.275919"
+  :url: http://www.HennepinTheatreDistrict.com
+  :city: Minneapolis
+  :name: State Theatre
+  :state: MN
+Cabooze: 
+  :zipcode: "55404"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.963754"
+  :address: 917 Cedar Ave S
+  :longitude: "-93.247105"
+  :url: http://www.cabooze.com/
+  :city: Minneapolis
+  :name: Cabooze
+  :state: MN
+Fine Line Music Cafe: 
+  :zipcode: "55401"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.981967"
+  :address: 318 1st Ave N
+  :longitude: "-93.271844"
+  :url: http://www.finelinemusic.com
+  :city: Minneapolis
+  :name: Fine Line Music Cafe
+  :state: MN
+St. Croix Falls Theater: 
+  :zipcode: "54024"
+  :city_state: "St. Croix Falls, WI"
+  :latitude: "45.412327"
+  :address: 210 N Washington St
+  :longitude: "-92.644703"
+  :url: http://www.festivaltheatre.org/contact.html
+  :city: St croix falls
+  :name: St. Croix Falls Theater
+  :state: WI
+"Dulono's Pizza": 
+  :zipcode: "55408"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.948263"
+  :address: 607 W Lake St
+  :longitude: "-93.287058"
+  :city: Minneapolis
+  :name: "Dulono's Pizza"
+  :state: MN
+The Grand Theatre: 
+  :zipcode: "55057"
+  :city_state: "Northfield, MN"
+  :latitude: "44.4562"
+  :address: 4th St E At Washington St
+  :longitude: "-93.1586"
+  :city: Northfield
+  :name: The Grand Theatre
+  :state: MN
+Triple Rock Social Club: 
+  :zipcode: "55454"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.967322"
+  :address: 629 Cedar Ave S
+  :longitude: "-93.247105"
+  :url: http://triplerocksocialclub.com
+  :city: Minneapolis
+  :name: Triple Rock Social Club
+  :state: MN
+Lake Center: 
+  :city_state: "Annandale, MN"
+  :name: Lake Center
+Minnesota Music Cafe: 
+  :zipcode: "55130"
+  :city_state: "St. Paul, MN"
+  :latitude: "44.956364"
+  :address: 499 Payne Ave
+  :longitude: "-93.078493"
+  :url: http://www.minnesotamusiccafe.com
+  :city: St paul
+  :name: Minnesota Music Cafe
+  :state: MN
+Bryant Lake Bowl: 
+  :zipcode: "55408"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.948537"
+  :address: 810 W Lake St
+  :longitude: "-93.289676"
+  :city: Minneapolis
+  :name: Bryant Lake Bowl
+  :state: MN
+Northrop Auditorium: 
+  :city_state: "Minneapolis, MN"
+  :address: University of Minnesota
+  :url: http://www1.umn.edu/umato/
+  :name: Northrop Auditorium
+Half Time Rec: 
+  :city_state: "St. Paul , MN"
+  :name: Half Time Rec
+Cedar Cultural Center: 
+  :zipcode: "55454"
+  :city_state: "Minneapolis, MN"
+  :latitude: "44.969608"
+  :address: 416 Cedar Ave S
+  :longitude: "-93.247493"
+  :url: http://www.thecedar.org
+  :city: Minneapolis
+  :name: Cedar Cultural Center
+  :state: MN

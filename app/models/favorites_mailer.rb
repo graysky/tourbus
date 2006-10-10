@@ -41,7 +41,11 @@ class FavoritesMailer < BaseMailer
   def self.do_favorites_updates
     fans = Fan.find(:all)
     num_fans = 0
+    all_start = Time.now.to_i
     for fan in fans
+      start = Time.now
+      logger.info("Start fan: #{fan.id}, #{start.to_i}")
+      
       # Are they are any favorites?
       next if fan.bands.empty?
       
@@ -64,13 +68,13 @@ class FavoritesMailer < BaseMailer
       
       # NOTE: Right now we are not sending updated shows. Should we be?
       new_shows = faves.new_shows
+      logger.info("  Found #{new_shows.size} new ones")
       next if new_shows.empty?
       
       # The user is watching each show
       new_shows.each do |show|
         # Hack... read only records are returned from the calculator. 
         show = Show.find(show.id)
-        
         fan.watch_show(show)
         show.save
       end
@@ -82,7 +86,10 @@ class FavoritesMailer < BaseMailer
       num_fans += 1
     end
     
+    finish = Time.now
+    
+    logger.info("****** #{finish.to_i - all_start.to_i}")
+    
     SystemEvent.info("Sent #{num_fans} favorites emails", SystemEvent::FAVORITES)
   end
-
 end

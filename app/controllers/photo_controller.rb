@@ -15,6 +15,14 @@ class PhotoController < ApplicationController
     
     photo.created_by_band = logged_in_band if logged_in_band
     photo.created_by_fan = logged_in_fan if logged_in_fan
+    
+    if logged_in_fan.nil? and logged_in_band.nil?
+      # Invalid photo -- needs an owner
+      str = "Must be logged in!"
+      finish_upload_status "'#{str}'"
+      return
+    end
+    
     photo.save
     
     str = render_to_string(

@@ -186,4 +186,42 @@ END_JS
   def link_to_unless_current_action(name, options = {}, html_options = {}, *parameters_for_method_reference)
     link_to_unless current_page?(options) || params[:action] == options[:action], name, options, html_options, parameters_for_method_reference
   end
+  
+  # Return the META description for a page, with optional subject. 
+  # Specifying subject will make it more unique and help SEO
+  # http://www.ragepank.com/articles/43/duplicate-content/
+  def meta_desc(subject = nil)
+    base = " Visit tourb.us: Track your favorite bands, get reminders before concerts, find new live music, post music reviews and photos of shows."
+      
+    if subject.kind_of?(Band)
+      return "Track upcoming shows for #{subject.name}." + base
+    elsif subject.kind_of?(Venue)
+      return "Shows at #{subject.name} in #{subject.city}, #{subject.state}." + base
+    elsif subject.kind_of?(Show)
+      s = "Show information for #{subject.name} at #{subject.venue.name} in #{subject.venue.city}." + base
+      s.gsub!(/\//, ', ') # Change "Band1/Band2" to "Band1, Band2"
+      return s
+    else
+      # Perhaps we should randomize this?
+      default = "tourb.us is a better way to find live music!"
+      return default + base
+    end    
+  end
+  
+  # Return the META keywords for a page, with optional subject. 
+  def meta_keywords(subject = nil)
+    base = "live music, concert tracking, local music, bands, shows, clubs, concerts, tour, venues, reminders, tickets, itunes, last.fm, tourbus, tourb.us"
+    
+    if subject.kind_of?(Band)
+      return "#{subject.name}, " + base
+    elsif subject.kind_of?(Venue)
+      return "#{subject.name}, #{subject.city}, #{subject.state}, " + base
+    elsif subject.kind_of?(Show)
+      s = "#{subject.name}, #{subject.venue.name}, #{subject.venue.city}, " + base
+      s.gsub!(/\//, ', ') # Change "Band1/Band2" to "Band1, Band2"
+      return s
+    else
+      return base
+    end
+  end
 end

@@ -46,7 +46,7 @@ desc "Runs the 3rd stage of the crawler"
 task :anansi_prepare_import do
 
   # Can run like:
-  # rake site=foo anansi_parse
+  # rake site=foo anansi_prepare_import
   # where foo is the *only* site to parse
   site = ENV['site']
   

@@ -63,39 +63,61 @@ class Housekeeping
     sitemap.puts "http://tourb.us/metro/nyc"
     sitemap.puts "http://tourb.us/metro/philadelphia"
     
+    # Start counting
+    urls = 0
+    sitemap = get_sitemap(nil)
+    
     shows = Show.find(:all)
-    shows.each do |s|
+    shows.each do |s|      
+      if urls > 49990
+        sitemap = get_sitemap(sitemap)
+        urls = 0
+      end
+      
       sitemap.puts "http://tourb.us/show/#{s.id}"
       sitemap.puts "http://tourb.us/show/#{s.id}/fans"
+      urls = urls + 2
     end
     puts "Added #{shows.length} shows to sitemap"
     
-    # Need to split into 2 files because of 50K limit
-    sitemap2 = File.new("#{RAILS_ROOT}/public/sitemap2.txt",  "w+")    
-    puts "Creating sitemap at: #{sitemap2.path}"
-    
     bands = Band.find(:all)
     bands.each do |b|
-      sitemap2.puts "http://tourb.us/#{b.short_name}"
-      sitemap2.puts "http://tourb.us/#{b.short_name}/fans"
-      sitemap2.puts "http://tourb.us/#{b.short_name}/shows"
+      if urls > 49990
+        sitemap = get_sitemap(sitemap)
+        urls = 0
+      end
+      
+      sitemap.puts "http://tourb.us/#{b.short_name}"
+      sitemap.puts "http://tourb.us/#{b.short_name}/fans"
+      sitemap.puts "http://tourb.us/#{b.short_name}/shows"
+      urls = urls + 3
     end
-    puts "Added #{bands.length} bands to sitemap2"
+    puts "Added #{bands.length} bands to sitemap"
     
     venues = Venue.find(:all)
     venues.each do |v|
-      sitemap2.puts "http://tourb.us/venue/#{v.id}"
-      sitemap2.puts "http://tourb.us/venue/#{v.id}/shows"
+      if urls > 49990
+        sitemap = get_sitemap(sitemap)
+        urls = 0
+      end
+      sitemap.puts "http://tourb.us/venue/#{v.id}"
+      sitemap.puts "http://tourb.us/venue/#{v.id}/shows"
+      urls = urls + 2
     end
-    puts "Added #{venues.length} veneus to sitemap2"
-    
+    puts "Added #{venues.length} veneus to sitemap"
+      
     fans = Fan.find(:all)
     fans.each do |f|
-      sitemap2.puts "http://tourb.us/fan/#{f.name}"
-      sitemap2.puts "http://tourb.us/fan/#{f.name}/bands"
-      sitemap2.puts "http://tourb.us/fan/#{f.name}/shows"
+      if urls > 49990
+        sitemap = get_sitemap(sitemap)
+        urls = 0
+      end
+      sitemap.puts "http://tourb.us/fan/#{f.name}"
+      sitemap.puts "http://tourb.us/fan/#{f.name}/bands"
+      sitemap.puts "http://tourb.us/fan/#{f.name}/shows"
+      urls = urls + 3
     end
-    puts "Added #{fans.length} fans to sitemap2"
+    puts "Added #{fans.length} fans to sitemap"
     
   end
   
@@ -150,6 +172,29 @@ class Housekeeping
         logger.error "Error saving #{klass} with id: #{obj.id}: #{e.to_s}"
       end
     end
+  end
+  
+  private
+  
+  # Return a new handle to a sitemap file if urls > 50K or the old sitemap handle
+  # urls => number of URLs so far
+  # sitemap => file handle
+  def self.get_sitemap(sitemap)
+    #return sitemap if urls < 49999 and !sitemap.nil?
+    
+    # Get the path to the file
+    if sitemap.nil?
+      s = "#{RAILS_ROOT}/public/sitemap0.txt"
+    else
+      s = sitemap.path.gsub(/\.txt/,'')
+      s.next!
+      s << ".txt"
+    end
+      
+    # Create a new filehandle
+    sitemap = File.new("#{s}",  "w+")
+    puts "Creating sitemap at: #{sitemap.path}"
+    return sitemap
   end
   
 end

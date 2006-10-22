@@ -1466,6 +1466,36 @@ table.info-table td a {
     font-size: 12px;
     }
     
+    
+    table.small-table {
+    border-collapse: collapse;
+    }
+table.small-table th {
+    padding: 2px 2px 0 0;
+    text-align: center;
+    vertical-align: top;
+    font-size:13px;
+    }
+table.small-table th em {
+    display: block;
+    margin: 2px 0 0 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 85%;
+    color: #555;
+    }
+table.small-table td {
+    margin: 0 0 10px 0;
+    padding: 2px 2px 2px 0;
+    vertical-align: top;
+    text-align: left;
+    font-size: 11px;	
+    }
+table.small-table td a {
+    font-size: 11px;
+    }
+    
+    
 /* Photos */
 .photo_img {
     border: 1px solid #ccc;

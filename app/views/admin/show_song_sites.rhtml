@@ -1,0 +1,42 @@
+<h2>Song Sites</h2>
+<p>
+
+<p>
+<%= link_to "Active", :action => "show_song_sites", :filter => "active" %> |
+<%= link_to "Disabled", :action => "show_song_sites", :filter => "disabled" %> |
+<%= link_to "All", :action => "show_song_sites", :filter => "all" %>
+</p>
+
+<table border="1" cellpadding="2" class="small-table">
+
+<tr>
+<th>ID</th>
+<th>URL</th>
+<th>Status</th>
+<th>Worker</th>
+<th>Comment</th>
+<th>Error</th>
+<th>Songs</th>
+<th>ECount</th>
+<th>Assigned</th>
+<th>Crawled</th>
+<th>Created</th>
+</tr>
+
+<% for site in @sites %>
+<tr>
+    <td><%= site.id %></td>
+    <td><%= site.url %></td>
+    <td><%= site.crawl_status %></td>
+    <td><%= site.crawl_worker %></td>
+    <td><%= site.last_crawl_comment %></td>
+    <td><%= site.crawl_error? %></td>
+    <td><%= site.crawled_songs %></td>
+    <td><%= site.crawl_error_count %></td>
+    <td><%= friendly_date(site.assigned_at) %></td>
+    <td><%= friendly_date(site.crawled_at) %></td>
+    <td><%= friendly_date(site.created_at) %></td>
+</tr>
+<% end %>
+
+</table>

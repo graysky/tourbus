@@ -1,0 +1,8 @@
+require 'song_crawler/client/song_crawler_client'
+
+options = {}
+
+options[:directory] = ARGV[0] if ARGV[0]
+options[:server] = ARGV[1] if ARGV[1]
+
+SongCrawlerClient.new(options).start

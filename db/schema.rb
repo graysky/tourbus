@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 40) do
+ActiveRecord::Schema.define(:version => 41) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -264,6 +264,33 @@ ActiveRecord::Schema.define(:version => 40) do
   end
 
   add_index "site_visits", ["name"], :name => "site_visits_name_index"
+
+  create_table "song_sites", :force => true do |t|
+    t.column "url", :string
+    t.column "crawl_status", :integer, :default => 0
+    t.column "crawl_worker", :string
+    t.column "last_crawl_comment", :string
+    t.column "crawl_error", :boolean, :default => false
+    t.column "crawled_songs", :integer, :default => 0
+    t.column "crawl_error_count", :integer, :default => 0
+    t.column "assigned_at", :datetime
+    t.column "crawled_at", :datetime
+    t.column "created_at", :datetime
+  end
+
+  create_table "songs", :force => true do |t|
+    t.column "band_id", :integer
+    t.column "artist", :string
+    t.column "title", :string
+    t.column "song_site_id", :integer
+    t.column "status", :integer, :default => 0
+    t.column "album", :string
+    t.column "year", :string
+    t.column "url", :string
+    t.column "size", :integer
+    t.column "created_at", :datetime
+    t.column "checked_at", :datetime
+  end
 
   create_table "system_events", :force => true do |t|
     t.column "name", :string

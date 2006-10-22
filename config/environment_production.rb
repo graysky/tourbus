@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   # config.frameworks -= [ :action_web_service, :action_mailer ]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib #{RAILS_ROOT}/song_crawler #{RAILS_ROOT}/song_crawler/server #{RAILS_ROOT}/song_crawler/client)
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)

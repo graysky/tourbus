@@ -19,7 +19,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # Added the Anansi code
-  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib #{RAILS_ROOT}/song_crawler #{RAILS_ROOT}/song_crawler/server #{RAILS_ROOT}/song_crawler/client)
   #config.load_paths.each { |file| puts "#{file}" }
 
   # Force all environments to use the same logger level 
@@ -82,7 +82,7 @@ ActionMailer::Base.server_settings = {
 LogEntry.establish_connection(
      :adapter  => "mysql",
      :host     => "127.0.0.1",
-     :username => "tourbus_root",
+     :username => "root",
      :password => "bighit",
      :database => "tourbus_stats"
    )

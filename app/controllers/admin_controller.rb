@@ -277,6 +277,38 @@ class AdminController < ApplicationController
     #@session[:shows_by_status] = @shows_by_status
   end
   
+  def add_song_sites
+    return if request.get?
+    
+    sites = params[:sites].split(",")
+    for site in sites
+      site.strip!
+      if SongSite.find_by_url(site).nil?
+        SongSite.new(:url => site).save!
+      end
+    end
+    
+    flash.now[:success] = "Sites added and ready for crawling"
+  end
+  
+  def show_song_sites
+    filter = params[:filter] || "all"
+    
+    if filter == "active"
+      conditions = "crawl_status = #{SongSite::CRAWL_STATUS_ACTIVE}"
+    elsif filter == "disabled"
+      conditions = "crawl_status = #{SongSite::CRAWL_STATUS_DISABLED}"
+    else
+      conditions = nil
+    end
+    
+    @sites = SongSite.find(:all, :conditions => conditions)
+  end
+  
+  def show_songs
+    @songs = Song.find(:all, :order => "created_at desc")
+  end
+  
   private 
   
   # Prepare instance vars for the form to display

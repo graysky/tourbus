@@ -1,0 +1,32 @@
+<h2>Songs</h2>
+<p>
+
+<p>
+
+</p>
+
+<table border="1" cellpadding="2" class="small-table">
+
+<tr>
+<th>ID</th>
+<th>Band ID</th>
+<th>Artist</th>
+<th>Title</th>
+<th>Site</th>
+<th>Status</th>
+<th>URL</th>
+</tr>
+
+<% for song in @songs %>
+<tr>
+    <td><%= song.id %></td>
+    <td><%= song.band_id %></td>
+    <td><%= song.artist %></td>
+    <td><%= song.title %></td>
+    <td><%= song.song_site_id %></td>
+    <td><%= song.status %></td>
+    <td><%= link_to song.url, song.url %></td>
+</tr>
+<% end %>
+
+</table>

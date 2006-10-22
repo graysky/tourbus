@@ -1,0 +1,12 @@
+<% @header_title = "Add song sites" %>
+
+<%= start_form_tag :action => 'add_song_sites' %>
+
+<h3>Crawl the following sites (comma-separated list). Dupes will be ignored:</h3>
+
+<%= text_area_tag 'sites', params[:sites], {:cols => 70, :rows => 10} %>
+
+<%= submit_tag "Add" %>
+
+
+<%= end_form_tag %>

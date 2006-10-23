@@ -69,7 +69,8 @@ class BaseServlet < WEBrick::HTTPServlet::AbstractServlet
   def get_site(req, worker = nil)
     begin
       site = SongSite.find(req.query["site"].to_i)
-    rescue 
+    rescue Exception => e
+      @logger.error(e.to_s)
       raise "Invalid site id: #{req.query['site']}"
     end
     

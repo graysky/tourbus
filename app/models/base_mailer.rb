@@ -3,6 +3,18 @@ require_dependency 'emails'
 # Base class for all our ActionMailers
 class BaseMailer < ActionMailer::Base
 
+  # Common spam words
+  SPAM_WORDS = [ "levitra", "cialis", "viagra" ] unless const_defined?("SPAM_WORDS")
+
+  # Check the given string, returning true if spam, false if not
+  def self.spam?(suspect)
+    SPAM_WORDS.each do |s|
+      return true if suspect.include?(s)
+    end
+    
+    return false
+  end
+
   # Check to see if this email should not be sent
   def email_testing?(addr)
     return Emails.spam.eql(addr)

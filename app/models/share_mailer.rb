@@ -18,6 +18,17 @@ class ShareMailer < BaseMailer
         errors << "Invalid address: #{to}"
         next
       end
+      
+      # Check for spam
+      if BaseMailer.spam?(to)
+        errors << "Suspected spam: #{to}"
+        next
+      end
+      
+      if BaseMailer.spam?(msg)
+        errors << "Suspected spam: #{msg}"
+        next
+      end
     
       begin
         # Try to send the message

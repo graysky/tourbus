@@ -34,7 +34,7 @@ class SongCrawlerService
     end
     
     # AR has strange problems in a multithreaded environment
-    ActiveRecord::Base.allow_concurrency = false
+    ActiveRecord::Base.allow_concurrency = true
     
     # It's go time
     @server.start

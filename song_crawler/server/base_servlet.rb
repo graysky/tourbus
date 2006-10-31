@@ -1,9 +1,12 @@
 require 'webrick'
 require "rexml/document"
+require 'monitor'
 
 class BaseServlet < WEBrick::HTTPServlet::AbstractServlet
   include REXML
   include SongCrawlerBase
+  
+  @@request_lock = Monitor.new
   
   ALLOWED_HOSTS = []
   
@@ -13,37 +16,39 @@ class BaseServlet < WEBrick::HTTPServlet::AbstractServlet
   end
   
   def do_GET(req, resp)
-    resp['content-type'] = 'text/xml'
-    
-    # Check allowed hosts
-    
-    # Parse request body for posts
-    begin
-      if req.request_method == "POST"
-        req.body_doc = Document.new(req.body)
-        
-        worker = req.body_doc.get_text("request/worker")
-        req.query["worker"] = worker.value if worker
-        
-        site = req.body_doc.get_text("request/site")
-        req.query["site"] = site.value if site
+    @@request_lock.synchronize do
+      resp['content-type'] = 'text/xml'
+      
+      # Check allowed hosts
+      
+      # Parse request body for posts
+      begin
+        if req.request_method == "POST"
+          req.body_doc = Document.new(req.body)
+          
+          worker = req.body_doc.get_text("request/worker")
+          req.query["worker"] = worker.value if worker
+          
+          site = req.body_doc.get_text("request/site")
+          req.query["site"] = site.value if site
+        end
+      rescue Exception => e
+        error(resp, ERROR_UNKNOWN, "Invalid XML: #{e}")
+        return
       end
-    rescue Exception => e
-      error(resp, ERROR_UNKNOWN, "Invalid XML: #{e}")
-      return
-    end
-    
-    # Check that we have a worker id
-    worker = get_worker(req)
-    if worker.nil? || worker == ""
-      error(resp, ERROR_INVALID_WORKER, "Invalid worker id")
-      return
-    end
-    
-    begin
-      handle_request(req, resp)
-    rescue Exception => e
-      error(resp, ERROR_UNKNOWN, e.to_s)
+      
+      # Check that we have a worker id
+      worker = get_worker(req)
+      if worker.nil? || worker == ""
+        error(resp, ERROR_INVALID_WORKER, "Invalid worker id")
+        return
+      end
+      
+      begin
+        handle_request(req, resp)
+      rescue Exception => e
+        error(resp, ERROR_UNKNOWN, e.to_s)
+      end
     end
   end
   

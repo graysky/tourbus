@@ -104,10 +104,11 @@ class SongCrawlerClient
     begin
       doc = send_request("/get_work?worker=#{@worker_id}")
     rescue RemoteException => re
-      if re.code == ERROR_NO_WORK
-        sleep 30
-        retry
+      if re.code != ERROR_NO_WORK
+        @logger.error re.to_s
       end
+      sleep 30
+      retry
     rescue Exception => e
       # Maybe a connection error...
       @logger.error e.to_s
@@ -134,7 +135,9 @@ class SongCrawlerClient
   # Send a remote reqeust
   def send_request(url)
     response = open("http://#{@host}:#{@port}#{url}")
-    doc = Document.new(response.read)
+    
+    str = response.read
+    doc = Document.new(str)
     
     @logger.debug(doc.to_s)
     
@@ -150,7 +153,7 @@ class SongCrawlerClient
   def wget_cmd(url, log)
     domain = get_domain(url)
     
-    reject = "exe,avi,mov,mpg,mpeg,tiff,bmp,zip,gz,jpg,JPG,GIF,jpeg,gif,png,pdf,psd,css,js,swf,rm,\"*viewtopic*\",\"*viewforum*\""
+    reject = "exe,avi,mov,mpg,mpeg,tiff,tif,bmp,zip,gz,jpg,JPG,GIF,jpeg,gif,png,pdf,psd,css,js,swf,rm,\"*viewtopic*\",\"*viewforum*\""
     reject << ",\"*login.php*\",\"*privmsg.php*\",\"*phpBBb*\""
     excluded_domains = "boards.#{domain},blog.#{domain},board.#{domain}"
     excluded_dirs = "/board,/boards,/messageboards,/messageboard,/rss,/phpBB2"
@@ -223,14 +226,27 @@ class SongCrawlerClient
     end
     xml << "</songs>"
     
-    Net::HTTP.start(@host, @port) do |http|
-      res = http.post("/add_songs", get_request_xml(id, xml))
-      doc = Document.new(res.body)
-      
-      if doc.root.name == "error"
-        # Print a warning but keep going
-        # TODO Collect up failures and retry in a thread
-        @logger.warn "Error uploading song info: #{doc.get_text('error/code')}: #{doc.get_text('error/msg').to_s}"
+    retry_count = 0
+    begin
+      Net::HTTP.start(@host, @port) do |http|
+        http.open_timeout = 30
+        http.read_timeout = 30
+        res = http.post("/add_songs", get_request_xml(id, xml))
+        doc = Document.new(res.body)
+        
+        if doc.root.name == "error"
+          # Print a warning but keep going
+          # TODO Collect up failures and retry in a thread
+          @logger.warn "Error uploading song info: #{doc.get_text('error/code')}: #{doc.get_text('error/msg').to_s}"
+        end
+      end
+    rescue Exception => e
+      retry_count += 1
+      if retry_count < 4
+        sleep 10
+        retry
+      else
+        @logger.warn "Exception uploading song info: #{e.to_s}"
       end
     end
   end

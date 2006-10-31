@@ -33,8 +33,11 @@ class SongCrawlerService
       end
     end
     
-    # AR has strange problems in a multithreaded environment
-    ActiveRecord::Base.allow_concurrency = true
+    # AR has strange problems in a multithreaded environment.
+    # We are forcing webrick to be single-thread.
+    # This sucks but it's easier than writing a connection pool,
+    # and most of these requests should be short-lived.
+    ActiveRecord::Base.allow_concurrency = false
     
     # It's go time
     @server.start

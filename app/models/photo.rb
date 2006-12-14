@@ -60,8 +60,10 @@ class Photo < ActiveRecord::Base
   end
   
   def file=(file)
-    self.filename = sanitize_filename(file.original_filename)
-    @file = file
+    if file.method_defined?(:original_filename)
+      self.filename = sanitize_filename(file.original_filename)
+      @file = file
+    end
   end
  
   def relative_path(version_name = nil)

@@ -7,14 +7,20 @@ class BaseMailer < ActionMailer::Base
   SPAM_WORDS = ["phentermine", "levitra", "cialis", "viagra" ] unless const_defined?("SPAM_WORDS")
 
   # Override deliver! to check for spam
-  def deliver!(mail = @mail)
-      #puts "Mail came through BaseMailer with #{mail.body}"
-      if BaseMailer.spam?(mail.body)
-        logger.info "Mail is suspected to be spam"
-        return nil
-      end
-      return super.deliver!(mail)
+  def deliver(mail = @mail)
+    puts "Mail came through BaseMailer with #{mail.body}"
+    if BaseMailer.spam?(mail.body)
+      logger.info "Mail is suspected to be spam"
+      return nil
     end
+
+    begin
+      obj = ActionMailer::Base.deliver(mail)
+      return obj
+    rescue Exception => e
+      logger.info e.to_s
+    end  
+  end
   
 
   # Check the given string, returning true if spam, false if not

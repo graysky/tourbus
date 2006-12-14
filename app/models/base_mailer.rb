@@ -14,12 +14,12 @@ class BaseMailer < ActionMailer::Base
       return nil
     end
 
-    begin
+    #begin
       obj = super
       return obj
-    rescue Exception => e
-      logger.info e.to_s
-    end  
+    #rescue Exception => e
+    #  logger.info e.to_s
+    #end  
   end
   
 

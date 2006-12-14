@@ -15,7 +15,7 @@ class BaseMailer < ActionMailer::Base
     end
 
     begin
-      obj = ActionMailer::Base.deliver!(mail)
+      obj = super
       return obj
     rescue Exception => e
       logger.info e.to_s

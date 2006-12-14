@@ -60,7 +60,7 @@ class Photo < ActiveRecord::Base
   end
   
   def file=(file)
-    if file.method_defined?(:original_filename)
+    if file.respond_to?(:original_filename)
       self.filename = sanitize_filename(file.original_filename)
       @file = file
     end

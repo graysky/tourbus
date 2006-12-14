@@ -141,6 +141,9 @@ class Photo < ActiveRecord::Base
   
   def make_versions
     orig = ::Magick::Image.read(path_to_file).first
+    
+    return nil if orig.nil?
+
     VERSIONS.each do |version|
       image = orig.change_geometry(version[:size]) do |cols, rows, img|
         img.resize(cols, rows)

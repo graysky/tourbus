@@ -67,7 +67,7 @@ class Photo < ActiveRecord::Base
   end
  
   def relative_path(version_name = nil)
-    return "/" + path_to_version_file(version_name, false)
+    return "/" + path_to_version_file(version_name, false).to_s
   end
  
   def before_save

@@ -20,6 +20,7 @@ class PhotoController < ApplicationController
       # Invalid photo -- needs an owner
       str = "Must be logged in!"
       finish_upload_status "'#{str}'"
+      render :nothing => true
       return
     end
     

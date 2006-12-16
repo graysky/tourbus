@@ -8,18 +8,15 @@ class BaseMailer < ActionMailer::Base
 
   # Override deliver! to check for spam
   def deliver!(mail = @mail)
-    puts "Mail came through BaseMailer with #{mail.body}"
+    #puts "Mail came through BaseMailer with #{mail.body}"
     if BaseMailer.spam?(mail.body)
       logger.info "Mail is suspected to be spam"
       return nil
     end
 
-    #begin
-      obj = super
-      return obj
-    #rescue Exception => e
-    #  logger.info e.to_s
-    #end  
+    obj = super
+    return obj
+
   end
   
 

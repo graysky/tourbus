@@ -168,6 +168,9 @@ class ShowParser < MetaSite
     end
     
     year = Time.now.year if values[0].nil? or values[0] != Time.now.year or values[0] != Time.now.year + 1
+    if (values[1].to_i < 12)
+      year = 2007
+    end
     Time.local(year, values[1], values[2])
   end
   

@@ -4,7 +4,7 @@ require_dependency 'emails'
 class BaseMailer < ActionMailer::Base
 
   # Common spam words
-  SPAM_WORDS = ["phentermine", "levitra", "cialis", "viagra" ] unless const_defined?("SPAM_WORDS")
+  SPAM_WORDS = ["phentermine", "levitra", "cialis", "viagra", 'ringtones', 'mattress' ] unless const_defined?("SPAM_WORDS")
 
   # Override deliver! to check for spam
   def deliver!(mail = @mail)

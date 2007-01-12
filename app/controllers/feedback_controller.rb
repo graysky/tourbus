@@ -16,6 +16,7 @@ class FeedbackController < ApplicationController
     
     if feedback.nil? or feedback.empty?
       feedback = "No feedback provided"
+      return
     end
     
     if user.nil? or user.empty?
@@ -35,6 +36,12 @@ class FeedbackController < ApplicationController
   def report_problem
     return if request.get?
     
+    # Must include a note to avoid spam
+    if params[:notes].nil? or params[:notes].empty?
+      render :nothing => true
+      return
+    end
+
     FeedbackMailer.deliver_problem_report(params[:type], params[:id], params[:reason], params[:notes], logged_in_fan)
     render :nothing => true
   end

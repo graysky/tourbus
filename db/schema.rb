@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 41) do
+ActiveRecord::Schema.define(:version => 42) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -330,6 +330,41 @@ ActiveRecord::Schema.define(:version => 41) do
 
   add_index "tags_venues", ["venue_id"], :name => "fk_vt_venue"
   add_index "tags_venues", ["tag_id"], :name => "fk_vt_tag"
+
+  create_table "turk_hit_type", :force => true do |t|
+    t.column "aws_hit_type_id", :string
+    t.column "price", :integer
+    t.column "title", :string
+    t.column "description", :string
+    t.column "duration", :integer, :default => 3600
+    t.column "keywords", :string
+  end
+
+  create_table "turk_hits", :force => true do |t|
+    t.column "turk_site_id", :integer
+    t.column "submission_time", :datetime
+    t.column "response_time", :datetime
+    t.column "status", :integer, :default => 1
+    t.column "amount_paid", :integer
+    t.column "turk_worker_id", :integer
+    t.column "aws_hit_id", :string
+  end
+
+  create_table "turk_sites", :force => true do |t|
+    t.column "url", :string
+    t.column "venue_id", :integer
+    t.column "created_at", :datetime
+    t.column "turk_hit_type", :integer
+    t.column "price_override", :integer
+    t.column "num_assignments", :integer, :default => 1
+    t.column "extra_instructions", :string
+    t.column "frequency", :integer
+    t.column "lifetime", :integer, :default => 604800
+  end
+
+  create_table "turk_workers", :force => true do |t|
+    t.column "aws_worker_id", :string
+  end
 
   create_table "upload_addrs", :force => true do |t|
     t.column "address", :string, :limit => 100, :default => "", :null => false

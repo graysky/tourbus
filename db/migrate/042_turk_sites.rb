@@ -12,8 +12,9 @@ class TurkSites < ActiveRecord::Migration
       t.column :lifetime, :integer, :default => 7.days
     end
     
-    create_table :turk_hit_type do |t|
+    create_table :turk_hit_types do |t|
       t.column :aws_hit_type_id, :string
+      t.column :name, :string
       t.column :price, :integer
       t.column :title, :string
       t.column :description, :string
@@ -39,6 +40,7 @@ class TurkSites < ActiveRecord::Migration
   def self.down
     drop_table :turk_sites
     drop_table :turk_hits
+    drop_table :turk_hit_types
     drop_table :turk_workers
   end
 end

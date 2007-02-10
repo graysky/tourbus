@@ -8,4 +8,8 @@ class TurkSite < ActiveRecord::Base
   FREQUENCY_WEEKLY = 1
   FREQUENCY_BIWEEKLY = 2
   FREQUENCY_MONTHLY = 3
+  
+  def question
+    self.turk_hit_type.question(self)
+  end
 end

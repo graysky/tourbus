@@ -15,6 +15,14 @@ class TurkApi
   AWS_SECRET_ACCESS_KEY = 'o97H3xi0IrX8622N3ao6jONm/kLUdiyWIJvCZoJV'
   SERVICE_NAME = 'AWSMechanicalTurkRequester'
   SERVICE_VERSION = '2006-10-31'
+  
+  attr :key
+  attr :secret_key
+  
+  def initialize(key = AWS_ACCESS_KEY_ID, secret_key = AWS_SECRET_ACCESS_KEY)
+    @key = key
+    @secret_key = secret_key
+  end
       
   # Get the current account balance
   def get_account_balance
@@ -59,7 +67,7 @@ class TurkApi
   
   def generate_signature(operation, timestamp)
     msg = "#{SERVICE_NAME}#{operation}#{timestamp}"
-    hmac = hmac_sha1(AWS_SECRET_ACCESS_KEY, msg)
+    hmac = hmac_sha1(@secret_key, msg)
     b64_hmac = Base64::encode64(hmac).chomp
     return b64_hmac
   end
@@ -68,7 +76,7 @@ class TurkApi
     {
       :Service => SERVICE_NAME,
       :Version => SERVICE_VERSION,
-      :AWSAccessKeyId => AWS_ACCESS_KEY_ID,
+      :AWSAccessKeyId => @key,
       :Operation => nil,
       :Signature => nil,
       :Timestamp => nil,

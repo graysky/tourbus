@@ -1471,10 +1471,10 @@ table.info-table td a {
     border-collapse: collapse;
     }
 table.small-table th {
-    padding: 2px 2px 0 0;
+    padding: 2px 4px 0 4px;
     text-align: center;
     vertical-align: top;
-    font-size:13px;
+    font-size:11px;
     }
 table.small-table th em {
     display: block;
@@ -1486,7 +1486,7 @@ table.small-table th em {
     }
 table.small-table td {
     margin: 0 0 10px 0;
-    padding: 2px 2px 2px 0;
+    padding: 2px 4px 2px 4px;
     vertical-align: top;
     text-align: left;
     font-size: 11px;	

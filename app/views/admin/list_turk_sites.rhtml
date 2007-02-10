@@ -1,0 +1,26 @@
+<h2>Turk Sites</h2>
+<p>
+
+<table border="1" cellpadding="2" class="small-table">
+
+<tr>
+<th>ID</th>
+<th>URL</th>
+<th>Venue</th>
+<th>HIT Type</th>
+<th>Freq</th>
+<th>Created</th>
+</tr>
+
+<% for site in @sites %>
+<tr>
+    <td><%= link_to site.id.to_s, :action => :edit_turk_site, :id => site.id %></td>
+    <td><a href="<%= site.url %>"><%= site.url %></a></td>
+    <td><strong><%= site.venue.name %></strong>, <%= site.venue.city_state %>
+    <td><%= site.turk_hit_type.name %></td>
+    <td><%= site.frequency %></td>
+    <td><%= friendly_date(site.created_at) %></td>
+</tr>
+<% end %>
+
+</table>

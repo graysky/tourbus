@@ -1,0 +1,12 @@
+<% @header_title = "Create Turk Site" %>
+
+<%= start_form_tag :action => 'create_turk_site' %>
+
+<%= render(:partial => "turk_site_form",
+       :locals => 
+      {
+      })  
+%>
+
+<%= submit_tag "Create" %>
+<%= end_form_tag %>

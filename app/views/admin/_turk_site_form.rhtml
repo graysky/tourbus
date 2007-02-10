@@ -1,0 +1,70 @@
+
+<%= error_messages_for 'site' %>
+
+<table class="form-table">
+  <tr>
+    <th>URL:</th>
+    <td><%= text_field 'site', 'url' %></td>
+    <td class="info">
+      
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Venue ID:</th>
+    <td><%= text_field 'site', 'venue_id' %></td>
+    <td class="info">
+      <% if @site.venue %>
+        <strong><%= @site.venue.name %></strong>, <%= @site.venue.city_state %>
+      <% end %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th>HIT Type:</th>
+    <td><%= select 'site', 'turk_hit_type_id', TurkHitType.find_all.map { |h| [h.name, h.id] } %></td>
+    <td class="info">
+      <% TurkHitType.find(:all).each do |type| %>
+      <strong><%= type.name %>:</strong> <%= type.price %> cents <a style="font-size:11px" href="#">Details (coming soon)</a><br/>
+      <% end %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Frequency:</th>
+    <td><%= select 'site', 'frequency', [ ["Bi-Weekly", TurkSite::FREQUENCY_BIWEEKLY],
+                                          ["Weekly", TurkSite::FREQUENCY_WEEKLY],
+                                          ["Monthly", TurkSite::FREQUENCY_MONTHLY],
+                                        ] %></td>
+    <td class="info">
+      How often the site will be re-parsed
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Extra Instructions:</th>
+    <td><%= text_area 'site', 'extra_instructions', {:cols => 30, :rows => 4} %></td>
+    <td class="info">
+      Extra instructions for the HIT that will go at the bottom of the standard instructions
+      for the HIT type.
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Price Override (optional):</th>
+    <td><%= text_field 'site', 'price_override' %></td>
+    <td class="info">
+      Override the price set by the hit type. Will cause AWS to create a new HIT type. Value is in pennies.
+    </td>
+  </tr>
+  
+  <tr>
+    <th>Assignments (optional):</th>
+    <td><%= text_field 'site', 'num_assignments' %></td>
+    <td class="info">
+      # of workers assigned to the HIT. Default is just 1.
+    </td>
+  </tr>
+
+  
+</table>

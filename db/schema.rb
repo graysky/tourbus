@@ -331,8 +331,9 @@ ActiveRecord::Schema.define(:version => 42) do
   add_index "tags_venues", ["venue_id"], :name => "fk_vt_venue"
   add_index "tags_venues", ["tag_id"], :name => "fk_vt_tag"
 
-  create_table "turk_hit_type", :force => true do |t|
+  create_table "turk_hit_types", :force => true do |t|
     t.column "aws_hit_type_id", :string
+    t.column "name", :string
     t.column "price", :integer
     t.column "title", :string
     t.column "description", :string

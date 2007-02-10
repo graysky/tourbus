@@ -1,0 +1,12 @@
+<% @header_title = "Edit Turk Site" %>
+
+<%= start_form_tag :action => 'edit_turk_site' %>
+
+<%= render(:partial => "turk_site_form",
+       :locals => 
+      {
+      })  
+%>
+
+<%= submit_tag "Edit" %>
+<%= end_form_tag %>

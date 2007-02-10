@@ -4,7 +4,7 @@ class TurkSites < ActiveRecord::Migration
       t.column :url, :string
       t.column :venue_id, :integer
       t.column :created_at, :datetime
-      t.column :turk_hit_type, :integer
+      t.column :turk_hit_type_id, :integer
       t.column :price_override, :integer
       t.column :num_assignments, :integer, :default => 1
       t.column :extra_instructions, :string

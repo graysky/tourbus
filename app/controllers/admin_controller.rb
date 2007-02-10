@@ -309,6 +309,44 @@ class AdminController < ApplicationController
     @songs = Song.find(:all, :order => "created_at desc")
   end
   
+  ##################################################################
+  # ATATURK
+  ##################################################################
+  def create_turk_site
+    if request.get?
+      @site = TurkSite.new
+      return
+    end
+    
+    @site = TurkSite.new(params[:site])
+    if @site.save
+      raise "bad venue" if @site.venue.nil?
+      
+      flash[:success] = "Success!"
+      @site = TurkSite.new
+    end
+  end
+  
+  def edit_turk_site
+    if request.get?
+      @site = TurkSite.find(params[:id])
+      return
+    end
+    
+    @site = TurkSite.find(params[:id])
+    @site.update_attributes(params[:site])
+    if @site.save
+      raise "bad venue" if @site.venue.nil?
+      
+      flash[:success] = "Success!"
+      redirect_to :action => :list_turk_sites
+    end
+  end
+  
+  def list_turk_sites
+    @sites = TurkSite.find(:all)
+  end
+  
   private 
   
   # Prepare instance vars for the form to display

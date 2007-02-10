@@ -7,8 +7,13 @@ class TurkHitType < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :description
   
+  DEFAULT_QUESTION_TEMPLATE = "ataturk/questions/_default.erb"
+  
   def question(site)
-    e = ERB.new(File.read("ataturk/questions/#{self.name}.erb"))
+    file = "#{self.name}.erb"
+    file = DEFAULT_QUESTION_TEMPLATE if !File.exists?(file)
+    
+    e = ERB.new(File.read(file))
     e.result(binding)
   end
   

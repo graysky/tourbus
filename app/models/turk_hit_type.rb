@@ -8,7 +8,7 @@ class TurkHitType < ActiveRecord::Base
   validates_presence_of :description
   
   def question(site)
-    e = ERB.new(File.read("ataturk/questions/#{self.name}.rhtml"))
+    e = ERB.new(File.read("ataturk/questions/#{self.name}.erb"))
     e.result(binding)
   end
   

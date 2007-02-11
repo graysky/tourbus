@@ -9,7 +9,7 @@ class TurkHitType < ActiveRecord::Base
   
   DEFAULT_QUESTION_TEMPLATE = "ataturk/questions/_default.erb"
   
-  def question(site)
+  def question_content(site)
     file = "#{self.name}.erb"
     file = DEFAULT_QUESTION_TEMPLATE if !File.exists?(file)
     

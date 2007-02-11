@@ -1,6 +1,7 @@
 require 'net/http'
 require 'digest/sha1'
 require 'base64'
+require 'builder'
 
 class TurkApiException < RuntimeError
   attr :errors
@@ -15,6 +16,7 @@ class TurkApi
   AWS_SECRET_ACCESS_KEY = 'o97H3xi0IrX8622N3ao6jONm/kLUdiyWIJvCZoJV'
   SERVICE_NAME = 'AWSMechanicalTurkRequester'
   SERVICE_VERSION = '2006-10-31'
+  QUESTION_FORM_SCHEMA = "http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd"
   
   attr :key
   attr :secret_key
@@ -37,10 +39,79 @@ class TurkApi
     raise "Unexpected error: no result found"
   end
   
+  # Get the HIT data structure for the given id
+  def get_hit(id)
+    op = "GetHIT"
+    params = { :HITId => id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op)
+    
+    #if result_node = xml.root.elements["#{op}Result/AvailableBalance"]
+    #  return result_node.elements['FormattedPrice'].text
+    #end
+    
+    #raise "Unexpected error: no result found"
+    puts xml.to_s
+  end
+  
+  # Create a new HIT
+  def create_hit(site)
+    op = "CreateHIT"
+    
+    type = site.turk_hit_type
+    params = {}
+    params[:HITTypeId] = type.aws_hit_type_id if type.aws_hit_type_id
+    params[:LifetimeInSeconds] = site.lifetime
+    params[:MaxAssignments] = site.num_assignments
+    params[:Keywords] = "music, concerts, tourb.us"
+    
+    if type.aws_hit_type_id.nil? || site.price_override
+      # All all of the specific fields
+      add_reward_params(site.price_override || type.price, params)
+      params[:Title] = type.title
+      params[:Description] = type.description
+      params[:AssignmentDurationInSeconds] = type.duration
+    end
+    
+    # Create the question structure
+    question = ""
+    xml = Builder::XmlMarkup.new(:target => question)
+    xml.QuestionForm(:xmlns => QUESTION_FORM_SCHEMA) do
+      xml.Question do
+        xml.QuestionIdentifier("q1")
+        xml.IsRequired("true")
+        xml.QuestionContent do
+          xml.FormattedContent do
+            xml.cdata!(type.question_content(site))
+          end
+        end
+        xml.AnswerSpecification do
+          xml.FreeTextAnswer do
+            xml.Constraints do
+              #xml.NumberOfLinesSuggestion("20")
+            end
+          end
+        end
+      end
+    end
+
+    params[:Question] = question
+   
+    xml = aws_call(op, params)
+    raise_if_error(xml, op)
+    
+    puts xml
+  end
+  
   ###############################
   # protected helper methods
   ###############################
   protected
+  
+  def add_reward_params(price, params)
+    params["Reward.1.Amount"] = (price.to_f / 100).to_s
+    params["Reward.1.CurrencyCode"] = "USD"
+  end
   
   # Define authentication routines (from AWS docs)
   def generate_timestamp(time)
@@ -98,7 +169,9 @@ class TurkApi
   
   def aws_call(operation, extra_params = {})
     params = base_params(operation)
-    param_string = (params.collect { |key,value| "#{key}=#{CGI::escape(value)}" }).join('&')
+    params.update(extra_params)
+    param_string = (params.collect { |key,value| "#{key}=#{CGI::escape(value.to_s)}" }).join('&')
+    
     url = URI.parse('http://mechanicalturk.amazonaws.com/onca/xml?' + param_string)
     
     REXML::Document.new(Net::HTTP.get(url))

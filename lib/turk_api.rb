@@ -3,13 +3,6 @@ require 'digest/sha1'
 require 'base64'
 require 'builder'
 
-class TurkApiException < RuntimeError
-  attr :errors
-  def initialize(errors)
-    @errors = errors
-  end
-end
-
 class TurkApi
   # Override defaults in environment.rb... right now this is gary's account
   AWS_ACCESS_KEY_ID = '107T76MRP4RR78KM2W02'
@@ -20,8 +13,10 @@ class TurkApi
   
   attr :key
   attr :secret_key
+  attr :debug
   
-  def initialize(key = AWS_ACCESS_KEY_ID, secret_key = AWS_SECRET_ACCESS_KEY)
+  def initialize(debug = false, key = AWS_ACCESS_KEY_ID, secret_key = AWS_SECRET_ACCESS_KEY)
+    @debug = debug
     @key = key
     @secret_key = secret_key
   end
@@ -29,10 +24,11 @@ class TurkApi
   # Get the current account balance
   def get_account_balance
     op = "GetAccountBalance"
+    res = "#{op}Result"
     xml = aws_call(op)
-    raise_if_error(xml, op)
+    raise_if_error(xml, op, res)
     
-    if result_node = xml.root.elements["#{op}Result/AvailableBalance"]
+    if result_node = xml.root.elements["#{res}/AvailableBalance"]
       return result_node.elements['FormattedPrice'].text
     end
     
@@ -42,9 +38,11 @@ class TurkApi
   # Get the HIT data structure for the given id
   def get_hit(id)
     op = "GetHIT"
+    res = "HIT"
+    
     params = { :HITId => id }
     xml = aws_call(op, params)
-    raise_if_error(xml, op)
+    raise_if_error(xml, op, res)
     
     #if result_node = xml.root.elements["#{op}Result/AvailableBalance"]
     #  return result_node.elements['FormattedPrice'].text
@@ -57,6 +55,7 @@ class TurkApi
   # Create a new HIT
   def create_hit(site)
     op = "CreateHIT"
+    res = "HIT"
     
     type = site.turk_hit_type
     params = {}
@@ -87,20 +86,46 @@ class TurkApi
         end
         xml.AnswerSpecification do
           xml.FreeTextAnswer do
-            xml.Constraints do
-              #xml.NumberOfLinesSuggestion("20")
-            end
+            xml.NumberOfLinesSuggestion("20")
           end
         end
       end
     end
-
+   
     params[:Question] = question
    
     xml = aws_call(op, params)
-    raise_if_error(xml, op)
+    raise_if_error(xml, op, res)
     
-    puts xml
+    if result_node = xml.root.elements["#{res}/HITId"]
+      return result_node.text
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  # Get the TurkApiAssignment entered by a worker as an answer to the given HIT
+  def get_hit_assignment(hit_id)
+    op = "GetAssignmentsForHIT"
+    res = "#{op}Result"
+    
+    params = { :HITId => hit_id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if node = xml.root.elements["#{res}/Assignment"]
+      a = TurkApiAssignment.new
+      a.id = node.elements['AssignmentId'].text
+      a.hit_id = hit_id
+      a.worker_id = node.elements['WorkerId'].text
+      a.status = node.elements['AssignmentStatus'].text
+      a.response_time = node.elements['SubmitTime'].text
+      a.answer = node.elements['Answer'].text
+      
+      return a
+    end
+    
+    raise "Unexpected error: no result found"
   end
   
   ###############################
@@ -151,6 +176,7 @@ class TurkApi
       :Operation => nil,
       :Signature => nil,
       :Timestamp => nil,
+      :Validate => @debug
     }
   end
   
@@ -186,7 +212,7 @@ class TurkApi
     errors
   end
   
-  def raise_if_error(xml, operation)
+  def raise_if_error(xml, operation, res)
     errors = []
     
     # Check for request errors
@@ -195,7 +221,7 @@ class TurkApi
     end
     
     # Check for operation errors
-    if error_nodes = xml.root.elements["#{operation}Result/Request/Errors"]
+    if error_nodes = xml.root.elements["#{res}/Request/Errors"]
       errors = errors + collect_errors(error_nodes)
     end
     

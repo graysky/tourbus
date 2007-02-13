@@ -52,6 +52,22 @@ class TurkApi
     puts xml.to_s
   end
   
+  # Expire a HIT immediately
+  def expire_hit(id)
+    op = "ForceExpireHIT"
+    res = "ForceExpireHITResult"
+    
+    params = { :HITId => id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
   # Create a new HIT
   def create_hit(site)
     op = "CreateHIT"

@@ -73,6 +73,8 @@ class Fan < ActiveRecord::Base
   validates_uniqueness_of :uuid # just in case
   
   validates_presence_of :name, :contact_email
+  validates_length_of :name, :maximum => 25,
+                          :message => "Sorry, name must be less than 25 characters"
   validates_numericality_of :default_radius, :allow_nil => true, :if => Proc.new { |fan| fan.default_radius != '' }
   validates_uniqueness_of :name, 
                           :message => "Sorry, that name has already been taken."

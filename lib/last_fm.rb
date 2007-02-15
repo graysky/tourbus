@@ -25,4 +25,26 @@ class LastFm
     
     return bands
   end
+
+  # Return the top bands for this week's listening  
+  def self.top_weekly_bands(username)
+    url = "http://ws.audioscrobbler.com/1.0/user/#{CGI::escape(username)}/weeklyartistchart.xml"
+    
+    begin
+      response = open(url)
+      doc = Document.new(response.read)
+    rescue OpenURI::HTTPError => e
+      puts "Error reading top weekly bands for last.fm user #{username}, #{e.to_s}"
+      # We can't recover
+      return nil
+    end
+    
+    bands = []
+    doc.each_element("//name") do |elem|
+      bands << elem.text
+    end
+    
+    return bands
+  end
+  
 end

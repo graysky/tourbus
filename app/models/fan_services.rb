@@ -9,8 +9,21 @@ class FanServices < ActiveRecord::Base
         fan = s.fan
         
         begin
+          # Get their top weekly artists
+          weekly = LastFm.top_weekly_bands(s.lastfm_username.strip)
+          wishlist, weekly_bands = WishListBand.segment_wishlist_bands(weekly)
+
+          bands = []
+          bands << weekly_bands if !weekly_bands.nil?
+
+          # And their top overall artists
+          sleep(1)
           top = LastFm.top_50_bands(s.lastfm_username.strip)
-          wishlist, bands = WishListBand.segment_wishlist_bands(top)
+          wishlist, top_bands = WishListBand.segment_wishlist_bands(top)
+
+          bands << top_bands if !top_bands.nil?
+          bands.flatten!
+          bands.uniq!
           
           if bands
             bands.each do |band|

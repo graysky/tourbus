@@ -40,8 +40,21 @@ class LastFm
     end
     
     bands = []
-    doc.each_element("//name") do |elem|
-      bands << elem.text
+    #puts "Document: #{doc.root}"
+    doc.root.each_element("//artist") do |artist|
+      band_name = nil
+      
+      artist.each_element("name") do |elem|
+        band_name = elem.text
+      end
+      
+      # Only add artists with >=3 plays
+      artist.each_element("playcount") do |playcount|
+        count = playcount.text.to_i
+        if count > 2
+          bands << band_name
+        end
+      end
     end
     
     return bands

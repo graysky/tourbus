@@ -23,7 +23,10 @@ class ShowParser < MetaSite
   
     super()
   
-    @doc = xml.is_a?(String) ? Document.new(HTML::strip_tags(xml)) : xml
+    if xml
+      @doc = xml.is_a?(String) ? Document.new(HTML::strip_tags(xml)) : xml
+    end
+    
     @url = url
     
     @show = nil # The current show being processed

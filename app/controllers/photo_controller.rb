@@ -54,4 +54,22 @@ class PhotoController < ApplicationController
     @photo.save
     render :text => @photo.description
   end
+  
+  def delete_photo
+    @photo = Photo.find(params[:id])
+    
+    if @photo.created_by_fan and @photo.created_by_fan == logged_in_fan
+      @photo.destroy    
+      redirect_to public_fan_url
+    
+    elsif @photo.created_by_band and @photo.created_by_band == logged_in_band
+      @photo.destroy    
+      redirect_to public_band_url
+      
+    else
+      # Must be logged in as the owner
+      render :nothing => true
+      return 
+    end  
+  end
 end

@@ -20,6 +20,7 @@
   <script type="text/javascript">
     new Ajax.InPlaceEditor('caption', '<%= url_for(:controller => "photo", :action => "set_caption", :id => @photo.id) %>', {rows:5, externalControl:"edit_caption"})
   </script>
+  | <%= link_to "Delete Photo", { :controller => "photo", :action => "delete_photo", :id => @photo.id }, :confirm => "Really delete this photo?", :method => :post %>
 <% end %> 
 
 </td></tr>

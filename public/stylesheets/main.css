@@ -2027,3 +2027,24 @@ table.form-table td a {
 {
     padding-right: 4px;
 }
+
+.hit_div
+{
+    padding: 8 0 12 8;
+}
+
+.hit_even {
+    background-color:#eee;
+    border:1px solid #ddd;
+    border-top:0px;
+}
+
+.hit_odd {
+    background-color:#FAFAFA;
+    border:1px solid #ddd;
+    border-top:0px;
+}
+
+.first_hit {
+    border-top:1px solid #ddd;
+}

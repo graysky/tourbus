@@ -1,0 +1,94 @@
+<a name="submittop"></a>
+
+<h2>Find Concert Dates</h2>
+
+<p>
+Please visit the following music venue calendar page: <a href="<%= @site.url %>" target="_site"><%= @site.url %></a>
+</p>
+<p>
+    For each concert listed, fill out one of the small forms below.
+    Click here to see ane example
+</p>
+
+<p>
+    More instructions
+</p>
+
+<%= start_form_tag :action => :hit %>
+
+<% if (@errors && @errors.size > 0) || (@invalid_bands && @invalid_bands.size > 0) %>
+    <div class="error">
+        <table><tr><td valign='top'><img width='16px' height='16px' src="/images/exclamation.png" onload='fixPNG(this)'/></td>
+                   <td>Sorry, there were some errors in the form. Please correct them and re-submit.<br/>
+                       If you do so you will get full credit for the HIT.
+                   </td>
+                </tr>
+        <% for error in @errors %>
+            <tr>
+                <td></td>
+                <td>
+                    <% if error[0] %>
+                        <a href="#show<%= error[0] %>">Show #<%= error[0].to_i + 1 %></a>:
+                    <% end%>
+                    <%= error[1] %>
+                </td>
+            </tr>
+        <% end %>
+        
+        <% if @invalid_bands.size > 0 %>
+            <tr><td></td><td>We found many bands with invalid names. Please remove or correct them:</td></tr>
+            <% for band in @invalid_bands %>
+                <tr>
+                    <td></td>
+                    <td><a href="#show<%= band[0] %>">Show #<%= band[0].to_i + 1 %></a>: <%= band[1] %></td>
+                </tr>
+            <% end %>
+        <% end %>
+        </table>
+    </div>
+<% end %>
+
+<% unless @preview %>
+    <%= submit_tag "I'm done - Submit", :style => "font-size:18px;" %>
+    <input type="hidden" name="assignmentId" value="<%= @assignmentId %>"/>
+    <input type="hidden" name="turk_site_id" value="<%= @site.id %>"/>
+<% end %>
+
+<br/><br/>
+<% for i in (0..100) %>
+
+<a name="show<%= i %>"/>
+<div class="hit_div <%= i % 2 == 0 ? 'hit_even' : 'hit_odd' %> <%= 'first_hit' if i == 0 %>">
+    <table>
+        <tr>
+            <td><strong>Date*:</strong> <%= text_field_tag "date#{i}", params["date#{i}"], :size => "14", 
+                                            :onfocus => "if (this.value == 'DD/MM/YYYY') this.value = ''" %></td>
+            <td><strong>Time:</strong> <%= text_field_tag "time#{i}", params["time#{i}"], :size => "8" %></td>
+            <td><strong>Cost:</strong> <%= text_field_tag "cost#{i}", params["cost#{i}"], :size => "8" %></td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Link to buy tickets:</strong> <%= text_field_tag "tickets#{i}", params["tickets#{i}"], :size => "38" %></td>
+            <td>
+                <table cellpadding="0">
+                <tr>
+                    <td><strong>Soldout?</strong></td><td><%= check_box_tag "soldout#{i}", value="true", checked=params["soldout#{i}"] == "true" %></td>
+                    <td>&nbsp;<strong>Cancelled?</strong></td><td><%= check_box_tag "cancelled#{i}", value="true", checked=params["cancelled#{i}"] == "true" %></td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Performers (one per line)*</strong></td>
+        </tr>
+        <tr>
+            <td colspan="3"> <%= text_area_tag "bands#{i}", params["bands#{i}"], {:cols => 40, :rows => 5} %></td>
+            <% unless @preview %>
+                <td valign="bottom"><a href="#submittop">This is the last show - submit now</a></td>
+            <% end %>
+        </tr>
+    </table>
+</div>
+
+<% end %>
+
+<%= end_form_tag %>

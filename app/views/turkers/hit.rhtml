@@ -55,24 +55,24 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
 <% end %>
 
 <br/><br/>
-<% for i in (0..100) %>
+<% for i in (0...100) %>
 
 <a name="show<%= i %>"/>
 <div class="hit_div <%= i % 2 == 0 ? 'hit_even' : 'hit_odd' %> <%= 'first_hit' if i == 0 %>">
     <table>
         <tr>
-            <td><strong>Date*:</strong> <%= text_field_tag "date#{i}", params["date#{i}"], :size => "14", 
+            <td><strong>Date*:</strong> <%= text_field_tag "date_#{i}", params["date_#{i}"], :size => "14", 
                                             :onfocus => "if (this.value == 'DD/MM/YYYY') this.value = ''" %></td>
-            <td><strong>Time:</strong> <%= text_field_tag "time#{i}", params["time#{i}"], :size => "8" %></td>
-            <td><strong>Cost:</strong> <%= text_field_tag "cost#{i}", params["cost#{i}"], :size => "8" %></td>
+            <td><strong>Time:</strong> <%= text_field_tag "time_#{i}", params["time_#{i}"], :size => "8" %></td>
+            <td><strong>Cost:</strong> <%= text_field_tag "cost_#{i}", params["cost_#{i}"], :size => "8" %></td>
         </tr>
         <tr>
-            <td colspan="3"><strong>Link to buy tickets:</strong> <%= text_field_tag "tickets#{i}", params["tickets#{i}"], :size => "38" %></td>
+            <td colspan="3"><strong>Link to buy tickets:</strong> <%= text_field_tag "tickets_#{i}", params["tickets_#{i}"], :size => "38" %></td>
             <td>
                 <table cellpadding="0">
                 <tr>
-                    <td><strong>Soldout?</strong></td><td><%= check_box_tag "soldout#{i}", value="true", checked=params["soldout#{i}"] == "true" %></td>
-                    <td>&nbsp;<strong>Cancelled?</strong></td><td><%= check_box_tag "cancelled#{i}", value="true", checked=params["cancelled#{i}"] == "true" %></td>
+                    <td><strong>Soldout?</strong></td><td><%= check_box_tag "soldout_#{i}", value="true", checked=params["soldout_#{i}"] == "true" %></td>
+                    <td>&nbsp;<strong>Cancelled?</strong></td><td><%= check_box_tag "cancelled_#{i}", value="true", checked=params["cancelled_#{i}"] == "true" %></td>
                 </tr>
             </table>
             </td>
@@ -81,7 +81,7 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
             <td colspan="3"><strong>Performers (one per line)*</strong></td>
         </tr>
         <tr>
-            <td colspan="3"> <%= text_area_tag "bands#{i}", params["bands#{i}"], {:cols => 40, :rows => 5} %></td>
+            <td colspan="3"> <%= text_area_tag "bands_#{i}", params["bands_#{i}"], {:cols => 40, :rows => 5} %></td>
             <% unless @preview %>
                 <td valign="bottom"><a href="#submittop">This is the last show - submit now</a></td>
             <% end %>

@@ -14,7 +14,7 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
     More instructions
 </p>
 
-<%= start_form_tag :action => :hit %>
+<%= start_form_tag :action => "http://www.mturk.com/mturk/externalSubmit" %>
 
 <% if (@errors && @errors.size > 0) || (@invalid_bands && @invalid_bands.size > 0) %>
     <div class="error">

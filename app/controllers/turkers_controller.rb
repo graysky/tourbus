@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 class TurkersController < ApplicationController
 
   def hit
@@ -9,14 +12,14 @@ class TurkersController < ApplicationController
       render :partial => "hit_error", :layout => "turk_hit"
       return
     end
-     
+    
+    @assignmentId = params[:assignmentId]  
+    if "ASSIGNMENT_ID_NOT_AVAILABLE" == @assignmentId
+      @preview = true
+    end
+       
     if request.get?
       # We must be showing the form
-      @assignmentId = params[:assignmentId]  
-      if "ASSIGNMENT_ID_NOT_AVAILABLE" == @assignmentId
-        @preview = true
-      end
-      
       params["date0"] = 'DD/MM/YYYY'
       
       render :layout => "turk_hit"
@@ -81,7 +84,7 @@ class TurkersController < ApplicationController
     if @errors.size > 0 || @invalid_bands.size > 0
       render :layout => "turk_hit"
     else
-      url = "http://www.mturk.com/mturk/externalSubmit?assignmentId=100&"
+      url = "http://www.mturk.com/mturk/externalSubmit?assignmentId=#{@assignmentId}&"
       param_str = ""
       
       params.each do |key, value|
@@ -93,7 +96,17 @@ class TurkersController < ApplicationController
       
       url += param_str
       logger.info("Hit complete for site: #{@site.id}. Url: #{url}")
-      redirect_to(url)
+      
+      res = Net::HTTP.get(URI.parse(url))
+      
+      if (res == Net::HTTPSuccess)
+        flash.now[:success] = "It worked..."
+        render :layout => "turk_hit"
+      else
+        logger.error("Error posting hit to aws: #{res}")
+        @errors << [nil, "Sorry, there was an error submitting to Amazon. Please try again."]
+        render :layout => "turk_hit"
+      end
     end
   end
   

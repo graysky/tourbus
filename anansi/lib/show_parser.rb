@@ -1,5 +1,5 @@
   require 'rexml/document'
-require 'anansi/lib/html' # temp
+#require 'anansi/lib/html' # temp
 
 # Base class for all show parsers
 class ShowParser < MetaSite

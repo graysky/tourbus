@@ -31,9 +31,8 @@ class TurkersController < ApplicationController
     @invalid_bands = []
     show_count = 0
     parser = ShowParser.new(nil)
-    last_index = 99
     
-    for i in (0...100)
+    for i in (0...60)
       date = params["date_#{i}"]
       bands = params["bands_#{i}"]
       
@@ -82,32 +81,12 @@ class TurkersController < ApplicationController
     end
     
     if @errors.size > 0 || @invalid_bands.size > 0
-      render :layout => "turk_hit"
+      logger.info("Errors submitting form")
     else
-      url = "http://www.mturk.com/mturk/externalSubmit?assignmentId=#{@assignmentId}&"
-      param_str = ""
-      
-      params.each do |key, value|
-        chunks = key.split("_")
-        if (chunks[1].nil? || chunks[1].to_i < last_index)
-          param_str += "#{key}=#{CGI::escape(value.to_s)}&"
-        end
-      end
-      
-      url += param_str
-      logger.info("Hit complete for site: #{@site.id}. Url: #{url}")
-      
-      res = Net::HTTP.get(URI.parse(url))
-      
-      if (res == Net::HTTPSuccess)
-        flash.now[:success] = "It worked..."
-        render :layout => "turk_hit"
-      else
-        logger.error("Error posting hit to aws: #{res}")
-        @errors << [nil, "Sorry, there was an error submitting to Amazon. Please try again."]
-        render :layout => "turk_hit"
-      end
+      @success = true
     end
+    
+    render :layout => "turk_hit"
   end
   
 end

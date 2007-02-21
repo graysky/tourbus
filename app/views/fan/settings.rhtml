@@ -108,7 +108,14 @@
   <%= simple_separator "Reminder Settings" %>
   <a name="reminders"></a>
   <table class="form-table">
-
+        <tr>
+      <th>Enable Favorites Emails:</th>
+      <td><%= check_box(:fan, :wants_favorites_emails) %></td>
+      <td class="info">
+        Enable periodic emails to tell you about shows with your favorite bands in your area.
+      </td>
+    </tr>
+    
        <tr>
       <th>Mobile number:</th>
       <td width="40%">

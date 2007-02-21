@@ -39,7 +39,7 @@ class FavoritesMailer < BaseMailer
   # NOTE: Won't scale to huge numbers of users, but my guess is limiting
   # factor might actually be the time it takes to send mail.
   def self.do_favorites_updates
-    fans = Fan.find(:all)
+    fans = Fan.find_all_by_wants_favorites_emails(true)
     num_fans = 0
     all_start = Time.now.to_i
     for fan in fans

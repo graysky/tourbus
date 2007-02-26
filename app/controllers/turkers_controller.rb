@@ -1,5 +1,7 @@
 require 'net/http'
 require 'uri'
+require 'uuidtools'
+require 'YAML'
 
 class TurkersController < ApplicationController
 
@@ -32,13 +34,12 @@ class TurkersController < ApplicationController
     show_count = 0
     parser = ShowParser.new(nil)
     
-    for i in (0...60)
+    for i in (0...TurkHitSubmission::MAX_SHOWS)
       date = params["date_#{i}"]
       bands = params["bands_#{i}"]
       
       if (date.blank? && bands.blank?)
-        last_index = i
-        break
+        next
       end
       
       if (d = DateUtils.parse_date_loosely(date)).nil?
@@ -83,7 +84,20 @@ class TurkersController < ApplicationController
     if @errors.size > 0 || @invalid_bands.size > 0
       logger.info("Errors submitting form")
     else
-      @success = true
+      # Success! Give this submission a token and report that back to the worker
+      @sub = TurkHitSubmission.new
+      @sub.token = UUID.random_create.to_s
+      @sub.params = params
+      @sub.turk_site_id = @site.id
+      
+      if (!@sub.save)
+        @errors << [nil, "There was an error saving your submission. Please try again."]
+      else
+        # Forward on to the thank you screen
+        render :partial => "hit_success", :layout => "turk_hit"
+        return
+      end
+      
     end
     
     render :layout => "turk_hit"

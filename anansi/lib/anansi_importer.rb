@@ -5,6 +5,12 @@ class AnansiImporter
   attr_reader :only_site
   attr_accessor :data_dir
   
+  ATATURK_DIR = "#{RAILS_ROOT}/anansi/data/ataturk"
+  
+  def self.ataturk_file_name(hit_id)
+    "hit_#{hit_id}.yaml"
+  end
+  
   # Defaults for a new configuration
   # testing => if this is a test run
   def initialize(testing = false)
@@ -26,7 +32,7 @@ class AnansiImporter
     if site.nil? or site.empty?
       @only_site = nil
     else
-      @only_site = site # Only run this site if set
+      @only_site = site # Only run this site if 
     end
   end
   
@@ -79,6 +85,28 @@ class AnansiImporter
     shows
   end
   
+  def ataturk_shows_by_hit
+    shows_by_hit = {}
+    
+    dir = Dir.new(ATATURK_DIR)
+    dir.each do |file|
+      if file.starts_with?("hit_")
+        hit_id = file.split(".")[0].split("_")[1]
+        
+        shows = []
+        File.open(File.join(ATATURK_DIR, file)) do |f|
+          YAML::load_documents(f) do |show|
+            shows << show
+          end
+        end
+        
+        shows_by_hit[hit_id] = shows
+      end
+    end
+    
+    shows_by_hit
+  end
+  
   def import
     @shows = latest_prepared_shows
     
@@ -99,6 +127,44 @@ class AnansiImporter
     end
     
     puts "Imported #{@imported_show_count} shows and created #{@new_band_count} new bands"
+  end
+  
+  def import_ataturk
+    ataturk_shows_by_hit.each do |hit_id, shows|
+      puts "Importing shows for HIT #{hit_id}..."
+      Show.transaction do
+        for show in shows
+          if show[:status] == :ok
+            result = import_show(show)
+            show[:status] = :imported if result
+          end
+        end
+        
+        # Archive the yaml
+        archive_ataturk_shows(hit_id, shows)
+      end
+    end
+    
+    puts "Imported #{@imported_show_count} shows and created #{@new_band_count} new bands"
+  end
+  
+  def archive_ataturk_shows(hit_id, shows)
+    dir = File.join(ATATURK_DIR, Date.today.to_s)
+    FileUtils.mkdir_p(dir) if not File.exists?(dir)
+    yml_file = File.new(File.join(dir, AnansiImporter.ataturk_file_name(hit_id)), "w")
+    
+    str = ""
+    for show in shows
+      str << show.to_yaml
+      str << "\n\n"
+    end
+    
+    yml_file.write(str)
+    yml_file.flush
+    yml_file.close
+    
+    old_file = File.join(ATATURK_DIR, AnansiImporter.ataturk_file_name(hit_id))
+    FileUtils.rm_f(old_file)
   end
   
   def import_show(s)
@@ -125,9 +191,13 @@ class AnansiImporter
     
     show.site_visit = SiteVisit.find(s[:site_visit_id])
     
-    site = @config.site_by_name(s[:site])
-    show.source_name = site.display_name
-    show.source_link = s[:source_link] || site.display_url
+    if s[:ataturk]
+      # TODO ataturk link attribution
+    else
+      site = @config.site_by_name(s[:site])
+      show.source_name = site.display_name
+      show.source_link = s[:source_link] || site.display_url
+    end
     
     show.venue = Venue.find(s[:venue][:id])
     raise "Missing venue #{s[:venue][:id]}" if show.venue.nil?
@@ -135,9 +205,10 @@ class AnansiImporter
     
     s[:bands].each { |band| add_band(show, band) }
     if !show.save || !show.venue.save
-      puts "Error saving show or venue"
-      return nil
+      raise "Error saving show or venue"
     end
+    
+    s[:id] = show.id
     
     @imported_show_count += 1
     return show
@@ -179,6 +250,7 @@ class AnansiImporter
   # Prepare a show hash for import
   def prepare_show(show)
     @shows << show
+    @show = show
     
     clean_hash_text(show)
     
@@ -219,6 +291,8 @@ class AnansiImporter
       preamble = show[:bands].first[:preamble]
       show[:preamble] = preamble if preamble and preamble != ''
     end
+    
+    show
   end
 
   # Save all show data out to a yaml file

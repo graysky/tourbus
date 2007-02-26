@@ -1,3 +1,18 @@
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
+#
+#  id                  :integer(11)   not null
+#  url                 :string(255)   
+#  crawl_status        :integer(11)   default(0)
+#  crawl_worker        :string(255)   
+#  last_crawl_comment  :string(255)   
+#  crawl_error         :boolean(1)    
+#  crawled_songs       :integer(11)   default(0)
+#  crawl_error_count   :integer(11)   default(0)
+#  assigned_at         :datetime      
+#  crawled_at          :datetime      
+#  created_at          :datetime      
+#
+
 require 'monitor'
 
 class SongSite < ActiveRecord::Base

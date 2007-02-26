@@ -347,6 +347,11 @@ class AdminController < ApplicationController
     @sites = TurkSite.find(:all)
   end
   
+  def list_hits_to_review
+    @shows = AnansiImporter.new.ataturk_shows_by_hit
+  end
+  
+  
   private 
   
   # Prepare instance vars for the form to display

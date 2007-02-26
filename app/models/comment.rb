@@ -1,4 +1,4 @@
-# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  body                :text          
@@ -9,6 +9,7 @@
 #  photo_id            :integer(10)   
 #  created_by_fan_id   :integer(10)   
 #  created_by_band_id  :integer(10)   
+#  fan_id              :integer(10)   
 #
 
 # Class to represent a comment

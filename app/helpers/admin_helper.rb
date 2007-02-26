@@ -9,6 +9,10 @@ module AdminHelper
     out << row("Cost", show[:cost])
     out << row("Age", show[:age])
     out << row("Preamble", show[:preamble])
+    out << row("Sold Out", show[:soldout]) if show[:soldout]
+    out << row("Cancelled", show[:cancelled]) if show[:cancelled]
+    out << row("Ticket Link", show[:ticket_link]) if show[:ticket_link]
+    out << row("Worker", show[:worker]) if show[:worker]
     
     venue = ''
     show[:venue].each do |key, value|
@@ -25,8 +29,6 @@ module AdminHelper
     end
     out << row("Bands", bands)
     
-    actions = link_to("Edit", :action => :edit_import_show, :id => show[:id])
-    out << row("Actions", actions)
   end
   
   def import_show_form(show)

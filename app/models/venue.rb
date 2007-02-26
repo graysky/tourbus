@@ -1,4 +1,4 @@
-# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  name                :string(100)   default(), not null
@@ -15,6 +15,8 @@
 #  longitude           :string(30)    
 #  page_views          :integer(10)   default(0)
 #  last_updated        :datetime      
+#  short_name          :string(255)   
+#  num_upcoming_shows  :integer(11)   default(0)
 #
 
 require_dependency "taggable"

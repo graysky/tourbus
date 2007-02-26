@@ -14,11 +14,7 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
     More instructions
 </p>
 
-<% if @success %>
-    <form id="turkForm" action="http://www.mturk.com/mturk/externalSubmit" method="post">
-<% else %>
-    <%= start_form_tag :action => :hit %>
-<% end %>
+<%= start_form_tag :action => :hit %>
 
 <% if (@errors && @errors.size > 0) || (@invalid_bands && @invalid_bands.size > 0) %>
     <div class="error">
@@ -59,7 +55,7 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
 <% end %>
 
 <br/><br/>
-<% for i in (0...60) %>
+<% for i in (0...TurkHitSubmission::MAX_SHOWS) %>
 
 <a name="show<%= i %>"/>
 <div class="hit_div <%= i % 2 == 0 ? 'hit_even' : 'hit_odd' %> <%= 'first_hit' if i == 0 %>">
@@ -96,7 +92,3 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
 <% end %>
 
 <%= end_form_tag %>
-
-<% if @success %>
-    <script>document.getElementById("turkForm").submit()</script>
-<% end %>

@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 42) do
+ActiveRecord::Schema.define(:version => 43) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string, :default => "", :null => false
@@ -331,6 +331,12 @@ ActiveRecord::Schema.define(:version => 42) do
   add_index "tags_venues", ["venue_id"], :name => "fk_vt_venue"
   add_index "tags_venues", ["tag_id"], :name => "fk_vt_tag"
 
+  create_table "turk_hit_submissions", :force => true do |t|
+    t.column "params", :text
+    t.column "turk_site_id", :integer
+    t.column "token", :string
+  end
+
   create_table "turk_hit_types", :force => true do |t|
     t.column "aws_hit_type_id", :string
     t.column "name", :string
@@ -349,22 +355,31 @@ ActiveRecord::Schema.define(:version => 42) do
     t.column "amount_paid", :integer
     t.column "turk_worker_id", :integer
     t.column "aws_hit_id", :string
+    t.column "turk_submission_id", :integer
+    t.column "turk_hit_submission_id", :integer
   end
 
   create_table "turk_sites", :force => true do |t|
     t.column "url", :string
     t.column "venue_id", :integer
     t.column "created_at", :datetime
-    t.column "turk_hit_type", :integer
+    t.column "turk_hit_type_id", :integer
     t.column "price_override", :integer
-    t.column "num_assignments", :integer, :default => 1
+    t.column "num_assignments", :integer, :default => 1, :null => false
     t.column "extra_instructions", :string
     t.column "frequency", :integer
     t.column "lifetime", :integer, :default => 604800
+    t.column "last_hit_time", :datetime
+    t.column "group", :integer, :default => 0
   end
 
   create_table "turk_workers", :force => true do |t|
     t.column "aws_worker_id", :string
+    t.column "completed_hits", :integer, :default => 0
+    t.column "reward_paid", :integer, :default => 0
+    t.column "added_shows", :integer, :default => 0
+    t.column "bonus_paid", :integer, :default => 0
+    t.column "last_paid_bonus_level", :integer, :default => 0
   end
 
   create_table "upload_addrs", :force => true do |t|

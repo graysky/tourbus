@@ -3,6 +3,34 @@ require 'digest/sha1'
 require 'base64'
 require 'builder'
 
+class TurkApiException < RuntimeError
+  attr_accessor :errors
+  def initialize(errors)
+    @errors = errors
+  end
+end
+
+class TurkApiAssignment
+  attr_accessor :id
+  attr_accessor :hit_id
+  attr_accessor :worker_id
+  attr_accessor :status
+  attr_accessor :response_time
+  attr_accessor :answer
+  attr_accessor :raw_answer
+  
+  def answer
+    return @raw_answer if @raw_answer
+    
+    doc = REXML::Document.new(@answer)
+    node = doc.root.elements["Answer/FreeText"]
+    node.nil? ? nil : node.text.strip
+  end
+end
+
+#########################################
+# Turk API methods
+#########################################
 class TurkApi
   # Override defaults in environment.rb... right now this is gary's account
   AWS_ACCESS_KEY_ID = '107T76MRP4RR78KM2W02'
@@ -19,6 +47,7 @@ class TurkApi
     @debug = debug
     @key = key
     @secret_key = secret_key
+    @logger = TURK_LOGGER
   end
       
   # Get the current account balance
@@ -35,7 +64,7 @@ class TurkApi
     raise "Unexpected error: no result found"
   end
   
-  # Get the HIT data structure for the given id
+  # Print the HIT data structure for the given id
   def get_hit(id)
     op = "GetHIT"
     res = "HIT"
@@ -44,11 +73,6 @@ class TurkApi
     xml = aws_call(op, params)
     raise_if_error(xml, op, res)
     
-    #if result_node = xml.root.elements["#{op}Result/AvailableBalance"]
-    #  return result_node.elements['FormattedPrice'].text
-    #end
-    
-    #raise "Unexpected error: no result found"
     puts xml.to_s
   end
   
@@ -56,6 +80,22 @@ class TurkApi
   def expire_hit(id)
     op = "ForceExpireHIT"
     res = "ForceExpireHITResult"
+    
+    params = { :HITId => id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  # Disable a HIT immediately
+  def disable_hit(id)
+    op = "DisableHIT"
+    res = "DisableHITResult"
     
     params = { :HITId => id }
     xml = aws_call(op, params)
@@ -102,7 +142,7 @@ class TurkApi
         end
         xml.AnswerSpecification do
           xml.FreeTextAnswer do
-            xml.NumberOfLinesSuggestion("20")
+            xml.NumberOfLinesSuggestion("1")
           end
         end
       end
@@ -117,7 +157,7 @@ class TurkApi
       return result_node.text
     end
     
-    raise "Unexpected error: no result found"
+    raise "Unexpected error while creating a HIT: no result found"
   end
   
   # Get the TurkApiAssignment entered by a worker as an answer to the given HIT
@@ -139,6 +179,88 @@ class TurkApi
       a.answer = node.elements['Answer'].text
       
       return a
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  def get_reviewable_hits
+    op = "GetReviewableHITs"
+    res = "#{op}Result"
+    page = 1
+    page_size = 100
+    hits = []
+    
+    while(true)
+      params = { :PageSize => page_size, :PageNumber => page }
+      xml = aws_call(op, params)
+      raise_if_error(xml, op, res)
+     
+      if node = xml.root.elements["#{res}"]
+        
+        node.each_element("HIT") do |hit|
+          hits << hit.elements["HITId"].text
+        end
+        
+        total = node.elements['TotalNumResults'].text.to_i
+        if (total == page_size)
+          page += 1
+        else
+          break
+        end
+      end
+    end
+    
+    hits
+  end
+  
+  # Approve the given assignment and pay the worker
+  def approve_assignment(id, feedback = nil)
+    op = "ApproveAssignment"
+    res = "#{op}Result"
+    
+    params = { :AssignmentId => id }
+    params[:RequesterFeedback] = feedback if feedback
+    
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  # Reject the assignment
+  def reject_assignment(id, feedback = nil)
+    op = "RejectAssignment"
+    res = "#{op}Result"
+    
+    params = { :AssignmentId => id }
+    params[:RequesterFeedback] = feedback if feedback
+    
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  # Extend a previously-rejected HIT
+  def extend_hit(id)
+    op = "ExtendHIT"
+    res = "#{op}Result"
+    
+    params = { :HITId => id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
     end
     
     raise "Unexpected error: no result found"
@@ -242,9 +364,9 @@ class TurkApi
     end
     
     if !errors.empty?
-      RAILS_DEFAULT_LOGGER.error("Error running turk operation: #{operation}")
+      @logger.error("Error running turk operation: #{operation}")
       for error in errors
-        RAILS_DEFAULT_LOGGER.error("\t#{error[0]}, \"#{error[1]}\"")
+        @logger.error("\t#{error[0]}, \"#{error[1]}\"")
       end
       
       raise TurkApiException.new(errors), "Error running operation: #{operation}"

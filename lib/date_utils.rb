@@ -22,7 +22,7 @@ class DateUtils
       end
     end
     
-    Time.local(values[0], values[1], values[2])
+    Time.local(values[0], values[1], values[2]) rescue nil
   end
 
 end

@@ -1,3 +1,13 @@
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
+#
+#  id                  :integer(11)   not null
+#  name                :string(255)   
+#  area                :string(255)   
+#  level               :string(255)   
+#  description         :string(255)   
+#  created_at          :datetime      
+#
+
 class SystemEvent < ActiveRecord::Base
 
   WISHLIST = "wishlist"

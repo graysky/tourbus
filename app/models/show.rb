@@ -1,4 +1,4 @@
-# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  cost                :string(50)    
@@ -16,6 +16,12 @@
 #  last_updated        :datetime      
 #  num_attendees       :integer(11)   default(0)
 #  num_watchers        :integer(11)   default(0)
+#  preamble            :string(255)   
+#  site_visit_id       :integer(11)   
+#  source_link         :string(255)   
+#  source_name         :string(255)   
+#  edited_by_fan_id    :integer(11)   
+#  edited_by_band_id   :integer(11)   
 #
 
 require_dependency "searchable"

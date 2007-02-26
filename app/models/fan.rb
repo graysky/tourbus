@@ -1,4 +1,4 @@
-# Schema as of Thu Mar 02 20:14:39 Eastern Standard Time 2006 (schema version 17)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  name                :string(100)   default(), not null
@@ -22,8 +22,8 @@
 #  admin               :boolean(1)    not null
 #  security_token      :string(40)    
 #  token_expiry        :datetime      
-#  show_reminder_first :integer(10)   default(4320)
-#  show_reminder_second:integer(10)   default(360)
+#  show_reminder_first :integer(10)   default(10080)
+#  show_reminder_second:integer(10)   default(4320)
 #  wants_email_reminder:boolean(1)    default(true)
 #  wants_mobile_reminde:boolean(1)    
 #  last_show_reminder  :datetime      
@@ -32,9 +32,12 @@
 #  superuser           :boolean(1)    
 #  mobile_number       :string(20)    
 #  carrier_type        :integer(10)   default(-1)
-#  show_watching_remind:integer(10)   default(4320)
-#  longitude           :string(30)    
+#  show_watching_remind:integer(10)   default(10080)
 #  latitude            :string(30)    
+#  longitude           :string(30)    
+#  num_upcoming_shows  :integer(11)   default(0)
+#  last_login          :datetime      
+#  allow_contact       :boolean(1)    default(true)
 #
 
 require_dependency "password_protected"

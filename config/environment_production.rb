@@ -12,13 +12,14 @@ RAILS_GEM_VERSION = '1.1.6'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require "log4r"
 
 Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use
   # config.frameworks -= [ :action_web_service, :action_mailer ]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/anansi/lib #{RAILS_ROOT}/song_crawler #{RAILS_ROOT}/song_crawler/server #{RAILS_ROOT}/song_crawler/client)
+  config.load_paths += %W( #{RAILS_ROOT}/ataturk/lib #{RAILS_ROOT}/anansi/lib #{RAILS_ROOT}/song_crawler #{RAILS_ROOT}/song_crawler/server #{RAILS_ROOT}/song_crawler/client)
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
@@ -86,6 +87,19 @@ RailsCron.options = {
 ExceptionNotifier.exception_recipients = %w(feedback@tourb.us)
 ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us>)
 ExceptionNotifier.email_prefix = "[tourb.us]"
+
+# Create component-specific loggers here
+TURK_LOGGER = Log4r::Logger.new("Turk")
+formatter = Log4r::PatternFormatter.new(:pattern => "[%l] %d - %m")
+Log4r::RollingFileOutputter.new('turk_log',
+                        :filename => "#{RAILS_ROOT}/log/turk.log",
+                        :trunc => false,
+                        :count => 10,
+                        :maxtime => 24.hours,
+                        :formatter => formatter,
+                        :level => Log4r::INFO)
+TURK_LOGGER.add('turk_log')
+
 
 require 'rails_file_column'
 require 'selective_timestamp'

@@ -1,0 +1,15 @@
+<div id='main'>
+  <h2>HIT Count: <%= @shows.size %></h2>
+  <p>
+    <% @shows.each do |hit_id, shows| %>
+    <h3><%= hit_id %></h3>
+    <% for show in shows %>
+    <div style="border:1px solid gray;padding:16px;">
+      <table class='admin_table'>
+        <%= show_import_hash(show) %>
+      </table>
+    </div>
+    <% end %>
+    <% end %>
+  </p>
+</div>

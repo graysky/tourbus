@@ -1,3 +1,12 @@
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
+#
+#  id                  :integer(11)   not null
+#  name                :string(255)   
+#  short_name          :string(255)   
+#  created_at          :datetime      
+#  fan_id              :integer(11)   
+#
+
 class WishListBand < ActiveRecord::Base
   belongs_to :fan
   

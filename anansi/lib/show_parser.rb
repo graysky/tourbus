@@ -16,7 +16,7 @@ class ShowParser < MetaSite
 			              'invited guests', '...', 'free tickets', 'music poll', 'proceeds', 'tix', 'year anniversary',
 			              'goldenvoice', 'club nme', 'free event', '& more', 'th anniversary', 'nd anniversary',
 			              'dance party', 'beach party', 'square dance', 'music project', 'heavy metal breakdown',
-			              'spinningj records', 'hosted by', 'benefit concert']
+			              'spinning records', 'hosted by', 'benefit concert']
                   
   # Create a new parser for the given chunk of xml or rexml document
   def initialize(xml, url = nil)
@@ -89,6 +89,7 @@ class ShowParser < MetaSite
     return nil if down.ends_with?("special guest")
     return nil if down.ends_with?(":")
     return nil if down.ends_with?("tour")
+    return nil if down.ends_with?("performance")
     
     keywords = [":", "featuring", "presents", "present", "presenting", "special guests", "special guest", 
                 "welcomes", "evening with", "recording artist", 'starring', 'free concert with']

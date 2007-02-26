@@ -1,4 +1,4 @@
-# Schema as of Thu Mar 23 23:26:05 Eastern Standard Time 2006 (schema version 19)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  name                :string(255)   

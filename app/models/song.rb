@@ -1,3 +1,19 @@
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
+#
+#  id                  :integer(11)   not null
+#  band_id             :integer(11)   
+#  artist              :string(255)   
+#  title               :string(255)   
+#  song_site_id        :integer(11)   
+#  status              :integer(11)   default(0)
+#  album               :string(255)   
+#  year                :string(255)   
+#  url                 :string(255)   
+#  size                :integer(11)   
+#  created_at          :datetime      
+#  checked_at          :datetime      
+#
+
 class Song < ActiveRecord::Base
   belongs_to :band
   belongs_to :song_site

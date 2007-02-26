@@ -1,4 +1,4 @@
-# Schema as of Thu May 04 23:27:20 Eastern Standard Time 2006 (schema version 33)
+# Schema as of Sun Feb 18 18:07:46 Eastern Standard Time 2007 (schema version 43)
 #
 #  id                  :integer(11)   not null
 #  applies_to          :string(255)   default(), not null

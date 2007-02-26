@@ -3,18 +3,18 @@ ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Metro shortcuts using subdomains
-  map.connect '', :controller => 'public', :action => 'boston', :requirements => { :subdomain => 'boston' }
-  map.connect '', :controller => 'public', :action => 'austin', :requirements => { :subdomain => 'austin' }
-  map.connect '', :controller => 'public', :action => 'seattle', :requirements => { :subdomain => 'seattle' }
-  map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sanfran' }
-  map.connect '', :controller => 'public', :action => 'sanfran', :requirements => { :subdomain => 'sf' }
-  map.connect '', :controller => 'public', :action => 'chicago', :requirements => { :subdomain => 'chicago' }
-  map.connect '', :controller => 'public', :action => 'la', :requirements => { :subdomain => 'losangeles' }
-  map.connect '', :controller => 'public', :action => 'la', :requirements => { :subdomain => 'la' }
-  map.connect '', :controller => 'public', :action => 'nyc', :requirements => { :subdomain => 'nyc' }
-  map.connect '', :controller => 'public', :action => 'nyc', :requirements => { :subdomain => 'newyork' }
-  map.connect '', :controller => 'public', :action => 'philadelphia', :requirements => { :subdomain => 'philadelphia' }
-  map.connect '', :controller => 'public', :action => 'philadelphia', :requirements => { :subdomain => 'philly' }
+  map.connect '', :controller => 'public', :action => 'boston', :conditions => { :subdomain => 'boston' }
+  map.connect '', :controller => 'public', :action => 'austin', :conditions => { :subdomain => 'austin' }
+  map.connect '', :controller => 'public', :action => 'seattle', :conditions => { :subdomain => 'seattle' }
+  map.connect '', :controller => 'public', :action => 'sanfran', :conditions => { :subdomain => 'sanfran' }
+  map.connect '', :controller => 'public', :action => 'sanfran', :conditions => { :subdomain => 'sf' }
+  map.connect '', :controller => 'public', :action => 'chicago', :conditions => { :subdomain => 'chicago' }
+  map.connect '', :controller => 'public', :action => 'la', :conditions => { :subdomain => 'losangeles' }
+  map.connect '', :controller => 'public', :action => 'la', :conditions => { :subdomain => 'la' }
+  map.connect '', :controller => 'public', :action => 'nyc', :conditions => { :subdomain => 'nyc' }
+  map.connect '', :controller => 'public', :action => 'nyc', :conditions => { :subdomain => 'newyork' }
+  map.connect '', :controller => 'public', :action => 'philadelphia', :conditions => { :subdomain => 'philadelphia' }
+  map.connect '', :controller => 'public', :action => 'philadelphia', :conditions => { :subdomain => 'philly' }
 
   # You can have the root of your site routed by hooking up '' 
   map.connect '', :controller => 'public', :action => 'front_page'

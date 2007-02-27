@@ -15,9 +15,9 @@
 <%= link_to "Friends' Shows", :action => :friends_shows %> <span>(<%= link_to "RSS", :action => :friends_shows_rss %>)</span>
 <% if @logged_in_as_fan %>
     <span class="normal">|</span>
-	<%= link_to "Respond To Friend Requests", :controller => 'fan', :action => :friend_requests %>
-	<span class="normal">|</span>
-	<%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
+    <%= link_to "Respond To Friend Requests", :controller => 'fan', :action => :friend_requests %>
+    <span class="normal">|</span>
+    <%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
 <% end %>
 </div>
 <br/>

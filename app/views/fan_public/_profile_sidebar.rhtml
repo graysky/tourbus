@@ -37,26 +37,26 @@
   <p>
     <% show_friend_tip = false %>
     <% if not @logged_in_as_fan %>
-	    <table>
-	    <% if logged_in_fan.nil? or !@fan.friends_with?(logged_in_fan) 
-	       show_friend_tip = true
-	    %>
-	    <tr><td><img src="/images/group_add.png" height="16" width="16" onload='fixPNG(this)'/></td>
-	        <td>
-	    <a href="#" id="friend_request_link">Add to Friends</a>
-	    </td></tr>
-	    <% else %>
-	    <tr><td><img src="/images/group.png" height="16" width="16" onload='fixPNG(this)'/></td>
-	        <td>
-	    <span><strong>You are friends</strong></span>
-	    </td></tr>
-	    <% end %>
-	    </table>
+        <table>
+        <% if logged_in_fan.nil? or !@fan.friends_with?(logged_in_fan) 
+           show_friend_tip = true
+        %>
+        <tr><td><img src="/images/group_add.png" height="16" width="16" onload='fixPNG(this)'/></td>
+            <td>
+        <a href="#" id="friend_request_link">Add to Friends</a>
+        </td></tr>
+        <% else %>
+        <tr><td><img src="/images/group.png" height="16" width="16" onload='fixPNG(this)'/></td>
+            <td>
+        <span><strong>You are friends</strong></span>
+        </td></tr>
+        <% end %>
+        </table>
     <% end %>
     
      <% if not @logged_in_as_fan %>
-		  <%= render :partial => "contact" %>
-	  <% end %>
+          <%= render :partial => "contact" %>
+      <% end %>
     
     <div id="friend_request_tip" class='fave_tip'>
         <h3>Add <%= @fan.name %> to Friends</h3>
@@ -70,21 +70,21 @@
         <% else %>
         
         <%= form_remote_tag(
-	        :url => { 
-	          :controller => "fans",
-	          :action => :send_friend_request, 
-	          :friend => @fan.id
-	        },
-	        :success => "$('friend_request_link').innerHTML = 'Friend request sent'",
-	        :failure => "alert('There was an error sending the request! Please try again.');$('friend_request_link').innerHTML = 'There was an error'") 
+            :url => { 
+              :controller => "fans",
+              :action => :send_friend_request, 
+              :friend => @fan.id
+            },
+            :success => "$('friend_request_link').innerHTML = 'Friend request sent'",
+            :failure => "alert('There was an error sending the request! Please try again.');$('friend_request_link').innerHTML = 'There was an error'") 
         %>
         
         <p>
             <p>Message:</p>
             <%= text_area_tag 'message', '', :size => '24' %>
       
-	        <%= submit_tag "Submit", :onclick => "send_request(event)" %>&nbsp;
-	        <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %>
+            <%= submit_tag "Submit", :onclick => "send_request(event)" %>&nbsp;
+            <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('friend_request_link'), event)" %>
         </p>
         
         <%= end_form_tag %>
@@ -95,10 +95,10 @@
           if show_friend_tip %>
         
           <script type="text/javascript">
-	        Tooltip.add('friend_request_link', 'friend_request_tip');
+            Tooltip.add('friend_request_link', 'friend_request_tip');
           </script>
-	    <% end %>
-	    
+        <% end %>
+        
     </div>
     
    </p>
@@ -141,25 +141,25 @@
 
    <br/>
   <div id="friends-box" class="sidebar-box">
-	  <h2 id="friends-title"><span class="title">Friends (<%= @fan.friends.size %>)</span></h2>
-	  
-	  <% if @fan.friends.empty? %>
-	   <p><strong><%= @fan.name %> has no friends</strong></p>
-	  <% else %>
-	   <%= tiny_fan_results(@fan.friends.random(5)) %>
-	   <p>
-	       <%= link_to 'Show all friends', :action => :friends %>
-	       <% if @logged_in_as_fan %>
-		       <br/>
-		       <%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
-	       <% end %>
-	   </p>
-	  <% end %>
-	  
-	  <% if @logged_in_as_fan %>
-	  <div class="actions-box-rows">  
-	  <p>
-	  <table>
+      <h2 id="friends-title"><span class="title">Friends (<%= @fan.friends.size %>)</span></h2>
+      
+      <% if @fan.friends.empty? %>
+       <p><strong><%= @fan.name %> has no friends</strong></p>
+      <% else %>
+       <%= tiny_fan_results(@fan.friends.random(5)) %>
+       <p>
+           <%= link_to 'Show all friends', :action => :friends %>
+           <% if @logged_in_as_fan %>
+               <br/>
+               <%= link_to "Search For Friends", :controller => 'find', :action => :fan %>
+           <% end %>
+       </p>
+      <% end %>
+      
+      <% if @logged_in_as_fan %>
+      <div class="actions-box-rows">  
+      <p>
+      <table>
         <%= 
             render :partial => "invite_friend",
            :locals => { :id => @fan, }

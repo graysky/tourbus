@@ -49,81 +49,81 @@
       </table>
     <% else %>
     
-	    <span id="favorite_control">
-	      <%= 
-	        if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
-	          render :partial => "shared/remove_favorite"
-	        else
-	          render :partial => "shared/add_favorite"
-	        end
-	      %>  
-	    </span>
-	    
-	    <% if logged_in_fan.nil? %>
-	      <div id='add_tip' class='fave_tip'>
-	      <h3>Add a new favorite band</h3>
-	          <p>
-	            You must be logged in as a fan to add favorites!<br/><br/>
-	            
-	            <%= link_to "Cancel", "#", :onclick => "addFave(event);" %>
-	          </p>
-	          </div>
-	    <% else %>
-	      <div id="remove_tip" class='fave_tip'>
-	      <h3>Remove a favorite band</h3>
-	          <p>
-	            If you click "OK", you will stop receiving reminders of
-	            this band's upcoming shows.<br/><br/>
-	            
-	            <strong>Are you sure you want to remove this band from your favorites?</strong>
-	            
-	            <%= form_remote_tag(
-	          :update => "favorite_control",
-	          :url => { 
-	            :controller => "fan",
-	            :action => "remove_favorite_band", 
-	            :id => @band.id
-	          }) 
-	          %>
-	          
-	              <%= submit_tag "OK", :onclick => "removeFave(event);" %>&nbsp;
-	              <%= link_to "Cancel", "#", :onclick => "removeFave(event);" %>
-	            <%= end_form_tag %>
-	          </p>
-	          </div>
-	    
-	      <div id="add_tip" class='fave_tip'>
-	      <h3>Add a new favorite band</h3>
-	          <p>
-	            If you click "OK", you will start receiving reminders of
-	            this band's upcoming shows in your area. <br/><br/>
-	            
-	            <strong>Are you sure you want to add a new favorite band?</strong>
-	            
-	            <%= form_remote_tag(
-	          :update => "favorite_control",
-	          :url => { 
-	            :controller => "fan",
-	            :action => "add_favorite_band", 
-	            :id => @band.id
-	          }) 
-	          %>
-	          
-	              <%= submit_tag "OK", :onclick => "addFave(event);" %>&nbsp;
-	              <%= link_to "Cancel", "#", :onclick => "addFave(event);" %>
-	            <%= end_form_tag %>
-	          </p>
-	      </div>
-	    <% end %>
-	    
-	    <script type="text/javascript">
-	      <% if not logged_in_fan.nil? and logged_in_fan.favorite?(@band) %>
-	        Tooltip.add('remove_fave_link', 'remove_tip');
-	      <% else %>
-	        Tooltip.add('add_fave_link', 'add_tip');
-	      <% end %>
-	    </script>
-	  </p>
+        <span id="favorite_control">
+          <%= 
+            if not logged_in_fan.nil? and logged_in_fan.favorite?(@band)
+              render :partial => "shared/remove_favorite"
+            else
+              render :partial => "shared/add_favorite"
+            end
+          %>  
+        </span>
+        
+        <% if logged_in_fan.nil? %>
+          <div id='add_tip' class='fave_tip'>
+          <h3>Add a new favorite band</h3>
+              <p>
+                You must be logged in as a fan to add favorites!<br/><br/>
+                
+                <%= link_to "Cancel", "#", :onclick => "addFave(event);" %>
+              </p>
+              </div>
+        <% else %>
+          <div id="remove_tip" class='fave_tip'>
+          <h3>Remove a favorite band</h3>
+              <p>
+                If you click "OK", you will stop receiving reminders of
+                this band's upcoming shows.<br/><br/>
+                
+                <strong>Are you sure you want to remove this band from your favorites?</strong>
+                
+                <%= form_remote_tag(
+              :update => "favorite_control",
+              :url => { 
+                :controller => "fan",
+                :action => "remove_favorite_band", 
+                :id => @band.id
+              }) 
+              %>
+              
+                  <%= submit_tag "OK", :onclick => "removeFave(event);" %>&nbsp;
+                  <%= link_to "Cancel", "#", :onclick => "removeFave(event);" %>
+                <%= end_form_tag %>
+              </p>
+              </div>
+        
+          <div id="add_tip" class='fave_tip'>
+          <h3>Add a new favorite band</h3>
+              <p>
+                If you click "OK", you will start receiving reminders of
+                this band's upcoming shows in your area. <br/><br/>
+                
+                <strong>Are you sure you want to add a new favorite band?</strong>
+                
+                <%= form_remote_tag(
+              :update => "favorite_control",
+              :url => { 
+                :controller => "fan",
+                :action => "add_favorite_band", 
+                :id => @band.id
+              }) 
+              %>
+              
+                  <%= submit_tag "OK", :onclick => "addFave(event);" %>&nbsp;
+                  <%= link_to "Cancel", "#", :onclick => "addFave(event);" %>
+                <%= end_form_tag %>
+              </p>
+          </div>
+        <% end %>
+        
+        <script type="text/javascript">
+          <% if not logged_in_fan.nil? and logged_in_fan.favorite?(@band) %>
+            Tooltip.add('remove_fave_link', 'remove_tip');
+          <% else %>
+            Tooltip.add('add_fave_link', 'add_tip');
+          <% end %>
+        </script>
+      </p>
      <% end %>
   <p>
     <table>
@@ -148,19 +148,19 @@
 <% if (logged_in_fan and !@band.confirmed?) || @logged_in_as_band %>
     <% show_help_us = true %>
     <div id="improve-box" class="sidebar-box">
-	  <h2 id="improve-title"><span class="title"><%= help_us_improve_text %></span></h2>
-	    
-	    <div class="actions-box-rows">
-	       <p>  
-	        <table>
-	        <tr>
-	            <td><img src="/images/edit.png" height="16" width="16"/></td>
-	            <td id='edit_profile_link'><%= enable_editing_link %></td>
-	        </tr>
-	        </table>
-	        </p>
-	    </div>
-	</div>
+      <h2 id="improve-title"><span class="title"><%= help_us_improve_text %></span></h2>
+        
+        <div class="actions-box-rows">
+           <p>  
+            <table>
+            <tr>
+                <td><img src="/images/edit.png" height="16" width="16"/></td>
+                <td id='edit_profile_link'><%= enable_editing_link %></td>
+            </tr>
+            </table>
+            </p>
+        </div>
+    </div>
     <br/>
 <% end %>
 

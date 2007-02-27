@@ -1,17 +1,17 @@
 <script type="text/javascript">
-	function set_going(going) {
-		<%= remote_function(
-	          :with => "'going=' + going",
-		      :url => { 
-		        :controller => "fan",
-		        :action => "set_going", 
-		        :id => show.id
-		      }) %>
-	}
+    function set_going(going) {
+        <%= remote_function(
+              :with => "'going=' + going",
+              :url => { 
+                :controller => "fan",
+                :action => "set_going", 
+                :id => show.id
+              }) %>
+    }
 </script>
 
 <% if logged_in_fan.nil? %>
     <p><strong>You need to be logged in to add shows to your list.</strong></p>
 <% else %>
-	<%= render :partial => 'shared/attending_radios', :locals => { :show => show, :handle_click => true } %>
+    <%= render :partial => 'shared/attending_radios', :locals => { :show => show, :handle_click => true } %>
 <% end %>

@@ -11,32 +11,32 @@
 <body onload="document.signup.email.focus();">
 
 <div id="content">
-	<div id="logo">
-		<a href="/"><img src="/images/logo.gif" title="tourb.us"></a>
-	</div>
-	
+    <div id="logo">
+        <a href="/"><img src="/images/logo.gif" title="tourb.us"></a>
+    </div>
+    
 <div id="border">
 
-	<div id="msg">
-	Currently tourb.us is in beta while we gather feedback and stomp bugs.
-	Soon we're going to be launching a better way to find live music.
-	
-	<p>We're concentrating on aggregating shows for the Boston and San Francisco areas 
-	at first, but we also need contributions from you. If you're a show promoter, club owner, 
-	musician, or just someone who wants to improve their local music scene
-	<a href="mailto:info@tourb.us">please get in touch.</a>
+    <div id="msg">
+    Currently tourb.us is in beta while we gather feedback and stomp bugs.
+    Soon we're going to be launching a better way to find live music.
+    
+    <p>We're concentrating on aggregating shows for the Boston and San Francisco areas 
+    at first, but we also need contributions from you. If you're a show promoter, club owner, 
+    musician, or just someone who wants to improve their local music scene
+    <a href="mailto:info@tourb.us">please get in touch.</a>
 
-	<p>If you're interested, you can follow our 
+    <p>If you're interested, you can follow our 
         progress on our <a href="http://blog.tourb.us">development blog.</a>
-		
-	<p>
+        
+    <p>
       If you've received an invitation to join the beta, please enter the code below. And
       thanks for helping us get the site ready!
     </p>
-	</div>
-	
-	<div id="signup">
-	 <% if flash[:error] %>
+    </div>
+    
+    <div id="signup">
+     <% if flash[:error] %>
       <div class="error">
         <center><%= img_label_table "exclamation.png", flash[:error] %></center>
       </div>
@@ -44,66 +44,66 @@
       
       <%= start_form_tag( {:controller => "public", :action => "beta"}) %>
 
-	<table width="100%" border="0">
-	<tr>
-	<td>
-	Invitation code:
-	</td>
-	
-	<td align="right">
-	 <%= text_field_tag('code', nil, :size => 30) %>
-	</td>
-	
-	<tr>
-	<td>
-		&nbsp;
-	</td>
-	<td align="right">
-	   <input type=submit id="submit-invite" value="Submit">
-	</td>
-	</tr>
-	</table>
-	<%= end_form_tag %>
-	
-	</div>
-	
-	<div id="msg">
-	<p>If you'd like to be notified when tourb.us is ready,
-	please add your email below.	
+    <table width="100%" border="0">
+    <tr>
+    <td>
+    Invitation code:
+    </td>
+    
+    <td align="right">
+     <%= text_field_tag('code', nil, :size => 30) %>
+    </td>
+    
+    <tr>
+    <td>
+        &nbsp;
+    </td>
+    <td align="right">
+       <input type=submit id="submit-invite" value="Submit">
+    </td>
+    </tr>
+    </table>
+    <%= end_form_tag %>
+    
+    </div>
+    
+    <div id="msg">
+    <p>If you'd like to be notified when tourb.us is ready,
+    please add your email below.    
         Have more questions? 
         Email us at <a href="mailto:info@tourb.us">info@tourb.us</a>
-	</div>
+    </div>
 
-	<div id="signup">
+    <div id="signup">
 
     <%= start_form_tag( {:controller => "public", :action => "beta_signup"}, {:name => "signup"}) %>
 
-	<table width="100%" border="0">
-	<tr>
-	<td>
-	Your email address*:
-	</td>
-	
-	<td align="right">
-	<%= text_field_tag('email', nil, :size => 30) %>
-	</td>
-	
-	<tr>
-	<td>
-		&nbsp;
-	</td>
-	<td align="right">
-		<input type=submit id="submit" value="Submit">
-	</td>
-	</tr>
-	<tr>
-	<td colspan="2">
-	<small>*Don't worry, we'll only use your email to let you know when tourb.us is ready</small>
-	</td>
-	</tr>
-	</table>
-	</form>    
-	</div>
+    <table width="100%" border="0">
+    <tr>
+    <td>
+    Your email address*:
+    </td>
+    
+    <td align="right">
+    <%= text_field_tag('email', nil, :size => 30) %>
+    </td>
+    
+    <tr>
+    <td>
+        &nbsp;
+    </td>
+    <td align="right">
+        <input type=submit id="submit" value="Submit">
+    </td>
+    </tr>
+    <tr>
+    <td colspan="2">
+    <small>*Don't worry, we'll only use your email to let you know when tourb.us is ready</small>
+    </td>
+    </tr>
+    </table>
+    </form>    
+    </div>
 
 </div>
 

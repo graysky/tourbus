@@ -79,14 +79,14 @@ end
     </h3>
     
     <% if @subscribe_url %>
-	    <div class="search_subscribe">
-	        <table><tr>
-	                   <td><a href="<%= @subscribe_url %>"><img src="/images/feed.png" height="16" width="16"/></a></td>
-	                   <td><a href="<%= @subscribe_url %>">Subscribe to this <%= subscribe_type %></a></td>
-	                   <td style="padding-left:16px"><a href="<%= @calendar_url %>"><img src="/images/ical.gif"/></a></td>
-	                   <td><a href="<%= @calendar_url %>">Add to your calendar</a></td>
-	        </tr></table>
-	    </div>
+        <div class="search_subscribe">
+            <table><tr>
+                       <td><a href="<%= @subscribe_url %>"><img src="/images/feed.png" height="16" width="16"/></a></td>
+                       <td><a href="<%= @subscribe_url %>">Subscribe to this <%= subscribe_type %></a></td>
+                       <td style="padding-left:16px"><a href="<%= @calendar_url %>"><img src="/images/ical.gif"/></a></td>
+                       <td><a href="<%= @calendar_url %>">Add to your calendar</a></td>
+            </tr></table>
+        </div>
     <% end %>
   <% elsif not (request.get? and params[:query].nil?) %>
     <h3>No results found<%= search_results_suffix(type) %></h3>

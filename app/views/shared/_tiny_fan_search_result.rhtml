@@ -5,8 +5,8 @@
       <td class="col2">
         <%= link_to fan.name, public_fan_url(fan) %>
         <% if logged_in_fan && logged_in_fan.friends_with?(fan) %>
-	      <%= "&nbsp;<img src='/images/group_small.png' height='12' width='12' title='#{fan.name} is your friend' onload='fixPNG(this)'/>" %>
-	    <% end %>
+          <%= "&nbsp;<img src='/images/group_small.png' height='12' width='12' title='#{fan.name} is your friend' onload='fixPNG(this)'/>" %>
+        <% end %>
       </td>
     </tr>
   </table>

@@ -4,9 +4,9 @@
   
       <%= pagination_links @pages, :params => { :prefix => params[:prefix], :query => params[:query] } %>
   
-	  <span id="search_paging_status">
-	  (Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %>)
-	  </span> 
-	  
+      <span id="search_paging_status">
+      (Showing <%= @pages.current.first_item %> - <%= @pages.current.last_item %> of <%= @pages.item_count %>)
+      </span> 
+      
   </span>  
 <% end %>

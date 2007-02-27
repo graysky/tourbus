@@ -45,7 +45,7 @@
            :locals => { :id => @show.id,
                    }
     %>
-	
+    
     <%= 
       render :partial => "shared/report_problem",
            :locals => { :id => @show.id, :type => "show",
@@ -65,23 +65,23 @@
     <% show_help_us = true %>
     <br/>
     <div id="improve-box" class="sidebar-box">
-	  <h2 id="improve-title"><span class="title">Help Us Improve</span></h2>
-	    
-	    <div class="actions-box-rows">
-	       <p>  
-	        <table>
-	           <tr>
-		            <td>
-		                <img src="/images/edit.png" height="16" width="16" title="Edit This Show" onload='fixPNG(this)'/>
-		            </td>
-		            <td>
-		                <%= link_to "Edit This Show", :action => "edit", :id => @show.id %>
-		            </td>
-		        </tr>
-	        </table>
-	        </p>
-	    </div>
-	</div>
+      <h2 id="improve-title"><span class="title">Help Us Improve</span></h2>
+        
+        <div class="actions-box-rows">
+           <p>  
+            <table>
+               <tr>
+                    <td>
+                        <img src="/images/edit.png" height="16" width="16" title="Edit This Show" onload='fixPNG(this)'/>
+                    </td>
+                    <td>
+                        <%= link_to "Edit This Show", :action => "edit", :id => @show.id %>
+                    </td>
+                </tr>
+            </table>
+            </p>
+        </div>
+    </div>
 <% end %>
 
 <br/>

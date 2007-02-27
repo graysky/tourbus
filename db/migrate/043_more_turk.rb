@@ -20,13 +20,13 @@ class MoreTurk < ActiveRecord::Migration
       t.column :token, :string
     end
     
-    SiteVisit.new(:name => "ATATURK", :quality => 6).save!
+    #SiteVisit.new(:name => "ATATURK", :quality => 6).save!
   end
 
   def self.down
     remove_column :turk_hits, :turk_hit_submission_id
     remove_column :turk_hits, :aws_assignment_id
-    remvoe_column :turk_hits, :aws_review_assignment_id
+    remove_column :turk_hits, :aws_review_assignment_id
     remove_column :turk_sites, :last_hit_time
     remove_column :turk_sites, :group
     remove_column :turk_workers, :completed_hits

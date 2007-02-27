@@ -1,9 +1,9 @@
 require 'RMagick'
-include Magick
 
 # Helpers to auto-create image and html images of upcoming shows
 # Assumes that it is called from an ActionController
 module Badge
+  include Magick
   
   def test_badge
     

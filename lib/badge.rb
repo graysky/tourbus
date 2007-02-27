@@ -144,6 +144,7 @@ module Badge
       
       # Draw the venue names
       Magick::Draw.new.annotate(canvas, 0, 0, venue_x, y_coord, venue_name) do
+        # self.font = 'Arial' # Note: This has caused an issue on 1 machine. Pick a safer font.
         self.font_family = 'courier'
         self.pointsize = 11
         self.gravity = Magick::NorthWestGravity

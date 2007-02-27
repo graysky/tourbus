@@ -155,13 +155,13 @@ class ApplicationController < ActionController::Base
   def public_band_url(band = nil)
     band = @band if band.nil?
     band = logged_in_band if band.nil?
-    url_for(:controller => '') + band.short_name
+    '/' + band.short_name
   end
   
   def public_fan_url(fan = nil)
     fan = @fan if fan.nil?
     fan = logged_in_fan if fan.nil?
-    url_for(:controller => '') + 'fan/' + fan.name
+    '/' + 'fan/' + fan.name
   end
   
   # public URL to a show
@@ -177,7 +177,7 @@ class ApplicationController < ActionController::Base
   # Get the URL to the RSS feed for this band
   def public_band_rss_url(band = nil)
     band = @band if band.nil?  
-    url_for(:controller => '') + band.short_name + "/rss"
+    '/' + band.short_name + "/rss"
   end
   
   # Get the URL to the RSS feed for this fan
@@ -200,7 +200,7 @@ class ApplicationController < ActionController::Base
   
   # Get the full URL to the photo
   def public_photo_url(photo, version)
-    url_for(:controller => '').chop! + photo.relative_path(version)
+    '/' + photo.relative_path(version)
   end
   
   # Get the URL to the iCal feed for this fan
@@ -220,13 +220,13 @@ class ApplicationController < ActionController::Base
   # Get the URL to the iCal feed for this band
   def public_band_ical_url(band = nil)
     band = @band if band.nil?  
-    url_for(:controller => '') + band.short_name + "/ical"
+    '/' + band.short_name + "/ical"
   end
   
   # Get the webcal:// URL to the iCal feed for this band
   def public_band_webcal_url(band = nil)
     band = @band if band.nil?  
-    url = url_for(:controller => '') + band.short_name + "/ical"
+    url = '/' + band.short_name + "/ical"
     url.gsub!(/http/, 'webcal')
     return url
   end

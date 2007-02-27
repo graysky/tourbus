@@ -8,7 +8,7 @@
 ENV['RAILS_ENV'] = 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.1.6'
+#RAILS_GEM_VERSION = '1.1.6'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -45,6 +45,8 @@ Rails::Initializer.run do |config|
 
   # See Rails::Configuration for more options
 end
+
+ActiveSupport::Deprecation.silenced = true
 
 # Add new inflection rules using the following format 
 # (all these examples are active by default):

@@ -49,7 +49,7 @@ END
       if ENV["RAILS_ENV"] == "development"
         Dir.chdir("../tourbus_search/server")
       else
-        Dir.chdir("/var/www/rails/tourbus_search/server")
+        Dir.chdir("/var/www/apps/tourbus_search/server")
       end
       
       system("java -Xmx16m -jar stop.jar")

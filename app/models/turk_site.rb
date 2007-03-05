@@ -25,6 +25,10 @@ class TurkSite < ActiveRecord::Base
   FREQUENCY_BIWEEKLY = 2
   FREQUENCY_MONTHLY = 3
 
+  def resolved_url
+    eval("\"#{self.url}\"")
+  end
+
   def is_hit_due?
     d = case self.frequency
         when FREQUENCY_WEEKLY then 7.days

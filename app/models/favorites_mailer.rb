@@ -44,7 +44,7 @@ class FavoritesMailer < BaseMailer
     all_start = Time.now.to_i
     for fan in fans
       start = Time.now
-      logger.info("Start fan: #{fan.id}, #{start.to_i}")
+      OFFLINE_LOGGER.info("Start fan: #{fan.id}, #{start.to_i}")
       
       # Are they are any favorites?
       next if fan.bands.empty?
@@ -68,7 +68,7 @@ class FavoritesMailer < BaseMailer
       
       # NOTE: Right now we are not sending updated shows. Should we be?
       new_shows = faves.new_shows
-      logger.info("  Found #{new_shows.size} new ones")
+      OFFLINE_LOGGER.info("  Found #{new_shows.size} new ones")
       next if new_shows.empty?
       
       # The user is watching each show
@@ -88,7 +88,7 @@ class FavoritesMailer < BaseMailer
     
     finish = Time.now
     
-    logger.info("****** #{finish.to_i - all_start.to_i}")
+    OFFLINE_LOGGER.info("Faves timing: #{finish.to_i - all_start.to_i}")
     
     SystemEvent.info("Sent #{num_fans} favorites emails", SystemEvent::FAVORITES)
   end

@@ -9,7 +9,7 @@ class TurkersController < ApplicationController
     begin
       @site = TurkSite.find(params[:turk_site_id])
     rescue
-      flash.now[:error] = "We're sorry, this seems to be an invalid hit. Please <a href='mailto:gm@tourb.us'>contact us</a> " +
+      flash.now[:error] = "We're sorry, this seems to be an invalid hit. Please <a href='mailto:feedback@tourb.us'>contact us</a> " +
                       " and we will get to the bottom of it."
       render :partial => "hit_error", :layout => "turk_hit"
       return

@@ -10,7 +10,7 @@ class Housekeeping
   # Run the long running tasks nightly
   def self.nightly_tasks
     start = Time.now.asctime
-    logger = RAILS_DEFAULT_LOGGER
+    logger = OFFLINE_LOGGER
     logger.info "Started nightly tasks at #{start}"
   
     logger.info "Starting wish list..."

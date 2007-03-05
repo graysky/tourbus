@@ -28,13 +28,13 @@ class FanServices < ActiveRecord::Base
           if bands
             bands.each do |band|
               if !fan.favorite?(band) && !fan.removed_favorite?(band)
-                logger.info "Add favorite: #{fan.name} => #{band.name}"
+                OFFLINE_LOGGER.info "Add favorite: #{fan.name} => #{band.name}"
                 fan.add_favorite(band, FavoriteBandEvent::SOURCE_LASTFM_POLL)
               end
             end
           end
         rescue Exception => e
-          logger.error(e)
+          OFFLINE_LOGGER.error(e)
         end
         
         # Only one last.fm query allowed per second, so be careful

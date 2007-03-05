@@ -114,6 +114,17 @@ Log4r::RollingFileOutputter.new('turk_log',
                         :level => Log4r::DEBUG)
 TURK_LOGGER.add('turk_log')
 
+OFFLINE_LOGGER = Log4r::Logger.new("offline")
+formatter = Log4r::PatternFormatter.new(:pattern => "[%l] %d - %m")
+Log4r::RollingFileOutputter.new('offline_log',
+                        :filename => "#{RAILS_ROOT}/log/offline.log",
+                        :trunc => false,
+                        :count => 10,
+                        :maxtime => 24.hours,
+                        :formatter => formatter,
+                        :level => Log4r::DEBUG)
+OFFLINE_LOGGER.add('offline_log')
+
 require 'rails_file_column'
 require 'selective_timestamp'
 require 'validations'

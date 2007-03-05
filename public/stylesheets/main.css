@@ -2048,3 +2048,9 @@ table.form-table td a {
 .first_hit {
     border-top:1px solid #ddd;
 }
+
+.turk_instructions li {
+    font-size:12px;
+    padding-top:4px;
+    color: #484A4C;
+}

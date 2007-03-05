@@ -2,17 +2,37 @@
 
 <h2>Find Concert Dates</h2>
 
+<div class="turk_instructions">
 <p>
-Please visit the following music venue calendar page: <a href="<%= @site.url %>" target="_site"><%= @site.url %></a>
+Please visit the following music venue calendar page: <a href="<%= @site.url %>" target="_site"><%= @site.resolved_url %></a>
 </p>
 <p>
-    For each concert listed, fill out one of the small forms below.
-    Click here to see ane example
+    For each concert listed, enter it in the form below. 
+    <a href="/images/turk_hit_example.jpg" target="_img">Click here</a> to see an example of a successful form submission.
+    <br/><br/>
+    <strong>Things to keep in mind:</strong>
+    <ul>
+        <li>Don't bother to include shows that already happened</li>
+        <li>If a concert lists two starting times, pick the earlier time (for example, when the doors open)</li>
+        <li>Ignore the starting time of each performer's set if it is included</li>
+        <li>Please don't include non-concerts such as poetry readings, comedy shows or open-mic nights</li>
+        <li>Only enter the names of performers, not other text such as "Tonight Only", "WFNX Presents",
+            "3-day jazz festival", "tonight only", "plus special guests", etc.</li>
+        <li>A list of performers is often separated by a slash ('/'), plus-sign ('+') or other markers.
+            Be careful to correctly identify each performer's name.</li>
+    </ul>
 </p>
 
-<p>
-    More instructions
-</p>
+<% if !@site.extra_instructions.empty? %>
+    <p>
+        <strong>Special instructions for this venue:</strong>
+        <p>
+            <%= @site.extra_instructions %>
+        </p>
+    </p>
+<% end%>
+
+</div>
 
 <%= start_form_tag :action => :hit %>
 

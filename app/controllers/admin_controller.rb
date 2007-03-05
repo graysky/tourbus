@@ -319,6 +319,7 @@ class AdminController < ApplicationController
     end
     
     @site = TurkSite.new(params[:site])
+    
     if @site.save
       raise "bad venue" if @site.venue.nil?
       

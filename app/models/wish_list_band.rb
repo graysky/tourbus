@@ -82,7 +82,7 @@ class WishListBand < ActiveRecord::Base
       
       
       # Add a fave and delete the wishlist band
-      logger.info "Add fave #{band.name} for #{fan.name}"
+      OFFLINE_LOGGER.info "Add fave #{band.name} for #{fan.name}"
       fan.add_favorite(band, FavoriteBandEvent::SOURCE_WISHLIST)
       WishListBand.delete(match.id)
       
@@ -103,6 +103,7 @@ class WishListBand < ActiveRecord::Base
       FanMailer.deliver_wishlist_to_favorites(fan, bands)
     end
   
+    OFFLINE_LOGGER.info "Found faves for #{num_fans} fans"
     SystemEvent.info("Found faves for #{num_fans} fans", SystemEvent::WISHLIST)
    
   end

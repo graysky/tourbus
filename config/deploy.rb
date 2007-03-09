@@ -55,13 +55,12 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/branches/tourbus-production"
 
-
 set :use_sudo, true
 
-  set :domain, "208.75.84.28"
-  role :web, domain
-  role :app, domain
-  role :db,  domain, :primary => true
+set :domain, "208.75.84.28"
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
 
 # Check for ENV to determine which type of deployment. 
 # 
@@ -69,7 +68,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # ---DEPRECATED---
   # Staging deployment to tourbus.figureten.com
   #
-	set :use_sudo, true
+  set :use_sudo, true
   #set :stage, "stage"
   # Need user with Bash shell on remote machine with right perms
   # This account has the normal password
@@ -83,7 +82,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   role :app, domain
   role :db,  domain, :primary => true
 
-	ssh_options[:keys] = %w(/home/gary/.ssh/id_rsa)
+  ssh_options[:keys] = %w(/home/gary/.ssh/id_rsa)
 
 else
   # Production deployment to tourb.us
@@ -97,6 +96,9 @@ else
 
 end
 
+# *************
+# DEPREC OPTIONS (http://deprec.rubyforge.org)
+# 
 # =============================================================================
 # APACHE OPTIONS
 # =============================================================================
@@ -124,7 +126,8 @@ set :mongrel_environment, "production"
 set :mongrel_config, "/etc/mongrel_cluster/#{application}.conf"
 # set :mongrel_user, user
 # set :mongrel_group, group
-
+#
+# **************
 
 # =============================================================================
 # TASKS

@@ -55,8 +55,13 @@ set :application, "tourbus"
 # - Requires that the local copy has "svn" in the path.
 set :repository, "svn://graysky.dyndns.org/svn/tourbus/branches/tourbus-production"
 
-# Don't use sudo for tourb.us
-set :use_sudo, false
+
+set :use_sudo, true
+
+  set :domain, "208.75.84.28"
+  role :web, domain
+  role :app, domain
+  role :db,  domain, :primary => true
 
 # Check for ENV to determine which type of deployment. 
 # 
@@ -64,30 +69,62 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # ---DEPRECATED---
   # Staging deployment to tourbus.figureten.com
   #
-  set :stage, "stage"
+	set :use_sudo, true
+  #set :stage, "stage"
   # Need user with Bash shell on remote machine with right perms
   # This account has the normal password
-  set :user, "figureten"
+  set :user, "lighty"
   
   # Full path on the remote box
-  set :deploy_to, "/home/.kasian/figureten/tourbus.figureten.com/#{application}"
+  set :deploy_to, "/var/www/apps/#{application}"
   # Roles
-  role :web, "tourbus.figureten.com"
-  role :app, "tourbus.figureten.com"
-  role :db,  "tourbus.figureten.com", :primary => true
-  
+  set :domain, "208.75.84.28"
+  role :web, domain
+  role :app, domain
+  role :db,  domain, :primary => true
+
+	ssh_options[:keys] = %w(/home/gary/.ssh/id_rsa)
+
 else
   # Production deployment to tourb.us
   #
   set :stage, "production"
   # Password is funny Dave C. skit
+	  set :user, "lighty"
   set :user, "lighty"
-  set :deploy_to, "/var/www/rails/#{application}"
+  set :deploy_to, "/var/www/apps/#{application}"
   # Roles
-  role :web, "tourb.us"
-  role :app, "tourb.us"
-  role :db,  "tourb.us", :primary => true
+
 end
+
+# =============================================================================
+# APACHE OPTIONS
+# =============================================================================
+set :apache_server_name, domain
+# set :apache_server_aliases, %w{alias1 alias2}
+#set :apache_default_vhost, true # force use of apache_default_vhost_config
+#set :apache_default_vhost_conf, "/etc/httpd/conf/default.conf"
+set :apache_conf, "/usr/local/apache2/conf/apps/#{application}.conf"
+set :apache_ctl, "/etc/init.d/httpd"
+set :apache_proxy_port, 8000
+set :apache_proxy_servers, 4
+set :apache_proxy_address, "127.0.0.1"
+# set :apache_ssl_enabled, false
+# set :apache_ssl_ip, "127.0.0.1"
+# set :apache_ssl_forward_all, false
+# set :apache_ssl_chainfile, false
+
+# =============================================================================
+# MONGREL OPTIONS
+# =============================================================================
+set :mongrel_servers, apache_proxy_servers
+set :mongrel_port, apache_proxy_port
+set :mongrel_address, apache_proxy_address
+set :mongrel_environment, "production"
+set :mongrel_config, "/etc/mongrel_cluster/#{application}.conf"
+# set :mongrel_user, user
+# set :mongrel_group, group
+
 
 # =============================================================================
 # TASKS

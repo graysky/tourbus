@@ -73,8 +73,8 @@ ActiveSupport::Deprecation.silenced = true
 #} 
 
 ActionMailer::Base.server_settings = {
-  :address=>'mail.tourb.us',
-  :domain=>'tourb.us',
+  :address=>'smtp1.dnsmadeeasy.com',
+  :domain=>'mytourb.us',
   :port=>'25',                    
   :user_name=>'robot+tourb.us',
   :password=>'bighit',

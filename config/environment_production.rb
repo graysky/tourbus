@@ -60,13 +60,13 @@ ActiveSupport::Deprecation.silenced = true
 # Include your application configuration below
 # Include your app's configuration here:
 ActionMailer::Base.server_settings = {
-  :address=>'mail.tourb.us',
-  :domain=>'tourb.us',
+  :address=>'smtp1.dnsmadeeasy.com',
+  :domain=>'mytourb.us',
   :port=>'25',                    
   :user_name=>'robot+tourb.us',
   :password=>'bighit',
   :authentication=>:login
-} 
+}  
 
 # Log entries in a secondary database...
 LogEntry.establish_connection(

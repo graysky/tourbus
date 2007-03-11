@@ -243,8 +243,12 @@ class AnansiImporter
    
     return if band.name == "" || band.short_name == ""
     
-    band.play_show(show, show.bands.size, b[:extra])
-    band.save!
+    begin
+      band.play_show(show, show.bands.size, b[:extra])
+      band.save!
+    rescue Exception => e
+      puts "Cannot create band: #{e.to_s}"
+    end
   end
   
   # Prepare a show hash for import

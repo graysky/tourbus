@@ -3,7 +3,7 @@
 <% end %>
 <div id="main">
 
-<% @page_title = @band.name %>
+<% @page_title = @band.name + " shows - #{@band.name} concerts" %>
 <% @header_title = @band.name %>
 <% @meta_subject = @band %>
 
@@ -22,7 +22,7 @@
 <%= show_results @shows, params[:show_map] == "true" %>
 <% if @shows.size > 0 %>
 <br/>
-<%= link_to "See more shows...", :action => :shows %>
+<%= link_to "See more #{@band.name} shows...", :action => :shows %>
 <% else %>
 
     <div class="profile_section_no_content">

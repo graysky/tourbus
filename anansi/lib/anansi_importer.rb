@@ -114,8 +114,12 @@ class AnansiImporter
       Show.transaction do
           @shows.each do |show|
           if show[:status] == :ok
-            result = import_show(show)
-            show[:status] = :imported if result
+            begin
+              result = import_show(show)
+              show[:status] = :imported if result
+            rescue Exception => ex
+              p ex
+            end
           end
         end
       end

@@ -11,19 +11,13 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
-desc "Start the tourbus app, both FCGI procs and cron spinners"
-task :start_tourbus => [:start_fcgi_spinner, :start_cron_spinner ]
-
-desc "Start the FCGI procs"
-task :start_fcgi_spinner do
-  # Options MUST MATCH what is in deploy.rb
-  system "ruby ./script/process/spinner -d -i 30 -c '/var/www/rails/tourbus/current/script/process/spawner -p 8000 -i 2'"
-end
+desc "Start the tourbus app, cron spinners"
+task :start_tourbus => [:start_cron_spinner ]
 
 desc "Start the cron spinner"
 task :start_cron_spinner do
   # Options MUST MATCH what is in deploy.rb
-  system "ruby ./script/process/spinner -d -i 600 -c 'cd /var/www/rails/tourbus/current && rake RAILS_ENV=production cron_start'"
+  system "ruby ./script/process/spinner -d -i 600 -c 'cd /var/www/apps/tourbus/current && rake RAILS_ENV=production cron_start'"
 end
 
 desc "Create a sitemap file for Google"

@@ -204,8 +204,7 @@ class FanController < ApplicationController
     if params[:lastfm_poll] == "1"
       @fan.fan_services.lastfm_poll = true
       @fan.fan_services.lastfm_username = username
-    else
-      @fan.fan_services.lastfm_poll = false
+      @fan.fan_services.save
     end
     
     @fan.save!

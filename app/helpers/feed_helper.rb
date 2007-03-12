@@ -108,7 +108,7 @@ module FeedHelper
         }.join(" / ")
       
       if attending_friends.size > 0
-        desc << "<p><b>Friends Attending:</b> #{attending_friends}</p>"
+        desc << "<p><b>Friends Interested:</b> #{attending_friends}</p>"
       end
     end
     

@@ -28,7 +28,7 @@
     <div class="profile_section_no_content">
         <%= @band.name %> does not have any upcoming shows.
          <br/><br/>
-         <%= link_to 'All Shows', :action => 'all_shows' %>
+         <%= link_to "All #{@band.name} Shows", :action => 'all_shows' %>
     </div>
 <% end %>
 

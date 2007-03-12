@@ -1,7 +1,7 @@
 require 'net/http'
 require 'uri'
 require 'uuidtools'
-require 'YAML'
+require 'yaml'
 
 class TurkersController < ApplicationController
 

@@ -16,6 +16,10 @@ module ShowHelper
     "#{friendly_date(show.date)} @ #{show.venue.name}"
   end
   
+  def long_show_title(show)
+    "#{show.bands.map { |b| b.name }.join('/')} @ #{show.venue.name} (#{friendly_date(show.date)})"
+  end
+  
   def friends_attending(show)
     return if !logged_in_fan
     

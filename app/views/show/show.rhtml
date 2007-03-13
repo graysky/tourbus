@@ -3,10 +3,10 @@
 <% end %>
 
 <% 
-  title = date_venue_title(@show)
+  title = long_show_title(@show)
   
   @page_title = title
-  @header_title = truncate(title, 42)
+  @header_title = truncate(date_venue_title(@show), 42)
   @meta_subject = @show
 %>
 

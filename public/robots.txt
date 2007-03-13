@@ -2,3 +2,6 @@
 #  
 User-agent: *
 Disallow: /admin/
+
+User-agent: Sproose
+Disallow: /

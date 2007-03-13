@@ -124,8 +124,8 @@ set :mongrel_port, apache_proxy_port
 set :mongrel_address, apache_proxy_address
 set :mongrel_environment, "production"
 set :mongrel_config, "/etc/mongrel_cluster/#{application}.conf"
-# set :mongrel_user, user
-# set :mongrel_group, group
+set :mongrel_user, "lighty"
+set :mongrel_group, "users"
 #
 # **************
 

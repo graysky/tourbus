@@ -27,7 +27,7 @@ module ShowHelper
     if friends.size > 0
       names = friends.map { |f| f.name }.join(', ')
       
-      str = "#{friends.size} #{friends.size == 1 ? 'friend is' : 'friends are'} attending: #{names}"
+      str = "#{friends.size} #{friends.size == 1 ? 'friend is' : 'friends are'} interested: #{names}"
       "<strong>friends:</strong> #{friends.size} <img src='/images/group_small.png' height='12' width='12' title='#{str}' onload='fixPNG(this)'/><br/>"
     end
   end

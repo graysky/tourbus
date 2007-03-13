@@ -57,7 +57,7 @@ set :repository, "svn://graysky.dyndns.org/svn/tourbus/branches/tourbus-producti
 
 set :use_sudo, true
 
-set :domain, "208.75.84.28"
+set :domain, "tourb.us" # 208.75.84.28
 role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
@@ -77,7 +77,7 @@ if ENV['STAGE'] == "dev" or ENV['STAGE'] == "development"
   # Full path on the remote box
   set :deploy_to, "/var/www/apps/#{application}"
   # Roles
-  set :domain, "208.75.84.28"
+  set :domain, "tourb.us"
   role :web, domain
   role :app, domain
   role :db,  domain, :primary => true

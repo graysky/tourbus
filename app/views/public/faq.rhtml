@@ -37,7 +37,7 @@ encourage. We need your help to build a better way to find great music by bands 
 
 <p>We find lots of bands when we collect shows from the web, and we might have found your band (which we've heard kicks ass).
 If you'd like to claim it so that you can manage it, please send us mail at 
-<a href="mailto:feedback@tourb.us">feedback@tourb.us</a> and we can get you set up. And if you're in a band we haven't
+<%= mail_to "feedback@tourb.us", "feedback@tourb.us", :encode => "javascript" %> and we can get you set up. And if you're in a band we haven't
 discovered yet, you can <%= link_to("signup your band", :controller => "signup", :action => "band")%> to list your shows.
 
 <h2>Got anything for my blog, website or MySpace page?</h2>
@@ -71,7 +71,7 @@ for your real username. Then sit back and have a cold beverage of your choice.
 </code>
 
 <p>(Would you like more options for badges?
-<a href="mailto:feedback@tourb.us">Please let us know</a> what would make it better for your site.)
+<%= mail_to "feedback@tourb.us", "Please let us know", :encode => "javascript" %> what would make it better for your site.)
 
 
 <h2>Who is behind this thing?</h2>
@@ -123,7 +123,7 @@ those of us who are artistically challenged.
 <h2>We should collaborate and/or conspire!</h2>
 
 <p>As long as it's legal in more than 42 states, we're interested. If you're a show promoter, 
-club owner, musician, or just someone with a slightly crazy idea <a href="mailto:feedback@tourb.us">please get in touch</a>.
+club owner, musician, or just someone with a slightly crazy idea <%= mail_to "feedback@tourb.us", "please get in touch", :encode => "javascript" %>.
 
 <h2>I can't get enough tourb.us. Help!</h2>
 
@@ -133,6 +133,6 @@ club owner, musician, or just someone with a slightly crazy idea <a href="mailto
 <h2>Any other questions, comments or suggestions?</h2>
 
 <p>We're always excited to hear about how we could make the site better. Please send us <a href="/feedback">feedback</a>
-or an email at <a href="mailto:feedback@tourb.us">feedback@tourb.us</a>.
+or an email at <%= mail_to "feedback@tourb.us", "feedback@tourb.us", :encode => "javascript" %>.
 
 </div>

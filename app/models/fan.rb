@@ -38,7 +38,7 @@
 #  num_upcoming_shows  :integer(11)   default(0)
 #  last_login          :datetime      
 #  allow_contact       :boolean(1)    default(true)
-#
+#  last_faves_reminder :datetime
 
 require_dependency "password_protected"
 require_dependency "searchable"

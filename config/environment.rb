@@ -74,8 +74,9 @@ ActiveSupport::Deprecation.silenced = true
 
 ActionMailer::Base.server_settings = {
   :address=>'smtp1.dnsmadeeasy.com',
-  :domain=>'mytourb.us',
-  :port=>'25',                    
+  :domain=>'tourb.us',
+  #:port=>'25', # Default, blocked by RCN
+  :port=>'5521',                    
   :user_name=>'robot+tourb.us',
   :password=>'bighit',
   :authentication=>:login

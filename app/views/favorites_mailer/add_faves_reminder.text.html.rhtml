@@ -1,0 +1,30 @@
+<html>
+<body>
+  <p>Hey <%= @fan.name %>,
+  </p>
+  <p>To be notified when your favorite bands are coming to town, tourb.us needs your help. 
+  <br/>Currently you have not added any favorite bands, but it's very easy! 
+  
+  <p>To get the early heads up on upcoming shows, you can quickly add favorite bands from:
+  
+  <ul>
+  <li>iTunes - simply upload a playlist of bands you like!
+  <li>Last.fm - just fill in your username, and tourb.us will do the rest!
+  <li>Quick Import - enter the names of bands you like, and that's it!
+  </ul>
+  
+  <p>More cities and shows are always being added, so to get the most out of tourb.us visit: 
+  <p>
+  <a href="<%= @the_url %>?utm_source=track_bands&utm_medium=email"><%= @the_url %></a>
+  </p>
+  <p>  
+  </p>
+  
+<p>
+<%= @email_signoff %>
+</p>
+
+<p><small>PS- This is the only email you will receive about adding favorite bands to tourb.us.</small></p>
+</body>
+</html>
+

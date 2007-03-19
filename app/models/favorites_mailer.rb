@@ -33,6 +33,64 @@ class FavoritesMailer < BaseMailer
     @body['email_signoff'] = email_signoff
   end
   
+  # Reminder for those without any favorite bands
+  def add_faves_reminder(fan, sent_at = Time.now)
+    @subject    = '[tourb.us] Track Your Favorite Bands'
+    @body       = {}
+    @recipients = fan.contact_email
+    @from       = Emails.from
+    @sent_on    = sent_at
+    @headers    = {}
+    
+    @body['fan'] = fan
+    @body['the_url'] = "http://tourb.us/fans/import_favorites"
+    @body['email_signoff'] = email_signoff
+    @body['email_signoff_plain'] = email_signoff_plain
+  end
+  
+  # Remind all fans to add favorites
+  def self.do_add_favorites_reminder
+    # Get all those who haven't been reminded
+    fans = Fan.find_all_by_last_faves_reminder(nil)
+
+    FavoritesMailer.do_favorites_reminder_for_fans(fans)
+  end
+  
+  # Remind fans to add faves iff:
+  # - they have no favorite bands
+  # - they have not been nagged before
+  # - they signed up >48 hours before
+  # 
+  # Note: Allows testing with subset of fans
+  def self.do_add_favorites_reminder_for_fans(fans)
+    
+    for fan in fans
+      if !fan.bands.empty?
+        # Don't need to bother them. Update their record
+        # to avoid them next time
+        fan.last_faves_reminder = Time.now
+        fan.save
+        next
+      end
+      
+      next if !fan.allow_contact?
+      
+      # Never bother people twice
+      next if !fan.last_faves_reminder.nil?
+      
+      # Wait until 48 hours after signing up
+      next if fan.created_on > Time.now - 48.hours
+      
+      OFFLINE_LOGGER.info("Reminding fan to add bands: #{fan.id}, #{fan.name}")
+
+      FavoritesMailer.deliver_add_faves_reminder(fan)
+      
+      # Update them to avoid future nagging
+      fan.last_faves_reminder = Time.now
+      fan.save
+    end
+  end
+  
   # Main entry point from the runner script.
   # Calculates what emails need to be sent to fans that have specified
   # favorites bands to receive updates about

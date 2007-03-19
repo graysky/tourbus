@@ -22,6 +22,9 @@ class Housekeeping
     logger.info "Sending favorites emails..."
     FavoritesMailer.do_favorites_updates
 
+    logger.info "Sending add favorites reminder emails..."
+    FavoritesMailer.do_add_favorites_reminder
+
     logger.info "Reporting stats..."
     self.report_stats
     

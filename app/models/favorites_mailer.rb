@@ -53,7 +53,7 @@ class FavoritesMailer < BaseMailer
     # Get all those who haven't been reminded
     fans = Fan.find_all_by_last_faves_reminder(nil)
 
-    FavoritesMailer.do_favorites_reminder_for_fans(fans)
+    FavoritesMailer.do_add_favorites_reminder_for_fans(fans)
   end
   
   # Remind fans to add faves iff:

@@ -14,7 +14,7 @@ Your friend <%= @from_name %> invites you to check out this show:
 <br/><br/>
 <% end %>
 <% the_url = @show_prefix_url.to_s + @show.to_param %>
-<% display_url = @show_prefix_url.to_s + @show.id.to_i %>
+<% display_url = @show_prefix_url.to_s + @show.id.to_s %>
 More details: <a href="<%= the_url %>?utm_source=shareshow&utm_medium=email"><%= display_url %></a>
 </p>
 

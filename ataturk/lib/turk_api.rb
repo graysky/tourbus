@@ -32,12 +32,13 @@ end
 # Turk API methods
 #########################################
 class TurkApi
-  # Override defaults in environment.rb... right now this is gary's account
-  AWS_ACCESS_KEY_ID = '107T76MRP4RR78KM2W02'
-  AWS_SECRET_ACCESS_KEY = 'o97H3xi0IrX8622N3ao6jONm/kLUdiyWIJvCZoJV'
+  # Override defaults in environment.rb...
+  AWS_ACCESS_KEY_ID = '1Y4C0G77T4XXBQ64AMR2'
+  AWS_SECRET_ACCESS_KEY = 'm9byJX7btKLVrUOzlVpkWpoqnNXQW2Q2lmZMVeHq'
   SERVICE_NAME = 'AWSMechanicalTurkRequester'
   SERVICE_VERSION = '2006-10-31'
   QUESTION_FORM_SCHEMA = "http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd"
+  TEST_QUALIFICATION = 'XZQZPCCRKAW0KEXRJS8Z' # only gary's account is qualified
   
   attr :key
   attr :secret_key
@@ -96,6 +97,22 @@ class TurkApi
   def disable_hit(id)
     op = "DisableHIT"
     res = "DisableHITResult"
+    
+    params = { :HITId => id }
+    xml = aws_call(op, params)
+    raise_if_error(xml, op, res)
+    
+    if result_node = xml.root.elements["#{res}"]
+      return true
+    end
+    
+    raise "Unexpected error: no result found"
+  end
+  
+  # Dispose of a HIT once we are done
+  def dispose_hit(id)
+    op = "DisposeHIT"
+    res = "#{op}Result"
     
     params = { :HITId => id }
     xml = aws_call(op, params)
@@ -337,7 +354,7 @@ class TurkApi
     param_string = (params.collect { |key,value| "#{key}=#{CGI::escape(value.to_s)}" }).join('&')
     
     url = URI.parse('http://mechanicalturk.amazonaws.com/onca/xml?' + param_string)
-    
+    @logger.debug(url)
     REXML::Document.new(Net::HTTP.get(url))
   end
   

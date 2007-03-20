@@ -33,7 +33,7 @@ class TurkSite < ActiveRecord::Base
     d = case self.frequency
         when FREQUENCY_WEEKLY then 7.days
         when FREQUENCY_BIWEEKLY then 14.days
-        when FREQUENCY_MONTH then 28.days
+        when FREQUENCY_MONTHLY then 28.days
         end
         
     self.last_hit_time.nil? || (Time.now - d) > self.last_hit_time

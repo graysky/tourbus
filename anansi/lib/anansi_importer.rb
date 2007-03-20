@@ -196,7 +196,8 @@ class AnansiImporter
     show.site_visit = SiteVisit.find(s[:site_visit_id])
     
     if s[:ataturk]
-      # TODO ataturk link attribution
+      show.source_name = s[:source_link]
+      show.source_link = s[:source_link]
     else
       site = @config.site_by_name(s[:site])
       show.source_name = site.display_name

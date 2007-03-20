@@ -39,8 +39,7 @@ Please visit the following music venue calendar page: <a href="<%= @site.url %>"
 <% if (@errors && @errors.size > 0) || (@invalid_bands && @invalid_bands.size > 0) %>
     <div class="error">
         <table><tr><td valign='top'><img width='16px' height='16px' src="/images/exclamation.png" onload='fixPNG(this)'/></td>
-                   <td>Sorry, there were some errors in the form. Please correct them and re-submit.<br/>
-                       If you do so you will get full credit for the HIT.
+                   <td>Sorry, there were some errors in the form. Please correct them and re-submit.
                    </td>
                 </tr>
         <% for error in @errors %>

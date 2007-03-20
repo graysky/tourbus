@@ -59,7 +59,7 @@ class Ataturk
       prepared_shows = shows.map { |show| anansi.prepare_show(show) }
       write_shows(prepared_shows, id)    
       
-      hit = TurkHit.find(id)
+      hit = TurkHit.find_by_aws_hit_id(id)
       hit.set_reviewing(a)
       
     end
@@ -77,6 +77,7 @@ class Ataturk
     TurkHit.transaction do
       hit.set_approved
       @turk.approve_assignment(hit.aws_assignment_id, feedback)
+      @turk.dispose_hit(hit.aws_hit_id)
     end
   end
   
@@ -86,7 +87,7 @@ class Ataturk
       hit.set_rejected
       AnansiImporter.new.delete_turk_hit(hit)
       @turk.reject_assignment(hit.aws_assignment_id, feedback)
-      
+      @turk.dispose_hit(hit.id)
       @turk.extend_hit if extend
     end
   end
@@ -130,6 +131,7 @@ class Ataturk
       show[:time] = parser.parse_as_time(params["time_#{i}"], false)
       show[:soldout] = true if params["soldout_#{i}"]
       show[:cancelled] = true if params["cancelled_#{i}"]
+      show[:source_link] = submission.turk_site.resolved_url
       
       tickets = params["tickets_#{i}"]
       show[:ticket_link] = tickets if tickets && tickets != ""

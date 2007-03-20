@@ -9,7 +9,7 @@
       <td class="show_search_result_table col2">
         <div class="show_search_result_content">
           <strong><%= friendly_date(show.date) %></strong>&nbsp;&nbsp;<%= friendly_time(show.date) %><br/>
-          <strong><%= link_to(show.formatted_title, :controller => "show", :action => "show", :id => show.id) %></strong><br/>
+          <strong><%= link_to(show.formatted_title, :controller => "show", :action => "show", :id => show) %></strong><br/>
           <% if show_venue %>
             at <strong><%= show.venue.name %></strong> in <%= show.venue.location %>
           <% end %>

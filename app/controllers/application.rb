@@ -166,12 +166,12 @@ class ApplicationController < ActionController::Base
   
   # public URL to a show
   def public_show_url(show)
-    url_for(:controller => "show", :action => "show", :id => show.id)
+    url_for(:controller => "show", :action => "show", :id => show)
   end
   
   # public URL to a venue 
   def public_venue_url(venue)
-    url_for(:controller => "venue", :action => "show", :id => venue.id)
+    url_for(:controller => "venue", :action => "show", :id => venue)
   end
   
   # Get the URL to the RSS feed for this band

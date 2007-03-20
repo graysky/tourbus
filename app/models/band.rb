@@ -122,6 +122,12 @@ class Band < ActiveRecord::Base
     id = name.gsub(/&/, 'and').gsub(/[^\w|\d|_|.|-]/, '').downcase
   end
   
+  # Get a band name to be put in a URL
+  def self.name_to_url(name)
+    # Convert whitespace to _ and pull out everything that's not a letter, number or selected punctuation
+    url = name.gsub(/&/, 'and').gsub(/\s+/, '_').gsub(/[^\w|\d|.|-]/, '')
+  end
+  
   # Add Band tags
   def band_tag_names=(tags)
     add_tags(tags, Tag.Band)

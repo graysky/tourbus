@@ -181,6 +181,26 @@ class Show < ActiveRecord::Base
     super(:include => [:tags, :bands, :venue])
   end
   
+  # Change default for SEO friendlyness to:
+  # /id-band1-band2-venuename
+  def to_param
+    url = "#{id}"
+
+    if bands.size > 0
+      url = url + "-#{StringHelper::urlize(Band.name_to_url(bands[0].name))}" if !bands[0].nil? 
+    end    
+    if bands.size > 1
+      url = url + "-#{StringHelper::urlize(Band.name_to_url(bands[1].name))}" if !bands[1].nil? 
+    end  
+    
+    # Add venue name
+    url = url + "-#{StringHelper::urlize(venue.name)}" if !venue.nil?
+   
+    puts "Show URL is: #{url}" 
+   
+    return url    
+  end
+  
   protected
   
   # Add show-specific searchable fields for ferret indexing
@@ -202,10 +222,17 @@ class Show < ActiveRecord::Base
       contents << " " + band.tag_names.join(" ")
     end
    
+    if self.venue.nil?
+      puts "Venue is null for show #{self.id}"
+      return contents
+    end
+      
     contents << " " + self.venue.name + " " + self.venue.city
     contents << self.description
     
     contents
   end
+  
+
   
 end

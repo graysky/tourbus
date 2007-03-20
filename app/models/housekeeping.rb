@@ -77,8 +77,8 @@ class Housekeeping
         urls = 0
       end
       
-      sitemap.puts "http://tourb.us/show/#{s.id}"
-      sitemap.puts "http://tourb.us/show/#{s.id}/fans"
+      sitemap.puts "http://tourb.us/show/#{s.to_param}"
+      sitemap.puts "http://tourb.us/show/#{s.to_param}/fans"
       urls = urls + 2
     end
     puts "Added #{shows.length} shows to sitemap"
@@ -103,8 +103,8 @@ class Housekeeping
         sitemap = get_sitemap(sitemap)
         urls = 0
       end
-      sitemap.puts "http://tourb.us/venue/#{v.id}"
-      sitemap.puts "http://tourb.us/venue/#{v.id}/shows"
+      sitemap.puts "http://tourb.us/venue/#{v.to_param}"
+      sitemap.puts "http://tourb.us/venue/#{v.to_param}/shows"
       urls = urls + 2
     end
     puts "Added #{venues.length} veneus to sitemap"

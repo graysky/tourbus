@@ -94,6 +94,18 @@ class Venue < ActiveRecord::Base
     super(:include => [:upcoming_shows])
   end
   
+  # Change default for SEO friendlyness. Format is:
+  # id-name-city-state
+  def to_param
+    url = "#{id}-#{StringHelper::urlize(name)}"
+    
+    # Not all venues have states (like D.C.)
+    url = url + "-#{StringHelper::urlize(city)}" if !city.nil?
+    url = url + "-#{StringHelper::urlize(state)}" if !state.nil?
+   
+    return url    
+  end
+  
   protected
   
   # Validate that it is a valid URL starting with http://

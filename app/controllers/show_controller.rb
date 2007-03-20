@@ -35,7 +35,7 @@ class ShowController < ApplicationController
       return if !result
       
       flash[:success] = 'Show added'
-      redirect_to_url "/show/#{@show.id}"
+      redirect_to_url "/show/#{@show.to_param}"
     end
   end
   

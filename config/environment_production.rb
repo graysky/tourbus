@@ -61,7 +61,7 @@ ActiveSupport::Deprecation.silenced = true
 # Include your app's configuration here:
 ActionMailer::Base.server_settings = {
   :address=>'smtp1.dnsmadeeasy.com',
-  :domain=>'mytourb.us',
+  :domain=>'tourb.us',
   :port=>'25',                    
   :user_name=>'robot+tourb.us',
   :password=>'bighit',

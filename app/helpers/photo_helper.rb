@@ -121,7 +121,7 @@ module PhotoHelper
     if photo.band
       public_band_url(photo.band)
     elsif photo.venue
-      url_for :controller => "venue", :action => "show", :id => photo.venue.id
+      url_for :controller => "venue", :action => "show", :id => photo.venue
     end
   end
 end

@@ -94,4 +94,18 @@ class StringHelper
     def clean_html( text, tags = BASIC_TAGS )
       self.class.clean_html!(text,tags)
     end
+    
+    # Cleans up string to be included in the url.
+    # Returns cleaned, new string or nil iff nil is passed
+    def self.urlize(str)
+      return nil if str.nil?
+      url = ""
+    
+      # Convert spaces to _
+      url = str.gsub(/\s+/, '_')
+      # Pull out non-word chars
+      url.gsub!(/[()'\.]/, '')
+    
+      return url
+  end
 end

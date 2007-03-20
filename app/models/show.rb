@@ -196,8 +196,6 @@ class Show < ActiveRecord::Base
     # Add venue name
     url = url + "-#{StringHelper::urlize(venue.name)}" if !venue.nil?
    
-    puts "Show URL is: #{url}" 
-   
     return url    
   end
   

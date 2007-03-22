@@ -82,7 +82,7 @@ module FeedHelper
       
     xml = ""
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
-    xml << "<link>#{public_url(show)}</link>"
+    xml << "<link>#{public_show_url(show)}</link>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
     bands = show.bands.map { |band| 

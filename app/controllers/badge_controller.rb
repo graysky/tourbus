@@ -36,6 +36,9 @@ class BadgeController < ApplicationController
     rescue  ActiveRecord::RecordNotFound => exc
       flash.now[:error] = "Could not find the object with ID: #{id}"
     end
+
+    # Prepend the site
+    @base_badge_url = "http://tourb.us" + @base_badge_url
     
     return if obj.nil?
     

@@ -142,12 +142,14 @@ class ApplicationController < ActionController::Base
   def public_url(obj)
     return nil if obj.nil?
     
-    return public_fan_url(obj) if obj.kind_of?(Fan)
-    return public_band_url(obj) if obj.kind_of?(Band)
-    return public_show_url(obj) if obj.kind_of?(Show)
-    return public_venue_url(obj) if obj.kind_of?(Venue)
-    return public_photo_url(obj, "preview") if obj.kind_of?(Photo)
-    return nil
+    url = "http://tourb.us"
+    
+    url = url + public_fan_url(obj) if obj.kind_of?(Fan)
+    url = url + public_band_url(obj) if obj.kind_of?(Band)
+    url = url + public_show_url(obj) if obj.kind_of?(Show)
+    url = url + public_venue_url(obj) if obj.kind_of?(Venue)
+    url = url + public_photo_url(obj, "preview") if obj.kind_of?(Photo)
+    return url
   end
   
   # Return the URL of the band, which can be passed

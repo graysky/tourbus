@@ -142,13 +142,14 @@ class ApplicationController < ActionController::Base
   def public_url(obj)
     return nil if obj.nil?
     
+    # Temp hack until fan/band urls contain the host
     url = "http://tourb.us"
     
     url = url + public_fan_url(obj) if obj.kind_of?(Fan)
     url = url + public_band_url(obj) if obj.kind_of?(Band)
-    url = url + public_show_url(obj) if obj.kind_of?(Show)
-    url = url + public_venue_url(obj) if obj.kind_of?(Venue)
-    url = url + public_photo_url(obj, "preview") if obj.kind_of?(Photo)
+    url = public_show_url(obj) if obj.kind_of?(Show)
+    url = public_venue_url(obj) if obj.kind_of?(Venue)
+    url = public_photo_url(obj, "preview") if obj.kind_of?(Photo)
     return url
   end
   

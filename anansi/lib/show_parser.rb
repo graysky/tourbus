@@ -136,7 +136,7 @@ class ShowParser < MetaSite
                     /record release party/i, /co-bill/i]
     replacements.each { |pattern| name.gsub!(pattern, '') }
     
-    naem.chop! if name.ends_with?(',')
+    name.chop! if name.ends_with?(',')
     
     band = {}
     band[:name] = name.gsub(/\s+/, ' ')

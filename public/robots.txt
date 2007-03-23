@@ -5,3 +5,9 @@ Disallow: /admin/
 
 User-agent: Sproose
 Disallow: /
+
+User-agent: zvents
+Disallow: /
+
+User-agent: zbot
+Disallow: /

@@ -1,5 +1,10 @@
-<h1>Ignore this, just testing!</h1>
+<h2>Help <a href="http://tourb.us" target="_tb">tourb.us</a> build the best free concert database on the web!</h2>
+
 <p>
-Follow the instructions at <a href="http://localhost:3000/turkers/hit?turk_site_id=<%= site.id %>">http://tourb.us/turkers/hit</a>.
-Enter the code below.
+<% url = "http://localhost:3000/turkers/hit?turk_site_id=#{site.id}" %>
+Follow the instructions at <a href="<%= url %>" target="_tb">http://tourb.us</a>.
+You will be asked to read a web page containing a list of concerts and enter the basic information about each one
+into a very simple form. After you have finished and submitted the form, you will be shown a code.
+Just paste that code into the box below to finish the HIT.
 </p>
+<h3><a href="<%= url %>" target="_tb">Click here to get started!</a></h3>

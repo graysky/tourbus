@@ -182,7 +182,7 @@ class TurkApi
     op = "GetAssignmentsForHIT"
     res = "#{op}Result"
     
-    params = { :HITId => hit_id }
+    params = { :HITId => hit_id, :AssignmentStatus => 'Submitted' }
     xml = aws_call(op, params)
     raise_if_error(xml, op, res)
     

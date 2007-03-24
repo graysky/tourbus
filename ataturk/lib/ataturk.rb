@@ -85,10 +85,14 @@ class Ataturk
   def reject_hit(hit, extend, feedback = nil)
     TurkHit.transaction do
       hit.set_rejected
-      AnansiImporter.new.delete_turk_hit(hit)
+      FileUtils.rm_f(File.join(AnansiImporter::ATATURK_DIR, AnansiImporter.ataturk_file_name(hit.aws_id)))
       @turk.reject_assignment(hit.aws_assignment_id, feedback)
-      @turk.dispose_hit(hit.id)
-      @turk.extend_hit if extend
+      
+      if extend
+        @turk.extend_hit 
+      else
+        @turk.dispose_hit(hit.id)
+      end
     end
   end
   

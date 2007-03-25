@@ -76,6 +76,9 @@ class TurkersController < ApplicationController
     
     if show_count == 0
       @errors << [nil, "We did not find any valid shows. Did you hit submit by accident?"]
+    elsif show_count < @site.min_shows
+      @errors << [nil, "It looks like you missed a few shows. Please go back and make sure you added all of the show listings on the page. " + 
+                       "If you're sure you got them all, submit the HIT with a short explanation instead of a code and we will accept the HIT if you're right."]
     elsif (@invalid_bands.size / show_count.to_f) < 0.4
       # We can tolerate some errors
       @invalid_bands = []

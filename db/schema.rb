@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 43) do
+ActiveRecord::Schema.define(:version => 45) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string,   :default => "", :null => false
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 43) do
     t.column "num_upcoming_shows",     :integer,                 :default => 0
     t.column "last_login",             :datetime
     t.column "allow_contact",          :boolean,                 :default => true
+    t.column "last_faves_reminder",    :datetime
   end
 
   add_index "fans", ["name"], :name => "name_key"
@@ -372,6 +373,7 @@ ActiveRecord::Schema.define(:version => 43) do
     t.column "lifetime",           :integer,  :default => 604800
     t.column "last_hit_time",      :datetime
     t.column "group",              :integer,  :default => 0
+    t.column "min_shows",          :integer,  :default => 10
   end
 
   create_table "turk_workers", :force => true do |t|

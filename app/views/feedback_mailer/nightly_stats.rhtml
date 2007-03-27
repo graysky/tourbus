@@ -1,0 +1,21 @@
+<html>
+<body>
+<p>
+
+Recent fan signups (24hrs): <%= @recent_fans.size %> <br/>
+[ <%= @recent_fans.map {|f| f.name }.join(", ") %> ] <br/>
+
+Recent logins (48hrs): <%= @recent_logins.size %> <br/>
+[ <%= @recent_logins.map {|f| f.name }.join(", ") %> ] <br/>
+
+Upcoming shows: <%= @upcoming_shows.size %><br/>
+
+<br/>
+Total fans: <%= @fans.size %> <br/>
+Total bands: <%= @bands.size %><br/>
+Total venues: <%= @venues.size %><br/>
+Total shows: <%= @shows.size %><br/>
+
+</p>
+</body>
+</html>

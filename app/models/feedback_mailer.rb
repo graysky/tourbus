@@ -36,5 +36,21 @@ class FeedbackMailer < BaseMailer
     @body["reason"] = reason
   end
   
-
+  def nightly_stats(fans, recent_fans, recent_logins, 
+      bands, venues, shows, upcoming_shows)
+    @subject    = "[tourb.us] Nightly Stats"
+    @recipients = Emails.gm
+    @from       = Emails.from
+    @sent_on    = Time.now
+    @headers    = {}
+    content_type "text/html"
+    
+    @body["fans"] = fans
+    @body["recent_fans"] = recent_fans
+    @body["recent_logins"] = recent_logins
+    @body["bands"] = bands
+    @body["venues"] = venues
+    @body["shows"] = shows
+    @body["upcoming_shows"] = upcoming_shows
+  end
 end

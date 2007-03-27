@@ -123,36 +123,29 @@ class Housekeeping
     puts "Added #{fans.length} fans to sitemap"
     
   end
-  
-  protected
 
   # Print out some stats about tourbus
   def self.report_stats
   
     fans = Fan.find(:all)
-    puts "Total fans: #{fans.size}"
 
     recent_fans = Fan.find(:all, :conditions => ["created_on > ?", Time.now - 1.days])
-    puts "Recent fan signups (24hrs): #{recent_fans.size}"
-    puts "[" + recent_fans.map {|f| f.name }.join(", ") + "]"
 
     recent_logins = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days])
-    puts "Recent logins (48hrs): #{recent_logins.size}"
-    puts "[" + recent_logins.map {|f| f.name }.join(", ") + "]"
 
     bands = Band.find(:all)
-    puts "Total bands: #{bands.size}"
 
     venues = Venue.find(:all)
-    puts "Total venues: #{venues.size}"
 
     shows = Show.find(:all)
-    puts "Total shows: #{shows.size}"
     upcoming_shows = Show.find(:all, :conditions => ["date > ?", Time.now - 1.days])
-    puts "Upcoming shows: #{upcoming_shows.size}"
 
-    ""
+    # Send nightly stats
+    FeedbackMailer.deliver_nightly_stats(fans, recent_fans, recent_logins, 
+      bands, venues, shows, upcoming_shows)
   end 
+
+  protected
   
   # Save in chunks just to avoid huge AR memory usage
   # Must be saving objects with num_upcoming_shows attribute

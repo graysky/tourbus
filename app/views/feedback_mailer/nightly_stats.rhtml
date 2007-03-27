@@ -2,15 +2,17 @@
 <body>
 <p>
 
+<h3>Recent Activity</h3>
 Recent fan signups (24hrs): <%= @recent_fans.size %> <br/>
-[ <%= @recent_fans.map {|f| f.name }.join(", ") %> ] <br/>
+[ <%= @recent_fans.map {|f| f.name }.join(", ") %> ] <br/><br/>
 
 Recent logins (48hrs): <%= @recent_logins.size %> <br/>
 [ <%= @recent_logins.map {|f| f.name }.join(", ") %> ] <br/>
 
-Upcoming shows: <%= @upcoming_shows.size %><br/>
-
 <br/>
+<h3>Totals</h3>
+
+Upcoming shows: <%= @upcoming_shows.size %><br/>
 Total fans: <%= @fans.size %> <br/>
 Total bands: <%= @bands.size %><br/>
 Total venues: <%= @venues.size %><br/>

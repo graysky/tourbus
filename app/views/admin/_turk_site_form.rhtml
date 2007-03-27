@@ -21,6 +21,15 @@
   </tr>
   
   <tr>
+    <th>Site Category:</th>
+    <td><%= select 'site', 'turk_site_category_id', TurkSiteCategory.find_all.map { |h| [h.name, h.id] } %></td>
+    <td class="info">
+      
+    </td>
+  </tr>
+  
+  
+  <tr>
     <th>HIT Type:</th>
     <td><%= select 'site', 'turk_hit_type_id', TurkHitType.find_all.map { |h| [h.name, h.id] } %></td>
     <td class="info">
@@ -29,7 +38,7 @@
       <% end %>
     </td>
   </tr>
-  
+    
   <tr>
     <th>Frequency:</th>
     <td><%= select 'site', 'frequency', [ ["Bi-Weekly", TurkSite::FREQUENCY_BIWEEKLY],

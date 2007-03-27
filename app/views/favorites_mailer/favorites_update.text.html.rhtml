@@ -8,13 +8,13 @@
   
   <% for show in @new_shows %>
   <p>
-  <strong><%= show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}'>"+band.name+"</a>" }.join(" / ")%></strong><br/>
+  <strong><%= show.bands.map { |band| "<a href='#{@band_prefix_url}#{band.short_name}?utm_source=favorites_band&utm_medium=email'>"+band.name+"</a>" }.join(" / ")%></strong><br/>
   <%= show.date.strftime("%a %m/%d") %>, <%= show.date.strftime("%I:%M%p") %><br/>
   @ <%= show.venue.name %> in <%= show.venue.city %>, <%= show.venue.state %><br/>
   <%
     attending = @fan.friends_going(show)
     attending_friends = attending.map { |f| 
-      "<a href='#{@band_prefix_url}fan/#{f.name}'>"+f.name+"</a>"
+      "<a href='#{@band_prefix_url}fan/#{f.name}?utm_source=favorites_fan&utm_medium=email'>"+f.name+"</a>"
     }.join(" / ")
       
     attending_line = ""

@@ -320,11 +320,13 @@ class AdminController < ApplicationController
     
     @site = TurkSite.new(params[:site])
     
-    if @site.save
-      raise "bad venue" if @site.venue.nil?
-      
-      flash[:success] = "Success!"
-      @site = TurkSite.new
+    TurkSite.transaction do
+      if @site.save
+        raise "bad venue" if @site.venue.nil?
+        
+        flash[:success] = "Success!"
+        @site = TurkSite.new
+      end
     end
   end
   

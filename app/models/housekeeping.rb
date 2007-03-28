@@ -127,22 +127,8 @@ class Housekeeping
   # Print out some stats about tourbus
   def self.report_stats
   
-    fans = Fan.find(:all)
-
-    recent_fans = Fan.find(:all, :conditions => ["created_on > ?", Time.now - 1.days])
-
-    recent_logins = Fan.find(:all, :conditions => ["last_login > ?", Time.now - 2.days])
-
-    bands = Band.find(:all)
-
-    venues = Venue.find(:all)
-
-    shows = Show.find(:all)
-    upcoming_shows = Show.find(:all, :conditions => ["date > ?", Time.now - 1.days])
-
     # Send nightly stats
-    FeedbackMailer.deliver_nightly_stats(fans, recent_fans, recent_logins, 
-      bands, venues, shows, upcoming_shows)
+    FeedbackMailer.deliver_nightly_stats()
   end 
 
   protected

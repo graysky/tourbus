@@ -39,7 +39,7 @@ class FeedbackMailer < BaseMailer
   # Compile stast on the last day of activity
   def nightly_stats()
     @subject    = "[tourb.us] Nightly Stats"
-    @recipients = "mike.champion@gmail.com" # Emails.gm
+    @recipients = Emails.gm
     @from       = Emails.from
     @sent_on    = Time.now
     @headers    = {}
@@ -55,10 +55,7 @@ class FeedbackMailer < BaseMailer
     shows = Show.count
     
     upcoming_shows = Show.find(:all, :conditions => ["date > ?", Time.now - 1.days])
-    lastfm_adds = FavoriteBandEvent.find(:all, :conditions => ["created_at > ? and event=?", Time.now - 1.days, FavoriteBandEvent::SOURCE_LASTFM_POLL])
-    
-    # e = FavoriteBandEvent.find(:first, :conditions => ["fan_id=? and band_id=?", self.id, band.id], :order => "created_at desc")
-    # e && e.event == FavoriteBandEvent::EVENT_REMOVE
+    lastfm_adds = FavoriteBandEvent.find(:all, :conditions => ["created_at > ? and source=?", Time.now - 1.days, FavoriteBandEvent::SOURCE_LASTFM_POLL])
     
     @body["fans"] = fans
     @body["recent_fans"] = recent_fans

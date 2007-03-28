@@ -194,7 +194,11 @@ class Show < ActiveRecord::Base
     end  
     
     # Add venue name
-    url = url + "-#{StringHelper::urlize(venue.name)}" if !venue.nil?
+    if !venue.nil?
+      url = url + "-#{StringHelper::urlize(venue.name)}"
+      url = url + "-#{StringHelper::urlize(venue.city)}" if !venue.city.nil?
+      url = url + "-#{StringHelper::urlize(venue.state)}" if !venue.state.nil?
+    end
    
     return url    
   end

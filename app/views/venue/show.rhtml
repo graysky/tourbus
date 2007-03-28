@@ -2,7 +2,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<%= public_venue_rss_url(@venue) %>"/>
 <% end %>
 
-<% @page_title = @venue.name %>
+<% @page_title = venue_title(@venue) %>
 <% @header_title = @venue.name %>
 <% @meta_subject = @venue %>
 

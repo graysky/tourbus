@@ -194,11 +194,11 @@ END_JS
     base = " Visit tourb.us: Track your favorite bands, get reminders before concerts, find new live music, post music reviews and photos of shows."
       
     if subject.kind_of?(Band)
-      return "Track upcoming shows for #{subject.name}." + base
+      return "Track upcoming concerts and shows for #{subject.name}." + base
     elsif subject.kind_of?(Venue)
-      return "Shows at #{subject.name} in #{subject.city}, #{subject.state}." + base
+      return "Concerts and shows at #{subject.name} in #{subject.city}, #{subject.state}." + base
     elsif subject.kind_of?(Show)
-      s = "Show information for #{subject.name} at #{subject.venue.name} in #{subject.venue.city}." + base
+      s = "Concert details for #{subject.name} at #{subject.venue.name} in #{subject.venue.city}." + base
       s.gsub!(/\//, ', ') # Change "Band1/Band2" to "Band1, Band2"
       return s
     else

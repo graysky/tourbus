@@ -1,15 +1,20 @@
 <html>
 <body>
 
-<h3>Recent Activity</h3>
-Recent fan signups (24hrs): <%= @recent_fans.size %> <br/>
+<h3>Last 24 Hours of Activity</h3>
+Recent fan signups: <%= @recent_fans.size %> <br/>
 [ <%= @recent_fans.map {|f| f.name }.join(", ") %> ] <br/><br/>
 
-Recent logins (24hrs): <%= @recent_logins.size %> <br/>
+Recent logins: <%= @recent_logins.size %> <br/>
 [ <%= @recent_logins.map {|f| f.name }.join(", ") %> ] <br/>
 
 <br/>
-Last.fm added faves (24 hours): <%= @lastfm_adds.size %> <br/>
+Fan added faves: <%= @fan_adds.size %> <br/>
+Imported faves: <%= @import_adds.size %> <br/>
+Last.fm added faves: <%= @lastfm_adds.size %> <br/>
+<br/>
+Reminders sent: <%= @reminder_events.size %> <br/>
+Share emails sent: <%= @sharing_events.size %> <br/>
 
 <br/>
 <h3>Totals</h3>

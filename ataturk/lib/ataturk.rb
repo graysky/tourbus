@@ -15,10 +15,16 @@ class Ataturk
     
     sites = TurkSite.find_all_by_group(Date.today.wday)
     
+    if @debug
+      # just choose one
+      sites = [TurkSite.find(:first)]
+    end
+    
     for site in sites
-      if site.is_hit_due?
+      if site.is_hit_due? || @debug
         # Create a HIT for this site
         @logger.info "Creating hit for site #{site.id}, #{site.url}"
+        price_adj = (hit.purpose == TurkHit::PURPOSE_COMPLETE ? 2 : 1)
         hit_id = @turk.create_hit(site)
         raise "nil returned from create_hit!" if hit_id.nil?
         
@@ -29,25 +35,20 @@ class Ataturk
           @turk.disable_hit(hit_id)
           raise e
         end
-        
-        if @debug
-          @logger.info "  (debug) Expire hit"
-          @turk.expire_hit(hit_id)
-        end
       end
     end
     
   end
   
   # Process all the reviewable hits
-  def process_hits
+  def process_hits(dummy_token = nil)
     @logger.info("Processing HITs...")
     hit_ids = @turk.get_reviewable_hits
     
     anansi = AnansiImporter.new
     
     for id in hit_ids
-      a = @turk.get_hit_assignment(id)
+      a = @turk.get_hit_assignment(id, dummy_token)
       
       worker = TurkWorker.find_by_aws_worker_id(a.worker_id) 
       if worker.nil?
@@ -58,7 +59,7 @@ class Ataturk
       shows = get_shows(a)
       prepared_shows = shows.map { |show| anansi.prepare_show(show) }
       write_shows(prepared_shows, id)    
-      
+      puts id
       hit = TurkHit.find_by_aws_hit_id(id)
       hit.set_reviewing(a)
       

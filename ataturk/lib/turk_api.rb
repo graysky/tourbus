@@ -44,11 +44,16 @@ class TurkApi
   attr :secret_key
   attr :debug
   
-  def initialize(debug = false, key = AWS_ACCESS_KEY_ID, secret_key = AWS_SECRET_ACCESS_KEY)
+  def initialize(debug = false, test = false, key = AWS_ACCESS_KEY_ID, secret_key = AWS_SECRET_ACCESS_KEY)
     @debug = debug
+    @test = test
     @key = key
     @secret_key = secret_key
     @logger = TURK_LOGGER
+    if test
+      @debug = true
+      @dummy_id = rand.to_s
+    end
   end
       
   # Get the current account balance
@@ -79,6 +84,8 @@ class TurkApi
   
   # Expire a HIT immediately
   def expire_hit(id)
+    return true if @test
+    
     op = "ForceExpireHIT"
     res = "ForceExpireHITResult"
     
@@ -95,6 +102,8 @@ class TurkApi
   
   # Disable a HIT immediately
   def disable_hit(id)
+    return true if @test
+    
     op = "DisableHIT"
     res = "DisableHITResult"
     
@@ -111,6 +120,8 @@ class TurkApi
   
   # Dispose of a HIT once we are done
   def dispose_hit(id)
+    return true if @test
+    
     op = "DisposeHIT"
     res = "#{op}Result"
     
@@ -126,7 +137,9 @@ class TurkApi
   end
   
   # Create a new HIT
-  def create_hit(site)
+  def create_hit(site, price_adj = 1)
+    return @dummy_id if @test
+    
     op = "CreateHIT"
     res = "HIT"
     
@@ -139,7 +152,7 @@ class TurkApi
     
     if type.aws_hit_type_id.nil? || site.price_override
       # All all of the specific fields
-      add_reward_params(site.price_override || type.price, params)
+      add_reward_params(site.price_override || type.price, price_adj, params)
       params[:Title] = type.title
       params[:Description] = type.description
       params[:AssignmentDurationInSeconds] = type.duration
@@ -178,7 +191,16 @@ class TurkApi
   end
   
   # Get the TurkApiAssignment entered by a worker as an answer to the given HIT
-  def get_hit_assignment(hit_id)
+  def get_hit_assignment(hit_id, dummy_token = nil)
+    if @test && dummy_token
+      a = TurkApiAssignment.new
+      a.id = hit_id + 'aid'
+      a.hit_id = hit_id
+      a.worker_id = "worker1234"
+      a.raw_answer = dummy_token
+      return a
+    end
+    
     op = "GetAssignmentsForHIT"
     res = "#{op}Result"
     
@@ -202,6 +224,8 @@ class TurkApi
   end
   
   def get_reviewable_hits
+    return [@dummy_id] if @test
+    
     op = "GetReviewableHITs"
     res = "#{op}Result"
     page = 1
@@ -233,6 +257,8 @@ class TurkApi
   
   # Approve the given assignment and pay the worker
   def approve_assignment(id, feedback = nil)
+    return true if @test
+    
     op = "ApproveAssignment"
     res = "#{op}Result"
     
@@ -251,6 +277,8 @@ class TurkApi
   
   # Reject the assignment
   def reject_assignment(id, feedback = nil)
+    return @true if @test
+    
     op = "RejectAssignment"
     res = "#{op}Result"
     
@@ -288,8 +316,8 @@ class TurkApi
   ###############################
   protected
   
-  def add_reward_params(price, params)
-    params["Reward.1.Amount"] = (price.to_f / 100).to_s
+  def add_reward_params(price, price_adj, params)
+    params["Reward.1.Amount"] = ((price.to_f * price_adj.to_f) / 100).to_s
     params["Reward.1.CurrencyCode"] = "USD"
   end
   

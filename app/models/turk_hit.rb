@@ -22,6 +22,10 @@ class TurkHit < ActiveRecord::Base
   STATUS_REJECTED = 3
   STATUS_ACCEPTED = 4
   
+  PURPOSE_COMPLETE = 1
+  PURPOSE_UPDATE = 2
+  PURPOSE_REVIEW = 3
+  
   # Set the status of this HIT to be REVIEWING, along with associated bookkeeping
   def set_reviewing(assignment)
     self.status = STATUS_REVIEWING
@@ -51,6 +55,12 @@ class TurkHit < ActiveRecord::Base
       self.amount_paid = amount
       self.turk_worker.reward_paid += amount
       self.turk_worker.completed_hits += 1
+      
+      site.last_approved_hit = self
+      puts site.last_approved_hit
+      site.save!
+      
+      puts site.last_approved_hit
       
       self.save!
       self.turk_worker.save!

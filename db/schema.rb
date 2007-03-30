@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 45) do
+ActiveRecord::Schema.define(:version => 47) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string,   :default => "", :null => false
@@ -359,21 +359,29 @@ ActiveRecord::Schema.define(:version => 45) do
     t.column "turk_hit_submission_id",   :integer
     t.column "aws_assignment_id",        :string
     t.column "aws_review_assignment_id", :string
+    t.column "purpose",                  :integer
+  end
+
+  create_table "turk_site_categories", :force => true do |t|
+    t.column "name",        :string
+    t.column "description", :string
   end
 
   create_table "turk_sites", :force => true do |t|
-    t.column "url",                :string
-    t.column "venue_id",           :integer
-    t.column "created_at",         :datetime
-    t.column "turk_hit_type_id",   :integer
-    t.column "price_override",     :integer
-    t.column "num_assignments",    :integer,  :default => 1,      :null => false
-    t.column "extra_instructions", :string
-    t.column "frequency",          :integer
-    t.column "lifetime",           :integer,  :default => 604800
-    t.column "last_hit_time",      :datetime
-    t.column "group",              :integer,  :default => 0
-    t.column "min_shows",          :integer,  :default => 10
+    t.column "url",                   :string
+    t.column "venue_id",              :integer
+    t.column "created_at",            :datetime
+    t.column "turk_hit_type_id",      :integer
+    t.column "price_override",        :integer
+    t.column "num_assignments",       :integer,  :default => 1,      :null => false
+    t.column "extra_instructions",    :string
+    t.column "frequency",             :integer
+    t.column "lifetime",              :integer,  :default => 604800
+    t.column "last_hit_time",         :datetime
+    t.column "group",                 :integer,  :default => 0
+    t.column "min_shows",             :integer,  :default => 10
+    t.column "turk_site_category_id", :integer
+    t.column "last_approved_hit",     :integer
   end
 
   create_table "turk_workers", :force => true do |t|

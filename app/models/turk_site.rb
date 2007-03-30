@@ -18,6 +18,7 @@ class TurkSite < ActiveRecord::Base
   belongs_to :turk_hit_type
   belongs_to :venue
   belongs_to :turk_site_category
+  belongs_to :last_approved_hit, :class_name => 'TurkHit', :foreign_key => "last_approved_hit_id"
   
   validates_presence_of :url
   validates_presence_of :venue_id
@@ -45,7 +46,9 @@ class TurkSite < ActiveRecord::Base
       hit = TurkHit.new(:turk_site_id => self.id,
                         :aws_hit_id => hit_id,
                         :submission_time => Time.now)
-                        
+      
+      hit.purpose = self.last_approved_hit.nil? ? TurkHit::PURPOSE_COMPLETE : TurkHit::PURPOSE_UPDATE
+             
       hit.save!
       
       self.last_hit_time = Time.now

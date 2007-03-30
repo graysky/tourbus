@@ -158,7 +158,7 @@ class FanPublicController < ApplicationController
     end
     
     # The external URL to this fan
-    base_url = public_fan_url(@fan)
+    base_url = public_url(@fan)
     
     render(:partial => "shared/rss_feed", 
       :locals => { :obj => @fan, :base_url => base_url, :key => key, :items => @items, :title => "#{@fan.name}" })

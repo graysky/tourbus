@@ -164,7 +164,7 @@ class BandPublicController < ApplicationController
     end
     
     # The external URL to this band
-    base_url = public_band_url(@band)
+    base_url = public_url(@band)
     
     render(:partial => "shared/rss_feed", :locals => 
       { :obj => @band, :base_url => base_url, :key => key, :items => @items, :title => "#{@band.name}" })

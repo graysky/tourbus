@@ -32,7 +32,7 @@ module FeedHelper
     return show.formatted_title
   end
 
-  private
+  protected
   
   # Format text according to iCal rules
   # http://en.wikipedia.org/wiki/RFC2445_Syntax_Reference#Text
@@ -73,6 +73,11 @@ module FeedHelper
     time.rfc822()
   end
   
+  # Get the URL for the item with tracking code
+  def item_url(item)
+    return "#{public_url(item)}?utm_source=rss&utm_medium=feed"
+  end
+  
   # Format a Show
   def xml_for_show(obj, show)
   
@@ -82,17 +87,17 @@ module FeedHelper
       
     xml = ""
     xml << "<title>Show: #{h(get_show_title(show))}</title>"
-    xml << "<link>#{public_show_url(show)}</link>"
+    xml << "<link>#{item_url(show)}</link>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     
     bands = show.bands.map { |band| 
-      "<a href=\""+ public_band_url(band)+ "\">"+h(band.name)+"</a>"
+      "<a href=\""+ item_url(band)+ "\">"+h(band.name)+"</a>"
     }.join(" / ")
 
     desc = ""    
     desc << "<p><b>Who:</b> #{bands}</p>" 
     desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}</p>"
-    desc << "<p><b>Where:</b> <a href=\"#{public_venue_url(show.venue)}\">#{h(show.venue.name)}</a></p>"
+    desc << "<p><b>Where:</b> <a href=\"#{item_url(show.venue)}\">#{h(show.venue.name)}</a></p>"
     
     if !show.description.empty?
       desc << "<p><b>Description:</b> #{simple_format( h(sanitize(show.description)) )}</p>"
@@ -104,7 +109,7 @@ module FeedHelper
       attending = fan.friends_going(show)
     
       attending_friends = attending.map { |fan| 
-      "<a href=\""+ public_fan_url(fan)+ "\">"+fan.name+"</a>"
+      "<a href=\""+ item_url(fan)+ "\">"+fan.name+"</a>"
         }.join(" / ")
       
       if attending_friends.size > 0
@@ -112,7 +117,7 @@ module FeedHelper
       end
     end
     
-    desc << "<p><a href=\"#{public_show_url(show)}\">More details...</a></p>"
+    desc << "<p><a href=\"#{item_url(show)}\">More details...</a></p>"
     
     xml << "<description>#{cdata_escape(desc)}</description>"
     return xml
@@ -123,7 +128,7 @@ module FeedHelper
     xml = ""
     xml << "<title>Comment from #{h(comment.created_by_name)}</title>"
     xml << "<pubDate>#{rss_format_time(comment.created_on)}</pubDate>"
-    xml << "<link>#{public_url(comment)}</link>"
+    xml << "<link>#{item_url(comment)}</link>"
     xml << "<description>#{cdata_escape(simple_format( h(sanitize(comment.body))))}</description>"
     return xml
   end
@@ -133,7 +138,7 @@ module FeedHelper
     xml = ""
     xml << "<title>Photo from #{photo.created_by_name}</title>"
     xml << "<pubDate>#{rss_format_time(photo.created_on)}</pubDate>"
-    xml << "<link>#{public_url(photo)}</link>"
+    xml << "<link>#{item_url(photo)}</link>"
     
     s = "<img src=\"" + public_photo_url(photo, "preview") + "\"/>"
     s << "<br/>#{simple_format(h(sanitize(photo.description)))}"

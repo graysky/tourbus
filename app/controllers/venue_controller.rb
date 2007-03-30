@@ -102,7 +102,7 @@ class VenueController < ApplicationController
     end
 
     # The external URL to this venue
-    base_url = public_venue_url(@venue)
+    base_url = public_url(@venue)
     
     render(:partial => "shared/rss_feed", 
       :locals => { :obj => @venue, :base_url => base_url, :key => key, :items => @items, :title => "#{@venue.name}"  })

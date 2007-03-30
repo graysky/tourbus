@@ -22,7 +22,7 @@ module ShowHelper
     title = title + " in #{show.venue.city}" if !show.venue.city.nil?
     title = title + ", #{show.venue.state}" if !show.venue.state.nil?
     
-    title = title + " (#{friendly_date(show.date)})"
+    title = title + " (#{friendly_date3(show.date)})"
   end
   
   def friends_attending(show)

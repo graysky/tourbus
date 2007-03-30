@@ -9,7 +9,7 @@
   
   <p>
     <% if @band.claimed? %>
-      <strong>Member Since:</strong> <%= simple_date @band.created_on %>
+      <strong>Member Since:</strong> <%= slash_date @band.created_on %>
     <% end %>
     <strong>Profile Views:</strong> <%= @band.page_views %>
     

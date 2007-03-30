@@ -43,10 +43,18 @@ module ApplicationHelper
     date.strftime("%A, %B %d, %Y")
   end
 
-  # Output like: "Tues 09/15"
+  # Output like: "Tues 9/15"
   def friendly_date(date)
     return "" if date.nil?
-    date.strftime("%a %m/%d")
+    day = date.strftime("%a")
+    month = date.strftime("%m")
+    dom = date.strftime("%d")
+
+    # Strip off any leading "0" padding
+    month.sub!(/^0/, '')
+    dom.sub!(/^0/, '')
+
+    s = "#{day} #{month}/#{dom}"
   end
   
   # Output like: "Tuesday 9/12"
@@ -63,6 +71,19 @@ module ApplicationHelper
     return s
   end
   
+  # Output like: "Tues 9/15/07"
+  def friendly_date3(date)
+    return "" if date.nil?
+    day = date.strftime("%a")
+    year = date.strftime("%y")
+    month = date.strftime("%m").sub!(/^0/, '')
+
+    dom = date.strftime("%d").sub(/^0/, '')
+    # Strip off any leading "0" padding
+    #dom.sub!(/^0/, '')
+    return "#{day} #{month}/#{dom}/#{year}"
+  end
+  
   def friendly_time(date)
     return "" if date.nil?
     s = date.strftime("%I:%M%p")
@@ -71,17 +92,31 @@ module ApplicationHelper
     return s
   end
   
+  # Date like: 12.8.07
   def simple_date(date)
-    return "" if date.nil?
-    s = date.strftime("%m.%d.%y")
+    year = date.strftime("%y")
+    month = date.strftime("%m")
+    dom = date.strftime("%d")
+
     # Strip off any leading "0" padding
-    s.sub!(/^0/, '')
-    return s
+    month.sub!(/^0/, '')
+    dom.sub!(/^0/, '')
+    return "#{month}.#{dom}.#{year}"
+    
   end
-  
+
+  # Date like: 12/8/07  
   def slash_date(date)
     return "" if date.nil?
-    date.strftime("%m/%d/%y")
+    
+    year = date.strftime("%y")
+    month = date.strftime("%m")
+    dom = date.strftime("%d")
+
+    # Strip off any leading "0" padding
+    month.sub!(/^0/, '')
+    dom.sub!(/^0/, '')
+    return "#{month}/#{dom}/#{year}"
   end
   
   def time_select(var, default_hour = nil, default_minute = nil, default_ampm = nil)

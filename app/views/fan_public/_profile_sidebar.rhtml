@@ -18,7 +18,7 @@
   <h2 id="about-title"><span class="title"><%= title %></span></h2>
   
   <p>
-    <strong>Member Since:</strong> <%= simple_date @fan.created_on %>
+    <strong>Member Since:</strong> <%= slash_date @fan.created_on %>
     <strong>Profile Views:</strong> <%= @fan.page_views %><br/>
     <%
     location = "<i>unknown</i>"

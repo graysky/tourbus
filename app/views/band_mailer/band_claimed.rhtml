@@ -1,0 +1,30 @@
+<html>
+<body>
+<p>
+Congratulations, you have now claimed the page for <%=@band.name%> on tourb.us! Now you can customize the profile,
+list upcoming shows and more. 
+</p>
+
+<p>
+The <%= @band.name %> profile is located at:
+
+<br/><%= link_to "#{@band_prefix_url}#{@band.short_name}", "#{@band_prefix_url}#{@band.short_name}" %>
+</p>
+
+<p>
+To get started, log in with the following band name and temporary password:
+<p>Band user name: <%=@band.short_name %><br/>
+Password: <%= @password %><br/>
+<small>Please change this temporary password</small>
+<p>
+
+<%= link_to "#{@band_login_url}", "#{@band_login_url}" %>
+</p>
+
+<p>Thanks for using tourb.us and please get in touch with us (<a href="mailto:feedback@tourb.us">feedback@tourb.us</a>) 
+with any problems or ideas on how tourb.us can better help your band.
+
+
+<%= @email_signoff %>
+</body>
+</html>

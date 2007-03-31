@@ -1,0 +1,20 @@
+<% @header_title = "Claim a Band" %>
+
+<%= start_form_tag :action => 'claim_band' %>
+
+<table class="form-table">
+  <tr>
+    <th>Band Short Name:</th>
+    <td><%= text_field_tag 'short_name', nil, :size => 25  %></td>
+  </tr>
+  <tr>
+    <th>Email Address:</th>
+    <td><%= text_field_tag 'email', nil, :size => 25  %></td>
+  </tr>
+    <tr class="submit">
+    <td></td>
+    <td><%= submit_tag "Claim Band" %></td>
+  </tr>
+  
+</table>
+<%= end_form_tag %>

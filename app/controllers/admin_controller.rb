@@ -138,6 +138,44 @@ class AdminController < ApplicationController
     end
   end
   
+  def claim_band
+    return if request.get?
+    
+    band = Band.find_by_short_name(params[:short_name])
+
+    if band.nil?
+      flash[:error] = "Band not found" if band.nil?
+      return
+    end
+    if band.claimed?
+      flash[:error] = "Band already claimed"
+      return
+    end
+    
+    email = params[:email]
+    if !BaseMailer.valid_email?(email)
+      flash[:error] = "Invalid email address"
+      return
+    end    
+    
+    temp_passwd = "tourbus"
+    
+    band.claimed = 1
+    band.confirmed = 1
+    band.change_password( temp_passwd )
+    band.contact_email = email
+    
+    if band.save!    
+      # Send email
+      BandMailer.deliver_band_claimed(band, email, temp_passwd)
+
+      flash[:success] = "Band claim email sent"
+      redirect_to :action => 'index'
+    else
+      flash[:error] = "Could not save band"
+    end
+  end
+  
   def create_venue
     if request.get?
       @venue = Venue.new

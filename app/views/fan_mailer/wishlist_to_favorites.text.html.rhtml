@@ -11,7 +11,7 @@
     <b>New Favorites:</b>
     <br/><br/>
     <% for band in @bands %>
-        <%= link_to band.name, "#{@band_prefix_url}#{band.short_name}" %><br/><br/>
+        <%= link_to band.name, "#{@band_prefix_url}#{band.short_name}?utm_source=wishlist&utm_medium=email" %><br/><br/>
     <% end %>
   </p>  
   

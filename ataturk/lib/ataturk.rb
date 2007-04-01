@@ -25,7 +25,7 @@ class Ataturk
         # Create a HIT for this site
         @logger.info "Creating hit for site #{site.id}, #{site.url}"
         price_adj = (site.last_approved_hit ? 1 : 2)
-        hit_id = @turk.create_hit(site)
+        hit_id = @turk.create_hit(site, price_adj)
         raise "nil returned from create_hit!" if hit_id.nil?
         
         begin

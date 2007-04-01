@@ -71,11 +71,11 @@ module ApplicationHelper
     return s
   end
   
-  # Output like: "Tues 9/15/07"
+  # Output like: "Tues 9/15/2007"
   def friendly_date3(date)
     return "" if date.nil?
     day = date.strftime("%a")
-    year = date.strftime("%y")
+    year = date.strftime("%Y")
     month = date.strftime("%m").sub!(/^0/, '')
 
     dom = date.strftime("%d").sub(/^0/, '')

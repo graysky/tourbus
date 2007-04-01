@@ -153,7 +153,13 @@ class TurkApi
     if type.aws_hit_type_id.nil? || site.price_override
       # All all of the specific fields
       add_reward_params(site.price_override || type.price, price_adj, params)
-      params[:Title] = type.title
+      
+      if (site.last_approved_hit.nil?)
+        params[:Title] = type.title
+      else
+        params[:Title] = type.update_title
+      end
+      
       params[:Description] = type.description
       params[:AssignmentDurationInSeconds] = type.duration
     end

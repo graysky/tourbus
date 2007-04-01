@@ -1,0 +1,39 @@
+<%
+    style = ""
+    show_date = false
+    if @is_update && !params["date_#{i}"].blank? && @prev_shows.include?(i)
+      style = "display:none"
+      show_date = true
+    end 
+%>
+
+<div class="hit_div <%= i % 2 == 0 ? 'hit_even' : 'hit_odd' %> <%= 'first_hit' if i == 0 %>" style="<%= style %>">
+    <table>
+        <tr>
+            <td><strong>Date*:</strong> <%= text_field_tag "date_#{i}", params["date_#{i}"], :size => "14", 
+                                            :onfocus => "if (this.value == 'DD/MM/YYYY') this.value = ''" %></td>
+            <td><strong>Time:</strong> <%= text_field_tag "time_#{i}", params["time_#{i}"], :size => "8" %></td>
+            <td><strong>Cost:</strong> <%= text_field_tag "cost_#{i}", params["cost_#{i}"], :size => "8" %></td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Link to buy tickets:</strong> <%= text_field_tag "tickets_#{i}", params["tickets_#{i}"], :size => "38" %></td>
+            <td>
+                <table cellpadding="0">
+                <tr>
+                    <td><strong>Soldout?</strong></td><td><%= check_box_tag "soldout_#{i}", value="true", checked=params["soldout_#{i}"] == "true" %></td>
+                    <td>&nbsp;<strong>Cancelled?</strong></td><td><%= check_box_tag "cancelled_#{i}", value="true", checked=params["cancelled_#{i}"] == "true" %></td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Performers (one per line)*</strong></td>
+        </tr>
+        <tr>
+            <td colspan="3"> <%= text_area_tag "bands_#{i}", params["bands_#{i}"], {:cols => 40, :rows => 5} %></td>
+            <% unless @preview %>
+                <td valign="bottom"><a href="#submittop">This is the last concert - submit now</a></td>
+            <% end %>
+        </tr>
+    </table>
+</div>

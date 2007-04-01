@@ -24,7 +24,7 @@ class Ataturk
       if site.is_hit_due? || @debug
         # Create a HIT for this site
         @logger.info "Creating hit for site #{site.id}, #{site.url}"
-        price_adj = (hit.purpose == TurkHit::PURPOSE_COMPLETE ? 2 : 1)
+        price_adj = (site.last_approved_hit ? 1 : 2)
         hit_id = @turk.create_hit(site)
         raise "nil returned from create_hit!" if hit_id.nil?
         
@@ -137,6 +137,9 @@ class Ataturk
       show[:soldout] = true if params["soldout_#{i}"]
       show[:cancelled] = true if params["cancelled_#{i}"]
       show[:source_link] = submission.turk_site.resolved_url
+      if params["from_update_#{i}"]
+        show[:from_update] = true
+      end
       
       tickets = params["tickets_#{i}"]
       show[:ticket_link] = tickets if tickets && tickets != ""

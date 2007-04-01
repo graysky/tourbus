@@ -14,15 +14,32 @@ class TurkersController < ApplicationController
       render :partial => "hit_error", :layout => "turk_hit"
       return
     end
-    
-    @assignmentId = params[:assignmentId]  
-    if "ASSIGNMENT_ID_NOT_AVAILABLE" == @assignmentId
-      @preview = true
+
+    if @site.last_approved_hit
+      # This is an update hit. Load up the previous params.
+      @is_update = true
+      @prev_shows = []
+      submission = @site.last_approved_hit.turk_hit_submission
+      submission.params.each do |k, v| 
+        if k.starts_with?("date_") && !v.blank?
+          @prev_shows << k.split("_")[1].to_i
+        end
+      end
+      
+      puts @prev_shows      
+    else
+      @is_update = false
     end
-       
+  
     if request.get?
       # We must be showing the form
-      params["date0"] = 'DD/MM/YYYY'
+      if @is_update
+        submission.params.each do |k, v| 
+          params[k] = vio
+        end
+      else
+        params["date_0"] = 'DD/MM/YYYY'
+      end
       
       render :layout => "turk_hit"
       return
@@ -51,6 +68,12 @@ class TurkersController < ApplicationController
       if !tickets.blank? && !tickets.downcase.starts_with?("http://")
         @errors << [i, "Invalid ticket link : \"#{tickets}\". Must start with http://"]
         next
+      end
+      
+      if @is_update && !@prev_shows.include?(i)
+        params["from_update_#{i}"] = true
+      else
+        params["from_update_#{i}"] = false
       end
       
       bands = params["bands_#{i}"].to_s.gsub(/\r/, '').split(/\n/)

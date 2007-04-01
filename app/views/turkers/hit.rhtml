@@ -7,12 +7,17 @@
 <strong>Please visit the following concert venue calendar page:</strong> <a href="<%= @site.url %>" target="_site"><%= @site.resolved_url %></a>
 </p>
 <p>
-    For each concert listed, enter the basic information in the form below. 
+    For each concert listed, enter the basic information in the form below.
+    <% if @is_update %>
+        <br/><br/>
+        You'll find a list of dates below, <strong>please ignore any concerts on those dates</strong>, this should
+        make the job much easier.
+    <% end %>
     <a href="/images/turk_hit_example.jpg" target="_img">Click here</a> to see an example of a successful form submission.
     <br/><br/>
     <strong>Things to keep in mind:</strong>
     <ul>
-        <li>Don't bother to include shows that have already happened</li>
+        <li>Don't bother to include concerts that have already happened</li>
         <li>If a concert lists two starting times, pick the earlier time (for example, when the doors open)</li>
         <li>Ignore the starting time of each performer's set if it is included</li>
         <li>Please don't include non-concerts such as poetry readings, comedy shows or open-mic nights</li>
@@ -47,7 +52,7 @@
                 <td></td>
                 <td>
                     <% if error[0] %>
-                        <a href="#show<%= error[0] %>">Show #<%= error[0].to_i + 1 %></a>:
+                        <a href="#show<%= error[0] %>">Concert #<%= error[0].to_i + 1 %></a>:
                     <% end%>
                     <%= error[1] %>
                 </td>
@@ -59,7 +64,7 @@
             <% for band in @invalid_bands %>
                 <tr>
                     <td></td>
-                    <td><a href="#show<%= band[0] %>">Show #<%= band[0].to_i + 1 %></a>: <%= band[1] %></td>
+                    <td><a href="#show<%= band[0] %>">Concert #<%= band[0].to_i + 1 %></a>: <%= band[1] %></td>
                 </tr>
             <% end %>
         <% end %>
@@ -73,40 +78,19 @@
     <input type="hidden" name="turk_site_id" value="<%= @site.id %>"/>
 <% end %>
 
-<br/><br/>
+<br/>
+
+<% if @is_update %>
+    <p><strong>Please ignore concerts on the following dates, but get anything we're missing!</strong></p>
+    <p style="font-size:14px">
+        <%= @prev_shows.map { |i| params["date_#{i}"] }.join(", ") %>
+    </p>
+<% end %>
+
 <% for i in (0...TurkHitSubmission::MAX_SHOWS) %>
 
 <a name="show<%= i %>"/>
-<div class="hit_div <%= i % 2 == 0 ? 'hit_even' : 'hit_odd' %> <%= 'first_hit' if i == 0 %>">
-    <table>
-        <tr>
-            <td><strong>Date*:</strong> <%= text_field_tag "date_#{i}", params["date_#{i}"], :size => "14", 
-                                            :onfocus => "if (this.value == 'DD/MM/YYYY') this.value = ''" %></td>
-            <td><strong>Time:</strong> <%= text_field_tag "time_#{i}", params["time_#{i}"], :size => "8" %></td>
-            <td><strong>Cost:</strong> <%= text_field_tag "cost_#{i}", params["cost_#{i}"], :size => "8" %></td>
-        </tr>
-        <tr>
-            <td colspan="3"><strong>Link to buy tickets:</strong> <%= text_field_tag "tickets_#{i}", params["tickets_#{i}"], :size => "38" %></td>
-            <td>
-                <table cellpadding="0">
-                <tr>
-                    <td><strong>Soldout?</strong></td><td><%= check_box_tag "soldout_#{i}", value="true", checked=params["soldout_#{i}"] == "true" %></td>
-                    <td>&nbsp;<strong>Cancelled?</strong></td><td><%= check_box_tag "cancelled_#{i}", value="true", checked=params["cancelled_#{i}"] == "true" %></td>
-                </tr>
-            </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3"><strong>Performers (one per line)*</strong></td>
-        </tr>
-        <tr>
-            <td colspan="3"> <%= text_area_tag "bands_#{i}", params["bands_#{i}"], {:cols => 40, :rows => 5} %></td>
-            <% unless @preview %>
-                <td valign="bottom"><a href="#submittop">This is the last show - submit now</a></td>
-            <% end %>
-        </tr>
-    </table>
-</div>
+<%= render :partial => "show_form", :locals => { :i => i } %>
 
 <% end %>
 

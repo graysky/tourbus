@@ -3,8 +3,25 @@
 <p>
 <% url = "http://tourb.us/turkers/hit?turk_site_id=#{site.id}" %>
 Follow the instructions at <a href="<%= url %>" target="_tb">http://tourb.us</a>.
+
+<% if site.last_approved_hit.nil? %>
+
 You will be asked to read a web page containing a list of concerts and enter the basic information about each one
-into a very simple form. After you have finished and submitted the form, you will be shown a code.
+into a simple form. 
+
+<% else %>
+
+You will be asked to update a previous submission for a venue. You will not have to enter every
+concert on the page, but will scan through the previous submission and only add shows that are missing.
+
+<% end %> 
+After you have finished and submitted the form, you will be shown a code.
 Just paste that code into the box below to finish the HIT.
 </p>
+
 <h3><a href="<%= url %>" target="_tb">Click here to get started!</a></h3>
+
+<p>We're just getting started with Mechanical Turk, so we are anxious to get your
+<a href="mailto:feedback@tourb.us">feedback</a>. You can also join others turkers in a
+discussion board at <a href="http://turkers.proboards80.com/index.cgi?board=tourbus">Turker Nation</a>.
+</p>

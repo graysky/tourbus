@@ -35,7 +35,7 @@ class TurkersController < ApplicationController
       # We must be showing the form
       if @is_update
         submission.params.each do |k, v| 
-          params[k] = vio
+          params[k] = v
         end
       else
         params["date_0"] = 'DD/MM/YYYY'

@@ -46,78 +46,80 @@ class Housekeeping
     start = Time.now.asctime
     logger = RAILS_DEFAULT_LOGGER
   
+    urllist = File.new("#{RAILS_ROOT}/public/urllist.txt",  "w+")
     sitemap = File.new("#{RAILS_ROOT}/public/sitemap.txt",  "w+")    
     puts "Creating sitemap at: #{sitemap.path}"
+    puts "Creating sitemap at: #{urllist.path}"
     
     # Put a few standard links in
-    sitemap.puts "http://tourb.us"
-    sitemap.puts "http://tourb.us/faq"
-    sitemap.puts "http://tourb.us/tour"
-    sitemap.puts "http://tourb.us/signup/fan"
-    sitemap.puts "http://tourb.us/signup/band"
-    sitemap.puts "http://tourb.us/login"
+    write_sitemap(sitemap, urllist, "http://tourb.us")
+    write_sitemap(sitemap, urllist, "http://tourb.us/faq")
+    write_sitemap(sitemap, urllist, "http://tourb.us/tour")
+    write_sitemap(sitemap, urllist, "http://tourb.us/signup/fan")
+    write_sitemap(sitemap, urllist, "http://tourb.us/signup/band")
+    write_sitemap(sitemap, urllist, "http://tourb.us/login")
     # Add metro links
-    sitemap.puts "http://tourb.us/metro/boston"
-    sitemap.puts "http://tourb.us/metro/sanfran"
-    sitemap.puts "http://tourb.us/metro/seattle"
-    sitemap.puts "http://tourb.us/metro/la"
-    sitemap.puts "http://tourb.us/metro/chicago"
-    sitemap.puts "http://tourb.us/metro/austin"
-    sitemap.puts "http://tourb.us/metro/nyc"
-    sitemap.puts "http://tourb.us/metro/philadelphia"
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/boston")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/sanfran")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/seattle")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/la")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/chicago")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/austin")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/nyc")
+    write_sitemap(sitemap, urllist, "http://tourb.us/metro/philadelphia")
     
     # Start counting
     urls = 0
     sitemap = get_sitemap(nil)
     
-    shows = Show.find(:all)
+    shows = Show.find(:all, :readonly => true)
     shows.each do |s|      
       if urls > 49990
         sitemap = get_sitemap(sitemap)
         urls = 0
       end
       
-      sitemap.puts "http://tourb.us/show/#{s.to_param}"
-      sitemap.puts "http://tourb.us/show/#{s.to_param}/fans"
+      write_sitemap(sitemap, urllist, "http://tourb.us/show/#{s.to_param}")
+      write_sitemap(sitemap, urllist, "http://tourb.us/show/#{s.to_param}/fans")
       urls = urls + 2
     end
     puts "Added #{shows.length} shows to sitemap"
     
-    bands = Band.find(:all)
+    bands = Band.find(:all, :readonly => true)
     bands.each do |b|
       if urls > 49990
         sitemap = get_sitemap(sitemap)
         urls = 0
       end
       
-      sitemap.puts "http://tourb.us/#{b.short_name}"
-      sitemap.puts "http://tourb.us/#{b.short_name}/fans"
-      sitemap.puts "http://tourb.us/#{b.short_name}/shows"
+      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}")
+      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/fans")
+      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/shows")
       urls = urls + 3
     end
     puts "Added #{bands.length} bands to sitemap"
     
-    venues = Venue.find(:all)
+    venues = Venue.find(:all, :readonly => true)
     venues.each do |v|
       if urls > 49990
         sitemap = get_sitemap(sitemap)
         urls = 0
       end
-      sitemap.puts "http://tourb.us/venue/#{v.to_param}"
-      sitemap.puts "http://tourb.us/venue/#{v.to_param}/shows"
+      write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}")
+      write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}/shows")
       urls = urls + 2
     end
     puts "Added #{venues.length} veneus to sitemap"
       
-    fans = Fan.find(:all)
+    fans = Fan.find(:all, :readonly => true)
     fans.each do |f|
       if urls > 49990
         sitemap = get_sitemap(sitemap)
         urls = 0
       end
-      sitemap.puts "http://tourb.us/fan/#{f.name}"
-      sitemap.puts "http://tourb.us/fan/#{f.name}/bands"
-      sitemap.puts "http://tourb.us/fan/#{f.name}/shows"
+      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}")
+      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/bands")
+      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/shows")
       urls = urls + 3
     end
     puts "Added #{fans.length} fans to sitemap"
@@ -157,6 +159,12 @@ class Housekeeping
   end
   
   private
+  
+  # Writes to both Google sitemap and Yahoo's urllist format
+  def self.write_sitemap(sitemap, urllist, text)
+    sitemap.puts text
+    urllist.puts text
+  end
   
   # Return a new handle to a sitemap file if urls > 50K or the old sitemap handle
   # urls => number of URLs so far

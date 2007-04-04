@@ -38,7 +38,7 @@ class AdminController < ApplicationController
   end
 
   def list_system_events
-    @events = SystemEvent.find(:all, :order => "created_at DESC")
+    @events = SystemEvent.find(:all, :conditions => ["created_at > ?", Time.now - 7.days], :order => "created_at DESC")
   end
 
   # Track recently added shows by fans and bands  

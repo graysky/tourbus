@@ -3,7 +3,11 @@ class FavoritesMailer < BaseMailer
   
   # NOTE: This sends multipart emails for HTML and plaintext
   def favorites_update(fan, new_shows, updated_shows, sent_at = Time.now)
-    @subject    = '[tourb.us] Your Upcoming Shows'
+    
+    pop_bands = calc_popular_bands(new_shows)
+    title = pop_bands.map { |b| b.name }.join(", ")
+    
+    @subject    = "[tourb.us] Your Upcoming Shows with #{title}"
     @body       = {}
     @recipients = fan.contact_email
     @from       = Emails.from
@@ -46,6 +50,26 @@ class FavoritesMailer < BaseMailer
     @body['the_url'] = "http://tourb.us/fans/import_favorites"
     @body['email_signoff'] = email_signoff
     @body['email_signoff_plain'] = email_signoff_plain
+  end
+  
+  # Return the 3 most popular bands from list of shows
+  def calc_popular_bands(shows)
+    bands = []
+    # Get all the bands
+    shows.each { |s| bands << s.bands }
+    bands.flatten!
+    # Remove dupes
+    bands.uniq!
+    # Sort them
+    pop_bands = bands.sort { |a,b| b.popularity <=> a.popularity }
+    
+    # Return up to 3 bands
+    if pop_bands.size > 3
+      return pop_bands[0..2]
+    else
+      return pop_bands
+    end
+    
   end
   
   # Remind all fans to add favorites

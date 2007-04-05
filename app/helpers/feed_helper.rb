@@ -75,7 +75,7 @@ module FeedHelper
   
   # Get the URL for the item with tracking code
   def item_url(item)
-    return "#{public_url(item)}?utm_source=rss&amp;utm_medium=feed" # ?utm_source=rss&utm_medium=feed"
+    return "#{public_url(item)}?utm_source=rss&amp;utm_medium=feed" # URL needs to be escaped
   end
   
   # Format a Show

@@ -3,6 +3,8 @@
   <%
     if @page_title
       title = "<title>#{@page_title} - tourb.us</title>"
+    elsif @session[:metro_name]
+        title = "<title>tourb.us - Find Local, Live Music in #{@session[:metro_name]}</title>"
     else
       title = "<title>tourb.us - Find Local, Live Music</title>"
     end

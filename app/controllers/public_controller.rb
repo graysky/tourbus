@@ -174,6 +174,7 @@ class PublicController < ApplicationController
   def set_metro(location)
     @session[:location] = location
     @session[:radius] = 50
+    @session[:metro_name] = location
   end
   
   def local_popular_shows?

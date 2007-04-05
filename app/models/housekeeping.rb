@@ -46,6 +46,7 @@ class Housekeeping
     start = Time.now.asctime
     logger = RAILS_DEFAULT_LOGGER
   
+    start = Time.now
     urllist = File.new("#{RAILS_ROOT}/public/urllist.txt",  "w+")
     sitemap = File.new("#{RAILS_ROOT}/public/sitemap.txt",  "w+")    
     puts "Creating sitemap at: #{sitemap.path}"
@@ -72,58 +73,69 @@ class Housekeeping
     urls = 0
     sitemap = get_sitemap(nil)
     
-    shows = Show.find(:all, :readonly => true)
-    shows.each do |s|      
-      if urls > 49990
-        sitemap = get_sitemap(sitemap)
-        urls = 0
-      end
+    Show.each_by_chunk(500, { :readonly => true }) do |s|
+      begin
+        if urls > 49990
+          sitemap = get_sitemap(sitemap)
+          urls = 0
+        end
       
       write_sitemap(sitemap, urllist, "http://tourb.us/show/#{s.to_param}")
       write_sitemap(sitemap, urllist, "http://tourb.us/show/#{s.to_param}/fans")
       urls = urls + 2
-    end
-    puts "Added #{shows.length} shows to sitemap"
-    
-    bands = Band.find(:all, :readonly => true)
-    bands.each do |b|
-      if urls > 49990
-        sitemap = get_sitemap(sitemap)
-        urls = 0
       end
+    end
+
+    puts "Added #{Show.count} shows to sitemap"
+ 
+    Band.each_by_chunk(500, { :readonly => true }) do |b|
+      begin 
+        if urls > 49990
+          sitemap = get_sitemap(sitemap)
+          urls = 0
+        end
       
-      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}")
-      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/fans")
-      write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/shows")
-      urls = urls + 3
-    end
-    puts "Added #{bands.length} bands to sitemap"
-    
-    venues = Venue.find(:all, :readonly => true)
-    venues.each do |v|
-      if urls > 49990
-        sitemap = get_sitemap(sitemap)
-        urls = 0
+        write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}")
+        write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/fans")
+        write_sitemap(sitemap, urllist, "http://tourb.us/#{b.short_name}/shows")
+        urls = urls + 3
       end
-      write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}")
-      write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}/shows")
-      urls = urls + 2
     end
-    puts "Added #{venues.length} veneus to sitemap"
+    puts "Added #{Band.count} bands to sitemap"
+    
+    Venue.each_by_chunk(500, { :readonly => true }) do |v|
+      begin 
+        if urls > 49990
+          sitemap = get_sitemap(sitemap)
+          urls = 0
+        end
+        write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}")
+        write_sitemap(sitemap, urllist, "http://tourb.us/venue/#{v.to_param}/shows")
+        urls = urls + 2
+      end
+    end
+    puts "Added #{Venue.count} veneus to sitemap"
       
-    fans = Fan.find(:all, :readonly => true)
-    fans.each do |f|
-      if urls > 49990
-        sitemap = get_sitemap(sitemap)
-        urls = 0
+    Fan.each_by_chunk(500, { :readonly => true }) do |f|
+      begin
+        if urls > 49990
+          sitemap = get_sitemap(sitemap)
+          urls = 0
+        end
+        write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}")
+        write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/bands")
+        write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/shows")
+        write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/friends")
+        urls = urls + 3
       end
-      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}")
-      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/bands")
-      write_sitemap(sitemap, urllist, "http://tourb.us/fan/#{f.name}/shows")
-      urls = urls + 3
     end
-    puts "Added #{fans.length} fans to sitemap"
+    puts "Added #{Fan.count} fans to sitemap"
     
+    urllist.close # Close filehandle
+    
+    finish = Time.now
+    elapsed = finish - start
+    puts "Sitemap creation took #{elapsed}"
   end
 
   # Print out some stats about tourbus
@@ -166,17 +178,15 @@ class Housekeeping
     urllist.puts text
   end
   
-  # Return a new handle to a sitemap file if urls > 50K or the old sitemap handle
-  # urls => number of URLs so far
+  # Return a new handle to a sitemap file
   # sitemap => file handle
   def self.get_sitemap(sitemap)
-    #return sitemap if urls < 49999 and !sitemap.nil?
-    
     # Get the path to the file
     if sitemap.nil?
       s = "#{RAILS_ROOT}/public/sitemap0.txt"
     else
       s = sitemap.path.gsub(/\.txt/,'')
+      sitemap.close # Close the old file
       s.next!
       s << ".txt"
     end

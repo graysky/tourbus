@@ -91,14 +91,6 @@ LogEntry.establish_connection(
      :database => "tourbus_stats"
    )
 
-# Options to control how RailsCron behaves, intervals in seconds.
-# Increase the frequency of db-checking in dev mode
-RailsCron.options = {
-    :sleep => 30,
-    :db_sleep => 60,
-    :allow_concurrency => false
-}
-
 ExceptionNotifier.exception_recipients = %w(feedback@tourb.us)
 ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us>)
 ExceptionNotifier.email_prefix = "[tourb.us]"

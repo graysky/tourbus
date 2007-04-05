@@ -11,15 +11,6 @@ END
   system "ruby ./script/runner '#{cmd}'"
 end
 
-desc "Start the tourbus app, cron spinners"
-task :start_tourbus => [:start_cron_spinner ]
-
-desc "Start the cron spinner"
-task :start_cron_spinner do
-  # Options MUST MATCH what is in deploy.rb
-  system "ruby ./script/process/spinner -d -i 600 -c 'cd /var/www/apps/tourbus/current && rake RAILS_ENV=production cron_start'"
-end
-
 desc "Create a sitemap file for Google"
 task :sitemap do
   cmd = <<END
@@ -79,27 +70,6 @@ task :create_admin do
     fan.save!
     
     puts "Ended at: #{Time.now}"
-END
-
-  system "ruby ./script/runner '#{cmd}'"
-end
-
-desc "Create the cron tasks"
-task :create_cron_tasks do
-
-  # Clean out any old tasks first to avoid dups
-  # Seems like the "create" statement needs to be on 1 line
-  
-  cmd = <<END
-    RailsCron.destroy_all
-    
-    RailsCron.create(:command => "MailReader.check_email", :start => 3.minutes.from_now, :every => 30.minutes, :concurrent => false)
-
-    RailsCron.create(:command => "RemindersMailer.do_show_reminders", :start => 3.minutes.from_now, :every => 30.minutes, :concurrent => false)
-
-    RailsCron.create(:command => "DbHelper.delete_old_sessions", :start => 10.minutes.from_now, :every => 12.hours, :concurrent => false)
-    
-    RailsCron.create(:command => "ApacheLogParser.parse_last_rails_archive", :start => 1.minutes.from_now, :every => 24.hours, :concurrent => false)
 END
 
   system "ruby ./script/runner '#{cmd}'"

@@ -27,7 +27,6 @@
 # rollback - rollback to last deployment
 # 
 # spinner - first start FCGI processes using spawner ("rake remote:exec ACTION=spinner")
-# cron_spinner - first start RailsCron ("rake remote:exec ACTION=cron_spinner")
 # cleanup - deletes >5 deployments (needs "rake remote:exec ACTION=cleanup")
 # 
 # reaper - kill the FCGI processes using reaper
@@ -154,7 +153,6 @@ task :deploy do
 
   restart # Restart FCGI procs
   
-  restart_cron # Restart rails cron
 end
 
 desc "Setup task that to run before the first deployment for TB-specific setup"
@@ -197,9 +195,6 @@ task :after_update_current do
   
   # Restart FCGI procs
   restart
-  
-  # Restart rails cron
-  restart_cron
 end
 
 desc "Push the right version of databse.yml."
@@ -254,22 +249,6 @@ task :reaper, :roles => :app do
   # Attempt to stop the FCGI procs
   run <<-CMD
     #{current_path}/script/process/reaper -a kill
-  CMD
-end
-
-desc "Start RailsCron using spinner"
-task :cron_spinner, :roles => :app do
-  # Attempt to spin it every 10 minutes as a daemon
-  run <<-CMD
-    #{current_path}/script/process/spinner -d -i 600 -c 'cd #{current_path} && rake RAILS_ENV=production cron_start'
-  CMD
-end
-
-desc "Reload the rails_cron tasks and restart rails_cron"
-task :restart_cron, :roles => :app do
-  # Load the new tasks and restart cron
-  run <<-CMD
-    cd #{current_path} && rake RAILS_ENV=production create_cron_tasks cron_restart
   CMD
 end
 

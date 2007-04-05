@@ -77,14 +77,6 @@ LogEntry.establish_connection(
      :database => "tourbus_stats"
    )
 
-# Options to control how RailsCron behaves, intervals in seconds.
-# Make it only rarely check the db, since we load the tasks infrequently
-RailsCron.options = {
-    :sleep => 60,
-    :db_sleep => 1800,
-    :allow_concurrency => false
-}
-
 # Email notification on exception
 ExceptionNotifier.exception_recipients = %w(feedback@tourb.us)
 ExceptionNotifier.sender_address = %("tourb.us robot" <robot@tourb.us>)

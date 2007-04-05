@@ -1,6 +1,13 @@
 <html>
 <head>
-  <title>tourb.us - <%= @page_title or "Find Local, Live Music" %></title>
+  <%
+    if @page_title
+      title = "<title>#{@page_title} - tourb.us</title>"
+    else
+      title = "<title>tourb.us - Find Local, Live Music</title>"
+    end
+  %>
+  <%= title %>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="<%= meta_keywords(@meta_subject) %>"/>
   <meta name="description" content="<%= meta_desc(@meta_subject) %>"/>

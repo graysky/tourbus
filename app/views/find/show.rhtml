@@ -47,8 +47,6 @@ end
   <%= link_to_unless_current_action "Tonight's Shows", :action => 'browse_tonights_shows' %> <span class="normal">|</span>
   <%= link_to_unless_current_action "Browse All Shows", :action => 'browse_upcoming_shows' %>
   
-  
-  
 </div>
 
 <% if params[:action] == 'show' %>
@@ -97,10 +95,10 @@ end
     <div class="no_results_details" id="no_results_details">
     Sorry we couldn't find the shows you're looking for.
     <% if logged_in? %>
-        Please consider helping us improve the site and <%= link_to "add some shows", :controller => "shows", :action => "add" %>.
+        Please help us improve the site and <%= link_to "add some shows", :controller => "shows", :action => "add" %>!
     <% else %>
         Please consider <%= link_to "signing up for an account", :controller => "signup", :action => "fan" %>
-        and adding some shows to the system.
+        and adding shows to the site!
     <% end %>
     <br/><br/>
     If we haven't started indexing your city yet, <%= link_to "let us know", :controller => "feedback" %>

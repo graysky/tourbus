@@ -1,6 +1,8 @@
 <div id="main">
 
-<% @header_title = @venue.name + "/Shows" %>
+<% @header_title = @venue.name + " / Shows" 
+   @page_title = @venue.name + " / Upcoming Shows"
+%>
 
 <%= render :partial => "profile_header", :locals => { :front_page => false } %>
 

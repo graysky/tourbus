@@ -13,7 +13,9 @@ class Ataturk
   def create_hits
     @logger.info "Creating HITs..."
     
-    sites = TurkSite.find_all_by_group(Date.today.wday)
+    # just get all for now
+    sites = TurkSite.find(:all)
+    #sites = TurkSite.find_all_by_group(Date.today.wday)
     
     if @debug
       # just choose one
@@ -58,8 +60,7 @@ class Ataturk
       
       shows = get_shows(a)
       prepared_shows = shows.map { |show| anansi.prepare_show(show) }
-      write_shows(prepared_shows, id)    
-      puts id
+      write_shows(prepared_shows, id)
       hit = TurkHit.find_by_aws_hit_id(id)
       hit.set_reviewing(a)
       
@@ -75,6 +76,7 @@ class Ataturk
   
   # Approve the given HIT and pay the worker
   def approve_hit(hit, feedback = nil)
+    @logger.info("Approve hit #{hit.aws_hit_id}")
     TurkHit.transaction do
       hit.set_approved
       @turk.approve_assignment(hit.aws_assignment_id, feedback)

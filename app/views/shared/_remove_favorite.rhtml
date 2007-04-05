@@ -1,7 +1,25 @@
-<table><tr><td><img src="/images/delete.png" height="16" width="16" onload='fixPNG(this)'/></td><td><a href="#" id="remove_fave_link">Remove From Favorites</a></td></tr></table>
+<div id="remove_from_faves">
+<table><tr><td><img src="/images/delete.png" height="15" width="16" onload='fixPNG(this)'/></td>
+<td>
 
-<% if request.xhr? %>
-<script type="text/javascript">
-  Tooltip.add('remove_fave_link', 'remove_tip');
-</script>
-<% end %>
+<%= 
+    link_to_remote "Remove From Favorites",
+                   :update => "favorite_control",
+                   :before => "Element.show('add_to_faves'); Element.hide('remove_from_faves')",
+                   :url => { 
+		                :controller => "fan",
+		                :action => "remove_favorite_band", 
+		                :id => @band.id
+		              }, 
+                   :failure => "alert('Sorry, there was a problem removing this band! Please try again')"
+ %>
+
+</td></tr></table>
+</div>
+
+<div id="add_to_faves" style="display:none">
+<table><tr><td><img src="/images/fave_star.png" height="15" width="16" onload='fixPNG(this)'/></td>
+<td>
+<a href="#">Add to Favorites<a/>
+</td></tr></table>
+</div>

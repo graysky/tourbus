@@ -1,32 +1,22 @@
-<center><a href="#" id="remove_fave_link_<%= band.id %>"><img src="/images/delete.png" height="16" width="16" title="Remove Favorite" onload='fixPNG(this)'/></a>
+<center>
+<div id="remove_from_faves_<%= band.id %>">
+<%= 
+    link_to_remote "<img src='/images/delete.png' height='16' width='16' title='Remove Favorite onload='fixPNG(this)'/>",
+                   :update => "fave_column_#{band.id}",
+                   :before => "Element.show('add_to_faves_#{band.id}'); Element.hide('remove_from_faves_#{band.id}')",
+                   :url => { 
+		                :controller => "fan",
+		                :action => "remove_favorite_band", 
+		                :id => band.id,
+		                :simple => true
+		              }, 
+                   :failure => "alert('Sorry, there was a problem removing this band! Please try again')"
+ %>
 <br/>Remove
-</center>
-
-<div id="remove_tip_<%= band.id %>" class='fave_tip'>
-<h3>Remove a favorite band</h3>
-  <p>
-    If you click "OK", you will stop receiving reminders of
-    this band's upcoming shows.<br/><br/>
-    
-    <strong>Are you sure you want to remove this band from your favorites?</strong>
-            
-    
-    <%= form_remote_tag(
-    :update => "fave_column_#{band.id}",
-    :url => { 
-      :controller => "fan",
-      :action => "remove_favorite_band", 
-      :id => band.id,
-      :simple => true
-    }) 
-    %>
-    
-      <%= submit_tag "OK" %>&nbsp;
-      <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('remove_fave_link_#{band.id}'), event);" %>
-    <%= end_form_tag %>
-  </p>
 </div>
 
-<script type="text/javascript">
-  Tooltip.add('remove_fave_link_<%= band.id %>', 'remove_tip_<%= band.id %>');
-</script>
+<div id="add_to_faves_<%= band.id %>" style="display:none">
+<a href="#"><img src='/images/fave_star.png' height='16' width='16' title='Add Favorite' onload='fixPNG(this)'/></a>
+<br/>Add favorite
+</div>
+</center>

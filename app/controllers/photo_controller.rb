@@ -44,8 +44,6 @@ class PhotoController < ApplicationController
     @name = params[:name]
     @showing_creator = params[:showing_creator]
     
-    # Record the page view
-    inc_page_views(@photo)
   end
   
   def set_caption

@@ -25,8 +25,6 @@ class BandPublicController < ApplicationController
   def index
     @shows = @band.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
     
-    # Record the page view
-    inc_page_views(@band)
   end
   
   def shows

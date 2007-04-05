@@ -19,7 +19,6 @@
   
   <p>
     <strong>Member Since:</strong> <%= slash_date @fan.created_on %>
-    <strong>Profile Views:</strong> <%= @fan.page_views %><br/>
     <%
     location = "<i>unknown</i>"
     if !@fan.city.empty? && !@fan.state.empty?

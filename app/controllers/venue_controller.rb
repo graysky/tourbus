@@ -51,9 +51,6 @@ class VenueController < ApplicationController
   def show
     # Determine the shows to display
     @shows = @venue.shows.find(:all, :conditions => ["date > ?", Time.now - 2.days], :limit => 7)
-    
-    # Record the page view
-    inc_page_views(@venue)
   end
   
   def shows

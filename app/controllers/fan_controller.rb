@@ -98,6 +98,7 @@ class FanController < ApplicationController
       end
     end
     
+    @band = band
     if params[:simple]
       render :partial => "shared/remove_favorite_simple", :locals => { :band => band }
     else
@@ -121,6 +122,7 @@ class FanController < ApplicationController
       end
     end
     
+    @band = band
     if params[:simple]
       render :partial => "shared/add_favorite_simple", :locals => { :band => band }
     else

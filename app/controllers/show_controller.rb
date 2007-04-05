@@ -21,8 +21,6 @@ class ShowController < ApplicationController
   
   # Show a specific show. (Perhaps this is a bad name for this action?)
   def show
-    # Record the page view
-    inc_page_views(@show)
   end
   
   def add

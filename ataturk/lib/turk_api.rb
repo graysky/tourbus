@@ -146,7 +146,7 @@ class TurkApi
     type = site.turk_hit_type
     params = {}
     params[:HITTypeId] = type.aws_hit_type_id if type.aws_hit_type_id
-    params[:LifetimeInSeconds] = site.lifetime
+    params[:LifetimeInSeconds] = site.lifetime.to_i * 2
     params[:MaxAssignments] = site.num_assignments
     params[:Keywords] = "music, concerts, tourb.us"
     

@@ -29,8 +29,6 @@ class FanPublicController < ApplicationController
       flash.now[:info] = render_to_string :action => 'intro_msg', :layout => false
     end
     
-    # Record the page view
-    inc_page_views(@fan)
   end
   
   def shows

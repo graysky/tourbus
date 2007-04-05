@@ -29,7 +29,10 @@ class FanMailer < BaseMailer
   end
   
   def wishlist_to_favorites(fan, bands, sent_at = Time.now)
-    @subject    = '[tourb.us] We Found Bands On Your Wishlist'
+    pop_bands = calc_popular_bands(bands)
+    title = pop_bands.map { |b| b.name }.join(", ")
+  
+    @subject    = "[tourb.us] Bands From Your Wishlist: #{title}"
     @recipients = fan.contact_email
     @from       = Emails.from
     @sent_on    = sent_at
@@ -142,5 +145,20 @@ class FanMailer < BaseMailer
     content_type "text/html"
     
     @body["fan"] = fan
+  end
+  
+  # Return the 3 most popular bands from list of bands
+  def calc_popular_bands(bands)
+    # Remove dupes
+    bands.uniq!
+    # Sort them
+    pop_bands = bands.sort { |a,b| b.popularity <=> a.popularity }
+    
+    # Return up to 3 bands
+    if pop_bands.size > 3
+      return pop_bands[0..2]
+    else
+      return pop_bands
+    end
   end
 end

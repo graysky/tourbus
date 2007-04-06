@@ -14,11 +14,15 @@ class BaseMailer < ActionMailer::Base
       return nil
     end
 
-    obj = super
-    return obj
+   obj = nil
+   begin
+     obj = super
+   rescue Net::SMTPSyntaxError => e
+     puts "ERROR: #{e.to_s}"
+   end
 
+   return obj
   end
-  
 
   # Check the given string, returning true if spam, false if not
   def self.spam?(suspect)

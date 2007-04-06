@@ -64,10 +64,11 @@ class Band < ActiveRecord::Base
   
   validates_uniqueness_of :short_name, 
                           :message => "Sorry, that band public page has already been taken."
-                          
-  validates_uniqueness_of :contact_email, 
-                          :message => "Sorry, someone has already signed up with that email address.",
-                          :if => :validate_unique_email?
+   
+  # TODO Removed uniqueness on email                       
+  #validates_uniqueness_of :contact_email, 
+  #                        :message => "Sorry, someone has already signed up with that email address.",
+  #                        :if => :validate_unique_email?
                           
                                          
   validates_presence_of :password, :if => :validate_password?

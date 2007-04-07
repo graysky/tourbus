@@ -193,6 +193,16 @@ class AnansiImporter
     show.description = s[:description] || ''
     show.preamble = s[:preamble]
     
+    show.ticket_link = s[:ticket_link]
+   
+    if s[:soldout]
+      show.status = show.status | Show::STATUS_SOLDOUT
+    end
+    
+    if s[:cancelled]
+      show.status = show.status | Show::STATUS_CANCELLED
+    end
+    
     show.site_visit = SiteVisit.find(s[:site_visit_id])
     
     if s[:ataturk]
@@ -212,7 +222,7 @@ class AnansiImporter
     if !show.save || !show.venue.save
       raise "Error saving show or venue"
     end
-    
+   
     s[:id] = show.id
     
     @imported_show_count += 1

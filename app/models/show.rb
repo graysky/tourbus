@@ -48,6 +48,9 @@ class Show < ActiveRecord::Base
   acts_as_taggable :join_class_name => 'TagShow'
   validates_presence_of :date
   
+  STATUS_SOLDOUT = 1 << 0
+  STATUS_CANCELLED = 1 << 1
+  
   # Attributes for nicer date handling
   attr_accessor :formatted_date, :time_hour, :time_minute, :time_ampm
   

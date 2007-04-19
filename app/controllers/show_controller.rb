@@ -126,6 +126,11 @@ class ShowController < ApplicationController
     
     from_name = params[:from]
     msg = params[:msg]
+    
+    if !captcha_passed?
+      render :nothing => true
+      return
+    end
       
     # Send the email
     msg = ShareMailer.do_share_show(to_addrs, from_name, @show, msg)

@@ -5,7 +5,7 @@
   <div id="report_problem_tip" class='fave_tip'>
     <h3>Report a Problem</h3>
       <p>
-        Is something wrong with this listing? Sorry about that! <br/><br/>
+        Is something wrong with this listing?<br/><br/>
         
         <strong>Select the problem below, and add some notes if you can.</strong>
       </p>
@@ -25,12 +25,14 @@
           <% end%>
           <option>Other (please add a note)</option>
         </select>
+        <%= render(:partial => "shared/captcha_fields", :locals => {:id => "report_prob"})  %>
         <br/><br/>
         <p>Notes:</p>
         <%= text_area_tag 'notes', '', :size => '20' %>
 
       
-        <br/><%= submit_tag "Submit", :onclick => "Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!'" %>&nbsp;
+        <br/><%= submit_tag "Submit", 
+        :onclick => "if (validate_captcha_report_prob()) { Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!' } else { return false; }" %>&nbsp;
         <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('report_problem_link'), event)" %>
         <%= end_form_tag %>
       </p>

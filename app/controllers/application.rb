@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
   include MetaFragment
   include ExceptionNotifiable
+  include Captcha
   
   model :band
   model :fan
@@ -41,6 +42,8 @@ class ApplicationController < ActionController::Base
   helper_method :display_404
   helper_method :display_500
   helper_method :public_metro_url
+  helper_method :random_catpcha
+  helper_method :require_captcha?
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
@@ -326,6 +329,16 @@ class ApplicationController < ActionController::Base
   
   def logged_in_as_downtree?
     [Fan.mike, Fan.gary, Fan.admin, Fan.bushido].include?(logged_in_fan)
+  end
+  
+  # Pick a random captcha and return [key, value] array
+  def random_catpcha
+    return pick_captcha
+  end
+  
+  # Return true if a captcha check is needed, false if it is not needed
+  def require_captcha?
+    return !logged_in? && cookies[:tb_cap] != "norobot" 
   end
   
   protected

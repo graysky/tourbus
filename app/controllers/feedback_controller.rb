@@ -36,6 +36,11 @@ class FeedbackController < ApplicationController
   def report_problem
     return if request.get?
     
+    if !captcha_passed?
+      render :nothing => true
+      return
+    end 
+    
     # Must include a note to avoid spam
     if params[:notes].nil? or params[:notes].empty?
       render :nothing => true

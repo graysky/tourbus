@@ -1,0 +1,32 @@
+<%
+  # Display captcha input field into a form. Parameters:
+  # id => make JS calls unique tacked onto end of validate_captcha function 
+  # Must match the caller
+  #
+  # Only display captcha if the user
+  # 1) Not logged in
+  # 2) Doesn't have a valid cookie
+
+  if require_captcha?
+  key, value = random_catpcha
+%>
+  <%= hidden_field_tag 'cap_key', key %>
+  <br/><br/>
+  <p>Please type <b><%= value %></b></p>
+  <%= text_field_tag 'cap_value', '', :size => '20' %>
+  <script type="text/javascript">
+  // Validates the captcha. Returns true if valid, false otherwise. 
+  function validate_captcha_<%=id%>() {
+    var val = $('cap_value').value;
+    if ('<%= value %>' != val) {
+      alert("Must type '<%= value %>' to submit form."); 
+      return false;
+    }
+    return true;
+  }
+</script>
+<% else %>
+  <script type="text/javascript">
+  function validate_captcha_<%=id%>() { return true; }
+  </script>
+<% end %>

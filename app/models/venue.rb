@@ -33,6 +33,7 @@ class Venue < ActiveRecord::Base
   has_many :upcoming_shows, :class_name => 'Show', :conditions => ["date > ?", Time.now], :order => "date ASC"
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
+  has_many :flickr_photos, :order => "date DESC"
   acts_as_taggable :join_class_name => 'TagVenue'
   acts_as_searchable
   
@@ -55,6 +56,10 @@ class Venue < ActiveRecord::Base
   # Get just the Venue tags
   def venue_tag_names
     get_tags(Tag.Venue)
+  end
+  
+  def all_photos
+    self.photos + self.flickr_photos
   end
   
   def location

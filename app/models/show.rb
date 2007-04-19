@@ -41,6 +41,7 @@ class Show < ActiveRecord::Base
  
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
+  has_many :flickr_photos, :order => "band_id DESC", :include => :band
   belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
   belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
   belongs_to :edited_by_band, :class_name => "Band", :foreign_key => "edited_by_band_id"
@@ -88,6 +89,10 @@ class Show < ActiveRecord::Base
     
     month = Date::MONTHNAMES[self.date.month] 
     "#{month} #{self.date.day}, #{self.date.year}"
+  end
+  
+  def all_photos
+    self.photos + self.flickr_photos
   end
   
   def time_hour

@@ -1,20 +1,34 @@
 <div id="main">
 
 <% 
-  @page_title = @name
+  @page_title = @name + " Photos"
   header = @name
 %>
 
-<% @header_title = @name + "/Photos/" + @photo.name %>
-<span><a href="<%= photo_preview_page_link @photo, @showing_creator %>">Back To All Photos</a><span>
+<% 
+    if @flickr
+        name = @photo.flickr_id
+    else
+        name = @photo.name
+    end 
+%>
+
+<% @header_title = @name + "/Photos/" + name %>
+<span><a href="<%= photo_preview_page_link @photo, @showing_creator, @type %>">Back To All Photos</a><span>
 
 <table class="photo_table">
-<tr><td><%= photo_preview_cell_contents(@photo, 'normal', @showing_creator) %>
+<tr><td><%= photo_preview_cell_contents(@photo, 'normal', @showing_creator, @type) %>
 <br/><br/>
-<div id='caption'><%= @photo.description %></div>
+<div id='caption'>
+    <% if @flickr %>
+        This product uses the <a href="http://www.flickr.com">Flickr</a> API but is not endorsed or certified by <a href="http://www.flickr.com">Flickr</a>.
+    <% else %>
+        <%= @photo.description %>
+    <% end %>
+</div>
 <% 
-  if (@photo.created_by_fan and @photo.created_by_fan == logged_in_fan) or
-     (@photo.created_by_band and @photo.created_by_band == logged_in_band)  
+  if !@flickr && ((@photo.created_by_fan and @photo.created_by_fan == logged_in_fan) or
+     (@photo.created_by_band and @photo.created_by_band == logged_in_band))  
 %>
   <a id="edit_caption" href="#">Edit Caption</a>
   <script type="text/javascript">
@@ -26,6 +40,7 @@
 </td></tr>
 </table>
 
+<% unless @flickr %>
   <%= render(
     :partial => "shared/comments",
     :locals =>
@@ -35,6 +50,7 @@
       :id => @photo.id,
       })
   %>
+<% end %>
 
 </div>
 
@@ -42,7 +58,7 @@
   <div id="actions-box" class="sidebar-box">
   <h2 id="actions-title"><span class="title">Navigation</span></h2>
     <center>
-    <%= photo_navigation_table @photo, @showing_creator %>
+    <%= photo_navigation_table @photo, @showing_creator, @type %>
     </center>
   </div>
 </div>

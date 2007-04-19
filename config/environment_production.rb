@@ -111,6 +111,7 @@ require 'selective_timestamp'
 require 'validations'
 require 'chunkable'
 require 'array'
+require 'photo_search'
 
 # For UTF-8 handling
 $KCODE = 'u'

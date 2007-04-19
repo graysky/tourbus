@@ -49,12 +49,13 @@ module ApplicationHelper
     day = date.strftime("%a")
     month = date.strftime("%m")
     dom = date.strftime("%d")
+    year = date.strftime("%y")
 
     # Strip off any leading "0" padding
     month.sub!(/^0/, '')
     dom.sub!(/^0/, '')
 
-    s = "#{day} #{month}/#{dom}"
+    s = "#{day} #{month}/#{dom}/#{year}"
   end
   
   # Output like: "Tuesday 9/12"

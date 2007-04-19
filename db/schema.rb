@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 49) do
+ActiveRecord::Schema.define(:version => 50) do
 
   create_table "announcements", :force => true do |t|
     t.column "applies_to", :string,   :default => "", :null => false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 49) do
     t.column "longitude",          :string,   :limit => 30
     t.column "num_upcoming_shows", :integer,                 :default => 0
     t.column "last_login",         :datetime
+    t.column "options",            :integer,                 :default => 0
   end
 
   add_index "bands", ["name"], :name => "name_key"
@@ -161,6 +162,29 @@ ActiveRecord::Schema.define(:version => 49) do
     t.column "description", :string
     t.column "created_at",  :datetime
   end
+
+  create_table "flickr_photos", :force => true do |t|
+    t.column "band_id",          :integer
+    t.column "show_id",          :integer
+    t.column "venue_id",         :integer
+    t.column "photopage_url",    :string
+    t.column "thumbnail_source", :string
+    t.column "medium_source",    :string
+    t.column "small_source",     :string
+    t.column "square_source",    :string
+    t.column "flickr_id",        :string
+    t.column "notes",            :string
+    t.column "title",            :string
+    t.column "owner",            :string
+    t.column "date",             :datetime
+    t.column "status",           :integer,  :default => 0
+    t.column "created_at",       :datetime
+  end
+
+  add_index "flickr_photos", ["flickr_id"], :name => "index_flickr_photos_on_flickr_id"
+  add_index "flickr_photos", ["band_id"], :name => "index_flickr_photos_on_band_id"
+  add_index "flickr_photos", ["show_id"], :name => "index_flickr_photos_on_show_id"
+  add_index "flickr_photos", ["venue_id"], :name => "index_flickr_photos_on_venue_id"
 
   create_table "friend_requests", :force => true do |t|
     t.column "requester_id", :integer
@@ -377,13 +401,13 @@ ActiveRecord::Schema.define(:version => 49) do
     t.column "created_at",            :datetime
     t.column "turk_hit_type_id",      :integer
     t.column "price_override",        :integer
-    t.column "num_assignments",       :integer,  :default => 1,      :null => false
+    t.column "num_assignments",       :integer,  :default => 1
     t.column "extra_instructions",    :string
     t.column "frequency",             :integer
     t.column "lifetime",              :integer,  :default => 604800
     t.column "last_hit_time",         :datetime
     t.column "group",                 :integer,  :default => 0
-    t.column "min_shows",             :integer,  :default => 10
+    t.column "min_shows",             :integer,  :default => 8
     t.column "turk_site_category_id", :integer
     t.column "last_approved_hit_id",  :integer
   end

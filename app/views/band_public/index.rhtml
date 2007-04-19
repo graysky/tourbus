@@ -37,7 +37,7 @@
   :partial => "shared/photo_preview", 
   :locals => 
     {
-    :photos => @band.photos,
+    :photos => @band.all_photos,
     :type => Photo.Band,
     :id => @band.id,
     :full => false

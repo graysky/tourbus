@@ -50,6 +50,7 @@ class Band < ActiveRecord::Base
   has_many :related_bands, :class_name => 'Band', :through => :band_relations, :source => :band2
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
+  has_many :flickr_photos, :order => "flickr_photos.date DESC", :include => :show
   has_many :links
   has_many :songs
   file_column :logo, :magick => { :geometry => "240x320>" }
@@ -92,6 +93,10 @@ class Band < ActiveRecord::Base
 
   def validate_unique_email?
     super and self.claimed?
+  end
+  
+  def all_photos
+    self.photos + self.flickr_photos
   end
   
   def location

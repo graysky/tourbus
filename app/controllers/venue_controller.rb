@@ -61,11 +61,16 @@ class VenueController < ApplicationController
     @shows = @venue.shows.find(:all)
   end
   
+  def photos
+    @photos = @venue.all_photos
+    paginate_photos
+  end
   
   # TODO FIXME - Can't use "@venue.name" because the venue's ID wans't passed in
   def photo
     render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:photo_id], "name" => @venue.name}
+                     :params => {"flickr" => params[:flickr], "type" => Photo.Venue,
+                                 "photo_id" => params[:photo_id], "name" => @venue.name}
   end
   
   # Set the venue description

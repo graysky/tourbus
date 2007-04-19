@@ -1,7 +1,7 @@
 <%
    if (full)
-     rows = nil
-     cols = 5
+     rows = 7
+     cols = 4
    else
      rows = 1
      cols = 4
@@ -166,9 +166,25 @@
    </div>
    <% end %>
    
-   <%= photo_preview_table photos, rows, cols, showing_creator %>
+   <%= render :partial => "shared/photo_preview_paging", :locals => { :full => full, :type => type } %>
+   <%= photo_preview_table photos, rows, cols, showing_creator, type %>
+   <%= render :partial => "shared/photo_preview_paging", :locals => { :full => full, :type => type } %>
+   
     <% if photos and !photos.empty? and not full %>
       <br/>
-     <%= link_to "See more photos...", options %>
+      <% 
+        name = " " 
+        if type == Photo.Band
+            name = " " + @band.name + " "
+        end
+        
+        link_text = 
+        if photos.size > cols
+      %>
+        <%= link_to "See all #{photos.size}#{name}photos...", options %>
+      
+      <% end %>
+      
+     
     <% end %>
 </div>

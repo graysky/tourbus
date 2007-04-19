@@ -29,7 +29,7 @@
   :partial => "shared/photo_preview", 
   :locals => 
     {
-    :photos => @venue.photos,
+    :photos => @venue.all_photos,
     :type => Photo.Venue,
     :id => @venue.id,
     :full => false

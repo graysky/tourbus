@@ -29,6 +29,8 @@ class Photo < ActiveRecord::Base
   FROM_FAN = "from_fan"
   FROM_BAND = "from_band"
   
+  MAX_PER_PAGE = 28
+  
   def self.Band
     BAND_TYPE
   end

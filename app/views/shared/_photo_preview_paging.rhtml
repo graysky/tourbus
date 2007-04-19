@@ -1,0 +1,24 @@
+<% 
+    str = ''
+    if @photos
+	   first = params[:offset].nil? ? 1 : params[:offset].to_i + 1
+	   last = @next_offset.nil? ? @photo_count : @next_offset
+	   str = "#{first} - #{last} of #{@photo_count}"
+	end
+%>
+<% if full && (@next_offset || @prev_offset) %>
+    <span style="margin-left:420px">
+        <%= str %>&nbsp;
+        <% if @prev_offset %>
+            <a href="<%= photo_preview_page_link(@photos.first, false, type) + "&offset=#{@prev_offset}" %>" style="font-size:11px">Prev</a>
+            <% if @next_offset %>
+                |
+            <% end %>
+        <% end %>
+        <% if @next_offset %>
+            <a href="<%= photo_preview_page_link(@photos.first, false, type) + "&offset=#{@next_offset}" %>" style="font-size:11px">Next</a>
+        <% end %>
+    </span>
+<% else %>
+    <span style="margin-left:480px"><%= str%></span>
+<% end %>

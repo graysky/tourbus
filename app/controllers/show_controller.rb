@@ -51,11 +51,16 @@ class ShowController < ApplicationController
     end 
   end
   
+  def photos
+    @photos = @show.all_photos
+    paginate_photos
+  end
   
   # TODO FIXME - Can't use "@show.name" because the show's ID wans't passed in
   def photo
     render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:photo_id], "name" => @show.name}
+                     :params => {"flickr" => params[:flickr], "type" => Photo.Show,
+                                 "photo_id" => params[:photo_id], "name" => @show.name}
   end
   
   # Search for a venue as part of adding a show

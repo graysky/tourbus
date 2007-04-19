@@ -378,6 +378,20 @@ class ApplicationController < ActionController::Base
     return options
   end
   
+  def paginate_photos
+    offset = params[:offset].nil? ? 0 :  params[:offset].to_i
+    @photo_count = @photos.size
+    if offset > 0
+      @photos = @photos[offset..-1]
+      @prev_offset = offset - Photo::MAX_PER_PAGE
+      @prev_offset = 0 if @prev_offset < 0
+    end
+    
+    if offset + Photo::MAX_PER_PAGE < @photos.size
+      @next_offset = offset + Photo::MAX_PER_PAGE
+    end
+  end
+  
   # Log an error msg and put the message into flash.now
   def error_log_flashnow(msg)
     logger.error(msg)

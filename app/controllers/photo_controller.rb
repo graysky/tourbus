@@ -40,10 +40,17 @@ class PhotoController < ApplicationController
   end
   
   def show_one
-    @photo = Photo.find(params[:photo_id])
+    if params[:flickr] == 'true'
+      @photo = FlickrPhoto.find(params[:photo_id])
+      @flickr = true
+    else
+      @photo = Photo.find(params[:photo_id])
+      @flickr = false
+    end
+    
     @name = params[:name]
     @showing_creator = params[:showing_creator]
-    
+    @type = params[:type]
   end
   
   def set_caption

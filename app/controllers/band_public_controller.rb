@@ -35,6 +35,11 @@ class BandPublicController < ApplicationController
     @shows = @band.shows.find(:all)
   end
   
+  def photos
+    @photos = @band.all_photos
+    paginate_photos
+  end
+  
   def fans
   
   end
@@ -115,8 +120,9 @@ class BandPublicController < ApplicationController
   end
   
   def photo
-    render_component :controller => "photo", :action => "show_one", 
-                     :params => {"photo_id" => params[:photo_id], "name" => @band.name}
+    render_component :controller => "photo", :action => "show_one",
+                     :params => {"photo_id" => params[:photo_id], "name" => @band.name, 
+                                 "flickr" => params[:flickr], "type" => Photo.Band}
   end
   
   def external_map

@@ -49,7 +49,7 @@
         <p>Message:</p>
         <%= text_area_tag 'msg', '', :size => '25x3' %>
 
-        <%= submit_tag "Submit", :onclick => "if (validate_captcha_share()) { Tooltip.toggle($('share_show_link'), event);$('share_show_link').innerHTML = 'Message Sent!' } else { return false; }" %>&nbsp;
+        <%= submit_tag "Submit", :onclick => "if (validate_captcha_share(this.form)) { Tooltip.toggle($('share_show_link'), event);$('share_show_link').innerHTML = 'Message Sent!' } else { return false; }" %>&nbsp;
         <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('share_show_link'), event)" %>
         <%= end_form_tag %>
       </p>

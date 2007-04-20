@@ -32,7 +32,7 @@
 
       
         <br/><%= submit_tag "Submit", 
-        :onclick => "if (validate_captcha_report_prob()) { Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!' } else { return false; }" %>&nbsp;
+        :onclick => "if (validate_captcha_report_prob(this.form)) { Tooltip.toggle($('report_problem_link'), event);$('report_problem_link').innerHTML = 'Thanks!' } else { return false; }" %>&nbsp;
         <%= link_to "Cancel", "#", :onclick => "Tooltip.toggle($('report_problem_link'), event)" %>
         <%= end_form_tag %>
       </p>

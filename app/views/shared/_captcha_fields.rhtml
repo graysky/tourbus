@@ -16,8 +16,8 @@
   <%= text_field_tag 'cap_value', '', :size => '20' %>
   <script type="text/javascript">
   // Validates the captcha. Returns true if valid, false otherwise. 
-  function validate_captcha_<%=id%>() {
-    var val = $('cap_value').value;
+  function validate_captcha_<%=id%>(form) {
+    var val = form.cap_value.value;
     if ('<%= value %>' != val) {
       alert("Must type '<%= value %>' to submit form."); 
       return false;
@@ -27,6 +27,6 @@
 </script>
 <% else %>
   <script type="text/javascript">
-  function validate_captcha_<%=id%>() { return true; }
+  function validate_captcha_<%=id%>(form) { return true; }
   </script>
 <% end %>

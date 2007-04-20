@@ -7,7 +7,7 @@
   # 1) Not logged in
   # 2) Doesn't have a valid cookie
 
-  if false #require_captcha?
+  if require_captcha?
   key, value = random_catpcha
 %>
   <%= hidden_field_tag 'cap_key', key %>

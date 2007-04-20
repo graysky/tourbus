@@ -114,7 +114,7 @@ class PhotoSearch
         date = date + 19.hours
       end
       
-      puts "#{band.name} - #{date}"
+      OFFLINE_LOGGER.info "#{band.name} - #{date}"
       
       min_date = date - 8.hours
       max_date = date + 12.hours
@@ -127,7 +127,7 @@ class PhotoSearch
                        :min_taken_date => flickr_time(min_date), :max_taken_date => flickr_time(max_date))
       end
       
-      puts "  found #{photos.size} photos"
+      OFFLINE_LOGGER.info "  found #{photos.size} photos"
       if photos.size < MIN_SHOW_PHOTOS
         tags = "#{name_tag}, livemusic"
         
@@ -136,7 +136,7 @@ class PhotoSearch
                          :min_taken_date => flickr_time(min_date), :max_taken_date => flickr_time(max_date))
         end
         
-        puts "  look for livemusic, now found #{photos.size} photos"
+        OFFLINE_LOGGER.info "  look for livemusic, now found #{photos.size} photos"
       end
       
       if photos.size < MIN_SHOW_PHOTOS && name_tag.starts_with?("the")
@@ -147,7 +147,7 @@ class PhotoSearch
                          :min_taken_date => flickr_time(min_date), :max_taken_date => flickr_time(max_date))
         end
         
-        puts "  look without 'the', now found #{photos.size} photos"
+        OFFLINE_LOGGER.info "  look without 'the', now found #{photos.size} photos"
       end
       
       for photo in photos[0..20]
@@ -167,7 +167,7 @@ class PhotoSearch
     
     if band.flickr_photos.size < 20
       # Look for other photos to fill things out
-      puts "   Try to find unattached photos"
+      OFFLINE_LOGGER.info "   Try to find unattached photos"
       
       tags = "#{band.short_name}, concert"
       photos = do_with_retry do
@@ -176,7 +176,7 @@ class PhotoSearch
       end
       
       photos = photos.random(40)
-      puts "    Add #{photos.size} unattached photos"
+      OFFLINE_LOGGER.info "    Add #{photos.size} unattached photos"
       for photo in photos
         next unless photo.thumbnail && photo.medium && photo.square && photo.small
         fp = do_with_retry do
@@ -200,9 +200,9 @@ class PhotoSearch
       sleep(sleep_time)
       ret = yield
     rescue Exception => e
-      puts "Error talking to flickr: #{e}, #{e.backtrace}"
+      OFFLINE_LOGGER.error "Error talking to flickr: #{e}, #{e.backtrace}"
       if retries > 0
-        puts "Retrying..."
+        OFFLINE_LOGGER.info "Retrying..."
         retries -= 1
         sleep_time *= 2
         retry

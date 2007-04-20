@@ -41,7 +41,7 @@ class Show < ActiveRecord::Base
  
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
-  has_many :flickr_photos, :order => "band_id DESC", :include => :band
+  has_many :flickr_photos, :order => "band_id DESC", :include => :band, :conditions => "flickr_photos.status = 0"
   belongs_to :created_by_band, :class_name => "Band", :foreign_key => "created_by_band_id"
   belongs_to :created_by_fan, :class_name => "Fan", :foreign_key => "created_by_fan_id"
   belongs_to :edited_by_band, :class_name => "Band", :foreign_key => "edited_by_band_id"

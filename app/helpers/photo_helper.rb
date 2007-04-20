@@ -126,6 +126,13 @@ module PhotoHelper
       elsif extra_name
         html << "<br/><span>#{extra_name}</span>"
       end
+      
+      if logged_in_admin
+        html << "<br/>" + link_to_remote("delete", :url => { :controller => :photo, :action => :mark_flickr_photo_inactive, :id => photo.id }, 
+                                                 :success => "alert('gone')", :failure => "alert('error')")
+      end
+      
+      html
     else
       # TODO Broken. Need the right link for band and fan homepages...
       if version == 'normal'

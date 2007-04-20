@@ -53,6 +53,16 @@ class PhotoController < ApplicationController
     @type = params[:type]
   end
   
+  def mark_flickr_photo_inactive
+    id = params[:id]
+  
+    p = FlickrPhoto.find(id)
+    p.status = 1
+    p.save!
+    
+    render :nothing => true
+  end
+  
   def set_caption
     @photo = Photo.find(params[:id])
     @photo.description = params[:value]

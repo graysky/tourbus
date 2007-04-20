@@ -33,7 +33,7 @@ class Venue < ActiveRecord::Base
   has_many :upcoming_shows, :class_name => 'Show', :conditions => ["date > ?", Time.now], :order => "date ASC"
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
-  has_many :flickr_photos, :order => "date DESC"
+  has_many :flickr_photos, :order => "date DESC", :conditions => "flickr_photos.status = 0"
   acts_as_taggable :join_class_name => 'TagVenue'
   acts_as_searchable
   

@@ -50,7 +50,7 @@ class Band < ActiveRecord::Base
   has_many :related_bands, :class_name => 'Band', :through => :band_relations, :source => :band2
   has_many :photos, :order => "created_on DESC"
   has_many :comments, :order => "created_on ASC"
-  has_many :flickr_photos, :order => "flickr_photos.date DESC", :include => :show
+  has_many :flickr_photos, :order => "flickr_photos.date DESC", :include => :show, :conditions => "flickr_photos.status = 0"
   has_many :links
   has_many :songs
   file_column :logo, :magick => { :geometry => "240x320>" }

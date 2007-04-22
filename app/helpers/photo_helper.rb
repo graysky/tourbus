@@ -127,7 +127,7 @@ module PhotoHelper
         html << "<br/><span>#{extra_name}</span>"
       end
       
-      if logged_in_admin
+      if logged_in_as_downtree?
         html << "<br/>" + link_to_remote("delete", :url => { :controller => :photo, :action => :mark_flickr_photo_inactive, :id => photo.id }, 
                                                  :success => "alert('gone')", :failure => "alert('error')")
       end

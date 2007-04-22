@@ -197,6 +197,11 @@ task :after_update_current do
   restart
 end
 
+desc "Restart the mongrel cluster"
+task :restart, :roles => :app do
+  send(run_method, "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::restart")
+end
+
 desc "Push the right version of databse.yml."
 task :push_db_file do
 

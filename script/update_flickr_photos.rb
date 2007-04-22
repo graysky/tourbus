@@ -2,7 +2,7 @@ require 'config/environment'
 
 ps = PhotoSearch.new
 
-bands = Band.find(:all, :order => "num_fans desc", :limit => 400)
+bands = Band.find(:all, :order => "num_fans desc", :limit => 500)
 
 bands.each do |b|
   begin

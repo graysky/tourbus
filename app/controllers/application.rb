@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in_band
   helper_method :logged_in
   helper_method :logged_in_admin
+  helper_method :logged_in_as_downtree?
   helper_method :display_404
   helper_method :display_500
   helper_method :public_metro_url

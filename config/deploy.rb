@@ -199,7 +199,10 @@ end
 
 desc "Restart the mongrel cluster"
 task :restart, :roles => :app do
-  send(run_method, "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::restart")
+  #send(run_method, "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::restart")
+  run <<-CMD
+      cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::restart
+  CMD
 end
 
 desc "Push the right version of databse.yml."

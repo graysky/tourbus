@@ -179,6 +179,8 @@ class PhotoSearch
       OFFLINE_LOGGER.info "    Add #{photos.size} unattached photos"
       for photo in photos
         next unless photo.thumbnail && photo.medium && photo.square && photo.small
+	next if FlickrPhoto.find_by_flickr_id(photo.id)
+
         fp = do_with_retry do
           FlickrPhoto.new(:band_id => band.id, :photopage_url => photo.photopage_url,
                            :thumbnail_source => photo.thumbnail, :medium_source => photo.medium, :square_source => photo.square,

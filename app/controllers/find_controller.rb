@@ -194,7 +194,8 @@ class FindController < ApplicationController
     options[:exact_date] = true
     options[:include] = :bands
     
-    @results, count = Show.ferret_search_date_location(query, Time.now, lat, long, radius, options)
+    # Minus 6 hours so PST doesn't roll over at 9pm 
+    @results, count = Show.ferret_search_date_location(query, Time.now - 6.hours, lat, long, radius, options)
     paginate_search_results(count)
     
     @subscribe_url, @calendar_url = show_subscription_urls(:shows_rss, :shows_ical, :query => "", 

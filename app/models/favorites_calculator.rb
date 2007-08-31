@@ -26,14 +26,17 @@ class FavoritesCalculator
   # Includes shows that have been created since the last email
   def upcoming_shows
     if @upcoming_shows.nil?
-      RAILS_DEFAULT_LOGGER.info("    Get shows: #{Time.now.to_i}")
+      OFFLINE_LOGGER.info("    Get shows: #{Time.now.to_i}")
+      start = Time.now.to_i
       @upcoming_shows = []
 
       # Defense against no location set
       return [] if @fan.latitude.nil? or @fan.latitude.empty?
       
       now = Time.now
-      @fan.bands.each do |band|
+      bids = @fan.bands.map { |b| b.id }.select { |id| @@BAND_SHOWS[id].nil? }
+      bands = Band.find(:all, :conditions => ["bands.id in (?)", bids], :include => :upcoming_shows)
+      bands.each do |band|
         
         shows = shows_for_band(band).collect do |show| 
           show.date > now && show.last_updated > @updated_since ? show : nil
@@ -47,7 +50,7 @@ class FavoritesCalculator
       # Sort the combined list by date
       @upcoming_shows.uniq!
       @upcoming_shows.sort! { |x,y| x.date <=> y.date }
-      RAILS_DEFAULT_LOGGER.info("    Done: #{Time.now.to_i}, #{@upcoming_shows.size}")
+      OFFLINE_LOGGER.info("    Done: #{Time.now.to_i - start}, #{@upcoming_shows.size}")
     end
     
     @upcoming_shows

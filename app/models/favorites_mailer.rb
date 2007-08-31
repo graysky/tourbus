@@ -121,15 +121,15 @@ class FavoritesMailer < BaseMailer
   # NOTE: Won't scale to huge numbers of users, but my guess is limiting
   # factor might actually be the time it takes to send mail.
   def self.do_favorites_updates
-    fans = Fan.find_all_by_wants_favorites_emails(true)
+    #fans = Fan.find_all_by_wants_favorites_emails(true)
     num_fans = 0
     all_start = Time.now.to_i
-    for fan in fans
+    Fan.each_by_chunk(200) do |fan|
       start = Time.now
       OFFLINE_LOGGER.info("Start fan: #{fan.id}, #{start.to_i}")
       
       # Are they are any favorites?
-      next if fan.bands.empty?
+      next if !fan.wants_favorites_emails? || fan.bands.empty?
       
       # Make sure the fan has set a location. If not, bug them once.
       if fan.zipcode == "" and fan.city == ""

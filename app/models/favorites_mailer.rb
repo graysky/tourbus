@@ -161,7 +161,12 @@ class FavoritesMailer < BaseMailer
         show.save
       end
       
-      FavoritesMailer.deliver_favorites_update(fan, new_shows, nil)
+      begin
+	FavoritesMailer.deliver_favorites_update(fan, new_shows, nil)
+      rescue Exception => e
+	OFFLINE_LOGGER.info(e)
+      end
+
       fan.last_favorites_email = Time.now
       fan.save
       

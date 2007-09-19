@@ -79,6 +79,19 @@ class Show < ActiveRecord::Base
     end
   end
   
+  # Attends on date and venue info
+  def formatted_title_long
+    if !self.title.nil? and self.title != ""
+      return self.title
+    else
+      # Format the list of bands to be the title
+      d = formatted_date2(self.date)
+      s = self.bands.map { |band| band.name }.join("/")
+      v = self.venue.name
+      return "#{d}: #{s} @ #{v}"
+    end
+  end
+  
   # Alias name to title to make Show more uniform with other objs
   def name
     formatted_title
@@ -89,6 +102,20 @@ class Show < ActiveRecord::Base
     
     month = Date::MONTHNAMES[self.date.month] 
     "#{month} #{self.date.day}, #{self.date.year}"
+  end
+  
+  # Date like: 12/8/07  
+  def formatted_date2(date)
+    return "" if date.nil?
+    
+    year = date.strftime("%y")
+    month = date.strftime("%m")
+    dom = date.strftime("%d")
+
+    # Strip off any leading "0" padding
+    month.sub!(/^0/, '')
+    dom.sub!(/^0/, '')
+    return "#{month}/#{dom}/#{year}"
   end
   
   def all_photos

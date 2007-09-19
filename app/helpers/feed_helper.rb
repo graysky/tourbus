@@ -29,7 +29,7 @@ module FeedHelper
   # Get the title of a show, using the optional title
   # or formatted list of bands.
   def get_show_title(show)
-    return show.formatted_title
+    return show.formatted_title_long #show.formatted_title
   end
 
   protected
@@ -86,7 +86,7 @@ module FeedHelper
     fan = obj if obj.kind_of?(Fan)
       
     xml = ""
-    xml << "<title>Show: #{h(get_show_title(show))}</title>"
+    xml << "<title>#{h(get_show_title(show))}</title>"
     xml << "<link>#{item_url(show)}</link>"
     xml << "<pubDate>#{rss_format_time(show.created_on)}</pubDate>"
     

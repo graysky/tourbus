@@ -77,7 +77,7 @@ module ApplicationHelper
     return "" if date.nil?
     day = date.strftime("%a")
     year = date.strftime("%Y")
-    month = date.strftime("%m").sub!(/^0/, '')
+    month = date.strftime("%m").sub(/^0/, '')
 
     dom = date.strftime("%d").sub(/^0/, '')
     # Strip off any leading "0" padding

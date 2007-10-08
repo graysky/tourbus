@@ -8,56 +8,86 @@ require 'anansi/lib/string' # TEMP
 class JambaseParser < TableParser
   include REXML
   
-   def parse    
-    @marker_text = ['BAND(S)']
+  def parse    
+    @marker_text = ['Location']
     table = find_table
     
     date = nil
-    
-    table.each do |child|
-      if child.is_a?(Element) && child.name == 'tr'
-        contents = child.children[1].recursive_text
-	contents.gsub!(/\n/, "")
-
-        if contents =~ /.*::(.*)::/
+    k = 0
+    table.each do |row|
+      
+      if row.is_a?(Element) && row.name == 'tr'
+        
+        #next if k > 6 # TODO DEBUGGING REMOVE ME!
+        k = k + 1
+        contents = row.children[1].recursive_text
+        
+        contents.gsub!(/\n/, "")
+        
+        if contents =~ /(\d\d\/\d\d\/\d\d)(.*)::/
           date = parse_as_date($1.strip, false) rescue nil
+          #puts "Parsed date: #{date}"
           next if date.nil?
         else
           
+          # Basic show format is:
+          # <tr>
+          # <td class='artistCol'>
+          # ... Band 1 ... <br/>
+          # ... Band 2 ... etc.
+          # <td class='venueCol'>
+          # ... Venue name ...
+          # 
+          
           @show = {}
           @show[:bands] = []
-          @show[:date] = date
-          @show[:time] = "7pm"     
+          @show[:date] = date.to_s
+          @show[:venue] = get_venue
+          @show[:time] = "7pm" 
           
-          ul = child.children[1].find_node_by_text('ul')
-          next if ul.nil?
-          
-          i = 0
-          ul.each_element do |li|
-            band = probable_band(li.recursive_text, i, nil)
-            @show[:bands] << band if band
+          row.each do |cell|
+            
+            # Stuff to skip
+            next if !cell.is_a?(Element)
+            next if cell.to_s =~ /td class='iconCol'/
+            next if cell.to_s =~ /td class='toolCol'/
+            
+            # Pull out band names
+            if cell.to_s =~ /td class='artistCol'/
+              bands = cell.recursive_text
               
-            i += 1
+              j = 0
+              bands.split(/\n/).each do |b|
+                band = probable_band(b, j, nil)
+                @show[:bands] << band if band
+                j = j+1
+              end            
+            end
+            
+            # Pull out venue name
+            if cell.to_s =~ /td class='venueCol'/
+              venue = cell.recursive_text.strip
+              @show[:venue][:name] = venue
+            end
+            
+            # Pull out city, state
+            if cell.to_s =~ /td class='locationCol'/
+              loc = cell.recursive_text.strip.split(",")
+              
+              @show[:venue][:city] = loc[0].gsub(/\n/, ' ').strip
+              @show[:venue][:state] = loc[1].strip
+              
+              next if @show[:bands].empty?
+              puts "Show is #{@show.to_yaml}\n\n"
+              @shows << @show
+            end
+            
           end
           
-          next if @show[:bands].empty?
-          
-          @show[:venue] = get_venue
-          @show[:venue][:name] = child.elements[2].recursive_text.strip
-          loc = child.elements[3].recursive_text.split(",")
-         
-          @show[:venue][:city] = loc[0].gsub(/\n/, ' ').strip
-          @show[:venue][:state] = loc[1].strip
-          
-          # Grab the venue url, which can be used by venue importers
-          @show[:venue][:detail_link] = child.elements[2].find_node_by_text("a").attributes["href"]
-          
-            
-          puts "Show is #{@show.to_yaml}\n\n"
-          @shows << @show
-        end
-      end
-    end
-  end
+        end #if contents
+      end # if row_
+    end #table.each
+    @shows
+  end #parse
   
 end

@@ -5,7 +5,16 @@
 #
 # The URL for this site - mandatory
 # Can be single url:
-set :url, "http://www.jambase.com/search.asp?city=Los%20Angeles&stateID=5&beyondCity=1&dispall=1"
+now = Time.now
+month = now.month + 3
+month = 1 if month == 13
+month = 2 if month == 14
+month = 3 if month == 15
+year = (month == 1 or month == 2) ? now.year + 1 : now.year
+
+set :url, "http://www.jambase.com/Shows/Shows.aspx?ArtistID=0&VenueID=0&City=Los%20Angeles&State=CA&Zip=&radius=50&StartDate=#{now.month}/#{now.day}/#{now.year}&EndDate=#{month}/28/#{year}&Rec=False&pagenum=1&pasi=1500"
+
+#set :url, "http://www.jambase.com/search.asp?city=Los%20Angeles&stateID=5&beyondCity=1&dispall=1"
 #
 set :display_name, "Jambase"
 set :quality, 1

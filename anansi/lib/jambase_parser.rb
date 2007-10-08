@@ -25,7 +25,7 @@ class JambaseParser < TableParser
         contents.gsub!(/\n/, "")
         
         if contents =~ /(\d\d\/\d\d\/\d\d)(.*)::/
-          date = parse_as_date($1.strip, false) rescue nil
+          date = parse_as_date($1.strip, false)
           #puts "Parsed date: #{date}"
           next if date.nil?
         else
@@ -41,7 +41,7 @@ class JambaseParser < TableParser
           
           @show = {}
           @show[:bands] = []
-          @show[:date] = date.to_s
+          @show[:date] = date
           @show[:venue] = get_venue
           @show[:time] = "7pm" 
           

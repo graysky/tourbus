@@ -10,13 +10,21 @@
 
 <%= render :partial => "profile_header", :locals => { :front_page => true } %>
 
+<% if !logged_in? %>
+<center>
+<div id="fan_teaser_box">
+<div id="fan_teaser" style="font-weight: bold; color:white; background-color:#599057;margin:12 96 0 96;">
+<a style="font-size: 16px; color:#ddd;" href="/signup/fan">Sign up now</a> to track <%= @band.name %>!</div>
+</div>
+</center>
+<% end %>
 
 <%= section "shows_section.png", 94, 23, map_list_toggle("index") %>
 
 <% if @params[:show_map] == "true" %>
   <a name="map_top"/>
   <br/>
-  <div style="width: 560px; height:400px; margin-bottom:8px" id="map"></div>
+  <div style="width: 560px; height:400px;" id="map"></div>
 <% end %>
 
 <%= show_results @shows, params[:show_map] == "true" %>
@@ -59,3 +67,9 @@
 </div>
 
 <%= render :partial => "profile_sidebar", :locals => { :show_fans => true } %>
+
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('fan_teaser'), {bgColor : white} );
+</script>

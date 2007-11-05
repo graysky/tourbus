@@ -75,7 +75,7 @@ class WishListBand < ActiveRecord::Base
       
       # TODO Add a warning to the db somehow
       if band.nil?
-        msg = "Fan: #{fan.name}, Wishlist band: #{match.short_name}"
+        msg = "Fan: #{fan.name}, Wishlist band: #{match.short_name}" if !fan.nil?
         SystemEvent.warning("Could not find a band lookup", SystemEvent::WISHLIST, msg)
 		next
       end

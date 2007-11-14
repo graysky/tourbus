@@ -2,7 +2,7 @@ class TicketMaster
 
   PREFIX = "http://ticketsus.at/tourbus?DURL="
   MIN_BAND_FANS = 3
-  MIN_SHOW_FANS = 1
+  MIN_SHOW_FANS = 2
 
   def TicketMaster.band_link(band, force = false)
     if band.tm_id.blank? && (band.num_fans >= MIN_BAND_FANS || force)

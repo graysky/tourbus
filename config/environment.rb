@@ -111,6 +111,7 @@ require 'selective_timestamp'
 require 'validations'
 require 'chunkable'
 require 'array'
+require 'ticketmaster'
 
 # For UTF-8 handling
 $KCODE = 'u'

@@ -23,7 +23,12 @@
       <td class="col3">
         <nobr>
         <strong>upcoming shows:</strong> <%= band.num_upcoming_shows %><br/>
-        <strong>fans:</strong> <%= band.num_fans %><br/>
+        <%
+		  tm_link = TicketMaster.band_link(band)
+          if band.num_upcoming_shows > 0 && tm_link
+        %>
+        <strong><a href="<%= tm_link %>">Find Tickets</a></strong><br/>
+        <% end %>
         </nobr>
       </td>
       <td class="col4" id="fave_column_<%= band.id %>">

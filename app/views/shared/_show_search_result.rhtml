@@ -8,7 +8,14 @@
       </td>
       <td class="show_search_result_table col2">
         <div class="show_search_result_content">
-          <strong><%= friendly_date(show.date) %></strong>&nbsp;&nbsp;<%= friendly_time(show.date) %><br/>
+          <strong><%= friendly_date(show.date) %></strong>&nbsp;&nbsp;<%= friendly_time(show.date) %>
+          <% 
+                tm_link = TicketMaster.show_link(show)
+                if tm_link 
+          %>
+          &nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="<%= tm_link %>">Find Tickets!</a></strong>
+          <% end %>
+          <br/>
           <strong><%= link_to(show.formatted_title, :controller => "show", :action => "show", :id => show) %></strong><br/>
           <% if show_venue %>
             at <strong><%= show.venue.name %></strong> in <%= show.venue.location %>

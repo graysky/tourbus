@@ -23,7 +23,7 @@
             tm_link = TicketMaster.show_link(show)
             if tm_link 
         %>
-          <strong><a href="<%= tm_link %>" target="_blank">Find Tickets!</a></strong><br/>
+          <strong><a href="<%= tm_link %>" rel="nofollow" target="_blank">Find Tickets!</a></strong><br/>
         <% end %>
         <strong>interested:</strong> <%= show.num_attendees + show.num_watchers %> <br/>
         <%= friends_attending(show) %>

@@ -82,6 +82,16 @@
   </tr>
 <% end %>
 
+<%
+    tm_link = TicketMaster.show_link(@show, true)
+    if tm_link
+%>
+<tr>
+     <td class="venue_info">Tickets:</td>
+    <td><a href="<%= tm_link %>"><img src="/images/find_tickets.gif"/></a></strong></td>
+  </tr>
+<% end %>
+
 </table>
 </div>
 

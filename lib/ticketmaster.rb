@@ -16,11 +16,11 @@ class TicketMaster
     nil
   end
   
-  def TicketMaster.show_link(show)
+  def TicketMaster.show_link(show, force = false)
     return if show.bands.blank?
     return "#{PREFIX}http://www.ticketmaster.com/event/#{show.tm_id}" if !show.tm_id.blank?
     
-    if (show.num_attendees + show.num_watchers) >= MIN_SHOW_FANS
+    if ((show.num_attendees + show.num_watchers) >= MIN_SHOW_FANS) || force
       bands = show.bands.sort { |b1, b2| b2.num_fans <=> b1.num_fans }
       return TicketMaster.band_link(bands.first, true)
     end

@@ -32,7 +32,7 @@
   <% tm_link = TicketMaster.show_link(show, true, TicketMaster::FAVES_EMAIL)
     if tm_link
   %>
-  <strong><a href="<%= tm_link %>">Find Tickets!</a></strong><br/><br/>
+  <strong><a href="<%= tm_link %>">Find Tickets!</a></strong><br/>
   <% end %>
   <% the_url = @show_prefix_url.to_s + show.id.to_s %>
   <a href="<%= the_url %>?utm_source=favorites&utm_medium=email">More show details at tourb.us</a>

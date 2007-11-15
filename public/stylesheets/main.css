@@ -1756,7 +1756,7 @@ table.show_table td {
 }
 
 .fave_tip p {
-    margin:4px 8px 4px 4px;
+    margin:8px 8px 4px 4px;
     font-size:11px;
 }
 
@@ -1764,8 +1764,27 @@ table.show_table td {
     font-weight:bold;
 }
 
+.teaser_tip {
+    visibility:hidden;
+    background-color:#D0E5CD;
+    border:1px solid gray;
+    position:absolute;
+    margin-left:-100px;
+    padding-right:8px;
+    width:240px;
+}
+
 #report_problem_tip {
     background-color:#FBD9D0;
+}
+
+.fave_tip p a {
+    font-size:11px;
+}
+
+.teaser_tip p {
+    margin:4px 8px 4px 4px;
+    font-size:11px;
 }
 
 #report_problem_tip h3 {

@@ -32,8 +32,7 @@
         </nobr>
       </td>
       <td class="col4" id="fave_column_<%= band.id %>">
-        <% if logged_in_fan %>
-          <% if logged_in_fan.favorite?(band) %>
+          <% if logged_in_fan && logged_in_fan.favorite?(band) %>
             <%= render(
               :partial => "shared/remove_favorite_simple", 
               :locals => 
@@ -50,11 +49,7 @@
               }) 
             %>
           <% end %>
-        <% else %>
-          
-        <% end %>
       </td>
     </tr>
   </table>
-
 </div>

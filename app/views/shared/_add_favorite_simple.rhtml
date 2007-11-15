@@ -1,5 +1,6 @@
 <center>
 <div id="add_to_faves_<%= band.id %>">
+    <% if logged_in_fan %>
 <%= 
     link_to_remote "<img src='/images/fave_star.png' height='16' width='16' title='Add Favorite' onload='fixPNG(this)'/>",
                    :update => "fave_column_#{band.id}",
@@ -12,9 +13,29 @@
 		              }, 
                    :failure => "alert('Sorry, there was a problem adding this band! Please try again')"
  %>
+ <% else %>
+ 
+ <img id="prompt_link_<%= band.id %>" src='/images/fave_star.png' height='16' width='16' title='Add Favorite' onload='fixPNG(this)'/>
+ <% end %>
 <br/>Add favorite
 </div>
-
+<% if !logged_in_fan %>
+<div id="prompt_tip_<%= band.id %>" class='teaser_tip'>
+    <p>
+        <a href="/signup/fan">Sign up</a> <strong>to tell tourb.us about your favorite bands and get an email when they come to town!</strong>
+    </p>
+    <p>
+    Existing users <a href="/login">login here</a>.
+    </p>
+    <p>
+        <a href="#" onclick="$('prompt_tip_<%= band.id %>').style.display='none'"/>Close</a>
+    </p>
+</div>
+ <script type="text/javascript">
+    Tooltip.autoHideClick = false;
+    Tooltip.add('prompt_link_<%= band.id %>', 'prompt_tip_<%= band.id %>');
+ </script>
+<% end %>
 <div id="remove_from_faves_<%= band.id %>" style="display:none">
 <a href="#"><img src="/images/delete.png" height="16" width="16" title="Remove Favorite" onload='fixPNG(this)'/></a>
 <br/>Remove

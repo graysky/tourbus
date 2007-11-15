@@ -20,7 +20,7 @@
       <td class="col3">
         <nobr>
         <% 
-            tm_link = TicketMaster.show_link(show)
+            tm_link = TicketMaster.show_link(show, false, TicketMaster::FIND_SHOWS)
             if tm_link 
         %>
           <strong><a href="<%= tm_link %>" rel="nofollow" target="_blank">Find Tickets!</a></strong><br/>

@@ -24,7 +24,7 @@
         <nobr>
         <strong>upcoming shows:</strong> <%= band.num_upcoming_shows %><br/>
         <%
-		  tm_link = TicketMaster.band_link(band)
+		  tm_link = TicketMaster.band_link(band, false, TicketMaster::FIND_BANDS)
           if band.num_upcoming_shows > 0 && tm_link
         %>
         <strong><a href="<%= tm_link %>" rel="nofollow" target="_blank">Find Tickets!</a></strong><br/>

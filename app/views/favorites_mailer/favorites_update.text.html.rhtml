@@ -3,7 +3,7 @@
   <p>Hey <%= @fan.name %>,
   </p>
   <p>Here's a list of upcoming shows we think you'll be interested in.<br/>
-    To make these emails even better, tell tourb.us more of your favorite bands.
+    To make these emails even better, tell <a href="http://tourb.us/fans/import_favorites">tourb.us more of your favorite bands</a>.
   </p>
   
   <% for show in @new_shows %>
@@ -29,8 +29,13 @@
   <% if show.description != "" %>
     <%= show.description %><br/><br/>
   <% end %>
+  <% tm_link = TicketMaster.show_link(show, true, TicketMaster::FAVES_EMAIL)
+    if tm_link
+  %>
+  <br/><strong><a href="<%= tm_link %>">Find Tickets!</a></strong><br/><br/>
+  <% end %>
   <% the_url = @show_prefix_url.to_s + show.id.to_s %>
-  More details: <a href="<%= the_url %>?utm_source=favorites&utm_medium=email"><%= the_url %></a>
+  <a href="<%= the_url %>?utm_source=favorites&utm_medium=email">More show details at tourb.us</a>
   </p>  
   <% end %>
   

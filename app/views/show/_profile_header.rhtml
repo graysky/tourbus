@@ -83,7 +83,7 @@
 <% end %>
 
 <%
-    tm_link = TicketMaster.show_link(@show, true)
+    tm_link = TicketMaster.show_link(@show, true, TicketMaster::SHOW_PAGE)
     if tm_link
 %>
 <tr>

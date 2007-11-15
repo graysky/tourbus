@@ -40,7 +40,6 @@ end
 <div id="browse_links">
   <%= link_to_unless_current_action "Search", :action => 'band' %> <span class="normal">|</span>
   <%= link_to_unless_current_action "Most Popular Bands", :action => 'browse_popular_bands' %> <span class="normal">|</span>
-  <%= link_to_unless_current_action "Browse All Bands" , :action => 'browse_all_bands'%>
   <% #link_to_unless_current_action "Newest Bands" , :action => 'browse_newest_bands'%>
   
 </div>
@@ -68,6 +67,20 @@ end
 
 <h3>
   <% if @results and @results.size > 0 %>
+  
+  
+  <% if !logged_in? %>
+<center>
+<div id="fan_teaser_box">
+<div id="fan_teaser" style="font-weight: bold; color:white; background-color:#599057;margin:12 160 0 160;">
+<a style="font-size: 16px; color:#ddd;" href="/signup/fan">Sign up now</a> and let tourb.us email you<br/>
+when your favorite bands come to town!
+</div>
+</div>
+</center>
+<br/>
+<% end %>
+  
     <%= 
       case params[:action]
       when 'browse_popular_bands' then 'Browsing Most Popular Bands'
@@ -86,3 +99,10 @@ end
 
 <%= render :partial => "paging" %>
 </div>
+<% if !logged_in? %>
+<script type="text/javascript">
+    var white = '#FFFFFF';
+
+    Rico.Corner.round( $('fan_teaser'), {bgColor : white} );
+</script>
+<% end %>

@@ -162,9 +162,8 @@ class ShowParser < MetaSite
     # The parsedate method can't handle dotted dates like 02.12.06,
     # and confuses dates with months when using dashes
     str.gsub!(/(\.|-)/, '/')
-  
+   
     values = ParseDate.parsedate(str, true)
-    
     # Need at least a month and a date. Assume this year (for now)
     if values[1].nil? or values[2].nil?
       raise "Bad date: #{str}" if raise_on_error
@@ -173,7 +172,7 @@ class ShowParser < MetaSite
     
     year = Time.now.year if values[0].nil? or values[0] != Time.now.year or values[0] != Time.now.year + 1
     if (values[1].to_i < 12)
-      year = 2007
+      year = 2008
     end
     Time.local(year, values[1], values[2])
   end

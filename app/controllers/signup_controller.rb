@@ -63,7 +63,7 @@ class SignupController < ApplicationController
       else
         # It's now confirmed
         @band.confirmed = true
-        BandMailer.deliver_gm_of_new_band(@band)
+        #BandMailer.deliver_gm_of_new_band(@band)
         if (!@band.save)
           flash.now[:error] = "Error saving confirmation status"
           @band.confirmed = false
@@ -88,6 +88,16 @@ class SignupController < ApplicationController
     begin
       @fan = Fan.new(params[:fan])
       Fan.transaction(@fan) do
+        # Verify an address is present
+        begin 
+          zip = Address.parse_city_state_zip(params[:fan][:city_state_zip])
+          #puts "Zipcode is: #{zip}"
+          raise "Please enter a valid address within the U.S." if zip.nil? || zip == ""
+        rescue Exception => exc
+          # Could not validate their address
+          raise "Please enter a valid address within the U.S."
+        end
+      
         code = @fan.create_confirmation_code
         
         # Create a url for the confirm action
@@ -125,7 +135,7 @@ class SignupController < ApplicationController
       else
         # It's now confirmed
         @fan.confirmed = true
-        FanMailer.deliver_gm_of_new_fan(@fan)
+        #FanMailer.deliver_gm_of_new_fan(@fan)
         if (!@fan.save)
           flash.now[:error] = "Error saving confirmation status"
           @fan.confirmed = false

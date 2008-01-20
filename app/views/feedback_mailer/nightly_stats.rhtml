@@ -3,10 +3,14 @@
 
 <h3>Last 24 Hours of Activity</h3>
 Recent fan signups: <%= @recent_fans.size %> <br/>
-[ <%= @recent_fans.map {|f| f.name }.join(", ") %> ] <br/><br/>
+[ <%= @recent_fans.map { |f| 
+          "<a href='http://tourb.us/fan/#{f.name}'>"+f.name+"</a>"
+        }.join(" | ") %> ] <br/><br/>
 
 Recent logins: <%= @recent_logins.size %> <br/>
-[ <%= @recent_logins.map {|f| f.name }.join(", ") %> ] <br/>
+[ <%= @recent_logins.map { |f| 
+          "<a href='http://tourb.us/fan/#{f.name}'>"+f.name+"</a>"
+        }.join(" | ") %> ] <br/>
 
 <br/>
 Fan added faves: <%= @fan_adds.size %> <br/>

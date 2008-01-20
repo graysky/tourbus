@@ -99,6 +99,11 @@ module FeedHelper
     desc << "<p><b>When:</b> #{friendly_date(show.date)} at #{friendly_time(show.date)}</p>"
     desc << "<p><b>Where:</b> <a href=\"#{item_url(show.venue)}\">#{h(show.venue.name)}</a></p>"
     
+    tm_link = TicketMaster.show_link(show, true, TicketMaster::RSS_ID)
+    if tm_link
+      desc << "<p><strong><a href=\"#{tm_link}\">Find Tickets!</a></strong>"
+    end
+    
     if !show.description.empty?
       desc << "<p><b>Description:</b> #{simple_format( h(sanitize(show.description)) )}</p>"
     end

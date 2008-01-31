@@ -112,6 +112,18 @@
 
 <div style="clear:both"></div>
 
+<% if @links != nil %>
+    <% if (@links != nil)&&(@links["Link"] != nil) %>
+        <ul style=\"margin: 0; padding: 0; list-style: none; width: 100%;\">
+        <% for link in @links["Link"] -%>
+            <li style=\"float: left; padding: 0; clear: none; display: block; margin: 0; width: 13%;\"><%= link['BeforeText'][0] -%> <a href="<%= link['URL'][0] -%>"><%= link['Text'][0] -%></a> <%= link['AfterText'][0] -%></li>
+        <% end -%>
+        </ul>
+    <% end -%>
+<% else %>
+    <center><span>Advertise here!</span></center>
+<% end %>
+
 <div id="footer">
   <a href="/faq">FAQ</a> |
   <a href="/badge">Badges</a> |

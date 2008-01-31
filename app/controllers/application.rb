@@ -2,6 +2,7 @@ require 'cgi'
 require_dependency 'emails'
 require_dependency 'string_helper'
 require_dependency 'metafragment'
+require 'net/http'
 
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
@@ -48,6 +49,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
+  before_filter :content
 
   # Disable password logging
   filter_parameter_logging "password"
@@ -418,6 +420,48 @@ class ApplicationController < ActionController::Base
   
   def page_size
     return DEFAULT_PAGE_SIZE
+  end
+
+  def content
+    response.lifetime = 6.hour
+    url = "http://www.text-link-ads.com/xml.php?inventory_key=3F6AVIHKZSBZAC7Q8YR9&referer="+CGI::escape(request.env['REQUEST_URI'])
+    agent = "&user_agent="+CGI::escape(request.env['HTTP_USER_AGENT'])
+    url_time, url_data = fragment_key(url)
+  
+    #is it time to update the cache?
+    time = read_fragment(url_time)
+    if (time == nil) || (time.to_time < Time.now)
+      @links = requester(url+agent) rescue nil
+      #if we can get the latest, then update the cache
+      if @links != nil
+        expire_fragment(url_time)
+        expire_fragment(url_data)
+        write_fragment(url_time, Time.now+6.hour)
+        write_fragment(url_data, @links)
+      else
+        #otherwise try again in 1 hour
+        write_fragment(url_time, Time.now+1.hour)
+        @links = read_fragment(url_data)
+      end
+    else
+      #use the cache
+      @links = read_fragment(url_data)
+    end
+  end
+  
+  
+  def requester(url)
+    XmlSimple.xml_in(http_get(url))
+  end
+  
+  
+  def http_get(url)
+    Net::HTTP.get_response(URI.parse(url)).body.to_s
+  end
+  
+  
+  def fragment_key(name)
+    return "TLA/TIME/#{name}", "TLA/DATA/#{name}"
   end
   
   private

@@ -112,18 +112,6 @@
 
 <div style="clear:both"></div>
 
-<% if @links != nil %>
-    <% if (@links != nil)&&(@links["Link"] != nil) %>
-        <center>
-            <span class="city_info" style="font-size:13px;font-weight:bold">Sponsored links:</span>
-        <% for link in @links["Link"] -%>
-            <span class="city_info" style="font-size:13px;padding-left:8px"><%= link['BeforeText'][0] -%> <a href="<%= link['URL'][0] -%>"><%= link['Text'][0] -%></a> <%= link['AfterText'][0] -%></span>
-        <% end -%>
-        </center>
-    <% end -%>
-<% else %>
-    <center><span>Advertise here!</span></center>
-<% end %>
 
 <div id="footer">
   <a href="/faq">FAQ</a> |

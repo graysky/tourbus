@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_charsets
   before_filter :login_from_cookie
-  before_filter :content
+  before_filter :content, :except => [:rss, :ical]
 
   # Disable password logging
   filter_parameter_logging "password"
@@ -424,12 +424,17 @@ class ApplicationController < ActionController::Base
 
   def content
     response.lifetime = 6.hour
+    
+    unless request.env['REQUEST_URI'] && request.env['HTTP_USER_AGENT']
+      return
+    end
+    
     url = "http://www.text-link-ads.com/xml.php?inventory_key=3F6AVIHKZSBZAC7Q8YR9&referer="+CGI::escape(request.env['REQUEST_URI'])
     agent = "&user_agent="+CGI::escape(request.env['HTTP_USER_AGENT'])
     url_time, url_data = fragment_key(url)
   
     #is it time to update the cache?
-    time = read_fragment(url_time)
+    time = nil #read_fragment(url_time)
     if (time == nil) || (time.to_time < Time.now)
       @links = requester(url+agent) rescue nil
       #if we can get the latest, then update the cache

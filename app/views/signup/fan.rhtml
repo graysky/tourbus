@@ -14,20 +14,20 @@
 
 <div class="signup_info">
 <h2>Why Join tourb.us?</h2>
-<h3>
-<ul>
+<h3><ul>
   <li>Instantly import your favorite bands from iTunes, Last.fm or our huge list of bands 
   <li>Get an email when your favorite bands come to town
   <li>Subscribe to an RSS feed of upcoming shows
   <li>Get reminders before concerts
   <li>Never miss another show!
-</ul>
-</h3>
+</ul></h3>
 </div>
 
 <%= start_form_tag %>
 <%= error_messages_for 'fan' %>
-<table class="form-table">
+<table class="form-table" style="margin-top: 0px;">
+  <tr style="margin-top: 0px;"><td colspan="3"><h2 style="color:#0F628B;">Join Now!</h2></td>
+  </tr>
   <tr>
     <th>Username:</th>
     <td><%= text_field 'fan', 'name' %></td>
@@ -37,7 +37,7 @@
   <tr>
     <th>Email Address:</th>
     <td><%= text_field 'fan', 'contact_email'  %></td>
-    <td class="info">The address we'll send show updates to
+    <td class="info">Email address for show notifications.
     </td>
   </tr>
   <tr>
@@ -55,6 +55,8 @@
   <tr>
     <th>Password:</th>
     <td><%= password_field 'fan', 'password'  %></td>
+    <td class="info">At least 4 characters long, of your choice.
+    </td>
   </tr>
   <tr>
     <th>Confirm Password:</th>

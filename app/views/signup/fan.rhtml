@@ -12,20 +12,32 @@
   }
 </script>
 
+<div class="signup_info">
+<h2>Why Join tourb.us?</h2>
+<h3>
+<ul>
+  <li>Instantly import your favorite bands from iTunes, Last.fm or our huge list of bands 
+  <li>Get an email when your favorite bands come to town
+  <li>Subscribe to an RSS feed of upcoming shows
+  <li>Get reminders before concerts
+  <li>Never miss another show!
+</ul>
+</h3>
+</div>
+
 <%= start_form_tag %>
 <%= error_messages_for 'fan' %>
 <table class="form-table">
   <tr>
     <th>Username:</th>
     <td><%= text_field 'fan', 'name' %></td>
-    <td class="info">The name others will see. Choose wisely, it's permanent.
+    <td class="info">The name others will see.
     </td>
   </tr>
   <tr>
     <th>Email Address:</th>
     <td><%= text_field 'fan', 'contact_email'  %></td>
-    <td class="info">Address where a confirmation email will be sent. If you don't see it immediately, 
-    <strong>please check your "Bulk" or "Spam" folder</strong>. 
+    <td class="info">The address we'll send show updates to
     </td>
   </tr>
   <tr>
@@ -50,7 +62,7 @@
   </tr>
   <tr class="submit">
     <td></td>
-    <td><%= submit_tag 'Signup' %></td>
+    <td><%= submit_tag 'Sign Up and Add Your Favorite Bands!' %></td>
   </tr>
   
 </table>

@@ -106,6 +106,8 @@ class SignupController < ApplicationController
         
         @fan.new_password = true
         @fan.uuid = UUID.random_create.to_s
+        @fan.confirmed = true
+        @fan.last_login = Time.now
         if @fan.save
         
           # Generate an upload email address
@@ -114,8 +116,18 @@ class SignupController < ApplicationController
           @fan.upload_addr.save!
           logger.info("Signing up a new fan: #{@fan}, #{@fan.name}")
           FanMailer.deliver_notify_signup(@fan, confirm_url)
+          
           @name = @fan.name
-          render :action => 'signup_success'
+          flash[:new_user] = true
+          @session[:first_login] = true
+          @session[:fan_id] = @fan.id
+      
+          cookies[:type] = { :value => 'fan', :expires => Time.now + 5.years }
+          cookies[:login] = { :value => @fan.uuid, :expires => Time.now + 2.weeks }
+      
+          set_location_defaults(@fan.location, @fan.default_radius, 'false', 'true', 'true', 'false')
+          
+          redirect_to :controller => "fans", :action => 'import_favorites'
         end
       end
     rescue Exception => ex

@@ -3,6 +3,15 @@
 
 <div id='main'>
     
+    <% if flash[:new_user] %>
+    <h2>Thanks for signing up, <%= @fan.name %>!</h2>
+    <p style="padding:6px; border:2px solid #599057">
+        The first thing you should do is tell tourb.us about some of your favorite bands.
+        <a href="/find/browse_popular_bands">Browse the most popular bands</a> and add them
+        one by one, or follow the instructions below to add lots of bands at once.
+    </p>
+    <% end %>
+    
     <p>
         There are 3 different ways you can add many favorite bands at once. After
         selecting one of the methods below and clicking "Submit", you will be taken to a screen

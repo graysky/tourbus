@@ -28,6 +28,8 @@
           if band.num_upcoming_shows > 0 && tm_link
         %>
         <strong><a href="<%= tm_link %>" rel="nofollow" target="_blank">Find Tickets!</a></strong><br/>
+        <% elsif band.num_fans > 0 %>
+            <span style="font-weight:bold"><%= amazon_link(band) %></span>
         <% end %>
         </nobr>
       </td>

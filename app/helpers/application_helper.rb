@@ -260,4 +260,11 @@ END_JS
       return base
     end
   end
+  
+  def amazon_link(band)
+    return "" if band.num_fans == 0
+    name = band.name.gsub(" ", "+")
+    url = "http://www.amazon.com/s/ref=nb_ss_dmusic/?tag=tourbus-20&url=search-alias%3Ddigital-music&field-keywords=#{name}"
+    link_to("Listen @ Amazon!", url)
+  end
 end

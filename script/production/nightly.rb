@@ -21,3 +21,10 @@ today = Time.now.strftime("%Y%m%d")
 str = `cd /var/www/apps/tourbus/current && rake RAILS_ENV=production nightly_tasks`
 
 puts "#{str}"
+
+# Restart mongrels
+cmd = `cd /var/www/apps/tourbus/current && /usr/bin/mongrel_cluster_ctl restart`
+puts "#{cmd}"
+
+solr = `cd /var/www/apps/tourbus/current && rake solr:restart`
+puts "#{solr}"

@@ -26,5 +26,5 @@ puts "#{str}"
 cmd = `cd /var/www/apps/tourbus/current && /usr/bin/mongrel_cluster_ctl restart`
 puts "#{cmd}"
 
-solr = `cd /var/www/apps/tourbus/current && rake solr:restart`
+solr = `cd /var/www/apps/tourbus/current && rake solr:bounce &`
 puts "#{solr}"

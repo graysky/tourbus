@@ -26,7 +26,7 @@ class FavoritesCalculator
   # Includes shows that have been created since the last email
   def upcoming_shows
     if @upcoming_shows.nil?
-      OFFLINE_LOGGER.info("    Get shows: #{Time.now.to_i}")
+      OFFLINE_LOGGER.info("    Get shows: #{Time.now}")
       start = Time.now.to_i
       @upcoming_shows = []
 
@@ -44,7 +44,7 @@ class FavoritesCalculator
         end
         shows = Show.within_range(shows, @fan.latitude.to_f, @fan.longitude.to_f, @fan.default_radius)
 
-	OFFLINE_LOGGER.info("          found #{shows.size} show for #{band}")
+	OFFLINE_LOGGER.info("          found #{shows.size} show for #{band.name}")
            
         # Remove any dupes and shows the user is already going to
         @upcoming_shows += (shows - @fan.upcoming_shows)

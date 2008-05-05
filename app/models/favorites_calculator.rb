@@ -44,7 +44,7 @@ class FavoritesCalculator
         end
         shows = Show.within_range(shows, @fan.latitude.to_f, @fan.longitude.to_f, @fan.default_radius)
 
-	OFFLINE_LOGGER.info("          found #{shows.size} show for #{band.name}")
+	OFFLINE_LOGGER.info("          found #{shows.size} show for #{band}")
            
         # Remove any dupes and shows the user is already going to
         @upcoming_shows += (shows - @fan.upcoming_shows)

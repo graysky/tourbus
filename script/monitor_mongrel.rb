@@ -1,26 +1,66 @@
 #!/usr/bin/env ruby
-
 require 'open-uri'
-require "rexml/document"
+require 'timeout'
 
-url = "http://tourb.us/fan/mike"
-
+# Attempts to fetch a page from tourb.us. Returns true if the site
+# appears to be running smoothly, false otherwise
+def site_running?()
+  
+  #sleep(10)
+  
   begin
+    url = "http://tourb.us/fan/mike"
+    # Try to fetch the url
     response = open(url)
-    # Wrap in thread / timeout
-    # http://www.ruby-doc.org/stdlib/libdoc/timeout/rdoc/index.html
-    # 
-    #doc = Document.new(response.read)
+
     response.each do |line|
-      # Check for "<title>mike."
+      # Check for a known page title
+      if line =~ /<title>mike/i
+        return true # shortcircuit
+      end
     end
   rescue OpenURI::HTTPError => e
     puts "Error while reading #{url}"
   end
 
+  return false # doesn't appear to have worked
+end
 
-# try regular mongrel stop
+# Restarts mongrel
+def restart_mongrel()
+  puts "Going to restart mongrel..."
+  # try regular mongrel stop
 
-# then force
+  # then force
 
-# then restart
+  # then restart
+end
+
+# Check the site, and 
+def do_check()
+  timeout = 60 # how long should we wait?
+  is_running = false
+  begin 
+    is_running = Timeout::timeout( timeout ) {
+      # Something that should be interrupted if it takes too much time...
+      site_running?
+    }
+  rescue Timeout::Error => e
+    puts "Caught an exception! #{e}"
+    is_running = false # timed out
+  end
+  
+  puts "Status is #{is_running}"
+  if !is_running
+    restart_mongrel
+  end
+  
+end
+
+# Perform the check...
+do_check
+
+
+
+
+

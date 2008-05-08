@@ -6,8 +6,6 @@ require 'timeout'
 # appears to be running smoothly, false otherwise
 def site_running?()
   
-  #sleep(10)
-  
   begin
     url = "http://tourb.us/fan/mike"
     # Try to fetch the url
@@ -28,12 +26,8 @@ end
 
 # Restarts mongrel
 def restart_mongrel()
-  puts "Going to restart mongrel..."
-  # try regular mongrel stop
-
-  # then force
-
-  # then restart
+  o = `sudo /etc/init.d/mongrel_cluster restart`
+  puts o
 end
 
 # Check the site, and 
@@ -50,8 +44,9 @@ def do_check()
     is_running = false # timed out
   end
   
-  puts "Status is #{is_running}"
+  #puts "Status is #{is_running}"
   if !is_running
+    puts "tourb.us appears down. Restarting mongrel..."
     restart_mongrel
   end
   

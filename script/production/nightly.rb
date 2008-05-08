@@ -23,7 +23,8 @@ str = `cd /var/www/apps/tourbus/current && rake RAILS_ENV=production nightly_tas
 puts "#{str}"
 
 # Restart mongrels
-cmd = `cd /var/www/apps/tourbus/current && /usr/bin/mongrel_cluster_ctl restart`
+cmd = `sudo /etc/init.d/mongrel_cluster restart`
+#cmd = `cd /var/www/apps/tourbus/current && /usr/bin/mongrel_cluster_ctl restart`
 puts "#{cmd}"
 
 solr = `cd /var/www/apps/tourbus/current && rake solr:bounce &`

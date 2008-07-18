@@ -35,16 +35,22 @@ class FavoritesCalculator
       
       now = Time.now
       bids = @fan.bands.map { |b| b.id }.select { |id| @@BAND_SHOWS[id].nil? }
-      bands = Band.find(:all, :conditions => ["bands.id in (?)", bids], :include => :upcoming_shows)
-      cached_ids = @fan.bands.map { |b| b.id }.select { |id| @@BAND_SHOWS[id] }
-      bands += cached_ids
-      bands.each do |band|
+      
+      # Original ...
+      #bands = Band.find(:all, :conditions => ["bands.id in (?)", bids], :include => :upcoming_shows)
+      #cached_ids = @fan.bands.map { |b| b.id }.select { |id| @@BAND_SHOWS[id] }
+      #bands += cached_ids
+      #bands.each do |band|
+      
+      # ...Switch to chunking style
+      Band.each_by_chunk(100, :conditions => ["bands.id in (?)", bids], :include => :upcoming_shows) do |band|
+        
         shows = shows_for_band(band).collect do |show| 
           show.date > now && show.last_updated > @updated_since ? show : nil
         end
         shows = Show.within_range(shows, @fan.latitude.to_f, @fan.longitude.to_f, @fan.default_radius)
 
-	OFFLINE_LOGGER.info("          found #{shows.size} show for #{band}")
+	    OFFLINE_LOGGER.info("          found #{shows.size} show for #{band}")
            
         # Remove any dupes and shows the user is already going to
         @upcoming_shows += (shows - @fan.upcoming_shows)

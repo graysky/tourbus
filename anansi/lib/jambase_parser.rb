@@ -54,10 +54,13 @@ class JambaseParser < TableParser
             
             # Pull out band names
             if cell.to_s =~ /td class='artistCol'/
-              bands = cell.recursive_text
+              # iterate through elements within the cell to get
+              # band names without ^M
               
               j = 0
-              bands.split(/\n/).each do |b|
+              cell.each_element_with_text do |band|
+                b = band.recursive_text
+
                 band = probable_band(b, j, nil)
                 @show[:bands] << band if band
                 j = j+1
@@ -78,7 +81,7 @@ class JambaseParser < TableParser
               @show[:venue][:state] = loc[1].strip
               
               next if @show[:bands].empty?
-              puts "Show is #{@show.to_yaml}\n\n"
+              #puts "Show is #{@show.to_yaml}\n\n"
               @shows << @show
             end
             

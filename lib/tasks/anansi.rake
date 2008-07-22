@@ -5,6 +5,9 @@
 desc "Bundle up the crawl, parse, and prepare import"
 task :anansi_all => [:anansi_crawl, :anansi_parse, :anansi_prepare_import ]
 
+desc "Do everything, including the import"
+task :anansi_complete => [:anansi_crawl, :anansi_parse, :anansi_prepare_import, :anansi_import]
+
 # Each step can be put into testing mode by passing "true" to cstor
 desc "Runs the 1st stage of the crawler"
 task :anansi_crawl do

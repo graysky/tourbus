@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="server/webapps/solr/WEB-INF/lib/lucene-core-nightly.jar"/>
+	<classpathentry kind="lib" path="server/webapps/solr/WEB-INF/lib/lucene-highlighter-nightly.jar"/>
+	<classpathentry kind="lib" path="server/webapps/solr/WEB-INF/lib/lucene-snowball-nightly.jar"/>
+	<classpathentry kind="lib" path="server/webapps/solr/WEB-INF/lib/xpp3-1.1.3.4.O.jar"/>
+	<classpathentry kind="lib" path="server/webapps/solr/WEB-INF/classes"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

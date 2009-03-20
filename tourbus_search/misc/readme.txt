@@ -1,0 +1,1 @@
+segments is from the solr example app, and is needed to get started with a fresh index.
